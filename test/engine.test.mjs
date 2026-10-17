@@ -136,3 +136,15 @@ test('legacy empty-error reviews fail closed rather than approve prose',async()=
  assert.equal((await verifyDraft(newGame(),'arthur',{text:'Preparé el té.',factIds:['tea']})).accepted,false);
  }finally{globalThis.fetch=original;}
 });
+
+test('nephew questions retrieve relation, photograph and debt without exposing a locked secret',async()=>{
+ const {localClassify}=await import('../src/local-llm.mjs');
+ for(const [q,id] of [['Tu relación con Edmund','motive'],['¿Qué fotografía?','alibi'],['¿Por qué discutiste con tu tío?','motive'],['¿Le debías dinero?','motive'],['¿Qué joya ibas a vender?','unknown']])assert.equal(await localClassify(newGame(),'julian',q),id);
+});
+test('unknown conversation uses contextual authored replies without generic model evasion',async()=>{
+ const {localConversation,unknownReply}=await import('../src/conversation.mjs');const original=globalThis.fetch;
+ try{globalThis.fetch=async()=>{throw Error('No model expected for blocked explicit intent');};
+ const r=await localConversation(newGame(),'julian','¿Quién es el asesino?');assert.match(r.answer,/contraste/);assert(!r.answer.includes('Prefiero no hacer suposiciones'));
+ assert.match(unknownReply(newGame(),'julian','¿Por qué eres tan feo?'),/¿En serio/);
+ }finally{globalThis.fetch=original;}
+});

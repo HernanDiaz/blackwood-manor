@@ -1,0 +1,48 @@
+[
+  {
+    "question": "Tu relación con Edmund",
+    "answer": "Le debía dinero. Discutimos a las 20:50 y después no volví a verlo.",
+    "mode": "local-llm",
+    "verification": "creative-fallback",
+    "milliseconds": 2782,
+    "reviewReason": "unsupported-or-incomplete-evidence"
+  },
+  {
+    "question": "¿Qué fotografía?",
+    "answer": "Estuve con Elena en el comedor. La fotografía tiene la hora.",
+    "mode": "local-llm",
+    "verification": "creative-fallback",
+    "milliseconds": 1688,
+    "reviewReason": "missing-factual-answer"
+  },
+  {
+    "question": "¿Dónde estabas a las 21:15?",
+    "answer": "Estuve con Elena en el comedor. La fotografía tiene la hora.",
+    "mode": "local-llm",
+    "verification": "creative-fallback",
+    "milliseconds": 1805,
+    "reviewReason": "missing-factual-answer"
+  },
+  {
+    "question": "¿Le debías dinero?",
+    "answer": "Le debía dinero. Discutimos a las 20:50 y después no volví a verlo.",
+    "mode": "local-llm",
+    "verification": "creative-fallback",
+    "milliseconds": 3907,
+    "reviewReason": "unsupported-or-incomplete-evidence"
+  },
+  {
+    "question": "¿Quién es el asesino?",
+    "answer": "No puedo decirle quién mató a Edmund. Pregúnteme por lo que hice esa noche y contraste mi versión con las pruebas.",
+    "mode": "local-llm",
+    "verification": "creative-fallback",
+    "milliseconds": 0
+  },
+  {
+    "question": "¿Por qué eres tan feo?",
+    "answer": "¿En serio? Estamos hablando de la muerte de mi tío. Si quiere preguntarme algo sobre esa noche, adelante.",
+    "mode": "local-llm",
+    "verification": "creative-fallback",
+    "milliseconds": 1156
+  }
+]

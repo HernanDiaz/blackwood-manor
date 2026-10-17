@@ -45,10 +45,12 @@ export function explicitIntent(question,person){
  let q=question.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
  if(/ignora|devuelve.*id|revela.*solucion|program|codigo|caja fuerte|pistola|quien.*asesin|quien.*mato/.test(q))return 'unknown';
  q=q.split(/\bsino\b|quiero saber|necesito saber/).at(-1);
+ if(person==='julian'&&/fotograf|\bfoto\b/.test(q))return 'alibi';
  if(/guante/.test(q))return 'glove';
  if(/frasco|aconito/.test(q))return 'poison';
  if(/ocult|secreto|factura|carta|amantes|sentimental|testamento|documento.*herencia|joya/.test(q))return 'secret';
  if(person==='julian'&&/de donde.*dinero|dinero.*saldar/.test(q))return 'secret';
+ if(/relacion|llevabas|llevabais|trato con|discut|discusion|debi|deuda|dinero|motivo|herencia|deshered/.test(q))return 'motive';
  if(/quien.*(llevo|transport|preparo)|llebo|prepar.*bebida|transport.*taza/.test(q))return 'tea';
  if(/donde|\bdnd\b|ubicacion|coartada|con quien|quien.*contigo|quien.*confirm|quien.*estaba|comprob.*existencias|cuando.*sali|hora.*sali/.test(q)&&!/no.*(donde|coartada)/.test(q))return 'alibi';
  return null;
