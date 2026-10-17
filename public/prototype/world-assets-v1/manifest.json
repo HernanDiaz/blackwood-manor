@@ -1,0 +1,195 @@
+{
+  "model": "local SDXS",
+  "finalized": true,
+  "assets": [
+    {
+      "id": "medieval-person-p1",
+      "prompt": "portrait of a castellana, woman with dark hair, medieval costume, fantasy oil painting, dark background",
+      "seed": 8200,
+      "file": "medieval-person-p1.webp",
+      "sha256": "9f4fb27a9c00c57c091a512ad45e1bbccd41d1fd1d895e9f342095bb489582df"
+    },
+    {
+      "id": "medieval-person-p2",
+      "prompt": "portrait of a escribano, man with curly hair, medieval costume, fantasy oil painting, dark background",
+      "seed": 8201,
+      "file": "medieval-person-p2.webp",
+      "sha256": "2e98cea5e0c9fbcec9f893572e80605b79f0a0f42b5d2305bd6f5c2c186f2668"
+    },
+    {
+      "id": "medieval-person-p3",
+      "prompt": "portrait of a curandera, woman with silver hair, medieval costume, fantasy oil painting, dark background",
+      "seed": 8202,
+      "file": "medieval-person-p3.webp",
+      "sha256": "7d577e4005818ad6f49298c84a4768c9016657b20e6e836bd920ae8b89a7e3fc"
+    },
+    {
+      "id": "medieval-person-p4",
+      "prompt": "portrait of a capit\u00e1n de la guardia, man with grey beard, medieval costume, fantasy oil painting, dark background",
+      "seed": 8203,
+      "file": "medieval-person-p4.webp",
+      "sha256": "66fba7c2720d2934aa3485617ebe677bc1ebed50484bccbde48cd1191983381c"
+    },
+    {
+      "id": "medieval-person-p5",
+      "prompt": "portrait of a mensajera, woman with long dark hair, medieval costume, fantasy oil painting, dark background",
+      "seed": 8204,
+      "file": "medieval-person-p5.webp",
+      "sha256": "0600fac8e59b2e76cf13b9b749a7945b0690de87ff89986bf8a258d3e30aaf16"
+    },
+    {
+      "id": "medieval-room-r1",
+      "prompt": "medieval castle great hall, fantasy oil painting, warm candlelight, no people",
+      "seed": 8205,
+      "file": "medieval-room-r1.webp",
+      "sha256": "15007a974cde751925ff36a9ef43f5045aa770590f989b50bac583cfc28ca29c"
+    },
+    {
+      "id": "medieval-room-r2",
+      "prompt": "medieval library with ancient books, fantasy oil painting, warm candlelight, no people",
+      "seed": 8206,
+      "file": "medieval-room-r2.webp",
+      "sha256": "ead9dce3d8c422b962ba541b808c89dea793228f0c864b0f06eebe9356c74a3a"
+    },
+    {
+      "id": "medieval-room-r3",
+      "prompt": "medieval apothecary workshop, fantasy oil painting, warm candlelight, no people",
+      "seed": 8207,
+      "file": "medieval-room-r3.webp",
+      "sha256": "73c34409f82aae9595eeacf956fbbe5ae6fff4da0a6ac840c6a0b077c02d551f"
+    },
+    {
+      "id": "medieval-room-r4",
+      "prompt": "medieval castle armory, fantasy oil painting, warm candlelight, no people",
+      "seed": 8208,
+      "file": "medieval-room-r4.webp",
+      "sha256": "42dd74bd909dac10e89bdf2bb052a833263ab3e8d827a3427a4b1e17e8d35c41"
+    },
+    {
+      "id": "medieval-room-r5",
+      "prompt": "medieval tower interior overlooking courtyard, fantasy oil painting, warm candlelight, no people",
+      "seed": 8209,
+      "file": "medieval-room-r5.webp",
+      "sha256": "b9acf3bf41a189dd205ba8ea0cc1157a436d18d1f4b30c62a5ea4717cf22547f"
+    },
+    {
+      "id": "medieval-room-r6",
+      "prompt": "medieval castle bedroom, fantasy oil painting, warm candlelight, no people",
+      "seed": 8210,
+      "file": "medieval-room-r6.webp",
+      "sha256": "49fa8fd0c5f9f75d756b161fbdfcbf1523e822cf2aa01292d69d850f8e225ace"
+    },
+    {
+      "id": "fantasy-person-p1",
+      "prompt": "portrait of a guardiana del bosque, woman with dark hair, medieval costume, fantasy oil painting, dark background",
+      "seed": 8211,
+      "file": "fantasy-person-p1.webp",
+      "sha256": "c8766928e057ded3fc4e5acde642461ff669b2b6f306f03f52372a46eed38a72"
+    },
+    {
+      "id": "fantasy-person-p2",
+      "prompt": "portrait of a archivero real, man with curly hair, medieval costume, fantasy oil painting, dark background",
+      "seed": 8212,
+      "file": "fantasy-person-p2.webp",
+      "sha256": "ba3335fbb473ebb2a1e5fc48117519314cd83ecfc470d21c1a801d1b5c496c60"
+    },
+    {
+      "id": "fantasy-person-p3",
+      "prompt": "portrait of a alquimista, woman with silver hair, medieval costume, fantasy oil painting, dark background",
+      "seed": 8213,
+      "file": "fantasy-person-p3.webp",
+      "sha256": "0ddaa50a36e3cfb61df57e228c2c39bccee18853bcf5d61061ff9e47623159b9"
+    },
+    {
+      "id": "fantasy-person-p4",
+      "prompt": "portrait of a caballero del reino, man with grey beard, medieval costume, fantasy oil painting, dark background",
+      "seed": 8214,
+      "file": "fantasy-person-p4.webp",
+      "sha256": "8caa4f1f945ee2ece3adbf4443c3a8b66b2d94791c962656d92cefd9b538d379"
+    },
+    {
+      "id": "fantasy-person-p5",
+      "prompt": "portrait of a emisaria fe\u00e9rica, woman with long dark hair, medieval costume, fantasy oil painting, dark background",
+      "seed": 8215,
+      "file": "fantasy-person-p5.webp",
+      "sha256": "7e89ea0c6aab5c00d9fc5f8080dade759c59408bacfc3bea15faecc5ad41b3b9"
+    },
+    {
+      "id": "fantasy-room-r1",
+      "prompt": "medieval castle great hall, fantasy oil painting, warm candlelight, no people",
+      "seed": 8216,
+      "file": "fantasy-room-r1.webp",
+      "sha256": "15a0ff5314dba65ae3de578ff0ab0a7b90cdac8baff5b79e6a5f269dbc9c06a3"
+    },
+    {
+      "id": "fantasy-room-r2",
+      "prompt": "medieval library with ancient books, fantasy oil painting, warm candlelight, no people",
+      "seed": 8217,
+      "file": "fantasy-room-r2.webp",
+      "sha256": "6666ef58627ba4132f47681008103a5cd9584ec05a04db58e087520133ac48bc"
+    },
+    {
+      "id": "fantasy-room-r3",
+      "prompt": "medieval apothecary workshop, fantasy oil painting, warm candlelight, no people",
+      "seed": 8218,
+      "file": "fantasy-room-r3.webp",
+      "sha256": "78bfaf2dc869b3dc59f7b858b507a3050128df2da69c08e715e08c381aab466f"
+    },
+    {
+      "id": "fantasy-room-r4",
+      "prompt": "medieval castle armory, fantasy oil painting, warm candlelight, no people",
+      "seed": 8219,
+      "file": "fantasy-room-r4.webp",
+      "sha256": "dd867418111cb897c873fd281b735cd93838406b3eea436b6d27820eae34e6a8"
+    },
+    {
+      "id": "fantasy-room-r5",
+      "prompt": "medieval tower interior overlooking courtyard, fantasy oil painting, warm candlelight, no people",
+      "seed": 8220,
+      "file": "fantasy-room-r5.webp",
+      "sha256": "09ba5fa2a4c3448116c6486a0ebfe204b254953278e1648d58f1679d89551467"
+    },
+    {
+      "id": "fantasy-room-r6",
+      "prompt": "medieval castle bedroom, fantasy oil painting, warm candlelight, no people",
+      "seed": 8221,
+      "file": "fantasy-room-r6.webp",
+      "sha256": "4718894595059aff58713ab5737444dc3fabe935331b3774c0152d24ec539a10"
+    },
+    {
+      "id": "method-shotgun",
+      "prompt": "antique double barrel shotgun, on a wooden table, oil painting",
+      "seed": 8222,
+      "file": "method-shotgun.webp",
+      "sha256": "5bdd359b1159da8fcc1869c782011ce1e8041c8af974db05170d81b564e22b8f"
+    },
+    {
+      "id": "method-sword",
+      "prompt": "medieval sword, on a wooden table, oil painting",
+      "seed": 8223,
+      "file": "method-sword.webp",
+      "sha256": "92cef217dd1e5ad1ab2113b581fb5e9d4e5f899d3aced7e10ee7e38f05a81480"
+    },
+    {
+      "id": "method-crossbow",
+      "prompt": "medieval crossbow, on a wooden table, oil painting",
+      "seed": 8224,
+      "file": "method-crossbow.webp",
+      "sha256": "d7ce5017c8a8e594c601f2c48d3390978ca4aa863b5735a13ecb57a99c3630e2"
+    },
+    {
+      "id": "method-artifact",
+      "prompt": "glowing magical crystal amulet, on a wooden table, oil painting",
+      "seed": 8225,
+      "file": "method-artifact.webp",
+      "sha256": "eadc517c420f9101d2d21e00a4606f507fa800db876f2129d39dd5a7b0d1f064"
+    },
+    {
+      "id": "method-alchemy",
+      "prompt": "glass potion bottle, on a wooden table, oil painting",
+      "seed": 8226,
+      "file": "method-alchemy.webp",
+      "sha256": "be7103876e9db42bcdb1da7ecdb3e5cdaa970732fe73e946a7d6d6786ed550a7"
+    }
+  ]
+}

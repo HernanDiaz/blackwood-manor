@@ -67,3 +67,5 @@ El generador piloto dispone de un catálogo de veinte armas y métodos, con comp
 ## Prototipo orbital jugable
 
 Disponible en http://127.0.0.1:4173/prototype/index.html y desde el laboratorio. Integra quince métodos de ciencia ficción, creación de casos por semilla, quince pistas, interrogatorios asistidos por Qwen, tablero, notas, acusación y guardado/exportación independientes de Blackwood. El mundo y sus recursos ya están preparados; no genera un mundo nuevo al abrir cada partida. Véase `PROTOTIPO-ORBITAL.md`. Las 53 pruebas incluyen las quince armas y 6.750 combinaciones de acusación.
+
+El prototipo incluye ahora selector inicial de mundos: ciencia ficción, fantasía, medieval, años 30 y aleatorio. Consulta PROTOTIPO-ORBITAL.md. Validación actual: 58 pruebas.

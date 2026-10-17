@@ -5,8 +5,8 @@ const hash=text=>{let n=2166136261;for(const c of text){n^=c.charCodeAt(0);n=Mat
 const rng=seed=>{let a=parseInt(hash(seed),16);return()=>{a+=0x6d2b79f5;let n=a;n=Math.imul(n^(n>>>15),n|1);n^=n+Math.imul(n^(n>>>7),n|61);return ((n^(n>>>14))>>>0)/4294967296;};};
 const pick=(items,random)=>items[Math.floor(random()*items.length)];
 export const clock=n=>Math.floor(n/60).toString().padStart(2,'0')+':'+(n%60).toString().padStart(2,'0');
-export function prototypeRooms(data){return data.world.rooms.map((r,i)=>({...r,tags:tags[i]}));}
-export function prototypeMethods(data){const pairs=methodRoomPairs('scifi',prototypeRooms(data));return methodCatalog.filter(m=>pinnedMethods.includes(m.id)&&pairs.some(p=>p.methodId===m.id));}
+export function prototypeRooms(data){return data.world.rooms.map((r,i)=>({...r,tags:r.tags||tags[i]}));}
+export function prototypeMethods(data){const pairs=methodRoomPairs(data.setting||'scifi',prototypeRooms(data));return methodCatalog.filter(m=>(!data.setting||data.setting==='scifi'?pinnedMethods.includes(m.id):true)&&pairs.some(p=>p.methodId===m.id));}
 const motives=[
  'Había falsificado sus credenciales profesionales. La dirección iba a denunciarlo al consejo al día siguiente.',
  'Había desviado suministros de la estación. La dirección había reunido pruebas y las entregaría al consejo al día siguiente.',
@@ -14,13 +14,13 @@ const motives=[
  'Había vendido información reservada de la estación. La dirección había descubierto la operación y presentaría las pruebas al día siguiente.'
 ];
 export function createPrototypeCase(data,{seed,previousMethodId='',previousPersonId='',forcedMethodId=''}={}){
- if(data.revision!=='orbital-v1'||typeof seed!=='string'||!/^[a-zA-Z0-9-]{1,64}$/.test(seed))throw Error('Semilla o mundo incompatible');
+ if(!['orbital-v1','noir-v1','medieval-v1','fantasy-v1'].includes(data.revision)||typeof seed!=='string'||!/^[a-zA-Z0-9-]{1,64}$/.test(seed))throw Error('Semilla o mundo incompatible');
  const random=rng(seed),people=data.world.people,rooms=prototypeRooms(data);
  let pool=prototypeMethods(data),previous=pool.find(m=>m.id===previousMethodId);
  if(forcedMethodId){pool=pool.filter(m=>m.id===forcedMethodId);if(!pool.length)throw Error('Método no disponible en esta ambientación');}
  else if(previous&&pool.some(m=>m.family!==previous.family))pool=pool.filter(m=>m.family!==previous.family);
- const method=pick(pool,random),pairs=methodRoomPairs('scifi',rooms).filter(p=>p.methodId===method.id),pair=pick(pairs,random),scene=rooms.find(r=>r.id===pair.roomId);
- const culprit=pick(people.filter(p=>p.id!==previousPersonId),random),safe=rooms.filter(r=>r.id!==scene.id),innocent=people.filter(p=>p.id!==culprit.id),motive=pick(motives,random);
+ const method=pick(pool,random),pairs=methodRoomPairs(data.setting||'scifi',rooms).filter(p=>p.methodId===method.id),pair=pick(pairs,random),scene=rooms.find(r=>r.id===pair.roomId);
+ const culprit=pick(people.filter(p=>p.id!==previousPersonId),random),safe=rooms.filter(r=>r.id!==scene.id),innocent=people.filter(p=>p.id!==culprit.id),motive=pick(data.motives||motives,random);
  const timing=methodTiming(method,1200+Math.floor(random()*30)*5),from=clock(timing.windowStart),to=clock(timing.windowEnd),at=clock(timing.crimeMinute);
  const alibis=people.map(person=>{const i=innocent.findIndex(p=>p.id===person.id),partner=i<0?null:innocent[i%2===0?i+1:i-1],room=i<0?safe[2]:safe[Math.floor(i/2)];return {person:person.id,room:room.id,witness:partner?.id||null,claim:i<0?`Estuve a solas en «${room.name}» de ${from} a ${to}. No entré en «${scene.name}» durante ese intervalo.`:`Estuve con ${partner.name} en «${room.name}» de ${from} a ${to}.`};});
  const clues=[];
@@ -30,7 +30,7 @@ export function createPrototypeCase(data,{seed,previousMethodId='',previousPerso
   if(g===0){title='Documento de '+p.name;text=guilty?`Documento recibido y firmado por ${p.name}: ${motive}`:`Solicitud firmada por ${p.name} para revisar sus turnos de trabajo. Refleja un desacuerdo laboral, no una amenaza ni una prueba del crimen.`;}
   if(g===1){title='Inspección de '+p.name;text=guilty?methodEvidence(method,p.name,at):`La inspección no encontró un vínculo material entre ${p.name} y el objeto del crimen. Las pruebas independientes descartan su intervención durante el intervalo investigado.`;}
   if(g===2){title='Registro de '+p.name;text=guilty?`El registro independiente identifica a ${p.name} entrando en «${scene.name}» a las ${at} y saliendo a las ${clock(timing.crimeMinute+2)}. Contradice su afirmación de haber permanecido en «${safe[2].name}».`:`El registro continuo confirma que ${p.name} y ${partner.name} permanecieron en «${room.name}» de ${from} a ${to}. Ninguno pudo entrar en «${scene.name}» durante el crimen.`;}
-  clues.push({id,person:p.id,category,effect:g===0||guilty?'supports':'excludes',room:rooms[(g*5+i)%rooms.length].id,title,text,image:g===1&&guilty?'/prototype/assets/method-'+method.id+'.webp':'/lab/assets/clue-'+id+'.webp'});
+  clues.push({id,person:p.id,category,effect:g===0||guilty?'supports':'excludes',room:rooms[(g*5+i)%rooms.length].id,title,text,image:g===1&&guilty?(data.setting&&['shotgun','sword','crossbow','artifact','alchemy'].includes(method.id)?'/prototype/world-assets-v1/':'/prototype/assets/')+'method-'+method.id+'.webp':(data.setting?'/assets/blackwood-complete-v1/clue-letter.webp':'/lab/assets/clue-'+id+'.webp')});
  }
  const signature=hash(JSON.stringify({revision:data.revision,seed,method,scene:scene.id,culprit:culprit.id,timing,motive,alibis,clues,world:data.world}));
  return {id:'orbital-'+signature,revision:data.revision,seed,people,rooms,method,scene,culprit,motive,timing,alibis,clues,victim:data.victim};
@@ -39,7 +39,7 @@ export function newPrototype(data,options={}){
  const seed=options.seed||Array.from(globalThis.crypto.getRandomValues(new Uint32Array(2)),n=>n.toString(16).padStart(8,'0')).join('');
  const selection={seed,previousMethodId:options.previousMethodId||'',previousPersonId:options.previousPersonId||'',forcedMethodId:options.forcedMethodId||''};
  const c=createPrototypeCase(data,selection);
- return {version:1,revision:data.revision,...selection,caseId:c.id,room:c.scene.id,found:[],pinned:[],notes:'',chat:[],result:null};
+ return {version:1,worldId:data.setting||'scifi',revision:data.revision,...selection,caseId:c.id,room:c.scene.id,found:[],pinned:[],notes:'',chat:[],result:null};
 }
 export function restorePrototype(data,raw){
  const s=typeof raw==='string'?JSON.parse(raw):raw;
@@ -84,7 +84,7 @@ export function inferPrototypeTopic(question){
 export function accusePrototype(c,state,{person,method,room,evidence}){
  assertCase(c,state);
  if(state.result)throw Error('La investigación está cerrada');
- if(!c.people.some(p=>p.id===person)||!pinnedMethods.includes(method)||!c.rooms.some(r=>r.id===room))throw Error('Completa persona, método y lugar');
+ if(!c.people.some(p=>p.id===person)||!methodCatalog.some(m=>m.id===method)||!c.rooms.some(r=>r.id===room))throw Error('Completa persona, método y lugar');
  if(!Array.isArray(evidence)||new Set(evidence).size<3||evidence.some(id=>!state.found.includes(id)))throw Error('Adjunta al menos tres pruebas descubiertas');
  const sufficient=['motive','link','opportunity'].every(category=>c.clues.some(x=>evidence.includes(x.id)&&x.person===person&&x.category===category&&x.effect==='supports'));
  state.result=person===c.culprit.id&&method===c.method.id&&room===c.scene.id&&sufficient?'won':'lost';return state.result;
