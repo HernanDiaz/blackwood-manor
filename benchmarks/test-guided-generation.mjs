@@ -1,3 +1,4 @@
+import {methodCatalog,methodRoomPairs,methodEvidence,methodTiming} from '../src/method-catalog.mjs';
 import fs from 'node:fs/promises';import {createHash} from 'node:crypto';
 import {validateMystery,candidates} from './test-generic-generation.mjs';
 const folder=new URL('./generic-pilot/guided/',import.meta.url);await fs.mkdir(folder,{recursive:true});
@@ -22,22 +23,27 @@ const rooms=[];for(const [i,[purpose,design]] of roomDesigns.entries()){
 }
 const world={title:'Experimento orbital',premise:'Una muerte en una estación aislada. Cinco testimonios y quince pruebas.',visualStyle:'cinematic retro science fiction concept painting, teal and amber light, realistic proportions',people,rooms};
 const victim=await ask('victim','Invent a short unique Spanish-readable name for the deceased station director. Must NOT be any suspect name. Only name, no story.',{forbiddenNames:people.map(p=>p.name)},obj({name:str}));
-const methods={air:{name:'Sabotaje del regulador ambiental',object:'módulo del regulador ambiental',trace:'registro de la apertura no autorizada del regulador'},medical:{name:'Sustitución de una cápsula médica ficticia',object:'cápsula de tratamiento sellada',trace:'precinto de la cápsula manipulado'},power:{name:'Sabotaje de un panel energético ficticio',object:'panel portátil de energía',trace:'sello del panel manipulado'}};
+const roomTags=[['interior','life-support'],['interior'],['interior','life-support'],['interior','industrial'],['interior'],['interior']];
+rooms.forEach((room,i)=>room.tags=roomTags[i]);
+const pairs=methodRoomPairs('scifi',rooms);
+const methods=Object.fromEntries(methodCatalog.filter(m=>pairs.some(p=>p.methodId===m.id)).map(m=>[m.id,m]));
 const motives={fraud:'La dirección había descubierto un fraude en los suministros y presentaría una denuncia al día siguiente.',dismissal:'La dirección había descubierto una falsificación de credenciales y comunicaría la expulsión al día siguiente.',blackmail:'La dirección conservaba pruebas de un desvío de fondos y las entregaría al consejo al día siguiente.'};
-const choice=await ask('plot-choice','Choose one coherent fictional plot combination. Output only ids from the schema. These are design choices, not text to expand. Any suspect can access the scene using their personal service credential.',{people:people.map(({id,name,role})=>({id,name,role})),rooms:rooms.map(({id,name})=>({id,name})),methods,motives},obj({culprit:enm(people.map(p=>p.id)),room:enm(rooms.map(r=>r.id)),method:enm(Object.keys(methods)),motive:enm(Object.keys(motives))}),150);
+const choice=await ask('plot-choice','Choose one coherent fictional plot combination. Output only ids from the schema. These are design choices, not text to expand. Any suspect can access the scene using their personal service credential.',{people:people.map(({id,name,role})=>({id,name,role})),rooms:rooms.map(({id,name})=>({id,name})),methods:Object.fromEntries(Object.entries(methods).map(([id,m])=>[id,{name:m.name,object:m.object,family:m.family}])),pairs:pairs.map(p=>p.id),motives},obj({culprit:enm(people.map(p=>p.id)),combination:enm(pairs.map(p=>p.id)),motive:enm(Object.keys(motives))}),150);
+[choice.method,choice.room]=choice.combination.split('@');
 const culprit=people.find(p=>p.id===choice.culprit),crimeRoom=rooms.find(r=>r.id===choice.room),method=methods[choice.method],motive=motives[choice.motive];
-const plot={victim:{name:victim.name,role:'dirección de la estación'},culprit:culprit.id,crimeRoom:crimeRoom.id,method:method.name,weaponObject:method.object,motive,crimeMinute:1335,deathMinute:1345,story:`${victim.name} murió en ${crimeRoom.name}. ${culprit.name} cometió el crimen mediante ${method.name}. ${motive}`};
+const timing=methodTiming(method,1335),clock=n=>Math.floor(n/60).toString().padStart(2,'0')+':'+(n%60).toString().padStart(2,'0');
+const plot={methodId:method.id,victim:{name:victim.name,role:'dirección de la estación'},culprit:culprit.id,crimeRoom:crimeRoom.id,method:method.name,weaponObject:method.object,motive,crimeMinute:timing.crimeMinute,deathMinute:timing.deathMinute,story:`${victim.name} murió en ${crimeRoom.name}. ${culprit.name} cometió el crimen mediante ${method.name}. ${motive}`};
 const innocent=people.filter(p=>p.id!==culprit.id),safe=rooms.filter(r=>r.id!==crimeRoom.id);
 const alibis=people.map(p=>{
  const i=innocent.findIndex(x=>x.id===p.id),partner=i<0?null:innocent[i%2===0?i+1:i-1],room=i<0?safe[2]:safe[Math.floor(i/2)];
- return {person:p.id,room:room.id,witness:partner?.id||'none',from:1325,to:1346,claim:i<0?`Estuve a solas en ${room.name} de 22:05 a 22:26. No entré en ${crimeRoom.name}.`:`Estuve con ${partner.name} en ${room.name} de 22:05 a 22:26.`,secret:i<0?motive:'No tengo información sobre la manipulación del dispositivo.'};
+ return {person:p.id,room:room.id,witness:partner?.id||'none',from:timing.windowStart,to:timing.windowEnd,claim:i<0?`Estuve a solas en ${room.name} de ${clock(timing.windowStart)} a ${clock(timing.windowEnd)}. No entré en ${crimeRoom.name}.`:`Estuve con ${partner.name} en ${room.name} de ${clock(timing.windowStart)} a ${clock(timing.windowEnd)}.`,secret:i<0?motive:'No tengo información sobre el uso del objeto del crimen.'};
 });
 const plan=[],clues=[];
 for(const [g,category] of ['motive','link','opportunity'].entries())for(const [i,p] of people.entries()){
  const id='c'+(g*5+i+1),isKiller=p.id===culprit.id,effect=g===0||isKiller?'supports':'excludes',alibi=alibis.find(a=>a.person===p.id),other=people.find(x=>x.id===alibi.witness);
  let text;if(g===0)text=isKiller?`Documento recibido y firmado por ${p.name}: ${motive}`:`Solicitud de ${p.name} para revisar su contrato. Refleja un desacuerdo laboral, no prueba el crimen.`;
- if(g===1)text=isKiller?`El ${method.trace} identifica la credencial personal de ${p.name} a las 22:15. La inspección confirma la alteración causante de la muerte; no consta otro acceso al dispositivo.`:`La inspección descarta uso de la credencial de ${p.name} para manipular el dispositivo del crimen. No se encontró su rastro en la zona intervenida.`;
- if(g===2)text=isKiller?`Registro de acceso independiente: ${p.name} entró en ${crimeRoom.name} a las 22:15 y salió a las 22:18. Contradice su afirmación de haber permanecido en ${safe[2].name}.`:`Registro continuo: ${p.name} y ${other.name} permanecieron en ${rooms.find(r=>r.id===alibi.room).name} entre 22:05 y 22:26. Ninguno pudo entrar en ${crimeRoom.name} durante el crimen.`;
+ if(g===1)text=isKiller?methodEvidence(method,p.name,clock(timing.crimeMinute)):`La inspección no encontró un vínculo material entre ${p.name} y el objeto del crimen. El registro independiente corrobora que no intervino durante el intervalo del crimen.`;
+ if(g===2)text=isKiller?`Registro de acceso independiente: ${p.name} entró en ${crimeRoom.name} a las 22:15 y salió a las 22:18. Contradice su afirmación de haber permanecido en ${safe[2].name}.`:`Registro continuo: ${p.name} y ${other.name} permanecieron en ${rooms.find(r=>r.id===alibi.room).name} entre ${clock(timing.windowStart)} y ${clock(timing.windowEnd)}. Ninguno pudo entrar en ${crimeRoom.name} durante el crimen.`;
  plan.push({id,person:p.id,category,effect});clues.push({id,room:rooms[(g*5+i)%6].id,text,kind:g===1?'object':'document'});
 }
 // Decorate one proof at a time: the model cannot overwrite the factual text.
@@ -47,6 +53,6 @@ world.premise=intro.text;
 const mystery={version:1,setting:'ciencia ficción orbital',world,plot,alibis,plan,clues};mystery.id=createHash('sha256').update(JSON.stringify(mystery)).digest('hex').slice(0,16);
 log.validationErrors=validateMystery(mystery);log.extraChecks={uniqueNames:new Set([...people.map(p=>p.name),victim.name]).size===6,distinctRoomNames:new Set(rooms.map(r=>r.name)).size===6,uniquePortraitPrompts:new Set(people.map(p=>p.imagePrompt)).size===5,uniqueRoomPrompts:new Set(rooms.map(r=>r.imagePrompt)).size===6,introDoesNotNameCulprit:!intro.text.includes(culprit.name)};
 const state={caseId:mystery.id,found:[],notes:'Prueba genérica',room:rooms[0].id};for(const room of rooms){state.room=room.id;state.found.push(...clues.filter(c=>c.room===room.id).map(c=>c.id));}const saved=JSON.stringify(state),loaded=JSON.parse(saved);let wins=0;for(const p of people)for(const r of rooms)for(const m of Object.values(methods))wins+=Number(candidates(mystery,loaded.found).includes(p.id)&&r.id===plot.crimeRoom&&m.name===plot.method);
-log.replay={found:state.found.length,accusations:90,winners:wins,saveRetained:JSON.stringify(loaded)===saved,missingCategoriesRejected:['motive','link','opportunity'].every(category=>candidates(mystery,plan.filter(p=>p.category!==category).map(p=>p.id)).length===0)};
+log.replay={found:state.found.length,accusations:people.length*rooms.length*Object.keys(methods).length,winners:wins,saveRetained:JSON.stringify(loaded)===saved,missingCategoriesRejected:['motive','link','opportunity'].every(category=>candidates(mystery,plan.filter(p=>p.category!==category).map(p=>p.id)).length===0)};
 log.status=log.validationErrors.length||Object.values(log.extraChecks).some(x=>!x)?'rejected':'structural-pass';log.seconds=log.calls.reduce((n,c)=>n+c.seconds,0);
 await fs.writeFile(new URL('mystery.json',folder),JSON.stringify(mystery,null,2));await fs.writeFile(new URL('run-log.json',folder),JSON.stringify(log,null,2));console.log(JSON.stringify(log,null,2));

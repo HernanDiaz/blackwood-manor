@@ -1,3 +1,4 @@
+import {methodCatalog} from '../src/method-catalog.mjs';
 import fs from 'node:fs/promises';import {createHash} from 'node:crypto';import {validateMystery} from './test-generic-generation.mjs';
 const folder=new URL('./generic-pilot/reviewed/',import.meta.url);await fs.mkdir(folder,{recursive:true});
 const m=JSON.parse(await fs.readFile(new URL('./generic-pilot/guided/mystery.json',import.meta.url),'utf8'));
@@ -18,7 +19,8 @@ const roomDesigns=['panoramic starfield window, curved navigation consoles','gla
 m.world.people.forEach((p,i)=>p.imagePrompt='portrait of one '+designs[i]+', plain dark background, science fiction painting');
 m.world.rooms.forEach((r,i)=>r.imagePrompt='empty orbital station '+r.function+', '+roomDesigns[i]+', science fiction painting');
 const images={motive:['a sealed paper envelope','a blue personnel dossier folder','a closed white correspondence folder','a red official notification form','a small bronze data cartridge'],link:['a single plastic identity access card','a pair of inspection gloves','a small forensic sample vial','a portable energy panel with a broken seal','a handheld credential scanner'],opportunity:['a small access log tablet with blank screen','a single white security camera','a portable surveillance recorder','a small printed access report with no readable text','a black data storage drive']};
-for(const c of m.clues){const p=m.plan.find(p=>p.id===c.id),i=m.world.people.findIndex(x=>x.id===p.person),name=m.world.people[i].name;c.title=({motive:'Documento de ',link:'Inspección de ',opportunity:'Registro de '})[p.category]+name;c.imagePrompt=images[p.category][i]+', isolated close-up on a plain dark surface, science fiction concept art, no people, no readable text';}
+const chosenMethod=methodCatalog.find(x=>x.id===m.plot.methodId||x.name===m.plot.method);
+for(const c of m.clues){const p=m.plan.find(p=>p.id===c.id),i=m.world.people.findIndex(x=>x.id===p.person),name=m.world.people[i].name;c.title=({motive:'Documento de ',link:'Inspección de ',opportunity:'Registro de '})[p.category]+name;c.imagePrompt=(p.category==='link'&&p.effect==='supports'&&chosenMethod?chosenMethod.imagePrompt:images[p.category][i])+', isolated close-up on a plain dark surface, science fiction concept art, no people, no readable text';}
 const old=m.id;delete m.id;m.parentId=old;m.revision=2;m.id=createHash('sha256').update(JSON.stringify(m)).digest('hex').slice(0,16);
 audit.finalValidation=validateMystery(m);audit.extraChecks={introPresent:m.world.premise.trim().length>=10,voiceNotOtherIdentity:!m.world.people[2].personality.includes('Elena'),shortPrompts:[...m.world.people,...m.world.rooms,...m.clues].every(x=>x.imagePrompt.split(/\s+/).length<55),uniqueCluePrompts:new Set(m.clues.map(c=>c.imagePrompt)).size===15};
 await fs.writeFile(new URL('mystery.json',folder),JSON.stringify(m,null,2));await fs.writeFile(new URL('audit.json',folder),JSON.stringify(audit,null,2));console.log(JSON.stringify(audit,null,2));

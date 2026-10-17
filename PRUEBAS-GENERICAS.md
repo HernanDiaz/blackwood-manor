@@ -35,7 +35,7 @@ Los archivos maestros están en E:\2026 blackwood manor. Los resultados y respue
 - node benchmarks/refine-generic-pilot.mjs: reparaciones y revisión de prompts; registra las sustituciones del motor.
 - .venv-images\Scripts\python.exe benchmarks/generate-generic-art.py benchmarks/generic-pilot/reviewed/mystery.json: imágenes del caso revisado.
 - node benchmarks/build-generic-report.mjs: galería local e informe.
-- npm test: 42 pruebas, sin generar contenido ni llamar al modelo; incluye mutaciones de errores y hashes de las 26 imágenes.
+- npm test: 46 pruebas, sin generar contenido ni llamar al modelo; incluye mutaciones de errores y hashes de las 26 imágenes.
 
 La simulación prueba el paquete de datos, las pruebas y su serialización. No demuestra todavía que el motor actual de Blackwood pueda cargar arbitrariamente este expediente: falta ese adaptador y probar el flujo interactivo completo.
 
