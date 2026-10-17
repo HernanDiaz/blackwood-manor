@@ -80,3 +80,7 @@ Abrir `PILOTO.cmd` y visitar http://127.0.0.1:4173. La nueva pestaña Piloto gu�
 ## Actualización: ilustraciones completas
 
 Ya están ilustrados los cinco personajes, las seis habitaciones y las dieciocho pistas. En Interrogar hay un selector entre Respuesta precisa (por defecto) y Conversación libre experimental. Esta última genera texto, pero el revisor aún puede aceptar invenciones: consultar `ILUSTRACIONES-Y-DIALOGO.md` con todos los resultados, incluidos los fallos. Reemplaza el alcance de tres ilustraciones descrito en la documentación inicial del piloto.
+
+## Revisión por evidencias
+
+La conversación experimental incorpora instrucciones explícitas y revisión de cada frase con citas de recuerdos autorizados. Las revisiones incompletas o sin fuentes válidas se rechazan. Véase REGLAS-DIALOGO.md. Sigue sin ser una garantía semántica: la modalidad precisa permanece como predeterminada.

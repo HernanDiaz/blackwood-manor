@@ -97,7 +97,7 @@ test('free dialogue keeps experimental review separate from deterministic valida
  const {draftGuard,localConversation}=await import('../src/conversation.mjs');
  assert(!draftGuard(newGame(),'victor',{text:'Confieso las facturas falsas.',factIds:['secret']}));
  assert(!draftGuard(newGame(),'arthur',{text:'Preparé el té a las 23:40.',factIds:['tea']}));
- const original=globalThis.fetch;try{let n=0;globalThis.fetch=async()=>({ok:true,json:async()=>({choices:[{finish_reason:'stop',message:{content:JSON.stringify(++n===1?{text:'El té lo preparé yo. El doctor se encargó de llevarlo.',factIds:['tea']}:{errors:[]})}}]})});
+ const original=globalThis.fetch;try{let n=0;globalThis.fetch=async()=>({ok:true,json:async()=>({choices:[{finish_reason:'stop',message:{content:JSON.stringify(++n===1?{text:'El té lo preparé yo. El doctor se encargó de llevarlo.',factIds:['tea']}:{claims:[{text:'El té lo preparé yo.',kind:'supported',sources:[{id:'tea',quote:'Preparé el té'}]},{text:'El doctor se encargó de llevarlo.',kind:'supported',sources:[{id:'tea',quote:'El doctor insistió en llevarlo él mismo.'}]}]})}}]})});
  const r=await localConversation(newGame(),'arthur','¿Quién llevó el té?');assert.equal(r.verification,'model-reviewed-experimental');assert.equal(n,2);
  n=0;globalThis.fetch=async()=>({ok:true,json:async()=>({choices:[{finish_reason:'stop',message:{content:JSON.stringify(++n===1?{text:'El doctor preparó el té y yo lo llevé.',factIds:['tea']}:{errors:['El doctor preparó el té']})}}]})});
  assert.equal((await localConversation(newGame(),'arthur','¿Quién llevó el té?')).verification,'creative-fallback');
@@ -117,5 +117,22 @@ test('experimental replies in saved history are never reused as factual context'
  const s=newGame();s.chat=[{person:'clara',question:'¿Dónde estabas?',answer:'Estaba en el salón.',verification:'model-reviewed-experimental'}];const original=globalThis.fetch;
  try{let n=0,body;globalThis.fetch=async(url,opts)=>{if(n===0)body=opts.body;return {ok:true,json:async()=>({choices:[{finish_reason:'stop',message:{content:JSON.stringify(++n===1?{text:'Revisé el inventario con Arthur en la cocina de 21:10 a 21:25.'}:{errors:[]})}}]})};};
  await localConversation(s,'clara','¿Dónde estabas?');assert(!body.includes('salón'));
+ }finally{globalThis.fetch=original;}
+});
+
+test('evidence review requires complete ordered coverage and exact unlocked source quotations',async()=>{
+ const {validateEvidence}=await import('../src/dialogue-policy.mjs');
+ const state=newGame(),draft={text:'Preparé el té. Estoy preocupado.',factIds:['tea']};
+ const fact={text:'Preparé el té.',kind:'supported',sources:[{id:'tea',quote:'Preparé el té'}]};
+ const social={text:'Estoy preocupado.',kind:'social',sources:[]};
+ assert(validateEvidence(state,'arthur',draft,{claims:[fact,social]}));
+ for(const claims of [[],[fact],[social,fact],[fact,social,social],[{...fact,sources:[]},social],[{...fact,sources:[{id:'tea',quote:'El té lo preparó Clara'}]},social],[{...fact,sources:[{id:'secret',quote:'Preparé el té'}]},social]])assert(!validateEvidence(state,'arthur',draft,{claims}));
+ assert(!validateEvidence(state,'arthur',{text:'Estuve en París.',factIds:[]},{claims:[{text:'Estuve en París.',kind:'social',sources:[]}]}));
+ assert(!validateEvidence(state,'arthur',{text:'Preparé el té.',factIds:['alibi']},{claims:[fact]}));
+});
+test('legacy empty-error reviews fail closed rather than approve prose',async()=>{
+ const {verifyDraft}=await import('../src/conversation.mjs');const original=globalThis.fetch;
+ try{globalThis.fetch=async()=>({ok:true,json:async()=>({choices:[{message:{content:'{"errors":[]}'}}]})});
+ assert.equal((await verifyDraft(newGame(),'arthur',{text:'Preparé el té.',factIds:['tea']})).accepted,false);
  }finally{globalThis.fetch=original;}
 });
