@@ -68,3 +68,7 @@ La solución y cronología editorial están en `CASE-SPOILERS.md`. Evita leerlo 
 Consulta `PRUEBAS-LOCALES.md`. Para elegir y jugar sin API: abre `PROBAR-LOCAL.cmd`. Requiere este equipo y su motor instalado en `E:\LLMStudio\llama.cpp`. Mantén abierta la consola; Ctrl+C cierra el juego y el motor que ha arrancado. No arranques al mismo tiempo otra copia en los puertos 1235/4173.
 
 La interpretación con modelo local está integrada; la prosa generada libremente se evalúa solo en los benchmarks porque aún contradice el canon. En el juego las respuestas siguen siendo canónicas. Los pesos y el entorno de imágenes son locales e ignorados por Git.
+
+## Qwen por defecto y verificación de respuestas
+
+Actualización: `QWEN-MEJORAS.md` documenta el sistema combinado de ejemplos, recuperación de intenciones y elección de variantes revisadas. Qwen3.5-2B es ahora el predeterminado. La validación es determinista y no admite prosa fuera del catálogo autorizado. Hay fallos de comprensión en preguntas nuevas; consultar los resultados completos antes de valorar calidad de producción.

@@ -1,0 +1,32 @@
+[
+  {
+    "person": "arthur",
+    "question": "¿Quién llevó el té?",
+    "answer": "Desde luego. Preparé el té a las 21:05. El doctor insistió en llevarlo él mismo.",
+    "mode": "local-llm",
+    "topic": "tea",
+    "topicSource": "rules",
+    "verification": "verified-catalogue",
+    "milliseconds": 572
+  },
+  {
+    "person": "victor",
+    "question": "¿Qué ocultas sobre las facturas?",
+    "answer": "No voy a hablar de eso. Si tiene pruebas, enséñemelas. Puede preguntarme por mi coartada o mi relación con Edmund.",
+    "mode": "local",
+    "topic": "unknown",
+    "topicSource": "rules",
+    "verification": "canonical-unknown",
+    "milliseconds": 0
+  },
+  {
+    "person": "arthur",
+    "question": "¿Qué te unía al señor de la casa?",
+    "answer": "Desde luego. Llevaba treinta años sirviendo a Sir Edmund. No tenía nada que ganar.",
+    "mode": "local-llm",
+    "topic": "motive",
+    "topicSource": "model",
+    "verification": "verified-catalogue",
+    "milliseconds": 752
+  }
+]

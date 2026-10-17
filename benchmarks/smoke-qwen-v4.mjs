@@ -1,0 +1,4 @@
+import {newGame} from '../src/engine.mjs';import fs from 'node:fs';
+const samples=[['arthur','¿Quién llevó el té?'],['victor','¿Qué ocultas sobre las facturas?'],['arthur','¿Qué te unía al señor de la casa?']];const results=[];
+for(const [person,question] of samples){const response=await fetch('http://127.0.0.1:4173/api/interrogate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({state:newGame(),person,question})});const data=await response.json();if(!response.ok)throw Error(JSON.stringify(data));if(person==='victor'&&data.verification!=='canonical-unknown')throw Error('Locked fact incorrectly handled');if(person==='arthur'&&data.verification!=='verified-catalogue')throw Error('Generation not verified');results.push({person,question,...data});}
+fs.writeFileSync(new URL('./results/integration-qwen-v4.json',import.meta.url),JSON.stringify(results,null,2));console.log('3/3 endpoint checks passed');
