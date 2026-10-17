@@ -1,0 +1,161 @@
+{
+  "model": "IDKiro/sdxs-512-dreamshaper",
+  "revision": "76f720262bb051da75666b22c902a78c8e16c763",
+  "finalized": true,
+  "assets": [
+    {
+      "id": "knife",
+      "name": "Arma blanca",
+      "file": "method-knife.webp",
+      "prompt": "a single dagger, isolated object, no people, close-up on plain dark background, teal and amber light, cinematic concept painting",
+      "seed": 5100,
+      "seconds": 1.254278700100258,
+      "bytes": 12858,
+      "sha256": "e86b95050e9e64fbf0d221a2079c9bf34004a43ce75e6f3b77d7cf5e21dd1516"
+    },
+    {
+      "id": "blunt",
+      "name": "Golpe con objeto pesado",
+      "file": "method-blunt.webp",
+      "prompt": "a single heavy metal paperweight, isolated object, no people, close-up on plain dark background, teal and amber light, cinematic concept painting",
+      "seed": 5101,
+      "seconds": 0.12492850003764033,
+      "bytes": 22572,
+      "sha256": "9bfeca9073ba51645656aef994155c48ad6c910b61c4d24416925dcba3c382df"
+    },
+    {
+      "id": "rope",
+      "name": "Estrangulación",
+      "file": "method-rope.webp",
+      "prompt": "a coil of rope",
+      "seed": 7103,
+      "seconds": 0.15037529997061938,
+      "bytes": 38110,
+      "sha256": "87dd6fd8cd33c9f0eccff8d884018934ff0f306ec51f1fa7d91207677499c0c9",
+      "qaNote": "Pre-release object clarification after visual review"
+    },
+    {
+      "id": "drink",
+      "name": "Veneno en una bebida",
+      "file": "method-drink.webp",
+      "prompt": "a single goblet, isolated object, no people, close-up on plain dark background, teal and amber light, cinematic concept painting",
+      "seed": 5103,
+      "seconds": 0.1580154999392107,
+      "bytes": 12872,
+      "sha256": "497f81d65c8ff4ba3155a9987e84af724faf759bd81f4ecfd92a41ba6fc969a2"
+    },
+    {
+      "id": "revolver",
+      "name": "Disparo de revólver",
+      "file": "method-revolver.webp",
+      "prompt": "a single vintage revolver, isolated object, no people, close-up on plain dark background, teal and amber light, cinematic concept painting",
+      "seed": 5104,
+      "seconds": 0.1631632000207901,
+      "bytes": 18864,
+      "sha256": "327e7b49b8f4df44d8a4e8a13f13b107ee2fe74c8184d16b64c045979c6972b4"
+    },
+    {
+      "id": "medicine",
+      "name": "Preparado medicinal ficticio",
+      "file": "method-medicine.webp",
+      "prompt": "a single sealed medicine bottle, isolated object, no people, close-up on plain dark background, teal and amber light, cinematic concept painting",
+      "seed": 5105,
+      "seconds": 0.13358610006980598,
+      "bytes": 12824,
+      "sha256": "7e180d2098617dbe30a027cc3d888873bf3c115972a57061070468e50244f518"
+    },
+    {
+      "id": "fall",
+      "name": "Caída provocada",
+      "file": "method-fall.webp",
+      "prompt": "a single balcony railing, isolated object, no people, close-up on plain dark background, teal and amber light, cinematic concept painting",
+      "seed": 5106,
+      "seconds": 0.20010789996013045,
+      "bytes": 26434,
+      "sha256": "9cfd2f65719531685a8da33a3ee10e2658c6740434721c9fdd0bbaa201e316ee"
+    },
+    {
+      "id": "air",
+      "name": "Sabotaje del regulador ambiental",
+      "file": "method-air.webp",
+      "prompt": "a single air regulator module, isolated object, no people, close-up on plain dark background, teal and amber light, cinematic concept painting",
+      "seed": 5107,
+      "seconds": 0.13087319990154356,
+      "bytes": 16602,
+      "sha256": "85b1bf131777ee7cf5efc944479ab304ad039194f980bebb073b306dfed36f08"
+    },
+    {
+      "id": "medical",
+      "name": "Cápsula médica ficticia alterada",
+      "file": "method-medical.webp",
+      "prompt": "a single sealed medical capsule, isolated object, no people, close-up on plain dark background, teal and amber light, cinematic concept painting",
+      "seed": 5108,
+      "seconds": 0.1289972000522539,
+      "bytes": 10956,
+      "sha256": "6e9eed8fe9682206e19916ba8fa2bf908bdcf4bf1ac2186feb33b7669d4ed3f6"
+    },
+    {
+      "id": "power",
+      "name": "Sabotaje de un panel energético ficticio",
+      "file": "method-power.webp",
+      "prompt": "a single portable power panel, isolated object, no people, close-up on plain dark background, teal and amber light, cinematic concept painting",
+      "seed": 5109,
+      "seconds": 0.12179789994843304,
+      "bytes": 17540,
+      "sha256": "c94920797cc69c78dc0ecb86297105973bba0b45322da85c21eb1f1594deb42f"
+    },
+    {
+      "id": "laser",
+      "name": "Disparo de emisor láser ficticio",
+      "file": "method-laser.webp",
+      "prompt": "a single fictional laser emitter, isolated object, no people, close-up on plain dark background, teal and amber light, cinematic concept painting",
+      "seed": 5110,
+      "seconds": 0.14378179993946105,
+      "bytes": 17228,
+      "sha256": "ad5c704fd47f6a7535132f7ada541386d68ea61fc4c44a39753e2ea28538187f"
+    },
+    {
+      "id": "plasma",
+      "name": "Disparo de arma de plasma ficticia",
+      "file": "method-plasma.webp",
+      "prompt": "photo of a pistol",
+      "seed": 7101,
+      "seconds": 0.11938319995533675,
+      "bytes": 28538,
+      "sha256": "54392cdf0f01c92373e400eaca47f3bd4805e95350d26056107ea816087cb6bd",
+      "qaNote": "Pre-release object clarification after visual review"
+    },
+    {
+      "id": "robot",
+      "name": "Intervención de un brazo robótico",
+      "file": "method-robot.webp",
+      "prompt": "an industrial mechanical claw arm mounted on a factory workbench, close-up machine, science fiction painting",
+      "seed": 6102,
+      "seconds": 0.11691720003727823,
+      "bytes": 72368,
+      "sha256": "c7dfbb1b557fecf8b40165f16d832143791bbcedfdf7d8d0fce17d99274db6a0",
+      "qaNote": "Pre-release object clarification after visual review"
+    },
+    {
+      "id": "hatch",
+      "name": "Accionamiento de una compuerta industrial",
+      "file": "method-hatch.webp",
+      "prompt": "a single industrial hatch controller, isolated object, no people, close-up on plain dark background, teal and amber light, cinematic concept painting",
+      "seed": 5113,
+      "seconds": 0.12808829999994487,
+      "bytes": 29762,
+      "sha256": "e1fdeadd1bfdf272b081e0362739ad2b075bc8e96a2aa2819c1dbe32e45ab3fe"
+    },
+    {
+      "id": "cryo",
+      "name": "Manipulación de una cápsula criogénica",
+      "file": "method-cryo.webp",
+      "prompt": "a single cryogenic capsule panel, isolated object, no people, close-up on plain dark background, teal and amber light, cinematic concept painting",
+      "seed": 5114,
+      "seconds": 0.11543510004412383,
+      "bytes": 13236,
+      "sha256": "7dc04aaefcb517f531bffa1493fedffc2213fe9c96d691880a58c994eba00b05"
+    }
+  ],
+  "visualRevision": "orbital-methods-v1-release"
+}

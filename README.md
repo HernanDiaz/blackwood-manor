@@ -60,6 +60,10 @@ Documentación histórica y técnica adicional: PRUEBAS-LOCALES.md, QWEN-MEJORAS
 
 ## Laboratorio de generación por ambientación
 
-El experimento de ciencia ficción está en http://127.0.0.1:4173/lab/index.html. Es una galería de evaluación, sin alterar las partidas del juego. PRUEBAS-GENERICAS.md recoge tres intentos libres rechazados y un piloto guiado con 5 personajes, 6 escenarios, 15 pistas y 26 imágenes, además de sus fallos y reparaciones. Aún no existe el selector ni el adaptador de este expediente al motor principal. npm test incluye ahora 46 pruebas; los scripts del laboratorio que llaman a Qwen o SDXS son independientes y requieren los modelos locales ya instalados.
+El experimento de ciencia ficción está en http://127.0.0.1:4173/lab/index.html. Es una galería de evaluación, sin alterar las partidas del juego. PRUEBAS-GENERICAS.md recoge tres intentos libres rechazados y un piloto guiado con 5 personajes, 6 escenarios, 15 pistas y 26 imágenes, además de sus fallos y reparaciones. Aún no existe el selector ni el adaptador de este expediente al motor principal. npm test incluye ahora 53 pruebas; los scripts del laboratorio que llaman a Qwen o SDXS son independientes y requieren los modelos locales ya instalados.
 
 El generador piloto dispone de un catálogo de veinte armas y métodos, con compatibilidad por ambientación y escena, reglas temporales y pruebas distintas. Se prueban en `test/methods.test.mjs` y `benchmarks/test-method-selection.mjs`. Véase `METODOS-GENERADOR.md`. Esta ampliación no cambia las soluciones de las cinco variantes de Blackwood ya guardadas.
+
+## Prototipo orbital jugable
+
+Disponible en http://127.0.0.1:4173/prototype/index.html y desde el laboratorio. Integra quince métodos de ciencia ficción, creación de casos por semilla, quince pistas, interrogatorios asistidos por Qwen, tablero, notas, acusación y guardado/exportación independientes de Blackwood. El mundo y sus recursos ya están preparados; no genera un mundo nuevo al abrir cada partida. Véase `PROTOTIPO-ORBITAL.md`. Las 53 pruebas incluyen las quince armas y 6.750 combinaciones de acusación.

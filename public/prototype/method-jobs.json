@@ -1,0 +1,77 @@
+[
+  {
+    "id": "knife",
+    "name": "Arma blanca",
+    "prompt": "a single dagger, isolated object, no people"
+  },
+  {
+    "id": "blunt",
+    "name": "Golpe con objeto pesado",
+    "prompt": "a single heavy metal paperweight, isolated object, no people"
+  },
+  {
+    "id": "rope",
+    "name": "Estrangulación",
+    "prompt": "a single braided cord, isolated object, no people"
+  },
+  {
+    "id": "drink",
+    "name": "Veneno en una bebida",
+    "prompt": "a single goblet, isolated object, no people"
+  },
+  {
+    "id": "revolver",
+    "name": "Disparo de revólver",
+    "prompt": "a single vintage revolver, isolated object, no people"
+  },
+  {
+    "id": "medicine",
+    "name": "Preparado medicinal ficticio",
+    "prompt": "a single sealed medicine bottle, isolated object, no people"
+  },
+  {
+    "id": "fall",
+    "name": "Caída provocada",
+    "prompt": "a single balcony railing, isolated object, no people"
+  },
+  {
+    "id": "air",
+    "name": "Sabotaje del regulador ambiental",
+    "prompt": "a single air regulator module, isolated object, no people"
+  },
+  {
+    "id": "medical",
+    "name": "Cápsula médica ficticia alterada",
+    "prompt": "a single sealed medical capsule, isolated object, no people"
+  },
+  {
+    "id": "power",
+    "name": "Sabotaje de un panel energético ficticio",
+    "prompt": "a single portable power panel, isolated object, no people"
+  },
+  {
+    "id": "laser",
+    "name": "Disparo de emisor láser ficticio",
+    "prompt": "a single fictional laser emitter, isolated object, no people"
+  },
+  {
+    "id": "plasma",
+    "name": "Disparo de arma de plasma ficticia",
+    "prompt": "a single fictional plasma weapon, isolated object, no people"
+  },
+  {
+    "id": "robot",
+    "name": "Intervención de un brazo robótico",
+    "prompt": "a single industrial robot control console, isolated object, no people"
+  },
+  {
+    "id": "hatch",
+    "name": "Accionamiento de una compuerta industrial",
+    "prompt": "a single industrial hatch controller, isolated object, no people"
+  },
+  {
+    "id": "cryo",
+    "name": "Manipulación de una cápsula criogénica",
+    "prompt": "a single cryogenic capsule panel, isolated object, no people"
+  }
+]
