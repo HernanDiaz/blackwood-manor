@@ -62,3 +62,9 @@ Prueba manual en navegador: recoger pistas, fijar al tablero, escribir notas, re
 - Migraciones de guardado posteriores a v1, gestión de conflictos y límites del almacenamiento del navegador. No hay service worker/PWA instalable.
 
 La solución y cronología editorial están en `CASE-SPOILERS.md`. Evita leerlo antes de jugar.
+
+## Modelos locales probados
+
+Consulta `PRUEBAS-LOCALES.md`. Para elegir y jugar sin API: abre `PROBAR-LOCAL.cmd`. Requiere este equipo y su motor instalado en `E:\LLMStudio\llama.cpp`. Mantén abierta la consola; Ctrl+C cierra el juego y el motor que ha arrancado. No arranques al mismo tiempo otra copia en los puertos 1235/4173.
+
+La interpretación con modelo local está integrada; la prosa generada libremente se evalúa solo en los benchmarks porque aún contradice el canon. En el juego las respuestas siguen siendo canónicas. Los pesos y el entorno de imágenes son locales e ignorados por Git.

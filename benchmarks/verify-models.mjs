@@ -1,0 +1,5 @@
+import fs from 'node:fs';import crypto from 'node:crypto';
+const root='E:/2026 blackwood manor';
+const models=[['bartowski/Qwen_Qwen3.5-2B-GGUF','Qwen_Qwen3.5-2B-Q4_K_M.gguf'],['lmstudio-community/gemma-4-E2B-it-GGUF','gemma-4-E2B-it-Q4_K_M.gguf'],['ggml-org/SmolLM3-3B-GGUF','SmolLM3-Q4_K_M.gguf']];const result=[];
+for(const [repo,file] of models){const remote=await (await fetch(`https://huggingface.co/api/models/${repo}?blobs=true`)).json();const entry=remote.siblings.find(s=>s.rfilename===file);const hash=crypto.createHash('sha256');for await(const block of fs.createReadStream(`${root}/models/${file}`))hash.update(block);const sha256=hash.digest('hex');const expected=entry.lfs?.sha256;result.push({repo,file,revision:remote.sha,bytes:fs.statSync(`${root}/models/${file}`).size,sha256,expectedSha256:expected,verified:sha256===expected,license:remote.cardData?.license});}
+fs.writeFileSync(root+'/benchmarks/models-manifest.json',JSON.stringify(result,null,2));console.log(JSON.stringify(result.map(({file,verified,bytes})=>({file,verified,bytes}))));

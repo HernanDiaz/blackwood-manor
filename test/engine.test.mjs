@@ -17,3 +17,14 @@ test('local interrogation endpoint and invalid inputs',async()=>{const prior=pro
 
 
 test('LLM selects allowed fact; malformed response falls back without leaking',async()=>{const priorKey=process.env.OPENAI_API_KEY;const priorFetch=globalThis.fetch;process.env.OPENAI_API_KEY='test-only';try{let body;globalThis.fetch=async(url,opts)=>{body=JSON.parse(opts.body);return {ok:true,json:async()=>({output:[{content:[{type:'output_text',text:'{"id":"alibi"}'}]}]})};};let r=await respond({state:newGame(),person:'victor',question:'¿Dónde estabas?'});assert.equal(r.mode,'llm');assert.match(r.answer,/21:18/);assert(!body.instructions.includes('facturas falsas'));assert(!body.text.format.schema.properties.id.enum.includes('secret'));globalThis.fetch=async()=>({ok:true,json:async()=>({output:[{content:[{type:'output_text',text:'{"id":"secret"}'}]}]})});r=await respond({state:newGame(),person:'victor',question:'¿Qué ocultas?'});assert.equal(r.mode,'fallback');assert(!r.answer.includes('facturas'));globalThis.fetch=async()=>{throw Error('offline');};r=await respond({state:newGame(),person:'victor',question:'coartada'});assert.equal(r.mode,'fallback');}finally{globalThis.fetch=priorFetch;if(priorKey)process.env.OPENAI_API_KEY=priorKey;else delete process.env.OPENAI_API_KEY;}});
+
+test('local model adapter accepts only unlocked fact ids',async()=>{
+ const {localClassify}=await import('../src/local-llm.mjs');const original=globalThis.fetch;
+ try{let sent;globalThis.fetch=async(url,options)=>{sent=JSON.parse(options.body);return {ok:true,json:async()=>({choices:[{message:{content:'{"id":"alibi"}'}}]})};};
+ assert.equal(await localClassify(newGame(),'victor','¿Dónde estabas?'),'alibi');
+ assert(!sent.messages[0].content.includes('facturas falsas'));
+ globalThis.fetch=async()=>({ok:true,json:async()=>({choices:[{message:{content:'{"id":"secret"}'}}]})});
+ await assert.rejects(()=>localClassify(newGame(),'victor','cuentas'));
+ globalThis.fetch=async()=>({ok:false});await assert.rejects(()=>localClassify(newGame(),'victor','x'));
+ }finally{globalThis.fetch=original;}
+});
