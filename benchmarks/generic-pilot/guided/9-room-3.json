@@ -1,0 +1,84 @@
+{
+  "request": {
+    "model": "local",
+    "seed": 1808,
+    "temperature": 0.6,
+    "max_tokens": 420,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "Design ONE distinct room in an orbital station. Name and short atmospheric description in Spanish; imagePrompt in English. Preserve the required room function and visual features. Empty room, no people, no murder or clues, no text on screen. Do not reuse prior room names."
+      },
+      {
+        "role": "user",
+        "content": "{\"purpose\":\"bodega de carga\",\"design\":\"stacked shipping crates, orange cargo crane, vast hangar\",\"previousRooms\":[\"Sala de Navegación\",\"Cámara de Especímenes\",\"Sala de Cultivos Hidropónicos\"]}"
+      }
+    ],
+    "response_format": {
+      "type": "json_schema",
+      "json_schema": {
+        "name": "guided",
+        "strict": true,
+        "schema": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "imagePrompt": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "description",
+            "imagePrompt"
+          ],
+          "additionalProperties": false
+        }
+      }
+    }
+  },
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"name\": \"Estación de Carga\",\n  \"description\": \"Una vasta bodega de carga con estanterías altas llenas de contenedores, un grúa de carga naranja que domina el espacio y un hangar inmenso con una atmósfera de quietud industrial.\",\n  \"imagePrompt\": \"An empty orbital station cargo bay, high vertical shelving units filled with shipping containers, a large orange cargo crane dominating the center, vast industrial hangar space, dim ambient lighting, dust motes floating in air, minimalist design, no people, no text on walls or screens, cinematic lighting, 3D render, photorealistic, wide angle shot.\"\n}"
+        }
+      }
+    ],
+    "created": 1792279370,
+    "model": "E:\\2026 blackwood manor\\models\\Qwen_Qwen3.5-2B-Q4_K_M.gguf",
+    "system_fingerprint": "b10581-2115b73d8",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 146,
+      "prompt_tokens": 122,
+      "total_tokens": 268,
+      "prompt_tokens_details": {
+        "cached_tokens": 59
+      }
+    },
+    "id": "chatcmpl-jwiRpBPM8VkU8I5RCWKJTw1NH5adAIt8",
+    "timings": {
+      "cache_n": 59,
+      "prompt_n": 63,
+      "prompt_ms": 151.249,
+      "prompt_per_token_ms": 2.400777777777778,
+      "prompt_per_second": 416.5316795482945,
+      "predicted_n": 146,
+      "predicted_ms": 1197.287,
+      "predicted_per_token_ms": 8.25715172413793,
+      "predicted_per_second": 121.10713638417522
+    }
+  }
+}

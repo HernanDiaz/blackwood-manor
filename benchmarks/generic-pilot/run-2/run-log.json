@@ -1,0 +1,185 @@
+{
+  "setting": "Otra estación espacial de ciencia ficción, sin magia, distinta de la anterior",
+  "seed": 711,
+  "steps": [
+    {
+      "stage": "world",
+      "seconds": 10.019127799999998,
+      "finish": "stop",
+      "tokens": {
+        "completion_tokens": 1124,
+        "prompt_tokens": 140,
+        "total_tokens": 1264,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    },
+    {
+      "stage": "plot",
+      "seconds": 4.735552199999998,
+      "finish": "stop",
+      "tokens": {
+        "completion_tokens": 286,
+        "prompt_tokens": 297,
+        "total_tokens": 583,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    },
+    {
+      "stage": "alibis",
+      "seconds": 6.472740299999997,
+      "finish": "stop",
+      "tokens": {
+        "completion_tokens": 552,
+        "prompt_tokens": 410,
+        "total_tokens": 962,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    },
+    {
+      "stage": "alibi-repair",
+      "seconds": 5.7608586,
+      "finish": "stop",
+      "tokens": {
+        "completion_tokens": 565,
+        "prompt_tokens": 668,
+        "total_tokens": 1233,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    },
+    {
+      "stage": "scaffolded-alibis",
+      "seconds": 4.811777300000002,
+      "finish": "stop",
+      "tokens": {
+        "completion_tokens": 531,
+        "prompt_tokens": 638,
+        "total_tokens": 1169,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    },
+    {
+      "stage": "clues-1",
+      "seconds": 4.411948899999996,
+      "finish": "stop",
+      "tokens": {
+        "completion_tokens": 432,
+        "prompt_tokens": 775,
+        "total_tokens": 1207,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    },
+    {
+      "stage": "clues-2",
+      "seconds": 4.4497059000000005,
+      "finish": "stop",
+      "tokens": {
+        "completion_tokens": 456,
+        "prompt_tokens": 775,
+        "total_tokens": 1231,
+        "prompt_tokens_details": {
+          "cached_tokens": 259
+        }
+      }
+    },
+    {
+      "stage": "clues-3",
+      "seconds": 5.258224699999999,
+      "finish": "stop",
+      "tokens": {
+        "completion_tokens": 527,
+        "prompt_tokens": 784,
+        "total_tokens": 1311,
+        "prompt_tokens_details": {
+          "cached_tokens": 259
+        }
+      }
+    },
+    {
+      "stage": "semantic-review",
+      "seconds": 3.8017814,
+      "finish": "stop",
+      "tokens": {
+        "completion_tokens": 329,
+        "prompt_tokens": 1515,
+        "total_tokens": 1844,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    }
+  ],
+  "repairs": [
+    {
+      "stage": "alibis",
+      "remainingErrors": [
+        "p1: falta coartada inocente recíproca fuera de la escena.",
+        "p2: falta coartada inocente recíproca fuera de la escena.",
+        "La coartada falsa del culpable no lo aleja de la escena.",
+        "p4: falta coartada inocente recíproca fuera de la escena.",
+        "p5: falta coartada inocente recíproca fuera de la escena."
+      ]
+    }
+  ],
+  "scaffolded": true,
+  "rawAlibiErrors": [
+    "p1: falta coartada inocente recíproca fuera de la escena.",
+    "p2: falta coartada inocente recíproca fuera de la escena.",
+    "La coartada falsa del culpable no lo aleja de la escena.",
+    "p4: falta coartada inocente recíproca fuera de la escena.",
+    "p5: falta coartada inocente recíproca fuera de la escena."
+  ],
+  "validationErrors": [
+    "Faltan pistas o hay identificadores repetidos.",
+    "Pista c6 sin habitación válida.",
+    "Pista c7 sin habitación válida.",
+    "Pista c8 sin habitación válida.",
+    "Pista c9 sin habitación válida.",
+    "Pista c10 sin habitación válida.",
+    "Las pruebas no conducen a una única solución."
+  ],
+  "replay": {
+    "found": 15,
+    "saveRetained": true,
+    "accusations": 60,
+    "winners": [],
+    "missingCategoriesRejected": true
+  },
+  "status": "rejected",
+  "semanticReview": {
+    "issues": [
+      {
+        "quote": "c1",
+        "reason": "Contradiction between the 'victim' and 'opportunity' evidence"
+      },
+      {
+        "quote": "c12",
+        "reason": "Contradiction between the 'opportunity' evidence"
+      },
+      {
+        "quote": "c13",
+        "reason": "Contradiction between the 'opportunity' evidence"
+      },
+      {
+        "quote": "c14",
+        "reason": "Contradiction between the 'opportunity' evidence"
+      },
+      {
+        "quote": "c15",
+        "reason": "Contradiction between the 'opportunity' evidence"
+      }
+    ]
+  },
+  "seconds": 49.72171709999999
+}

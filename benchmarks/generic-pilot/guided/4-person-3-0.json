@@ -1,0 +1,88 @@
+{
+  "request": {
+    "model": "local",
+    "seed": 1803,
+    "temperature": 0.6,
+    "max_tokens": 420,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "Create ONE original human character for a science-fiction space-station mystery. Return a short unique name, personality in Spanish (speech and temperament, not a biography), appearance and imagePrompt in English. The supplied design and role are mandatory. No events, crimes, objects of evidence or times. Portrait of one person only. Do not reuse previous names."
+      },
+      {
+        "role": "user",
+        "content": "{\"role\":\"mecánico\",\"design\":\"bald older man with beard, yellow industrial coveralls\",\"previousNames\":[\"Elena Vázquez\",\"Javier\",\"Sofía Méndez\"]}"
+      }
+    ],
+    "response_format": {
+      "type": "json_schema",
+      "json_schema": {
+        "name": "guided",
+        "strict": true,
+        "schema": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "personality": {
+              "type": "string"
+            },
+            "appearance": {
+              "type": "string"
+            },
+            "imagePrompt": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "personality",
+            "appearance",
+            "imagePrompt"
+          ],
+          "additionalProperties": false
+        }
+      }
+    }
+  },
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"name\": \"Kaelen\",\n  \"personality\": \"Kaelen es un hombre de las sombras que prefiere el silencio a las discusiones. Su temperamento es frío y calculador, como un reloj de precisión, pero bajo su capa de uniformes industriales amarillos, conserva un instinto profundo de protector que solo se activa ante aquellos que le han traicionado. Habla con una voz grave y casi imperceptible, como si sus palabras fueran un secreto que nadie debería escuchar, y su mirada, siempre de baja intensidad, filtra todo lo que ve como datos descartables, salvo cuando se trata de proteger a los suyos.\",\n  \"appearance\": \"Un hombre mayor con una barba gruesa y grisácea que le da un aspecto de solitario y cansado. Viste un conjunto de pañuelos industriales amarillos, manchados de grasa y polvo, que le cubren casi todo el torso y los brazos. Su cabello está canoso y recogido en un moño bajo, y su rostro muestra cicatrices sutiles de décadas de trabajo en entornos hostiles. Su postura es rígida y defensiva, con los brazos cruzados sobre el pecho, proyectando una aura de autoridad implacable que no se rinde ante nadie.\",\n  \"imagePrompt\": \"Portrait of a rugged, older man with a thick grey beard in heavy, dirty yellow industrial coveralls, standing with arms crossed, looking weary and serious, cinematic lighting, dust particles in air, high contrast, dark atmosphere.\"\n}"
+        }
+      }
+    ],
+    "created": 1792279361,
+    "model": "E:\\2026 blackwood manor\\models\\Qwen_Qwen3.5-2B-Q4_K_M.gguf",
+    "system_fingerprint": "b10581-2115b73d8",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 322,
+      "prompt_tokens": 125,
+      "total_tokens": 447,
+      "prompt_tokens_details": {
+        "cached_tokens": 75
+      }
+    },
+    "id": "chatcmpl-vO0svzkeCOKkpdsx5DQMC1Qb3CQ0TjuX",
+    "timings": {
+      "cache_n": 75,
+      "prompt_n": 50,
+      "prompt_ms": 183.397,
+      "prompt_per_token_ms": 3.6679399999999998,
+      "prompt_per_second": 272.63259486251144,
+      "predicted_n": 322,
+      "predicted_ms": 2537.686,
+      "predicted_per_token_ms": 7.905563862928349,
+      "predicted_per_second": 126.49319104097198
+    }
+  }
+}

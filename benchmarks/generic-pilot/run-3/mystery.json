@@ -1,0 +1,350 @@
+{
+  "version": 1,
+  "setting": "Fortaleza medieval de fantasía, sin tecnología moderna",
+  "world": {
+    "title": "Misterio de las Ruinas del Ojo",
+    "premise": "La Fortaleza de los Vientos Perdidos está en ruinas. No hay tecnología moderna. Solo magia antigua y leyendas de fantasía.",
+    "visualStyle": "Fantasy medieval, fog, stone, dim light, ancient architecture",
+    "people": [
+      {
+        "id": "p1",
+        "name": "Torin",
+        "role": "Guardia",
+        "personality": "Serio, formal, observador",
+        "appearance": "Ropa de cuero, barba larga, ojos azules",
+        "imagePrompt": "Torin, guardia de la fortaleza, vestimenta de cuero antigua, barba larga, ojos azules, iluminación tenue, atmósfera de fantasía medieval"
+      },
+      {
+        "id": "p2",
+        "name": "Lara",
+        "role": "Escolta",
+        "personality": "Rápida, directa, intensa",
+        "appearance": "Ropa de tela, cabello corto, ojos negros",
+        "imagePrompt": "Lara, escolta de la fortaleza, vestimenta de tela, cabello corto, ojos negros, iluminación tenue, atmósfera de fantasía medieval"
+      },
+      {
+        "id": "p3",
+        "name": "Elara",
+        "role": "Arquitecta",
+        "personality": "Mística, teórica, pensadora",
+        "appearance": "Ropa de tela, cabello largo, ojos verdes",
+        "imagePrompt": "Elara, arquitecta de la fortaleza, vestimenta de tela, cabello largo, ojos verdes, iluminación tenue, atmósfera de fantasía medieval"
+      },
+      {
+        "id": "p4",
+        "name": "Kael",
+        "role": "Líder",
+        "personality": "Lento, calculador, frío",
+        "appearance": "Ropa de tela, cabello gris, ojos grises",
+        "imagePrompt": "Kael, líder de la fortaleza, vestimenta de tela, cabello gris, ojos grises, iluminación tenue, atmósfera de fantasía medieval"
+      },
+      {
+        "id": "p5",
+        "name": "Vespera",
+        "role": "Sacerdotisa",
+        "personality": "Suave, misteriosa, misteriosa",
+        "appearance": "Ropa de tela, cabello largo, ojos azules",
+        "imagePrompt": "Vespera, sacerdotisa de la fortaleza, vestimenta de tela, cabello largo, ojos azules, iluminación tenue, atmósfera de fantasía medieval"
+      }
+    ],
+    "rooms": [
+      {
+        "id": "r1",
+        "name": "El Salón de los Muertos",
+        "description": "Camas, mesas, luz tenue",
+        "imagePrompt": "Salón de las sábanas, camas, mesas, luz tenue, fantasía medieval"
+      },
+      {
+        "id": "r2",
+        "name": "La Biblioteca",
+        "description": "Libros, estanterías, polvo",
+        "imagePrompt": "Biblioteca, estanterías, libros, polvo, fantasía medieval"
+      },
+      {
+        "id": "r3",
+        "name": "El Jardín de las Ruinas",
+        "description": "Plantes, agua, sombras",
+        "imagePrompt": "Jardín de las ruinas, plantas, agua, sombras, fantasía medieval"
+      },
+      {
+        "id": "r4",
+        "name": "El Cuarto de las Ocas",
+        "description": "Sillas, velas, humo",
+        "imagePrompt": "Cuarto de las ocas, sillas, velas, humo, fantasía medieval"
+      },
+      {
+        "id": "r5",
+        "name": "El Laboratorio",
+        "description": "Herramientas, frascos, fuego",
+        "imagePrompt": "Laboratorio, herramientas, frascos, fuego, fantasía medieval"
+      },
+      {
+        "id": "r6",
+        "name": "El Salón de los Muertos",
+        "description": "Camas, mesas, luz tenue",
+        "imagePrompt": "Salón de las sábanas, camas, mesas, luz tenue, fantasía medieval"
+      }
+    ]
+  },
+  "plot": {
+    "victim": {
+      "name": "Elara",
+      "role": "Arquitecta"
+    },
+    "culprit": "p3",
+    "crimeRoom": "r4",
+    "method": "Injuria física",
+    "weaponObject": "Claves de laboratorio",
+    "motive": "Desconfianza en la Sacerdotisa",
+    "crimeMinute": 123,
+    "deathMinute": 138,
+    "story": "Elara fue torturada por Kael en el Cuarto de las Ocas. La Sacerdotisa Vespera la encontró viva, pero las puertas de la habitación estaban cerradas con llaves que solo ella tenía. El crimen ocurrió entre 12 y 13 minutos. No hay sospechosos ni habitaciones nuevas."
+  },
+  "alibis": [
+    {
+      "person": "p1",
+      "room": "r1",
+      "witness": "p2",
+      "from": 113,
+      "to": 139,
+      "claim": "Torin",
+      "secret": "Lara"
+    },
+    {
+      "person": "p2",
+      "room": "r1",
+      "witness": "p1",
+      "from": 113,
+      "to": 139,
+      "claim": "Lara",
+      "secret": "Torin"
+    },
+    {
+      "person": "p3",
+      "room": "r3",
+      "witness": "none",
+      "from": 113,
+      "to": 139,
+      "claim": "Elara",
+      "secret": "none"
+    },
+    {
+      "person": "p4",
+      "room": "r2",
+      "witness": "p5",
+      "from": 113,
+      "to": 139,
+      "claim": "Kael",
+      "secret": "Vespera"
+    },
+    {
+      "person": "p5",
+      "room": "r2",
+      "witness": "p4",
+      "from": 113,
+      "to": 139,
+      "claim": "Vespera",
+      "secret": "Kael"
+    }
+  ],
+  "plan": [
+    {
+      "id": "c1",
+      "person": "p1",
+      "category": "motive",
+      "effect": "supports"
+    },
+    {
+      "id": "c2",
+      "person": "p2",
+      "category": "motive",
+      "effect": "supports"
+    },
+    {
+      "id": "c3",
+      "person": "p3",
+      "category": "motive",
+      "effect": "supports"
+    },
+    {
+      "id": "c4",
+      "person": "p4",
+      "category": "motive",
+      "effect": "supports"
+    },
+    {
+      "id": "c5",
+      "person": "p5",
+      "category": "motive",
+      "effect": "supports"
+    },
+    {
+      "id": "c6",
+      "person": "p1",
+      "category": "link",
+      "effect": "excludes"
+    },
+    {
+      "id": "c7",
+      "person": "p2",
+      "category": "link",
+      "effect": "excludes"
+    },
+    {
+      "id": "c8",
+      "person": "p3",
+      "category": "link",
+      "effect": "supports"
+    },
+    {
+      "id": "c9",
+      "person": "p4",
+      "category": "link",
+      "effect": "excludes"
+    },
+    {
+      "id": "c10",
+      "person": "p5",
+      "category": "link",
+      "effect": "excludes"
+    },
+    {
+      "id": "c11",
+      "person": "p1",
+      "category": "opportunity",
+      "effect": "excludes"
+    },
+    {
+      "id": "c12",
+      "person": "p2",
+      "category": "opportunity",
+      "effect": "excludes"
+    },
+    {
+      "id": "c13",
+      "person": "p3",
+      "category": "opportunity",
+      "effect": "supports"
+    },
+    {
+      "id": "c14",
+      "person": "p4",
+      "category": "opportunity",
+      "effect": "excludes"
+    },
+    {
+      "id": "c15",
+      "person": "p5",
+      "category": "opportunity",
+      "effect": "excludes"
+    }
+  ],
+  "clues": [
+    {
+      "id": "c1",
+      "room": "r1",
+      "title": "El Alarma",
+      "text": "El ruido de la puerta de la biblioteca hace que la guardia sospeche de la entrada.",
+      "imagePrompt": "Un reloj antiguo en una mesa de madera oscura, sin letras legibles."
+    },
+    {
+      "id": "c2",
+      "room": "r3",
+      "title": "El Jardín",
+      "text": "La arbolera de las ruinas se mueve con el viento, confirmando que la puerta no estaba cerrada.",
+      "imagePrompt": "Una puerta de madera con un brote de flores, sin letras legibles."
+    },
+    {
+      "id": "c3",
+      "room": "r4",
+      "title": "El Cuarto",
+      "text": "El suelo del cuarto está sucio, pero no hay rastro de sangre.",
+      "imagePrompt": "Un suelo de madera con una marca de barro, sin letras legibles."
+    },
+    {
+      "id": "c4",
+      "room": "r5",
+      "title": "El Laboratorio",
+      "text": "El equipo de laboratorio está limpio, sin evidencia de uso.",
+      "imagePrompt": "Un laboratorio con un frasco vacío, sin letras legibles."
+    },
+    {
+      "id": "c5",
+      "room": "r6",
+      "title": "El Salón",
+      "text": "La luz de la ventana del salón es tenue, pero no hay huella.",
+      "imagePrompt": "Una ventana con luz tenue, sin letras legibles."
+    },
+    {
+      "id": "c1",
+      "room": "r1",
+      "title": "Clave del Laboratorio",
+      "text": "Una llave de metal con un anillo de hierro, que se encuentra en el suelo del Salón de los Muertos.",
+      "imagePrompt": "Un objeto metálico con un anillo de hierro en un suelo de piedra"
+    },
+    {
+      "id": "c2",
+      "room": "r2",
+      "title": "Folio de Notas",
+      "text": "Un folio de papel con tinta marrón, que se encuentra en la Biblioteca.",
+      "imagePrompt": "Un folio de papel con tinta marrón en una mesa de madera"
+    },
+    {
+      "id": "c3",
+      "room": "r3",
+      "title": "Folio de Notas",
+      "text": "Un folio de papel con tinta marrón, que se encuentra en el Jardín de las Ruinas.",
+      "imagePrompt": "Un folio de papel con tinta marrón en un jardín de piedra"
+    },
+    {
+      "id": "c4",
+      "room": "r4",
+      "title": "Clave de Laboratorio",
+      "text": "Una llave de metal con un anillo de hierro, que se encuentra en el Cuarto de las Ocas.",
+      "imagePrompt": "Una llave de metal con un anillo de hierro en una puerta de madera"
+    },
+    {
+      "id": "c5",
+      "room": "r5",
+      "title": "Folio de Notas",
+      "text": "Un folio de papel con tinta marrón, que se encuentra en el Laboratorio.",
+      "imagePrompt": "Un folio de papel con tinta marrón en una mesa de metal"
+    },
+    {
+      "id": "c11",
+      "room": "r1",
+      "title": "El Salón de los Muertos",
+      "text": "El Salón de los Muertos presenta una mesa de madera antigua con un reloj de sol. El reloj marca 12:30. No hay ventanas abiertas.",
+      "imagePrompt": "A medieval wooden table with a sun dial on a wall, no people or readable text."
+    },
+    {
+      "id": "c12",
+      "room": "r2",
+      "title": "La Biblioteca",
+      "text": "En la Biblioteca, se observa un libro abierto sobre historia antigua. La página tiene una marca de tinta roja.",
+      "imagePrompt": "An old book with red ink marks on a page, no people or readable text."
+    },
+    {
+      "id": "c13",
+      "room": "r3",
+      "title": "El Jardín de las Ruinas",
+      "text": "En el Jardín de las Ruinas, hay un muro de piedra con una grieta. La grieta muestra una huella de sangre roja.",
+      "imagePrompt": "A stone wall with a crack showing a red bloodstain, no people or readable text."
+    },
+    {
+      "id": "c14",
+      "room": "r4",
+      "title": "El Cuarto de las Ocas",
+      "text": "En el Cuarto de las Ocas, una puerta de madera se abre con un ruido de metal. La puerta tiene un sello de cera.",
+      "imagePrompt": "A wooden door with a metal lock and a wax seal, no people or readable text."
+    },
+    {
+      "id": "c15",
+      "room": "r5",
+      "title": "El Laboratorio",
+      "text": "En el Laboratorio, hay un frasco de vidrio con líquido azul. El líquido es inodoro y no tiene olor a sangre.",
+      "imagePrompt": "A glass flask with blue liquid, no people or readable text."
+    }
+  ],
+  "id": "98b956429bb375c5"
+}

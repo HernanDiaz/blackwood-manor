@@ -1,0 +1,84 @@
+{
+  "request": {
+    "model": "local",
+    "seed": 1807,
+    "temperature": 0.6,
+    "max_tokens": 420,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "Design ONE distinct room in an orbital station. Name and short atmospheric description in Spanish; imagePrompt in English. Preserve the required room function and visual features. Empty room, no people, no murder or clues, no text on screen. Do not reuse prior room names."
+      },
+      {
+        "role": "user",
+        "content": "{\"purpose\":\"invernadero hidropónico\",\"design\":\"lush green plant rows, irrigation pipes, glass dome\",\"previousRooms\":[\"Sala de Navegación\",\"Cámara de Especímenes\"]}"
+      }
+    ],
+    "response_format": {
+      "type": "json_schema",
+      "json_schema": {
+        "name": "guided",
+        "strict": true,
+        "schema": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "imagePrompt": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "description",
+            "imagePrompt"
+          ],
+          "additionalProperties": false
+        }
+      }
+    }
+  },
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"name\": \"Sala de Cultivos Hidropónicos\",\n  \"description\": \"Un invernadero hidropónico vibrante y verde, donde las filas de plantas crecen vigorosamente entre tuberías de riego invisibles, bajo una cúpula de vidrio que filtra suavemente la luz del espacio exterior.\",\n  \"imagePrompt\": \"A close-up view of an indoor hydroponic greenhouse room. Lush green ferns and leafy plants grow densely in neat rows, supported by translucent white hydroponic tubes. A curved glass dome ceiling allows diffused natural light to illuminate the scene, casting soft shadows. No people are present. The atmosphere is peaceful and scientific.\"\n}"
+        }
+      }
+    ],
+    "created": 1792279368,
+    "model": "E:\\2026 blackwood manor\\models\\Qwen_Qwen3.5-2B-Q4_K_M.gguf",
+    "system_fingerprint": "b10581-2115b73d8",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 146,
+      "prompt_tokens": 113,
+      "total_tokens": 259,
+      "prompt_tokens_details": {
+        "cached_tokens": 59
+      }
+    },
+    "id": "chatcmpl-qp0K3HxvGzJPah9dXj4RwS7TCt7nbrsr",
+    "timings": {
+      "cache_n": 59,
+      "prompt_n": 54,
+      "prompt_ms": 147.786,
+      "prompt_per_token_ms": 2.7367777777777778,
+      "prompt_per_second": 365.3932036864114,
+      "predicted_n": 146,
+      "predicted_ms": 1193.41,
+      "predicted_per_token_ms": 8.230413793103448,
+      "predicted_per_second": 121.5005739854702
+    }
+  }
+}

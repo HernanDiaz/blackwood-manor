@@ -1,0 +1,371 @@
+{
+  "version": 1,
+  "setting": "ciencia ficción orbital",
+  "world": {
+    "title": "Experimento orbital",
+    "premise": "",
+    "visualStyle": "cinematic retro science fiction concept painting, teal and amber light, realistic proportions",
+    "people": [
+      {
+        "id": "p1",
+        "name": "Elena Vázquez",
+        "personality": "Elena es un piloto apasionada por los detalles y con un temperamento tranquilo pero con un oído agudo. Cuando algo sale mal, su voz baja y se vuelve casi ininteligible, mientras que cuando recuerda un detalle clave, su tono se eleva y se vuelve agudo y decidido. Le gusta el silencio y prefiere resolver los misterios de pie en lugar de en el asiento.",
+        "appearance": "Elena Vázquez es una mujer de mediana edad con cabello negro corto y corto, recogido con un estilo muy ordenado. Viste un traje de vuelo naranja brillante que contrasta fuertemente con la oscuridad del interior de la estación. Su cara es de rostro cuadrado y sereno, con una mirada profunda y observadora. Se ve siempre con una bata de piloto enrollada en el cuello y un uniforme de la estación en su cintura, con un bolsillo que siempre contiene un pequeño dispositivo de comunicación discreto.",
+        "imagePrompt": "Portrait of a middle-aged woman with short black hair, wearing a bright orange flight suit, looking intently through a flight helmet visor, standing in a dimly lit space station corridor, cinematic lighting, high detail, 8k.",
+        "role": "piloto"
+      },
+      {
+        "id": "p2",
+        "name": "Javier",
+        "personality": "Energético y curioso, Javier habla con un tono rápido y directo, pero siempre mantiene una sonrisa genuina cuando le importa algo. No duda en preguntar '¿por qué?' a todos los que le rodean, incluso a los que no parecen entenderlo. Su temperamento es frágil y sensible ante la injusticia, y a menudo se queda quieto observando cosas en segundo plano mientras otros se preocupan por detalles menores, lo que lo hace parecer un poco desconfiado al principio, aunque se vuelve más abierto a la verdad cuando descubra que todo está conectado.",
+        "appearance": "Javier es un joven de aproximadamente 24 años con una rama de cabello rubio ondulado que le cae levemente por encima de las orejas. Su rostro tiene una expresión perpetuamente pensativa y ligeramente ruborizada. Viste una camisa blanca desabrochada hasta los hombros y una chaqueta de trabajo de botánico verde, con botas de goma marrones. Se ve siempre con una mochila pequeña de cuero sobre su espalda y una bata de laboratorio abierta en el frente, revelando un traje de trabajo interno blanco. Sus ojos son de un azul intenso y penetrante, y siempre llevan un pequeño marcador de lápiz cerca de su muñeca derecha.",
+        "imagePrompt": "A young Hispanic scientist named Javier, 24 years old, curly red hair and green work overalls, smiling confidently, holding a magnifying glass to his cheek, wearing a white lab coat over a unbuttoned white shirt, indoors, soft studio lighting, cinematic depth of field, high detail, 8k.",
+        "role": "botánico"
+      },
+      {
+        "id": "p3",
+        "name": "Sofía Méndez",
+        "personality": "Elena es una mujer de 70 años con pelo blanco recogido en un moño perfecto y una bata médica blanca de tres volantes. Su temperamento es calmado y analítico, como quien busca la verdad con precisión quirúrgica. Habla con un tono bajo y firme, evitando el ruido; su estilo de vida es sobrio, preferiendo la quietud de una sala de operaciones a las fiestas de la ciudad. Cuando habla, usa un español sencillo y directo, como si fuera el lenguaje de una urgencia, sin adornos innecesarios. Su mirada es penetrante y directa, mostrando una determinación silenciosa por resolver cada problema con calma, no con ira.",
+        "appearance": "Elena es una mujer mayor de 70 años, con cabello blanco largo recogido en un moño elegante y una bata médica blanca de tres volantes que se extiende por la espalda. Su rostro tiene una expresión serena y pensativa, con líneas finas que revelan años de trabajo constante. Ella viste con sobriedad y limpieza, como si estuviera preparada para enfrentar un reto extremo. Su presencia en la estación espacial es una mezcla de profesionalismo clínico y una dignidad que no se rompe bajo ningún tipo de circunstancia.",
+        "imagePrompt": "An older woman of 70 years with a bun of white hair and a white three-layer medical coat, standing in a sterile, dimly lit medical bay of a futuristic space station. She has a calm, serious expression with a steady gaze, wearing clean and professional attire. The lighting highlights the texture of her white hair and the crisp fabric of her coat, emphasizing her focused and determined demeanor. Shot in high contrast to show the tension of a critical medical situation.",
+        "role": "médica"
+      },
+      {
+        "id": "p4",
+        "name": "Kaelen",
+        "personality": "Kaelen es un hombre de las sombras que prefiere el silencio a las discusiones. Su temperamento es frío y calculador, como un reloj de precisión, pero bajo su capa de uniformes industriales amarillos, conserva un instinto profundo de protector que solo se activa ante aquellos que le han traicionado. Habla con una voz grave y casi imperceptible, como si sus palabras fueran un secreto que nadie debería escuchar, y su mirada, siempre de baja intensidad, filtra todo lo que ve como datos descartables, salvo cuando se trata de proteger a los suyos.",
+        "appearance": "Un hombre mayor con una barba gruesa y grisácea que le da un aspecto de solitario y cansado. Viste un conjunto de pañuelos industriales amarillos, manchados de grasa y polvo, que le cubren casi todo el torso y los brazos. Su cabello está canoso y recogido en un moño bajo, y su rostro muestra cicatrices sutiles de décadas de trabajo en entornos hostiles. Su postura es rígida y defensiva, con los brazos cruzados sobre el pecho, proyectando una aura de autoridad implacable que no se rinde ante nadie.",
+        "imagePrompt": "Portrait of a rugged, older man with a thick grey beard in heavy, dirty yellow industrial coveralls, standing with arms crossed, looking weary and serious, cinematic lighting, dust particles in air, high contrast, dark atmosphere.",
+        "role": "mecánico"
+      },
+      {
+        "id": "p5",
+        "name": "Nora Vela",
+        "personality": "Elegante y directa, Nora es una comunicadora apasionada que valora la claridad sobre el ruido. Su temperamento es tranquilo pero con un aire de autoridad natural; prefiere resolver problemas con datos sólidos y una sonrisa genuina que disuelve cualquier tensión. Aunque su estilo es minimalista, siente que su voz es la herramienta más poderosa para conectar con los equipos de seguridad y la comunidad espacial. Le importa mucho la precisión y la integridad, y a menudo usa su rol de responsable de comunicaciones para mantener un equilibrio entre la urgencia de la misión y la calma necesaria para la toma de decisiones.",
+        "appearance": "Nora Vela tiene cabello oscuro y liso, recogido en dos coletas largas y finas que caen sobre sus hombros, creando un contraste visual con su vestimenta. Viste una chaqueta utilitaria de color morado que se ajusta a su figura, con bolsillos abiertos para facilitar el acceso rápido a herramientas de campo. Su rostro es rectangular y de perfil suave, con ojos de un tono pálido que parecen captar la luz con precisión, y labios finos que siempre parecen ligeramente sonreír, incluso en momentos serios. Su postura es recta y firme, transmitiendo confianza sin necesidad de gestos exagerados.",
+        "imagePrompt": "Portrait of a young woman with long dark braids, wearing a purple utility jacket, standing in a dimly lit space station corridor. She has a rectangular face and pale eyes, with a subtle, genuine smile on her lips. Her hair flows down her back, framing her profile. The lighting casts soft shadows, highlighting the texture of her jacket and the sleekness of her hair. A sense of calm authority and professionalism emanates from her poised stance and the quiet confidence in her presence.",
+        "role": "responsable de comunicaciones"
+      }
+    ],
+    "rooms": [
+      {
+        "id": "r1",
+        "name": "Sala de Navegación",
+        "description": "Un espacio de mando amplio con una ventana panorámica que revela un cielo estelar profundo, rodeado por consolas de navegación curvas y paneles de datos holográficos flotantes.",
+        "imagePrompt": "Interior of an orbital command center, a vast empty room with a massive panoramic glass window showing a deep starry sky, surrounded by curved black navigation consoles and glowing holographic data displays, no people, no doors, no text on screen, cinematic lighting, 8k resolution.",
+        "function": "puesto de mando"
+      },
+      {
+        "id": "r2",
+        "name": "Cámara de Especímenes",
+        "description": "Un espacio de laboratorio frío y minimalista, caracterizado por cilindros de vidrio que contienen muestras biológicas y mesas de metal para la manipulación de materiales. La iluminación principal es un tenue azul cian que resalta las reflexiones en el vidrio, creando una atmósfera de precisión y quietud absoluta.",
+        "imagePrompt": "Asteroid observatory laboratory interior, empty, glass specimen cylinders filled with blue bioluminescent fluid, stainless steel workbenches, cool cyan artificial lighting, sterile and minimalist atmosphere, no people, no text, high detail, cinematic lighting.",
+        "function": "laboratorio"
+      },
+      {
+        "id": "r3",
+        "name": "Sala de Cultivos Hidropónicos",
+        "description": "Un invernadero hidropónico vibrante y verde, donde las filas de plantas crecen vigorosamente entre tuberías de riego invisibles, bajo una cúpula de vidrio que filtra suavemente la luz del espacio exterior.",
+        "imagePrompt": "A close-up view of an indoor hydroponic greenhouse room. Lush green ferns and leafy plants grow densely in neat rows, supported by translucent white hydroponic tubes. A curved glass dome ceiling allows diffused natural light to illuminate the scene, casting soft shadows. No people are present. The atmosphere is peaceful and scientific.",
+        "function": "invernadero hidropónico"
+      },
+      {
+        "id": "r4",
+        "name": "Estación de Carga",
+        "description": "Una vasta bodega de carga con estanterías altas llenas de contenedores, un grúa de carga naranja que domina el espacio y un hangar inmenso con una atmósfera de quietud industrial.",
+        "imagePrompt": "An empty orbital station cargo bay, high vertical shelving units filled with shipping containers, a large orange cargo crane dominating the center, vast industrial hangar space, dim ambient lighting, dust motes floating in air, minimalist design, no people, no text on walls or screens, cinematic lighting, 3D render, photorealistic, wide angle shot.",
+        "function": "bodega de carga"
+      },
+      {
+        "id": "r5",
+        "name": "Quedón de Recuperación",
+        "description": "Un área de recuperación tranquila con una cama de examen blanca limpia, monitores médicos y paredes de color crema suave, diseñada para el descanso y la estabilización del paciente.",
+        "imagePrompt": "A pristine, empty medical examination room in a futuristic orbital station. The center is dominated by a sleek, white examination bed with hydraulic controls. Behind the bed, large, glowing medical monitors display vital signs. The walls are a soft, pale cream color, illuminated by soft, diffused ambient lighting that creates a sterile and calm atmosphere. No people are present, and there are no clues or text on the walls.",
+        "function": "enfermería"
+      },
+      {
+        "id": "r6",
+        "name": "Cama y Sueño",
+        "description": "Un espacio de descanso acogedor diseñado para el descanso individual, equipado con dos camas redondas confortables, lámparas de mesa cálidas para crear atmósfera y múltiples pequeños aberturas redondas que actúan como portholes para la vista al exterior.",
+        "imagePrompt": "A cozy sleeping module interior of an orbital station, featuring two round bunks with soft bedding, warm glowing table lamps creating a welcoming glow, and several small circular porthole windows along the curved walls, empty and serene, no people present.",
+        "function": "módulo residencial"
+      }
+    ]
+  },
+  "plot": {
+    "victim": {
+      "name": "Miguel Ángel Torres",
+      "role": "dirección de la estación"
+    },
+    "culprit": "p4",
+    "crimeRoom": "r4",
+    "method": "Sabotaje de un panel energético ficticio",
+    "weaponObject": "panel portátil de energía",
+    "motive": "La dirección había descubierto un fraude en los suministros y presentaría una denuncia al día siguiente.",
+    "crimeMinute": 1335,
+    "deathMinute": 1345,
+    "story": "Miguel Ángel Torres murió en Estación de Carga. Kaelen cometió el crimen mediante Sabotaje de un panel energético ficticio. La dirección había descubierto un fraude en los suministros y presentaría una denuncia al día siguiente."
+  },
+  "alibis": [
+    {
+      "person": "p1",
+      "room": "r1",
+      "witness": "p2",
+      "from": 1325,
+      "to": 1346,
+      "claim": "Estuve con Javier en Sala de Navegación de 22:05 a 22:26.",
+      "secret": "No tengo información sobre la manipulación del dispositivo."
+    },
+    {
+      "person": "p2",
+      "room": "r1",
+      "witness": "p1",
+      "from": 1325,
+      "to": 1346,
+      "claim": "Estuve con Elena Vázquez en Sala de Navegación de 22:05 a 22:26.",
+      "secret": "No tengo información sobre la manipulación del dispositivo."
+    },
+    {
+      "person": "p3",
+      "room": "r2",
+      "witness": "p5",
+      "from": 1325,
+      "to": 1346,
+      "claim": "Estuve con Nora Vela en Cámara de Especímenes de 22:05 a 22:26.",
+      "secret": "No tengo información sobre la manipulación del dispositivo."
+    },
+    {
+      "person": "p4",
+      "room": "r3",
+      "witness": "none",
+      "from": 1325,
+      "to": 1346,
+      "claim": "Estuve a solas en Sala de Cultivos Hidropónicos de 22:05 a 22:26. No entré en Estación de Carga.",
+      "secret": "La dirección había descubierto un fraude en los suministros y presentaría una denuncia al día siguiente."
+    },
+    {
+      "person": "p5",
+      "room": "r2",
+      "witness": "p3",
+      "from": 1325,
+      "to": 1346,
+      "claim": "Estuve con Sofía Méndez en Cámara de Especímenes de 22:05 a 22:26.",
+      "secret": "No tengo información sobre la manipulación del dispositivo."
+    }
+  ],
+  "plan": [
+    {
+      "id": "c1",
+      "person": "p1",
+      "category": "motive",
+      "effect": "supports"
+    },
+    {
+      "id": "c2",
+      "person": "p2",
+      "category": "motive",
+      "effect": "supports"
+    },
+    {
+      "id": "c3",
+      "person": "p3",
+      "category": "motive",
+      "effect": "supports"
+    },
+    {
+      "id": "c4",
+      "person": "p4",
+      "category": "motive",
+      "effect": "supports"
+    },
+    {
+      "id": "c5",
+      "person": "p5",
+      "category": "motive",
+      "effect": "supports"
+    },
+    {
+      "id": "c6",
+      "person": "p1",
+      "category": "link",
+      "effect": "excludes"
+    },
+    {
+      "id": "c7",
+      "person": "p2",
+      "category": "link",
+      "effect": "excludes"
+    },
+    {
+      "id": "c8",
+      "person": "p3",
+      "category": "link",
+      "effect": "excludes"
+    },
+    {
+      "id": "c9",
+      "person": "p4",
+      "category": "link",
+      "effect": "supports"
+    },
+    {
+      "id": "c10",
+      "person": "p5",
+      "category": "link",
+      "effect": "excludes"
+    },
+    {
+      "id": "c11",
+      "person": "p1",
+      "category": "opportunity",
+      "effect": "excludes"
+    },
+    {
+      "id": "c12",
+      "person": "p2",
+      "category": "opportunity",
+      "effect": "excludes"
+    },
+    {
+      "id": "c13",
+      "person": "p3",
+      "category": "opportunity",
+      "effect": "excludes"
+    },
+    {
+      "id": "c14",
+      "person": "p4",
+      "category": "opportunity",
+      "effect": "supports"
+    },
+    {
+      "id": "c15",
+      "person": "p5",
+      "category": "opportunity",
+      "effect": "excludes"
+    }
+  ],
+  "clues": [
+    {
+      "id": "c1",
+      "room": "r1",
+      "text": "Solicitud de Elena Vázquez para revisar su contrato. Refleja un desacuerdo laboral, no prueba el crimen.",
+      "kind": "document",
+      "title": "Solicitud Elena Vázquez",
+      "imagePrompt": "a single rugged portable energy panel, blank surface, on a dark metal desk."
+    },
+    {
+      "id": "c2",
+      "room": "r2",
+      "text": "Solicitud de Javier para revisar su contrato. Refleja un desacuerdo laboral, no prueba el crimen.",
+      "kind": "document",
+      "title": "Solicitud de Javier",
+      "imagePrompt": "a single rugged portable energy panel, blank surface with faint handwritten notes, on a dark metal desk"
+    },
+    {
+      "id": "c3",
+      "room": "r3",
+      "text": "Solicitud de Sofía Méndez para revisar su contrato. Refleja un desacuerdo laboral, no prueba el crimen.",
+      "kind": "document",
+      "title": "Solicitud de Sofía Méndez",
+      "imagePrompt": "a single rugged portable energy panel document, blank screen, on a dark metal desk"
+    },
+    {
+      "id": "c4",
+      "room": "r4",
+      "text": "Documento recibido y firmado por Kaelen: La dirección había descubierto un fraude en los suministros y presentaría una denuncia al día siguiente.",
+      "kind": "document",
+      "title": "Panel de energía portátil",
+      "imagePrompt": "a single rugged portable energy panel, blank surface, metallic finish, on a dark metal desk"
+    },
+    {
+      "id": "c5",
+      "room": "r5",
+      "text": "Solicitud de Nora Vela para revisar su contrato. Refleja un desacuerdo laboral, no prueba el crimen.",
+      "kind": "document",
+      "title": "Panel de Solicitud Nora Vela",
+      "imagePrompt": "a single rugged portable energy panel, blank surface, on a dark metal desk, no labels or text visible"
+    },
+    {
+      "id": "c6",
+      "room": "r6",
+      "text": "La inspección descarta uso de la credencial de Elena Vázquez para manipular el dispositivo del crimen. No se encontró su rastro en la zona intervenida.",
+      "kind": "object",
+      "title": "Panel de energía de la estación",
+      "imagePrompt": "a single rugged portable energy panel, blank display, metallic finish, on a dark metal desk"
+    },
+    {
+      "id": "c7",
+      "room": "r1",
+      "text": "La inspección descarta uso de la credencial de Javier para manipular el dispositivo del crimen. No se encontró su rastro en la zona intervenida.",
+      "kind": "object",
+      "title": "Panel portátil de energía",
+      "imagePrompt": "a single rugged portable energy panel, blank surface, on a dark metal desk"
+    },
+    {
+      "id": "c8",
+      "room": "r2",
+      "text": "La inspección descarta uso de la credencial de Sofía Méndez para manipular el dispositivo del crimen. No se encontró su rastro en la zona intervenida.",
+      "kind": "object",
+      "title": "Registro de acceso",
+      "imagePrompt": "a single rugged portable power panel, blank display, on a dark metal desk"
+    },
+    {
+      "id": "c9",
+      "room": "r3",
+      "text": "El sello del panel manipulado identifica la credencial personal de Kaelen a las 22:15. La inspección confirma la alteración causante de la muerte; no consta otro acceso al dispositivo.",
+      "kind": "object",
+      "title": "Panel de energía manipulado",
+      "imagePrompt": "a single rugged energy panel with a glowing red seal, showing no operational indicators, on a dark metal desk"
+    },
+    {
+      "id": "c10",
+      "room": "r4",
+      "text": "La inspección descarta uso de la credencial de Nora Vela para manipular el dispositivo del crimen. No se encontró su rastro en la zona intervenida.",
+      "kind": "object",
+      "title": "Panel portátil de energía",
+      "imagePrompt": "a single rugged energy panel, blank display, metallic casing, floating in deep space near a dark orbital station rim"
+    },
+    {
+      "id": "c11",
+      "room": "r5",
+      "text": "Registro continuo: Elena Vázquez y Javier permanecieron en Sala de Navegación entre 22:05 y 22:26. Ninguno pudo entrar en Estación de Carga durante el crimen.",
+      "kind": "document",
+      "title": "Registro continuo",
+      "imagePrompt": "a single rugged energy panel monitor displaying scrolling text logs, blank screen, on a dark metal desk"
+    },
+    {
+      "id": "c12",
+      "room": "r6",
+      "text": "Registro continuo: Javier y Elena Vázquez permanecieron en Sala de Navegación entre 22:05 y 22:26. Ninguno pudo entrar en Estación de Carga durante el crimen.",
+      "kind": "document",
+      "title": "Registro de accesos",
+      "imagePrompt": "a single rugged power panel log tablet, blank screen, on a dark metal desk"
+    },
+    {
+      "id": "c13",
+      "room": "r1",
+      "text": "Registro continuo: Sofía Méndez y Nora Vela permanecieron en Cámara de Especímenes entre 22:05 y 22:26. Ninguno pudo entrar en Estación de Carga durante el crimen.",
+      "kind": "document",
+      "title": "Registro de Controles de Cámara",
+      "imagePrompt": "a single rugged energy panel portable device, blank digital display, on a dark metal desk"
+    },
+    {
+      "id": "c14",
+      "room": "r2",
+      "text": "Registro de acceso independiente: Kaelen entró en Estación de Carga a las 22:15 y salió a las 22:18. Contradice su afirmación de haber permanecido en Sala de Cultivos Hidropónicos.",
+      "kind": "document",
+      "title": "Panel de registro de carga",
+      "imagePrompt": "a single rugged portable energy panel, blank screen, on a dark metal desk"
+    },
+    {
+      "id": "c15",
+      "room": "r3",
+      "text": "Registro continuo: Nora Vela y Sofía Méndez permanecieron en Cámara de Especímenes entre 22:05 y 22:26. Ninguno pudo entrar en Estación de Carga durante el crimen.",
+      "kind": "document",
+      "title": "Registro de acceso",
+      "imagePrompt": "a single rugged energy panel document, blank screen, on a dark metal desk"
+    }
+  ],
+  "id": "fa2332d4b29bc768"
+}

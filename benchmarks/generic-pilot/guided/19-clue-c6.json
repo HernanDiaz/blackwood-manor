@@ -1,0 +1,80 @@
+{
+  "request": {
+    "model": "local",
+    "seed": 1818,
+    "temperature": 0.6,
+    "max_tokens": 220,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "Create a short Spanish title and an English image prompt for this existing sci-fi clue. Do NOT rewrite or add evidence. Depict ONE portable object or blank document, no people, no readable writing or numbers. Use the supplied object type, an orbital-station style. Example: title=\"Registro de acceso\", imagePrompt=\"a single rugged access log tablet, blank screen, on a dark metal desk\"."
+      },
+      {
+        "role": "user",
+        "content": "{\"kind\":\"object\",\"text\":\"La inspección descarta uso de la credencial de Elena Vázquez para manipular el dispositivo del crimen. No se encontró su rastro en la zona intervenida.\",\"methodObject\":\"panel portátil de energía\"}"
+      }
+    ],
+    "response_format": {
+      "type": "json_schema",
+      "json_schema": {
+        "name": "guided",
+        "strict": true,
+        "schema": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "imagePrompt": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "title",
+            "imagePrompt"
+          ],
+          "additionalProperties": false
+        }
+      }
+    }
+  },
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"title\": \"Panel de energía de la estación\",\n  \"imagePrompt\": \"a single rugged portable energy panel, blank display, metallic finish, on a dark metal desk\"\n}"
+        }
+      }
+    ],
+    "created": 1792279377,
+    "model": "E:\\2026 blackwood manor\\models\\Qwen_Qwen3.5-2B-Q4_K_M.gguf",
+    "system_fingerprint": "b10581-2115b73d8",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 43,
+      "prompt_tokens": 148,
+      "total_tokens": 191,
+      "prompt_tokens_details": {
+        "cached_tokens": 86
+      }
+    },
+    "id": "chatcmpl-txx5OCm6T4orc9CujDu3ur4Y5P4yt8kK",
+    "timings": {
+      "cache_n": 86,
+      "prompt_n": 62,
+      "prompt_ms": 145.779,
+      "prompt_per_token_ms": 2.351274193548387,
+      "prompt_per_second": 425.3013122603393,
+      "predicted_n": 43,
+      "predicted_ms": 313.437,
+      "predicted_per_token_ms": 7.462785714285714,
+      "predicted_per_second": 133.99821973793777
+    }
+  }
+}

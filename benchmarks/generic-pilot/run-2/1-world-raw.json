@@ -1,0 +1,49 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "Crea un mundo original para un misterio deductivo. Español, salvo imagePrompt y visualStyle en inglés. Exactamente cinco sospechosos y seis habitaciones con ids distintos p1..p5 y r1..r6. Roles, apariencias y personalidades bien diferenciados. Nombres breves. Sin culpable todavía. No uses Blackwood, Edmund, Elena, Víctor, Clara, Arthur o Julián. Frases breves; imagePrompt describe un único retrato o espacio, sin texto escrito."
+    },
+    {
+      "role": "user",
+      "content": "{\"setting\":\"Otra estación espacial de ciencia ficción, sin magia, distinta de la anterior\"}"
+    }
+  ],
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\"title\": \"Misión de la Estación 9\", \"premise\": \"Un misterio en una estación espacial de ciencia ficción, sin magia, distinta de la anterior.\", \"visualStyle\": \"Dark, futuristic, neon lights, rain, metallic textures\", \"people\": [\n        {\n            \"id\": \"p1\",\n            \"name\": \"Luis\",\n            \"role\": \"Científico\",\n            \"personality\": \"Observador, reservado, cauteloso\",\n            \"appearance\": \"Rostro de piel clara, cabello corto y oscuro, traje de astronauta\",\n            \"imagePrompt\": \"Un retrato de un hombre con rostro de piel clara, cabello corto y oscuro, traje de astronauta, en un entorno oscuro con luces de neón.\"\n        },\n        {\n            \"id\": \"p2\",\n            \"name\": \"Sofia\",\n            \"role\": \"Técnica\",\n            \"personality\": \"Rápida, lógica, detallista\",\n            \"appearance\": \"Rostro de piel clara, cabello largo y oscuro, bata de laboratorio\",\n            \"imagePrompt\": \"Un retrato de una mujer con rostro de piel clara, cabello largo y oscuro, bata de laboratorio, en un entorno oscuro con luces de neón.\"\n        },\n        {\n            \"id\": \"p3\",\n            \"name\": \"Miguel\",\n            \"role\": \"Comandante\",\n            \"personality\": \"Autoritario, agresivo, dominante\",\n            \"appearance\": \"Rostro de piel oscura, cabello corto y oscuro, uniforme militar\",\n            \"imagePrompt\": \"Un retrato de un hombre con rostro de piel oscura, cabello corto y oscuro, uniforme militar, en un entorno oscuro con luces de neón.\"\n        },\n        {\n            \"id\": \"p4\",\n            \"name\": \"Ana\",\n            \"role\": \"Técnica\",\n            \"personality\": \"Sensitiva, emotiva, apasionada\",\n            \"appearance\": \"Rostro de piel clara, cabello largo y oscuro, bata de laboratorio\",\n            \"imagePrompt\": \"Un retrato de una mujer con rostro de piel clara, cabello largo y oscuro, bata de laboratorio, en un entorno oscuro con luces de neón.\"\n        },\n        {\n            \"id\": \"p5\",\n            \"name\": \"Carlos\",\n            \"role\": \"Técnico\",\n            \"personality\": \"Cínico, pragmático, sarcástico\",\n            \"appearance\": \"Rostro de piel oscura, cabello corto y oscuro, bata de laboratorio\",\n            \"imagePrompt\": \"Un retrato de un hombre con rostro de piel oscura, cabello corto y oscuro, bata de laboratorio, en un entorno oscuro con luces de neón.\"\n        }\n      ],\n      \"rooms\": [\n        {\n            \"id\": \"r1\",\n            \"name\": \"Comedor\",\n            \"description\": \"Mesa grande, comida\",\n            \"imagePrompt\": \"Un comedor con una mesa grande, comida, con luz de neón.\"\n        },\n        {\n            \"id\": \"r2\",\n            \"name\": \"Laboratorio\",\n            \"description\": \"Máquinas, experimentos\",\n            \"imagePrompt\": \"Un laboratorio con máquinas, experimentos, con luz de neón.\"\n        },\n        {\n            \"id\": \"r3\",\n            \"name\": \"Cubículo\",\n            \"description\": \"Cámaras, tecnología\",\n            \"imagePrompt\": \"Un cubículo con cámaras, tecnología, con luz de neón.\"\n        },\n        {\n            \"id\": \"r4\",\n            \"name\": \"Salón\",\n            \"description\": \"Sala de reuniones, reuniones\",\n            \"imagePrompt\": \"Una sala de reuniones, reuniones, con luz de neón.\"\n        },\n        {\n            \"id\": \"r5\",\n            \"name\": \"Cámaras\",\n            \"description\": \"Cámaras, tecnología\",\n            \"imagePrompt\": \"Un cubículo con cámaras, tecnología, con luz de neón.\"\n        },\n        {\n            \"id\": \"r6\",\n            \"name\": \"Mesa\",\n            \"description\": \"Mesa grande, comida\",\n            \"imagePrompt\": \"Una mesa grande, comida, con luz de neón.\"\n        }\n      ]\n    }",
+          "reasoning_content": "Thinking Process:\n\n1.  **Analyze the Request:**\n    *   **Task:** Create an original setting for a mystery deductive game.\n    *   **Language:** Spanish (except for `imagePrompt` and `visualStyle` which are in English).\n    *   **Characters:** Exactly five suspects, six rooms with distinct IDs (p1..p5, r1..r6).\n    *   **Roles, appearances, personalities:** Well differentiated.\n    *   **Names:** Short names.\n    *   **Constraint:** No \"Blackwood, Edmund, Elena, Víctor,"
+        }
+      }
+    ],
+    "created": 1792269277,
+    "model": "E:\\2026 blackwood manor\\models\\Qwen_Qwen3.5-2B-Q4_K_M.gguf",
+    "system_fingerprint": "b10581-2115b73d8",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 1124,
+      "prompt_tokens": 140,
+      "total_tokens": 1264,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-q7wRZ1ZUI5VQfXIHxswC3as94xri18MJ",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 140,
+      "prompt_ms": 89.662,
+      "prompt_per_token_ms": 0.6404428571428572,
+      "prompt_per_second": 1561.4195534340074,
+      "predicted_n": 1124,
+      "predicted_ms": 9881.032,
+      "predicted_per_token_ms": 8.798781834372216,
+      "predicted_per_second": 113.65209625877135
+    }
+  }
+}

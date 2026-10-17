@@ -1,0 +1,37 @@
+{
+  "setting": "Estación espacial de ciencia ficción, sin magia, tecnología industrial y vida cotidiana humana",
+  "seed": 710,
+  "steps": [
+    {
+      "stage": "world",
+      "seconds": 10.4632482,
+      "finish": "stop",
+      "tokens": {
+        "completion_tokens": 1213,
+        "prompt_tokens": 142,
+        "total_tokens": 1355,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    },
+    {
+      "stage": "plot",
+      "seconds": 4.207076600000001,
+      "finish": "stop",
+      "tokens": {
+        "completion_tokens": 323,
+        "prompt_tokens": 314,
+        "total_tokens": 637,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    }
+  ],
+  "repairs": [],
+  "scaffolded": false,
+  "status": "failed",
+  "error": "Cronología inválida generada en la verdad del caso.",
+  "seconds": 14.670324800000001
+}

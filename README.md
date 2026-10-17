@@ -57,3 +57,7 @@ La verdad del caso y el estado son visibles y modificables en el cliente; un jue
 La comprobación estructural no sustituye la revisión editorial de todas las frases. Hay cinco casos finitos, no generación ilimitada. Las variantes nuevas comparten un marco horario y el acónito como veneno; se diferencian por culpable, contexto, coartadas, escena, pruebas y vehículo de administración.
 
 Documentación histórica y técnica adicional: PRUEBAS-LOCALES.md, QWEN-MEJORAS.md, PILOTO.md, ILUSTRACIONES-Y-DIALOGO.md y REGLAS-DIALOGO.md. VARIANTES.md describe la última ampliación.
+
+## Laboratorio de generación por ambientación
+
+El experimento de ciencia ficción está en http://127.0.0.1:4173/lab/index.html. Es una galería de evaluación, sin alterar las partidas del juego. PRUEBAS-GENERICAS.md recoge tres intentos libres rechazados y un piloto guiado con 5 personajes, 6 escenarios, 15 pistas y 26 imágenes, además de sus fallos y reparaciones. Aún no existe el selector ni el adaptador de este expediente al motor principal. npm test incluye ahora 42 pruebas; los scripts del laboratorio que llaman a Qwen o SDXS son independientes y requieren los modelos locales ya instalados.

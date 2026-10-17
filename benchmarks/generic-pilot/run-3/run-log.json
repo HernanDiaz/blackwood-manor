@@ -1,0 +1,191 @@
+{
+  "setting": "Fortaleza medieval de fantasía, sin tecnología moderna",
+  "seed": 712,
+  "steps": [
+    {
+      "stage": "world",
+      "seconds": 9.854014500000005,
+      "finish": "stop",
+      "tokens": {
+        "completion_tokens": 1167,
+        "prompt_tokens": 134,
+        "total_tokens": 1301,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    },
+    {
+      "stage": "plot",
+      "seconds": 4.877110700000005,
+      "finish": "stop",
+      "tokens": {
+        "completion_tokens": 327,
+        "prompt_tokens": 307,
+        "total_tokens": 634,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    },
+    {
+      "stage": "alibis",
+      "seconds": 5.738742799999993,
+      "finish": "stop",
+      "tokens": {
+        "completion_tokens": 550,
+        "prompt_tokens": 455,
+        "total_tokens": 1005,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    },
+    {
+      "stage": "alibi-repair",
+      "seconds": 4.4837906999999975,
+      "finish": "stop",
+      "tokens": {
+        "completion_tokens": 442,
+        "prompt_tokens": 780,
+        "total_tokens": 1222,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    },
+    {
+      "stage": "scaffolded-alibis",
+      "seconds": 4.307948999999994,
+      "finish": "stop",
+      "tokens": {
+        "completion_tokens": 353,
+        "prompt_tokens": 683,
+        "total_tokens": 1036,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    },
+    {
+      "stage": "clues-1",
+      "seconds": 5.695956299999991,
+      "finish": "stop",
+      "tokens": {
+        "completion_tokens": 558,
+        "prompt_tokens": 785,
+        "total_tokens": 1343,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    },
+    {
+      "stage": "clues-2",
+      "seconds": 4.8009176999999905,
+      "finish": "stop",
+      "tokens": {
+        "completion_tokens": 503,
+        "prompt_tokens": 785,
+        "total_tokens": 1288,
+        "prompt_tokens_details": {
+          "cached_tokens": 269
+        }
+      }
+    },
+    {
+      "stage": "clues-3",
+      "seconds": 5.827743000000003,
+      "finish": "stop",
+      "tokens": {
+        "completion_tokens": 616,
+        "prompt_tokens": 794,
+        "total_tokens": 1410,
+        "prompt_tokens_details": {
+          "cached_tokens": 269
+        }
+      }
+    },
+    {
+      "stage": "semantic-review",
+      "seconds": 5.427468700000012,
+      "finish": "stop",
+      "tokens": {
+        "completion_tokens": 532,
+        "prompt_tokens": 1760,
+        "total_tokens": 2292,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    }
+  ],
+  "repairs": [
+    {
+      "stage": "alibis",
+      "remainingErrors": [
+        "p1: el intervalo no cubre el crimen y la muerte.",
+        "p1: falta coartada inocente recíproca fuera de la escena.",
+        "p2: el intervalo no cubre el crimen y la muerte.",
+        "p2: falta coartada inocente recíproca fuera de la escena.",
+        "p3: el intervalo no cubre el crimen y la muerte.",
+        "La mentira no puede tener un testigo inocente verificado.",
+        "p4: el intervalo no cubre el crimen y la muerte.",
+        "p4: falta coartada inocente recíproca fuera de la escena.",
+        "p5: el intervalo no cubre el crimen y la muerte.",
+        "p5: falta coartada inocente recíproca fuera de la escena."
+      ]
+    }
+  ],
+  "scaffolded": true,
+  "rawAlibiErrors": [
+    "p1: el intervalo no cubre el crimen y la muerte.",
+    "p1: falta coartada inocente recíproca fuera de la escena.",
+    "p2: el intervalo no cubre el crimen y la muerte.",
+    "p2: falta coartada inocente recíproca fuera de la escena.",
+    "p3: el intervalo no cubre el crimen y la muerte.",
+    "La mentira no puede tener un testigo inocente verificado.",
+    "p4: el intervalo no cubre el crimen y la muerte.",
+    "p4: falta coartada inocente recíproca fuera de la escena.",
+    "p5: el intervalo no cubre el crimen y la muerte.",
+    "p5: falta coartada inocente recíproca fuera de la escena."
+  ],
+  "validationErrors": [
+    "Faltan pistas o hay identificadores repetidos.",
+    "Pista c6 sin habitación válida.",
+    "Pista c7 sin habitación válida.",
+    "Pista c8 sin habitación válida.",
+    "Pista c9 sin habitación válida.",
+    "Pista c10 sin habitación válida.",
+    "Las pruebas no conducen a una única solución."
+  ],
+  "replay": {
+    "found": 15,
+    "saveRetained": true,
+    "accusations": 60,
+    "winners": [],
+    "missingCategoriesRejected": true
+  },
+  "status": "rejected",
+  "semanticReview": {
+    "issues": [
+      {
+        "quote": "El ruido de la puerta de la biblioteca hace que la guardia sospeche de la entrada.",
+        "reason": "El ruido no es una pista de la puerta de la biblioteca, sino de la entrada en general. No hay contradicción directa en esta pista, pero no se puede verificar si la puerta de la biblioteca está abierta o cerrada en ese momento. La pista es demasiado vaga para confirmar que la puerta de la biblioteca se abrió o no. "
+      },
+      {
+        "quote": "El reloj marca 12:30.",
+        "reason": "El reloj marca 12:30. No hay contradicción directa en esta pista, pero no se puede verificar si la puerta de la biblioteca está abierta o cerrada en ese momento. La pista es demasiado vaga para confirmar que la puerta de la biblioteca se abrió o no. "
+      },
+      {
+        "quote": "Una puerta de madera con un brote de flores, sin letras legibles.",
+        "reason": "La puerta de la biblioteca tiene un brote de flores. No hay contradicción directa en esta pista, pero no se puede verificar si la puerta de la biblioteca está abierta o cerrada en ese momento. La pista es demasiado vaga para confirmar que la puerta de la biblioteca se abrió o no. "
+      },
+      {
+        "quote": "El ruido de la puerta de la biblioteca hace que la guardia sospeche de la entrada.",
+        "reason": "El ruido no es una pista de la puerta de la biblioteca, sino de la entrada en general. No hay contradicción directa en esta pista, pero no se puede verificar si la puerta de la biblioteca está abierta o cerrada en ese momento. La pista es demasiado vaga para confirmar que la puerta de la biblioteca se abrió o no. "
+      }
+    ]
+  },
+  "seconds": 51.013693399999994
+}

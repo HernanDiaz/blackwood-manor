@@ -1,0 +1,49 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "Crea un mundo original para un misterio deductivo. Español, salvo imagePrompt y visualStyle en inglés. Exactamente cinco sospechosos y seis habitaciones con ids distintos p1..p5 y r1..r6. Roles, apariencias y personalidades bien diferenciados. Nombres breves. Sin culpable todavía. No uses Blackwood, Edmund, Elena, Víctor, Clara, Arthur o Julián. Frases breves; imagePrompt describe un único retrato o espacio, sin texto escrito."
+    },
+    {
+      "role": "user",
+      "content": "{\"setting\":\"Estación espacial de ciencia ficción, sin magia, tecnología industrial y vida cotidiana humana\"}"
+    }
+  ],
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"title\": \"La Estación de la Sombra\",\n  \"premise\": \"En la Estación de la Sombra, un nodo de la red de datos de la humanidad, cinco operadores de mantenimiento están atrapados en una estructura de metal que no debería existir. El sistema de seguridad no ha sido activado, y las luces no se encienden, pero nadie está muerto. El detective debe encontrar la causa de la falla antes de que el sistema de seguridad se desactive para evitar una catástrofe total.\",\n  \"visualStyle\": \"Industrial, minimalista, con iluminación artificial y sombras duras.\",\n  \"people\": [\n    {\n      \"id\": \"p1\",\n      \"name\": \"Kael\",\n      \"role\": \"Operador de Mantenimiento\",\n      \"personality\": \"Serio, pragmático, enfocado en los datos.\",\n      \"appearance\": \"Vestido de trabajo, uniforme de la empresa, cabello corto y grisáceo.\",\n      \"imagePrompt\": \"Un hombre de trabajo con uniforme de la empresa, cabello corto y grisáceo, frente a una pantalla de datos.\"\n    },\n    {\n      \"id\": \"p2\",\n      \"name\": \"Rosa\",\n      \"role\": \"Operadora de Seguridad\",\n      \"personality\": \"Mala, nerviosa, con un fuerte sentido de la justicia.\",\n      \"appearance\": \"Vestido de trabajo, cabello largo y rubio, sonrisa maliciosa.\",\n      \"imagePrompt\": \"Una mujer con un vestido de trabajo, cabello largo y rubio, con una sonrisa maliciosa.\"\n    },\n    {\n      \"id\": \"p3\",\n      \"name\": \"Jónas\",\n      \"role\": \"Mecánico de Sistemas\",\n      \"personality\": \"Malo, sarcástico, con una fuerte personalidad.\",\n      \"appearance\": \"Vestido de trabajo, cabello corto y negro, sonrisa maliciosa.\",\n      \"imagePrompt\": \"Un hombre con un vestido de trabajo, cabello corto y negro, con una sonrisa maliciosa.\"\n    },\n    {\n      \"id\": \"p4\",\n      \"name\": \"Lyra\",\n      \"role\": \"Analista de Datos\",\n      \"personality\": \"Cariñosa, tranquila, con un fuerte sentido de la justicia.\",\n      \"appearance\": \"Vestido de trabajo, cabello largo y rubio, sonrisa maliciosa.\",\n      \"imagePrompt\": \"Una mujer con un vestido de trabajo, cabello largo y rubio, con una sonrisa maliciosa.\"\n    },\n    {\n      \"id\": \"p5\",\n      \"name\": \"Orion\",\n      \"role\": \"Administrador de Seguridad\",\n      \"personality\": \"Malo, sarcástico, con una fuerte personalidad.\",\n      \"appearance\": \"Vestido de trabajo, cabello corto y negro, sonrisa maliciosa.\",\n      \"imagePrompt\": \"Un hombre con un vestido de trabajo, cabello corto y negro, con una sonrisa maliciosa.\"\n    }\n  ],\n  \"rooms\": [\n    {\n      \"id\": \"r1\",\n      \"name\": \"Sala de Control\",\n      \"description\": \"El lugar donde se realizan las operaciones principales.\",\n      \"imagePrompt\": \"Un espacio interior oscuro con luces de emergencia, un monitor grande y un panel de control.\"\n    },\n    {\n      \"id\": \"r2\",\n      \"name\": \"Laboratorio de Datos\",\n      \"description\": \"El lugar donde se procesan los datos de la estación.\",\n      \"imagePrompt\": \"Un espacio interior oscuro con luces de emergencia, un monitor grande y un panel de control.\"\n    },\n    {\n      \"id\": \"r3\",\n      \"name\": \"Biblioteca\",\n      \"description\": \"El lugar donde se guardan los documentos importantes.\",\n      \"imagePrompt\": \"Un espacio interior oscuro con luces de emergencia, un monitor grande y un panel de control.\"\n    },\n    {\n      \"id\": \"r4\",\n      \"name\": \"Fábrica\",\n      \"description\": \"El lugar donde se fabrican los componentes.\",\n      \"imagePrompt\": \"Un espacio interior oscuro con luces de emergencia, un monitor grande y un panel de control.\"\n    },\n    {\n      \"id\": \"r5\",\n      \"name\": \"Barracón\",\n      \"description\": \"El lugar donde se alojan los operadores.\",\n      \"imagePrompt\": \"Un espacio interior oscuro con luces de emergencia, un monitor grande y un panel de control.\"\n    },\n    {\n      \"id\": \"r6\",\n      \"name\": \"Cubículo de Seguridad\",\n      \"description\": \"El lugar donde se alojan los operadores.\",\n      \"imagePrompt\": \"Un espacio interior oscuro con luces de emergencia, un monitor grande y un panel de control.\"\n    }\n  ]\n}",
+          "reasoning_content": "Thinking Process:\n\n1.  **Analyze the Request:**\n    *   **Task:** Create an original setting for a mystery deductive game.\n    *   **Language:** Spanish (except `imagePrompt` and `visualStyle` which are in English).\n    *   **Constraints:**\n        *   Exactly five suspects (P1..P5).\n        *   Six rooms (ids: r1..r6).\n        *   Roles, appearances, and personalities must be well-differentiated.\n        *   Names must be brief.\n        *   No guilty party yet.\n"
+        }
+      }
+    ],
+    "created": 1792269263,
+    "model": "E:\\2026 blackwood manor\\models\\Qwen_Qwen3.5-2B-Q4_K_M.gguf",
+    "system_fingerprint": "b10581-2115b73d8",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 1213,
+      "prompt_tokens": 142,
+      "total_tokens": 1355,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-GgAGGgfzCceuRCEuKuBCqgHF4G2r4HOf",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 142,
+      "prompt_ms": 93.004,
+      "prompt_per_token_ms": 0.6549577464788733,
+      "prompt_per_second": 1526.8160509225409,
+      "predicted_n": 1213,
+      "predicted_ms": 10252.767,
+      "predicted_per_token_ms": 8.459378712871287,
+      "predicted_per_second": 118.21199096790163
+    }
+  }
+}
