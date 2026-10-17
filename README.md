@@ -72,3 +72,7 @@ La interpretación con modelo local está integrada; la prosa generada librement
 ## Qwen por defecto y verificación de respuestas
 
 Actualización: `QWEN-MEJORAS.md` documenta el sistema combinado de ejemplos, recuperación de intenciones y elección de variantes revisadas. Qwen3.5-2B es ahora el predeterminado. La validación es determinista y no admite prosa fuera del catálogo autorizado. Hay fallos de comprensión en preguntas nuevas; consultar los resultados completos antes de valorar calidad de producción.
+
+## Piloto visual y conversacional
+
+Abrir `PILOTO.cmd` y visitar http://127.0.0.1:4173. La nueva pestaña Piloto guía un recorrido con el despacho, Arthur y la taza ilustrados mediante SDXS, conservados en un conjunto visual versionado. Conversación con Qwen3.5-2B y verificación del catálogo. Ver `PILOTO.md` para alcance y pruebas. No se generan de nuevo las imágenes al abrir la partida.

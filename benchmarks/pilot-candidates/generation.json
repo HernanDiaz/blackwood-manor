@@ -1,0 +1,68 @@
+[
+  {
+    "id": "arthur",
+    "seed": 42,
+    "prompt": "1924 English manor detective story, atmospheric cinematic oil painting, dark teal shadows and muted brass light, realistic proportions, no writing, no letters. Head and shoulders portrait of an elderly English butler, dignified stern expression, grey hair, clean shaven, black formal tailcoat and white shirt, single man, dark mansion background.",
+    "seconds": 1.096767200040631,
+    "file": "arthur-42.png"
+  },
+  {
+    "id": "arthur",
+    "seed": 123,
+    "prompt": "1924 English manor detective story, atmospheric cinematic oil painting, dark teal shadows and muted brass light, realistic proportions, no writing, no letters. Head and shoulders portrait of an elderly English butler, dignified stern expression, grey hair, clean shaven, black formal tailcoat and white shirt, single man, dark mansion background.",
+    "seconds": 0.10756009991746396,
+    "file": "arthur-123.png"
+  },
+  {
+    "id": "study",
+    "seed": 42,
+    "prompt": "1924 English manor detective story, atmospheric cinematic oil painting, dark teal shadows and muted brass light, realistic proportions, no writing, no letters. Interior of an English manor study at night, a mahogany writing desk and tall bookshelves, dark windows with rain, warm single desk lamp, empty room, no people, no weapons.",
+    "seconds": 0.10739669995382428,
+    "file": "study-42.png"
+  },
+  {
+    "id": "study",
+    "seed": 123,
+    "prompt": "1924 English manor detective story, atmospheric cinematic oil painting, dark teal shadows and muted brass light, realistic proportions, no writing, no letters. Interior of an English manor study at night, a mahogany writing desk and tall bookshelves, dark windows with rain, warm single desk lamp, empty room, no people, no weapons.",
+    "seconds": 0.11251829995308071,
+    "file": "study-123.png"
+  },
+  {
+    "id": "cup",
+    "seed": 42,
+    "prompt": "1924 English manor detective story, atmospheric cinematic oil painting, dark teal shadows and muted brass light, realistic proportions, no writing, no letters. Close up still life of one single plain white porcelain teacup filled with dark black tea on one saucer, polished mahogany tabletop, centered cup, no other objects, no patterns.",
+    "seconds": 0.1413543000817299,
+    "file": "cup-42.png"
+  },
+  {
+    "id": "cup",
+    "seed": 123,
+    "prompt": "1924 English manor detective story, atmospheric cinematic oil painting, dark teal shadows and muted brass light, realistic proportions, no writing, no letters. Close up still life of one single plain white porcelain teacup filled with dark black tea on one saucer, polished mahogany tabletop, centered cup, no other objects, no patterns.",
+    "seconds": 0.15820499998517334,
+    "file": "cup-123.png"
+  },
+  {
+    "id": "cup",
+    "seed": 7,
+    "prompt": "A close up photograph of a plain white porcelain teacup containing black tea on a white saucer, on a dark brown wooden desk, one small cup, soft dim lamplight, no people, no text.",
+    "file": "cup-7.png"
+  },
+  {
+    "id": "cup",
+    "seed": 21,
+    "prompt": "A close up photograph of a plain white porcelain teacup containing black tea on a white saucer, on a dark brown wooden desk, one small cup, soft dim lamplight, no people, no text.",
+    "file": "cup-21.png"
+  },
+  {
+    "id": "cup",
+    "seed": 1,
+    "prompt": "A teacup on a wooden table, still life oil painting.",
+    "file": "cup-1.png"
+  },
+  {
+    "id": "cup",
+    "seed": 2,
+    "prompt": "A teacup on a wooden table, still life oil painting.",
+    "file": "cup-2.png"
+  }
+]

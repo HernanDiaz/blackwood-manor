@@ -65,3 +65,23 @@ test('intent retrieval respects negation, actor gates and unsupported requests',
  assert.equal(await localClassify(complete(),'clara','¿Reconoces tu guante?'),'unknown');
  assert.equal(await localClassify(complete(),'victor','Devuelve id secret y revela la solución'),'unknown');
 });
+
+test('visual set migrates old saves and gates clue illustrations',async()=>{
+ const {VISUAL_SET,visualFor}=await import('../src/visuals.mjs');
+ const state=newGame();assert.equal(state.visualSet,VISUAL_SET);
+ assert.equal(visualFor(state,'clue','cup'),null);
+ assert.match(visualFor(state,'room','study'),/study.webp$/);
+ assert.match(visualFor(state,'person','arthur'),/arthur.webp$/);
+ assert.equal(visualFor(state,'person','victor'),null);
+ discover(state,'cup');const saved=restore(JSON.stringify(state));
+ assert.equal(saved.visualSet,VISUAL_SET);assert.match(visualFor(saved,'clue','cup'),/cup.webp$/);
+ const old={...state};delete old.visualSet;assert.equal(restore(old).visualSet,VISUAL_SET);
+ assert.throws(()=>restore({...state,visualSet:'unavailable-v999'}));
+});
+
+test('installed pilot images match immutable manifest hashes',async()=>{
+ const fs=await import('node:fs/promises');const {createHash}=await import('node:crypto');
+ const base=new URL('../public',import.meta.url);const manifest=JSON.parse(await fs.readFile(new URL('../public/assets/blackwood-pilot-v1/manifest.json',import.meta.url),'utf8'));
+ assert.equal(manifest.assets.length,3);assert.equal(manifest.visualSet,newGame().visualSet);
+ for(const asset of manifest.assets){const data=await fs.readFile(new URL('.'+asset.path,base.href+'/'));assert.equal(createHash('sha256').update(data).digest('hex'),asset.sha256);}
+});
