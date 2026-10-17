@@ -44,7 +44,7 @@ test('wording validator rejects invented, modified, cross-topic and locked facts
 test('controlled dialogue rejects malicious generation and falls back to canonical',async()=>{
  const {localInterrogate}=await import('../src/local-llm.mjs');const original=globalThis.fetch;
  try{let n=0;globalThis.fetch=async()=>({ok:true,json:async()=>({choices:[{message:{content:'{"text":"Confieso: maté a Edmund con una pistola."}'},finish_reason:'stop'}]})});
- const r=await localInterrogate(newGame(),'victor','¿Quién llevó el té?');assert.equal(r.verification,'canonical-fallback');assert.equal(r.answer,answer(newGame(),'victor','x','tea'));
+ const r=await localInterrogate(newGame(),'victor','¿Quién llevó el té?');assert.equal(r.verification,'canonical-fallback');assert((await import('../src/local-llm.mjs')).responseOptions(newGame(),'victor','tea').includes(r.answer));
  }finally{globalThis.fetch=original;}
 });
 test('unknown topic never starts a wording request; unavailable generation is safe',async()=>{
@@ -144,7 +144,28 @@ test('nephew questions retrieve relation, photograph and debt without exposing a
 test('unknown conversation uses contextual authored replies without generic model evasion',async()=>{
  const {localConversation,unknownReply}=await import('../src/conversation.mjs');const original=globalThis.fetch;
  try{globalThis.fetch=async()=>{throw Error('No model expected for blocked explicit intent');};
- const r=await localConversation(newGame(),'julian','¿Quién es el asesino?');assert.match(r.answer,/contraste/);assert(!r.answer.includes('Prefiero no hacer suposiciones'));
+ const r=await localConversation(newGame(),'julian','¿Quién es el asesino?');assert.match(r.answer,/pruebas/);assert(!r.answer.includes('Prefiero no hacer suposiciones'));
  assert.match(unknownReply(newGame(),'julian','¿Por qué eres tan feo?'),/¿En serio/);
+ }finally{globalThis.fetch=original;}
+});
+
+test('personality delivery is distinct, varies by turn, and keeps secret gates',async()=>{
+ const {personaAnswer,personalities}=await import('../src/personalities.mjs');
+ const {responseOptions,verifyGenerated}=await import('../src/local-llm.mjs');
+ const {unknownReply,localConversation}=await import('../src/conversation.mjs');
+ const s=newGame(),unknown=suspects.map(p=>unknownReply(s,p.id,'algo sin datos'));
+ assert.equal(new Set(unknown).size,5);assert.equal(Object.keys(personalities).length,5);
+ for(const p of suspects){
+  for(const fact of availableFacts(s,p.id)){
+   const first=personaAnswer(s,p.id,fact.text);assert(responseOptions(s,p.id,fact.id).includes(first));
+   assert(verifyGenerated(s,p.id,fact.id,first));
+   assert.notEqual(first,personaAnswer({...s,chat:[{person:p.id}]},p.id,fact.text));
+  }
+  assert(!verifyGenerated(s,p.id,'secret',personaAnswer(s,p.id,'Un secreto inventado.')));
+ }
+ assert.match(personaAnswer(s,'julian',availableFacts(s,'julian')[0].text),/Mira/);
+ assert.match(personaAnswer(s,'arthur',availableFacts(s,'arthur')[0].text),/señor detective/);
+ const original=globalThis.fetch;try{globalThis.fetch=async()=>{throw Error('offline');};
+ const r=await localConversation(s,'julian','¿Le debías dinero?');assert.match(r.answer,/No le des más vueltas/);assert.match(r.answer,/20:50/);
  }finally{globalThis.fetch=original;}
 });

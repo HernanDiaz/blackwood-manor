@@ -1,0 +1,42 @@
+[
+  {
+    "person": "Elena Blackwood",
+    "answer": "Sí, discutí con mi padre. Me amenazó con desheredarme. No voy a fingir lo contrario para complacerle.",
+    "mode": "local-llm",
+    "verification": "creative-fallback",
+    "milliseconds": 4553,
+    "reviewReason": "unsupported-or-incomplete-evidence"
+  },
+  {
+    "person": "Dr. Víctor Hale",
+    "answer": "Se trataba de unas cuentas que Edmund quería discutir conmigo. Un malentendido. Seamos precisos con los términos.",
+    "mode": "local-llm",
+    "verification": "creative-fallback",
+    "milliseconds": 4053,
+    "reviewReason": "unsupported-or-incomplete-evidence"
+  },
+  {
+    "person": "Clara Reed",
+    "answer": "Necesitaba este empleo. Eso es cierto. Pero no quería que Edmund muriera; no mezcle las dos cosas.",
+    "mode": "local-llm",
+    "verification": "creative-fallback",
+    "milliseconds": 4026,
+    "reviewReason": "unsupported-or-incomplete-evidence"
+  },
+  {
+    "person": "Arthur Finch",
+    "answer": "Treinta años al servicio de Sir Edmund, señor detective. No tenía nada que ganar. No puedo expresarlo con mayor claridad.",
+    "mode": "local-llm",
+    "verification": "creative-fallback",
+    "milliseconds": 3363,
+    "reviewReason": "unsupported-or-incomplete-evidence"
+  },
+  {
+    "person": "Julián Blackwood",
+    "answer": "Sí, le debía dinero. Discutimos a las 20:50. Después no volví a verlo. No le des más vueltas a lo que he dicho.",
+    "mode": "local-llm",
+    "verification": "creative-fallback",
+    "milliseconds": 6339,
+    "reviewReason": "unsupported-or-incomplete-evidence"
+  }
+]

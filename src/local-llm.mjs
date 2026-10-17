@@ -1,3 +1,4 @@
+import {personaOptions,personaAnswer} from './personalities.mjs';
 import {availableFacts,answer,suspects} from './engine.mjs';
 const alternatives={
  'elena.alibi':'Desde las 21:00 hasta el grito estuve con Julián en el comedor.',
@@ -24,7 +25,7 @@ export function responseOptions(state,person,topic){
  const fact=availableFacts(state,person).find(f=>f.id===topic);
  if(!fact)return [answer(state,person,'','unknown')];
  const bodies=[fact.text,alternatives[person+'.'+topic]].filter(Boolean);
- return [...new Set(bodies.flatMap(body=>(leads[person]||['']).map(lead=>lead+body)))];
+ return [...new Set(bodies.flatMap(body=>personaOptions(person,body)))];
 }
 export function verifyGenerated(state,person,topic,text){
  if(state.result||!suspects.some(p=>p.id===person))return false;
@@ -77,7 +78,7 @@ export async function localInterrogate(state,person,question){
  const start=performance.now(),signal=AbortSignal.timeout(11000);
  const topicSource=explicitIntent(question,person)===null?'model':'rules';
  const topic=await localClassify(state,person,question,signal);
- const canonical=answer(state,person,question,topic);
+ const canonical=personaAnswer(state,person,answer(state,person,question,topic));
  if(topic==='unknown')return {answer:canonical,mode:topicSource==='rules'?'local':'local-llm',topic,topicSource,verification:'canonical-unknown',milliseconds:Math.round(performance.now()-start)};
  const options=responseOptions(state,person,topic);
  try{
