@@ -1,86 +1,59 @@
-# Blackwood Manor — El último té
+# Blackwood Manor — La última noche
 
-MVP jugable en español. Caso fijo de deducción: cinco sospechosos, seis habitaciones, dieciocho pistas, preguntas libres, secretos condicionados a pruebas, tablero, notas, inventario y acusación con evidencia. Sin dependencias de instalación ni servicios obligatorios.
+MVP jugable en español con cinco variantes escritas de un misterio: cinco sospechosos, seis habitaciones, dieciocho pistas por caso, interrogatorios, secretos condicionados a pruebas, tablero, notas, inventario, acusación y guardado. Cada posible culpable protagoniza una variante. Véase VARIANTES.md para el alcance sin spoilers.
 
 ## Ejecutar
 
-Requisito: Node.js 22 o posterior.
+Requiere Node.js 22 o posterior. El proyecto está en E:\2026 blackwood manor. No necesita npm install.
 
-Desde esta carpeta:
+- PILOTO.cmd: inicia Qwen3.5-2B local y el juego usando los modelos y el motor ya descargados. También: node local-play.mjs qwen.
+- JUGAR.cmd o npm start: juego con respuestas del motor, sin cargar un modelo.
+- Abrir http://127.0.0.1:4173. Ctrl+C cierra el servidor; el lanzador local también cierra el modelo que inició.
+- Para un puerto de aplicación diferente: establecer PORT antes de arrancar. El modelo local usa 1235; la aplicación se limita al equipo local.
 
-```powershell
-npm start
-```
-
-Abrir http://localhost:4173. El servidor se limita al equipo local. Para detenerlo: Ctrl+C. Si el puerto está ocupado, usar `$env:PORT="4174"` antes de iniciar. También puedes abrir `JUGAR.cmd` en Windows.
-
-```powershell
-npm test
-```
-
-No hace falta `npm install`. No abras index.html directamente: los interrogatorios necesitan el servidor.
+No abrir index.html directamente: los interrogatorios requieren el servidor. No se usan claves ni servicios externos para el piloto local. La rama opcional de API del servidor no está configurada en este piloto.
 
 ## Cómo jugar
 
-1. Inspecciona objetos en las seis habitaciones. Las pistas se recogen una sola vez.
-2. Interroga a los cinco personajes con texto libre o preguntas sugeridas. Encontrar documentos u objetos desbloquea temas privados.
-3. Fija pistas en el tablero y escribe tus hipótesis. El inventario conserva todos los hallazgos.
-4. Acusa indicando persona, método y lugar. Adjunta al menos tres pruebas que acrediten móvil, vínculo con el veneno y oportunidad. Puedes reabrir una acusación fallida.
+Inspecciona habitaciones, recoge pruebas, interroga y contrasta las versiones de los sospechosos. Fija pistas en el tablero, escribe notas y acusa indicando persona, método, lugar y al menos tres pruebas pertinentes. Si fallas puedes reabrir la investigación sin perder hallazgos.
 
-Se guarda automáticamente en el navegador después de cada cambio. Exportar/Importar permite llevar una copia JSON a otro navegador. Nueva partida pide confirmación. No hay límite de turnos ni callejones sin salida.
+Una nueva partida elige una de las cinco variantes, excluyendo la inmediatamente anterior. Conserva el estilo de conversación seleccionado. Recargar, exportar o importar mantiene la variante y su revisión. Los guardados anteriores a las variantes conservan el caso original, no cambian de solución. Si ya estaba abierta una versión anterior de la interfaz, recargar antes de empezar una nueva investigación.
 
-## LLM opcional
+El guardado es localStorage del navegador; no hay cuenta ni sincronización. Exportar permite guardar un JSON y recuperarlo con Importar. Para reemplazar una partida mediante Reiniciar o Nueva partida se requiere pulsar la confirmación del propio juego.
 
-En PowerShell, configura `OPENAI_API_KEY` en el entorno del proceso y después inicia el servidor. Opcional: `OPENAI_MODEL` (predeterminado: `gpt-4.1-mini`, requiere acceso a un modelo compatible con Structured Outputs). No guardes claves en el código, el navegador ni Git. `.env` está ignorado, pero **no se carga automáticamente**.
+## Diálogo e imágenes
 
-El servidor usa Responses API con JSON Schema estricto: https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses . El modelo solo elige el identificador de un hecho ya autorizado. El motor devuelve su texto canónico: no se muestra prosa generada libremente. No se envían pistas bloqueadas ni historial, solo la pregunta y los hechos disponibles. `store: false`. En fallo, tiempo agotado o respuesta fuera de catálogo se usa el intérprete local y se indica en el chat. Sin clave todo el juego funciona con clasificación local por temas; esta clasificación tiene comprensión limitada y no mantiene contexto entre preguntas.
+El modo preciso selecciona formulaciones revisadas del caso. La conversación libre es experimental: Qwen redacta usando solo recuerdos autorizados y la revisión exige respaldo por frase; si se rechaza, el motor responde con el mismo personaje y sus hechos. No se garantiza la corrección semántica general de la prosa libre. Las respuestas antiguas experimentales no se reutilizan como autoridad factual.
 
-## Arquitectura y extensión
+Elena es orgullosa; Víctor reservado y analítico; Clara directa y prudente; Arthur formal; Julián impaciente y coloquial. Las voces también se mantienen en las respuestas de apoyo. Los secretos requieren la prueba correspondiente. Un testimonio inicial puede contener una mentira deliberada del caso, que otra prueba permite confrontar: no equivale a una invención autorizada del modelo.
 
-- `src/engine.mjs`: caso, cronología, pistas, desbloqueos, validación de guardado y veredicto. Módulo JavaScript puro sin DOM ni Node: reutilizable en una futura aplicación móvil.
-- `public/app.mjs`: interfaz y adaptador de almacenamiento local. CSS responsive, sin recursos externos; ilustración ambiental hecha con CSS como provisional.
-- `server.mjs`: entrega local y adaptador de clasificación LLM, con tiempo máximo y validación independiente del resultado.
-- `test/engine.test.mjs`: pruebas con Node Test Runner, sin paquetes externos.
+Las 29 imágenes locales cubren cinco personajes, seis escenarios y dieciocho pistas. Se conservan como conjuntos versionados con hashes; no se generan al arrancar o preguntar. Se reutilizan en las variantes y su significado probatorio depende del texto del caso. Son ilustraciones orientativas, no reconstrucciones forenses.
 
-Para iOS/Android: reutilizar el motor y el esquema de partida; extraer almacenamiento a un adaptador de preferencias/SQLite y la ruta LLM a un backend HTTPS. La interfaz puede empaquetarse en WebView/Capacitor o reemplazarse por una vista nativa. **Este MVP no incluye proyectos Xcode/Gradle, APK/IPA ni funcionamiento autónomo en un teléfono**; usa un servidor local de escritorio. El diseño responsive se conserva al portar.
+## Arquitectura
 
-Para ilustraciones: asociar `assetId` estable a habitación/personaje/pista y añadir un proveedor de imágenes independiente de los hechos. Generar o curar escenas desde descripciones públicas, sin meter pistas aleatorias ni texto generado en el canon. Añadir caché, estados de carga, presupuesto y moderación antes de integrar generación.
+- src/engine.mjs: estado, investigación, guardado y acusación sobre la variante activa.
+- src/cases.mjs y src/legacy-case.mjs: casos, cronologías, declaraciones, secretos, pruebas y desenlaces. validateCase audita la estructura y el grafo de deducción.
+- src/local-llm.mjs: clasificación limitada a temas autorizados y catálogo de formulaciones.
+- src/conversation.mjs, src/dialogue-policy.mjs y src/personalities.mjs: generación experimental, revisión y voces.
+- src/visuals.mjs y public/assets/: manifiestos y recursos visuales persistentes.
+- server.mjs: servidor local y endpoint de interrogatorio. public/: interfaz adaptable a móvil, sin dependencias de frontend.
 
-## Verificación
+Datos y motor están separados para añadir más casos y reutilizar la lógica en futuras aplicaciones móviles.
 
-11 pruebas automatizadas: cardinalidad y alcance de pistas, descubrimiento idempotente, secretos bloqueados, guardado/restauración, resolución completa, acusaciones inválidas, las 90 combinaciones de persona/método/habitación, las seis combinaciones de evidencia suficiente, validación de entrada, endpoint local y LLM simulado (éxito y fallback). Los tests LLM no realizan llamadas pagadas. No se ha validado una llamada real con credenciales.
+## Validación
 
-Prueba manual en navegador: recoger pistas, fijar al tablero, escribir notas, recargar y continuar, pregunta libre, acusación correcta y nueva partida. Revisar `QA.md` para el resultado final de la inspección visual.
+npm test ejecuta 37 pruebas con Node Test Runner, sin paquetes externos ni llamadas pagadas. Incluyen guardado, secretos, diálogos simulados, imágenes, personalidades y flujos completos de los cinco casos. Se comprueban 450 combinaciones de persona/método/habitación, con una solución ganadora por caso y pruebas suficientes. También se rechazan acusaciones que omiten una categoría de evidencia.
+
+node benchmarks/test-five-cases.mjs prueba los cinco casos con el Qwen local activo y guarda benchmarks/results/five-cases-dialogue.json. En el sondeo registrado las cinco respuestas correspondieron a su variante mediante el catálogo de apoyo. No demuestra la fiabilidad general del texto libre. Los benchmarks históricos fijan explícitamente el caso original para conservar sus comparaciones.
+
+En el navegador se completó una variante: seis habitaciones, dieciocho pistas, acusación y desenlace. Después se comprobó una nueva variante diferente y su persistencia al recargar, usando un origen separado sin tocar la partida del jugador.
 
 ## Antes de producción
 
-- Backend autoritativo para acciones/partidas, autenticación, base de datos y sincronización. Actualmente el estado y el canon son visibles/modificables en el cliente: no hay protección contra trampas ni spoilers al inspeccionar el código.
-- TLS, protección de origen/CSRF, límites de peticiones/coste y observabilidad para exponer el endpoint LLM. El servidor solo escucha en loopback y no es un servidor público de producción.
-- Backend móvil, empaquetado, firma y pruebas en dispositivos reales; accesibilidad con lectores de pantalla y teclado, traducciones y pruebas de usabilidad.
-- Más cobertura semántica, memoria conversacional controlada y respuestas variadas sin alterar hechos. El MVP responde a un tema por pregunta y los personajes no improvisan.
-- Ilustraciones reales, audio opcional, licencias y generación de imágenes. No hay generación incluida.
-- Migraciones de guardado posteriores a v1, gestión de conflictos y límites del almacenamiento del navegador. No hay service worker/PWA instalable.
+Quedan ampliar casos y métodos, probar dificultad con jugadores, mejorar seguimiento conversacional y calidad de la prosa libre, empaquetar y firmar para iOS/Android y probar dispositivos reales, accesibilidad y sincronización. La web actual no es una aplicación móvil instalada ni una PWA sin conexión.
 
-La solución y cronología editorial están en `CASE-SPOILERS.md`. Evita leerlo antes de jugar.
+La verdad del caso y el estado son visibles y modificables en el cliente; un juego que necesite impedir trampas debe conservarlos y validar acciones en un backend autoritativo. El servidor local no está preparado para exposición pública: requeriría autenticación, persistencia, límites, seguridad de despliegue y observabilidad.
 
-## Modelos locales probados
+La comprobación estructural no sustituye la revisión editorial de todas las frases. Hay cinco casos finitos, no generación ilimitada. Las variantes nuevas comparten un marco horario y el acónito como veneno; se diferencian por culpable, contexto, coartadas, escena, pruebas y vehículo de administración.
 
-Consulta `PRUEBAS-LOCALES.md`. Para elegir y jugar sin API: abre `PROBAR-LOCAL.cmd`. Requiere este equipo y su motor instalado en `E:\LLMStudio\llama.cpp`. Mantén abierta la consola; Ctrl+C cierra el juego y el motor que ha arrancado. No arranques al mismo tiempo otra copia en los puertos 1235/4173.
-
-La interpretación con modelo local está integrada; la prosa generada libremente se evalúa solo en los benchmarks porque aún contradice el canon. En el juego las respuestas siguen siendo canónicas. Los pesos y el entorno de imágenes son locales e ignorados por Git.
-
-## Qwen por defecto y verificación de respuestas
-
-Actualización: `QWEN-MEJORAS.md` documenta el sistema combinado de ejemplos, recuperación de intenciones y elección de variantes revisadas. Qwen3.5-2B es ahora el predeterminado. La validación es determinista y no admite prosa fuera del catálogo autorizado. Hay fallos de comprensión en preguntas nuevas; consultar los resultados completos antes de valorar calidad de producción.
-
-## Piloto visual y conversacional
-
-Abrir `PILOTO.cmd` y visitar http://127.0.0.1:4173. La nueva pestaña Piloto guía un recorrido con el despacho, Arthur y la taza ilustrados mediante SDXS, conservados en un conjunto visual versionado. Conversación con Qwen3.5-2B y verificación del catálogo. Ver `PILOTO.md` para alcance y pruebas. No se generan de nuevo las imágenes al abrir la partida.
-
-## Actualización: ilustraciones completas
-
-Ya están ilustrados los cinco personajes, las seis habitaciones y las dieciocho pistas. En Interrogar hay un selector entre Respuesta precisa (por defecto) y Conversación libre experimental. Esta última genera texto, pero el revisor aún puede aceptar invenciones: consultar `ILUSTRACIONES-Y-DIALOGO.md` con todos los resultados, incluidos los fallos. Reemplaza el alcance de tres ilustraciones descrito en la documentación inicial del piloto.
-
-## Revisión por evidencias
-
-La conversación experimental incorpora instrucciones explícitas y revisión de cada frase con citas de recuerdos autorizados. Las revisiones incompletas o sin fuentes válidas se rechazan. Véase REGLAS-DIALOGO.md. Sigue sin ser una garantía semántica: la modalidad precisa permanece como predeterminada.
+Documentación histórica y técnica adicional: PRUEBAS-LOCALES.md, QWEN-MEJORAS.md, PILOTO.md, ILUSTRACIONES-Y-DIALOGO.md y REGLAS-DIALOGO.md. VARIANTES.md describe la última ampliación.

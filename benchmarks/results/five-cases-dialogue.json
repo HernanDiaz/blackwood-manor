@@ -1,0 +1,72 @@
+[
+  {
+    "caseId": "bm01",
+    "person": "victor",
+    "question": "¿Dónde estabas a las 21:15?",
+    "expected": "Llevé el té al despacho y salí a las 21:18. Edmund seguía vivo.",
+    "answer": "Conviene precisar la secuencia: llevé el té al despacho y salí a las 21:18. En ese momento Edmund seguía vivo.",
+    "mode": "local-llm",
+    "verification": "creative-fallback",
+    "milliseconds": 2196,
+    "reviewReason": "deterministic-rejection",
+    "catalogue": true,
+    "structuralErrors": [],
+    "clueCount": 18
+  },
+  {
+    "caseId": "bm02",
+    "person": "elena",
+    "question": "¿Dónde estabas a las 21:15?",
+    "expected": "Estuve sola en la biblioteca de 21:10 a 21:25. No entré en el despacho durante ese intervalo.",
+    "answer": "Voy a ser muy clara. Estuve sola en la biblioteca de 21:10 a 21:25. No entré en el despacho durante ese intervalo.",
+    "mode": "local-llm",
+    "verification": "creative-fallback",
+    "milliseconds": 3397,
+    "reviewReason": "unsupported-or-incomplete-evidence",
+    "catalogue": true,
+    "structuralErrors": [],
+    "clueCount": 18
+  },
+  {
+    "caseId": "bm03",
+    "person": "clara",
+    "question": "¿Dónde estabas a las 21:15?",
+    "expected": "Trabajé sola en el despacho de 21:10 a 21:25. No fui a la biblioteca durante ese rato.",
+    "answer": "Se lo diré sin rodeos. Trabajé sola en el despacho de 21:10 a 21:25. No fui a la biblioteca durante ese rato.",
+    "mode": "local-llm",
+    "verification": "creative-fallback",
+    "milliseconds": 1926,
+    "reviewReason": "deterministic-rejection",
+    "catalogue": true,
+    "structuralErrors": [],
+    "clueCount": 18
+  },
+  {
+    "caseId": "bm04",
+    "person": "arthur",
+    "question": "¿Dónde estabas a las 21:15?",
+    "expected": "No abandoné la cocina entre las 21:10 y las 21:25. Estaba solo atendiendo el servicio.",
+    "answer": "Señor detective, seré preciso. No abandoné la cocina entre las 21:10 y las 21:25. Estaba solo atendiendo el servicio.",
+    "mode": "local-llm",
+    "verification": "creative-fallback",
+    "milliseconds": 1484,
+    "reviewReason": "missing-factual-answer",
+    "catalogue": true,
+    "structuralErrors": [],
+    "clueCount": 18
+  },
+  {
+    "caseId": "bm05",
+    "person": "julian",
+    "question": "¿Dónde estabas a las 21:15?",
+    "expected": "Me fui al invernadero a las 21:10 y estuve solo allí hasta las 21:25. No regresé al comedor en ese rato.",
+    "answer": "Vale, escucha. Me fui al invernadero a las 21:10 y estuve solo allí hasta las 21:25. No regresé al comedor en ese rato.",
+    "mode": "local-llm",
+    "verification": "creative-fallback",
+    "milliseconds": 1726,
+    "reviewReason": "deterministic-rejection",
+    "catalogue": true,
+    "structuralErrors": [],
+    "clueCount": 18
+  }
+]

@@ -1,7 +1,8 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {rooms,suspects,clues,newGame,discover,availableFacts,answer,accuse,restore,inferTopic} from '../src/engine.mjs';
+import {rooms,suspects,clues,newGame as createGame,discover,availableFacts,answer,accuse,restore,inferTopic} from '../src/engine.mjs';
 import {respond} from '../server.mjs';
+const newGame=()=>createGame({caseId:'bm01'});
 function complete(){const s=newGame();for(const r of rooms){s.room=r.id;for(const c of clues.filter(c=>c.room===r.id))discover(s,c.id);}return s;}
 const solution={person:'victor',weapon:'aconite',room:'study',evidence:['fraud','vial','tray']};
 test('case has unique, reachable 18 clues, 6 rooms, 5 suspects',()=>{assert.equal(rooms.length,6);assert.equal(suspects.length,5);assert.equal(clues.length,18);assert.equal(new Set(clues.map(c=>c.id)).size,18);for(const r of rooms)assert(clues.filter(c=>c.room===r.id).length>=2);assert.equal(complete().found.length,18);});

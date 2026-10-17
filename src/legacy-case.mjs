@@ -1,0 +1,27 @@
+export const clues = [
+ ['cup','study','Taza de té','Un residuo vegetal oscuro permanece en el té que bebió Edmund a las 21:15.','object'],
+ ['body','study','Informe preliminar','Sin heridas. Los síntomas concuerdan con intoxicación por acónito.','document'],
+ ['will','study','Nuevo testamento','Edmund iba a desheredar a Elena. Aún no lo había firmado.','document'],
+ ['appointment','study','Agenda de Edmund','21:10: cita privada con el doctor Hale para revisar sus cuentas.','document'],
+ ['fraud','library','Libro de cuentas','Pagos médicos inventados, rubricados V. Hale. Edmund anotó: «Denunciar mañana».','document'],
+ ['botany','library','Tratado de botánica','El acónito provoca síntomas en unos diez minutos al ingerirse.','document'],
+ ['letter','library','Carta de Clara','Clara admite una relación con Edmund y teme perder su puesto.','document'],
+ ['glasses','dining','Copas intactas','Las cinco copas no contienen restos de acónito. La cena no fue el vehículo.','object'],
+ ['photo','dining','Fotografía de sobremesa','A las 21:12 Elena y Julián aparecen juntos en el comedor.','document'],
+ ['argument','dining','Nota del servicio','Julián discutió por una deuda a las 20:50; Edmund lo echó del despacho.','document'],
+ ['tray','kitchen','Bandeja del té','Arthur preparó una sola taza a las 21:05. El doctor se ofreció a llevarla.','object'],
+ ['vial','kitchen','Frasco de botiquín','Frasco vacío rotulado «V. Hale». Conserva residuos de acónito.','object'],
+ ['receipt','kitchen','Registro del servicio','Arthur y Clara revisaron juntos el inventario entre 21:10 y 21:25.','document'],
+ ['plant','greenhouse','Acónito cortado','Falta un tallo, cortado recientemente con una hoja fina.','object'],
+ ['glove','greenhouse','Guante de médico','Guante con iniciales VH y savia de acónito en los dedos.','object'],
+ ['mud','greenhouse','Huellas en la tierra','La suela estrecha coincide con los zapatos del doctor, no con las botas de Julián.','document'],
+ ['clock','hall','Reloj verificado','El reloj funciona bien. Arthur oyó caer la taza a las 21:25.','document'],
+ ['visitor','hall','Registro de visitas','Víctor llegó a las 20:40 con su botiquín y salió del despacho a las 21:18.','document']
+].map(([id,room,title,text,kind])=>({id,room,title,text,kind}));
+export const facts = {
+ elena:[['alibi','Estuve en el comedor con Julián desde las 21:00 hasta el grito.'],['motive','Mi padre amenazó con desheredarme. Discutimos, sí.'],['secret','Pensé en robar el testamento. Pero no llegué a tocarlo.','will']],
+ victor:[['alibi','Llevé el té al despacho y salí a las 21:18. Edmund seguía vivo.'],['motive','Edmund quería hablar de unas cuentas. Era un malentendido.'],['tea','Arthur preparó el té. Yo llevé la bandeja.'],['secret','Edmund descubrió mis facturas falsas. Si me denunciaba, lo perdía todo.','fraud'],['poison','Ese frasco era mío. Conocía el efecto del acónito. No puedo negar lo que han encontrado.','vial'],['glove','El guante es mío. Estuve en el invernadero antes de la cena.','glove']],
+ clara:[['alibi','Revisé el inventario con Arthur en la cocina de 21:10 a 21:25.'],['motive','Dependía de este empleo, pero no quería que Edmund muriera.'],['secret','Éramos amantes. Oculté la carta para evitar un escándalo.','letter']],
+ arthur:[['alibi','Clara estuvo conmigo en la cocina hasta el ruido de la taza.'],['tea','Preparé el té a las 21:05. El doctor insistió en llevarlo él mismo.'],['motive','Serví a Sir Edmund durante treinta años. No tenía nada que ganar.']],
+ julian:[['alibi','Estuve con Elena en el comedor. La fotografía tiene la hora.'],['motive','Le debía dinero. Discutimos a las 20:50 y después no volví a verlo.'],['secret','Iba a vender una joya de la familia para pagar mis deudas.','argument']]
+};
