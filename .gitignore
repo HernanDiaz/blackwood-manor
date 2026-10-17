@@ -8,3 +8,5 @@ benchmarks/server-*.log
 .venv-images*/
 blackwood-manor-mvp.zip
 work/
+
+public/prototype/generated/

@@ -13,3 +13,5 @@ Veintisiete imágenes adicionales se generaron una vez con SDXS local para medie
 Validación: 58 pruebas automáticas pasan. Incluyen resolución y restauración de cada método en los cuatro mundos, disponibilidad de recursos, exclusión de tecnología en medieval, compatibilidad con guardados anteriores y rechazo de rutas de mundo desconocidas. Se comprobó en navegador selección, creación de fantasía, interrogatorio y retorno al selector tras recarga.
 
 Pendiente para producción: mejorar voces y hechos específicos de cada ambientación (parte de los documentos y del diálogo aún comparte lenguaje laboral), revisión artística completa, generación libre de mundos con validación semántica fiable, guardado sincronizado, protección del expediente en servidor y empaquetado móvil. La verdad sigue disponible en el cliente.
+
+Actualización: las nuevas partidas generan sus propias 26 imágenes al pulsar Crear investigación. Los conjuntos preparados solo sirven como vistas previas y para guardados anteriores. Consulta IMAGENES-POR-PARTIDA.md.
