@@ -34,3 +34,5 @@ El resto del caso continúa disponible. Los otros cuatro personajes y cinco habi
 Esto es un piloto de tres ilustraciones. No hay botón de generación arbitraria dentro de la aplicación ni se ha ilustrado todavía el conjunto de 29 imágenes del caso.
 
 Revisión visual adicional: imágenes cargadas correctamente en el navegador, retrato y respuesta visibles a 390 px sin desbordamiento horizontal del documento. Recarga comprobada: se mantienen conversación e identificadores de imagen. También se comprobó la taza ilustrada en la escena ya descubierta. Los menús usan desplazamiento horizontal en pantallas estrechas.
+
+Actualización posterior: el juego ahora tiene las 29 ilustraciones y un modo de diálogo experimental. Consultar `ILUSTRACIONES-Y-DIALOGO.md`; el alcance de tres ilustraciones de este documento describe la primera entrega.

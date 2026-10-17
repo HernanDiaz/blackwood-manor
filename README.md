@@ -76,3 +76,7 @@ Actualización: `QWEN-MEJORAS.md` documenta el sistema combinado de ejemplos, re
 ## Piloto visual y conversacional
 
 Abrir `PILOTO.cmd` y visitar http://127.0.0.1:4173. La nueva pestaña Piloto guía un recorrido con el despacho, Arthur y la taza ilustrados mediante SDXS, conservados en un conjunto visual versionado. Conversación con Qwen3.5-2B y verificación del catálogo. Ver `PILOTO.md` para alcance y pruebas. No se generan de nuevo las imágenes al abrir la partida.
+
+## Actualización: ilustraciones completas
+
+Ya están ilustrados los cinco personajes, las seis habitaciones y las dieciocho pistas. En Interrogar hay un selector entre Respuesta precisa (por defecto) y Conversación libre experimental. Esta última genera texto, pero el revisor aún puede aceptar invenciones: consultar `ILUSTRACIONES-Y-DIALOGO.md` con todos los resultados, incluidos los fallos. Reemplaza el alcance de tres ilustraciones descrito en la documentación inicial del piloto.

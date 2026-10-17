@@ -1,0 +1,158 @@
+[
+  {
+    "kind": "person",
+    "id": "elena",
+    "title": "Elena Blackwood",
+    "prompt": "Portrait of a proud English heiress, woman around thirty, dark wavy bob haircut, elegant burgundy 1920s dress, pearl necklace."
+  },
+  {
+    "kind": "person",
+    "id": "victor",
+    "title": "Dr. Víctor Hale",
+    "prompt": "Portrait of a reserved English physician, man in his forties, brown hair, trim moustache, dark three piece suit, white shirt, sober tie."
+  },
+  {
+    "kind": "person",
+    "id": "clara",
+    "title": "Clara Reed",
+    "prompt": "Portrait of a thoughtful young English secretary, woman with auburn bob haircut, ivory blouse and dark green jacket, reserved expression."
+  },
+  {
+    "kind": "person",
+    "id": "julian",
+    "title": "Julián Blackwood",
+    "prompt": "Portrait of an anxious young English aristocrat, man with blond slicked back hair, tweed three piece suit, slightly loosened tie."
+  },
+  {
+    "kind": "room",
+    "id": "library",
+    "title": "Biblioteca",
+    "prompt": "An old English library, tall dark wooden bookcases filled with books, reading table, leather armchair, warm lamplight, empty room."
+  },
+  {
+    "kind": "room",
+    "id": "dining",
+    "title": "Comedor",
+    "prompt": "An English manor dining room, long dining table with white tablecloth and glass goblets, candlelight, dark wood panelling, empty room."
+  },
+  {
+    "kind": "room",
+    "id": "kitchen",
+    "title": "Cocina",
+    "prompt": "An old English country house kitchen in 1924, copper pans, stone floor, wooden worktop, tea kettle, dim warm lamplight, empty room."
+  },
+  {
+    "kind": "room",
+    "id": "greenhouse",
+    "title": "Invernadero",
+    "prompt": "Interior of a Victorian greenhouse at night, iron and glass structure, lush potted foliage and purple flowers, damp stone path, moonlight, no people."
+  },
+  {
+    "kind": "room",
+    "id": "hall",
+    "title": "Vestíbulo",
+    "prompt": "An English manor entrance hall, grand wooden staircase, tall antique grandfather clock, dark wood panelling, atmospheric lamplight, empty room."
+  },
+  {
+    "kind": "clue",
+    "id": "body",
+    "title": "Informe preliminar",
+    "prompt": "An old medical report on cream paper, fountain pen and spectacles, still life on dark wood."
+  },
+  {
+    "kind": "clue",
+    "id": "will",
+    "title": "Nuevo testamento",
+    "prompt": "An unsigned antique legal document on cream paper, fountain pen beside it, still life."
+  },
+  {
+    "kind": "clue",
+    "id": "appointment",
+    "title": "Agenda de Edmund",
+    "prompt": "An open antique pocket appointment diary on a wooden desk, still life."
+  },
+  {
+    "kind": "clue",
+    "id": "fraud",
+    "title": "Libro de cuentas",
+    "prompt": "An open antique accounting ledger with ruled columns, fountain pen, still life."
+  },
+  {
+    "kind": "clue",
+    "id": "botany",
+    "title": "Tratado de botánica",
+    "prompt": "An open antique botanical book showing an illustration of a purple monkshood flower, still life."
+  },
+  {
+    "kind": "clue",
+    "id": "letter",
+    "title": "Carta de Clara",
+    "prompt": "A handwritten letter with an open envelope on a wooden desk, still life."
+  },
+  {
+    "kind": "clue",
+    "id": "glasses",
+    "title": "Copas intactas",
+    "prompt": "Crystal wine goblets on a white dinner tablecloth, still life, no people."
+  },
+  {
+    "kind": "clue",
+    "id": "photo",
+    "title": "Fotografía de sobremesa",
+    "prompt": "A small sepia photograph of a young woman with dark bobbed hair and a young blond man in 1920s formal clothes seated at dinner, photograph lying on a table."
+  },
+  {
+    "kind": "clue",
+    "id": "argument",
+    "title": "Nota del servicio",
+    "prompt": "A small folded handwritten note on cream paper, beside an ink bottle, still life."
+  },
+  {
+    "kind": "clue",
+    "id": "tray",
+    "title": "Bandeja del té",
+    "prompt": "An antique silver serving tray on a kitchen worktop, still life."
+  },
+  {
+    "kind": "clue",
+    "id": "vial",
+    "title": "Frasco de botiquín",
+    "prompt": "A small empty amber glass medicine vial with a blank cream label, still life."
+  },
+  {
+    "kind": "clue",
+    "id": "receipt",
+    "title": "Registro del servicio",
+    "prompt": "An antique household inventory notebook with ruled paper, kitchen worktop, still life."
+  },
+  {
+    "kind": "clue",
+    "id": "plant",
+    "title": "Acónito cortado",
+    "prompt": "A purple monkshood flowering plant in a terracotta pot, botanical still life."
+  },
+  {
+    "kind": "clue",
+    "id": "glove",
+    "title": "Guante de médico",
+    "prompt": "A single pale leather medical glove on a greenhouse potting table, still life."
+  },
+  {
+    "kind": "clue",
+    "id": "mud",
+    "title": "Huellas en la tierra",
+    "prompt": "A shoeprint pressed into wet dark potting soil, close up."
+  },
+  {
+    "kind": "clue",
+    "id": "clock",
+    "title": "Reloj verificado",
+    "prompt": "An antique grandfather clock face, close up, brass dial, dark wood."
+  },
+  {
+    "kind": "clue",
+    "id": "visitor",
+    "title": "Registro de visitas",
+    "prompt": "An open antique guest register with cream pages, fountain pen, still life."
+  }
+]

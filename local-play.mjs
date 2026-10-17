@@ -7,7 +7,7 @@ const models={gemma:'gemma-4-E2B-it-Q4_K_M.gguf',qwen:'Qwen_Qwen3.5-2B-Q4_K_M.gg
 const selected=process.argv[2]||'qwen';
 if(!models[selected])throw Error('Modelo desconocido: gemma, qwen o smol');
 const probe=net.createServer();await new Promise((resolve,reject)=>{probe.once('error',()=>reject(Error('El puerto 1235 está ocupado. Cierra la prueba anterior.')));probe.listen(1235,'127.0.0.1',resolve);});await new Promise(resolve=>probe.close(resolve));
-const runtime=spawn('E:/LLMStudio/llama.cpp/llama-server.exe',['-m',path.join(root,'models',models[selected]),'--host','127.0.0.1','--port','1235','-c','4096','-ngl','99','--reasoning','off','--parallel','1','--cors-origins','http://127.0.0.1:4173'],{windowsHide:true,stdio:['ignore','ignore','ignore']});
+const runtime=spawn('E:/LLMStudio/llama.cpp/llama-server.exe',['-m',path.join(root,'models',models[selected]),'--host','127.0.0.1','--port','1235','-c','4096','-ngl','99','--reasoning',(selected==='qwen'&&process.env.BLACKWOOD_THINKING!=='0')?'on':'off',...(process.env.BLACKWOOD_THINKING==='1'?['--reasoning-budget','128']:[]),'--parallel','1','--cors-origins','http://127.0.0.1:4173'],{windowsHide:true,stdio:['ignore','ignore','ignore']});
 let app;let closing=false;
 function close(){if(closing)return;closing=true;app?.kill();runtime.kill();}
 process.on('SIGINT',close);process.on('SIGTERM',close);process.on('exit',close);

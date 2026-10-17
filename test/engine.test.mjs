@@ -72,7 +72,7 @@ test('visual set migrates old saves and gates clue illustrations',async()=>{
  assert.equal(visualFor(state,'clue','cup'),null);
  assert.match(visualFor(state,'room','study'),/study.webp$/);
  assert.match(visualFor(state,'person','arthur'),/arthur.webp$/);
- assert.equal(visualFor(state,'person','victor'),null);
+ assert.match(visualFor(state,'person','victor'),/person-victor.webp$/);
  discover(state,'cup');const saved=restore(JSON.stringify(state));
  assert.equal(saved.visualSet,VISUAL_SET);assert.match(visualFor(saved,'clue','cup'),/cup.webp$/);
  const old={...state};delete old.visualSet;assert.equal(restore(old).visualSet,VISUAL_SET);
@@ -84,4 +84,38 @@ test('installed pilot images match immutable manifest hashes',async()=>{
  const base=new URL('../public',import.meta.url);const manifest=JSON.parse(await fs.readFile(new URL('../public/assets/blackwood-pilot-v1/manifest.json',import.meta.url),'utf8'));
  assert.equal(manifest.assets.length,3);assert.equal(manifest.visualSet,newGame().visualSet);
  for(const asset of manifest.assets){const data=await fs.readFile(new URL('.'+asset.path,base.href+'/'));assert.equal(createHash('sha256').update(data).digest('hex'),asset.sha256);}
+});
+
+
+test('all 29 illustrations are reachable and match both manifests',async()=>{
+ const fs=await import('node:fs/promises'),{createHash}=await import('node:crypto'),{visualFor}=await import('../src/visuals.mjs');let assets=[];
+ for(const folder of ['blackwood-pilot-v1','blackwood-complete-v1']){const manifest=JSON.parse(await fs.readFile(new URL('../public/assets/'+folder+'/manifest.json',import.meta.url),'utf8'));assets.push(...manifest.assets);}
+ assert.equal(assets.length,29);assert.equal(new Set(assets.map(a=>a.kind+':'+a.entity)).size,29);
+ const state=complete();for(const asset of assets){assert.equal(visualFor(state,asset.kind,asset.entity),asset.path);const data=await fs.readFile(new URL('../public'+asset.path,import.meta.url));assert.equal(createHash('sha256').update(data).digest('hex'),asset.sha256);}
+});
+test('free dialogue keeps experimental review separate from deterministic validation',async()=>{
+ const {draftGuard,localConversation}=await import('../src/conversation.mjs');
+ assert(!draftGuard(newGame(),'victor',{text:'Confieso las facturas falsas.',factIds:['secret']}));
+ assert(!draftGuard(newGame(),'arthur',{text:'Preparé el té a las 23:40.',factIds:['tea']}));
+ const original=globalThis.fetch;try{let n=0;globalThis.fetch=async()=>({ok:true,json:async()=>({choices:[{finish_reason:'stop',message:{content:JSON.stringify(++n===1?{text:'El té lo preparé yo. El doctor se encargó de llevarlo.',factIds:['tea']}:{errors:[]})}}]})});
+ const r=await localConversation(newGame(),'arthur','¿Quién llevó el té?');assert.equal(r.verification,'model-reviewed-experimental');assert.equal(n,2);
+ n=0;globalThis.fetch=async()=>({ok:true,json:async()=>({choices:[{finish_reason:'stop',message:{content:JSON.stringify(++n===1?{text:'El doctor preparó el té y yo lo llevé.',factIds:['tea']}:{errors:['El doctor preparó el té']})}}]})});
+ assert.equal((await localConversation(newGame(),'arthur','¿Quién llevó el té?')).verification,'creative-fallback');
+ }finally{globalThis.fetch=original;}
+});
+test('dialogue preference survives saves and defaults to precise',()=>{const s=newGame();assert.equal(s.dialogueMode,'precise');s.dialogueMode='creative';assert.equal(restore(JSON.stringify(s)).dialogueMode,'creative');});
+
+test('experimental guards reject observed unsupported locations, gifts and repetition',async()=>{
+ const {draftGuard}=await import('../src/conversation.mjs');
+ assert(!draftGuard(newGame(),'arthur',{text:'Sir Edmund me regaló un reloj después de cenar.',factIds:[]}));
+ assert(!draftGuard(newGame(),'victor',{text:'Salí del comedor a las 21:18.',factIds:['alibi']}));
+ assert(!draftGuard(newGame(),'victor',{text:'No, no, no. No, no, no. No, no, no.',factIds:[]}));
+});
+
+test('experimental replies in saved history are never reused as factual context',async()=>{
+ const {localConversation,draftGuard}=await import('../src/conversation.mjs');assert(!draftGuard(newGame(),'clara',{text:'Estaba en el salón.',factIds:[]}));
+ const s=newGame();s.chat=[{person:'clara',question:'¿Dónde estabas?',answer:'Estaba en el salón.',verification:'model-reviewed-experimental'}];const original=globalThis.fetch;
+ try{let n=0,body;globalThis.fetch=async(url,opts)=>{if(n===0)body=opts.body;return {ok:true,json:async()=>({choices:[{finish_reason:'stop',message:{content:JSON.stringify(++n===1?{text:'Revisé el inventario con Arthur en la cocina de 21:10 a 21:25.'}:{errors:[]})}}]})};};
+ await localConversation(s,'clara','¿Dónde estabas?');assert(!body.includes('salón'));
+ }finally{globalThis.fetch=original;}
 });
