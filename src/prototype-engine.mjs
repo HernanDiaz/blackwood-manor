@@ -9,6 +9,7 @@ import {
 } from './investigation.mjs';
 import { CASE_FORMAT, normalizeCaseFile, hydrateCase } from './case-file.mjs';
 import { generateCaseFile } from './case-generator.mjs';
+import { emptyGuidance, restoreGuidance } from './guidance.mjs';
 import { worldWeapons } from './world-file.mjs';
 import { placePhrase } from './spanish-prose.mjs';
 import { clock } from './random.mjs';
@@ -44,6 +45,7 @@ export function newPrototype(world, options = {}) {
     case: file,
     openingSeen: false,
     ...emptyProgress(c.scene.id),
+    ...emptyGuidance(),
   };
 }
 export function restorePrototype(raw) {
@@ -59,6 +61,7 @@ export function restorePrototype(raw) {
   const file = normalizeCaseFile(s.case),
     c = hydrateCase(file);
   if (s.caseId !== c.id) throw Error('La definición del caso no coincide con el guardado');
+  const progress = restoreProgress(caseView(c), s);
   return {
     format: SAVE_FORMAT,
     version: 1,
@@ -66,7 +69,8 @@ export function restorePrototype(raw) {
     caseId: c.id,
     case: file,
     openingSeen: s.openingSeen === true,
-    ...restoreProgress(caseView(c), s),
+    ...progress,
+    ...restoreGuidance(c, { ...s, ...progress }),
   };
 }
 // The case file of a save, ready to export without the player's progress.

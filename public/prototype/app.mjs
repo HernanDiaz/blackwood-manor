@@ -15,6 +15,7 @@ import {
   SAVE_FORMAT,
   clock,
 } from '/src/prototype-engine.mjs';
+import { conditions, noteEntry, clearEntry, notebookSuspects, nextHint } from '/src/guidance.mjs';
 const key = 'mundos-partida',
   app = document.querySelector('#app');
 const esc = s =>
@@ -47,7 +48,9 @@ let setupWorld = worlds[0].id,
   person = 'p1',
   message = '',
   busy = false,
-  storageOK = true;
+  storageOK = true,
+  hint = null,
+  noteMessage = '';
 try {
   for (const w of worlds) await loadWorld(w.id);
   preview = cache.get(setupWorld);
@@ -103,8 +106,8 @@ function download(raw, name) {
 function img(src, alt, cls = '') {
   return src ? `<img ${cls ? `class="${cls}" ` : ''}src="${esc(src)}" alt="${esc(alt)}">` : '';
 }
-function card(clue, accusation = false) {
-  return `<article class="clue">${img(clue.image, clue.title + ', ilustración', 'clue-art')}<span class="eyebrow">${esc(c.rooms.find(r => r.id === clue.room).name)}</span><h3>${esc(clue.title)}</h3><p>${esc(clue.text)}</p>${accusation ? `<label><input type="checkbox" name="evidence" value="${clue.id}"> Adjuntar prueba</label>` : `<button class="small" data-pin="${clue.id}">${state.pinned.includes(clue.id) ? 'Retirar del tablero' : 'Fijar en el tablero'}</button>`}</article>`;
+function card(clue, accusation = false, checked = false) {
+  return `<article class="clue">${img(clue.image, clue.title + ', ilustración', 'clue-art')}<span class="eyebrow">${esc(c.rooms.find(r => r.id === clue.room).name)}</span><h3>${esc(clue.title)}</h3><p>${esc(clue.text)}</p>${accusation ? `<label><input type="checkbox" name="evidence" value="${clue.id}" ${checked ? 'checked' : ''}> Adjuntar prueba</label>` : `<button class="small" data-pin="${clue.id}">${state.pinned.includes(clue.id) ? 'Retirar del tablero' : 'Fijar en el tablero'}</button>`}</article>`;
 }
 function render() {
   const playing = state && !['setup', 'opening'].includes(tab),
@@ -128,7 +131,7 @@ function render() {
             '',
           )}<button id="new-case" ${busy ? 'disabled' : ''}>Otra investigación</button><button id="read-opening" ${busy ? 'disabled' : ''}>Leer el prólogo</button></nav>`
       : ''
-  }<main>${message ? `<div class="notice" role="status">${esc(message)}</div>` : ''}${tab === 'setup' ? setup() : tab === 'opening' ? openingScreen() : state.result ? ending() : content()}</main><footer>MUNDOS · ${storageOK ? 'Partida guardada en este navegador' : 'Sin guardado local: exporta tu partida'}<span><a href="/">Volver a Blackwood</a></span></footer>`;
+  }<main>${message ? `<div class="notice" role="status">${esc(message)}</div>` : ''}${playing && !state.result ? helpBar() : ''}${tab === 'setup' ? setup() : tab === 'opening' ? openingScreen() : state.result ? ending() : content()}</main><footer>MUNDOS · ${storageOK ? 'Partida guardada en este navegador' : 'Sin guardado local: exporta tu partida'}<span><a href="/">Volver a Blackwood</a></span></footer>`;
   bind();
 }
 function setup() {
@@ -142,8 +145,32 @@ function enterCase({ replay = false } = {}) {
   tab = (state.result && !replay) || state.openingSeen ? 'explore' : 'opening';
   render();
 }
+function helpBar() {
+  return `<div class="help-bar"><button id="ask-hint" class="small">${hint && !hint.last ? 'Otra pista más concreta' : 'Pedir una pista'}</button>${hint ? `<p role="status">${esc(hint.text)}</p>` : '<p>¿Atascado? Pide una pista: cada vez será más concreta.</p>'}</div>`;
+}
+// The notebook: one row per person; each cell holds the clue that proves the condition.
+function notebook() {
+  const found = c.clues.filter(x => state.found.includes(x.id)),
+    suspects = notebookSuspects(c, state),
+    labels = { motive: 'Motivo', access: 'Acceso al arma', alibi: 'Coartada' },
+    cell = (p, condition) => {
+      const entry = state.notebook[p.id]?.[condition];
+      if (entry) {
+        const clue = c.clues.find(x => x.id === entry.clue),
+          mark =
+            condition !== 'alibi'
+              ? 'Sí'
+              : entry.verdict === 'refuted'
+                ? 'Desmentida'
+                : 'Confirmada';
+        return `<td class="${entry.verdict === 'confirmed' ? 'clear' : 'proven'}"><strong>${mark}</strong><small>${esc(clue.title)}</small><button class="small" data-unnote="${p.id}:${condition}" aria-label="Borrar anotación">×</button></td>`;
+      }
+      return `<td><select data-note="${p.id}:${condition}" aria-label="${labels[condition]} de ${esc(p.name)}"><option value="">Anotar prueba…</option>${found.map(x => `<option value="${x.id}">${esc(x.title)}</option>`).join('')}</select></td>`;
+    };
+  return `<section class="notebook"><h3>Cuaderno de deducción</h3><p class="hint">Anota la prueba que demuestra cada cosa. Solo se guarda si la prueba lo demuestra de verdad. La persona culpable tiene motivo, acceso al arma y una coartada desmentida.</p>${noteMessage ? `<p class="note-message" role="status">${esc(noteMessage)}</p>` : ''}<div class="notebook-scroll"><table><thead><tr><th>Persona</th>${conditions.map(k => `<th>${labels[k]}</th>`).join('')}</tr></thead><tbody>${c.people.map(p => `<tr class="${suspects.includes(p.id) ? 'suspect' : ''}"><th>${esc(p.name)}<small>${suspects.includes(p.id) ? 'Reúne las tres condiciones' : esc(p.role)}</small></th>${conditions.map(k => cell(p, k)).join('')}</tr>`).join('')}</tbody></table></div></section>`;
+}
 function ending() {
-  return `<section class="ending"><span class="eyebrow">${state.result === 'won' ? 'CASO RESUELTO' : 'REVISIÓN NECESARIA'}</span><h2>${state.result === 'won' ? 'La verdad sale a la luz.' : 'Faltan piezas.'}</h2><p>${esc(prototypeResolution(c, state))}</p>${state.result === 'lost' ? '<button id="reopen">Reabrir investigación</button>' : ''}<button id="end-new" class="secondary">Otra investigación</button></section>`;
+  return `<section class="ending"><span class="eyebrow">${state.result === 'won' ? 'CASO RESUELTO' : 'REVISIÓN NECESARIA'}</span><h2>${state.result === 'won' ? 'La verdad sale a la luz.' : 'Faltan piezas.'}</h2><p>${esc(prototypeResolution(c, state))}</p>${state.help.used ? `<p class="hint">Has pedido ${state.help.used === 1 ? 'una pista' : state.help.used + ' pistas'} de ayuda.</p>` : ''}${state.result === 'lost' ? '<button id="reopen">Reabrir investigación</button>' : ''}<button id="end-new" class="secondary">Otra investigación</button></section>`;
 }
 function content() {
   if (tab === 'explore') {
@@ -188,7 +215,7 @@ function content() {
       )}</div><form id="ask"><input name="question" aria-label="Tu pregunta" maxlength="1000" placeholder="¿Dónde estabas cuando ocurrió?" required ${busy ? 'disabled' : ''}><button ${busy ? 'disabled' : ''}>${busy ? 'Escuchando…' : 'Preguntar →'}</button></form></section>`;
   }
   if (tab === 'board')
-    return `<h2>Tu tablero de investigación.</h2><p class="hint">Varias personas tienen móvil y varias pudieron llegar al arma. Busca a quien además tiene una coartada que no se sostiene. Las pistas fijadas no se pierden al cambiar de habitación.</p><div class="cards">${
+    return `<h2>Tu tablero de investigación.</h2>${notebook()}<h3>Pistas fijadas</h3><p class="hint">Las pistas fijadas no se pierden al cambiar de habitación.</p><div class="cards">${
       c.clues
         .filter(x => state.pinned.includes(x.id))
         .map(x => card(x))
@@ -201,6 +228,9 @@ function content() {
         .map(x => card(x))
         .join('') || '<p>Explora los escenarios para recoger pruebas.</p>'
     }</div>`;
+  const proven = notebookSuspects(c, state).flatMap(id =>
+    conditions.map(k => state.notebook[id][k].clue),
+  );
   return `<h2>La acusación final.</h2><p>Identifica persona, arma y escena. Adjunta una prueba de su móvil, una de su acceso al arma y una que desmienta su coartada. Si fallas podrás reabrir el caso.</p><form id="accuse"><div class="fields">${[
     ['person', 'Culpable', c.people],
     ['method', 'Arma', c.weapons.map(w => ({ id: w.method, name: w.label }))],
@@ -212,7 +242,7 @@ function content() {
     )
     .join('')}</div><h3>Adjunta al menos tres pruebas</h3><div class="cards">${c.clues
     .filter(x => state.found.includes(x.id))
-    .map(x => card(x, true))
+    .map(x => card(x, true, proven.includes(x.id)))
     .join(
       '',
     )}</div><button class="danger" ${busy ? 'disabled' : ''}>Presentar acusación</button></form>`;
@@ -248,6 +278,8 @@ function bind() {
       else throw Error('No es un expediente ni una partida de Mundos');
       c = createPrototypeCase(state);
       person = c.people[0].id;
+      hint = null;
+      noteMessage = '';
       if (cache.has(state.world)) {
         setupWorld = state.world;
         preview = cache.get(setupWorld);
@@ -278,6 +310,8 @@ function bind() {
       });
       c = createPrototypeCase(state);
       person = c.people[0].id;
+      hint = null;
+      noteMessage = '';
       message = '';
       save();
       enterCase();
@@ -356,6 +390,31 @@ function bind() {
       (b.onclick = () => {
         if (busy) return;
         person = b.dataset.person;
+        render();
+      }),
+  );
+  document.querySelector('#ask-hint')?.addEventListener('click', () => {
+    hint = nextHint(c, state);
+    save();
+    render();
+  });
+  document.querySelectorAll('[data-note]').forEach(
+    select =>
+      (select.onchange = () => {
+        if (!select.value) return;
+        const [who, condition] = select.dataset.note.split(':');
+        noteMessage = noteEntry(c, state, who, condition, select.value).message;
+        save();
+        render();
+      }),
+  );
+  document.querySelectorAll('[data-unnote]').forEach(
+    b =>
+      (b.onclick = () => {
+        const [who, condition] = b.dataset.unnote.split(':');
+        clearEntry(state, who, condition);
+        noteMessage = '';
+        save();
         render();
       }),
   );

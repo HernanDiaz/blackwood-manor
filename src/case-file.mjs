@@ -328,6 +328,9 @@ export function analyzeCase(file) {
     opportunity,
     suspects,
     proof,
+    // Per person, the clues that confirm or refute their alibi.
+    confirmedBy,
+    refutedBy,
     herrings: of('herring').length,
   };
 }
@@ -399,6 +402,7 @@ export function hydrateCase(file) {
       ]),
     ),
     proof: analysis.proof,
+    analysis,
     file,
   };
 }
