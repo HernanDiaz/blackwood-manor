@@ -17,7 +17,7 @@ En el prototipo de mundos, el personaje ya no redacta sus respuestas. El juego *
 ## Cómo se decide el tema
 
 1. **Clasificador neuronal Laya** (`scripts/question-classifier-server.py`, puerto 1237): si su confianza es ≥ 0,6, decide él. Es opcional.
-2. **Clasificador estadístico clásico** (`src/question-router.mjs` con `src/question-router-model.json`): si su confianza es ≥ 0,5. Va dentro del propio juego, ocupa ~770 KB (unos 200 KB comprimido) y responde en 0,1 ms; es el que iría en el móvil.
+2. **Clasificador estadístico clásico** (`src/question-router.mjs` con `src/question-router-model.json`): si su confianza es ≥ 0,5. Va dentro del propio juego, ocupa ~1 MB (unos 250 KB comprimido) y responde en 0,1 ms; es el que iría en el móvil.
 3. **Reglas sin modelo** (`inferPrototypeTopic`): si los anteriores dudan.
 4. **Qwen**, solo si está activo y ninguno de los anteriores ha decidido.
 
@@ -39,7 +39,7 @@ Para reentrenar tras añadir preguntas de ejemplo: `node scripts/train-question-
 - **Base:** el codificador multilingüe de Laya (mmBERT-base, 307M parámetros, Apache 2.0), con una capa lineal entrenada con nuestras preguntas. La cabeza y el código originales de Laya no se usan.
 - **Datos:**
   - `test/question-bank.mjs` tiene 420 preguntas escritas a mano y agrupadas por intención. Los grupos, no las preguntas sueltas, van a ajuste (156) o a prueba (264).
-  - `test/question-bank-train*.mjs` añade 962 preguntas solo para ajuste (1.118 en total con las del banco).
+  - `test/question-bank-train*.mjs` añade preguntas solo para ajuste. `test/training-questions.mjs` las reúne y descarta duplicados y cualquier coincidencia con la prueba: 1.930 de ajuste (2.194 preguntas escritas en total).
   - Ninguna pregunta de prueba se ha usado para entrenar ni para ajustar las reglas.
 - **Entrenar:**
   ```
@@ -66,7 +66,11 @@ Para reentrenar tras añadir preguntas de ejemplo: `node scripts/train-question-
 | Similitud coseno con las **preguntas de ejemplo**, sin modelo | 1.118 preguntas | 200 (76 %) | ~7 ms |
 | Naive Bayes clásico | 1.118 preguntas | 209 (79 %) | 0,2 ms |
 | Regresión logística clásica | 1.118 preguntas | 210 (80 %) | 0,1 ms |
-| **Regresión logística y, si duda, reglas** (lo que iría al móvil) | 1.118 preguntas | **217 (82 %)** | 0,1 ms |
+| Regresión logística y, si duda, reglas | 1.118 preguntas | 217 (82 %) | 0,1 ms |
+| Naive Bayes clásico | 1.930 preguntas | 216 (82 %) | 0,2 ms |
+| Regresión logística clásica | 1.930 preguntas | 222 (84 %) | 0,1 ms |
+| **Regresión logística y, si duda, reglas** (integrado, iría al móvil) | 1.930 preguntas | **227 (86 %)** | 0,1 ms |
+| Mezclas de NB, RL, vecinos y reglas | 1.930 preguntas | 223–229 (84–87 %) | hasta ~8 ms |
 
 Los rangos de Laya son entrenamientos con semillas distintas. El modelo Laya guardado obtuvo 223/264.
 
@@ -85,3 +89,17 @@ Scripts: `benchmarks/route-rules-qwen.mjs`, `benchmarks/e5-knn.mjs`, `benchmarks
 - Las preguntas que solo se entienden con la anterior («¿Por qué?») no están en el banco; las resuelve una regla que repite el último tema.
 - Para móvil faltan la cuantización (unos 310 MB en int8) y medir en un teléfono real; los 150 ms son de la CPU de este PC.
 - Licencias: Laya, Apache 2.0. multilingual-e5-small (solo para la comparación), MIT en la conversión GGUF usada.
+
+## Mezclar clasificadores
+
+`benchmarks/ensemble-route.mjs` combina Naive Bayes, regresión logística, vecinos y reglas (medias de probabilidades y votación). La combinación se elige por validación cruzada de 5 pliegues sobre las 1.930 preguntas de ajuste, no con la prueba:
+
+| Combinación | Validación cruzada | Prueba |
+|---|---|---|
+| Regresión logística | 84,8 % | 84 % |
+| Regresión logística + reglas | 84,8 % | 86 % |
+| Media NB + RL | 84,6 % | 85 % |
+| Media NB + RL + vecinos (la mejor en validación) | 85,8 % | 84 % |
+| Votación de los cuatro | 85,6 % | 87 % |
+
+Mezclar aporta como mucho un punto, dentro del margen de error, a cambio de más tamaño y tiempo. Lo que marcó la diferencia fueron las preguntas de ejemplo: de 1.118 a 1.930, la regresión logística pasó del 80 % al 84 %. Por eso el juego usa regresión logística + reglas.

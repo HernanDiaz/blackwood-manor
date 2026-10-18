@@ -1,0 +1,42 @@
+{
+  "trainingQuestions": 1930,
+  "chosen": "media NB + RL + vecinos",
+  "report": {
+    "Naive Bayes": {
+      "crossValidation": 0.8145077720207254,
+      "test": 216
+    },
+    "regresión logística": {
+      "crossValidation": 0.8476683937823835,
+      "test": 222
+    },
+    "vecinos": {
+      "crossValidation": 0.8093264248704664,
+      "test": 213
+    },
+    "regresión logística + reglas": {
+      "crossValidation": 0.8476683937823835,
+      "test": 227
+    },
+    "media NB + RL": {
+      "crossValidation": 0.8455958549222798,
+      "test": 224
+    },
+    "media NB + RL + vecinos": {
+      "crossValidation": 0.8580310880829015,
+      "test": 223
+    },
+    "media NB + RL, si dudan reglas": {
+      "crossValidation": 0.8487046632124352,
+      "test": 226
+    },
+    "media NB + RL + vecinos, si dudan reglas": {
+      "crossValidation": 0.8549222797927462,
+      "test": 227
+    },
+    "votación NB, RL, vecinos y reglas": {
+      "crossValidation": 0.8559585492227979,
+      "test": 229
+    }
+  }
+}

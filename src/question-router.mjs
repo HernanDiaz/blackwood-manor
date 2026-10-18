@@ -193,5 +193,11 @@ function softmax(z) {
 function softmaxPick(topics, scores) {
   const p = softmax(scores),
     k = p.indexOf(Math.max(...p));
-  return { topic: topics[k], confidence: p[k] };
+  // Raw scores are kept so combinations can recalibrate them (Naive Bayes is overconfident).
+  return {
+    topic: topics[k],
+    confidence: p[k],
+    scores: Object.fromEntries(topics.map((t, i) => [t, scores[i]])),
+  };
 }
+export { softmax };
