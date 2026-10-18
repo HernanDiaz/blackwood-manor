@@ -1,6 +1,10 @@
 import { displayRole, lowerRoomNames } from './spanish-prose.mjs';
 import { requestLocalJson } from './local-llm.mjs';
 import { CLASSIFIER_THRESHOLD } from './question-classifier.mjs';
+import { predictLogistic } from './question-router.mjs';
+import routerModel from './question-router-model.json' with { type: 'json' };
+// Below this confidence of the statistical router, the offline rules decide.
+const ROUTER_THRESHOLD = 0.5;
 import { replyUnits, reviewSchema } from './dialogue-policy.mjs';
 import { methodCatalog } from './method-catalog.mjs';
 import {
@@ -345,7 +349,14 @@ export async function respondPrototype(
   // dialogue 'choose': the model only classifies and the reply is an authored wording.
   // dialogue 'free': the model writes the reply and the guards check it (experimental).
   // classifier: async question -> { topic, confidence } | null (see question-classifier.mjs).
-  { useModel = false, request = requestLocalJson, dialogue = 'choose', classifier = null } = {},
+  // questionRouter: the statistical router model (question-router.mjs); null turns it off.
+  {
+    useModel = false,
+    request = requestLocalJson,
+    dialogue = 'choose',
+    classifier = null,
+    questionRouter = routerModel,
+  } = {},
 ) {
   const state = restorePrototype(data, payload.state),
     c = createPrototypeCase(data, state),
@@ -372,6 +383,12 @@ export async function respondPrototype(
   if (learned && learned.confidence >= CLASSIFIER_THRESHOLD) {
     topic = learned.topic;
     router = 'classifier';
+  } else if (questionRouter) {
+    const routed = predictLogistic(questionRouter, question);
+    if (routed.confidence >= ROUTER_THRESHOLD) {
+      topic = routed.topic;
+      router = 'statistical';
+    }
   }
   const fallback = reason => ({
     answer:

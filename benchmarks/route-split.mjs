@@ -8,12 +8,13 @@ import { splitBank, topics } from '../test/question-bank.mjs';
 import { extraTraining } from '../test/question-bank-train.mjs';
 import { extraTraining2 } from '../test/question-bank-train-2.mjs';
 import { extraTraining3 } from '../test/question-bank-train-3.mjs';
+import { extraTraining4 } from '../test/question-bank-train-4.mjs';
 const args = process.argv.slice(2),
   out = args[0] || 'benchmarks/results/question-split.json',
   augmentedFile = args.includes('--augmented') ? args[args.indexOf('--augmented') + 1] : null;
 const { train, test } = splitBank();
 if (args.includes('--extra'))
-  for (const extra of [extraTraining, extraTraining2, extraTraining3])
+  for (const extra of [extraTraining, extraTraining2, extraTraining3, extraTraining4])
     for (const [topic, list] of Object.entries(extra))
       train.push(...list.map(question => ({ question, topic, group: 'extra' })));
 if (augmentedFile)

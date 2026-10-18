@@ -14,8 +14,8 @@ function solved() {
   }
   return { s, c, person: c.culprit.id };
 }
-const ask = (s, person, question, classifier) =>
-  respondPrototype(noir, { state: s, person, question }, { classifier });
+const ask = (s, person, question, classifier, questionRouter = null) =>
+  respondPrototype(noir, { state: s, person, question }, { classifier, questionRouter });
 
 test('a confident classifier decides the topic and the rules cover its doubts', async () => {
   const { s, person } = solved();
@@ -52,4 +52,20 @@ test('without the classifier service the game keeps answering', async () => {
     null,
   );
   assert.ok(Date.now() - started < 2000);
+});
+
+test('without the neural classifier the statistical router places natural questions', async () => {
+  const { s, person } = solved();
+  const { default: model } = await import('../src/question-router-model.json', {
+    with: { type: 'json' },
+  });
+  for (const [question, topic] of [
+    ['¿Dónde te metiste después de cenar?', 'alibi'],
+    ['¿Quién puede confirmar lo que dices?', 'timeline'],
+    ['¿Podías coger el veneno del armario?', 'link'],
+    ['Hola, buenas noches.', 'social'],
+  ]) {
+    const r = await ask(s, person, question, null, model);
+    assert.equal(r.topic, topic, question);
+  }
 });
