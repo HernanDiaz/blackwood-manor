@@ -264,7 +264,7 @@ test('natural evidence questions route correctly without revealing undiscovered 
     let r = await respondPrototype(
       data,
       { state: s, person, question },
-      { useModel: false, dialogue: 'free' },
+      { useModel: false, dialogue: 'free', questionRouter: null },
     );
     assert.equal(r.topic, 'unknown');
     assert.ok(!r.answer.includes('Mi primera coartada era falsa'));
@@ -272,7 +272,7 @@ test('natural evidence questions route correctly without revealing undiscovered 
     r = await respondPrototype(
       data,
       { state: s, person, question },
-      { useModel: false, dialogue: 'free' },
+      { useModel: false, dialogue: 'free', questionRouter: null },
     );
     assert.equal(r.topic, topic);
     assert.equal(r.answer.includes('No tengo información'), false);

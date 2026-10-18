@@ -2,17 +2,10 @@
 // features) on every hand-written training question and writes a compact model the game loads.
 // The test split of the question bank is never used. Usage: node scripts/train-question-router.mjs
 import { writeFileSync } from 'node:fs';
-import { splitBank } from '../test/question-bank.mjs';
-import { extraTraining } from '../test/question-bank-train.mjs';
-import { extraTraining2 } from '../test/question-bank-train-2.mjs';
-import { extraTraining3 } from '../test/question-bank-train-3.mjs';
-import { extraTraining4 } from '../test/question-bank-train-4.mjs';
+import { trainingQuestions } from '../test/training-questions.mjs';
 import { trainLogistic, predictLogistic } from '../src/question-router.mjs';
 
-const { train, test } = splitBank();
-for (const extra of [extraTraining, extraTraining2, extraTraining3, extraTraining4])
-  for (const [topic, list] of Object.entries(extra))
-    train.push(...list.map(question => ({ question, topic })));
+const { train, test } = trainingQuestions();
 const model = trainLogistic(train);
 // Weights too small to change a decision are dropped and the rest rounded, to keep it small.
 const weights = {};
