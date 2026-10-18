@@ -497,7 +497,7 @@ function bind() {
   });
   const questions = {
     alibi: '¿Dónde estabas durante el crimen?',
-    motive: c.context
+    motive: c?.context
       ? '¿Cómo era tu relación con la víctima?'
       : '¿Cómo era tu relación con la dirección?',
     secret: '¿Qué ocultas sobre el documento?',
