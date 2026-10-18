@@ -19,6 +19,8 @@ Los mundos preparados, los mundos libres y un caso escrito a mano usan el mismo 
 | `clues` | De 6 a 30 pistas: `id` (`c1`…), `room`, `title`, `text`, opcionalmente `image`/`imagePrompt`, y un `fact` |
 | `facts` | Lo que puede decir cada persona en el interrogatorio: `{ id, text, requires? }`. `requires` es la pista que lo desbloquea. Temas: `alibi`, `motive`, `secret`, `link`, `timeline`, `seen`, `object` |
 
+En los textos (`motive`, `claim`, títulos y textos de pistas, declaraciones) se pueden usar marcadores: `{victim}` para la víctima, `{p1}`…`{p5}` para los personajes y `{r1}`… para los lugares, que se sustituyen por el nombre con su artículo (`{r2}` → «la biblioteca»). Así, renombrar a alguien en `people` cambia todos sus textos. El generador usa siempre marcadores.
+
 Las imágenes solo pueden ser rutas locales `.webp` bajo `/prototype/`, `/lab/` o `/assets/`. Al importar se descartan los campos desconocidos. El `id` del caso se calcula a partir del contenido, así que cualquier cambio crea un caso distinto.
 
 ## Hechos de las pistas
@@ -62,6 +64,6 @@ Las partidas guardadas antes de los expedientes (versión 1) se reconstruyen al 
 
 ## Límites conocidos
 
-- El nombre de la víctima y de los personajes va escrito dentro de los textos: si se renombra a alguien en un expediente, hay que cambiar también sus textos.
-- Un expediente importado no genera imágenes propias; usa las del archivo o las genéricas.
+- Los expedientes de partidas antiguas convertidas tienen los nombres escritos en el texto, sin marcadores.
+- Al importar un expediente se generan sus imágenes con el modelo local; si no está disponible, se usan las del archivo o las genéricas.
 - La comprobación es lógica, no editorial: no detecta frases poco naturales ni contradicciones que solo estén en el texto.
