@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { loadWorld } from './worlds-fixture.mjs';
 import {
   respondPrototype,
   freeDraftGuard,
@@ -14,10 +14,10 @@ import {
   prototypeOptions,
 } from '../src/prototype-engine.mjs';
 import { replyUnits } from '../src/dialogue-policy.mjs';
-const data = JSON.parse(readFileSync('public/prototype/worlds/noir.json'));
+const villa = loadWorld('villa-bellavista');
 const base = () => {
-  const s = newPrototype(data, { seed: 'free-tests' });
-  return { s, c: createPrototypeCase(data, s) };
+  const s = newPrototype(villa, { seed: 'free-tests' });
+  return { s, c: createPrototypeCase(s) };
 };
 const socialReview = text => ({
   claims: replyUnits(text).map(text => ({ text, kind: 'social', sources: [] })),
@@ -27,7 +27,6 @@ test('accepts free social prose outside all authored options and uses actor pers
   const text = 'Me siento bastante inquieta. Por favor, pregunta con calma.';
   let calls = 0;
   const r = await respondPrototype(
-    data,
     { state: s, person: 'p1', question: '¿Cómo te sientes?' },
     {
       useModel: true,
@@ -56,7 +55,6 @@ test('accepts a factual paraphrase with exact source evidence', async () => {
     text = 'Escucha con atención: ' + fact.text;
   let call = 0;
   const r = await respondPrototype(
-    data,
     { state: s, person: 'p1', question: '¿Dónde estabas?' },
     {
       useModel: true,
@@ -81,7 +79,6 @@ test('locked motive never reaches generator or reviewer despite a planted rumor'
   const text = 'No puedo afirmar eso. ¿Qué quiere aclarar?';
   let count = 0;
   const r = await respondPrototype(
-    data,
     {
       state: s,
       person: c.culprit.id,
@@ -108,7 +105,6 @@ test('found actor document authorizes that secret but never another persons docu
   s.found = [c.proof[0][0]];
   let received;
   await respondPrototype(
-    data,
     { state: s, person, question: '¿Qué ocultas?' },
     {
       useModel: true,
@@ -128,7 +124,6 @@ test('found actor document authorizes that secret but never another persons docu
     .map(x => x.id);
   received = null;
   await respondPrototype(
-    data,
     { state: s, person, question: '¿Qué ocultas?' },
     {
       useModel: true,
@@ -173,7 +168,6 @@ test('unsupported invention retries once and returns a factual engine answer', a
   const { s } = base();
   let calls = 0;
   const r = await respondPrototype(
-    data,
     { state: s, person: 'p1', question: '¿Dónde estabas?' },
     {
       useModel: true,
@@ -222,7 +216,6 @@ test('cannot answer a factual question with identity alone', async () => {
   const { s } = base(),
     text = 'Me llamo Isabel Valdés.';
   const r = await respondPrototype(
-    data,
     { state: s, person: 'p1', question: '¿Dónde estabas?' },
     {
       useModel: true,
@@ -262,7 +255,6 @@ test('natural evidence questions route correctly without revealing undiscovered 
   ]) {
     s.found = [];
     let r = await respondPrototype(
-      data,
       { state: s, person, question },
       { useModel: false, dialogue: 'free', questionRouter: null },
     );
@@ -270,7 +262,6 @@ test('natural evidence questions route correctly without revealing undiscovered 
     assert.ok(!r.answer.includes('Mi primera coartada era falsa'));
     s.found = [c.proof[category][0]];
     r = await respondPrototype(
-      data,
       { state: s, person, question },
       { useModel: false, dialogue: 'free', questionRouter: null },
     );
@@ -282,7 +273,6 @@ test('social support uses gender neutral phrasing and identity recognizes occupa
   const { s } = base();
   for (const person of ['p1', 'p2', 'p3', 'p4', 'p5']) {
     const r = await respondPrototype(
-      data,
       { state: s, person, question: '¿Cómo te sientes ahora?' },
       { useModel: false, dialogue: 'free' },
     );
@@ -292,7 +282,6 @@ test('social support uses gender neutral phrasing and identity recognizes occupa
   assert.equal(
     (
       await respondPrototype(
-        data,
         { state: s, person: 'p1', question: '¿Cuál es tu trabajo?' },
         { useModel: false, dialogue: 'free' },
       )
@@ -330,7 +319,6 @@ test('a voice echo is removed while a standalone supported answer survives', asy
     fact = prototypeFacts(c, s, 'p1').find(f => f.id === 'alibi'),
     text = 'Tratas de usted, distingues certeza de duda y hablas con precisión. ' + fact.text;
   const r = await respondPrototype(
-    data,
     { state: s, person: 'p1', question: '¿Dónde estabas?' },
     {
       useModel: true,
@@ -372,7 +360,6 @@ test('a material link cannot be turned into an invented eyewitness account or am
 test('an accusation with no authorized confession cannot get an implicit yes', async () => {
   const { s } = base();
   const r = await respondPrototype(
-    data,
     { state: s, person: 'p1', question: 'Entonces, ¿admites que mataste a la víctima?' },
     {
       useModel: true,

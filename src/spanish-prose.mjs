@@ -1,57 +1,17 @@
 const lowerFirst = s => s.charAt(0).toLocaleLowerCase('es') + s.slice(1);
-export function displayRole(actor) {
-  const role = actor.role;
-  if (/\b(woman|female)\b/i.test(actor.imagePrompt || ''))
-    return role.replace(/\bArtesano\b/g, 'Artesana').replace(/\bartesano\b/g, 'artesana');
-  return role;
-}
+// A place inside a sentence: "la Sala de navegación" -> "la sala de navegación".
+// Proper nouns keep their capitals ("el salón de Ámbar").
 export function placePhrase(room) {
-  const name = room.name;
-  if (/^(el|la|los|las)\s/i.test(name)) return lowerFirst(name);
-  // An article means the name is a common noun ("la Sala de banquetes" -> "la sala de banquetes").
-  if (room.article && ['el', 'la', 'los', 'las'].includes(room.article))
-    return room.article + ' ' + lowerFirst(name);
-  const first = name.split(/\s+/)[0];
-  if (/^Aposentos$/i.test(first)) return 'los ' + lowerFirst(name);
-  if (
-    /^(Sala|Cámara|Estación|Enfermería|Biblioteca|Cocina|Botica|Armería|Torre|Forja|Bodega|Despensa|Fábrica|Oficina|Zona|Capilla|Iglesia|Cripta|Cueva|Taberna|Posada|Escuela|Galería|Habitación|Celda|Mazmorra|Catedral|Colonia)$/i.test(
-      first,
-    )
-  )
-    return 'la ' + lowerFirst(name);
-  if (
-    /^(Comedor|Archivo|Taller|Dormitorio|Almacén|Salón|Laboratorio|Fangal|Esmalte|Puente|Invernadero|Jardín|Despacho|Refugio|Observatorio|Hangar)$/i.test(
-      first,
-    )
-  )
-    return 'el ' + lowerFirst(name);
-  return 'el lugar llamado ' + name;
+  return room.article + ' ' + lowerFirst(room.name);
 }
-export function naturalProse(text, rooms = [], object = '') {
-  let result = String(text).replace(
-    /Copia del carta con sello personal cotejado por el escribano, atribuido a/g,
-    'Copia de la carta con sello personal cotejado por el escribano, atribuida a',
-  );
-  if (object) {
-    const article =
-      /^(daga|copa|escopeta|espada|ballesta|barandilla|cápsula|consola|compuerta)\b/i.test(object)
-        ? 'la'
-        : /^(arma)\b/i.test(object)
-          ? 'el'
-          : 'el';
-    result = result
-      .split('el objeto «' + object + '»')
-      .join(article + ' ' + object)
-      .split('«' + object + '»')
-      .join(article + ' ' + object);
-  }
-  for (const room of rooms) result = result.split('«' + room.name + '»').join(placePhrase(room));
-  return result
-    .replace(/«([^»]+)»/g, (_, name) => lowerFirst(name))
-    .replace(/\bde el\b/g, 'del')
-    .replace(/\ba el\b/g, 'al');
-}
-// "en el Vestíbulo" -> "en el vestíbulo": a room named after an article is a common noun.
+// "de el" -> "del", "a el" -> "al", only between whole words ("Umbría el" stays as it is).
+export const contract = text =>
+  text
+    .replace(/(?<!\p{L})de el(?!\p{L})/gu, 'del')
+    .replace(/(?<!\p{L})a el(?!\p{L})/gu, 'al')
+    .replace(/(?<!\p{L})De el(?!\p{L})/gu, 'Del')
+    .replace(/(?<!\p{L})A el(?!\p{L})/gu, 'Al');
+// "en el Vestíbulo" -> "en el vestíbulo", for text written by the local model.
 export function lowerRoomNames(text, rooms = []) {
   let result = String(text);
   for (const room of rooms) {

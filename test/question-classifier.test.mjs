@@ -1,13 +1,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { loadWorld } from './worlds-fixture.mjs';
 import { newPrototype, createPrototypeCase, inspectPrototype } from '../src/prototype-engine.mjs';
 import { respondPrototype } from '../src/prototype-llm.mjs';
 import { classifyWithLaya } from '../src/question-classifier.mjs';
-const noir = JSON.parse(readFileSync('public/prototype/worlds/noir.json'));
+const villa = loadWorld('villa-bellavista');
 function solved() {
-  const s = newPrototype(noir, { seed: 'classifier' }),
-    c = createPrototypeCase(noir, s);
+  const s = newPrototype(villa, { seed: 'classifier' }),
+    c = createPrototypeCase(s);
   for (const clue of c.clues) {
     s.room = clue.room;
     inspectPrototype(c, s, clue.id);
@@ -15,7 +15,7 @@ function solved() {
   return { s, c, person: c.culprit.id };
 }
 const ask = (s, person, question, classifier, questionRouter = null) =>
-  respondPrototype(noir, { state: s, person, question }, { classifier, questionRouter });
+  respondPrototype({ state: s, person, question }, { classifier, questionRouter });
 
 test('a confident classifier decides the topic and the rules cover its doubts', async () => {
   const { s, person } = solved();
@@ -34,10 +34,9 @@ test('a confident classifier decides the topic and the rules cover its doubts', 
 });
 
 test('the classifier cannot open evidence the person cannot discuss yet', async () => {
-  const s = newPrototype(noir, { seed: 'classifier' }),
-    c = createPrototypeCase(noir, s);
+  const s = newPrototype(villa, { seed: 'classifier' }),
+    c = createPrototypeCase(s);
   const r = await respondPrototype(
-    noir,
     { state: s, person: c.culprit.id, question: '¿Qué dices de la carta?' },
     { classifier: async () => ({ topic: 'secret', confidence: 0.99 }) },
   );

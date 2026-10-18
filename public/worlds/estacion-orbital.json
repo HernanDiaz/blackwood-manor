@@ -1,0 +1,795 @@
+{
+  "format": "mundos-mundo",
+  "version": 1,
+  "id": "estacion-orbital",
+  "label": "Ciencia ficción",
+  "title": "Silencio en la Calíope",
+  "premise": "La estación de investigación Calíope gira en órbita desde hace décadas, remendada con cinta, llena de plantas, cables y café recalentado. A bordo solo queda una tripulación mínima, encerrada con sus experimentos y sus rencores, a semanas del próximo carguero. Esta noche, durante el turno de descanso, alguien no llegó al relevo.",
+  "art": {
+    "style": "retro-futurist 1970s science fiction concept painting, lived-in space station, worn beige plastic and scuffed metal, teal fluorescent light and warm amber glow, soft film grain, realistic proportions"
+  },
+  "victim": {
+    "name": "Miguel Ángel Torres",
+    "role": "director de la estación",
+    "gender": "m",
+    "description": "Veterano de la agencia espacial, dirigía la Calíope con mano de hierro y una libreta de papel que nunca soltaba. Exigente, rencoroso y brillante, conocía cada tornillo de la estación y cada debilidad de su tripulación."
+  },
+  "people": [
+    {
+      "id": "p1",
+      "name": "Elena Vázquez",
+      "role": "piloto",
+      "gender": "f",
+      "age": 41,
+      "personality": "Antigua piloto de pruebas, seca y disciplinada. Habla poco, en frases cortas, como si cada palabra gastara oxígeno. Trata de usted a todo el mundo y usa la jerga de radio sin darse cuenta: «afirmativo», «negativo», «recibido». No adorna nada, desconfía de quien habla mucho y solo deja ver su orgullo cuando alguien pone en duda su oficio.",
+      "appearance": "Mujer de cuarenta y pocos años, rostro anguloso y bronceado por años de cabina, ojos oscuros y atentos, pelo negro muy corto con alguna cana en las sienes. Lleva un mono de vuelo naranja descolorido con parches de la agencia, la cremallera subida hasta el cuello y unos auriculares viejos colgados de los hombros.",
+      "image": "/worlds/estacion-orbital/person-p1.webp",
+      "imagePrompt": "portrait of a woman in her early forties, angular tanned face, dark watchful eyes, very short black hair greying at the temples, faded orange flight suit with space agency patches zipped to the neck, old headphones resting around her shoulders, head and shoulders, plain dark background",
+      "voice": {
+        "alibi.claim": [
+          "De {from} a {to}, en {place}. Eso es todo.",
+          "Estuve en {place} de {from} a {to}. Puede apuntarlo."
+        ],
+        "alibi.alone": [
+          "En {place}, de {from} a {to}. Sola. Como casi siempre.",
+          "De {from} a {to} estuve en {place}, sin nadie. No necesito compañía para trabajar."
+        ],
+        "alibi.record": [
+          "En {place}, de {from} a {to}. Al salir encontré a {victim}. Lo demás ya lo sabe.",
+          "De {from} a {to}, en {place}. Salí y encontré a {victim}. No hay más que contar."
+        ],
+        "alibi.pair": [
+          "En {place} con {partner}, de {from} a {to}. Pregúntele.",
+          "De {from} a {to} estuve en {place}. {partner} estaba conmigo."
+        ],
+        "relation": [
+          "{victim} era mi comandante. Le obedecía. No tenía por qué caerme bien.",
+          "Volé para {victim} muchos años. Respeto profesional. Nada más."
+        ],
+        "secret.culprit": [
+          "Afirmativo, es cierto. {victim} lo sabía. Eso no me convierte en asesina.",
+          "Sí. {victim} lo había descubierto. Saberlo y matar son cosas distintas."
+        ],
+        "secret.weak": [
+          "Un roce con {victim}. Lo resolvíamos a gritos y luego cada uno a su puesto.",
+          "Sí, {victim} y yo chocamos por eso. Nadie mata por algo así."
+        ],
+        "secret.neutral": [
+          "Papeleo. No pierda el tiempo con eso.",
+          "Rutina de a bordo. Negativo, ahí no hay nada."
+        ],
+        "link.access": [
+          "Afirmativo, podía llegar a {access}. Como otros a bordo.",
+          "Tenía acceso a {access}, sí. No era la única."
+        ],
+        "link.none": [
+          "Negativo. No tenía acceso a {access}.",
+          "Nunca tuve acceso a {access}. Revise los permisos."
+        ],
+        "timeline.culprit": [
+          "Puede que me equivocara con la hora. Pasa cuando se encadenan los turnos. Pero no entré en {scene}.",
+          "No llevo un cronómetro encima todo el día. En {scene} no entré."
+        ],
+        "timeline.alone": [
+          "Nadie me vio. Es cierto. No es la primera vez que trabajo sin testigos.",
+          "Sin testigos. Negativo. No tengo a nadie que lo confirme."
+        ],
+        "timeline.record": [
+          "Está en {record}. Entrada y salida. Compruébelo.",
+          "Mire {record}. Las máquinas no mienten."
+        ],
+        "timeline.pair": [
+          "Pregunte a {guardian}. Nos vio entrar y salir.",
+          "{Guardian} vigilaba la puerta. Consúltelo."
+        ],
+        "seen.discovery": [
+          "A las {time} entré en {scene}. {victim} estaba allí. Di la alarma.",
+          "Encontré a {victim} en {scene} a las {time}. Di la alarma. Eso es todo."
+        ],
+        "seen.pair": [
+          "En {place} con {partner}. Nadie más cruzó la escotilla.",
+          "{partner} y yo, en {place}. Nadie más entró. Negativo."
+        ],
+        "seen.nothing": ["Nada fuera de lo normal. Negativo.", "No vi nada. Y me fijo en todo."],
+        "object.own": [
+          "{Item} es {mine}. {It} perdí esta mañana en {scene}.",
+          "Afirmativo, {item} es {mine}. {It} perdí esta mañana en {scene} y no he vuelto a ver{it}."
+        ],
+        "identity": [
+          "Soy {name}, {role} de la estación.",
+          "{name}, {role}. Pregunte lo que tenga que preguntar."
+        ],
+        "social": ["Recibido. Vamos al grano.", "Hable claro y le contestaré igual."],
+        "unknown": ["Negativo. Eso no lo sé.", "Fuera de mi frecuencia. Pregunte otra cosa."]
+      }
+    },
+    {
+      "id": "p2",
+      "name": "Javier Olmedo",
+      "role": "botánico",
+      "gender": "m",
+      "age": 29,
+      "personality": "Botánico joven, entusiasta y nervioso, el más reciente de la tripulación. Habla deprisa, se enreda en sus propias frases y tutea a todo el mundo desde el primer minuto. Muletillas: «¿vale?», «o sea», «te lo juro». Explica el mundo con metáforas de plantas y raíces, se ruboriza cuando se siente acusado y no soporta los silencios largos.",
+      "appearance": "Hombre de veintitantos, delgado, cara pecosa y siempre algo sonrojada, ojos claros y despiertos, rizos castaños rebeldes. Viste un peto de trabajo verde con manchas de tierra y de agua, una camiseta térmica remangada y una lupa de botánico colgada de un cordón al cuello.",
+      "image": "/worlds/estacion-orbital/person-p2.webp",
+      "imagePrompt": "portrait of a slim man in his late twenties, freckled slightly flushed face, bright light eyes, unruly curly brown hair, green work overalls stained with soil and water over a rolled-up thermal shirt, a botanist's magnifying loupe hanging from a cord around his neck, head and shoulders, plain dark background",
+      "voice": {
+        "alibi.claim": [
+          "Estuve en {place}, de {from} a {to}, ¿vale? Lo tengo clarísimo.",
+          "A ver, de {from} a {to} estaba en {place}. O sea, no me moví de ahí."
+        ],
+        "alibi.alone": [
+          "Estuve en {place} de {from} a {to}, yo solo. Sin nadie más, quiero decir.",
+          "De {from} a {to}, en {place}, solo. Ya sé que suena fatal, pero es la verdad."
+        ],
+        "alibi.record": [
+          "Estuve en {place} de {from} a {to}, y al salir... al salir encontré a {victim}. Todavía me tiemblan las manos.",
+          "De {from} a {to} en {place}. Salí y encontré a {victim}. No me lo quito de la cabeza."
+        ],
+        "alibi.pair": [
+          "Estuve con {partner} en {place}, de {from} a {to}. Pregúntale, te lo dirá.",
+          "{partner} y yo estuvimos en {place} de {from} a {to}. Juntos todo el rato, ¿vale?"
+        ],
+        "relation": [
+          "{victim} me trajo a la estación. Me exigía mucho, demasiado a veces, pero creía en mi trabajo.",
+          "Lo de {victim} es complicado, ¿sabes? Era como un árbol grande: te da sombra y no te deja crecer."
+        ],
+        "secret.culprit": [
+          "Vale, sí, es verdad. {victim} lo sabía. Pero de ahí a... no, no. Eso no.",
+          "No voy a mentirte: {victim} lo había descubierto. Eso no significa que yo le hiciera nada, te lo juro."
+        ],
+        "secret.weak": [
+          "Uf, eso. Sí, {victim} y yo discutimos por eso. Una tontería, de verdad.",
+          "Teníamos ese roce, {victim} y yo. Pero nadie mata por algo así, ¿no?"
+        ],
+        "secret.neutral": [
+          "¿Eso? Es un papel de lo más aburrido. Te lo juro.",
+          "Ahí no hay nada, de verdad. Es como mirar crecer el musgo."
+        ],
+        "link.access": [
+          "Sí, podía llegar a {access}. Pero no era el único, ¿eh? Aquí casi todo está al alcance de todos.",
+          "Tenía acceso a {access}, vale. Igual que otros."
+        ],
+        "link.none": [
+          "¿Yo? No, no tenía acceso a {access}. Ni sabría por dónde empezar.",
+          "Nunca he tenido acceso a {access}. Puedes comprobarlo."
+        ],
+        "timeline.culprit": [
+          "A lo mejor me confundí de hora, con tanto turno se me mezcla todo. Pero en {scene} no entré, te lo juro.",
+          "Puede que me liara, vale. O sea, puede. Pero yo no entré en {scene}."
+        ],
+        "timeline.alone": [
+          "Es verdad, nadie me vio. Ojalá alguien hubiera pasado por allí.",
+          "No tengo testigos. Ya sé que eso queda fatal."
+        ],
+        "timeline.record": [
+          "Lo pone {record}, ¿vale? Ahí sale cuándo entré y cuándo salí.",
+          "Mira {record}. Está todo, con la hora exacta."
+        ],
+        "timeline.pair": [
+          "Pregúntale a {guardian}. Nos vio entrar y salir.",
+          "{Guardian} lo controla todo. Te lo confirmará, ya verás."
+        ],
+        "seen.discovery": [
+          "Entré en {scene} a las {time} y... ahí estaba {victim}. Di la alarma, no sé ni cómo.",
+          "A las {time} encontré a {victim} en {scene}. Di la alarma a gritos."
+        ],
+        "seen.pair": [
+          "Estuve en {place} con {partner} y no entró nadie más. Nadie.",
+          "Con {partner}, en {place}. Por ahí no pasó nadie, estoy seguro."
+        ],
+        "seen.nothing": [
+          "No vi nada raro. Bueno, nada más raro de lo normal aquí arriba.",
+          "Nada, de verdad. Ojalá pudiera ayudarte más."
+        ],
+        "object.own": [
+          "¡Ah! {Item} es {mine}. {It} perdí esta mañana en {scene} y llevo todo el día buscándo{it}.",
+          "Sí, {item} es {mine}. {It} perdí esta mañana en {scene}. Qué despiste el mío."
+        ],
+        "identity": [
+          "Soy {name}, {role}. Me ocupo de que aquí arriba crezca algo verde.",
+          "Me llamo {name}. Soy {role}, el de las plantas, ¿sabes?"
+        ],
+        "social": [
+          "Perdona, estoy hecho un manojo de nervios. Pregunta lo que quieras.",
+          "Esto es una pesadilla. Vale. Vale. ¿Qué necesitas saber?"
+        ],
+        "unknown": [
+          "Ni idea, de verdad. Pregúntame otra cosa.",
+          "Uf, de eso no sé nada. Yo me paso el día entre esquejes."
+        ]
+      }
+    },
+    {
+      "id": "p3",
+      "name": "Sofía Méndez",
+      "role": "médica",
+      "gender": "f",
+      "age": 58,
+      "personality": "Médica de a bordo, serena hasta resultar fría. Habla despacio, con frases completas y vocabulario clínico, como quien dicta un informe. Trata de usted a todos, no levanta nunca la voz y mide cada afirmación. Sus muletillas son «le seré franca» y «con todos los respetos». Detesta especular y corrige con suavidad cualquier imprecisión.",
+      "appearance": "Mujer de casi sesenta años, rostro fino y sereno con arrugas marcadas alrededor de los ojos, gafas de montura metálica, pelo gris plateado recogido en un moño bajo. Lleva una bata azul pálido sobre el uniforme de la estación, con un estetoscopio al cuello y un bolígrafo luminoso en el bolsillo del pecho.",
+      "image": "/worlds/estacion-orbital/person-p3.webp",
+      "imagePrompt": "portrait of a woman in her late fifties, fine calm face with deep lines around the eyes, thin metal-rimmed glasses, silver grey hair in a low bun, pale blue medical coat over a station uniform, stethoscope around her neck, glowing penlight in the breast pocket, head and shoulders, plain dark background",
+      "voice": {
+        "alibi.claim": [
+          "Estuve en {place} de {from} a {to}. Se lo digo con la misma precisión con la que anoto una dosis.",
+          "De {from} a {to} me encontraba en {place}."
+        ],
+        "alibi.alone": [
+          "De {from} a {to} estuve en {place}, sola. Le seré franca: lo prefiero así.",
+          "Me encontraba en {place} de {from} a {to}. No había nadie conmigo."
+        ],
+        "alibi.record": [
+          "Estuve en {place} de {from} a {to}. Al salir encontré a {victim}, y supe enseguida que no había nada que hacer.",
+          "De {from} a {to} me encontraba en {place}; al salir encontré a {victim}."
+        ],
+        "alibi.pair": [
+          "Estuve en {place} con {partner}, de {from} a {to}. Puede preguntárselo.",
+          "De {from} a {to}, {partner} y yo estuvimos en {place}."
+        ],
+        "relation": [
+          "Fui la médica de {victim} durante años. Conocía su historial y, me temo, también su carácter.",
+          "Con {victim} mantenía una relación correcta. Él daba las órdenes; yo le recordaba que también era mortal."
+        ],
+        "secret.culprit": [
+          "Le seré franca: lo que dice ese papel es cierto, y {victim} lo sabía. Pero un secreto no es un crimen.",
+          "Sí, {victim} lo había descubierto. No voy a negarlo. De ahí a matar hay mucha distancia."
+        ],
+        "secret.weak": [
+          "Un desacuerdo con {victim}, nada más. En un lugar tan pequeño son inevitables.",
+          "Sí, {victim} y yo tuvimos ese roce. Con todos los respetos, nadie mata por algo así."
+        ],
+        "secret.neutral": [
+          "Es un papel corriente. No encontrará nada en él.",
+          "Papeleo de rutina. Con todos los respetos, está perdiendo el tiempo."
+        ],
+        "link.access": [
+          "Podía llegar a {access}, en efecto. Igual que otras personas a bordo.",
+          "Sí, tenía acceso a {access}. No era la única."
+        ],
+        "link.none": [
+          "No tenía acceso a {access}. Mi autorización no llega tan lejos.",
+          "Nunca tuve acceso a {access}. Lo comprobará en los permisos."
+        ],
+        "timeline.culprit": [
+          "Es posible que me equivocara de hora. El cansancio altera la percepción del tiempo. Pero no entré en {scene}.",
+          "Puede que la memoria me falle en los minutos. En {scene} no entré."
+        ],
+        "timeline.alone": [
+          "Nadie me vio, es cierto. No tengo testigos que ofrecerle.",
+          "Estaba sola. Lo lamento, pero así fue."
+        ],
+        "timeline.record": [
+          "Consulte {record}. Allí constan mi entrada y mi salida.",
+          "Mis horas figuran en {record}, con toda exactitud."
+        ],
+        "timeline.pair": [
+          "{Guardian} puede confirmarlo. Nos vio entrar y salir.",
+          "Pregunte a {guardian}; vigilaba la puerta."
+        ],
+        "seen.discovery": [
+          "Encontré a {victim} en {scene} a las {time} y di la alarma de inmediato.",
+          "A las {time} entré en {scene}. Allí estaba {victim}. Di la alarma."
+        ],
+        "seen.pair": [
+          "Estuve en {place} con {partner}. No entró nadie más.",
+          "{partner} y yo permanecimos en {place}. Nadie cruzó esa puerta."
+        ],
+        "seen.nothing": ["No observé nada anómalo.", "Nada fuera de lo normal, que yo advirtiera."],
+        "object.own": [
+          "{Item} es {mine}, sí. {It} perdí esta mañana en {scene}.",
+          "Reconozco {item}: es {mine}. {It} perdí esta mañana en {scene}."
+        ],
+        "identity": [
+          "Soy {name}, {role} de la estación.",
+          "Me llamo {name}. Soy {role}, y le ruego que seamos breves."
+        ],
+        "social": [
+          "Siéntese, por favor. Pregunte lo que necesite.",
+          "Mantengamos la calma. Le escucho."
+        ],
+        "unknown": ["No dispongo de esa información.", "No sabría decirle. Prefiero no especular."]
+      }
+    },
+    {
+      "id": "p4",
+      "name": "Bruno Kaelen",
+      "role": "mecánico",
+      "gender": "m",
+      "age": 52,
+      "personality": "Mecánico veterano, gruñón y malhablado, que lleva más tiempo en la estación que nadie. Tutea a todo el mundo, llama «chaval» a cualquiera y habla de la estación como de «la vieja», con más cariño que de las personas. Contesta con frases bruscas, suelta algún «leches» y se impacienta enseguida, pero nunca da rodeos: si algo le molesta, lo dice a la cara.",
+      "appearance": "Hombre corpulento de unos cincuenta años, cabeza afeitada, barba gris espesa y recortada a tijera, nariz rota hace mucho y antebrazos llenos de pequeñas quemaduras. Viste un mono amarillo de faena manchado de grasa, con las mangas atadas a la cintura sobre una camiseta gris, y unas gafas de soldador subidas a la frente.",
+      "image": "/worlds/estacion-orbital/person-p4.webp",
+      "imagePrompt": "portrait of a burly man in his fifties, shaved head, thick scissor-trimmed grey beard, old broken nose, small burn scars on his forearms, grease-stained yellow work coveralls with sleeves tied at the waist over a grey t-shirt, welding goggles pushed up on his forehead, head and shoulders, plain dark background",
+      "voice": {
+        "alibi.claim": [
+          "Estuve en {place} de {from} a {to}. Y no me hagas repetirlo.",
+          "De {from} a {to}, en {place}. Punto."
+        ],
+        "alibi.alone": [
+          "En {place}, de {from} a {to}, solo. Las máquinas no dan conversación, chaval.",
+          "De {from} a {to} estuve en {place}. Solo. Así me gusta."
+        ],
+        "alibi.record": [
+          "Estuve en {place} de {from} a {to}. Al salir me encontré a {victim}. Leches, qué nochecita.",
+          "De {from} a {to}, en {place}. Salgo y me encuentro a {victim}. Así, sin más."
+        ],
+        "alibi.pair": [
+          "Estuve en {place} con {partner} de {from} a {to}. Pregúntale, que no muerde.",
+          "{partner} y yo, en {place}, de {from} a {to}. Los dos."
+        ],
+        "relation": [
+          "{victim} era el jefe. Yo arreglaba lo que él rompía con sus prisas.",
+          "¿{victim}? Me pagaba y me gritaba. Por ese orden, cuando había suerte."
+        ],
+        "secret.culprit": [
+          "Vale, es verdad, {victim} lo sabía. ¿Y qué? Eso no me hace un asesino.",
+          "No te voy a mentir, chaval: {victim} lo había descubierto. Pero yo no le puse la mano encima."
+        ],
+        "secret.weak": [
+          "Eso. Sí, {victim} y yo andábamos a la greña por eso. Nada que no se arregle con un par de gritos.",
+          "Una tontería con {victim}. Nadie mata por eso, chaval."
+        ],
+        "secret.neutral": [
+          "Eso es papel mojado. No vale ni para limpiar grasa.",
+          "¿Me enseñas eso? Rutina. Ni lo miré."
+        ],
+        "link.access": [
+          "Claro que podía llegar a {access}. Y medio equipo también.",
+          "Tenía acceso a {access}, sí. No era el único, ni de lejos."
+        ],
+        "link.none": [
+          "No tenía acceso a {access}. Eso no es cosa mía.",
+          "¿{Access}? Ni me dejaban acercarme, chaval."
+        ],
+        "timeline.culprit": [
+          "Igual me lie con la hora, ¿vale? Aquí arriba no hay día ni noche. Pero en {scene} no entré.",
+          "No llevo la cuenta de los minutos, chaval. Lo que sé es que no pisé {scene}."
+        ],
+        "timeline.alone": [
+          "Nadie me vio. Normal, no me gusta que me miren trabajar.",
+          "Sin testigos. Ya ves tú, como casi siempre."
+        ],
+        "timeline.record": [
+          "Está en {record}. Míralo y déjame en paz.",
+          "Ahí lo tienes, en {record}. Entrada y salida."
+        ],
+        "timeline.pair": [
+          "Pregúntale a {guardian}. Ese cacharro lo ve todo.",
+          "{Guardian} vigilaba la puerta. Que te lo diga."
+        ],
+        "seen.discovery": [
+          "A las {time} entré en {scene} y me encontré a {victim}. Di la alarma.",
+          "Encontré a {victim} en {scene} a las {time}. Le di a la alarma con el puño."
+        ],
+        "seen.pair": [
+          "Estuve en {place} con {partner}. Por ahí no entró ni una mosca.",
+          "{partner} y yo, en {place}. Nadie más, te lo digo yo."
+        ],
+        "seen.nothing": [
+          "No vi nada. Y si lo hubiera visto, ya te lo habría dicho.",
+          "Nada raro. Bueno, nada más raro que de costumbre."
+        ],
+        "object.own": [
+          "{Item} es {mine}. {It} perdí esta mañana en {scene}. Ya decía yo.",
+          "Eh, {item} es {mine}. {It} perdí esta mañana en {scene} y me he vuelto loco buscándo{it}."
+        ],
+        "identity": [
+          "{name}. Soy {role}. Si algo hace ruido en la vieja, me llaman a mí.",
+          "Me llamo {name}, {role}. Mantengo esta chatarra en órbita."
+        ],
+        "social": ["Venga, pregunta. Tengo una avería esperando.", "Dispara, chaval, pero rápido."],
+        "unknown": ["Ni idea. Pregunta a otro.", "Eso a mí no me lo cuenta nadie."]
+      }
+    },
+    {
+      "id": "p5",
+      "name": "Nora Vela",
+      "role": "oficial de comunicaciones",
+      "gender": "f",
+      "age": 35,
+      "personality": "Oficial de comunicaciones, pulcra, diplomática y con una ironía muy fina. Habla con frases cuidadas, como si redactara un comunicado oficial, y trata de usted a todos con una cortesía impecable. Su muletilla es «para que conste». Elige cada palabra, nunca se altera en público y deja caer comentarios afilados con una sonrisa educada.",
+      "appearance": "Mujer de treinta y tantos años, piel morena, pómulos altos, ojos grandes y oscuros, pelo negro liso cortado a la altura de la mandíbula con flequillo recto. Lleva el uniforme azul marino de la estación perfectamente planchado, con un pequeño auricular en una oreja y un micrófono de diadema plegado junto a la mejilla.",
+      "image": "/worlds/estacion-orbital/person-p5.webp",
+      "imagePrompt": "portrait of a woman in her mid thirties, brown skin, high cheekbones, large dark eyes, sleek straight black jaw-length bob with blunt fringe, crisp navy blue station uniform, small earpiece in one ear and a folded headset microphone by her cheek, head and shoulders, plain dark background",
+      "voice": {
+        "alibi.claim": [
+          "Para que conste: estuve en {place} de {from} a {to}.",
+          "De {from} a {to} me encontraba en {place}. Puede verificarlo cuando guste."
+        ],
+        "alibi.alone": [
+          "Estuve en {place} de {from} a {to}, sola. No es ningún delito disfrutar del silencio.",
+          "De {from} a {to}, en {place}, sin compañía. Para que conste."
+        ],
+        "alibi.record": [
+          "Estuve en {place} de {from} a {to}. Al salir encontré a {victim}. Preferiría no tener que describirlo otra vez.",
+          "De {from} a {to} me encontraba en {place}; al salir encontré a {victim}."
+        ],
+        "alibi.pair": [
+          "Estuve en {place} con {partner} de {from} a {to}. Seguro que lo confirmará.",
+          "{partner} y yo coincidimos en {place} de {from} a {to}."
+        ],
+        "relation": [
+          "{victim} y yo teníamos una relación profesional. Yo transmitía sus órdenes; a veces, suavizándolas.",
+          "Conocía a {victim} mejor por sus mensajes que por sus palabras. Escribía como mandaba: sin matices."
+        ],
+        "secret.culprit": [
+          "No voy a desmentir un documento auténtico. {victim} lo sabía, sí. Eso no me convierte en asesina.",
+          "Es cierto, {victim} lo había descubierto. Le ruego que no confunda un secreto con un crimen."
+        ],
+        "secret.weak": [
+          "Un desencuentro con {victim}, lo admito. Nada que no se resolviera con un correo bien redactado.",
+          "Sí, {victim} y yo tuvimos ese roce. Para que conste: nadie mata por algo así."
+        ],
+        "secret.neutral": [
+          "Es papeleo administrativo. Transmito una docena como ese cada día.",
+          "Nada de interés ahí, se lo aseguro."
+        ],
+        "link.access": [
+          "Tenía acceso a {access}, sí. Como otras personas a bordo, para que conste.",
+          "Podía llegar a {access}. No era la única."
+        ],
+        "link.none": [
+          "No tenía acceso a {access}. Puede revisar mis credenciales.",
+          "Nunca he tenido acceso a {access}. Mis permisos acaban en la consola de comunicaciones."
+        ],
+        "timeline.culprit": [
+          "Quizá me equivoqué de hora; los turnos aquí arriba confunden a cualquiera. Pero no entré en {scene}.",
+          "Admito que puedo haberme confundido. Lo que no admito es haber entrado en {scene}."
+        ],
+        "timeline.alone": [
+          "Nadie me vio, es cierto. No tengo testigos que ofrecerle.",
+          "Estaba sola. Lamento no poder darle algo mejor."
+        ],
+        "timeline.record": [
+          "Consulte {record}. Mis entradas y salidas están anotadas.",
+          "Todo consta en {record}, con su hora exacta."
+        ],
+        "timeline.pair": [
+          "Pregunte a {guardian}: nos vio entrar y salir.",
+          "{Guardian} vigilaba la puerta. Su testimonio es más fiable que el mío."
+        ],
+        "seen.discovery": [
+          "A las {time} entré en {scene} y encontré a {victim}. Di la alarma por el canal general.",
+          "Encontré a {victim} en {scene} a las {time}. Di la alarma enseguida."
+        ],
+        "seen.pair": [
+          "Estuve en {place} con {partner}. No entró nadie más.",
+          "Con {partner}, en {place}. Por esa escotilla no pasó nadie, para que conste."
+        ],
+        "seen.nothing": [
+          "No vi nada fuera de lo normal, para que conste.",
+          "Nada que me llamara la atención, lo siento."
+        ],
+        "object.own": [
+          "{Item} es {mine}. {It} perdí esta mañana en {scene}.",
+          "Sí, {item} es {mine}. {It} perdí esta mañana en {scene}; llevo todo el día echándo{it} de menos."
+        ],
+        "identity": [
+          "Soy {name}, {role}. Todo lo que entra y sale de la estación pasa por mí.",
+          "Me llamo {name}. Soy {role}, a su disposición."
+        ],
+        "social": [
+          "Adelante. Le prometo respuestas claras.",
+          "Entiendo que haga su trabajo. Le escucho."
+        ],
+        "unknown": [
+          "No dispongo de esa información, lo siento.",
+          "Ahí no puedo ayudarle. Pregúnteme algo que sepa."
+        ]
+      }
+    }
+  ],
+  "rooms": [
+    {
+      "id": "r1",
+      "name": "Puente de mando",
+      "article": "el",
+      "description": "Consolas curvas de plástico beis rodean una gran ventana por la que la Tierra pasa despacio, azul y enorme. Los botones parpadean en ámbar, una impresora de papel continuo zumba en una esquina y huele a café frío y a electricidad caliente.",
+      "tags": [],
+      "image": "/worlds/estacion-orbital/room-r1.webp",
+      "imagePrompt": "interior of a space station command bridge, curved beige plastic consoles with blinking amber buttons, large window showing the blue Earth below, continuous-feed paper printer in a corner, coffee mugs on the panels, wide shot, no people"
+    },
+    {
+      "id": "r2",
+      "name": "Invernadero hidropónico",
+      "article": "el",
+      "description": "Bandejas de lechugas y tomateras trepan hacia lámparas de luz violácea, y el agua gotea sin pausa por tubos transparentes. Al fondo ronronean los recicladores de aire que mantienen respirable la estación, y el ambiente es húmedo, tibio, con olor a tierra mojada.",
+      "tags": ["life-support"],
+      "image": "/worlds/estacion-orbital/room-r2.webp",
+      "imagePrompt": "interior of a space station hydroponic greenhouse, stacked trays of lettuce and tomato plants under violet grow lamps, transparent dripping water tubes, large humming air recycler units with vents at the back, humid misty air, wide shot, no people"
+    },
+    {
+      "id": "r3",
+      "name": "Bahía de carga",
+      "article": "la",
+      "description": "Un hangar alto lleno de contenedores amarrados con cinchas, dominado por un brazo robótico amarillo plegado bajo el techo. Una pasarela metálica recorre las paredes a gran altura sobre el suelo, y la compuerta estanca del muelle cierra un extremo con franjas de aviso negras y amarillas.",
+      "tags": ["industrial", "elevated"],
+      "image": "/worlds/estacion-orbital/room-r3.webp",
+      "imagePrompt": "interior of a tall space station cargo bay, cargo containers strapped down with webbing, large folded yellow robotic arm under the ceiling, high metal catwalk with railing running along the walls far above the floor, heavy airtight hatch with black and yellow hazard stripes at one end, wide shot, no people"
+    },
+    {
+      "id": "r4",
+      "name": "Laboratorio criogénico",
+      "article": "el",
+      "description": "Hileras de cápsulas criogénicas acristaladas exhalan un vaho blanco que se arrastra por el suelo. El aire corta la piel de frío, los indicadores verdes laten en silencio y la escarcha dibuja helechos en los cristales.",
+      "tags": ["cryogenic"],
+      "image": "/worlds/estacion-orbital/room-r4.webp",
+      "imagePrompt": "interior of a space station cryogenic laboratory, rows of glass-fronted cryogenic pods breathing white vapour that creeps across the floor, frost patterns on the glass, small green indicator lights, cold teal light, wide shot, no people"
+    },
+    {
+      "id": "r5",
+      "name": "Sala de máquinas",
+      "article": "la",
+      "description": "Un laberinto de tuberías aisladas, válvulas rojas y paneles abiertos rodea el generador central, que vibra bajo los pies como un animal dormido. Huele a aceite, a metal recalentado y a ozono, y hay herramientas colgadas en cada hueco libre.",
+      "tags": ["industrial", "life-support"],
+      "image": "/worlds/estacion-orbital/room-r5.webp",
+      "imagePrompt": "interior of a space station engine room, maze of insulated pipes and red valves, open control panels with exposed wiring, large central generator glowing amber, tools hanging on every free wall space, oily metal floor grating, wide shot, no people"
+    },
+    {
+      "id": "r6",
+      "name": "Cúpula de observación",
+      "article": "la",
+      "description": "Una cúpula de cristal grueso se abre al vacío y deja ver un cielo negro cuajado de estrellas. Unos sillones de vinilo naranja, un tablero de ajedrez magnético y una planta mustia esperan bajo la luz tenue de la Tierra.",
+      "tags": [],
+      "image": "/worlds/estacion-orbital/room-r6.webp",
+      "imagePrompt": "interior of a space station observation dome, thick glass dome open to a black star-filled sky with Earth glow on one side, worn orange vinyl lounge chairs, magnetic chess board on a small table, a wilting potted plant, dim light, wide shot, no people"
+    }
+  ],
+  "staff": {
+    "guardian": "el ordenador de a bordo",
+    "record": "el registro de escotillas",
+    "report": "Informe de la unidad médica"
+  },
+  "weapons": [
+    {
+      "method": "knife",
+      "label": "Cuchillo de injertos",
+      "cause": "Una herida profunda de hoja corta y curva en el costado alcanzó el hígado. La hemorragia interna fue masiva.",
+      "weapon": "el cuchillo de injertos",
+      "access": "el cuchillo de injertos",
+      "device": false,
+      "phrase": "con el cuchillo de injertos",
+      "image": "/worlds/estacion-orbital/weapon-knife.webp",
+      "imagePrompt": "close-up of a small botanist's grafting knife with a short curved steel blade and a worn green plastic handle, single object, neutral background"
+    },
+    {
+      "method": "blunt",
+      "label": "Llave dinamométrica",
+      "cause": "Un golpe seco en la sien con un objeto metálico pesado fracturó el cráneo.",
+      "weapon": "la llave dinamométrica",
+      "access": "la llave dinamométrica de la sala de máquinas",
+      "device": false,
+      "phrase": "con la llave dinamométrica",
+      "image": "/worlds/estacion-orbital/weapon-blunt.webp",
+      "imagePrompt": "close-up of a long heavy chrome torque wrench with a scuffed rubber grip and an analogue dial, single object, neutral background"
+    },
+    {
+      "method": "rope",
+      "label": "Cable de sujeción",
+      "cause": "Un surco profundo y continuo rodea el cuello, compatible con un cable trenzado. Murió por estrangulamiento.",
+      "weapon": "el cable de sujeción",
+      "access": "los cables de sujeción de los trajes",
+      "device": false,
+      "phrase": "con el cable de sujeción",
+      "image": "/worlds/estacion-orbital/weapon-rope.webp",
+      "imagePrompt": "close-up of a coiled braided steel spacesuit safety tether with orange sleeves and a heavy carabiner clip, single object, neutral background"
+    },
+    {
+      "method": "drink",
+      "label": "Café envenenado",
+      "cause": "La sangre contiene una dosis letal de cianuro, ingerida disuelta en una bebida caliente.",
+      "weapon": "la bolsa de café a medio beber",
+      "access": "el frasco de cianuro del laboratorio",
+      "device": false,
+      "phrase": "envenenándole el café",
+      "image": "/worlds/estacion-orbital/weapon-drink.webp",
+      "imagePrompt": "close-up of a half-empty foil space drink pouch of coffee with a straw valve, a few dark drops on its surface, single object, neutral background",
+      "seen": "el frasco de cianuro"
+    },
+    {
+      "method": "medical",
+      "label": "Inyector de anestesia",
+      "cause": "Una sobredosis de anestésico intravenoso le detuvo la respiración. Hay un pinchazo reciente en el cuello.",
+      "weapon": "el inyector de anestesia",
+      "access": "los inyectores de anestesia",
+      "device": false,
+      "phrase": "con el inyector de anestesia",
+      "image": "/worlds/estacion-orbital/weapon-medical.webp",
+      "imagePrompt": "close-up of a chunky retro-futurist pneumatic medical injector gun with a glass vial of clear liquid, white and grey plastic, single object, neutral background"
+    },
+    {
+      "method": "air",
+      "label": "Regulador de aire",
+      "cause": "La sangre muestra una intoxicación aguda por dióxido de carbono: el aire de la sala dejó de renovarse.",
+      "weapon": "el regulador de aire",
+      "access": "el panel del regulador de aire",
+      "device": true,
+      "phrase": "manipulando el regulador de aire",
+      "image": "/worlds/estacion-orbital/weapon-air.webp",
+      "imagePrompt": "close-up of a wall-mounted air regulator panel with analogue pressure gauges, a big red valve wheel and toggle switches, single object, neutral background"
+    },
+    {
+      "method": "power",
+      "label": "Célula de energía",
+      "cause": "Quemaduras de entrada y salida en las manos y un paro cardiaco por una descarga eléctrica de alto voltaje.",
+      "weapon": "la célula de energía portátil",
+      "access": "las células de energía de repuesto",
+      "device": false,
+      "phrase": "con una descarga de la célula de energía",
+      "image": "/worlds/estacion-orbital/weapon-power.webp",
+      "imagePrompt": "close-up of a portable cylindrical power cell with a carrying handle, exposed copper terminals and a glowing amber charge indicator, single object, neutral background"
+    },
+    {
+      "method": "laser",
+      "label": "Láser de corte",
+      "cause": "Una quemadura estrecha y cauterizada atraviesa el tórax, propia del haz de un láser de corte industrial.",
+      "weapon": "el láser de corte",
+      "access": "el láser de corte de la bahía de carga",
+      "device": false,
+      "phrase": "con el láser de corte",
+      "image": "/worlds/estacion-orbital/weapon-laser.webp",
+      "imagePrompt": "close-up of a handheld industrial cutting laser tool with a pistol grip, a long focusing lens barrel and a coiled power cable, scuffed orange casing, single object, neutral background"
+    },
+    {
+      "method": "plasma",
+      "label": "Soldador de plasma",
+      "cause": "Quemaduras profundas a temperatura extrema en el cuello y el pecho, con los bordes del tejido vitrificados.",
+      "weapon": "el soldador de plasma",
+      "access": "el soldador de plasma de la sala de máquinas",
+      "device": false,
+      "phrase": "con el soldador de plasma",
+      "image": "/worlds/estacion-orbital/weapon-plasma.webp",
+      "imagePrompt": "close-up of a heavy plasma welding torch with a ceramic nozzle, braided hose and a blue-tinted heat shield, industrial grey metal, single object, neutral background"
+    },
+    {
+      "method": "fall",
+      "label": "Caída desde la pasarela",
+      "cause": "Fracturas múltiples de cráneo y columna, propias de una caída desde gran altura sobre un suelo metálico.",
+      "weapon": "la barandilla de la pasarela",
+      "access": "la pasarela superior",
+      "device": true,
+      "phrase": "empujándolo desde la pasarela",
+      "image": "/worlds/estacion-orbital/weapon-fall.webp",
+      "imagePrompt": "close-up of a section of high metal catwalk railing with a loosened bolted joint and yellow hazard paint, looking down into a deep dim bay, single object, neutral background"
+    },
+    {
+      "method": "robot",
+      "label": "Brazo robótico",
+      "cause": "El tórax quedó aplastado por una presión mecánica enorme, como la de una pinza hidráulica.",
+      "weapon": "el brazo robótico de carga",
+      "access": "los mandos del brazo robótico",
+      "device": true,
+      "phrase": "con el brazo robótico de carga",
+      "image": "/worlds/estacion-orbital/weapon-robot.webp",
+      "imagePrompt": "close-up of the hydraulic gripper claw of a large yellow industrial robotic loading arm, exposed pistons and hoses, single object, neutral background"
+    },
+    {
+      "method": "hatch",
+      "label": "Compuerta estanca",
+      "cause": "Lesiones por aplastamiento en el tórax y el cuello, causadas por el cierre brusco de una compuerta pesada.",
+      "weapon": "la compuerta estanca",
+      "access": "el control manual de la compuerta",
+      "device": true,
+      "phrase": "cerrando sobre él la compuerta estanca",
+      "image": "/worlds/estacion-orbital/weapon-hatch.webp",
+      "imagePrompt": "close-up of a heavy circular airtight hatch door with black and yellow hazard stripes, a manual locking wheel and thick rubber seals, single object, neutral background"
+    },
+    {
+      "method": "cryo",
+      "label": "Cápsula criogénica",
+      "cause": "Hipotermia extrema: los tejidos presentan cristales de hielo y el corazón se detuvo por el frío.",
+      "weapon": "la cápsula criogénica",
+      "access": "el panel de la cápsula criogénica",
+      "device": true,
+      "phrase": "encerrándolo en la cápsula criogénica",
+      "image": "/worlds/estacion-orbital/weapon-cryo.webp",
+      "imagePrompt": "close-up of a single upright glass-fronted cryogenic pod covered in frost, white vapour spilling from its seals, green indicator lights on its side panel, single object, neutral background"
+    }
+  ],
+  "items": [
+    {
+      "noun": "auricular de comunicaciones",
+      "gender": "m",
+      "image": "/worlds/estacion-orbital/item-1.webp",
+      "imagePrompt": "close-up of a small retro communications earpiece with a coiled cable and a tiny boom microphone, beige plastic, single object, neutral background"
+    },
+    {
+      "noun": "tarjeta de acceso",
+      "gender": "f",
+      "image": "/worlds/estacion-orbital/item-2.webp",
+      "imagePrompt": "close-up of a worn plastic station access keycard with a magnetic stripe, a faded photo and a clip, single object, neutral background"
+    },
+    {
+      "noun": "dosímetro de solapa",
+      "gender": "m",
+      "image": "/worlds/estacion-orbital/item-3.webp",
+      "imagePrompt": "close-up of a small lapel radiation dosimeter badge with a tiny analogue window and a metal clip, single object, neutral background"
+    },
+    {
+      "noun": "guante de faena",
+      "gender": "m",
+      "image": "/worlds/estacion-orbital/item-4.webp",
+      "imagePrompt": "close-up of a single thick padded work glove in grey and orange fabric, scuffed fingertips and a velcro wrist strap, single object, neutral background"
+    },
+    {
+      "noun": "linterna de muñeca",
+      "gender": "f",
+      "image": "/worlds/estacion-orbital/item-5.webp",
+      "imagePrompt": "close-up of a compact wrist-mounted flashlight on an elastic strap, chunky retro design with a round amber lens, single object, neutral background"
+    }
+  ],
+  "motives": [
+    "Había falsificado las lecturas de radiación para ocultar una fuga en el generador. {victim} lo había descubierto y pensaba informar a la agencia en la transmisión del día siguiente.",
+    "Había vendido en secreto los resultados del experimento a una corporación rival. {victim} tenía las pruebas y pensaba denunciar la venta ante el consejo de la agencia al día siguiente.",
+    "Había ocultado en la revisión médica una enfermedad que le impide seguir en órbita. {victim} se había enterado y pensaba ordenar su repatriación forzosa en el próximo carguero.",
+    "Había saltado el protocolo durante la última despresurización, y por su culpa murió un compañero de la tripulación anterior. {victim} había reconstruido lo ocurrido y pensaba entregar el informe a la comisión de accidentes al día siguiente.",
+    "Había desviado combustible y piezas de la estación para venderlos de contrabando a los cargueros. {victim} lo había descubierto y pensaba denunciarlo a la autoridad orbital en cuanto atracara la próxima nave.",
+    "Había llegado a bordo con un título comprado y un historial inventado. {victim} lo había averiguado y pensaba enviar el expediente completo a la agencia al día siguiente."
+  ],
+  "documents": {
+    "weak": [
+      {
+        "title": "Amonestación por consumo de agua",
+        "text": "{victim} amonesta por escrito a {person} por superar su ración de agua de aseo varias semanas seguidas. Le advierte de que, si se repite, se la recortará a la mitad."
+      },
+      {
+        "title": "Comunicación privada denegada",
+        "text": "{person} pidió una llamada extra con la Tierra por un asunto familiar. {victim} la deniega con una sola línea: «El ancho de banda es para la ciencia»."
+      },
+      {
+        "title": "Proyecto personal aplazado",
+        "text": "{victim} aplaza una vez más el proyecto personal de {person} para dar prioridad a otro experimento. {person} ha respondido con una protesta formal, educada y furiosa."
+      },
+      {
+        "title": "Deuda de una partida de ajedrez",
+        "text": "Nota de {victim}: {person} le debe todavía las raciones de chocolate de una apuesta perdida en la cúpula. Al margen, con su letra apretada: «Y no pienso perdonárselas»."
+      }
+    ],
+    "neutral": [
+      {
+        "title": "Turnos de limpieza de filtros",
+        "text": "Cuadrante firmado por {victim}. A {person} le toca limpiar los filtros de aire esta semana, igual que a los demás por rotación."
+      },
+      {
+        "title": "Pedido para el próximo carguero",
+        "text": "Lista de {person}: café molido, calcetines térmicos, pilas y un sobre de semillas de albahaca. {victim} la ha aprobado sin comentarios."
+      },
+      {
+        "title": "Revisión periódica de salud",
+        "text": "Resultado de la revisión periódica de {person}: tensión normal, masa ósea dentro de lo esperado. Copia archivada por {victim}."
+      }
+    ]
+  },
+  "clueArt": {
+    "report": {
+      "image": "/worlds/estacion-orbital/clue-report.webp",
+      "imagePrompt": "close-up of a medical report printed on green-striped continuous-feed paper beside a small glowing medical monitor screen with a flat line, illegible handwriting, no readable text"
+    },
+    "testimony": {
+      "image": "/worlds/estacion-orbital/clue-testimony.webp",
+      "imagePrompt": "close-up of a chunky retro cassette voice recorder next to a clipboard with a handwritten statement sheet, illegible handwriting, no readable text"
+    },
+    "ledger": {
+      "image": "/worlds/estacion-orbital/clue-ledger.webp",
+      "imagePrompt": "close-up of a hatch access log shown on a small green phosphor CRT terminal screen beside a printed perforated log sheet, illegible handwriting, no readable text"
+    },
+    "document": {
+      "image": "/worlds/estacion-orbital/clue-document.webp",
+      "imagePrompt": "close-up of a folded station memo on thin yellowed paper with an agency stamp and a coffee ring stain, illegible handwriting, no readable text"
+    }
+  },
+  "openings": {
+    "arrivals": [
+      "La lanzadera se acopla con un golpe sordo que recorre toda la estructura. Cuando la escotilla se abre, te recibe un aire reciclado que huele a plástico tibio y a tierra húmeda, y un pasillo bañado en luz ámbar que se curva hasta perderse de vista.",
+      "Desde la ventanilla de la cápsula de relevo ves crecer la Calíope: un anillo de módulos remendados que gira despacio contra el azul de la Tierra. Tras el acoplamiento, la gravedad del anillo te devuelve el peso de golpe y las rodillas te recuerdan que ya no estás en casa.",
+      "Atraviesas la esclusa entre siseos de presión y luces de aviso que cambian de rojo a verde. Al otro lado, la estación zumba, gotea y cruje como un barco viejo, y en las paredes alguien ha pegado fotos de playas que nadie a bordo pisará en mucho tiempo.",
+      "El viaje desde la plataforma de lanzamiento ha durado lo bastante para que se te enfríe el café dos veces. Ahora flotas un instante en el muelle de atraque, bajo tubos fluorescentes verdosos, hasta que una mano invisible de gravedad te pega al suelo de la Calíope."
+    ],
+    "tensions": [
+      "Aquí arriba no hay adónde huir: la próxima nave tardará semanas y, hasta entonces, quien lo hizo respira el mismo aire que tú.",
+      "Los recicladores siguen zumbando como si nada hubiera pasado. Desde cada escotilla te observa alguien de la tripulación, y todos tienen alguna razón para no mirarte a los ojos.",
+      "Más allá del cristal, la Tierra sigue girando, indiferente. Dentro, el silencio pesa más que la ingravidez, y alguien cuenta los minutos que tardarás en descubrirlo."
+    ]
+  }
+}

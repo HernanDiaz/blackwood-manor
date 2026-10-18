@@ -1,5 +1,5 @@
-// Generated worlds: each investigation is a case file (see case-file.mjs) stored in the save.
-import { methodCatalog } from './method-catalog.mjs';
+// Investigations in the worlds: each one is a case file (see case-file.mjs) stored in the save
+// with the player's progress. A save needs nothing else to be played.
 import {
   emptyProgress,
   restoreProgress,
@@ -7,102 +7,65 @@ import {
   discoverClue,
   judgeAccusation,
 } from './investigation.mjs';
-import {
-  CASE_FORMAT,
-  CASE_REVISION,
-  normalizeCaseFile,
-  hydrateCase,
-  worldFromCase,
-} from './case-file.mjs';
-import { generateCaseFile, crimePhrase } from './case-generator.mjs';
-import { methodLabel } from './method-catalog.mjs';
+import { CASE_FORMAT, normalizeCaseFile, hydrateCase } from './case-file.mjs';
+import { generateCaseFile } from './case-generator.mjs';
+import { worldWeapons } from './world-file.mjs';
 import { placePhrase } from './spanish-prose.mjs';
-import { createLegacyCase, legacyCaseFile } from './legacy-prototype-case.mjs';
 import { clock } from './random.mjs';
-export { prototypeRooms, prototypeMethods } from './prototype-worlds.mjs';
-export { clock, worldFromCase, CASE_FORMAT, methodLabel };
+export { clock, CASE_FORMAT, worldWeapons };
 
-function selection(options) {
-  return {
-    seed:
-      options.seed ||
-      Array.from(globalThis.crypto.getRandomValues(new Uint32Array(2)), n =>
-        n.toString(16).padStart(8, '0'),
-      ).join(''),
-    previousMethodId: options.previousMethodId || '',
-    previousPersonId: options.previousPersonId || '',
-    forcedMethodId: options.forcedMethodId || '',
-  };
+export const SAVE_FORMAT = 'mundos-partida';
+const randomSeed = () =>
+  Array.from(globalThis.crypto.getRandomValues(new Uint32Array(2)), n =>
+    n.toString(16).padStart(8, '0'),
+  ).join('');
+// The playable case of a save.
+export function createPrototypeCase(state) {
+  const c = hydrateCase(normalizeCaseFile(state.case));
+  if (state.caseId !== c.id) throw Error('La definición del caso no coincide con el guardado');
+  return c;
 }
-// The playable case of a save, or a newly generated one when there is no case file yet.
-export function createPrototypeCase(data, state) {
-  if (state?.case) {
-    const c = hydrateCase(normalizeCaseFile(state.case));
-    if (state.caseId && state.caseId !== c.id)
-      throw Error('La definición del caso no coincide con el guardado');
-    return c;
-  }
-  return hydrateCase(generateCaseFile(data, state));
-}
-function worldId(data) {
-  return data && !data.custom ? data.setting || 'scifi' : 'custom';
-}
-// options.caseFile starts the investigation from an imported or edited case file.
-export function newPrototype(data, options = {}) {
-  const chosen = selection(options),
-    file = options.caseFile ? normalizeCaseFile(options.caseFile) : generateCaseFile(data, chosen),
+// A new investigation in a world, or from an imported case file (options.caseFile).
+export function newPrototype(world, options = {}) {
+  const file = options.caseFile
+      ? normalizeCaseFile(options.caseFile)
+      : generateCaseFile(world, {
+          seed: options.seed || randomSeed(),
+          previousMethodId: options.previousMethodId || '',
+          previousPersonId: options.previousPersonId || '',
+          forcedMethodId: options.forcedMethodId || '',
+        }),
     c = hydrateCase(file);
   return {
-    version: 2,
-    worldId: options.worldId || worldId(data),
-    revision: CASE_REVISION,
-    ...chosen,
+    format: SAVE_FORMAT,
+    version: 1,
+    world: file.world,
     caseId: c.id,
     case: file,
     openingSeen: false,
     ...emptyProgress(c.scene.id),
   };
 }
-// Saves before case files (version 1) rebuild their case with the legacy generator and
-// become version 2; data must be the world they were created with.
-export function restorePrototype(data, raw) {
+export function restorePrototype(raw) {
   const s = typeof raw === 'string' ? JSON.parse(raw) : raw;
-  if (!s || ![1, 2].includes(s.version) || !Array.isArray(s.found) || !Array.isArray(s.chat))
-    throw Error('Guardado incompatible');
-  let file, legacyId;
-  if (s.version === 1) {
-    if (s.revision !== data?.revision) throw Error('Guardado orbital incompatible');
-    const old = createLegacyCase(data, s);
-    if (old.id !== s.caseId) throw Error('La definición del caso no coincide con el guardado');
-    file = normalizeCaseFile(legacyCaseFile(data, old));
-    legacyId = old.id;
-  } else file = normalizeCaseFile(s.case);
-  const c = hydrateCase(file);
-  if (s.version === 2 && s.caseId !== c.id)
-    throw Error('La definición del caso no coincide con el guardado');
-  const knownIds = [c.id, legacyId].filter(Boolean);
+  if (
+    !s ||
+    s.format !== SAVE_FORMAT ||
+    s.version !== 1 ||
+    !Array.isArray(s.found) ||
+    !Array.isArray(s.chat)
+  )
+    throw Error('No es una partida compatible');
+  const file = normalizeCaseFile(s.case),
+    c = hydrateCase(file);
+  if (s.caseId !== c.id) throw Error('La definición del caso no coincide con el guardado');
   return {
-    version: 2,
-    worldId: typeof s.worldId === 'string' ? s.worldId.slice(0, 20) : worldId(data),
-    revision: CASE_REVISION,
-    ...selection({ ...s, seed: /^[a-zA-Z0-9-]{1,64}$/.test(s.seed) ? s.seed : undefined }),
+    format: SAVE_FORMAT,
+    version: 1,
+    world: file.world,
     caseId: c.id,
     case: file,
     openingSeen: s.openingSeen === true,
-    ...(knownIds.includes(s.opening?.caseId) &&
-    ['arrival', 'tension'].every(
-      k => typeof s.opening[k] === 'string' && s.opening[k].length <= 650,
-    )
-      ? {
-          opening: {
-            caseId: c.id,
-            arrival: s.opening.arrival,
-            tension: s.opening.tension,
-            source: s.opening.source === 'local-llm' ? 'local-llm' : 'engine',
-          },
-        }
-      : {}),
-    ...(knownIds.includes(s.imageSet) ? { imageSet: s.imageSet } : {}),
     ...restoreProgress(caseView(c), s),
   };
 }
@@ -143,26 +106,19 @@ function caseView(c) {
     people: c.people,
     rooms: c.rooms,
     startRoom: c.scene.id,
-    methods: methodCatalog.map(m => m.id),
+    methods: c.weapons.map(w => w.method),
     clues: c.clues,
     facts: c.facts,
     solution: { person: c.culprit.id, method: c.method.id, room: c.scene.id, proof: c.proof },
     messages,
   };
 }
-const delivery = {
-  p1: ['Lo explicaré con calma. ', 'Escucha este detalle. '],
-  p2: ['Vamos por partes. ', 'Hay un detalle importante. '],
-  p3: ['Seamos precisos. ', 'Conviene distinguir los hechos. '],
-  p4: ['Escucha. ', 'Te lo digo sin rodeos. '],
-  p5: ['Lo diré con claridad. ', 'Sin rodeos. '],
-};
 export function prototypeOptions(c, state, person, topic) {
   if (voiceTopics.includes(topic)) return prototypeVoice(c, person, topic);
   const fact = prototypeFacts(c, state, person).find(f => f.id === topic);
   if (!fact) return [];
-  // Case files carry several wordings; older ones fall back to the voice lead-ins.
-  return fact.variants?.length ? fact.variants : delivery[person].map(lead => lead + fact.text);
+  // Several wordings of the same statement; a hand-written case may give only one.
+  return fact.variants?.length ? fact.variants : [fact.text];
 }
 // Rotates the wordings, so asking twice about the same thing does not repeat the answer.
 export function prototypeReply(c, state, person, topic) {
@@ -223,8 +179,8 @@ const topicRules = [
 ];
 export function inferPrototypeTopic(question, c = null) {
   const q = plain(question);
-  const objectWords = c?.method?.object
-    ? plain(c.method.object)
+  const objectWords = c?.method?.weapon
+    ? plain(c.method.weapon)
         .split(/\s+/)
         .filter(w => w.length >= 5)
     : [];
@@ -242,6 +198,6 @@ export function accusePrototype(c, state, { person, method, room, evidence }) {
 export function prototypeResolution(c, state) {
   const title = id => '“' + c.clues.find(x => x.id === id).title + '”';
   return state.result === 'won'
-    ? `${c.culprit.name} mató a ${c.victim.name} en ${placePhrase(c.scene)} a las ${clock(c.timing.crimeMinute)}, ${crimePhrase(c.method.id) || 'mediante ' + methodLabel(c.method.id).toLocaleLowerCase('es')}. ${c.motive} Lo demuestran su móvil (${title(c.proof[0][0])}), su acceso al arma (${title(c.proof[1][0])}) y su coartada desmentida (${title(c.proof[2][0])}).`
+    ? `${c.culprit.name} mató a ${c.victim.name} en ${placePhrase(c.scene)} a las ${clock(c.timing.crimeMinute)}, ${c.method.phrase}. ${c.motive} Lo demuestran su móvil (${title(c.proof[0][0])}), su acceso al arma (${title(c.proof[1][0])}) y su coartada desmentida (${title(c.proof[2][0])}).`
     : 'La acusación no se sostiene. Necesitas a la persona que reúne móvil, acceso al arma y una coartada desmentida, con una prueba de cada cosa. Puedes reabrir la investigación conservando tus hallazgos.';
 }

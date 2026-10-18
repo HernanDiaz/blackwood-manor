@@ -1,76 +1,47 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import {
-  methodCatalog,
-  settings,
-  compatibleMethods,
-  methodRoomPairs,
-  chooseMethod,
-  methodTiming,
-  methodEvidence,
-} from '../src/method-catalog.mjs';
-test('twenty methods cover four settings with coherent evidence, time and objects', () => {
+import { methodCatalog, findMethod, fitsRoom } from '../src/method-catalog.mjs';
+import { chooseWeapon } from '../src/case-generator.mjs';
+import { worldWeapons } from '../src/world-file.mjs';
+import { rng } from '../src/random.mjs';
+import { allWorlds } from './worlds-fixture.mjs';
+
+test('twenty methods with a family, a delay and the scene they need', () => {
   assert.equal(methodCatalog.length, 20);
   assert.equal(new Set(methodCatalog.map(m => m.id)).size, 20);
   for (const m of methodCatalog) {
-    assert(m.name && m.object && m.finding && m.trace && m.imagePrompt);
-    assert(m.requiresPresence);
-    assert(m.settings.every(s => settings[s]));
-    assert(methodEvidence(m, 'Testigo', '22:15').includes(m.object));
-    const timing = methodTiming(m, 1335);
-    assert(timing.deathMinute > timing.crimeMinute);
-    assert(timing.windowStart <= timing.crimeMinute && timing.windowEnd > timing.deathMinute);
+    assert.ok(m.family);
+    assert.ok(Number.isInteger(m.delayMinutes) && m.delayMinutes >= 0);
+    assert.ok(Array.isArray(m.roomTags));
   }
+  assert.equal(findMethod('nope'), undefined);
 });
-test('compatibility rejects anachronisms, absent magic and missing scene features', () => {
-  const medieval = compatibleMethods('medieval').map(m => m.id);
-  assert(medieval.includes('sword'));
-  assert(!medieval.includes('laser'));
-  assert(!medieval.includes('revolver'));
-  assert(
-    !compatibleMethods('fantasy', {
-      capabilities: ['ordinary-tools', 'medieval-weapons'],
-      roomTags: ['interior'],
-    }).some(m => m.id === 'artifact'),
-  );
-  assert(
-    !compatibleMethods('scifi').some(m => ['air', 'cryo', 'robot', 'hatch', 'fall'].includes(m.id)),
-  );
-  assert(
-    compatibleMethods('scifi', {
-      roomTags: ['interior', 'industrial', 'life-support', 'cryogenic', 'elevated'],
-    }).some(m => m.id === 'cryo'),
-  );
-  assert.throws(() => compatibleMethods('random'));
-  assert.throws(() =>
-    methodTiming(
-      methodCatalog.find(m => m.id === 'drink'),
-      1430,
-    ),
-  );
+test('a method fits a room only when the room has every tag it needs', () => {
+  assert.ok(fitsRoom('knife', { tags: [] }));
+  assert.ok(!fitsRoom('fall', { tags: [] }));
+  assert.ok(fitsRoom('fall', { tags: ['elevated'] }));
+  assert.ok(!fitsRoom('robot', { tags: ['life-support'] }));
+  assert.ok(!fitsRoom('nope', { tags: ['elevated'] }));
 });
-test('method selection prefers a new family and never escapes scene compatibility', () => {
-  for (const setting of Object.keys(settings)) {
-    let previous;
+test('every world can use all its weapons and keeps out anachronisms', () => {
+  for (const w of allWorlds()) assert.equal(worldWeapons(w).length, w.weapons.length, w.id);
+  const ids = id =>
+    allWorlds()
+      .find(w => w.id === id)
+      .weapons.map(x => x.method);
+  assert.ok(!ids('torre-umbria').some(m => ['revolver', 'laser', 'artifact'].includes(m)));
+  assert.ok(!ids('villa-bellavista').some(m => ['sword', 'plasma', 'alchemy'].includes(m)));
+  assert.ok(ids('estacion-orbital').includes('cryo'));
+});
+test('weapon choice prefers a new family', () => {
+  for (const w of allWorlds()) {
+    let previous = '';
     for (let i = 0; i < 30; i++) {
-      const m = chooseMethod(setting, {}, previous?.id, () => ((i * 7) % 29) / 29);
-      assert(compatibleMethods(setting).some(x => x.id === m.id));
-      if (previous) assert.notEqual(m.family, previous.family);
-      previous = m;
+      const weapon = chooseWeapon(w, rng(w.id + i), { previousMethodId: previous });
+      if (previous) assert.notEqual(findMethod(weapon.method).family, findMethod(previous).family);
+      previous = weapon.method;
     }
   }
-  assert.throws(() => chooseMethod('scifi', { capabilities: [], roomTags: [] }));
-});
-test('method-room choices validate the joint combination rather than independent plausible ids', () => {
-  const rooms = [
-      { id: 'bridge', tags: ['interior', 'life-support'] },
-      { id: 'hangar', tags: ['interior', 'industrial'] },
-      { id: 'bunks', tags: ['interior'] },
-    ],
-    pairs = methodRoomPairs('scifi', rooms);
-  assert(pairs.some(p => p.id === 'air@bridge'));
-  assert(!pairs.some(p => p.id === 'air@bunks'));
-  assert(pairs.some(p => p.id === 'robot@hangar'));
-  assert(!pairs.some(p => p.id === 'robot@bridge'));
-  assert(!pairs.some(p => p.methodId === 'artifact'));
+  const castle = allWorlds().find(w => w.id === 'torre-umbria');
+  assert.throws(() => chooseWeapon(castle, rng('x'), { forcedMethodId: 'laser' }));
 });

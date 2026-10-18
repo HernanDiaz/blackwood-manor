@@ -1,0 +1,731 @@
+{
+  "format": "mundos-mundo",
+  "version": 1,
+  "id": "torre-umbria",
+  "label": "Medieval",
+  "title": "El secreto de Torre Umbría",
+  "premise": "Torre Umbría, un castillo de piedra en las sierras de Castilla, lleva semanas aislado por la nieve de un invierno cruel. Bajo su techo viven el señor del lugar, la gente de su casa y los rencores que el frío ha ido amontonando. Esta noche, la campana de la capilla toca a muerto.",
+  "art": {
+    "style": "painterly 14th-century Castilian illustration, flickering torchlight and candlelight against cold winter-blue shadows, rough stone and timber textures, ochre, oxblood and slate-grey palette, realistic proportions"
+  },
+  "victim": {
+    "name": "Gonzalo de Umbría",
+    "role": "señor de Torre Umbría",
+    "gender": "m",
+    "description": "Señor de Torre Umbría y de las aldeas del valle, viudo, veterano de las campañas de la frontera. Duro con sus vasallos, desconfiado con su propia casa y avaro con todo lo que no fuera su honra, gobernaba el castillo con mano de hierro y repasaba en persona las cuentas que otros preferían no mirar."
+  },
+  "people": [
+    {
+      "id": "p1",
+      "name": "Leonor del Valle",
+      "role": "mayordoma",
+      "gender": "f",
+      "age": 46,
+      "personality": "Fría, exacta y orgullosa de su oficio: de ella dependen las llaves, la despensa y las cuentas menudas de la casa. Habla de vos, en frases cortas y completas, sin alzar nunca la voz. Corrige a los demás con una sola palabra, invoca la costumbre de la casa como si fuera ley y no concede nada que no se le demuestre. Nunca inventa: cuando no sabe algo, lo dice.",
+      "appearance": "Mujer de mediana edad, alta y muy erguida, de rostro enjuto, labios finos y ojos grises que no parpadean. Lleva el pelo castaño con canas recogido bajo una toca blanca de lino almidonado. Viste un brial de lana gris oscura, ceñido con un cinturón de cuero del que cuelga un pesado manojo de llaves de hierro.",
+      "image": "/worlds/torre-umbria/person-p1.webp",
+      "imagePrompt": "portrait, head and shoulders, plain dark background, a stern tall woman in her mid-forties, gaunt face, thin lips, unblinking grey eyes, greying chestnut hair tucked under a starched white linen wimple, dark grey wool medieval gown, leather belt with a heavy ring of iron keys visible at the bottom edge, rigid upright posture",
+      "voice": {
+        "alibi.claim": [
+          "Estuve en {place} de {from} a {to}. Lo digo una vez y no cambiará.",
+          "De {from} a {to}, en {place}. Así fue, y así os lo repetiré cuantas veces haga falta."
+        ],
+        "alibi.alone": [
+          "Estuve sola en {place} de {from} a {to}. Mi oficio no necesita compañía.",
+          "De {from} a {to} estuve en {place}, y nadie me acompañó. No suelo buscar conversación."
+        ],
+        "alibi.record": [
+          "Estuve en {place} de {from} a {to}. Al salir encontré a {victim}, y esa imagen no se me borrará.",
+          "De {from} a {to}, en {place}. Al salir encontré a {victim}. No tengo nada más que añadir."
+        ],
+        "alibi.pair": [
+          "Estuve en {place} con {partner}, de {from} a {to}. Preguntadle y os dirá lo mismo.",
+          "De {from} a {to}, {partner} y yo estuvimos en {place}. No nos movimos de allí.",
+          "{partner} y yo estuvimos en {place} de {from} a {to}. Es la verdad, y es sencilla."
+        ],
+        "relation": [
+          "Serví a {victim} durante muchos años. Era exigente, y yo también lo soy.",
+          "Con {victim} hablaba de llaves, de provisiones y de cuentas. De nada más.",
+          "Conocía a {victim} mejor que su confesor, y aun así nunca supe del todo lo que pensaba."
+        ],
+        "secret.culprit": [
+          "Sí, {victim} lo sabía. No os negaré lo que está escrito, pero tampoco cargaré con lo que no hice.",
+          "Lo que dice ese papel es cierto, y {victim} lo había descubierto. Eso es todo lo que admito."
+        ],
+        "secret.weak": [
+          "Un roce con {victim}, nada más. En una casa grande los hay cada semana.",
+          "Sí, {victim} me lo reprochó. Lo acepté, como acepto todo lo que se me manda."
+        ],
+        "secret.neutral": [
+          "Eso es un papel de la casa, de los que pasan por mis manos a diario.",
+          "Un papel corriente. Podría enseñaros un arcón lleno de otros iguales."
+        ],
+        "link.access": [
+          "Sí, podía llegar a {access}. Tengo las llaves de casi todo, pero no soy la única que entra y sale.",
+          "Tenía acceso a {access}, como otros en este castillo. Las puertas no se abren solas, pero se abren."
+        ],
+        "link.none": [
+          "No tenía acceso a {access}. Eso no pasa por mis llaves.",
+          "Nunca he tenido {access} a mi alcance. Comprobadlo si dudáis."
+        ],
+        "timeline.culprit": [
+          "Puede que me equivocara con la hora; ni yo llevo la cuenta de cada campanada. Pero no entré en {scene}.",
+          "Quizá confundí el momento. Eso no me pone dentro de {scene}, y no estuve allí."
+        ],
+        "timeline.alone": [
+          "Nadie me vio, es cierto. Estaba sola, como casi siempre a esas horas.",
+          "No tengo testigos. Tengo mi palabra, que en esta casa siempre ha valido."
+        ],
+        "timeline.record": [
+          "Consultad {record}: allí constan mi entrada y mi salida, sin borrones.",
+          "Todo está en {record}. Yo no discuto con lo que está escrito."
+        ],
+        "timeline.pair": [
+          "{Guardian} vigilaba la puerta. Preguntadle a él.",
+          "Hablad con {guardian}. Nos vio entrar y salir, y no tiene motivos para mentir."
+        ],
+        "seen.discovery": [
+          "Encontré a {victim} en {scene} a las {time}. Di la alarma sin perder un instante.",
+          "A las {time} entré en {scene} y vi a {victim}. Llamé a la guardia de inmediato."
+        ],
+        "seen.pair": [
+          "Estuve en {place} con {partner}. Nadie más cruzó esa puerta.",
+          "Con {partner}, en {place}. Si hubiera entrado alguien, me habría dado cuenta."
+        ],
+        "seen.nothing": [
+          "No vi nada fuera de su sitio. Y creedme: me habría dado cuenta.",
+          "Nada. Ni una puerta abierta ni una luz donde no debiera haberla."
+        ],
+        "object.own": [
+          "{Item} es {mine}. {It} perdí esta mañana en {scene}, y eso que yo nunca pierdo nada.",
+          "Sí, {item} es {mine}. {It} perdí esta mañana en {scene}. Os agradeceré que me {it} devolváis."
+        ],
+        "identity": [
+          "Soy {name}, {role} de esta casa. Las llaves y las cuentas pasan por mis manos.",
+          "Me llamo {name} y soy {role}. Preguntad con orden y os responderé con orden."
+        ],
+        "social": [
+          "Sentaos, si queréis. En esta casa las cosas se hacen con calma, incluso hoy.",
+          "Una desgracia no excusa el desorden. Decid qué necesitáis."
+        ],
+        "unknown": [
+          "Eso no es asunto mío, y no hablo de lo que no me toca.",
+          "No lo sé. Y cuando no sé algo, no lo invento."
+        ]
+      }
+    },
+    {
+      "id": "p2",
+      "name": "Martín de Olmo",
+      "role": "escribano",
+      "gender": "m",
+      "age": 33,
+      "personality": "Nervioso, minucioso y hablador: cuando se pone tenso, llena el silencio de explicaciones que nadie le ha pedido. Habla de vos, con frases largas, muchas disculpas y algún latinajo de clérigo aprendido en la escuela de la catedral. Se fía más de lo escrito que de lo dicho y se ofrece a ponerlo todo por escrito. Exclama «Dios me valga» cuando algo le supera.",
+      "appearance": "Hombre joven y delgado, algo encorvado de tanto inclinarse sobre el atril. Cara pálida y lampiña, nariz larga, ojos castaños miopes que entorna al mirar. Pelo negro cortado en redondo. Viste una saya larga de paño pardo con mangas manchadas de tinta, una capa corta de lana y lleva los dedos teñidos de negro.",
+      "image": "/worlds/torre-umbria/person-p2.webp",
+      "imagePrompt": "portrait, head and shoulders, plain dark background, a thin pale young man in his early thirties, slightly hunched, clean-shaven long-nosed face, squinting short-sighted brown eyes, black hair cut in a round bowl style, long brown wool tunic with ink-stained sleeves, short woollen cape, ink-blackened fingertips raised nervously near his chin",
+      "voice": {
+        "alibi.claim": [
+          "Estuve en {place} de {from} a {to}. Lo recuerdo bien, porque me fijo en esas cosas.",
+          "De {from} a {to}, en {place}. Si queréis, os lo pongo por escrito ahora mismo."
+        ],
+        "alibi.alone": [
+          "Estuve solo en {place} de {from} a {to}. Nadie me hizo compañía, y sé que eso no me ayuda.",
+          "De {from} a {to} estuve en {place}, sin nadie más. Ojalá hubiera tenido un testigo, Dios me valga."
+        ],
+        "alibi.record": [
+          "Estuve en {place} de {from} a {to}; al salir encontré a {victim}. Dios me valga, todavía lo veo.",
+          "De {from} a {to} estuve en {place}. Al salir encontré a {victim}, y se me cayó el alma a los pies."
+        ],
+        "alibi.pair": [
+          "Estuve en {place} con {partner} de {from} a {to}. Os lo confirmará, estoy seguro.",
+          "{partner} y yo estuvimos en {place} de {from} a {to}. No nos separamos en todo ese rato."
+        ],
+        "relation": [
+          "{victim} me dictaba cartas casi a diario. Tenía prisa, mal genio y una memoria terrible para los agravios.",
+          "Entré al servicio de {victim} siendo muy joven. Le debo el oficio, eso no lo niego.",
+          "Con {victim} trataba más por escrito que de palabra. Es lo que tiene mi oficio."
+        ],
+        "secret.culprit": [
+          "Sí, es verdad, {victim} lo sabía. Lo escrito, escrito está. Pero eso no me convierte en un asesino.",
+          "No voy a negar ese papel; {victim} lo había descubierto. De ahí a mancharme las manos de sangre va un mundo."
+        ],
+        "secret.weak": [
+          "Ah, eso. Un desacuerdo con {victim}, sin más. Nadie mata por tan poco, os lo aseguro.",
+          "Sí, {victim} me lo echó en cara. Me dolió, lo confieso, pero se me pasó pronto."
+        ],
+        "secret.neutral": [
+          "Un papel de trámite, de los que se escriben cada día. No tiene nada de particular.",
+          "Mirad la letra, el sello, la forma: todo en regla. No esconde nada, creedme."
+        ],
+        "link.access": [
+          "Podía llegar a {access}, sí. Pero no era el único, ni mucho menos.",
+          "Tenía acceso a {access}, lo reconozco. Como otros, y anotadlo así, os lo ruego."
+        ],
+        "link.none": [
+          "Yo no podía llegar a {access}. Mi oficio es la pluma, no eso.",
+          "Nunca he tenido acceso a {access}. Ni sabría qué hacer con ello, Dios me valga."
+        ],
+        "timeline.culprit": [
+          "Puede que me liara con las horas; en invierno todos los días se parecen. Pero no entré en {scene}.",
+          "Me habré equivocado al recordarlo, Dios me perdone. Lo que sé es que no puse un pie en {scene}."
+        ],
+        "timeline.alone": [
+          "Nadie me vio, es cierto. Estaba solo, y ahora lo lamento más que nunca.",
+          "No tengo a nadie que lo confirme. Ojalá lo tuviera."
+        ],
+        "timeline.record": [
+          "Mirad {record}. Está todo anotado, y lo anotado no miente.",
+          "Todo consta en {record}, entrada y salida. Me fío más de eso que de mi memoria."
+        ],
+        "timeline.pair": [
+          "{Guardian} estaba en la puerta. Os lo confirmará, seguro.",
+          "Preguntad a {guardian}: nos vio entrar y salir, y tiene buena vista."
+        ],
+        "seen.discovery": [
+          "A las {time} entré en {scene} y vi a {victim}. Grité como no había gritado nunca para dar la alarma.",
+          "Encontré a {victim} en {scene} a las {time}. Di la alarma; no recuerdo ni con qué palabras."
+        ],
+        "seen.pair": [
+          "Estuve en {place} con {partner}. Nadie más entró, de eso estoy seguro.",
+          "Con {partner}, en {place}. La puerta no se abrió ni una vez, y yo la tenía a la vista."
+        ],
+        "seen.nothing": [
+          "No vi nada extraño. Ojalá pudiera deciros otra cosa.",
+          "Nada que me llamara la atención, y mirad que me fijo en todo."
+        ],
+        "object.own": [
+          "¡{Item}! Es {mine}. {It} perdí esta mañana en {scene} y {it} he buscado por todas partes.",
+          "Sí, {item} es {mine}. {It} perdí esta mañana en {scene}; soy un desastre para estas cosas."
+        ],
+        "identity": [
+          "Me llamo {name}, para serviros. Soy {role}: copio, anoto y procuro no equivocarme.",
+          "{name}, {role} de esta casa. Si necesitáis algo por escrito, aquí me tenéis."
+        ],
+        "social": [
+          "Dios me valga, qué noche. Perdonad, hablo de más cuando estoy nervioso. Preguntad.",
+          "Me tiemblan las manos, y no es del frío. ¿Qué queréis saber?"
+        ],
+        "unknown": [
+          "De eso no hay nada escrito, y lo que no está escrito yo no lo sé.",
+          "Verba volant, como dicen los clérigos: las palabras vuelan. De eso no sé nada cierto."
+        ]
+      }
+    },
+    {
+      "id": "p3",
+      "name": "Inés de Alba",
+      "role": "boticaria",
+      "gender": "f",
+      "age": 55,
+      "personality": "Serena, seca y con un humor áspero que no se molesta en suavizar. Ha visto nacer y morir a media comarca y nada la escandaliza. Habla de vos, claro y sin rodeos, con comparaciones sacadas de las hierbas, las fiebres y los cuerpos. No adula a nadie, no tiene prisa y remata sus frases con un «ya os lo digo yo».",
+      "appearance": "Mujer madura, robusta y de manos grandes y enrojecidas. Cara ancha y curtida, con arrugas profundas alrededor de unos ojos negros vivos. Pelo gris trenzado bajo un pañuelo de lino crudo. Viste un sayo de lana parda con un delantal de cuero gastado y una bolsa de hierbas al costado.",
+      "image": "/worlds/torre-umbria/person-p3.webp",
+      "imagePrompt": "portrait, head and shoulders, plain dark background, a sturdy woman in her mid-fifties, broad weathered face with deep wrinkles, lively black eyes, grey braided hair under an undyed linen kerchief, plain brown wool dress with a worn leather apron, a small herb pouch at her side, large reddened hands, calm dry expression",
+      "voice": {
+        "alibi.claim": [
+          "Estuve en {place} de {from} a {to}. No tengo más que contar.",
+          "De {from} a {to} estuve en {place}. Ya os lo digo yo, que lo sé."
+        ],
+        "alibi.alone": [
+          "Estuve sola en {place}, de {from} a {to}. Prefiero la compañía de mis tarros.",
+          "De {from} a {to} estuve en {place}, sin nadie. Así me gusta estar."
+        ],
+        "alibi.record": [
+          "Estuve en {place} de {from} a {to}. Al salir encontré a {victim}, y supe enseguida que no había remedio.",
+          "De {from} a {to}, en {place}. Al salir encontré a {victim}; he visto muchos muertos, pero ese no lo esperaba."
+        ],
+        "alibi.pair": [
+          "Estuve en {place} con {partner} de {from} a {to}. Preguntadle; tiene buena memoria.",
+          "De {from} a {to}, {partner} y yo estuvimos en {place}. No nos movimos de allí."
+        ],
+        "relation": [
+          "Curé a {victim} de más fiebres de las que querría recordar. Era mal enfermo.",
+          "{victim} me pagaba tarde y me hacía caso todavía más tarde.",
+          "Conocía a {victim} por dentro y por fuera, como se conoce a cualquiera a quien se ha sangrado."
+        ],
+        "secret.culprit": [
+          "Sí, {victim} lo sabía. No lo niego. Pero saber una cosa no mata a nadie.",
+          "Es cierto lo que pone ahí, y {victim} lo había descubierto. A partir de ahí, demostrad lo que queráis."
+        ],
+        "secret.weak": [
+          "Un roce con {victim}, como los que tenía con media casa. Eso se cura solo.",
+          "Sí, {victim} y yo discutimos por eso. A mi edad ya no se mata por tan poca cosa."
+        ],
+        "secret.neutral": [
+          "Eso es un papel sin sustancia. Ni para envolver hierbas vale.",
+          "Nada. Un papel corriente, de los que se olvidan al día siguiente."
+        ],
+        "link.access": [
+          "Podía llegar a {access}, claro. Como otros que entran y salen sin pedir permiso.",
+          "Sí, tenía acceso a {access}. No era la única, ya os lo digo yo."
+        ],
+        "link.none": [
+          "No tenía acceso a {access}. Lo mío son los tarros y los morteros.",
+          "{Access} nunca ha estado a mi alcance. Preguntad a quien se ocupa de ello."
+        ],
+        "timeline.culprit": [
+          "A mi edad las horas se confunden; puede que me equivocara. Pero en {scene} no entré.",
+          "Quizá me trabuqué con el momento. Eso no quiere decir que estuviera en {scene}."
+        ],
+        "timeline.alone": [
+          "Nadie me vio. Estaba sola, como casi siempre.",
+          "No tengo testigos, es verdad. Las hierbas no hablan."
+        ],
+        "timeline.record": [
+          "Mirad {record}. Ahí constan mi entrada y mi salida.",
+          "Consultad {record}; dice lo mismo que yo, y con mejor letra."
+        ],
+        "timeline.pair": [
+          "{Guardian} vigilaba la puerta. Él os lo dirá.",
+          "Preguntad a {guardian}. Nos vio entrar y salir, y no es tan tonto como parece."
+        ],
+        "seen.discovery": [
+          "Encontré a {victim} en {scene} a las {time}. Supe que estaba muerto antes de tocarlo, y di la alarma.",
+          "A las {time} entré en {scene} y vi a {victim}. Di la alarma; ya no había nada que curar."
+        ],
+        "seen.pair": [
+          "Estuve en {place} con {partner}. No entró nadie más, ni para pedir un remedio.",
+          "Con {partner}, en {place}. Por esa puerta no pasó ni el aire."
+        ],
+        "seen.nothing": [
+          "No vi nada raro. Tengo buena vista, pero no adivino.",
+          "Nada fuera de lo normal. Y lo normal en esta casa ya es bastante."
+        ],
+        "object.own": [
+          "{Item} es {mine}. {It} perdí esta mañana en {scene}; la cabeza ya no me da para todo.",
+          "Sí, {item} es {mine}. {It} perdí esta mañana en {scene}. Devolvédme{it}, haced el favor."
+        ],
+        "identity": [
+          "Soy {name}, {role}. Si os duele algo, después hablamos.",
+          "Me llamo {name} y soy {role}: preparo los remedios de esta casa y algún que otro jarabe para la tos."
+        ],
+        "social": [
+          "Preguntad sin rodeos. A mi edad no tengo paciencia para ellos.",
+          "Mal invierno, y peor noche. Bebed algo caliente y preguntad."
+        ],
+        "unknown": [
+          "De eso no sé, y no voy a adivinarlo para quedar bien.",
+          "Eso preguntádselo a otro. Yo sé de hierbas y de cuerpos, no de chismes."
+        ]
+      }
+    },
+    {
+      "id": "p4",
+      "name": "Rodrigo Fierro",
+      "role": "capitán de la guardia",
+      "gender": "m",
+      "age": 42,
+      "personality": "Lacónico, desconfiado y leal a su manera, un soldado viejo de la frontera que mide las palabras como las raciones. Habla de vos por obligación, en frases de tres o cuatro palabras, sin adornos ni excusas. No le gustan las preguntas ni los papeles. Remata con un «Así fue» o un «Nada más» y espera en silencio la siguiente pregunta.",
+      "appearance": "Hombre fornido, de hombros anchos y cuello de toro. Cara curtida y llena de pequeñas cicatrices, con una muy marcada que le corta la ceja izquierda. Barba corta, negra y entrecana, pelo rapado. Viste un perpunte acolchado de color pardo sobre una cota de malla, con un tahalí de cuero cruzado al pecho.",
+      "image": "/worlds/torre-umbria/person-p4.webp",
+      "imagePrompt": "portrait, head and shoulders, plain dark background, a burly broad-shouldered man in his early forties, thick neck, weathered face with small scars and a prominent scar cutting through his left eyebrow, short black beard streaked with grey, close-cropped hair, padded brown gambeson over a mail shirt, leather baldric across the chest, hard silent stare",
+      "voice": {
+        "alibi.claim": [
+          "En {place}. De {from} a {to}.",
+          "Estuve en {place} de {from} a {to}. Así fue."
+        ],
+        "alibi.alone": [
+          "En {place}, de {from} a {to}. Solo.",
+          "Estuve solo en {place} de {from} a {to}. No necesito niñera."
+        ],
+        "alibi.record": [
+          "En {place}, de {from} a {to}. Al salir, encontré a {victim}.",
+          "Estuve en {place} de {from} a {to}. Salí y encontré a {victim}. Así fue."
+        ],
+        "alibi.pair": [
+          "En {place}, con {partner}. De {from} a {to}.",
+          "{partner} y yo, en {place}, de {from} a {to}. Preguntad."
+        ],
+        "relation": [
+          "Serví a {victim}. Mandaba él; obedecía yo.",
+          "{victim} me pagaba y yo guardaba sus muros. Nada más.",
+          "Conocía a {victim} de campaña. En la guerra se conoce a la gente."
+        ],
+        "secret.culprit": [
+          "Es verdad. {victim} lo sabía. Nada más.",
+          "Lo que pone ahí es cierto, y {victim} lo descubrió. No maté a nadie por eso."
+        ],
+        "secret.weak": [
+          "Un roce con {victim}. Nada que se arregle con acero.",
+          "Sí, {victim} me llamó la atención. Lo encajé, como un soldado."
+        ],
+        "secret.neutral": ["Papeles. No dicen nada.", "Eso no importa. Siguiente."],
+        "link.access": [
+          "Podía llegar a {access}. Yo y otros.",
+          "Tenía acceso a {access}, sí. No era el único."
+        ],
+        "link.none": ["No tenía acceso a {access}.", "¿{Access}? No. Nunca."],
+        "timeline.culprit": [
+          "Me equivoqué de hora, quizá. No entré en {scene}.",
+          "Las guardias de noche se mezclan. Pero en {scene} no entré."
+        ],
+        "timeline.alone": ["Nadie me vio. Estaba solo.", "Sin testigos. Es lo que hay."],
+        "timeline.record": ["Está en {record}. Miradlo.", "{Record} lo dice. Entrada y salida."],
+        "timeline.pair": [
+          "{Guardian} estaba en la puerta. Preguntadle.",
+          "Que hable {guardian}. Nos vio."
+        ],
+        "seen.discovery": [
+          "Encontré a {victim} en {scene} a las {time}. Di la alarma.",
+          "A las {time}, en {scene}. Vi a {victim} y toqué a rebato."
+        ],
+        "seen.pair": [
+          "En {place}, con {partner}. No entró nadie.",
+          "Con {partner}, en {place}. Nadie entró. Nadie salió."
+        ],
+        "seen.nothing": ["Nada.", "No vi nada raro. Y mirar es mi oficio."],
+        "object.own": [
+          "{Item} es {mine}. {It} perdí esta mañana en {scene}.",
+          "Sí. {Item} es {mine}. {It} perdí esta mañana en {scene}. Devolvédme{it}."
+        ],
+        "identity": ["{name}, {role}. Al grano.", "Soy {name}, {role}. Decid qué queréis."],
+        "social": ["Preguntad. Rápido.", "Mala noche. Al grano."],
+        "unknown": ["No lo sé.", "Eso no es cosa mía. Siguiente pregunta."]
+      }
+    },
+    {
+      "id": "p5",
+      "name": "Aldara del Río",
+      "role": "juglaresa",
+      "gender": "f",
+      "age": 24,
+      "personality": "Rápida, encantadora y descarada, una juglaresa que se gana el pan y el techo cantando en las mesas de los señores. Tutea a todo el mundo sin pedir permiso, habla con soltura, con gracia y con alguna rima improvisada, y lo convierte todo en coplas. Debajo de la sonrisa es desconfiada: sabe que nadie defiende a una juglaresa. Suelta un «ay» o un «mira» cuando algo le incomoda.",
+      "appearance": "Mujer joven, menuda y ágil, de cara pecosa, sonrisa ancha y ojos verdes que no se están quietos. Melena pelirroja y rizada sujeta con una cinta de colores. Viste una saya de lana teñida de rojo y verde, ya algo desteñida, una capa corta de viaje y lleva un laúd pequeño colgado a la espalda.",
+      "image": "/worlds/torre-umbria/person-p5.webp",
+      "imagePrompt": "portrait, head and shoulders, plain dark background, a small lively young woman in her mid-twenties, freckled face, wide mischievous smile, restless green eyes, curly red hair tied with a colourful ribbon, faded red and green wool dress, short travelling cloak, the neck of a small medieval lute visible over her shoulder",
+      "voice": {
+        "alibi.claim": [
+          "Estuve en {place} de {from} a {to}. Palabra de juglaresa, que vale más de lo que dicen.",
+          "De {from} a {to}, en {place}. Así de sencillo, sin estribillo."
+        ],
+        "alibi.alone": [
+          "Estuve sola en {place} de {from} a {to}. Ni un mal público tenía.",
+          "De {from} a {to} estuve en {place}, sin nadie. Sola, por una vez en la vida."
+        ],
+        "alibi.record": [
+          "Estuve en {place} de {from} a {to}. Al salir encontré a {victim}, y se me fue la voz.",
+          "De {from} a {to}, en {place}. Al salir encontré a {victim}. Esa no la quiero cantar nunca."
+        ],
+        "alibi.pair": [
+          "Estuve en {place} con {partner} de {from} a {to}. Pregúntale, que no me dejará mentir.",
+          "{partner} y yo estuvimos en {place}, de {from} a {to}. Buena compañía, para variar."
+        ],
+        "relation": [
+          "{victim} me pagaba por cantar en su mesa y por no repetir lo que oía en ella.",
+          "Llegué con el invierno y {victim} me dejó quedarme. No es poco, para una como yo.",
+          "A {victim} le gustaban las canciones de batallas. A mí me gustaba su vino."
+        ],
+        "secret.culprit": [
+          "Vale, sí. {victim} lo sabía, y ese papel no miente. Pero de ahí a matar hay un buen trecho.",
+          "Es cierto lo que pone, y {victim} lo descubrió. ¿Y qué? Guardar un secreto no es matar a nadie."
+        ],
+        "secret.weak": [
+          "Ay, eso. Un disgusto con {victim}, nada más. Por cosas así no se mata: se canta.",
+          "Sí, {victim} se enfadó conmigo por eso. Se le pasaba enseguida; siempre se le pasaba."
+        ],
+        "secret.neutral": [
+          "Eso es papel mojado. Ni para una copla da.",
+          "¿Esto? No dice nada. Créeme, sé reconocer un secreto cuando lo veo."
+        ],
+        "link.access": [
+          "Podía llegar a {access}, sí. Y media casa también, no te creas.",
+          "Tenía acceso a {access}, no lo niego. No era la única, ni de lejos."
+        ],
+        "link.none": [
+          "¿{Access}? Ni me dejaban acercarme. Lo mío son las cuerdas del laúd.",
+          "No tenía acceso a {access}. Nadie le confía esas cosas a una juglaresa."
+        ],
+        "timeline.culprit": [
+          "Puede que me liara con la hora; yo mido el tiempo en canciones. Pero no entré en {scene}.",
+          "Me habré confundido, ¿vale? Eso no me mete en {scene}, que no pisé."
+        ],
+        "timeline.alone": [
+          "Nadie me vio, es verdad. Estaba sola, y ahora me arrepiento.",
+          "Sin testigos. Mala suerte la mía."
+        ],
+        "timeline.record": [
+          "Mira {record}. Ahí pone cuándo entré y cuándo salí.",
+          "Está en {record}, todo apuntado. Yo no sé leer, pero tú sí."
+        ],
+        "timeline.pair": [
+          "{Guardian} estaba en la puerta. Pregúntale a él.",
+          "Habla con {guardian}; nos vio entrar y salir. A mí nunca me quita el ojo de encima."
+        ],
+        "seen.discovery": [
+          "Encontré a {victim} en {scene} a las {time}. Grité tanto que se despertó media casa.",
+          "A las {time} entré en {scene} y vi a {victim}. Di la alarma como pude."
+        ],
+        "seen.pair": [
+          "Estuve en {place} con {partner}. Allí no entró nadie más, te lo juro.",
+          "Con {partner}, en {place}. Ni un alma más."
+        ],
+        "seen.nothing": [
+          "No vi nada, y eso que tengo buen ojo.",
+          "Nada raro. Si lo hubiera visto, ya te lo habría cantado."
+        ],
+        "object.own": [
+          "¡{Item}! Es {mine}. {It} perdí esta mañana en {scene}. ¿Me {it} devuelves?",
+          "Sí, {item} es {mine}. {It} perdí esta mañana en {scene} y no {it} encontraba por ninguna parte."
+        ],
+        "identity": [
+          "Soy {name}, {role}. Canto por la cena y duermo donde me dejan.",
+          "Me llaman {name}, y soy {role}. Si quieres una copla, luego; ahora pregunta."
+        ],
+        "social": [
+          "Ay, qué cara traes. Pregunta, que no muerdo.",
+          "Una noche así no la arregla ni la mejor canción. ¿Qué quieres saber?"
+        ],
+        "unknown": [
+          "Eso no lo sé, y mira que yo me entero de todo.",
+          "Ni idea. Si me lo inventara, te lo cantaría mejor."
+        ]
+      }
+    }
+  ],
+  "rooms": [
+    {
+      "id": "r1",
+      "name": "Gran salón",
+      "article": "el",
+      "description": "Una chimenea donde cabría un buey caldea a medias la sala, y el humo se pega a los tapices de caza y a las vigas ennegrecidas. Huele a leña de encina, a sebo de velas y a los juncos secos esparcidos por el suelo.",
+      "tags": [],
+      "image": "/worlds/torre-umbria/room-r1.webp",
+      "imagePrompt": "interior, wide shot, no people, the great hall of a 14th-century Castilian castle, huge stone fireplace with a low fire, smoke-blackened timber ceiling beams, faded hunting tapestries on the walls, long trestle table with benches, tallow candles, dried rushes strewn on the stone floor"
+    },
+    {
+      "id": "r2",
+      "name": "Capilla",
+      "article": "la",
+      "description": "Una nave estrecha de piedra con un retablo de tablas doradas y una lámpara de aceite que nunca se apaga. Hace más frío que en el patio, y el olor a cera y a incienso viejo se queda en la ropa.",
+      "tags": [],
+      "image": "/worlds/torre-umbria/room-r2.webp",
+      "imagePrompt": "interior, wide shot, no people, a narrow stone castle chapel, small gilded Gothic altarpiece of painted wooden panels, a single hanging oil lamp glowing red, beeswax candles on the altar, worn stone floor, cold blue light through a narrow lancet window"
+    },
+    {
+      "id": "r3",
+      "name": "Scriptorium",
+      "article": "el",
+      "description": "Atriles inclinados junto a ventanas estrechas, tinteros de cuerno, pergaminos tendidos a secar y un arcón con las cartas y los libros de cuentas del señorío. Huele a tinta, a cola y a polvo, y el viento silba por las rendijas de los postigos.",
+      "tags": [],
+      "image": "/worlds/torre-umbria/room-r3.webp",
+      "imagePrompt": "interior, wide shot, no people, a small medieval castle scriptorium, slanted wooden writing desks by narrow windows with wooden shutters, horn inkwells and quill pens, parchment sheets hung to dry on cords, an iron-bound chest of ledgers and letters, dusty grey winter light"
+    },
+    {
+      "id": "r4",
+      "name": "Botica",
+      "article": "la",
+      "description": "Estantes de tarros de barro y frascos de vidrio verdoso, manojos de hierbas colgados de las vigas, un mortero de bronce y un hornillo apagado. El aire es espeso: romero, ruda, vinagre y algo amargo que no se sabe nombrar.",
+      "tags": [],
+      "image": "/worlds/torre-umbria/room-r4.webp",
+      "imagePrompt": "interior, wide shot, no people, a medieval castle apothecary room, wooden shelves of clay jars and greenish glass flasks, bundles of dried herbs hanging from low beams, bronze mortar and pestle on a scarred workbench, small cold brazier, dim candlelight"
+    },
+    {
+      "id": "r5",
+      "name": "Armería",
+      "article": "la",
+      "description": "Lanzas en sus soportes, cotas de malla colgadas como pieles de caza, ballestas en fila y un banco con piedras de afilar. Huele a hierro frío, a sebo y a cuero curtido.",
+      "tags": [],
+      "image": "/worlds/torre-umbria/room-r5.webp",
+      "imagePrompt": "interior, wide shot, no people, a vaulted stone armoury in a 14th-century castle, spears upright in wooden racks, mail shirts hanging on pegs, a row of crossbows on the wall, shields, a workbench with whetstones, torchlight glinting on iron"
+    },
+    {
+      "id": "r6",
+      "name": "Torre de vigía",
+      "article": "la",
+      "description": "Una escalera de caracol desemboca en una plataforma almenada barrida por el viento, desde la que se domina todo el valle nevado. Junto al parapeto, una trampilla de madera se abre sobre el matacán, muy por encima del patio de armas.",
+      "tags": ["elevated"],
+      "image": "/worlds/torre-umbria/room-r6.webp",
+      "imagePrompt": "wide shot, no people, the windswept crenellated top of a medieval stone watchtower at dusk, snow on the merlons, a wooden trapdoor set in the floor beside the parapet over a machicolation, a sputtering torch in an iron bracket, a vast snowy valley far below"
+    }
+  ],
+  "staff": {
+    "guardian": "el portero",
+    "record": "el libro de llaves",
+    "report": "Examen del físico"
+  },
+  "weapons": [
+    {
+      "method": "knife",
+      "label": "Daga",
+      "cause": "Una hoja estrecha le entró entre las costillas y le alcanzó el corazón. Apenas sangró por fuera.",
+      "weapon": "la daga de misericordia",
+      "access": "la daga de misericordia",
+      "device": false,
+      "phrase": "con la daga de misericordia",
+      "image": "/worlds/torre-umbria/weapon-knife.webp",
+      "imagePrompt": "close-up of a single object, neutral background, a medieval misericorde dagger with a long narrow triangular steel blade, plain iron crossguard and leather-wrapped grip"
+    },
+    {
+      "method": "blunt",
+      "label": "Maza de armas",
+      "cause": "Un golpe tremendo en la sien le hundió el hueso del cráneo. La herida es ancha y lleva la marca de unas aristas de hierro.",
+      "weapon": "la maza de armas",
+      "access": "la maza de armas",
+      "device": false,
+      "phrase": "con la maza de armas",
+      "image": "/worlds/torre-umbria/weapon-blunt.webp",
+      "imagePrompt": "close-up of a single object, neutral background, a 14th-century flanged iron mace with a wooden haft bound in leather and an iron head of sharp vertical flanges"
+    },
+    {
+      "method": "rope",
+      "label": "Soga",
+      "cause": "Murió estrangulado. Una cuerda de cáñamo le dejó en el cuello un surco morado y áspero, con hebras pegadas a la piel.",
+      "weapon": "la soga del pozo",
+      "access": "la soga del pozo",
+      "device": false,
+      "phrase": "estrangulándolo con la soga del pozo",
+      "image": "/worlds/torre-umbria/weapon-rope.webp",
+      "imagePrompt": "close-up of a single object, neutral background, a coiled thick rough hemp well rope, frayed at one end, with an old iron hook"
+    },
+    {
+      "method": "drink",
+      "label": "Vino envenenado",
+      "cause": "Tiene los labios amoratados y las pupilas muy abiertas, y vomitó antes de morir. El vino que bebió llevaba acónito, la hierba que llaman matalobos.",
+      "weapon": "la copa de plata",
+      "access": "el frasco de acónito",
+      "device": false,
+      "phrase": "envenenándolo con acónito en una copa de vino",
+      "image": "/worlds/torre-umbria/weapon-drink.webp",
+      "imagePrompt": "close-up of a single object, neutral background, a dented medieval silver goblet with a dark red wine stain on its rim, beside it a small stoppered greenish glass flask",
+      "seen": "el frasco de acónito"
+    },
+    {
+      "method": "sword",
+      "label": "Espada",
+      "cause": "Una estocada le atravesó el vientre de parte a parte. El corte es limpio, de hoja ancha y doble filo.",
+      "weapon": "la espada larga",
+      "access": "la espada larga",
+      "device": false,
+      "phrase": "con la espada larga",
+      "image": "/worlds/torre-umbria/weapon-sword.webp",
+      "imagePrompt": "close-up of a single object, neutral background, a 14th-century longsword with a broad double-edged steel blade, simple straight crossguard, wheel pommel and worn leather grip"
+    },
+    {
+      "method": "crossbow",
+      "label": "Ballesta",
+      "cause": "Un virote de ballesta le atravesó el pecho y quedó clavado entre las costillas. Lo dispararon desde muy cerca.",
+      "weapon": "la ballesta de estribo",
+      "access": "la ballesta de estribo",
+      "device": false,
+      "phrase": "con la ballesta de estribo",
+      "image": "/worlds/torre-umbria/weapon-crossbow.webp",
+      "imagePrompt": "close-up of a single object, neutral background, a medieval stirrup crossbow with a wooden tiller, iron stirrup at the front, steel prod and a single square-headed bolt"
+    },
+    {
+      "method": "fall",
+      "label": "Caída desde la torre",
+      "cause": "Cayó desde gran altura. Tiene el cuello quebrado y los huesos rotos por el golpe contra las losas.",
+      "weapon": "la trampilla del matacán",
+      "access": "la trampilla del matacán",
+      "device": true,
+      "phrase": "haciéndolo caer por la trampilla del matacán",
+      "image": "/worlds/torre-umbria/weapon-fall.webp",
+      "imagePrompt": "close-up of a single object, neutral background, a heavy wooden trapdoor of oak planks with iron hinges and an iron ring pull, set in a stone floor and propped half open over a dark drop"
+    }
+  ],
+  "items": [
+    {
+      "noun": "guante de cetrería",
+      "gender": "m",
+      "image": "/worlds/torre-umbria/item-1.webp",
+      "imagePrompt": "close-up of a single object, neutral background, a thick worn leather falconry glove with scratches from talons and a short leather jess tied at the cuff"
+    },
+    {
+      "noun": "rosario de azabache",
+      "gender": "m",
+      "image": "/worlds/torre-umbria/item-2.webp",
+      "imagePrompt": "close-up of a single object, neutral background, a medieval rosary of polished black jet beads on a cord with a small carved jet cross"
+    },
+    {
+      "noun": "toca de lino",
+      "gender": "f",
+      "image": "/worlds/torre-umbria/item-3.webp",
+      "imagePrompt": "close-up of a single object, neutral background, a folded white linen medieval headdress veil, slightly creased, with a simple embroidered edge"
+    },
+    {
+      "noun": "escarcela de cuero",
+      "gender": "f",
+      "image": "/worlds/torre-umbria/item-4.webp",
+      "imagePrompt": "close-up of a single object, neutral background, a small medieval leather belt purse with a drawstring and a bronze buckle, worn and darkened by use"
+    },
+    {
+      "noun": "anillo de sello",
+      "gender": "m",
+      "image": "/worlds/torre-umbria/item-5.webp",
+      "imagePrompt": "close-up of a single object, neutral background, a heavy medieval silver signet ring with an engraved heraldic device on its flat bezel"
+    }
+  ],
+  "motives": [
+    "Había falsificado una carta de donación para quedarse con el molino y las tierras del río. {victim} había descubierto el engaño y pensaba llevarlo ante el merino del rey al día siguiente.",
+    "Había vendido a un señor vecino el número de hombres y los turnos de la guardia del castillo. {victim} había interceptado la carta y pensaba denunciar la traición ante la justicia del rey al día siguiente.",
+    "Había sisado durante años parte de las rentas del grano y de los diezmos del señorío. {victim} había mandado repasar las cuentas y pensaba exigir la devolución ante el concejo al día siguiente.",
+    "Había usado a escondidas el sello del señor para tomar prestada una gran suma de un mercader de Burgos. {victim} había recibido la reclamación y pensaba denunciar la falsificación ante el merino al día siguiente.",
+    "Había abierto de noche el portillo a los salteadores que saquearon el granero en otoño. {victim} había reconocido a uno de ellos entre los presos y pensaba sacarle el nombre del cómplice al día siguiente."
+  ],
+  "documents": {
+    "weak": [
+      {
+        "title": "Multa por cazar en el soto",
+        "text": "{victim} impone a {person} una multa de unos pocos maravedís por cazar conejos en el soto del señor sin licencia."
+      },
+      {
+        "title": "Reprimenda de {victim}",
+        "text": "Nota de {victim} a {person}: le reprocha haber llegado tarde a misa el día de San Martín y le recuerda que la gente de la casa debe dar ejemplo."
+      },
+      {
+        "title": "Cuenta del vino",
+        "text": "Apunte de la despensa: {person} tiene una deuda con {victim} por un odre de vino de Toro que se bebió sin pagarlo."
+      },
+      {
+        "title": "Licencia denegada",
+        "text": "{victim} niega a {person} el permiso para pasar la Navidad fuera del castillo: con la nieve, dice, no puede prescindir de nadie."
+      }
+    ],
+    "neutral": [
+      {
+        "title": "Provisiones para el invierno",
+        "text": "Relación de la sal, el tocino, la leña y la cebada que {person} entregó en la despensa por orden de {victim}."
+      },
+      {
+        "title": "Velas de la capilla",
+        "text": "Orden de {victim} para que {person} se encargue de reponer las velas de la capilla durante el Adviento."
+      },
+      {
+        "title": "Saludos del abad",
+        "text": "{person} transmite a {victim} los saludos del abad de un monasterio cercano, que le desea un buen invierno y le promete sus oraciones."
+      }
+    ]
+  },
+  "clueArt": {
+    "report": {
+      "image": "/worlds/torre-umbria/clue-report.webp",
+      "imagePrompt": "close-up of a sheet of parchment with a physician's notes and a small anatomical sketch, a quill and a horn inkwell beside it on a wooden table, illegible handwriting, no readable text"
+    },
+    "testimony": {
+      "image": "/worlds/torre-umbria/clue-testimony.webp",
+      "imagePrompt": "close-up of a rolled-out paper scroll of written testimony held flat by a candlestick and a small stone, a wax seal at the bottom, illegible handwriting, no readable text"
+    },
+    "ledger": {
+      "image": "/worlds/torre-umbria/clue-ledger.webp",
+      "imagePrompt": "close-up of an open leather-bound medieval key ledger with columns of entries, an iron key lying across the page, candlelight, illegible handwriting, no readable text"
+    },
+    "document": {
+      "image": "/worlds/torre-umbria/clue-document.webp",
+      "imagePrompt": "close-up of a folded medieval letter on parchment with a broken red wax seal and a dangling cord, illegible handwriting, no readable text"
+    }
+  },
+  "openings": {
+    "arrivals": [
+      "Llegas a Torre Umbría con la última luz, con la mula hundida en la nieve hasta las corvas. El rastrillo se levanta con un chirrido de cadenas y el patio te recibe con olor a humo y a estiércol helado. Traes una carta con el sello del rey: eres su pesquisidor.",
+      "Cruzas el puente levadizo envuelto en tu capa de viaje, con el viento de la sierra cortándote la cara. Sobre la puerta, el escudo de los Umbría apenas se distingue bajo la escarcha. Un mozo te toma las riendas sin mirarte a los ojos.",
+      "La ventisca te obliga a pedir refugio en el castillo más cercano, y ese castillo es Torre Umbría. Las antorchas del adarve tiemblan en la nevada. Junto a la chimenea te sirven vino caliente con especias mientras se te secan las botas.",
+      "Vienes de Burgos con un encargo de la cancillería y pensabas pasar aquí una sola noche. Las campanas de la capilla tocan a vísperas cuando cruzas el patio de armas, y sobre las almenas la nieve empieza a cubrirlo todo."
+    ],
+    "tensions": [
+      "Afuera, la nieve ha cerrado el puerto de montaña: nadie saldrá de Torre Umbría hasta que tú lo digas. Desde la penumbra te observan rostros cansados, y alguno de ellos sabe más de lo que dice.",
+      "El portero echa la tranca del portón con un golpe seco. Entre estos muros, cada mirada es una sospecha y cada silencio, una confesión a medias.",
+      "Pides papel, tinta y una vela. Antes del amanecer tendrás que separar las mentiras de las verdades, y en este castillo unas y otras visten igual."
+    ]
+  }
+}

@@ -1,27 +1,50 @@
-# Expedientes: formato de los casos del prototipo
+# Formato de expediente (`mundos-expediente`)
 
-Cada investigación del prototipo de mundos es un **expediente**: un JSON con todo el caso. La partida guardada lo incluye en `state.case`, y el botón **Exportar caso** lo descarga sin el progreso del jugador. **Importar** acepta tanto un expediente (empieza una investigación nueva) como una partida (continúa donde estaba).
+Cada investigación de Mundos es un **expediente**: un JSON con todo el caso. Se genera a partir de un mundo (ver [MUNDOS.md](MUNDOS.md)), pero no lo necesita para jugarse. Lleva el reparto, los lugares, las armas que ofrece la acusación, el crimen, el prólogo, las pistas y lo que puede decir cada persona. Por eso un expediente se puede exportar, editar a mano o con un editor, compartir e importar.
 
-Los mundos preparados, los casos de los antiguos mundos libres y un caso escrito a mano usan el mismo formato. El código está en `src/case-file.mjs` (formato, validación y comprobación lógica) y `src/case-generator.mjs` (generador).
+- **Exportar caso** descarga el expediente sin el progreso del jugador.
+- **Exportar partida** descarga una partida (`mundos-partida`): el expediente más el progreso.
+- **Importar** acepta las dos. Un expediente empieza una investigación nueva y una partida continúa donde estaba.
+
+El código está en:
+
+- `src/case-file.mjs`: formato, validación y comprobación lógica.
+- `src/case-generator.mjs`: generador.
+- `src/prototype-engine.mjs`: partidas.
 
 ## Campos
 
 | Campo | Contenido |
 |---|---|
 | `format`, `version` | `"mundos-expediente"`, `1` |
-| `title`, `setting` | Título; ambientación `scifi`, `noir`, `medieval` o `fantasy` (decide los métodos posibles y el estilo de las imágenes) |
-| `description`, `visualStyle`, `rules`, `label` | Opcionales. Con `description` las ilustraciones usan los `imagePrompt` del propio caso |
-| `victim` | `{ name, role }` |
-| `people` | Cinco personajes `p1`…`p5`: `name`, `role`, y opcionalmente `personality`, `image`, `imagePrompt` |
-| `rooms` | De 4 a 8 lugares `r1`…: `name`, `description`, y opcionalmente `tags`, `image`, `imagePrompt` |
-| `crime` | `culprit`, `method` (id del catálogo de `method-catalog.mjs`), `scene`, minutos del día `crimeMinute < exitMinute < discoveryMinute` y `deathMinute`, y el texto `motive` |
+| `world` | Mundo del que procede (`villa-bellavista`…). Es informativo: el caso se juega sin él |
+| `title` | Título |
+| `victim` | `{ name, role, gender }` |
+| `people` | Cinco personajes `p1`…`p5`: `name`, `role`, `gender` (`f`/`m`) y, opcionalmente, `personality` e `image` |
+| `rooms` | De 4 a 8 lugares `r1`…: `name`, `article`, `description`, `tags` e `image` (opcional) |
+| `weapons` | Armas que ofrece la acusación: `{ method, label }`. Debe incluir la del crimen |
+| `crime` | `culprit`, `method` (mecánica de `method-catalog.mjs`), `weapon` («el atizador de bronce»), `phrase` («con el atizador de bronce»), `scene`, los minutos del día `crimeMinute`, `exitMinute`, `deathMinute` y `discoveryMinute`, y el texto `motive` |
+| `opening` | Prólogo: `arrival` y `tension` |
 | `alibis` | Lo que declara cada persona: `person`, `room`, `from`, `to`, `claim` |
-| `clues` | De 6 a 30 pistas: `id` (`c1`…), `room`, `title`, `text`, opcionalmente `image`/`imagePrompt`, y un `fact` |
-| `facts` | Lo que puede decir cada persona en el interrogatorio: `{ id, text, requires? }`. `requires` es la pista que lo desbloquea. Temas: `alibi`, `motive`, `secret`, `link`, `timeline`, `seen`, `object` |
+| `clues` | De 6 a 30 pistas: `id` (`c1`…), `room`, `title`, `text`, `image` (opcional) y un `fact` |
+| `facts` | Lo que puede decir cada persona: `{ id, kind?, text, variants?, requires? }` |
+| `origin` | Opcional: `generator` y `seed` |
 
-En los textos (`motive`, `claim`, títulos y textos de pistas, declaraciones) se pueden usar marcadores: `{victim}` para la víctima, `{p1}`…`{p5}` para los personajes y `{r1}`… para los lugares, que se sustituyen por el nombre con su artículo (`{r2}` → «la biblioteca»). Así, renombrar a alguien en `people` cambia todos sus textos. El generador usa siempre marcadores.
+En `facts`:
 
-Las imágenes solo pueden ser rutas locales `.webp` bajo `/prototype/`, `/lab/` o `/assets/`. Al importar se descartan los campos desconocidos. El `id` del caso se calcula a partir del contenido, así que cualquier cambio crea un caso distinto.
+- `id` es el tema: `alibi`, `motive`, `secret`, `link`, `timeline`, `seen`, `object`, `identity`, `social` o `unknown`.
+- `variants` son formas alternativas de decir lo mismo, que el interrogatorio va rotando.
+- `requires` es la pista que desbloquea la declaración.
+
+En los textos (`motive`, `claim`, títulos y textos de pistas, declaraciones) se pueden usar marcadores:
+
+- `{victim}`: la víctima.
+- `{p1}`…`{p5}`: los personajes.
+- `{r1}`…: los lugares, con su artículo (`{r2}` → «la biblioteca»).
+
+Así, renombrar a alguien en `people` cambia todos sus textos. El generador usa siempre marcadores.
+
+Las imágenes solo pueden ser rutas locales `.webp` bajo `/worlds/` o `/assets/`. Los textos no admiten `<` ni `>`. Al importar se descartan los campos desconocidos. El `id` del caso se calcula a partir del contenido, así que cualquier cambio da un caso distinto; una partida cuyo caso se ha modificado se rechaza.
 
 ## Hechos de las pistas
 
@@ -34,36 +57,32 @@ El texto de una pista es para el jugador; el `fact` es lo que entiende el motor.
 | `discovery` | Quién encontró el cuerpo: `person`, `room`, `minute` |
 | `motive` | `person` tenía un móvil |
 | `access` | `people` podían llegar al arma del `method` |
-| `presence` | `people` estaban en `room` de `from` a `to`. Con `exclusive: true`, nadie más estuvo allí (con `people: []`, el lugar estaba vacío) |
+| `presence` | `people` estaban en `room` de `from` a `to`. Con `exclusive: true`, nadie más estuvo allí; con `people: []`, el lugar estaba vacío |
 | `herring` | Pista engañosa contra `person` |
 | `explains` | Explica la pista engañosa `clue` |
 | `note` | Contexto sin valor lógico |
 
 ## Qué comprueba `analyzeCase`
 
-- Cronología posible: el hallazgo es posterior al crimen, a la muerte y a la salida del culpable.
-- El método existe en esa ambientación y en esa escena, y las pistas de causa, arma y acceso hablan de él.
+- La cronología es posible: el hallazgo es posterior al crimen, a la muerte y a la salida del culpable.
+- La escena tiene lo que el método necesita (una caída necesita altura), y el arma está entre las de la acusación.
+- Las pistas de causa, arma y acceso hablan del método del crimen.
 - Cada coartada cubre la hora del crimen y no está en la escena.
-- Una coartada queda **confirmada** si un hecho `presence` sitúa a la persona en el lugar que declaró durante el crimen, y **desmentida** si un `presence` exclusivo de ese lugar no la incluye o si otro la sitúa en un lugar distinto. Ningún inocente puede quedar desmentido.
+- Una coartada queda **confirmada** si un hecho `presence` sitúa a la persona en el lugar que declaró durante el crimen. Queda **desmentida** si un `presence` exclusivo de ese lugar no la incluye, o si otro la sitúa en un lugar distinto. Ningún inocente puede quedar desmentido.
 - **Sospechosos** = con móvil ∩ con acceso al arma ∩ sin coartada confirmada. Debe salir exactamente el culpable, y su coartada debe estar desmentida.
 - Toda pista engañosa tiene una explicación.
 
-Para ganar, la acusación necesita persona, método y lugar correctos y una pista de cada grupo de prueba: móvil del culpable, acceso del culpable y coartada desmentida.
+Para ganar, la acusación necesita persona, arma y lugar correctos, y una pista de cada grupo de prueba: móvil del culpable, acceso del culpable y coartada desmentida.
 
 ## Lo que produce el generador (dificultad media)
 
-- Móvil: el culpable y dos inocentes (deuda, despido, testamento o queja).
-- Acceso al arma: el culpable y dos inocentes, uno de ellos también con móvil.
-- Coartadas: dos inocentes confirmados entre sí por un vigilante, uno por un registro y uno sin testigos. El culpable declara estar en un lugar que una pista demuestra vacío o ocupado solo por otros.
-- Una pista engañosa (un objeto personal de un inocente junto a la escena) y la nota que la explica.
+- **Móvil**: el culpable (uno de los móviles fuertes del mundo) y dos inocentes (documentos de móvil débil).
+- **Acceso al arma**: el culpable y dos inocentes, uno de ellos también con móvil.
+- **Coartadas**: dos inocentes que se confirman entre sí ante quien vigila, uno confirmado por el registro y uno sin testigos. El culpable declara estar en un lugar que una pista demuestra vacío u ocupado solo por otros.
+- **Pista engañosa**: un objeto personal de un inocente junto a la escena, y la nota que la explica.
 - Ninguna pista nombra al culpable ni afirma una conclusión. Cada inocente cumple como mucho dos de las tres condiciones.
-
-## Partidas anteriores
-
-Las partidas guardadas antes de los expedientes (versión 1) se reconstruyen al abrirlas con el generador antiguo (`src/legacy-prototype-case.mjs`) y se convierten. Conservan pistas encontradas, notas, conversación, resultado e imágenes, y se guarda una copia en `blackwood-orbital-prototype-v1-v1-backup`. Esos casos mantienen su diseño antiguo de pistas; solo las investigaciones nuevas usan el generador nuevo.
 
 ## Límites conocidos
 
-- Los expedientes de partidas antiguas convertidas tienen los nombres escritos en el texto, sin marcadores.
-- Al importar un expediente se generan sus imágenes con el modelo local; si no está disponible, se usan las del archivo o las genéricas.
-- La comprobación es lógica, no editorial: no detecta frases poco naturales ni contradicciones que solo estén en el texto.
+- La comprobación es lógica, no editorial: no detecta frases poco naturales ni contradicciones que solo estén en el texto. Para eso, `node tools/check-world.mjs` muestra cómo quedan los textos de un mundo.
+- La solución viaja en el expediente; no está pensado para impedir trampas.

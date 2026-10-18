@@ -1,8 +1,3 @@
-import { savedOpening } from './src/opening.mjs';
-import { restorePrototype, createPrototypeCase } from './src/prototype-engine.mjs';
-import { resolvePrototypeWorld, validateCustomWorld } from './src/custom-world.mjs';
-import { startImages, imageStatus } from './src/session-images.mjs';
-import { worldFile } from './src/prototype-worlds.mjs';
 import { respondPrototype } from './src/prototype-llm.mjs';
 import { classifyWithLaya } from './src/question-classifier.mjs';
 import { localConversation } from './src/conversation.mjs';
@@ -106,50 +101,6 @@ const server = http.createServer(async (req, res) => {
     "default-src 'self'; style-src 'self'; script-src 'self'; connect-src 'self'; img-src 'self' data:; base-uri 'none'; frame-ancestors 'none'",
   );
   try {
-    if (req.url === '/api/prototype/opening' && req.method === 'POST') {
-      let raw = '';
-      for await (const chunk of req) {
-        raw += chunk;
-        if (raw.length > 400000) throw Error('Solicitud demasiado grande');
-      }
-      const payload = JSON.parse(raw),
-        world = await resolvePrototypeWorld(root, payload.state),
-        state = restorePrototype(world, payload.state),
-        c = createPrototypeCase(world, state);
-      const opening = await savedOpening(root, world, c);
-      res.setHeader('Content-Type', 'application/json');
-      res.end(JSON.stringify(opening));
-      return;
-    }
-    // Only to open saves of free worlds made before case files existed.
-    if (req.url === '/api/prototype/validate-world' && req.method === 'POST') {
-      let raw = '';
-      for await (const chunk of req) {
-        raw += chunk;
-        if (raw.length > 50000) throw Error('Mundo demasiado grande');
-      }
-      res.setHeader('Content-Type', 'application/json');
-      res.end(JSON.stringify(validateCustomWorld(JSON.parse(raw))));
-      return;
-    }
-    if (req.url === '/api/prototype/images' && req.method === 'POST') {
-      let raw = '';
-      for await (const chunk of req) {
-        raw += chunk;
-        if (raw.length > 400000) throw Error('Solicitud demasiado grande');
-      }
-      const result = await startImages(root, JSON.parse(raw).state);
-      res.setHeader('Content-Type', 'application/json');
-      res.end(JSON.stringify(result));
-      return;
-    }
-    if (req.url.startsWith('/api/prototype/images/') && req.method === 'GET') {
-      res.setHeader('Content-Type', 'application/json');
-      res.end(
-        JSON.stringify(await imageStatus(root, req.url.slice('/api/prototype/images/'.length))),
-      );
-      return;
-    }
     if (
       ['/api/interrogate', '/api/prototype/interrogate'].includes(req.url) &&
       req.method === 'POST'
@@ -166,7 +117,7 @@ const server = http.createServer(async (req, res) => {
       const payload = JSON.parse(raw);
       const result =
         req.url === '/api/prototype/interrogate'
-          ? await respondPrototype(await resolvePrototypeWorld(root, payload.state), payload, {
+          ? await respondPrototype(payload, {
               useModel: process.env.BLACKWOOD_LOCAL_LLM === '1',
               // BLACKWOOD_FREE_DIALOGUE=1 lets the model write replies instead of choosing them.
               dialogue: process.env.BLACKWOOD_FREE_DIALOGUE === '1' ? 'free' : 'choose',
@@ -192,6 +143,8 @@ const server = http.createServer(async (req, res) => {
     if (!file.startsWith(root + path.sep)) throw Error('Invalid path');
     const data = await readFile(file);
     res.setHeader('Content-Type', mime[path.extname(file)] || 'application/octet-stream');
+    // Local game under development: always revalidate, so an edit shows on the next load.
+    res.setHeader('Cache-Control', 'no-cache');
     res.end(data);
   } catch (e) {
     res

@@ -1,4 +1,4 @@
-// Builds a case file whose solution has to be deduced, not read.
+// Builds, from a world file, a case file whose solution has to be deduced, not read.
 //
 // Structure (the "medium" difficulty):
 //   motive:      the culprit and two innocents have one
@@ -7,8 +7,11 @@
 //                and only the culprit's alibi is contradicted by a clue
 // Only the culprit belongs to all three groups. One misleading clue points at an innocent and
 // another clue explains it. No clue names the culprit or states a conclusion.
-import { methodRoomPairs } from './method-catalog.mjs';
-import { prototypeRooms, prototypeMethods } from './prototype-worlds.mjs';
+//
+// Every word that belongs to a setting comes from the world (see docs/MUNDOS.md); the
+// sentences below only join them.
+import { findMethod, fitsRoom } from './method-catalog.mjs';
+import { worldWeapons } from './world-file.mjs';
 import { rng, pick, shuffle, clock } from './random.mjs';
 import { CASE_FORMAT, normalizeCaseFile, analyzeCase } from './case-file.mjs';
 import { statementKinds, phrasings, fillStatement } from './statements.mjs';
@@ -17,336 +20,37 @@ const capFirst = s => s.charAt(0).toLocaleUpperCase('es') + s.slice(1);
 const lowerFirst = s => s.charAt(0).toLocaleLowerCase('es') + s.slice(1);
 const list = names => names.slice(0, -1).join(', ') + ' y ' + names.at(-1);
 
-const medievalProfile = {
-  guardian: 'el portero',
-  record: 'el registro de entradas',
-  report: 'Examen del sanador',
-  items: [
-    { noun: 'rosario de cuentas de madera', fem: false, prompt: 'a wooden bead rosary' },
-    { noun: 'guante de cuero', fem: false, prompt: 'a single leather glove' },
-    { noun: 'broche de bronce', fem: false, prompt: 'a bronze brooch' },
-    { noun: 'bolsa de monedas bordada', fem: true, prompt: 'an embroidered coin pouch' },
-  ],
-  documentPrompt: 'a parchment letter with a wax seal on a wooden desk',
-  ledgerPrompt: 'an open handwritten ledger on a medieval desk',
-  testimonyPrompt: 'a handwritten testimony on parchment, quill and candle',
-  reportPrompt: 'a healer examination notes beside herbs on a wooden table',
-};
-const profiles = {
-  noir: {
-    guardian: 'el mayordomo',
-    record: 'el libro de visitas',
-    report: 'Informe del médico forense',
-    items: [
-      { noun: 'pañuelo bordado', fem: false, prompt: 'an embroidered handkerchief' },
-      { noun: 'pitillera de plata', fem: true, prompt: 'a silver cigarette case' },
-      { noun: 'guante de piel', fem: false, prompt: 'a single leather glove' },
-      { noun: 'pluma estilográfica', fem: true, prompt: 'a fountain pen' },
-    ],
-    documentPrompt: 'a typed letter on a 1930s wooden desk',
-    ledgerPrompt: 'an open guest book on a 1930s reception desk',
-    testimonyPrompt: 'a handwritten statement on a 1930s desk with a lamp',
-    reportPrompt: 'a 1930s medical examiner report on a desk',
-  },
-  medieval: medievalProfile,
-  fantasy: { ...medievalProfile, guardian: 'el centinela' },
-  scifi: {
-    guardian: 'el oficial de guardia',
-    record: 'el registro de accesos',
-    report: 'Informe médico de la estación',
-    items: [
-      { noun: 'guante térmico', fem: false, prompt: 'a single thermal glove' },
-      { noun: 'colgante de metal', fem: false, prompt: 'a small metal pendant' },
-      { noun: 'auricular de comunicación', fem: false, prompt: 'a small communication earpiece' },
-      { noun: 'libreta de papel', fem: true, prompt: 'a small paper notebook' },
-    ],
-    documentPrompt: 'a digital message on a tablet on a station desk',
-    ledgerPrompt: 'an access log on a control room monitor',
-    testimonyPrompt: 'a recorded statement on a station terminal',
-    reportPrompt: 'a medical scan report on a station monitor',
-  },
-};
-// Per method: cause of death, what was found at the scene, what the suspects could reach
-// beforehand and what was seen in place before the crime.
-const objects = {
-  knife: {
-    cause: 'El cuerpo presenta una herida de arma blanca.',
-    weapon: 'la daga',
-    access: 'la daga',
-  },
-  blunt: {
-    cause: 'El cuerpo presenta un golpe fuerte en la cabeza, dado con un objeto pesado.',
-    weapon: 'el pisapapeles metálico',
-    access: 'el pisapapeles metálico',
-  },
-  rope: {
-    cause: 'Las marcas del cuello indican una estrangulación con un cordón.',
-    weapon: 'el cordón trenzado',
-    access: 'el cordón trenzado',
-  },
-  drink: {
-    cause: 'Los síntomas indican un veneno tomado en una bebida pocos minutos antes.',
-    weapon: 'la copa con restos de veneno',
-    access: 'el frasco de veneno',
-  },
-  revolver: {
-    cause: 'La muerte se debió a un disparo de revólver hecho desde muy cerca.',
-    weapon: 'el revólver',
-    access: 'el revólver',
-  },
-  shotgun: {
-    cause: 'La muerte se debió a un disparo de escopeta hecho desde muy cerca.',
-    weapon: 'la escopeta de caza',
-    access: 'la escopeta de caza',
-  },
-  medicine: {
-    cause: 'Los síntomas indican un preparado medicinal alterado, tomado pocos minutos antes.',
-    weapon: 'el frasco del preparado',
-    access: 'el armario de los preparados',
-    seen: 'el frasco del preparado',
-  },
-  sword: {
-    cause: 'El cuerpo presenta una herida de espada.',
-    weapon: 'la espada',
-    access: 'la espada',
-  },
-  crossbow: {
-    cause: 'Un virote de ballesta causó la muerte.',
-    weapon: 'la ballesta',
-    access: 'la ballesta',
-  },
-  fall: {
-    cause:
-      'La víctima cayó desde la galería elevada. Hay señales de forcejeo junto a la barandilla.',
-    weapon: 'la puerta de la galería',
-    access: 'la llave de la galería',
-    device: true,
-  },
-  artifact: {
-    cause: 'Una descarga arcana dejó marcas en el cuerpo.',
-    weapon: 'el amuleto rúnico',
-    access: 'el amuleto rúnico',
-  },
-  alchemy: {
-    cause: 'Los síntomas indican un preparado alquímico tomado pocos minutos antes.',
-    weapon: 'el vial alquímico',
-    access: 'los viales alquímicos',
-    seen: 'el vial alquímico',
-  },
-  air: {
-    cause: 'La víctima respiró una mezcla de aire alterada a mano en el regulador.',
-    weapon: 'el regulador ambiental',
-    access: 'el código del regulador',
-    device: true,
-  },
-  medical: {
-    cause: 'Los síntomas indican una cápsula de tratamiento alterada, tomada poco antes.',
-    weapon: 'la cápsula de tratamiento',
-    access: 'las cápsulas de tratamiento',
-    seen: 'la cápsula de tratamiento',
-  },
-  power: {
-    cause: 'Una descarga de un panel portátil de energía causó la muerte.',
-    weapon: 'el panel portátil de energía',
-    access: 'el panel portátil de energía',
-  },
-  laser: {
-    cause: 'Una descarga de un emisor láser causó la muerte.',
-    weapon: 'el emisor láser',
-    access: 'el emisor láser',
-  },
-  plasma: {
-    cause: 'Una descarga de un arma de plasma causó la muerte.',
-    weapon: 'el arma de plasma',
-    access: 'el arma de plasma',
-  },
-  robot: {
-    cause: 'El brazo industrial golpeó a la víctima tras una orden dada a mano desde su consola.',
-    weapon: 'la consola del brazo industrial',
-    access: 'la consola del brazo industrial',
-    device: true,
-  },
-  hatch: {
-    cause: 'La compuerta industrial se cerró sobre la víctima tras una orden dada a mano.',
-    weapon: 'el mando de la compuerta',
-    access: 'el mando de la compuerta',
-    device: true,
-  },
-  cryo: {
-    cause: 'Alguien alteró a mano la cápsula criogénica mientras la víctima estaba dentro.',
-    weapon: 'el panel criogénico',
-    access: 'el código del panel criogénico',
-    device: true,
-  },
-};
-// The prepared worlds share six generic room descriptions assigned by position, so a
-// kitchen was described as a workshop. Their JSON stays untouched because old saves hash
-// it; new cases use these descriptions instead.
-const preparedRooms = {
-  'Salón de Ámbar':
-    'Un gran salón de piedra dorada, con columnas talladas y un trono vacío al fondo. La luz entra tamizada por vidrieras de ámbar.',
-  'Archivo de runas':
-    'Estanterías de tablillas grabadas con runas, mesas de consulta y lámparas que brillan sin llama.',
-  'Jardín encantado':
-    'Un jardín cubierto por una cúpula de cristal, con senderos de musgo, flores que se cierran al acercarse y una fuente de agua clara.',
-  'Forja real':
-    'Yunques, fuelles y armas a medio forjar junto a un horno que nunca se apaga del todo.',
-  'Torre del oráculo':
-    'Una sala circular en lo alto de la torre, con una galería abierta, un atril con pergaminos y una esfera de cristal sobre un pedestal.',
-  'Aposentos de huéspedes':
-    'Habitaciones con camas de dosel, arcones de viaje y tapices bordados con escenas del reino.',
-  'Salón del castillo':
-    'Una sala amplia con chimenea, mesas largas de madera y tapices que cubren los muros de piedra.',
-  Scriptorium: 'Atriles, pergaminos, tinteros y plumas bajo ventanas estrechas que dan al patio.',
-  Botica: 'Estantes con frascos de hierbas secas, morteros, una balanza y un banco de trabajo.',
-  Armería:
-    'Lanzas, espadas y escudos colgados de la pared, con un banco para afilar y un arcón cerrado.',
-  'Torre de vigía':
-    'Una sala estrecha en lo alto de la torre, con una galería abierta al viento y un brasero para las guardias de noche.',
-  'Cámara de invitados':
-    'Una cama con cortinas, un arcón, una jofaina y una mesa pequeña junto a la ventana.',
-  Despacho:
-    'Un escritorio de caoba con cartas ordenadas, un sillón de cuero y una caja fuerte detrás de un cuadro.',
-  Biblioteca:
-    'Estanterías hasta el techo, una escalera de mano, sillones de lectura y un globo terráqueo.',
-  Comedor:
-    'Una mesa larga puesta para la cena, un aparador con vajilla de porcelana y una lámpara de araña.',
-  Cocina: 'Fogones de hierro, cazuelas colgadas, una mesa de trabajo y una despensa al fondo.',
-  Invernadero:
-    'Plantas exóticas bajo una cubierta de cristal, macetas en estantes y una galería elevada con barandilla.',
-  Vestíbulo:
-    'La entrada principal, con un reloj de pie, un perchero con abrigos y la escalera que sube a las habitaciones.',
-};
-// Prepared worlds: player-facing names (sentence case, so they read well inside a sentence),
-// articles and victim roles. The world JSON stays as it is because old saves hash it.
-const preparedNames = {
-  'Sala de Navegación': ['Sala de navegación', 'la'],
-  'Cámara de Especímenes': ['Cámara de especímenes', 'la'],
-  'Sala de Cultivos Hidropónicos': ['Sala de cultivos hidropónicos', 'la'],
-  'Estación de Carga': ['Muelle de carga', 'el'],
-  'Enfermería orbital': ['Enfermería orbital', 'la'],
-  'Módulo de descanso para tripulación': ['Módulo de descanso', 'el'],
-  'Torre del oráculo': ['Torre del oráculo', 'la'],
-  'Aposentos de huéspedes': ['Aposentos de huéspedes', 'los'],
-  'Salón de Ámbar': ['Salón de Ámbar', 'el'],
-  'Torre de vigía': ['Torre de vigía', 'la'],
-  Scriptorium: ['Scriptorium', 'el'],
-  'Archivo de runas': ['Archivo de runas', 'el'],
-  'Jardín encantado': ['Jardín encantado', 'el'],
-  'Forja real': ['Forja real', 'la'],
-  'Salón del castillo': ['Salón del castillo', 'el'],
-  Botica: ['Botica', 'la'],
-  Armería: ['Armería', 'la'],
-  'Cámara de invitados': ['Cámara de invitados', 'la'],
-  Despacho: ['Despacho', 'el'],
-  Biblioteca: ['Biblioteca', 'la'],
-  Comedor: ['Comedor', 'el'],
-  Cocina: ['Cocina', 'la'],
-  Invernadero: ['Invernadero', 'el'],
-  Vestíbulo: ['Vestíbulo', 'el'],
-};
-const preparedVictimRoles = {
-  'orbital-v1': 'director de la estación',
-  'fantasy-v1': 'regente de la corte de Ámbar',
-  'medieval-v1': 'señor de Torre Umbría',
-  'noir-v1': 'dueño de Villa Bellavista',
-};
-// How the crime was committed, for the ending ("… a las 21:30, con la daga").
-const devices = {
-  fall: 'empujándole desde la galería elevada',
-  air: 'alterando a mano el regulador de aire',
-  robot: 'ordenando al brazo industrial que golpeara',
-  hatch: 'cerrando a mano la compuerta industrial',
-  cryo: 'alterando a mano la cápsula criogénica',
-};
-export const crimePhrase = id => devices[id] || (objects[id] ? 'con ' + objects[id].weapon : null);
-const defaultMotives = [
-  'Había falsificado sus credenciales profesionales. La víctima iba a denunciarlo al día siguiente.',
-  'Había desviado suministros de la estación. La víctima había reunido pruebas y las entregaría al día siguiente.',
-  'Había ocultado cobros irregulares en contratos. La víctima iba a entregar las cuentas a una auditoría al día siguiente.',
-  'Había vendido información reservada. La víctima había descubierto la operación y presentaría las pruebas al día siguiente.',
-];
-const weakMotives = [
-  {
-    title: v => 'Carta de ' + v,
-    text: (v, n) =>
-      `Carta de ${v} a ${n}: le reclama una deuda pendiente y le da de plazo hasta final de mes. Termina con una advertencia: “No habrá más prórrogas”.`,
-  },
-  {
-    title: v => 'Nota de ' + v,
-    text: (v, n) =>
-      `Nota de ${v}: “Hablar mañana con ${n}. Si sigue desobedeciendo, perderá su puesto”.`,
-  },
-  {
-    title: () => 'Borrador de testamento',
-    text: (v, n) =>
-      `Borrador de un nuevo testamento de ${v}, sin firmar: retira a ${n} la parte que le había prometido.`,
-  },
-  {
-    title: (v, n) => 'Queja de ' + n,
-    text: (v, n) =>
-      `Queja firmada por ${n}: acusa a ${v} de haberle humillado delante de todos y exige una reparación.`,
-  },
-];
-const neutralDocuments = [
-  {
-    title: (v, n) => `Carta de ${v} a ${n}`,
-    text: (v, n) => `Carta de ${v} a ${n}: le agradece su ayuda de la última semana.`,
-  },
-  {
-    title: (v, n) => 'Encargos de ' + n,
-    text: (v, n) => `Lista de encargos de ${n} para mañana. Nada fuera de lo corriente.`,
-  },
-  {
-    title: (v, n) => 'Nota de ' + n,
-    text: (v, n) => `Nota de ${n} a ${v}: confirma que ha terminado el trabajo que le pidió.`,
-  },
-];
-
-export function chooseCaseMethod(data, random, { previousMethodId = '', forcedMethodId = '' }) {
-  let pool = prototypeMethods(data);
-  const previous = pool.find(m => m.id === previousMethodId);
+export function chooseWeapon(world, random, { previousMethodId = '', forcedMethodId = '' }) {
+  let pool = worldWeapons(world);
+  const family = id => findMethod(id)?.family;
   if (forcedMethodId) {
-    pool = pool.filter(m => m.id === forcedMethodId);
-    if (!pool.length) throw Error('Método no disponible en esta ambientación');
-  } else if (previous && pool.some(m => m.family !== previous.family))
-    pool = pool.filter(m => m.family !== previous.family);
+    pool = pool.filter(w => w.method === forcedMethodId);
+    if (!pool.length) throw Error('Arma no disponible en este mundo');
+  } else if (pool.some(w => family(w.method) !== family(previousMethodId)))
+    pool = pool.filter(w => family(w.method) !== family(previousMethodId));
   return pick(pool, random);
 }
 
 export function generateCaseFile(
-  data,
+  world,
   { seed, previousMethodId = '', previousPersonId = '', forcedMethodId = '' } = {},
 ) {
   if (typeof seed !== 'string' || !/^[a-zA-Z0-9-]{1,64}$/.test(seed))
     throw Error('Semilla no válida');
-  const random = rng('case-v1:' + seed),
-    setting = data.setting || 'scifi',
-    profile = profiles[setting],
-    rooms = prototypeRooms(data).map(r => {
-      if (data.custom) return r;
-      const [name, article] = preparedNames[r.name] || [r.name, r.article];
-      return {
-        ...r,
-        name,
-        ...(article ? { article } : {}),
-        description: preparedRooms[r.name] || r.description,
-      };
-    }),
-    people = data.world.people,
+  const random = rng('case:' + world.id + ':' + seed),
+    { staff, rooms, people } = world,
     // Texts use {victim}, {p1}… and {r1}… so a renamed person or place updates every text.
     victim = '{victim}',
-    named = id => '{' + id + '}';
-  if (people.length !== 5 || rooms.length < 6)
-    throw Error('El mundo no tiene el reparto necesario');
+    named = id => '{' + id + '}',
+    roomName = room => `{${room.id}}`,
+    guardian = capFirst(staff.guardian);
 
-  const method = chooseCaseMethod(data, random, { previousMethodId, forcedMethodId }),
-    object = objects[method.id],
-    scenePair = pick(
-      methodRoomPairs(setting, rooms).filter(p => p.methodId === method.id),
+  const weapon = chooseWeapon(world, random, { previousMethodId, forcedMethodId }),
+    method = findMethod(weapon.method),
+    scene = pick(
+      rooms.filter(r => fitsRoom(method.id, r)),
       random,
     ),
-    scene = rooms.find(r => r.id === scenePair.roomId),
     culprit = pick(
       people.filter(p => p.id !== previousPersonId),
       random,
@@ -356,7 +60,8 @@ export function generateCaseFile(
       random,
     ),
     herringPerson = pick([i3, i4], random),
-    item = pick(profile.items, random),
+    item = pick(world.items, random),
+    itemArticle = item.gender === 'f' ? 'la' : 'el',
     pattern = pick(['pair', 'empty'], random),
     [pairRoom, recordRoom, aloneRoom, emptyRoom, storeRoom] = shuffle(
       rooms.filter(r => r.id !== scene.id),
@@ -372,115 +77,105 @@ export function generateCaseFile(
     to = discovery,
     recordTo = discovery - 2,
     morning = 600 + Math.floor(random() * 12) * 15;
-  const motive = pick(data.motives?.length ? data.motives : defaultMotives, random).replace(
-    /\b[Ll]a (víctima|dirección)\b/g,
-    victim,
-  );
-  const [weakA, weakB] = shuffle(weakMotives, random),
-    [neutralA, neutralB] = shuffle(neutralDocuments, random),
-    accessList = shuffle([culprit, i2, i3], random).map(named);
-  const prose = text => text;
-  const roomName = room => `{${room.id}}`;
+  const motive = pick(world.motives, random),
+    [weakA, weakB] = shuffle(world.documents.weak, random),
+    [neutralA, neutralB] = shuffle(world.documents.neutral, random),
+    accessList = shuffle([culprit, i2, i3], random).map(named),
+    fill = (template, person) =>
+      template.replace(/\{victim\}/g, victim).replace(/\{person\}/g, named(person));
 
   const clues = [];
-  const add = (room, title, text, fact, imagePrompt, image) =>
+  const add = (room, title, text, fact, image) =>
     clues.push({
       id: 'c' + (clues.length + 1),
       room: room.id,
-      title: prose(title),
-      text: prose(text),
-      imagePrompt,
-      image: image || '/assets/blackwood-complete-v1/clue-letter.webp',
+      title,
+      text,
+      ...(image ? { image } : {}),
       fact,
     });
+  const art = world.clueArt;
   add(
     scene,
-    profile.report,
-    `${object.cause} Sitúa la muerte hacia las ${clock(death)}.`,
+    staff.report,
+    `${weapon.cause} Sitúa la muerte hacia las ${clock(death)}.`,
     { type: 'cause', method: method.id, room: scene.id, minute: death },
-    profile.reportPrompt,
+    art.report.image,
   );
   add(
     scene,
-    object.device ? 'Manipulación en la escena' : 'Objeto del crimen',
-    object.device
-      ? `Alguien manipuló a mano ${object.weapon} en ${roomName(scene)}. No queda ninguna marca que diga quién.`
-      : `Junto al cuerpo apareció ${object.weapon}. No estaba en el lugar donde se guarda habitualmente.`,
+    weapon.device ? 'Manipulación en la escena' : 'Objeto del crimen',
+    weapon.device
+      ? `Alguien manipuló a mano ${weapon.weapon} en ${roomName(scene)}. No queda ninguna marca que diga quién.`
+      : `Junto al cuerpo apareció ${weapon.weapon}. No estaba en el lugar donde se guarda habitualmente.`,
     { type: 'weapon', method: method.id, room: scene.id },
-    method.imagePrompt,
-    (setting !== 'scifi' &&
-    ['shotgun', 'sword', 'crossbow', 'artifact', 'alchemy'].includes(method.id)
-      ? '/prototype/world-assets-v1/'
-      : '/prototype/assets/') +
-      'method-' +
-      method.id +
-      '.webp',
+    weapon.image,
   );
   add(
     scene,
     'Aviso del hallazgo',
     `${named(i2)} encontró a ${victim} en ${roomName(scene)} a las ${clock(discovery)} y dio la alarma.`,
     { type: 'discovery', person: i2, room: scene.id, minute: discovery },
-    profile.testimonyPrompt,
+    art.testimony.image,
   );
   const herringId = 'c' + (clues.length + 1);
   add(
     scene,
     'Objeto junto a la puerta',
-    `Junto a la puerta de ${roomName(scene)} apareció ${item.fem ? 'una' : 'un'} ${item.noun} que pertenece a ${named(herringPerson)}.`,
+    `Junto a la puerta de ${roomName(scene)} apareció ${item.gender === 'f' ? 'una' : 'un'} ${item.noun} que pertenece a ${named(herringPerson)}.`,
     { type: 'herring', person: herringPerson, room: scene.id },
-    item.prompt + ' on the floor',
+    item.image,
   );
   add(
     storeRoom,
     'Quién podía llegar al arma',
     pick(
       [
-        `Según ${profile.guardian}, solo ${list(accessList)} tenían acceso a ${object.access}.`,
-        `Inventario de ${roomName(storeRoom)}: solo ${list(accessList)} figuran como autorizados para usar ${object.access}.`,
+        `Según ${staff.guardian}, solo ${list(accessList)} tenían acceso a ${weapon.access}.`,
+        `Anotación de ${staff.guardian}: solo ${list(accessList)} tenían permiso para usar ${weapon.access}.`,
       ],
       random,
     ),
     { type: 'access', method: method.id, people: [culprit, i2, i3] },
-    profile.ledgerPrompt,
+    art.ledger.image,
   );
   add(
     storeRoom,
     'Última vez en su sitio',
-    object.device
-      ? `${capFirst(profile.guardian)} revisó ${object.weapon} a las ${clock(crime - 40)} y todo estaba en orden.`
-      : `${capFirst(profile.guardian)} recuerda haber visto ${object.seen || object.access} en su sitio a las ${clock(crime - 40)}.`,
+    weapon.device
+      ? `${guardian} revisó ${weapon.weapon} a las ${clock(crime - 40)} y todo estaba en orden.`
+      : `${guardian} recuerda haber visto ${weapon.seen || weapon.weapon} en su sitio a las ${clock(crime - 40)}.`,
     { type: 'note' },
-    profile.testimonyPrompt,
+    art.testimony.image,
   );
   add(
     recordRoom,
     'Registro de ' + roomName(recordRoom),
-    `${capFirst(profile.record)} de ${roomName(recordRoom)} anota la entrada de ${named(i2)} a las ${clock(from)} y su salida a las ${clock(recordTo)}.`,
+    `${capFirst(staff.record)} de ${roomName(recordRoom)} anota la entrada de ${named(i2)} a las ${clock(from)} y su salida a las ${clock(recordTo)}.`,
     { type: 'presence', people: [i2], room: recordRoom.id, from, to: recordTo },
-    profile.ledgerPrompt,
+    art.ledger.image,
   );
   add(
     pairRoom,
     'Declaración sobre ' + roomName(pairRoom),
-    `${capFirst(profile.guardian)} vigiló la puerta de ${roomName(pairRoom)} de ${clock(from)} a ${clock(to)}: dentro estaban ${named(i3)} y ${named(i4)}, y nadie más entró ni salió.`,
+    `${guardian} vigiló la puerta de ${roomName(pairRoom)} de ${clock(from)} a ${clock(to)}: dentro estaban ${named(i3)} y ${named(i4)}, y nadie más entró ni salió.`,
     { type: 'presence', people: [i3, i4], room: pairRoom.id, from, to, exclusive: true },
-    profile.testimonyPrompt,
+    art.testimony.image,
   );
   if (pattern === 'empty')
     add(
       emptyRoom,
       'Llave de ' + roomName(emptyRoom),
-      `La puerta de ${roomName(emptyRoom)} estuvo cerrada con llave de ${clock(from)} a ${clock(to)}. ${capFirst(profile.guardian)} guardaba la única llave y nadie le pidió abrir.`,
+      `La puerta de ${roomName(emptyRoom)} estuvo cerrada con llave de ${clock(from)} a ${clock(to)}. ${guardian} guardaba la única llave y nadie le pidió abrir.`,
       { type: 'presence', people: [], room: emptyRoom.id, from, to, exclusive: true },
-      profile.testimonyPrompt,
+      art.testimony.image,
     );
   add(
     aloneRoom,
     'Sin testigos',
     `Nadie recuerda haber visto a ${named(i1)} entre las ${clock(from)} y las ${clock(to)}.`,
     { type: 'note' },
-    profile.testimonyPrompt,
+    art.testimony.image,
   );
   // Documents go to the rooms with fewest clues, so every room has something to search.
   const documentRoom = () => {
@@ -504,7 +199,7 @@ export function generateCaseFile(
       random,
     ),
     { type: 'motive', person: culprit },
-    profile.documentPrompt,
+    art.document.image,
   );
   for (const [person, weak] of [
     [i1, weakA],
@@ -513,10 +208,10 @@ export function generateCaseFile(
     documents[person] = clues.length + 1;
     add(
       documentRoom(),
-      weak.title(victim, named(person)),
-      weak.text(victim, named(person)),
+      fill(weak.title, person),
+      fill(weak.text, person),
       { type: 'motive', person },
-      profile.documentPrompt,
+      art.document.image,
     );
   }
   for (const [person, neutral] of [
@@ -526,18 +221,18 @@ export function generateCaseFile(
     documents[person] = clues.length + 1;
     add(
       documentRoom(),
-      neutral.title(victim, named(person)),
-      neutral.text(victim, named(person)),
+      fill(neutral.title, person),
+      fill(neutral.text, person),
       { type: 'note' },
-      profile.documentPrompt,
+      art.document.image,
     );
   }
   add(
     documentRoom(),
     'Nota de ' + named(herringPerson),
-    `Nota escrita por ${named(herringPerson)} a las ${clock(morning)}: pregunta si alguien ha visto ${item.fem ? 'la' : 'el'} ${item.noun} que perdió esta mañana en ${roomName(scene)}.`,
+    `Nota escrita por ${named(herringPerson)} a las ${clock(morning)}: pregunta si alguien ha visto ${itemArticle} ${item.noun} que perdió esta mañana en ${roomName(scene)}.`,
     { type: 'explains', clue: herringId },
-    profile.documentPrompt,
+    art.document.image,
   );
 
   const clueId = n => 'c' + n,
@@ -599,23 +294,21 @@ export function generateCaseFile(
   };
   const common = {
     victim,
-    access: object.access,
-    record: profile.record,
-    guardian: profile.guardian,
+    access: weapon.access,
+    record: staff.record,
+    guardian: staff.guardian,
     scene: roomName(scene),
     time: clock(discovery),
-    item: (item.fem ? 'la ' : 'el ') + item.noun,
-    mine: item.fem ? 'mía' : 'mío',
-    it: item.fem ? 'la' : 'lo',
+    item: itemArticle + ' ' + item.noun,
+    mine: item.gender === 'f' ? 'mía' : 'mío',
+    it: item.gender === 'f' ? 'la' : 'lo',
   };
   const facts = Object.fromEntries(
     people.map(p => [
       p.id,
       statementsOf(p.id).map(([kind, values, requires]) => {
         const filled = { ...common, name: named(p.id), role: p.role, ...values };
-        const variants = phrasings(kind, data.voices?.[p.id], random).map(text =>
-          fillStatement(text, filled),
-        );
+        const variants = phrasings(kind, p.voice, random).map(text => fillStatement(text, filled));
         return {
           id: statementKinds[kind].topic,
           kind,
@@ -631,26 +324,41 @@ export function generateCaseFile(
   const file = normalizeCaseFile({
     format: CASE_FORMAT,
     version: 1,
-    title: data.world.title,
-    setting,
-    ...(data.label ? { label: data.label } : {}),
-    ...(data.description ? { description: data.description } : {}),
-    ...(data.visualStyle ? { visualStyle: data.visualStyle } : {}),
-    ...(data.rules ? { rules: data.rules } : {}),
-    victim: data.custom
-      ? data.victim
-      : { ...data.victim, role: preparedVictimRoles[data.revision] || data.victim.role },
-    people,
-    rooms,
+    world: world.id,
+    title: world.title,
+    victim: { name: world.victim.name, role: world.victim.role, gender: world.victim.gender },
+    people: people.map(p => ({
+      id: p.id,
+      name: p.name,
+      role: p.role,
+      gender: p.gender,
+      personality: p.personality,
+      ...(p.image ? { image: p.image } : {}),
+    })),
+    rooms: rooms.map(r => ({
+      id: r.id,
+      name: r.name,
+      article: r.article,
+      description: r.description,
+      tags: r.tags,
+      ...(r.image ? { image: r.image } : {}),
+    })),
+    weapons: worldWeapons(world).map(w => ({ method: w.method, label: w.label })),
     crime: {
       culprit,
       method: method.id,
+      weapon: weapon.weapon,
+      phrase: weapon.phrase,
       scene: scene.id,
       crimeMinute: crime,
       exitMinute: exit,
       deathMinute: death,
       discoveryMinute: discovery,
       motive,
+    },
+    opening: {
+      arrival: pick(world.openings.arrivals, random),
+      tension: pick(world.openings.tensions, random),
     },
     alibis: people.map(p => ({
       person: p.id,
@@ -661,7 +369,7 @@ export function generateCaseFile(
     })),
     clues,
     facts,
-    origin: { generator: 'case-v1', seed },
+    origin: { generator: 'mundos-1', seed },
   });
   const analysis = analyzeCase(file);
   if (analysis.errors.length) throw Error('Generador incoherente: ' + analysis.errors.join(' '));

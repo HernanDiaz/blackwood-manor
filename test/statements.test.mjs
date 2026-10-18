@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { loadWorld } from './worlds-fixture.mjs';
 import { statementKinds, phrasingIssue, fillStatement } from '../src/statements.mjs';
 import {
   newPrototype,
@@ -9,7 +9,7 @@ import {
   inspectPrototype,
 } from '../src/prototype-engine.mjs';
 import { respondPrototype } from '../src/prototype-llm.mjs';
-const noir = JSON.parse(readFileSync('public/prototype/worlds/noir.json'));
+const villa = loadWorld('villa-bellavista');
 
 test('every default wording is valid for its kind', () => {
   for (const [kind, spec] of Object.entries(statementKinds))
@@ -32,24 +32,33 @@ test('a wording cannot drop, invent or hard-code a fact', () => {
 });
 
 test('a world can give each character its own voice, and invalid wordings are ignored', () => {
-  const world = structuredClone(noir);
-  world.voices = {
-    p1: {
-      'seen.nothing': ['Querido, en esta casa nadie ve nada. Yo tampoco.'],
-      'link.none': ['Ni sabía que existía.'],
-    },
+  const world = structuredClone(villa),
+    own = 'Querido, en esta casa nadie ve nada. Yo tampoco.';
+  world.people[0].voice = {
+    ...world.people[0].voice,
+    'seen.nothing': [own],
+    'link.none': ['Ni sabía que existía.'],
+    'link.access': ['Ni sabía que existía.'],
   };
-  const c = createPrototypeCase(world, newPrototype(world, { seed: 'voices' })),
-    seen = c.facts.p1.find(f => f.kind === 'seen.nothing'),
-    link = c.facts.p1.find(f => f.id === 'link');
-  if (seen) assert.deepEqual(seen.variants, ['Querido, en esta casa nadie ve nada. Yo tampoco.']);
-  // The custom link wording omits {access}, so the defaults stay.
-  assert.ok(link.variants.every(v => !v.includes('Ni sabía')));
+  let checked = 0;
+  for (let i = 0; i < 20; i++) {
+    const c = createPrototypeCase(newPrototype(world, { seed: 'voices-' + i })),
+      seen = c.facts.p1.find(f => f.kind === 'seen.nothing'),
+      link = c.facts.p1.find(f => f.id === 'link');
+    if (seen) {
+      assert.deepEqual(seen.variants, [own]);
+      checked++;
+    }
+    // The custom link wordings omit {access}, so the other wordings stay.
+    assert.ok(link.variants.length > 0);
+    assert.ok(link.variants.every(v => !v.includes('Ni sabía')));
+  }
+  assert.ok(checked > 0);
 });
 
 test('generated statements keep their facts in every wording', () => {
   for (let i = 0; i < 20; i++) {
-    const c = createPrototypeCase(noir, newPrototype(noir, { seed: 'wording-' + i }));
+    const c = createPrototypeCase(newPrototype(villa, { seed: 'wording-' + i }));
     for (const alibi of c.alibis) {
       const fact = c.facts[alibi.person].find(f => f.id === 'alibi');
       assert.ok(fact.variants.length >= 2);
@@ -62,8 +71,8 @@ test('generated statements keep their facts in every wording', () => {
 });
 
 test('choose mode rotates authored wordings, hides locked facts and only asks the model to classify', async () => {
-  const s = newPrototype(noir, { seed: 'choose' }),
-    c = createPrototypeCase(noir, s),
+  const s = newPrototype(villa, { seed: 'choose' }),
+    c = createPrototypeCase(s),
     person = c.culprit.id,
     calls = [];
   const request = async messages => {
@@ -73,7 +82,6 @@ test('choose mode rotates authored wordings, hides locked facts and only asks th
   const answers = [];
   for (let i = 0; i < 3; i++) {
     const r = await respondPrototype(
-      noir,
       { state: s, person, question: 'Cuéntame otra vez lo de esa noche' },
       { useModel: true, request },
     );
@@ -87,7 +95,6 @@ test('choose mode rotates authored wordings, hides locked facts and only asks th
   assert.equal(new Set(answers.slice(0, variants.length)).size, Math.min(3, variants.length));
   assert.ok(calls.every(prompt => prompt.startsWith('Clasifica')));
   const locked = await respondPrototype(
-    noir,
     { state: s, person, question: '¿Qué ocultas sobre el documento?' },
     { useModel: false },
   );
@@ -100,7 +107,6 @@ test('choose mode rotates authored wordings, hides locked facts and only asks th
   }
   assert.ok(prototypeFacts(c, s, person).some(f => f.id === 'secret'));
   const unlocked = await respondPrototype(
-    noir,
     { state: s, person, question: '¿Qué ocultas sobre el documento?' },
     { useModel: false },
   );

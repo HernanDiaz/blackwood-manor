@@ -1,53 +1,20 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { naturalProse, displayRole } from '../src/spanish-prose.mjs';
-const rooms = [
-  { name: 'Sala de Control del Desierto' },
-  { name: 'Comedor' },
-  { name: 'La cámara sellada' },
-];
-test('objects read naturally, with gender and no object label', () => {
-  assert.equal(
-    naturalProse(
-      'Una prueba identifica a Ana usando el objeto «cordón trenzado».',
-      rooms,
-      'cordón trenzado',
-    ),
-    'Una prueba identifica a Ana usando el cordón trenzado.',
-  );
-  assert.equal(
-    naturalProse('Me vincula con el objeto «daga».', rooms, 'daga'),
-    'Me vincula con la daga.',
-  );
-});
-test('rooms have articles and contractions', () => {
-  assert.equal(
-    naturalProse('Carlos permaneció en «Sala de Control del Desierto» de 19:55 a 20:07.', rooms),
-    'Carlos permaneció en la sala de Control del Desierto de 19:55 a 20:07.',
-  );
-  assert.equal(
-    naturalProse('La entrada de «Comedor» lleva a «La cámara sellada».', rooms),
-    'La entrada del comedor lleva a la cámara sellada.',
-  );
-});
-test('audit regressions: letters, colony and unknown proper room names stay grammatical', () => {
-  assert.equal(
-    naturalProse('Copia del carta con sello personal cotejado por el escribano, atribuido a Aldo:'),
-    'Copia de la carta con sello personal cotejado por el escribano, atribuida a Aldo:',
-  );
-  assert.equal(
-    naturalProse('Estuve en «Colonia de Enanos».', [{ name: 'Colonia de Enanos' }]),
-    'Estuve en la colonia de Enanos.',
-  );
-  assert.equal(
-    naturalProse('La entrada de «Aurora de la Colina».', [{ name: 'Aurora de la Colina' }]),
-    'La entrada del lugar llamado Aurora de la Colina.',
-  );
-});
+import { placePhrase, contract, lowerRoomNames } from '../src/spanish-prose.mjs';
 
-test('explicit female portrait metadata corrects displayed occupation without changing the stored profile', () => {
-  const actor = { role: 'Artesano de minerales', imagePrompt: 'portrait of a dwarf woman' };
-  assert.equal(displayRole(actor), 'Artesana de minerales');
-  assert.equal(actor.role, 'Artesano de minerales');
-  assert.equal(displayRole({ role: 'Artesano', imagePrompt: 'portrait of a person' }), 'Artesano');
+test('places read inside a sentence with their article', () => {
+  assert.equal(placePhrase({ name: 'Sala de navegación', article: 'la' }), 'la sala de navegación');
+  assert.equal(placePhrase({ name: 'Salón de Ámbar', article: 'el' }), 'el salón de Ámbar');
+  assert.equal(placePhrase({ name: 'Aposentos', article: 'los' }), 'los aposentos');
+});
+test('de el and a el contract only between whole words', () => {
+  assert.equal(contract('Vino de el salón y fue a el patio.'), 'Vino del salón y fue al patio.');
+  assert.equal(contract('Debe a Umbría el precio.'), 'Debe a Umbría el precio.');
+  assert.equal(contract('A el portero.'), 'Al portero.');
+});
+test('room names written by the model lose their capitals after an article', () => {
+  assert.equal(
+    lowerRoomNames('Estuve en el Vestíbulo.', [{ name: 'Vestíbulo' }]),
+    'Estuve en el vestíbulo.',
+  );
 });

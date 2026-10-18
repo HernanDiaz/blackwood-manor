@@ -1,15 +1,16 @@
-// Case files ("expedientes"): everything a prototype investigation needs, as plain JSON.
-// Generated, prepared and hand-written cases share this format, so they can be exported,
-// imported and edited. Every clue carries a machine-readable fact; analyzeCase() uses
+// Case files ("expedientes"): one investigation, as plain JSON. A case file is complete on its
+// own: cast, places, the weapons the accusation offers, the crime, the prologue, the clues and
+// what each person can say. Generated and hand-written cases share this format, so they can be
+// exported, edited and imported. Every clue carries a machine-readable fact; analyzeCase() uses
 // those facts, never the prose, to prove that exactly one person can be the culprit.
-import { methodCatalog } from './method-catalog.mjs';
-import { prototypeMethods } from './prototype-worlds.mjs';
+// The format is described in docs/EXPEDIENTES.md.
+import { findMethod, fitsRoom } from './method-catalog.mjs';
 import { hash } from './random.mjs';
-import { placePhrase } from './spanish-prose.mjs';
+import { placePhrase, contract } from './spanish-prose.mjs';
 import { statementKinds } from './statements.mjs';
+import { text, image, optional, list as ids, personIds } from './world-file.mjs';
 
 export const CASE_FORMAT = 'mundos-expediente';
-export const CASE_REVISION = 'case-v1';
 export const topics = [
   'alibi',
   'motive',
@@ -22,47 +23,19 @@ export const topics = [
   'social',
   'unknown',
 ];
-const settings = ['scifi', 'noir', 'medieval', 'fantasy'];
-const personIds = ['p1', 'p2', 'p3', 'p4', 'p5'];
-
 const fail = message => {
   throw Error(message);
 };
-function text(value, max, field, { optional = false } = {}) {
-  if (optional && (value === undefined || value === null || value === '')) return undefined;
-  if (typeof value !== 'string' || !value.trim()) fail(`Falta el texto de ${field}`);
-  if (value.length > max) fail(`${field} supera ${max} caracteres`);
-  if (/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/.test(value))
-    fail(`${field} contiene caracteres no válidos`);
-  return value.trim();
-}
+const genders = ['f', 'm'];
 function minute(value, field) {
   if (!Number.isInteger(value) || value < 0 || value > 1439) fail(`Hora no válida en ${field}`);
   return value;
 }
-function image(value, field) {
-  if (value === undefined || value === '') return undefined;
-  if (
-    typeof value !== 'string' ||
-    value.length > 200 ||
-    value.includes('..') ||
-    !/^\/(prototype|lab|assets)\/[A-Za-z0-9_\-/.]+\.webp$/.test(value)
-  )
-    fail(`Imagen no permitida en ${field}`);
-  return value;
-}
-const optional = (key, value) => (value === undefined ? {} : { [key]: value });
-const ids = (list, field) => {
-  if (!Array.isArray(list)) fail(`${field} debe ser una lista`);
-  return list;
-};
-
 function normalizeFact(raw, file, field) {
   const person = id => (personIds.includes(id) ? id : fail(`Persona desconocida en ${field}`));
   const room = id =>
     file.rooms.some(r => r.id === id) ? id : fail(`Lugar desconocido en ${field}`);
-  const method = id =>
-    methodCatalog.some(m => m.id === id) ? id : fail(`Método desconocido en ${field}`);
+  const method = id => (findMethod(id) ? id : fail(`Método desconocido en ${field}`));
   switch (raw?.type) {
     case 'cause':
       return {
@@ -115,71 +88,60 @@ function normalizeFact(raw, file, field) {
 export function normalizeCaseFile(raw) {
   if (!raw || raw.format !== CASE_FORMAT || raw.version !== 1)
     fail('No es un expediente compatible');
-  if (!settings.includes(raw.setting)) fail('Ambientación desconocida');
-  const people = ids(raw.people, 'personajes').map((p, i) => ({
+  const people = ids(raw.people, 'personajes', { min: 5, max: 5 }).map((p, i) => ({
     id: personIds[i] === p?.id ? p.id : fail('Los personajes deben ser p1 a p5'),
     name: text(p.name, 80, 'el nombre de ' + p.id),
-    role: text(p.role, 120, 'el oficio de ' + p.id),
-    ...optional('personality', text(p.personality, 1000, 'la personalidad', { optional: true })),
+    role: text(p.role, 80, 'el oficio de ' + p.id),
+    gender: genders.includes(p.gender) ? p.gender : fail('Género no válido en ' + p.id),
+    ...optional('personality', text(p.personality, 600, 'la personalidad', { optional: true })),
     ...optional('image', image(p.image, p.id)),
-    ...optional('imagePrompt', text(p.imagePrompt, 500, 'la imagen', { optional: true })),
   }));
-  if (people.length !== 5) fail('Un expediente necesita cinco personajes');
-  const rooms = ids(raw.rooms, 'lugares').map(r => ({
+  const rooms = ids(raw.rooms, 'lugares', { min: 4, max: 8 }).map(r => ({
     id: /^r\d{1,2}$/.test(r?.id) ? r.id : fail('Identificador de lugar no válido'),
-    name: text(r.name, 100, 'el nombre de ' + r.id),
+    name: text(r.name, 60, 'el nombre de ' + r.id),
+    article: ['el', 'la', 'los', 'las'].includes(r.article)
+      ? r.article
+      : fail('Artículo no válido en ' + r.id),
     description: text(r.description, 500, 'la descripción de ' + r.id),
-    ...optional(
-      'tags',
-      r.tags === undefined
-        ? undefined
-        : ids(r.tags, 'etiquetas').map(t => text(t, 30, 'una etiqueta')),
-    ),
-    ...optional('article', ['el', 'la', 'los', 'las'].includes(r.article) ? r.article : undefined),
+    tags: ids(r.tags ?? [], 'etiquetas', { max: 6 }).map(t => text(t, 30, 'una etiqueta')),
     ...optional('image', image(r.image, r.id)),
-    ...optional('imagePrompt', text(r.imagePrompt, 500, 'la imagen', { optional: true })),
   }));
-  if (rooms.length < 4 || rooms.length > 8) fail('Un expediente necesita entre 4 y 8 lugares');
   if (new Set(rooms.map(r => r.id)).size !== rooms.length) fail('Lugares repetidos');
   const file = { rooms };
   const crime = raw.crime || fail('Falta el crimen');
   const normalized = {
     format: CASE_FORMAT,
     version: 1,
+    world: /^[a-z0-9-]{2,40}$/.test(raw.world) ? raw.world : fail('Mundo no válido'),
     title: text(raw.title, 120, 'el título'),
-    setting: raw.setting,
-    ...optional('label', text(raw.label, 60, 'la etiqueta', { optional: true })),
-    ...optional('description', text(raw.description, 600, 'la descripción', { optional: true })),
-    ...optional('visualStyle', text(raw.visualStyle, 300, 'el estilo', { optional: true })),
-    ...(raw.rules
-      ? {
-          rules: {
-            technology: ['preindustrial', 'industrial', 'futuristic'].includes(raw.rules.technology)
-              ? raw.rules.technology
-              : fail('Tecnología desconocida'),
-            magic: raw.rules.magic === true,
-            firearms: raw.rules.firearms === true,
-            ...optional('resource', text(raw.rules.resource, 60, 'el recurso', { optional: true })),
-          },
-        }
-      : {}),
+    weapons: ids(raw.weapons, 'armas', { min: 1, max: 20 }).map(w => ({
+      method: findMethod(w?.method) ? w.method : fail('Arma desconocida'),
+      label: text(w.label, 60, 'el nombre de un arma'),
+    })),
     victim: {
       name: text(raw.victim?.name, 80, 'el nombre de la víctima'),
-      role: text(raw.victim?.role, 120, 'el papel de la víctima'),
+      role: text(raw.victim?.role, 80, 'el cargo de la víctima'),
+      gender: genders.includes(raw.victim?.gender)
+        ? raw.victim.gender
+        : fail('Género no válido en la víctima'),
     },
     people,
     rooms,
     crime: {
       culprit: personIds.includes(crime.culprit) ? crime.culprit : fail('Culpable desconocido'),
-      method: methodCatalog.some(m => m.id === crime.method)
-        ? crime.method
-        : fail('Método desconocido'),
+      method: findMethod(crime.method) ? crime.method : fail('Método desconocido'),
+      weapon: text(crime.weapon, 80, 'el arma'),
+      phrase: text(crime.phrase, 120, 'cómo se cometió'),
       scene: rooms.some(r => r.id === crime.scene) ? crime.scene : fail('Escena desconocida'),
       crimeMinute: minute(crime.crimeMinute, 'el crimen'),
       exitMinute: minute(crime.exitMinute, 'la salida'),
       deathMinute: minute(crime.deathMinute, 'la muerte'),
       discoveryMinute: minute(crime.discoveryMinute, 'el hallazgo'),
       motive: text(crime.motive, 600, 'el móvil'),
+    },
+    opening: {
+      arrival: text(raw.opening?.arrival, 650, 'el prólogo'),
+      tension: text(raw.opening?.tension, 650, 'el cierre del prólogo'),
     },
     alibis: ids(raw.alibis, 'coartadas').map(a => ({
       person: personIds.includes(a?.person) ? a.person : fail('Coartada de persona desconocida'),
@@ -194,7 +156,6 @@ export function normalizeCaseFile(raw) {
       title: text(c.title, 120, 'el título de ' + c.id),
       text: text(c.text, 700, 'el texto de ' + c.id),
       ...optional('image', image(c.image, c.id)),
-      ...optional('imagePrompt', text(c.imagePrompt, 500, 'la imagen', { optional: true })),
       fact: normalizeFact(c.fact, file, 'la pista ' + c.id),
     })),
     facts: Object.fromEntries(
@@ -233,14 +194,6 @@ export function normalizeCaseFile(raw) {
           origin: {
             generator: text(raw.origin.generator, 40, 'el origen'),
             ...optional('seed', text(raw.origin.seed, 64, 'la semilla', { optional: true })),
-            ...optional(
-              'legacyId',
-              /^orbital-[0-9a-f]{8}$/.test(raw.origin.legacyId) ? raw.origin.legacyId : undefined,
-            ),
-            ...optional(
-              'revision',
-              text(raw.origin.revision, 40, 'la revisión', { optional: true }),
-            ),
           },
         }
       : {}),
@@ -276,9 +229,15 @@ export function analyzeCase(file) {
     errors.push(
       'La cronología es imposible: el hallazgo debe llegar después del crimen y de la salida del culpable.',
     );
-  const world = worldFromCase(file);
-  if (!prototypeMethods(world).some(m => m.id === crime.method))
-    errors.push('El método no está disponible en esta ambientación o en este lugar.');
+  if (
+    !fitsRoom(
+      crime.method,
+      file.rooms.find(r => r.id === crime.scene),
+    )
+  )
+    errors.push('El método no se puede usar en la escena.');
+  if (!file.weapons.some(w => w.method === crime.method))
+    errors.push('El arma del crimen no está entre las de la acusación.');
   for (const cause of of('cause'))
     if (cause.method !== crime.method || cause.room !== crime.scene)
       errors.push('La causa de la muerte contradice el crimen.');
@@ -380,33 +339,17 @@ export function validateCaseFile(raw) {
   return file;
 }
 
-// World data (setting, cast, places) as the rest of the prototype expects it.
-export function worldFromCase(file) {
-  return {
-    revision: CASE_REVISION,
-    // Free-text worlds keep their description; prepared worlds use the built-in image themes.
-    custom: Boolean(file.description),
-    setting: file.setting,
-    ...optional('label', file.label),
-    ...optional('description', file.description),
-    ...optional('visualStyle', file.visualStyle),
-    ...optional('rules', file.rules),
-    victim: file.victim,
-    world: { title: file.title, people: file.people, rooms: file.rooms },
-  };
-}
-
 // Replaces {victim}, {p1}… with names and {r1}… with the place and its article.
 export function resolveText(text, file) {
-  const value = text
-    .replace(/\{victim\}/g, file.victim.name)
-    .replace(/\{(p\d)\}/g, (token, id) => file.people.find(p => p.id === id)?.name || token)
-    .replace(/\{(r\d{1,2})\}/g, (token, id) => {
-      const room = file.rooms.find(r => r.id === id);
-      return room ? placePhrase(room) : token;
-    })
-    .replace(/\bde el\b/g, 'del')
-    .replace(/\ba el\b/g, 'al');
+  const value = contract(
+    text
+      .replace(/\{victim\}/g, file.victim.name)
+      .replace(/\{(p\d)\}/g, (token, id) => file.people.find(p => p.id === id)?.name || token)
+      .replace(/\{(r\d{1,2})\}/g, (token, id) => {
+        const room = file.rooms.find(r => r.id === id);
+        return room ? placePhrase(room) : token;
+      }),
+  );
   return value.charAt(0).toLocaleUpperCase('es') + value.slice(1);
 }
 // The playable case: the file plus resolved objects and the proof the accusation needs.
@@ -416,15 +359,20 @@ export function hydrateCase(file) {
   if (analysis.errors.length) fail('Expediente incoherente: ' + analysis.errors.join(' '));
   return {
     id: file.id,
-    revision: CASE_REVISION,
+    world: file.world,
     ...optional('seed', file.origin?.seed),
-    ...optional('legacyId', file.origin?.legacyId),
     title: file.title,
-    setting: file.setting,
     people: file.people,
     rooms: file.rooms,
     victim: file.victim,
-    method: methodCatalog.find(m => m.id === crime.method),
+    weapons: file.weapons,
+    method: {
+      ...file.weapons.find(w => w.method === crime.method),
+      id: crime.method,
+      weapon: crime.weapon,
+      phrase: crime.phrase,
+    },
+    opening: file.opening,
     scene: file.rooms.find(r => r.id === crime.scene),
     culprit: file.people.find(p => p.id === crime.culprit),
     motive: resolveText(crime.motive, file),

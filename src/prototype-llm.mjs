@@ -1,4 +1,4 @@
-import { displayRole, lowerRoomNames } from './spanish-prose.mjs';
+import { lowerRoomNames } from './spanish-prose.mjs';
 import { requestLocalJson } from './local-llm.mjs';
 import { CLASSIFIER_THRESHOLD } from './question-classifier.mjs';
 import { predictLogistic } from './question-router.mjs';
@@ -6,7 +6,6 @@ import routerModel from './question-router-model.json' with { type: 'json' };
 // Below this confidence of the statistical router, the offline rules decide.
 const ROUTER_THRESHOLD = 0.5;
 import { replyUnits, reviewSchema } from './dialogue-policy.mjs';
-import { methodCatalog } from './method-catalog.mjs';
 import {
   restorePrototype,
   createPrototypeCase,
@@ -221,8 +220,9 @@ export function freeDraftGuard(c, actor, sources, draft) {
     if (exactWord(text, norm(word)) && !exactWord(canon, norm(word))) return false;
   if (/mi habitacion|no tengo memoria|no recuerdo nada/.test(text) && !canon.includes(text))
     return false;
-  for (const method of methodCatalog)
-    if (text.includes(norm(method.object)) && !canon.includes(norm(method.object))) return false;
+  // The weapon may only be named when a source names it.
+  const weapon = norm(c.method.weapon).replace(/^(el|la|los|las) /, '');
+  if (text.includes(weapon) && !canon.includes(weapon)) return false;
   // Any negated action must come from the sources ("no lo perdí" contradicts "lo perdí");
   // only conversational refusals and doubts are free.
   for (const match of text.matchAll(/\bno (?:(?:lo|la|los|las|le|les|me|te|se|nos) )?([a-z]+)/g))
@@ -344,7 +344,6 @@ const schema = {
   additionalProperties: false,
 };
 export async function respondPrototype(
-  data,
   payload,
   // dialogue 'choose': the model only classifies and the reply is an authored wording.
   // dialogue 'free': the model writes the reply and the guards check it (experimental).
@@ -358,8 +357,8 @@ export async function respondPrototype(
     questionRouter = routerModel,
   } = {},
 ) {
-  const state = restorePrototype(data, payload.state),
-    c = createPrototypeCase(data, state),
+  const state = restorePrototype(payload.state),
+    c = createPrototypeCase(state),
     person = payload.person,
     question = payload.question,
     actor = c.people.find(p => p.id === person);
@@ -401,7 +400,7 @@ export async function respondPrototype(
             p5: 'Esta situación me inquieta. Dígame qué desea aclarar.',
           }[person]
         : topic === 'identity'
-          ? 'Me llamo ' + actor.name + '. Mi ocupación es ' + displayRole(actor) + '.'
+          ? 'Me llamo ' + actor.name + '. Mi ocupación es ' + actor.role + '.'
           : prototypeReply(c, state, person, topic),
     topic: topic || 'unknown',
     mode: 'prototype-engine',
@@ -472,7 +471,7 @@ export async function respondPrototype(
   if (!useModel) return fallback('model-disabled');
   const identity = {
       id: 'identity',
-      text: 'Me llamo ' + actor.name + '. Mi ocupación es ' + displayRole(actor) + '.',
+      text: 'Me llamo ' + actor.name + '. Mi ocupación es ' + actor.role + '.',
     },
     persona = { id: 'persona', text: 'Rasgos de personalidad: ' + actor.personality };
   try {
@@ -495,7 +494,7 @@ export async function respondPrototype(
             content: JSON.stringify({
               actor: {
                 ...(topic === 'social' ? {} : { name: actor.name }),
-                role: displayRole(actor),
+                role: actor.role,
                 personality: actor.personality,
                 voice: voices[person],
               },

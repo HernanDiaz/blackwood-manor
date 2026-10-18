@@ -1,34 +1,59 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
 import {
   newPrototype,
   restorePrototype,
   createPrototypeCase,
   exportCaseFile,
-  worldFromCase,
   accusePrototype,
 } from '../src/prototype-engine.mjs';
-import { normalizeCaseFile, analyzeCase, validateCaseFile } from '../src/case-file.mjs';
-import { createLegacyCase } from '../src/legacy-prototype-case.mjs';
-const noir = JSON.parse(readFileSync('public/prototype/worlds/noir.json'));
-const sample = () => exportCaseFile(newPrototype(noir, { seed: 'case-file-test' }));
+import {
+  normalizeCaseFile,
+  analyzeCase,
+  validateCaseFile,
+  hydrateCase,
+  resolveText,
+} from '../src/case-file.mjs';
+import { loadWorld } from './worlds-fixture.mjs';
+const villa = loadWorld('villa-bellavista');
+const sample = () => exportCaseFile(newPrototype(villa, { seed: 'case-file-test' }));
 const errorsOf = file => analyzeCase(normalizeCaseFile(file)).errors.join(' ');
+const play = file => hydrateCase(normalizeCaseFile(file));
 
-test('an exported case starts the same investigation when imported', () => {
-  const state = newPrototype(noir, { seed: 'case-file-test' }),
+test('an exported case starts the same investigation when imported, without its world', () => {
+  const state = newPrototype(villa, { seed: 'case-file-test' }),
     file = JSON.parse(JSON.stringify(exportCaseFile(state)));
   assert.equal(file.id, undefined);
-  assert.equal(file.crime.culprit, createPrototypeCase(noir, state).culprit.id);
-  const imported = newPrototype(worldFromCase(file), { caseFile: file, worldId: 'file' });
+  assert.equal(file.world, 'villa-bellavista');
+  assert.equal(file.crime.culprit, createPrototypeCase(state).culprit.id);
+  const imported = newPrototype(null, { caseFile: file });
   assert.equal(imported.caseId, state.caseId);
   assert.deepEqual(imported.found, []);
-  assert.equal(restorePrototype(null, JSON.stringify(imported)).caseId, state.caseId);
+  assert.equal(restorePrototype(JSON.stringify(imported)).caseId, state.caseId);
+  const c = createPrototypeCase(imported);
+  assert.ok(c.opening.arrival && c.opening.tension);
+  assert.ok(c.weapons.some(w => w.method === c.method.id));
+  assert.ok(c.method.phrase && c.method.weapon);
+});
+
+test('an imported case can be solved with the accusation it offers', () => {
+  const state = newPrototype(null, { caseFile: sample() }),
+    c = createPrototypeCase(state);
+  state.found = c.clues.map(x => x.id);
+  assert.equal(
+    accusePrototype(c, state, {
+      person: c.culprit.id,
+      method: c.method.id,
+      room: c.scene.id,
+      evidence: c.proof.map(group => group[0]),
+    }),
+    'won',
+  );
 });
 
 test('hand-edited cases are checked for a single deducible culprit', () => {
   const file = sample(),
-    c = createPrototypeCase(null, { case: file }),
+    c = play(file),
     analysis = analyzeCase(normalizeCaseFile(file)),
     // An innocent with a motive and no confirmed alibi: giving them access makes two suspects.
     rival = analysis.motive.find(p => p !== c.culprit.id && analysis.opportunity.includes(p));
@@ -49,7 +74,18 @@ test('hand-edited cases are checked for a single deducible culprit', () => {
   const pair = innocentLie.clues.find(x => x.fact.type === 'presence' && x.fact.exclusive);
   pair.fact.people = pair.fact.people.slice(1);
   assert.match(errorsOf(innocentLie), /inocente|confirman y desmienten|no permiten/);
+  const unarmed = structuredClone(file);
+  unarmed.weapons = unarmed.weapons.filter(w => w.method !== file.crime.method);
+  assert.match(errorsOf(unarmed), /no está entre las de la acusación/);
   assert.throws(() => validateCaseFile(ambiguous), /Expediente incoherente/);
+});
+
+test('a fall needs a scene with height', () => {
+  const file = sample(),
+    flat = file.rooms.find(r => !r.tags.includes('elevated'));
+  file.crime.method = 'fall';
+  file.crime.scene = flat.id;
+  assert.match(errorsOf(file), /no se puede usar en la escena/);
 });
 
 test('imported files only keep known fields and safe image paths', () => {
@@ -57,60 +93,32 @@ test('imported files only keep known fields and safe image paths', () => {
   file.people[0].image = 'https://example.com/x.webp';
   assert.throws(() => normalizeCaseFile(file), /Imagen no permitida/);
   const extra = sample();
-  extra.people[0].script = '<script>';
+  extra.people[0].script = 'x';
   extra.unknown = true;
   const normalized = normalizeCaseFile(extra);
   assert.equal(normalized.people[0].script, undefined);
   assert.equal(normalized.unknown, undefined);
+  const markup = sample();
+  markup.clues[0].text = '<img src=x>';
+  assert.throws(() => normalizeCaseFile(markup), /caracteres no válidos/);
   assert.throws(() => normalizeCaseFile({ ...sample(), format: 'otro' }), /compatible/);
+  assert.throws(() => normalizeCaseFile({ ...sample(), version: 2 }), /compatible/);
 });
 
-test('old saves from a prepared world become case files with the same progress', () => {
-  const old = createLegacyCase(noir, { seed: 'old-noir' }),
-    save = {
-      version: 1,
-      worldId: 'noir',
-      revision: noir.revision,
-      seed: 'old-noir',
-      caseId: old.id,
-      room: old.scene.id,
-      found: old.clues.slice(0, 7).map(x => x.id),
-      pinned: [],
-      notes: '',
-      chat: [],
-      result: null,
-    },
-    state = restorePrototype(noir, save),
-    c = createPrototypeCase(null, state);
-  assert.equal(state.version, 2);
-  assert.equal(state.worldId, 'noir');
-  assert.deepEqual(state.found, save.found);
-  assert.equal(c.culprit.id, old.culprit.id);
-  assert.ok(c.timing.discoveryMinute > c.timing.exitMinute);
-  assert.equal(
-    accusePrototype(
-      c,
-      { ...state, found: old.clues.map(x => x.id) },
-      {
-        person: old.culprit.id,
-        method: old.method.id,
-        room: old.scene.id,
-        evidence: old.clues.filter(x => x.person === old.culprit.id).map(x => x.id),
-      },
-    ),
-    'won',
-  );
-  assert.throws(() => restorePrototype(noir, { ...save, caseId: 'orbital-00000000' }));
+test('saves of another format are refused', () => {
+  const state = newPrototype(villa, { seed: 'save' });
+  assert.throws(() => restorePrototype({ ...state, format: 'otro' }), /compatible/);
+  assert.throws(() => restorePrototype({ ...state, caseId: 'case-0' }), /no coincide/);
 });
 
 test('renaming a person or the victim in a case file updates every text', () => {
   const file = sample(),
-    before = createPrototypeCase(null, { case: file }),
+    before = play(file),
     oldVictim = file.victim.name,
     oldName = file.people[2].name;
   file.victim.name = 'Ramiro Castell';
   file.people[2].name = 'Olga Brandt';
-  const after = createPrototypeCase(null, { case: file }),
+  const after = play(file),
     texts = [
       after.motive,
       ...after.clues.flatMap(x => [x.title, x.text]),
@@ -123,4 +131,17 @@ test('renaming a person or the victim in a case file updates every text', () => 
   assert.ok(texts.includes('Olga Brandt'));
   assert.notEqual(after.id, before.id);
   assert.ok(!/\{(victim|p\d|r\d)\}/.test(texts));
+});
+
+test('articles contract only between whole words', () => {
+  const file = sample();
+  file.victim.name = 'Gonzalo de Umbría';
+  assert.equal(
+    resolveText('Debe a {victim} el precio.', file),
+    'Debe a Gonzalo de Umbría el precio.',
+  );
+  assert.equal(
+    resolveText('Pregunte a el portero de el castillo.', file),
+    'Pregunte al portero del castillo.',
+  );
 });
