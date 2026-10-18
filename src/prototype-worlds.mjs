@@ -1,5 +1,6 @@
 // The worlds that come with the game. Each one is a world file (see world-file.mjs).
 export const worlds = [
+  { id: 'blackwood-manor', label: 'Blackwood Manor' },
   { id: 'estacion-orbital', label: 'Ciencia ficción' },
   { id: 'corte-de-ambar', label: 'Fantasía' },
   { id: 'torre-umbria', label: 'Medieval' },

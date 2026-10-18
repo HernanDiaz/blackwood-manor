@@ -3,7 +3,7 @@
 Juego de detectives en español que funciona sin conexión en el propio equipo. Tiene dos modos:
 
 - **Blackwood Manor** (`http://127.0.0.1:4173`): cinco casos escritos a mano en una mansión inglesa, uno por cada posible culpable. Ver [docs/VARIANTES.md](docs/VARIANTES.md); la solución está en [docs/CASE-SPOILERS.md](docs/CASE-SPOILERS.md).
-- **Mundos** (`http://127.0.0.1:4173/prototype/index.html`): cuatro mundos (una estación orbital, la corte de Ámbar, el castillo de Torre Umbría en el siglo XIV y Villa Bellavista en 1934) en los que cada investigación genera un caso nuevo: culpable, arma, escena, móviles, coartadas y pistas.
+- **Mundos** (`http://127.0.0.1:4173/prototype/index.html`): cinco mundos (Blackwood Manor en 1924, una estación orbital, la corte de Ámbar, el castillo de Torre Umbría en el siglo XIV y Villa Bellavista en 1934) en los que cada investigación genera un caso nuevo: culpable, arma, escena, móviles, coartadas y pistas.
 
 ## Ejecutar
 

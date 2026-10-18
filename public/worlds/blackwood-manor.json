@@ -1,0 +1,761 @@
+{
+  "format": "mundos-mundo",
+  "version": 1,
+  "id": "blackwood-manor",
+  "label": "Blackwood Manor",
+  "title": "Lluvia sobre Blackwood Manor",
+  "premise": "Otoño de mil novecientos veinticuatro, en la campiña inglesa. Lleva todo el día lloviendo sobre Blackwood Manor, la vieja casa de campo de Sir Edmund Blackwood, y el río ya ha cubierto el puente del camino. Después de la cena, entre el fuego de las chimeneas y el golpeteo del agua en los cristales, alguien de la casa decide que Sir Edmund no verá amanecer.",
+  "art": {
+    "style": "atmospheric cinematic oil painting, English country-house mystery, 1924, rain-dark windows, muted dark teal and brass palette, warm lamplight, deep soft shadows, realistic proportions"
+  },
+  "victim": {
+    "name": "Sir Edmund Blackwood",
+    "role": "dueño de Blackwood Manor",
+    "gender": "m",
+    "description": "Baronet, viudo y antiguo coronel de la Gran Guerra, señor de Blackwood Manor y de las granjas que la rodean. Coleccionista de plantas raras, puntilloso con el dinero y aficionado a cambiar el testamento según el humor de la semana, gobernaba a su familia y a su servicio con una cortesía helada y una memoria implacable para las faltas ajenas."
+  },
+  "people": [
+    {
+      "id": "p1",
+      "name": "Elena Blackwood",
+      "role": "heredera",
+      "gender": "f",
+      "age": 29,
+      "personality": "Hija única de Sir Edmund, huérfana de madre desde niña y educada por su padre para heredar la casa. Orgullosa, contenida y muy dueña de sí. Trata de usted, con frases completas y firmes, y no busca simpatía ni se disculpa. Cuando la presionan exige precisión, nunca alza la voz ni insulta. Dice «voy a ser muy clara» y «no confunda mis palabras», y corta en seco cualquier insinuación.",
+      "appearance": "Mujer de cerca de treinta años, alta y erguida, de rostro pálido y pómulos marcados. Ojos gris verdoso, cejas finas y labios sin apenas color. Lleva el pelo oscuro cortado a la garçon, muy liso. Viste un vestido de terciopelo negro de talle bajo, un collar largo de cuentas de azabache y un chal de seda gris sobre los hombros.",
+      "image": "/worlds/blackwood-manor/person-p1.webp",
+      "imagePrompt": "Portrait, head and shoulders, plain dark background. Proud, composed woman of about thirty, pale face with high cheekbones, grey-green eyes, fine eyebrows, sleek dark 1920s shingled bob. Black velvet drop-waist evening dress, long strand of jet beads, grey silk shawl over the shoulders, cool unsmiling expression.",
+      "voice": {
+        "alibi.claim": [
+          "Estuve en {place} de {from} a {to}. Voy a ser muy clara: no tengo nada que adornar.",
+          "De {from} a {to}, en {place}. Anótelo exactamente así."
+        ],
+        "alibi.alone": [
+          "Estuve sola en {place} de {from} a {to}. No necesito compañía para estar en mi propia casa.",
+          "De {from} a {to} permanecí en {place}, sola. No voy a disculparme por ello."
+        ],
+        "alibi.record": [
+          "Estuve en {place} de {from} a {to}. Al salir encontré a {victim}. No espere que se lo describa.",
+          "De {from} a {to}, en {place}; al salir encontré a {victim}. Lo que vi no pienso repetirlo."
+        ],
+        "alibi.pair": [
+          "Estuve en {place} con {partner} de {from} a {to}. Pregúntele; le dirá lo mismo.",
+          "De {from} a {to} estuve en {place}, en compañía de {partner}. Es fácil de comprobar."
+        ],
+        "relation": [
+          "{victim} era mi padre. Me educó para heredar esta casa, y nunca me dejó olvidarlo.",
+          "Soy la hija de {victim}, no su admiradora. Nos respetábamos; no confunda eso con cariño."
+        ],
+        "secret.culprit": [
+          "Sí, {victim} lo sabía. No voy a negar lo que está escrito, pero un secreto no es un crimen.",
+          "Lo que dice ese papel es cierto, y {victim} lo había descubierto. No confunda mis palabras: es lo único que admito."
+        ],
+        "secret.weak": [
+          "Un desacuerdo con {victim}, nada más. En esta familia se discute por carta, no a gritos.",
+          "Sí, {victim} y yo teníamos ese asunto pendiente. Le aseguro que no daba para tanto."
+        ],
+        "secret.neutral": [
+          "Ese papel no tiene la menor importancia.",
+          "Es un papel de la casa. No pierda el tiempo con él."
+        ],
+        "link.access": [
+          "Naturalmente que podía llegar a {access}. Pero no era la única, y le agradecería que lo anotara.",
+          "Tenía acceso a {access}, como otras personas de esta casa. Voy a ser muy clara: eso no prueba nada."
+        ],
+        "link.none": [
+          "Yo no tenía acceso a {access}. Nunca fue asunto mío.",
+          "No podía llegar a {access}. Compruébelo, si duda de mi palabra."
+        ],
+        "timeline.culprit": [
+          "Puede que me equivocara de hora; esa noche nadie miraba el reloj. Pero no entré en {scene}.",
+          "Un error de minutos no me pone dentro de {scene}. No estuve allí, y no confunda mis palabras."
+        ],
+        "timeline.alone": [
+          "Es cierto, nadie me vio. Estaba sola y no voy a inventarme testigos.",
+          "No tengo quien lo confirme. Tampoco lo he necesitado nunca."
+        ],
+        "timeline.record": [
+          "Mi entrada y mi salida constan en {record}. Consúltelo usted mismo.",
+          "Compruebe {record}. Ahí está todo, con más exactitud de la que usted me concede."
+        ],
+        "timeline.pair": [
+          "{Guardian} vigilaba la puerta. Pregúntele a ella.",
+          "Pregunte a {guardian}: nos vio entrar y salir. No miente por nadie."
+        ],
+        "seen.discovery": [
+          "Encontré a {victim} en {scene} a las {time}. Di la alarma de inmediato.",
+          "A las {time} entré en {scene} y vi a {victim}. Llamé al servicio; no grité, si es lo que quiere saber."
+        ],
+        "seen.pair": [
+          "Estuve en {place} con {partner}. No entró nadie más.",
+          "Con {partner}, en {place}. Por esa puerta no pasó nadie, se lo aseguro."
+        ],
+        "seen.nothing": [
+          "No vi nada fuera de lo corriente.",
+          "Nada que merezca su atención. Si lo hubiera visto, se lo diría."
+        ],
+        "object.own": [
+          "{Item} es {mine}. {It} perdí esta mañana en {scene}.",
+          "Sí, {item} es {mine}. {It} perdí esta mañana en {scene}. Le agradeceré que me {it} devuelva."
+        ],
+        "identity": [
+          "Soy {name}, la {role} de esta casa. Puede empezar con sus preguntas.",
+          "Me llamo {name}. Soy la {role}; supongo que ya se lo habrán dicho."
+        ],
+        "social": [
+          "Voy a ser muy clara: quiero que esto termine pronto y bien. Pregunte.",
+          "Ahórrese las condolencias. ¿Qué quiere aclarar exactamente?"
+        ],
+        "unknown": [
+          "No pondrá en mi boca una respuesta que no tengo.",
+          "De eso no sé nada. Pregúnteme algo que me corresponda contestar."
+        ]
+      }
+    },
+    {
+      "id": "p2",
+      "name": "Víctor Hale",
+      "role": "médico de la familia",
+      "gender": "m",
+      "age": 52,
+      "personality": "Médico rural que atiende a los Blackwood desde hace años y que sirvió en un hospital de campaña durante la guerra. Reservado, analítico y frío en apariencia. Trata de usted y separa con cuidado lo observado de lo conjeturado; corrige la pregunta antes de contestarla. Usa formulaciones breves y precisas, casi clínicas. Dice «seamos precisos», «ciñámonos a los hechos» y «conviene distinguir», y nunca aventura un diagnóstico que no pueda sostener.",
+      "appearance": "Hombre de unos cincuenta años, delgado y de espalda recta, con el pelo castaño encanecido en las sienes y peinado con raya. Bigote corto y cuidado, rostro alargado y ojos castaños tras unas gafas redondas de carey. Viste un traje de tres piezas gris oscuro, camisa de cuello duro, corbata negra y una cadena de reloj de plata cruzando el chaleco.",
+      "image": "/worlds/blackwood-manor/person-p2.webp",
+      "imagePrompt": "Portrait, head and shoulders, plain dark background. Lean, upright English country doctor in his early fifties, long face, brown hair greying at the temples with a neat side parting, short trimmed moustache, round tortoiseshell spectacles, guarded analytical gaze. Dark grey three-piece 1920s suit, stiff white collar, black tie, silver watch chain across the waistcoat.",
+      "voice": {
+        "alibi.claim": [
+          "Estuve en {place} de {from} a {to}. Seamos precisos: es lo que recuerdo, no lo que supongo.",
+          "De {from} a {to}, en {place}. Ciñámonos a ese dato."
+        ],
+        "alibi.alone": [
+          "Estuve solo en {place} de {from} a {to}. Nadie puede confirmarlo, y no voy a fingir lo contrario.",
+          "De {from} a {to} permanecí en {place}, sin compañía. Es un hecho, no un agravante."
+        ],
+        "alibi.record": [
+          "Estuve en {place} de {from} a {to}. Al salir encontré a {victim}. Comprobé que ya no había nada que hacer.",
+          "De {from} a {to}, en {place}; al salir encontré a {victim}. Lo demás corresponde al forense."
+        ],
+        "alibi.pair": [
+          "Estuve en {place} con {partner} de {from} a {to}. Puede contrastarlo.",
+          "De {from} a {to}, {partner} y yo estuvimos en {place}. Dos testimonios valen más que uno."
+        ],
+        "relation": [
+          "Atendía a {victim} desde hacía muchos años. Lo que sé de su salud pertenece al secreto profesional.",
+          "{victim} era mi paciente y, a ratos, mi compañero de ajedrez. Conviene no confundir una cosa con la otra."
+        ],
+        "secret.culprit": [
+          "Es cierto, {victim} lo sabía. Eso me da un motivo; no me convierte en culpable. Conviene distinguir.",
+          "No discutiré lo que está escrito, y {victim} lo había descubierto. De ahí a un crimen hay un trecho que usted tendrá que demostrar."
+        ],
+        "secret.weak": [
+          "Una discrepancia con {victim}, sin más. Nadie mata por algo así.",
+          "Sí, {victim} y yo teníamos esa cuestión pendiente. A efectos de su investigación, carece de importancia."
+        ],
+        "secret.neutral": [
+          "Ese papel no tiene relevancia alguna.",
+          "Ahí no hay nada que analizar. Es correspondencia corriente."
+        ],
+        "link.access": [
+          "Sí, podía llegar a {access}. No era el único; conviene anotarlo.",
+          "Tenía acceso a {access}, como otras personas de la casa. Seamos precisos: tener acceso no equivale a usarlo."
+        ],
+        "link.none": [
+          "No tenía acceso a {access}.",
+          "Nunca tuve acceso a {access}. Puede comprobarlo."
+        ],
+        "timeline.culprit": [
+          "Es posible que me equivocara de hora; la memoria no es un instrumento exacto. Pero no entré en {scene}.",
+          "Equivocarse de hora es una cosa; estar en {scene} es otra. Conviene distinguir: no estuve allí."
+        ],
+        "timeline.alone": [
+          "Nadie me vio. Es un hecho, y no voy a adornarlo.",
+          "No tengo testigos. Es lamentable, pero eso no me hace sospechoso por sí solo."
+        ],
+        "timeline.record": [
+          "Consta en {record}: entrada y salida. Es más fiable que mi memoria.",
+          "Compruebe {record}. Un registro no tiene interés en el resultado."
+        ],
+        "timeline.pair": [
+          "{Guardian} vigilaba la puerta. Puede confirmarlo.",
+          "Pregunte a {guardian}. Nos vio entrar y salir."
+        ],
+        "seen.discovery": [
+          "Encontré a {victim} en {scene} a las {time}. Le busqué el pulso y di la alarma.",
+          "A las {time} entré en {scene} y vi a {victim}. Di la alarma de inmediato."
+        ],
+        "seen.pair": [
+          "Estuve en {place} con {partner}. No entró nadie más.",
+          "Con {partner}, en {place}. Nadie cruzó esa puerta; lo habría advertido."
+        ],
+        "seen.nothing": [
+          "No observé nada anómalo.",
+          "Nada digno de mención. Y le aseguro que observar es mi oficio."
+        ],
+        "object.own": [
+          "{Item} es {mine}. {It} perdí esta mañana en {scene}.",
+          "Sí, {item} es {mine}. {It} perdí esta mañana en {scene} y no {it} había echado en falta hasta ahora."
+        ],
+        "identity": [
+          "Soy el doctor {name}, {role}.",
+          "Me llamo {name}. Soy el {role} desde hace muchos años. ¿Qué desea precisar?"
+        ],
+        "social": [
+          "Seamos precisos y breves. Ha sido una noche larga para todos.",
+          "Ciñámonos a los hechos. Adelante, pregunte."
+        ],
+        "unknown": [
+          "No dispongo de información para afirmarlo.",
+          "Sobre eso solo podría conjeturar, y no conjeturo."
+        ]
+      }
+    },
+    {
+      "id": "p3",
+      "name": "Clara Reed",
+      "role": "secretaria de Sir Edmund",
+      "gender": "f",
+      "age": 31,
+      "personality": "Lleva la correspondencia, la agenda y los papeles de Sir Edmund; llegó a la casa con una carta de recomendación y sin más fortuna que su sueldo. Observadora, prudente y directa. Trata de usted, prefiere las palabras sencillas y separa siempre lo que sabe de lo que supone. No pide perdón a cada frase. Bajo presión se aferra a los detalles comprobables. Dice «se lo diré sin rodeos» y «eso es lo que puedo decirle».",
+      "appearance": "Mujer de poco más de treinta años, de estatura media y gesto atento. Cara pecosa, ojos color avellana y boca firme. Lleva el pelo castaño rojizo recogido en un moño bajo, con algún mechón suelto. Viste una blusa blanca de cuello redondo, una chaqueta de punto azul marino y una falda gris a media pierna, y un lápiz sujeto en el bolsillo.",
+      "image": "/worlds/blackwood-manor/person-p3.webp",
+      "imagePrompt": "Portrait, head and shoulders, plain dark background. Attentive woman in her early thirties, freckled face, hazel eyes, firm mouth, auburn hair pinned in a low 1920s chignon with a loose strand, watchful steady expression. White round-collared blouse under a navy blue knitted cardigan, a pencil clipped to the pocket.",
+      "voice": {
+        "alibi.claim": [
+          "Estuve en {place} de {from} a {to}. Eso es lo que puedo decirle.",
+          "Se lo diré sin rodeos: de {from} a {to}, en {place}."
+        ],
+        "alibi.alone": [
+          "Estuve sola en {place} de {from} a {to}. Nadie más.",
+          "De {from} a {to} estuve en {place}, sola. Sé que no me ayuda, pero es así."
+        ],
+        "alibi.record": [
+          "Estuve en {place} de {from} a {to}. Al salir encontré a {victim}. Eso no se me va a olvidar.",
+          "De {from} a {to}, en {place}; al salir encontré a {victim}. Me quedé quieta un momento; no sabría decirle cuánto."
+        ],
+        "alibi.pair": [
+          "Estuve en {place} con {partner} de {from} a {to}. Pregúntele.",
+          "De {from} a {to}, {partner} y yo estuvimos en {place}. Lo puede comprobar."
+        ],
+        "relation": [
+          "Llevaba la correspondencia de {victim}. Sé lo que escribía; lo que pensaba, no siempre.",
+          "Trabajaba para {victim}. Era exigente y pagaba puntualmente. Con eso me bastaba."
+        ],
+        "secret.culprit": [
+          "Sí, {victim} lo sabía. Se lo diré sin rodeos: lo que pone ahí es verdad, pero yo no le hice nada.",
+          "Lo que dice ese papel es cierto, y {victim} lo había descubierto. Eso es lo que sé; lo demás lo supone usted."
+        ],
+        "secret.weak": [
+          "Un roce con {victim}, nada más. Pasaba casi todas las semanas.",
+          "Sí, {victim} me lo reprochó. Me molestó, pero no era para tanto."
+        ],
+        "secret.neutral": [
+          "Ese papel es de los que pasan por mis manos todos los días. No tiene nada.",
+          "Es un papel corriente. Lo sé porque archivo docenas iguales."
+        ],
+        "link.access": [
+          "Sí, podía llegar a {access}. No era la única.",
+          "Tenía acceso a {access}, como otras personas de la casa. Eso es lo que puedo decirle."
+        ],
+        "link.none": [
+          "Yo no tenía acceso a {access}.",
+          "Nunca tuve acceso a {access}. Puede preguntárselo a quien quiera."
+        ],
+        "timeline.culprit": [
+          "Puede que me equivocara de hora. Lo que sí sé es que no entré en {scene}.",
+          "Quizá lo recuerdo mal; no iba pendiente del reloj. Pero en {scene} no estuve."
+        ],
+        "timeline.alone": [
+          "Nadie me vio, es verdad. Estaba sola.",
+          "No tengo testigos. Y no voy a inventármelos."
+        ],
+        "timeline.record": [
+          "Mire {record}. Ahí constan mi entrada y mi salida.",
+          "Compruebe {record}. Es un dato, no una opinión."
+        ],
+        "timeline.pair": [
+          "{Guardian} vigilaba la puerta. Ella se lo confirmará.",
+          "Pregunte a {guardian}: nos vio entrar y salir."
+        ],
+        "seen.discovery": [
+          "Encontré a {victim} en {scene} a las {time}. Di la alarma enseguida.",
+          "A las {time} entré en {scene} y vi a {victim}. Salí a pedir ayuda; eso es lo que puedo decirle."
+        ],
+        "seen.pair": [
+          "Estuve en {place} con {partner}. No entró nadie más, de eso estoy segura.",
+          "Con {partner}, en {place}. Por esa puerta no pasó nadie."
+        ],
+        "seen.nothing": [
+          "No vi nada raro. Y suelo fijarme.",
+          "Nada fuera de lo normal. Si lo hubiera visto, se lo diría."
+        ],
+        "object.own": [
+          "{Item} es {mine}. {It} perdí esta mañana en {scene}.",
+          "Sí, {item} es {mine}. {It} perdí esta mañana en {scene} y no {it} encontraba por ninguna parte."
+        ],
+        "identity": [
+          "Me llamo {name}. Soy la {role}.",
+          "Soy {name}, {role}. Dígame qué necesita aclarar."
+        ],
+        "social": [
+          "Dígame qué necesita saber. Iré al grano.",
+          "Pregunte lo que quiera. Le diré lo que sé, y le avisaré cuando solo lo suponga."
+        ],
+        "unknown": ["Eso no lo sé.", "No lo sé, y prefiero no suponerlo."]
+      }
+    },
+    {
+      "id": "p4",
+      "name": "Arthur Finch",
+      "role": "mayordomo",
+      "gender": "m",
+      "age": 63,
+      "personality": "Lleva treinta años al servicio de Sir Edmund y conoce cada costumbre de la casa. Formal, discreto y seco, educado en la vieja escuela. Trata de usted y llama «señor detective» a quien le interroga. Responde por orden, en frases ordenadas y sin emoción visible. Bajo presión mantiene la cortesía sin caer en el servilismo. No especula sobre los señores ni sobre el resto del servicio, y cierra los asuntos con un «eso es todo sobre ese punto».",
+      "appearance": "Hombre de algo más de sesenta años, alto y enjuto, de rostro largo y surcado de arrugas finas. Pelo blanco peinado hacia atrás con esmero, cejas pobladas y ojos azules muy claros. Viste un frac negro impecable, chaleco gris perla, camisa de pechera almidonada y pajarita blanca.",
+      "image": "/worlds/blackwood-manor/person-p4.webp",
+      "imagePrompt": "Portrait, head and shoulders, plain dark background. Tall, gaunt English butler in his early sixties, long finely lined face, white hair combed neatly back, bushy eyebrows, pale blue eyes, impassive dignified expression. Immaculate black tailcoat, pearl-grey waistcoat, starched white shirt front, white bow tie.",
+      "voice": {
+        "alibi.claim": [
+          "Estuve en {place} de {from} a {to}, señor detective.",
+          "Si me permite, responderé por orden: de {from} a {to}, en {place}."
+        ],
+        "alibi.alone": [
+          "Estuve solo en {place} de {from} a {to}, señor detective. Un mayordomo rara vez tiene compañía.",
+          "De {from} a {to} permanecí en {place}. Nadie me acompañaba."
+        ],
+        "alibi.record": [
+          "Estuve en {place} de {from} a {to}. Al salir encontré a {victim}. Eso es todo sobre ese punto.",
+          "De {from} a {to}, en {place}, señor detective. Al salir encontré a {victim}."
+        ],
+        "alibi.pair": [
+          "Estuve en {place} con {partner} de {from} a {to}, señor detective.",
+          "De {from} a {to} me encontraba en {place}, en compañía de {partner}. Puede preguntarle."
+        ],
+        "relation": [
+          "Treinta años al servicio de {victim}, señor detective. Conocía sus costumbres mejor que las mías.",
+          "{victim} era mi señor. Yo le servía y él confiaba en que lo hiciera bien. Así ha sido siempre en esta casa."
+        ],
+        "secret.culprit": [
+          "Es cierto, señor detective: {victim} lo sabía. No lo negaré, pero tampoco cargaré con lo que no he hecho.",
+          "Lo que dice ese papel es exacto, y {victim} lo había descubierto. Eso es todo sobre ese punto."
+        ],
+        "secret.weak": [
+          "Una amonestación de {victim}, señor detective. En treinta años de servicio uno recibe unas cuantas.",
+          "Sí, {victim} me llamó la atención por ese asunto. Lo acepté, como corresponde."
+        ],
+        "secret.neutral": [
+          "Un papel de la casa, señor detective. Sin importancia.",
+          "Eso es correspondencia corriente. Pasa por mis manos a diario."
+        ],
+        "link.access": [
+          "Podía llegar a {access}, señor detective. Como otras personas de la casa.",
+          "Tenía acceso a {access}, sí. No era el único, si me permite la precisión."
+        ],
+        "link.none": [
+          "No tenía acceso a {access}, señor detective.",
+          "{Access} no estaba a mi cargo. Nunca lo ha estado."
+        ],
+        "timeline.culprit": [
+          "Es posible que me equivocara de hora, señor detective. No es posible que entrara en {scene}.",
+          "Quizá confundí el momento; la noche ha sido larga. Pero no entré en {scene}."
+        ],
+        "timeline.alone": [
+          "Nadie me vio, señor detective. Estaba solo.",
+          "No tengo testigos. Lo lamento, pero así fue."
+        ],
+        "timeline.record": [
+          "Consta en {record}, señor detective. Entrada y salida.",
+          "Compruebe {record}. En esta casa se lleva con todo rigor."
+        ],
+        "timeline.pair": [
+          "{Guardian} vigilaba la puerta, señor detective. Puede confirmarlo.",
+          "Pregunte a {guardian}. Nos vio entrar y salir."
+        ],
+        "seen.discovery": [
+          "Encontré a {victim} en {scene} a las {time}, señor detective. Di la alarma de inmediato.",
+          "A las {time} entré en {scene} y vi a {victim}. Di aviso a toda la casa."
+        ],
+        "seen.pair": [
+          "Estuve en {place} con {partner}. No entró nadie más, señor detective.",
+          "En {place}, con {partner}. Por esa puerta no pasó nadie."
+        ],
+        "seen.nothing": [
+          "No observé nada fuera de lo corriente, señor detective.",
+          "Nada que deba constar. Lo habría advertido."
+        ],
+        "object.own": [
+          "{Item} es {mine}, señor detective. {It} perdí esta mañana en {scene}.",
+          "Sí, {item} es {mine}. {It} perdí esta mañana en {scene}. Le agradecería que me {it} devolviera."
+        ],
+        "identity": [
+          "{name}, {role} de esta casa, señor detective.",
+          "Me llamo {name}. Soy el {role} desde hace treinta años."
+        ],
+        "social": [
+          "Buenas noches, señor detective. Le escucho.",
+          "Mantengamos las formas, aunque la noche no ayude. ¿Qué desea saber?"
+        ],
+        "unknown": [
+          "No podría informarle sobre ese punto, señor detective.",
+          "No me corresponde saberlo, y no voy a suponerlo."
+        ]
+      }
+    },
+    {
+      "id": "p5",
+      "name": "Julián Blackwood",
+      "role": "sobrino",
+      "gender": "m",
+      "age": 26,
+      "personality": "Sobrino de Sir Edmund, vive de una asignación que su tío le recordaba a cada paso y pasa más tiempo en Londres que en la casa. Impaciente, defensivo y orgulloso a su manera. Tutea a todo el mundo, detective incluido. Habla en frases cortas y coloquiales, sin rodeos, y le molesta que le atribuyan más de lo que ha dicho. Bajo presión se vuelve cortante, nunca violento. Dice «vale, escucha», «te lo digo claro» y «no le des más vueltas».",
+      "appearance": "Hombre joven, de poco más de veinticinco años, guapo pero con aire cansado y ojeras. Pelo rubio ceniza algo revuelto, ojos azules inquietos y una sonrisa torcida. Viste una chaqueta de tweed marrón sobre un jersey de pico, camisa blanca con el cuello abierto y la corbata aflojada.",
+      "image": "/worlds/blackwood-manor/person-p5.webp",
+      "imagePrompt": "Portrait, head and shoulders, plain dark background. Handsome but weary young man in his mid-twenties, tousled ash-blond hair, restless blue eyes with tired shadows, crooked defensive half smile. Brown tweed jacket over a V-neck sweater, white shirt with open collar and loosened 1920s tie.",
+      "voice": {
+        "alibi.claim": [
+          "Estuve en {place} de {from} a {to}. Te lo digo claro.",
+          "Vale, escucha: de {from} a {to}, en {place}. Ya está."
+        ],
+        "alibi.alone": [
+          "Estuve solo en {place} de {from} a {to}. ¿Qué pasa, que ahora necesito niñera?",
+          "De {from} a {to}, en {place}. Solo. No le des más vueltas."
+        ],
+        "alibi.record": [
+          "Estuve en {place} de {from} a {to}. Al salir me encontré a {victim}. Y no, no quiero hablar de eso.",
+          "De {from} a {to}, en {place}; al salir encontré a {victim}. Todavía no me lo creo."
+        ],
+        "alibi.pair": [
+          "Estuve en {place} con {partner} de {from} a {to}. Pregúntale, anda.",
+          "{partner} y yo estuvimos en {place} de {from} a {to}. ¿Contento?"
+        ],
+        "relation": [
+          "{victim} era mi tío. Me pagaba las facturas y me lo recordaba cada vez que me veía.",
+          "Con {victim} nunca acertaba. Para él yo era el sobrino que no servía para nada."
+        ],
+        "secret.culprit": [
+          "Vale, sí, {victim} lo sabía. Te lo digo claro: eso no quiere decir que lo matara.",
+          "Lo que pone ahí es verdad, y {victim} se había enterado. ¿Y qué? No le des más vueltas."
+        ],
+        "secret.weak": [
+          "Una bronca con {victim}, como tantas. Si por eso se matara a alguien, en esta familia no quedaría nadie.",
+          "Sí, {victim} me echó la bronca por eso. Me la echaba por todo."
+        ],
+        "secret.neutral": [
+          "Eso es un papel cualquiera. No sé qué buscas ahí.",
+          "¿Eso? No dice nada, déjalo."
+        ],
+        "link.access": [
+          "Sí, podía llegar a {access}. Y media casa también.",
+          "Tenía acceso a {access}, vale. No era el único, ni de lejos."
+        ],
+        "link.none": [
+          "Yo no tenía acceso a {access}. Ni sabía dónde se guardaba.",
+          "¿{Access}? No. Nunca. Pregunta a quien quieras."
+        ],
+        "timeline.culprit": [
+          "Me habré liado con la hora, ¿vale? Pero en {scene} no entré.",
+          "No iba mirando el reloj. Lo que sé es que no puse un pie en {scene}."
+        ],
+        "timeline.alone": [
+          "Nadie me vio. ¿Y qué? No me moví de allí.",
+          "Solo, sin testigos. Es lo que hay."
+        ],
+        "timeline.record": [
+          "Mira {record}. Ahí pone cuándo entré y cuándo salí.",
+          "Está en {record}, todo apuntado. ¿Qué más quieres?"
+        ],
+        "timeline.pair": [
+          "{Guardian} estaba en la puerta. Pregúntale a ella.",
+          "Habla con {guardian}; nos vio entrar y salir. A esa mujer no se le escapa nada."
+        ],
+        "seen.discovery": [
+          "Encontré a {victim} en {scene} a las {time}. Grité hasta que vino alguien.",
+          "A las {time} entré en {scene} y vi a {victim}. Di la voz de alarma, ¿qué iba a hacer?"
+        ],
+        "seen.pair": [
+          "Estuve en {place} con {partner}. No entró nadie más.",
+          "Con {partner}, en {place}. Por esa puerta no pasó ni un alma."
+        ],
+        "seen.nothing": [
+          "No vi nada. Nada de nada.",
+          "Nada raro. Te lo digo claro: si hubiera visto algo, ya lo sabrías."
+        ],
+        "object.own": [
+          "{Item} es {mine}. {It} perdí esta mañana en {scene}.",
+          "¡Anda! Sí, {item} es {mine}. {It} perdí esta mañana en {scene}. ¿Me {it} devuelves?"
+        ],
+        "identity": [
+          "Soy {name}, el {role}. El otro Blackwood, el que nadie toma en serio.",
+          "{name}. Soy el {role}, ya sabes. ¿Qué quieres preguntarme?"
+        ],
+        "social": [
+          "Vamos, pregunta. Cuanto antes empecemos, antes acabamos.",
+          "Menuda noche. ¿Qué quieres saber?"
+        ],
+        "unknown": ["Eso no lo sé.", "Ni idea. Y no me lo voy a inventar para que me dejes en paz."]
+      }
+    }
+  ],
+  "rooms": [
+    {
+      "id": "r1",
+      "name": "Despacho",
+      "article": "el",
+      "description": "Paneles de roble oscuro, un escritorio de caoba con tapete de cuero verde y una lámpara de latón que deja el resto de la sala en penumbra. Huele a tabaco de pipa y a tinta, y la lluvia golpea sin descanso las ventanas cerradas.",
+      "tags": ["interior"],
+      "image": "/worlds/blackwood-manor/room-r1.webp",
+      "imagePrompt": "Interior, wide shot, no people. Oak-panelled study in an English country house, mahogany desk with a green leather top under a brass desk lamp, leather wingback chair, shelves of ledgers, a cold fireplace with fire irons, rain streaming down tall closed windows."
+    },
+    {
+      "id": "r2",
+      "name": "Biblioteca",
+      "article": "la",
+      "description": "Estanterías de nogal suben hasta una galería con barandilla de madera torneada, a la que se llega por una escalera de caracol de hierro. Huele a cuero viejo y a papel, y el fuego de la chimenea apenas alcanza los lomos más altos.",
+      "tags": ["interior", "elevated"],
+      "image": "/worlds/blackwood-manor/room-r2.webp",
+      "imagePrompt": "Interior, wide shot, no people. Two-storey English country-house library, walnut bookcases rising to an upper gallery with a turned wooden railing, wrought-iron spiral staircase leading up to it, parquet floor far below, low fire in a marble fireplace, reading lamps, heavy velvet curtains with tasselled cords."
+    },
+    {
+      "id": "r3",
+      "name": "Comedor",
+      "article": "el",
+      "description": "Una mesa larga de caoba bajo una araña de cristal, la cubertería de plata todavía alineada y retratos de antepasados que miran desde las paredes. Queda en el aire un olor a cera de velas, a cordero asado y a oporto.",
+      "tags": ["interior"],
+      "image": "/worlds/blackwood-manor/room-r3.webp",
+      "imagePrompt": "Interior, wide shot, no people. Formal English country-house dining room after dinner, long mahogany table with silver cutlery and crystal glasses, crystal chandelier, guttering candles, dark ancestral portraits in gilt frames, a sideboard with a port decanter, rain on the tall windows."
+    },
+    {
+      "id": "r4",
+      "name": "Cocina",
+      "article": "la",
+      "description": "Fogones de hierro todavía tibios, cacerolas de cobre colgadas en hilera y una mesa de pino fregada hasta blanquear. Huele a té negro, a pan y a carbón, y el agua de la lluvia gorgotea en el desagüe del patio.",
+      "tags": ["interior"],
+      "image": "/worlds/blackwood-manor/room-r4.webp",
+      "imagePrompt": "Interior, wide shot, no people. Large below-stairs kitchen of an English country house, black iron range still glowing faintly, rows of hanging copper pans, scrubbed pine table with a teapot and cups, stone flagged floor, servants' bell board on the wall, rain against a high window."
+    },
+    {
+      "id": "r5",
+      "name": "Invernadero",
+      "article": "el",
+      "description": "Cristales empañados, macetas de terracota y plantas de hojas carnosas que crecen en un calor húmedo y pegajoso. Entre los helechos asoman flores de un azul violáceo, y la lluvia tamborilea sobre la cúpula de vidrio.",
+      "tags": ["interior"],
+      "image": "/worlds/blackwood-manor/room-r5.webp",
+      "imagePrompt": "Interior, wide shot, no people. Victorian glass conservatory attached to an English country house at night, fogged glass panes and an iron-framed dome, terracotta pots, ferns, palms and exotic plants, spikes of violet-blue monkshood flowers, a potting bench with small glass bottles, rain running down the glass, a single lantern."
+    },
+    {
+      "id": "r6",
+      "name": "Vestíbulo",
+      "article": "el",
+      "description": "Suelo de mármol ajedrezado, una escalera de roble que sube hacia la oscuridad y un reloj de pie que da los cuartos con un golpe grave. Huele a abrigos mojados y a cera de muebles, y el viento se cuela bajo la puerta principal.",
+      "tags": ["interior"],
+      "image": "/worlds/blackwood-manor/room-r6.webp",
+      "imagePrompt": "Interior, wide shot, no people. Entrance hall of an English country house, black and white chequered marble floor, grand oak staircase rising into darkness, tall longcase clock, coat stand with dripping umbrellas, stag antlers on panelled walls, rain-dark fanlight over the front door."
+    }
+  ],
+  "staff": {
+    "guardian": "el ama de llaves",
+    "record": "el libro de llaves",
+    "report": "Informe del forense del condado"
+  },
+  "weapons": [
+    {
+      "method": "knife",
+      "label": "Abrecartas",
+      "cause": "Una sola herida, estrecha y profunda, bajo el esternón: una hoja fina le perforó el corazón. Apenas sangró por fuera.",
+      "weapon": "el abrecartas de marfil",
+      "access": "el abrecartas de marfil",
+      "device": false,
+      "phrase": "con el abrecartas de marfil",
+      "image": "/worlds/blackwood-manor/weapon-knife.webp",
+      "imagePrompt": "Close-up of a single object on a neutral background: a slender antique letter opener with a carved ivory handle and a thin, sharp steel blade."
+    },
+    {
+      "method": "blunt",
+      "label": "Atizador",
+      "cause": "Un golpe brutal en la sien con un objeto de metal pesado le hundió el hueso del cráneo.",
+      "weapon": "el atizador de latón",
+      "access": "el atizador de latón",
+      "device": false,
+      "phrase": "con el atizador de latón",
+      "image": "/worlds/blackwood-manor/weapon-blunt.webp",
+      "imagePrompt": "Close-up of a single object on a neutral background: a heavy English brass-handled fireplace poker with a dark iron shaft and a hooked tip, faintly sooty."
+    },
+    {
+      "method": "rope",
+      "label": "Cordón de cortina",
+      "cause": "Murió estrangulado. Un cordón trenzado le dejó en el cuello un surco fino y continuo, y tiene pequeñas hemorragias en los ojos.",
+      "weapon": "el cordón de la cortina",
+      "access": "el cordón de la cortina",
+      "device": false,
+      "phrase": "estrangulándolo con el cordón de la cortina",
+      "image": "/worlds/blackwood-manor/weapon-rope.webp",
+      "imagePrompt": "Close-up of a single object on a neutral background: a thick dark teal silk curtain tieback cord with heavy brass-coloured tassels, loosely coiled."
+    },
+    {
+      "method": "drink",
+      "label": "Acónito en el té",
+      "cause": "Tiene la boca y la cara entumecidas y vomitó antes de morir; el corazón se le desbocó hasta pararse. En el té que bebió había acónito.",
+      "weapon": "la taza de té",
+      "access": "el frasco de acónito",
+      "seen": "el frasco de acónito",
+      "device": false,
+      "phrase": "envenenándolo con acónito en la taza de té",
+      "image": "/worlds/blackwood-manor/weapon-drink.webp",
+      "imagePrompt": "Close-up of a single object on a neutral background: a fine bone-china teacup and saucer with a gold rim and a little cold dark tea left inside, a small stoppered amber glass bottle beside it."
+    },
+    {
+      "method": "revolver",
+      "label": "Revólver Webley",
+      "cause": "Un disparo de gran calibre en el pecho, hecho a corta distancia: hay quemaduras de pólvora en la pechera del chaleco.",
+      "weapon": "el viejo revólver Webley del ejército",
+      "access": "el viejo revólver Webley del ejército",
+      "device": false,
+      "phrase": "con el viejo revólver Webley del ejército",
+      "image": "/worlds/blackwood-manor/weapon-revolver.webp",
+      "imagePrompt": "Close-up of a single object on a neutral background: a British First World War Webley service revolver, worn dark steel with a chequered wooden grip and a lanyard ring."
+    },
+    {
+      "method": "shotgun",
+      "label": "Escopeta de caza",
+      "cause": "Una descarga de perdigones a quemarropa le destrozó el pecho y el hombro.",
+      "weapon": "la escopeta de caza de dos cañones",
+      "access": "la escopeta de caza de dos cañones",
+      "device": false,
+      "phrase": "con la escopeta de caza de dos cañones",
+      "image": "/worlds/blackwood-manor/weapon-shotgun.webp",
+      "imagePrompt": "Close-up of a single object on a neutral background: an English side-by-side double-barrelled hunting shotgun with an engraved action and a polished walnut stock."
+    },
+    {
+      "method": "medicine",
+      "label": "Láudano",
+      "cause": "Una dosis enorme de opio: tiene las pupilas como cabezas de alfiler, y la respiración se le fue apagando hasta detenerse.",
+      "weapon": "el frasco de láudano",
+      "access": "el frasco de láudano",
+      "device": false,
+      "phrase": "con una dosis letal de láudano",
+      "image": "/worlds/blackwood-manor/weapon-medicine.webp",
+      "imagePrompt": "Close-up of a single object on a neutral background: a small 1920s ribbed brown glass apothecary bottle of laudanum with a cork stopper and a faded paper label, a silver spoon beside it."
+    },
+    {
+      "method": "fall",
+      "label": "Caída desde la galería",
+      "cause": "Cayó desde gran altura sobre el entarimado. Tiene el cuello roto y fracturas en el cráneo y en los brazos.",
+      "weapon": "la barandilla de la galería",
+      "access": "la llave de la galería",
+      "device": true,
+      "phrase": "empujándolo por encima de la barandilla de la galería",
+      "image": "/worlds/blackwood-manor/weapon-fall.webp",
+      "imagePrompt": "Close-up of a single object on a neutral background: a section of turned dark wooden library gallery railing with one baluster cracked and the handrail slightly askew."
+    }
+  ],
+  "items": [
+    {
+      "noun": "pitillera de plata",
+      "gender": "f",
+      "image": "/worlds/blackwood-manor/item-1.webp",
+      "imagePrompt": "Close-up of a single object on a neutral background: an engraved 1920s silver cigarette case, slightly open, showing a row of cigarettes."
+    },
+    {
+      "noun": "gemelo de ónice",
+      "gender": "m",
+      "image": "/worlds/blackwood-manor/item-2.webp",
+      "imagePrompt": "Close-up of a single object on a neutral background: a single black onyx cufflink set in gold."
+    },
+    {
+      "noun": "horquilla de carey",
+      "gender": "f",
+      "image": "/worlds/blackwood-manor/item-3.webp",
+      "imagePrompt": "Close-up of a single object on a neutral background: a single tortoiseshell hairpin with a small pearl on the end."
+    },
+    {
+      "noun": "pañuelo con iniciales",
+      "gender": "m",
+      "image": "/worlds/blackwood-manor/item-4.webp",
+      "imagePrompt": "Close-up of a single object on a neutral background: a folded white linen handkerchief with embroidered initials in one corner, the letters indistinct."
+    },
+    {
+      "noun": "guante de cabritilla",
+      "gender": "m",
+      "image": "/worlds/blackwood-manor/item-5.webp",
+      "imagePrompt": "Close-up of a single object on a neutral background: a single soft grey kid-leather glove with a pearl button at the wrist."
+    },
+    {
+      "noun": "boquilla de ámbar",
+      "gender": "f",
+      "image": "/worlds/blackwood-manor/item-6.webp",
+      "imagePrompt": "Close-up of a single object on a neutral background: a short amber cigarette holder with a thin silver band."
+    }
+  ],
+  "motives": [
+    "Había falsificado una firma en varios cheques contra la cuenta de la familia en un banco de Londres. {victim} lo había descubierto al revisar los extractos y pensaba avisar a Scotland Yard al día siguiente.",
+    "Había vendido a un anticuario de Bond Street varios cuadros de la casa y los había sustituido por copias. {victim} había hecho tasar la colección y pensaba presentar una denuncia al día siguiente.",
+    "Había cumplido condena por estafa bajo otro nombre y lo había ocultado a todos. {victim} había conseguido la ficha de la policía de Manchester y pensaba hacerla pública al día siguiente.",
+    "Había desviado durante años a una cuenta propia parte de las rentas de las granjas arrendadas. {victim} había mandado revisar los libros y pensaba entregar las pruebas a la policía al día siguiente.",
+    "Había vendido morfina de contrabando en los clubes nocturnos del Soho. {victim} había encontrado los recibos y pensaba llevarlos a Scotland Yard al día siguiente.",
+    "Había empeñado en secreto las joyas de la difunta Lady Blackwood para pagar unas deudas de juego enormes. {victim} había descubierto el empeño y pensaba denunciar el robo al día siguiente."
+  ],
+  "documents": {
+    "weak": [
+      {
+        "title": "Asignación recortada",
+        "text": "{victim} comunica a {person} que este trimestre reducirá a la mitad lo que le paga, «hasta que aprenda el valor de una libra»."
+      },
+      {
+        "title": "Reprimenda de {victim}",
+        "text": "Nota de {victim} a {person}: le reprocha haber llegado tarde a la cena del domingo delante del vicario y le pide más decoro en adelante."
+      },
+      {
+        "title": "Deuda de bridge",
+        "text": "Apunte de {victim}: {person} le debe una suma modesta de una partida de bridge. Al margen, con su sequedad de siempre: «quien juega, paga»."
+      },
+      {
+        "title": "Permiso denegado",
+        "text": "{victim} niega a {person} el permiso para pasar la temporada en Londres: con el invierno encima, escribe, en la casa no sobra nadie."
+      }
+    ],
+    "neutral": [
+      {
+        "title": "Pedido de bulbos",
+        "text": "Lista de bulbos y semillas que {victim} encargó a un vivero de Kew para el invernadero, con una nota para que {person} confirme el envío."
+      },
+      {
+        "title": "Programa de la cacería",
+        "text": "Programa de la cacería de faisanes de noviembre, redactado por {victim}, con los puestos de los cazadores y un recordatorio para {person} sobre el almuerzo en el bosque."
+      },
+      {
+        "title": "Carta del vicario",
+        "text": "{person} entrega a {victim} una carta del vicario del pueblo, que agradece el donativo para reparar el tejado de la iglesia."
+      }
+    ]
+  },
+  "clueArt": {
+    "report": {
+      "image": "/worlds/blackwood-manor/clue-report.webp",
+      "imagePrompt": "Close-up of a typed 1920s English coroner's medical report on cream foolscap paper with a county stamp and a fountain-pen signature, resting on a leather desk top, illegible handwriting, no readable text."
+    },
+    "testimony": {
+      "image": "/worlds/blackwood-manor/clue-testimony.webp",
+      "imagePrompt": "Close-up of a handwritten witness statement on lined notebook paper with a pencil lying across it, under warm lamplight, illegible handwriting, no readable text."
+    },
+    "ledger": {
+      "image": "/worlds/blackwood-manor/clue-ledger.webp",
+      "imagePrompt": "Close-up of an open leather-bound housekeeper's key book with columns of entries, a large iron ring of household keys lying beside it on a scrubbed pine table, illegible handwriting, no readable text."
+    },
+    "document": {
+      "image": "/worlds/blackwood-manor/clue-document.webp",
+      "imagePrompt": "Close-up of a folded private letter on thick cream stationery embossed with a family crest, beside its slit envelope and a red wax seal, illegible handwriting, no readable text."
+    }
+  },
+  "openings": {
+    "arrivals": [
+      "El coche de alquiler avanza a paso de hombre por un camino convertido en barro, con los faros perdidos en la cortina de agua. Al final de la avenida de robles aparece Blackwood Manor, oscura salvo por unas pocas ventanas encendidas. Alguien te espera en la escalinata con un paraguas negro.",
+      "Bajas del último tren en una estación de pueblo con un solo farol y un andén encharcado. Un automóvil de la casa te lleva entre setos empapados hasta la verja de hierro de Blackwood Manor. Cuando el motor se para, solo queda el ruido de la lluvia.",
+      "La llamada te ha sacado de tu piso de Londres a una hora intempestiva, con la línea llena de chasquidos y una voz que pedía discreción. Ahora cruzas la puerta de Blackwood Manor con el abrigo chorreando sobre el mármol. Huele a leña, a cera y a tierra mojada.",
+      "Ibas de paso hacia el norte cuando la crecida del río cortó la carretera, y la única casa encendida en millas a la redonda es Blackwood Manor. Llamas con el sombrero calado y el agua corriéndote por el cuello. Te abren antes del segundo golpe."
+    ],
+    "tensions": [
+      "El puente está bajo el agua y la tormenta ha cortado la línea del teléfono. Nadie saldrá de Blackwood Manor antes del amanecer, y quien lo hizo lo sabe tan bien como tú.",
+      "Junto a la chimenea, varios rostros te observan a la luz de las lámparas sin decir palabra. Todos se conocen desde hace años, y al menos uno de ellos miente.",
+      "Pides papel, una pluma y un café bien cargado. El reloj del vestíbulo sigue dando los cuartos: antes de que amaine tendrás que separar las coartadas de las mentiras."
+    ]
+  }
+}
