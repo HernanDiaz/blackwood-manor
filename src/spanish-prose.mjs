@@ -8,8 +8,9 @@ export function displayRole(actor) {
 export function placePhrase(room) {
   const name = room.name;
   if (/^(el|la|los|las)\s/i.test(name)) return lowerFirst(name);
+  // An article means the name is a common noun ("la Sala de banquetes" -> "la sala de banquetes").
   if (room.article && ['el', 'la', 'los', 'las'].includes(room.article))
-    return room.article + ' ' + name;
+    return room.article + ' ' + lowerFirst(name);
   const first = name.split(/\s+/)[0];
   if (/^Aposentos$/i.test(first)) return 'los ' + lowerFirst(name);
   if (
@@ -49,4 +50,16 @@ export function naturalProse(text, rooms = [], object = '') {
     .replace(/«([^»]+)»/g, (_, name) => lowerFirst(name))
     .replace(/\bde el\b/g, 'del')
     .replace(/\ba el\b/g, 'al');
+}
+// "en el Vestíbulo" -> "en el vestíbulo": a room named after an article is a common noun.
+export function lowerRoomNames(text, rooms = []) {
+  let result = String(text);
+  for (const room of rooms) {
+    const name = room.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    result = result.replace(
+      new RegExp('(?<![\\p{L}])(el|la|los|las|del|al) ' + name + '(?![\\p{L}])', 'gu'),
+      (_, article) => article + ' ' + lowerFirst(room.name),
+    );
+  }
+  return result;
 }

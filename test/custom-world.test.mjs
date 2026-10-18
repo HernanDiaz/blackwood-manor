@@ -79,18 +79,37 @@ function responses() {
       firearms: false,
       resource: 'grano',
     },
-    ...data.world.people.map(p => ({
-      ...p,
+    ...data.world.people.map(({ name, role }, i) => ({
+      name,
+      role,
+      gender: ['castellana', 'curandera', 'mensajera'].includes(role) ? 'femenino' : 'masculino',
+      traits: [
+        ['serio', 'observador'],
+        ['curioso', 'impaciente'],
+        ['piadoso', 'meticuloso'],
+        ['leal', 'franco'],
+        ['astuto', 'alegre'],
+      ][i],
       imagePrompt: 'portrait of one adult person in medieval clothes',
     })),
     {
       name: data.victim.name,
-      role: data.victim.role,
-      personality: 'Reservada',
+      role: 'castellano',
+      gender: 'masculino',
+      traits: ['reservado', 'orgulloso'],
       imagePrompt: 'portrait of one adult person',
     },
-    ...data.world.rooms.map(r => ({
-      ...r,
+    ...[
+      ['Forja', 'Forja del castillo', 'Yunque, fuelle y herramientas de hierro junto al fuego.'],
+      ['Despensa', 'Despensa', 'Sacos de grano, tinajas de aceite y quesos en estantes.'],
+      ['Botica', 'Botica', 'Frascos de hierbas secas, morteros y una mesa de curas.'],
+      ['Refectorio', 'Refectorio', 'Mesas largas de madera y bancos junto a la chimenea.'],
+      ['Scriptorium', 'Scriptorium', 'Atriles, pergaminos y tinteros bajo una ventana alta.'],
+      ['Cuarto de huéspedes', 'Cuarto de huéspedes', 'Dos camas con mantas de lana y un arcón.'],
+    ].map(([kind, name, description]) => ({
+      kind,
+      name,
+      description,
       imagePrompt: 'interior of a medieval room with candles',
     })),
   ];
@@ -231,4 +250,104 @@ test('room semantics reject the audited contradictions but keep valid concrete i
       'Una colonia subterránea',
     ),
   );
+});
+test('audited monastery failures are retried: copied placeholders, example resource, invented rooms', async () => {
+  const values = responses(),
+    world = values[0],
+    firstRoom = values[7],
+    sent = [];
+  const queue = [
+    { ...world, resource: 'mineral' },
+    ...values.slice(0, 7),
+    { ...firstRoom, kind: 'Taller', name: 'Forja de la Nieve' },
+    {
+      ...firstRoom,
+      kind: 'Forja',
+      name: 'Forja',
+      description: 'English description (max 20 words)',
+    },
+    ...values.slice(8),
+  ];
+  const result = await generateCustomWorld(raw.description, {
+    request: async (messages, schema) => {
+      sent.push(schema);
+      return queue.shift();
+    },
+  });
+  assert.equal(result.rules.resource, 'grano');
+  assert.equal(result.world.rooms[0].name, 'Forja');
+  assert.equal(result.world.rooms[0].article, 'la');
+  // The description comes from the room kind, so a copied placeholder never reaches the player.
+  assert.match(result.world.rooms[0].description, /^Un yunque/);
+  assert.equal(sent.length, 15);
+  assert.ok(sent[2].anyOf[1].properties.role.enum.includes('monje'));
+  assert.ok(!sent[2].anyOf[1].properties.role.enum.includes('monja'));
+  assert.ok(!sent[2].anyOf[0].properties.role.enum.includes('piloto'));
+  assert.ok(sent.at(-1).properties.kind.enum.includes('Dormitorio'));
+});
+test('second monastery pilot: capital names, repeated jobs, era rooms and rambling rooms retried', async () => {
+  const values = responses(),
+    sent = [];
+  const queue = [
+    values[0],
+    { ...values[1], name: 'LEONOR' },
+    { ...values[2], role: values[1].role },
+    ...values.slice(2, 7),
+    { ...values[7], kind: 'Sala de máquinas', name: 'Sala de máquinas' },
+    {
+      ...values[7],
+      description:
+        'Una forja de piedra. No hay cristales. Solo madera y piedra. La luz es tenue. No hay cristales.',
+    },
+    ...values.slice(7),
+  ];
+  const result = await generateCustomWorld(raw.description, {
+    request: async (messages, schema) => {
+      sent.push(schema);
+      return queue.shift();
+    },
+  });
+  assert.equal(result.world.people[0].name, 'Leonor');
+  assert.equal(new Set(result.world.people.map(p => p.role)).size, 5);
+  assert.ok(!sent.at(-1).properties.kind.enum.includes('Camarote'));
+  assert.ok(!sent[9].properties.kind.enum.includes('Sala de máquinas'));
+  assert.equal(result.world.rooms[0].name, 'Forja del castillo');
+});
+test('occupation, portrait and traits agree with the character gender', async () => {
+  const values = responses();
+  const queue = [
+    values[0],
+    { ...values[1], gender: 'masculino' },
+    { ...values[1], imagePrompt: 'portrait of an old man in medieval clothes' },
+    { ...values[1], traits: ['serio', 'serio'] },
+    ...values.slice(1),
+  ];
+  let calls = 0;
+  const result = await generateCustomWorld(raw.description, {
+    request: async () => {
+      calls++;
+      return queue.shift();
+    },
+  });
+  assert.equal(calls, 16);
+  assert.equal(result.world.people[0].personality, 'Seria y observadora');
+});
+test('characters do not share a surname or a character trait', async () => {
+  const values = responses();
+  const queue = [
+    values[0],
+    values[1],
+    { ...values[2], name: 'Martín del Valle' },
+    { ...values[2], traits: ['serio', 'curioso'] },
+    ...values.slice(2),
+  ];
+  let calls = 0;
+  const result = await generateCustomWorld(raw.description, {
+    request: async () => {
+      calls++;
+      return queue.shift();
+    },
+  });
+  assert.equal(calls, 15);
+  assert.equal(result.world.people[1].name, values[2].name);
 });

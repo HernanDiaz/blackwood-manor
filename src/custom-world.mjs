@@ -7,6 +7,18 @@ import { mkdir, writeFile, rename } from 'node:fs/promises';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { worldFile } from './prototype-worlds.mjs';
+import {
+  roleChoices,
+  resources,
+  allResources,
+  roomKinds,
+  roomKindsFor,
+  roleGender,
+  traitChoices,
+  personality,
+  roomDescription,
+  echoedInstruction,
+} from './world-vocabulary.mjs';
 const str = { type: 'string' };
 const object = properties => ({
   type: 'object',
@@ -56,6 +68,7 @@ export function validateCustomWorld(raw) {
         description: text(r.description, 500),
         imagePrompt: text(r.imagePrompt, 500),
         tags: ['interior'],
+        ...(['el', 'la', 'los', 'las'].includes(r.article) ? { article: r.article } : {}),
       })),
     },
   };
@@ -150,6 +163,16 @@ export async function generateCustomWorld(
     )
       throw Error('Write display text in Spanish. Only imagePrompt is English.');
   }
+  // Rejects placeholders and phrases copied from the step instructions.
+  function original(value, instructions) {
+    const copied = echoedInstruction(value, system + ' ' + instructions);
+    if (copied)
+      throw Error(
+        'Do not copy words from the instructions ("' +
+          copied +
+          '"). Write real content in Spanish.',
+      );
+  }
   async function step(id, task, schema, check, budget = 400) {
     if (checkpoint.steps[id]) {
       try {
@@ -243,25 +266,42 @@ export async function generateCustomWorld(
     );
   }
 
+  const worldTask =
+    'Define the title and world rules. technology: preindustrial (before steam engines), industrial (steam, railways, gas or electric light, up to the present), futuristic (space travel, colonies on other planets). magic only if the request permits it; firearms only if appropriate. resource is the valuable supply that people in this setting would fight over. No crime.';
   const meta = await step(
     'world',
-    'Define the title and world rules. technology: preindustrial (medieval), industrial (1930s or modern), futuristic (Mars colonies). magic only if the request permits it; firearms only if appropriate. resource is one Spanish noun phrase for valuable supplies in this setting. No crime. Example resource: mineral, grano, combustible.',
+    worldTask,
     object({
       title: str,
       technology: { type: 'string', enum: ['preindustrial', 'industrial', 'futuristic'] },
       magic: { type: 'boolean' },
       firearms: { type: 'boolean' },
-      resource: str,
+      resource: { type: 'string', enum: allResources },
     }),
     m => {
       text(m.title, 100);
-      text(m.resource, 80);
+      original(m.title, worldTask);
+      if (!resources[m.technology].includes(m.resource))
+        throw Error(
+          'resource must fit the technology. Choose one of: ' + resources[m.technology].join(', '),
+        );
       if (/sin magia|sin poderes|realista/i.test(description) && m.magic)
         throw Error('The request forbids magic. Set magic=false.');
       if (/sin armas de fuego|sin pistolas/i.test(description) && m.firearms)
         throw Error('Firearms are forbidden.');
       if (/marte|mars/i.test(description) && m.technology !== 'futuristic')
         throw Error('A Mars colony needs futuristic technology.');
+      // A year in the request settles the technology level.
+      const year = Number(description.match(/\b(1[0-9]\d\d|2[01]\d\d)\b/)?.[1]);
+      const expected = !year
+        ? null
+        : year < 1780
+          ? 'preindustrial'
+          : year < 2050
+            ? 'industrial'
+            : 'futuristic';
+      if (expected && m.technology !== expected)
+        throw Error('The year ' + year + ' requires technology=' + expected + '.');
     },
   );
   const setting =
@@ -273,7 +313,18 @@ export async function generateCustomWorld(
           ? 'fantasy'
           : 'medieval';
   const people = [],
-    names = new Set();
+    names = new Set(),
+    roles = new Set(),
+    otherGender = { femenino: 'masculino', masculino: 'femenino' },
+    usedTraits = new Set(),
+    surnames = new Set(),
+    // The last word of a name with several words, ignoring initials.
+    lastName = name => {
+      const words = norm(name)
+        .split(/\s+/)
+        .filter(w => w.length > 2);
+      return words.length > 1 ? words.at(-1) : null;
+    };
   const norm = x =>
     x
       .toLocaleLowerCase('es')
@@ -283,36 +334,66 @@ export async function generateCustomWorld(
     const initial = [...'ABCDEFGHJKLMNOPRSTUV'].find(
       letter => ![...names].some(n => n.startsWith(letter.toLowerCase())),
     );
+    const personTask =
+      'Create ONE adult inhabitant whose name starts with ' +
+      initial +
+      '. Spanish name and grammatical gender; English portrait imagePrompt that matches that gender. Choose the occupation in that gender and two character traits that fit the setting. Maximum 16 words per field.';
     const p = await step(
       'person-' + (i + 1),
-      'Create ONE adult inhabitant whose name starts with ' +
-        initial +
-        '. Spanish name, job and personality; English portrait imagePrompt. Maximum 16 words per field. Job must fit the setting. Distinct from these names: ' +
+      personTask +
+        ' Distinct from these names: ' +
         JSON.stringify([...names]) +
         '. Rules: ' +
         JSON.stringify(meta),
-      object({
-        name: { type: 'string', pattern: '^[' + initial + initial.toLowerCase() + '].{1,70}$' },
-        role: str,
-        personality: str,
-        imagePrompt: str,
-      }),
+      // The gender is fixed before the occupation, which can then only take that form.
+      {
+        anyOf: ['femenino', 'masculino'].map(gender =>
+          object({
+            name: { type: 'string', pattern: '^[' + initial + initial.toLowerCase() + '].{1,70}$' },
+            gender: { type: 'string', enum: [gender] },
+            role: {
+              type: 'string',
+              enum: roleChoices(meta.technology, meta.magic).filter(
+                r =>
+                  !roles.has(r) &&
+                  roleGender(r, meta.technology, meta.magic) !== otherGender[gender],
+              ),
+            },
+            traits: {
+              type: 'array',
+              items: { type: 'string', enum: traitChoices.filter(t => !usedTraits.has(t)) },
+              minItems: 2,
+              maxItems: 2,
+            },
+            imagePrompt: str,
+          }),
+        ),
+      },
       p => {
         text(p.name, 80);
+        original(p.name, personTask);
+        const gender = roleGender(p.role, meta.technology, meta.magic);
+        if (gender !== 'común' && gender !== p.gender)
+          throw Error('The occupation must agree with the gender: use the ' + p.gender + ' form.');
+        if (
+          (p.gender === 'femenino' && /\b(man|male|monk|gentleman)\b/i.test(p.imagePrompt)) ||
+          (p.gender === 'masculino' && /\b(woman|female|nun|lady)\b/i.test(p.imagePrompt))
+        )
+          throw Error('The portrait must show a person of the stated gender.');
+        if (
+          !Array.isArray(p.traits) ||
+          p.traits.length !== 2 ||
+          p.traits[0] === p.traits[1] ||
+          p.traits.some(t => !traitChoices.includes(t) || usedTraits.has(t))
+        )
+          throw Error('Choose two different character traits from the list.');
+        if (!roleChoices(meta.technology, meta.magic).includes(p.role) || roles.has(p.role))
+          throw Error('Choose a different occupation from the allowed list.');
         if (p.name.replace(/[^a-zà-ÿ]/gi, '').length < 3)
           throw Error('Use a complete proper name, not an initial.');
-        text(p.role, 120);
-        display(p.role);
-        display(p.personality);
-        if (/^(minerales|persona|adulto|adulta)$/i.test(p.role))
-          throw Error(
-            'role must be a Spanish occupation, e.g. minero or ingeniera, not a material or generic label.',
-          );
-        text(p.personality, 500);
-        if (/\d/.test(p.personality) || p.personality.trim().length < 5)
-          throw Error(
-            'personality must describe character traits in Spanish, not age or physical measurements.',
-          );
+        const surname = lastName(p.name);
+        if (surname && surnames.has(surname))
+          throw Error('Use a different surname: these people are not one family.');
         text(p.imagePrompt, 500);
         if (
           meta.technology === 'preindustrial' &&
@@ -328,29 +409,48 @@ export async function generateCustomWorld(
           throw Error('imagePrompt must be a plain English portrait description.');
       },
     );
+    // "FELIPE" -> "Felipe": capitals are fixed here rather than retried.
+    if (p.name === p.name.toLocaleUpperCase('es'))
+      p.name = p.name
+        .toLocaleLowerCase('es')
+        .replace(/(^|[\s-])(\p{L})/gu, (_, gap, letter) => gap + letter.toLocaleUpperCase('es'));
     names.add(norm(p.name));
-    people.push({ ...p, id: 'p' + (i + 1) });
+    roles.add(p.role);
+    for (const t of p.traits) usedTraits.add(t);
+    if (lastName(p.name)) surnames.add(lastName(p.name));
+    const { gender, traits, ...person } = p;
+    people.push({
+      ...person,
+      personality: personality(traits, gender),
+      gender,
+      id: 'p' + (i + 1),
+    });
   }
   const rooms = [];
   for (let i = 0; i < 6; i++) {
+    const kinds = roomKindsFor(i, meta.technology),
+      kindPattern = Object.keys(kinds).join('|');
+    const roomTask =
+      'Create ONE enclosed interior room for this function: ' +
+      roomKinds[i].function +
+      '. Choose its kind; the Spanish name starts with that kind and may add a short complement. Write an English imagePrompt starting with interior of. Max 20 words per field. In the same connected building or complex. No landscape instead of an interior.';
     const r = await step(
       'room-' + (i + 1),
-      'Create ONE enclosed interior room. Its Spanish name must begin with a concrete room noun that matches its function; do not force alphabetical initials or use poetic object names. Function: ' +
-        [
-          'workshop or control room',
-          'supply storage',
-          'medical care',
-          'dining',
-          'archive',
-          'sleeping quarters',
-        ][i] +
-        '. In the same connected building/complex. Spanish name and description, English imagePrompt starting with interior of. Max 20 words per field. No landscape instead of an interior. Do not repeat these room names: ' +
+      roomTask +
+        ' Do not repeat these room names: ' +
         JSON.stringify(rooms.map(r => r.name)) +
         '. Rules: ' +
         JSON.stringify(meta),
-      object({ name: str, description: str, imagePrompt: str }),
+      object({
+        kind: { type: 'string', enum: Object.keys(kinds) },
+        name: { type: 'string', pattern: '^(' + kindPattern + ')( .{1,60})?$' },
+        imagePrompt: str,
+      }),
       r => {
         text(r.name, 100);
+        if (!kinds[r.kind] || !(r.name === r.kind || r.name.startsWith(r.kind + ' ')))
+          throw Error('The room name must start with its kind: ' + Object.keys(kinds).join(', '));
+        original(r.name.slice(r.kind.length), roomTask);
         if (
           /\b(dining hall|control room|bedroom|library|storage|workshop|medical room|kitchen)\b/i.test(
             r.name,
@@ -361,11 +461,8 @@ export async function generateCustomWorld(
           );
         if (r.name.replace(/[^a-zà-ÿ]/gi, '').length < 3)
           throw Error('Use a complete Spanish room name, not an initial.');
-        text(r.description, 500);
-        display(r.description);
-        checkRoomMeaning(r, description);
         text(r.imagePrompt, 500);
-        const roomText = r.description + ' ' + r.imagePrompt;
+        const roomText = r.name + ' ' + r.imagePrompt;
         if (
           meta.technology === 'preindustrial' &&
           /computer|digital|hologram|robot|laser|plasma|electronic|ordenador|cámara de vigilancia/i.test(
@@ -381,7 +478,14 @@ export async function generateCustomWorld(
       },
     );
     names.add(norm(r.name));
-    rooms.push({ ...r, id: 'r' + (i + 1), tags: ['interior'] });
+    rooms.push({
+      id: 'r' + (i + 1),
+      name: r.name,
+      description: roomDescription(r.kind, meta.technology),
+      imagePrompt: r.imagePrompt,
+      tags: ['interior'],
+      article: kinds[r.kind],
+    });
   }
   const victim = people.pop();
   return validateCustomWorld({
