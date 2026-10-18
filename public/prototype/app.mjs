@@ -33,25 +33,10 @@ async function loadWorld(id) {
   return cache.get(id);
 }
 let preview;
-let customDescription = '';
-let maxAttempts = 5;
-let draft = null;
-try {
-  draft = JSON.parse(localStorage.getItem(key + '-draft'));
-} catch {}
-if ([3, 5, 8].includes(draft?.maxAttempts)) maxAttempts = draft.maxAttempts;
-function saveDraft(value) {
-  draft = value;
-  try {
-    value
-      ? localStorage.setItem(key + '-draft', JSON.stringify(value))
-      : localStorage.removeItem(key + '-draft');
-  } catch {}
-}
 
-// Imported case files have no menu entry; the menu then offers their setting.
+// Imported cases and old free worlds have no menu entry; the menu offers their setting.
 function worldChoice(id, world) {
-  if (['custom', ...worlds.map(w => w.id)].includes(id)) return id;
+  if (worlds.some(w => w.id === id)) return id;
   return worlds.some(w => w.id === world.setting) ? world.setting : 'scifi';
 }
 async function savedWorld(raw) {
@@ -90,18 +75,12 @@ try {
       }
       setupWorld = worldChoice(state.worldId, data);
       preview = data;
-      customDescription = data.description || '';
       c = createPrototypeCase(data, state);
       tab = 'setup';
     } catch {
       message =
         'El guardado del prototipo no es compatible. No se ha reemplazado. Puedes exportarlo antes de crear otra investigación.';
     }
-  }
-  if (draft?.description) {
-    setupWorld = 'custom';
-    customDescription = draft.description;
-    tab = 'setup';
   }
   render();
 } catch {
@@ -171,7 +150,7 @@ function imageFor(kind, id, fallback) {
 }
 function render() {
   const shown = tab === 'setup' ? preview : data;
-  app.innerHTML = `<header><a class="brand" href="/">O<span>MUNDOS<br><small>DETECTIVE STORIES</small></span></a><div class="save"><a class="small" href="/lab/index.html">Laboratorio</a><button id="export" class="small">Exportar partida</button>${state ? '<button id="export-case" class="small">Exportar caso</button>' : ''}<button id="reset-prototype" class="small" ${busy ? 'disabled' : ''}>Reiniciar prototipo</button><label class="small file">Importar<input id="import" type="file" accept="application/json" ${busy ? 'disabled' : ''}></label></div></header>${tab !== 'opening' ? `<section class="intro"><div><span class="eyebrow">PROTOTIPO JUGABLE · ${tab === 'setup' && setupWorld === 'custom' ? 'AMBIENTACIÓN LIBRE' : esc(shown.label || 'Ciencia ficción')}</span><h1>${tab === 'setup' && setupWorld === 'custom' ? 'Imagina tu mundo.' : esc(shown.world.title)}<br><em>Un misterio diferente.</em></h1><p>Cinco sospechosos. Varios con motivos y acceso al arma.<br>Solo una persona reúne móvil, acceso y ocasión.</p><p class="hint">Imágenes creadas por el modelo local al comenzar y conservadas con la partida. El motor construye cada caso; Qwen asiste en los interrogatorios.</p></div><div class="manor illustrated"><img src="${tab !== 'setup' ? imageFor('room', shown.world.rooms[0].id, shown.world.rooms[0].image || '/lab/assets/room-r1.webp') : shown.world.rooms[0].image || '/lab/assets/room-r1.webp'}" alt="${esc(shown.world.title)}"><span>MUNDOS<br>INVESTIGACIÓN EXPERIMENTAL</span></div></section>` : ''}${state && !['setup', 'opening'].includes(tab) ? `<section class="brief"><span class="seal">!</span><p><strong>${esc(c.victim.name)} ha muerto en ${esc(roomPhrase(c.scene))}.</strong> El hallazgo se registra a las ${clock(c.timing.discoveryMinute)}. Investiga la causa, el móvil y las coartadas.</p><strong>${state.found.length}<small> / ${c.clues.length} PISTAS</small></strong></section>` : ''}${
+  app.innerHTML = `<header><a class="brand" href="/">O<span>MUNDOS<br><small>DETECTIVE STORIES</small></span></a><div class="save"><button id="export" class="small">Exportar partida</button>${state ? '<button id="export-case" class="small">Exportar caso</button>' : ''}<button id="reset-prototype" class="small" ${busy ? 'disabled' : ''}>Borrar partida</button><label class="small file">Importar<input id="import" type="file" accept="application/json" ${busy ? 'disabled' : ''}></label></div></header>${tab !== 'opening' ? `<section class="intro"><div><span class="eyebrow">${esc(shown.label || 'Ciencia ficción')}</span><h1>${esc(shown.world.title)}<br><em>Un misterio diferente.</em></h1><p>Cinco sospechosos. Varios con motivos y acceso al arma.<br>Solo una persona reúne móvil, acceso y ocasión.</p></div><div class="manor illustrated"><img src="${tab !== 'setup' ? imageFor('room', shown.world.rooms[0].id, shown.world.rooms[0].image || '/lab/assets/room-r1.webp') : shown.world.rooms[0].image || '/lab/assets/room-r1.webp'}" alt="${esc(shown.world.title)}"><span>MUNDOS<br>INVESTIGACIÓN</span></div></section>` : ''}${state && !['setup', 'opening'].includes(tab) ? `<section class="brief"><span class="seal">!</span><p><strong>${esc(c.victim.name)} ha muerto en ${esc(roomPhrase(c.scene))}.</strong> El hallazgo se registra a las ${clock(c.timing.discoveryMinute)}. Investiga la causa, el móvil y las coartadas.</p><strong>${state.found.length}<small> / ${c.clues.length} PISTAS</small></strong></section>` : ''}${
     state && !['setup', 'opening'].includes(tab)
       ? `<nav aria-label="Investigación">${[
           ['explore', 'Explorar'],
@@ -188,11 +167,11 @@ function render() {
             '',
           )}<button id="new-case" ${busy ? 'disabled' : ''}>Otra investigación</button><button id="read-opening" ${busy ? 'disabled' : ''}>Leer el prólogo</button></nav>`
       : ''
-  }<main>${message ? `<div class="notice" role="status">${esc(message)}</div>` : ''}${tab === 'setup' ? setup() : tab === 'opening' ? openingScreen() : state.result ? ending() : content()}</main><footer>MUNDOS · ${storageOK ? 'Guardado local independiente de Blackwood' : 'Sin guardado local'}<span>${tab === 'setup' && setupWorld === 'custom' ? 'Métodos adaptados a tu mundo' : prototypeMethods(shown).length + ' métodos compatibles'} · <a href="/">Volver a Blackwood</a></span></footer>`;
+  }<main>${message ? `<div class="notice" role="status">${esc(message)}</div>` : ''}${tab === 'setup' ? setup() : tab === 'opening' ? openingScreen() : state.result ? ending() : content()}</main><footer>MUNDOS · ${storageOK ? 'Partida guardada en este navegador' : 'Sin guardado local: exporta tu partida'}<span><a href="/">Volver a Blackwood</a></span></footer>`;
   bind();
 }
 function setup() {
-  return `<section class="pilot-panel"><img class="pilot-portrait" src="${preview.world.people[0].image || '/lab/assets/person-p1.webp'}" alt="Personaje del mundo elegido"><div><span class="eyebrow">UNA NUEVA RECONSTRUCCIÓN</span><h2>Investiga un caso diferente.</h2><p>Cada mundo tiene sus propios personajes, escenarios y métodos compatibles. Cambian culpable, método, escena, horario, móvil y coartadas; las imágenes se generan al crear la partida y se conservan al continuarla.</p><label class="dialogue-settings">Elige tu mundo<select ${busy ? 'disabled' : ''} id="world-choice" aria-label="Tipo de mundo">${[...worlds, { id: 'custom', label: 'Libre · describe tu mundo' }, { id: 'random', label: 'Aleatorio · sorpréndeme' }].map(w => `<option value="${w.id}" ${setupWorld === w.id ? 'selected' : ''}>${esc(w.label)}</option>`).join('')}</select></label>${setupWorld === 'custom' ? `<label class="notes">Describe tu ambientación<textarea id="world-description" maxlength="600" placeholder="Una colonia minera en el planeta Marte, aislada por una tormenta de polvo" ${busy ? 'disabled' : ''}>${esc(customDescription)}</textarea></label><label class="dialogue-settings">Intentos por ficha<select id="attempt-limit" aria-label="Intentos por ficha" ${busy ? 'disabled' : ''}>${[3, 5, 8].map(n => `<option value="${n}" ${n === maxAttempts ? 'selected' : ''}>${n} intentos${n === 5 ? ' · recomendado' : ''}</option>`).join('')}</select></label><p class="hint">Incluye el primer intento y hasta ${maxAttempts - 1} reintentos automáticos. Solo se repite la ficha que falla.</p><p class="hint">Se verifican las reglas, cada personaje y cada habitación por separado. Las pistas se construyen según el crimen y la época. El progreso se guarda para reanudarlo.</p>` : ''}<p class="hint">${setupWorld === 'random' ? 'El mundo se elige al crear la investigación y queda guardado.' : 'Cinco sospechosos y seis escenarios propios de esta ambientación.'}</p><label class="dialogue-settings">Método para esta prueba<select ${busy ? 'disabled' : ''} id="method-choice" aria-label="Método para esta prueba"><option value="">Sorpresa · descubrir durante la partida</option>${(['random', 'custom'].includes(setupWorld) ? [] : prototypeMethods(preview)).map(m => `<option value="${m.id}">${esc(m.name)}</option>`).join('')}</select></label><p class="hint">Elegir un método concreto sirve para probarlo y revela esa parte de la solución. Con Sorpresa, el motor intenta cambiar de familia respecto a tu caso anterior.</p>${state ? '<p class="hint">Crear otra investigación sustituirá solo este guardado del prototipo. Puedes exportarlo antes; tu partida de Blackwood se conserva.</p>' : ''}<div class="pilot-actions"><button id="start-case" ${busy ? 'disabled' : ''}>${busy ? 'Creando partida…' : setupWorld === 'custom' && draft?.description === customDescription ? 'Crear o reanudar investigación →' : 'Crear investigación →'}</button>${state ? `<button id="continue-case" ${busy ? 'disabled' : ''}>Continuar la actual</button>` : ''}</div><p class="hint">Las opciones predefinidas usan mundos preparados. La opción Libre crea uno con Qwen local; si falla la validación, conserva tu partida anterior.</p></div></section>`;
+  return `<section class="pilot-panel"><img class="pilot-portrait" src="${preview.world.people[0].image || '/lab/assets/person-p1.webp'}" alt="Personaje del mundo elegido"><div><span class="eyebrow">NUEVA INVESTIGACIÓN</span><h2>Elige dónde ocurre el crimen.</h2><p>Cada mundo tiene sus propios personajes y escenarios. En cada investigación cambian el culpable, el arma, la escena, los móviles y las coartadas.</p><label class="dialogue-settings">Mundo<select ${busy ? 'disabled' : ''} id="world-choice" aria-label="Mundo">${[...worlds, { id: 'random', label: 'Al azar' }].map(w => `<option value="${w.id}" ${setupWorld === w.id ? 'selected' : ''}>${esc(w.label)}</option>`).join('')}</select></label><p class="hint">${setupWorld === 'random' ? 'El mundo se elige al crear la investigación.' : 'Cinco sospechosos y seis escenarios propios de este mundo.'}</p><label class="dialogue-settings">Arma (solo para probar)<select ${busy ? 'disabled' : ''} id="method-choice" aria-label="Arma para probar"><option value="">Sorpresa</option>${(setupWorld === 'random' ? [] : prototypeMethods(preview)).map(m => `<option value="${m.id}">${esc(m.name)}</option>`).join('')}</select></label><p class="hint">Elegir el arma revela esa parte de la solución. Con «Sorpresa», cada investigación intenta usar un arma distinta de la anterior.</p>${state ? '<p class="hint">Crear otra investigación sustituye la partida actual. Puedes exportarla antes; tu partida de Blackwood no se toca.</p>' : ''}<div class="pilot-actions"><button id="start-case" ${busy ? 'disabled' : ''}>${busy ? 'Preparando la investigación…' : 'Crear investigación →'}</button>${state ? `<button id="continue-case" ${busy ? 'disabled' : ''}>Continuar la actual</button>` : ''}</div></div></section>`;
 }
 function openingScreen() {
   const opening = state.opening;
@@ -241,7 +220,7 @@ function ending() {
 function content() {
   if (tab === 'explore') {
     const room = c.rooms.find(r => r.id === state.room);
-    return `${data.custom ? `<p class="hint">${esc(data.description)}</p>` : ''}<h2>Registra los escenarios.</h2><div class="exploration"><aside class="rooms">${c.rooms.map(r => `<button data-room="${r.id}" class="${r.id === room.id ? 'selected' : ''}"><strong>${esc(r.name)}</strong><small>${c.clues.filter(x => x.room === r.id && state.found.includes(x.id)).length}/${c.clues.filter(x => x.room === r.id).length}</small></button>`).join('')}</aside><section class="room-detail"><span class="eyebrow">ESCENA / ${esc(room.name)}</span><h2>${esc(room.name)}</h2><img class="scene-image" src="${imageFor('room', room.id, room.image || '/lab/assets/room-' + room.id + '.webp')}" alt="${esc(room.name)}"><p>${prose(room.description)}</p><div class="search-grid">${c.clues
+    return `<h2>Registra los escenarios.</h2><div class="exploration"><aside class="rooms">${c.rooms.map(r => `<button data-room="${r.id}" class="${r.id === room.id ? 'selected' : ''}"><strong>${esc(r.name)}</strong><small>${c.clues.filter(x => x.room === r.id && state.found.includes(x.id)).length}/${c.clues.filter(x => x.room === r.id).length}</small></button>`).join('')}</aside><section class="room-detail"><span class="eyebrow">ESCENA / ${esc(room.name)}</span><h2>${esc(room.name)}</h2><img class="scene-image" src="${imageFor('room', room.id, room.image || '/lab/assets/room-' + room.id + '.webp')}" alt="${esc(room.name)}"><p>${prose(room.description)}</p><div class="search-grid">${c.clues
       .filter(x => x.room === room.id)
       .map(
         x =>
@@ -268,7 +247,7 @@ function content() {
         .filter(m => m.person === person)
         .map(
           m =>
-            `<div class="question">${esc(m.question)}</div><div class="reply">${prose(m.answer)}${m.mode === 'prototype-choice' ? '' : `<small>${m.mode === 'prototype-free' ? 'Qwen local · conversación revisada' : m.mode === 'prototype-llm' ? 'Qwen local · respuesta verificada' : 'Motor del caso · respuesta de apoyo'}</small>`}</div>`,
+            `<div class="question">${esc(m.question)}</div><div class="reply">${prose(m.answer)}</div>`,
         )
         .join('') || '<p class="empty">Empieza por su coartada.</p>'
     }</div><div class="prompts">${prototypeFacts(c, state, person)
@@ -316,25 +295,15 @@ function bind() {
   document.querySelector('#reset-prototype').onclick = async () => {
     if (busy) return;
     try {
-      const previous = localStorage.getItem(key),
-        pending = localStorage.getItem(key + '-draft');
-      if (previous || pending)
-        localStorage.setItem(
-          key + '-backup-' + Date.now(),
-          JSON.stringify({ state: previous, draft: pending }),
-        );
+      const previous = localStorage.getItem(key);
+      if (previous) localStorage.setItem(key + '-backup-' + Date.now(), previous);
       localStorage.removeItem(key);
-      localStorage.removeItem(key + '-draft');
       state = null;
       c = null;
-      draft = null;
-      customDescription = '';
-      maxAttempts = 5;
-      setupWorld = 'custom';
+      setupWorld = 'scifi';
       data = preview = await loadWorld('scifi');
       tab = 'setup';
-      message =
-        'Prototipo reiniciado. Describe tu mundo para comenzar una prueba nueva. Se ha conservado una copia local del guardado anterior.';
+      message = 'Partida borrada. Se ha guardado una copia de seguridad en este navegador.';
       render();
     } catch {
       message = 'No se pudo guardar la copia de seguridad; no se ha completado el reinicio.';
@@ -366,7 +335,6 @@ function bind() {
       data = incoming;
       preview = data;
       setupWorld = worldChoice(imported.worldId, incoming);
-      customDescription = data.description || '';
       state = imported;
       c = createPrototypeCase(data, state);
       tab = raw.format === CASE_FORMAT ? 'setup' : 'explore';
@@ -382,70 +350,22 @@ function bind() {
   };
   document.querySelector('#world-choice')?.addEventListener('change', e => {
     setupWorld = e.target.value;
-    preview = cache.get(['random', 'custom'].includes(setupWorld) ? 'scifi' : setupWorld);
-    render();
-  });
-  document.querySelector('#world-description')?.addEventListener('input', e => {
-    customDescription = e.target.value;
-    saveDraft({ description: customDescription, maxAttempts });
-  });
-  document.querySelector('#attempt-limit')?.addEventListener('change', e => {
-    maxAttempts = Number(e.target.value);
-    saveDraft({ ...draft, description: customDescription, maxAttempts });
+    preview = cache.get(setupWorld === 'random' ? 'scifi' : setupWorld);
     render();
   });
   document.querySelector('#start-case')?.addEventListener('click', async () => {
     if (busy) return;
     const forcedMethodId = document.querySelector('#method-choice').value;
-    if (setupWorld === 'custom' && !customDescription.trim()) {
-      message = 'Describe primero el mundo que quieres investigar.';
-      render();
-      return;
-    }
     busy = true;
-    message =
-      setupWorld === 'custom'
-        ? 'Qwen está creando personajes y escenarios para tu ambientación…'
-        : 'Preparando el modelo local de imágenes…';
+    message = 'Preparando las ilustraciones de la investigación…';
     render();
     try {
-      let nextData;
-      if (setupWorld === 'custom') {
-        const r = await fetch('/api/prototype/world', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ description: customDescription, maxAttempts }),
-          signal: AbortSignal.timeout(15000),
-        });
-        let worldJob = await r.json();
-        if (!r.ok) throw Error(worldJob.error);
-        while (worldJob.status !== 'ready') {
-          if (worldJob.status === 'failed') throw Error(worldJob.error);
-          const label =
-            worldJob.step === 'world'
-              ? 'Reglas del mundo'
-              : worldJob.step?.startsWith('person-')
-                ? 'Habitante ' + worldJob.step.split('-')[1]
-                : 'Habitación ' + worldJob.step?.split('-')[1];
-          message = `Verificando: ${label} · ${worldJob.attempt ? `intento ${worldJob.attempt} de ${worldJob.maxAttempts} · ` : ''}${worldJob.done} / ${worldJob.total} pasos guardados${worldJob.reason ? '. Corrigiendo: ' + worldJob.reason : ''}`;
-          render();
-          await new Promise(resolve => setTimeout(resolve, 750));
-          const progress = await fetch('/api/prototype/world/' + worldJob.id);
-          worldJob = await progress.json();
-          if (!progress.ok) throw Error(worldJob.error);
-        }
-        nextData = worldJob.world;
-      } else nextData = cache.get(selectWorld(setupWorld));
-      const candidate =
-        setupWorld === 'custom' && draft?.description === customDescription && draft?.candidate
-          ? restorePrototype(nextData, draft.candidate)
-          : newPrototype(nextData, {
-              previousMethodId: c?.method.id,
-              previousPersonId: c?.culprit.id,
-              forcedMethodId,
-            });
-      if (setupWorld === 'custom')
-        saveDraft({ description: customDescription, maxAttempts, candidate });
+      const nextData = cache.get(selectWorld(setupWorld));
+      const candidate = newPrototype(nextData, {
+        previousMethodId: c?.method.id,
+        previousPersonId: c?.culprit.id,
+        forcedMethodId,
+      });
       await prepareImages(candidate);
       data = nextData;
       state = candidate;
@@ -455,7 +375,6 @@ function bind() {
       tab = 'opening';
       message = '';
       save();
-      saveDraft(null);
       busy = false;
       await enterCase();
     } catch (e) {

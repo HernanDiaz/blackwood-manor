@@ -1,4 +1,3 @@
-import { visualGuide, guidedImagePlan } from './visual-guide.mjs';
 import { resolvePrototypeWorld } from './custom-world.mjs';
 import { spawn } from 'node:child_process';
 import { readFile, mkdir, writeFile, access } from 'node:fs/promises';
@@ -125,15 +124,13 @@ export async function startImages(root, raw) {
     .then(async () => {
       job.status = 'generating';
       try {
-        const guide = await visualGuide(root, data);
         await mkdir(folder, { recursive: true });
         await writeFile(
           path.join(folder, 'request.json'),
           JSON.stringify({
             caseId: id,
             seed: state.seed,
-            visualGuide: guide,
-            jobs: guidedImagePlan(data, imagePlan(data, c), guide),
+            jobs: imagePlan(data, c),
           }),
         );
         await new Promise((resolve, reject) => {

@@ -1,11 +1,6 @@
 import { savedOpening } from './src/opening.mjs';
 import { restorePrototype, createPrototypeCase } from './src/prototype-engine.mjs';
-import { startWorld, statusWorld } from './src/world-jobs.mjs';
-import {
-  generateCustomWorld,
-  resolvePrototypeWorld,
-  validateCustomWorld,
-} from './src/custom-world.mjs';
+import { resolvePrototypeWorld, validateCustomWorld } from './src/custom-world.mjs';
 import { startImages, imageStatus } from './src/session-images.mjs';
 import { worldFile } from './src/prototype-worlds.mjs';
 import { respondPrototype } from './src/prototype-llm.mjs';
@@ -126,11 +121,7 @@ const server = http.createServer(async (req, res) => {
       res.end(JSON.stringify(opening));
       return;
     }
-    if (req.url.startsWith('/api/prototype/world/') && req.method === 'GET') {
-      res.setHeader('Content-Type', 'application/json');
-      res.end(JSON.stringify(statusWorld(req.url.slice('/api/prototype/world/'.length))));
-      return;
-    }
+    // Only to open saves of free worlds made before case files existed.
     if (req.url === '/api/prototype/validate-world' && req.method === 'POST') {
       let raw = '';
       for await (const chunk of req) {
@@ -139,18 +130,6 @@ const server = http.createServer(async (req, res) => {
       }
       res.setHeader('Content-Type', 'application/json');
       res.end(JSON.stringify(validateCustomWorld(JSON.parse(raw))));
-      return;
-    }
-    if (req.url === '/api/prototype/world' && req.method === 'POST') {
-      let raw = '';
-      for await (const chunk of req) {
-        raw += chunk;
-        if (raw.length > 5000) throw Error('Descripción demasiado larga');
-      }
-      const options = JSON.parse(raw),
-        world = startWorld(root, options.description, { maxAttempts: options.maxAttempts });
-      res.setHeader('Content-Type', 'application/json');
-      res.end(JSON.stringify(world));
       return;
     }
     if (req.url === '/api/prototype/images' && req.method === 'POST') {
