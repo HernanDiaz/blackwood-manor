@@ -1,5 +1,12 @@
 import { contextualClue, auditPrototype } from './contextual-evidence.mjs';
 import { methodCatalog, methodRoomPairs, methodTiming, methodEvidence } from './method-catalog.mjs';
+import {
+  emptyProgress,
+  restoreProgress,
+  unlockedFacts,
+  discoverClue,
+  judgeAccusation,
+} from './investigation.mjs';
 const tags = [
   ['interior', 'life-support'],
   ['interior'],
@@ -256,12 +263,7 @@ export function newPrototype(data, options = {}) {
     ...selection,
     caseId: c.id,
     openingSeen: false,
-    room: c.scene.id,
-    found: [],
-    pinned: [],
-    notes: '',
-    chat: [],
-    result: null,
+    ...emptyProgress(c.scene.id),
   };
 }
 export function restorePrototype(data, raw) {
@@ -276,7 +278,6 @@ export function restorePrototype(data, raw) {
     throw Error('Guardado orbital incompatible');
   const c = createPrototypeCase(data, s);
   if (c.id !== s.caseId) throw Error('La definición del caso no coincide con el guardado');
-  const found = [...new Set(s.found.filter(id => c.clues.some(x => x.id === id)))];
   return {
     ...newPrototype(data, s),
     openingSeen: s.openingSeen === true,
@@ -294,19 +295,7 @@ export function restorePrototype(data, raw) {
         }
       : {}),
     ...(s.imageSet === c.id ? { imageSet: c.id } : {}),
-    room: c.rooms.some(r => r.id === s.room) ? s.room : c.scene.id,
-    found,
-    pinned: Array.isArray(s.pinned) ? [...new Set(s.pinned.filter(id => found.includes(id)))] : [],
-    notes: typeof s.notes === 'string' ? s.notes.slice(0, 10000) : '',
-    chat: s.chat
-      .filter(
-        m =>
-          c.people.some(p => p.id === m.person) &&
-          typeof m.question === 'string' &&
-          typeof m.answer === 'string',
-      )
-      .slice(-200),
-    result: ['won', 'lost'].includes(s.result) ? s.result : null,
+    ...restoreProgress(caseView(c), s),
   };
 }
 function assertCase(c, state) {
@@ -314,19 +303,19 @@ function assertCase(c, state) {
 }
 export function inspectPrototype(c, state, id) {
   assertCase(c, state);
-  if (state.result) throw Error('La investigación está cerrada');
-  const clue = c.clues.find(x => x.id === id && x.room === state.room);
-  if (!clue) throw Error('Pista fuera de esta habitación');
-  if (!state.found.includes(id)) state.found.push(id);
-  return clue;
+  return discoverClue(caseView(c), state, id);
 }
 export function prototypeFacts(c, state, person) {
   assertCase(c, state);
   if (state.result || !c.people.some(p => p.id === person)) return [];
+  return unlockedFacts(caseView(c), state, person);
+}
+// What each person can say: alibi and motive from the start, the rest unlocked by their clues.
+function personFacts(c, person) {
   const alibi = c.alibis.find(a => a.person === person),
-    mine = c.clues.filter(x => x.person === person),
-    guilty = person === c.culprit.id;
-  const facts = [
+    guilty = person === c.culprit.id,
+    clueOf = category => c.clues.find(x => x.person === person && x.category === category).id;
+  return [
     { id: 'alibi', text: alibi.claim },
     {
       id: 'motive',
@@ -336,38 +325,64 @@ export function prototypeFacts(c, state, person) {
           '.'
         : 'Mi relación con la dirección era profesional. Había discrepancias sobre las condiciones de trabajo.',
     },
+    {
+      id: 'secret',
+      requires: clueOf('motive'),
+      text: guilty
+        ? c.motive
+        : c.context
+          ? 'Pedí revisar el reparto de ' +
+            c.context.resource +
+            '. Mi petición no contiene una amenaza.'
+          : 'Pedí revisar mis turnos. Ese documento no contiene una amenaza.',
+    },
+    {
+      id: 'link',
+      requires: clueOf('link'),
+      text: guilty
+        ? `La inspección me vincula con el objeto «${c.method.object}». No puedo negar ese vínculo material.`
+        : 'La inspección descarta que yo interviniera en el crimen.',
+    },
+    {
+      id: 'timeline',
+      requires: clueOf('opportunity'),
+      text: guilty
+        ? `${c.context ? 'La prueba de acceso sitúa' : 'El registro sitúa'} mi entrada en «${c.scene.name}» a las ${clock(c.timing.crimeMinute)}. Mi primera coartada era falsa.`
+        : alibi.claim +
+          (c.context ? ' La prueba de acceso lo confirma.' : ' El registro continuo lo confirma.'),
+    },
   ];
-  for (const clue of mine.filter(x => state.found.includes(x.id))) {
-    if (clue.category === 'motive')
-      facts.push({
-        id: 'secret',
-        text: guilty
-          ? c.motive
-          : c.context
-            ? 'Pedí revisar el reparto de ' +
-              c.context.resource +
-              '. Mi petición no contiene una amenaza.'
-            : 'Pedí revisar mis turnos. Ese documento no contiene una amenaza.',
-      });
-    if (clue.category === 'link')
-      facts.push({
-        id: 'link',
-        text: guilty
-          ? `La inspección me vincula con el objeto «${c.method.object}». No puedo negar ese vínculo material.`
-          : 'La inspección descarta que yo interviniera en el crimen.',
-      });
-    if (clue.category === 'opportunity')
-      facts.push({
-        id: 'timeline',
-        text: guilty
-          ? `${c.context ? 'La prueba de acceso sitúa' : 'El registro sitúa'} mi entrada en «${c.scene.name}» a las ${clock(c.timing.crimeMinute)}. Mi primera coartada era falsa.`
-          : alibi.claim +
-            (c.context
-              ? ' La prueba de acceso lo confirma.'
-              : ' El registro continuo lo confirma.'),
-      });
-  }
-  return facts;
+}
+const messages = {
+  closed: 'La investigación está cerrada',
+  closedAccusation: 'La investigación está cerrada',
+  outOfReach: 'Pista fuera de esta habitación',
+  incomplete: 'Completa persona, método y lugar',
+  evidence: 'Adjunta al menos tres pruebas descubiertas',
+};
+// Generated cases adapted to the shared investigation rules (see investigation.mjs).
+function caseView(c) {
+  return {
+    people: c.people,
+    rooms: c.rooms,
+    startRoom: c.scene.id,
+    methods: methodCatalog.map(m => m.id),
+    clues: c.clues,
+    facts: Object.fromEntries(c.people.map(p => [p.id, personFacts(c, p.id)])),
+    solution: {
+      person: c.culprit.id,
+      method: c.method.id,
+      room: c.scene.id,
+      proof: ['motive', 'link', 'opportunity'].map(category =>
+        c.clues
+          .filter(
+            x => x.person === c.culprit.id && x.category === category && x.effect === 'supports',
+          )
+          .map(x => x.id),
+      ),
+    },
+    messages,
+  };
 }
 const delivery = {
   p1: ['Lo explicaré con calma. ', 'Escucha este detalle. '],
@@ -421,33 +436,7 @@ export function inferPrototypeTopic(question, c = null) {
 }
 export function accusePrototype(c, state, { person, method, room, evidence }) {
   assertCase(c, state);
-  if (state.result) throw Error('La investigación está cerrada');
-  if (
-    !c.people.some(p => p.id === person) ||
-    !methodCatalog.some(m => m.id === method) ||
-    !c.rooms.some(r => r.id === room)
-  )
-    throw Error('Completa persona, método y lugar');
-  if (
-    !Array.isArray(evidence) ||
-    new Set(evidence).size < 3 ||
-    evidence.some(id => !state.found.includes(id))
-  )
-    throw Error('Adjunta al menos tres pruebas descubiertas');
-  const sufficient = ['motive', 'link', 'opportunity'].every(category =>
-    c.clues.some(
-      x =>
-        evidence.includes(x.id) &&
-        x.person === person &&
-        x.category === category &&
-        x.effect === 'supports',
-    ),
-  );
-  state.result =
-    person === c.culprit.id && method === c.method.id && room === c.scene.id && sufficient
-      ? 'won'
-      : 'lost';
-  return state.result;
+  return judgeAccusation(caseView(c), state, { person, method, room, evidence });
 }
 export function prototypeResolution(c, state) {
   return state.result === 'won'

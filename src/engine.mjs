@@ -1,5 +1,12 @@
 import { cases, caseById, selectCase, LEGACY_CASE_ID } from './cases.mjs';
 import { VISUAL_SET } from './visuals.mjs';
+import {
+  emptyProgress,
+  restoreProgress,
+  unlockedFacts,
+  discoverClue,
+  judgeAccusation,
+} from './investigation.mjs';
 export const rooms = [
   {
     id: 'study',
@@ -80,9 +87,7 @@ export const topics = {
   timeline: 'El registro contradice tu coartada',
 };
 export function availableFacts(state, person) {
-  return (currentCase(state).facts[person] || [])
-    .filter(f => !f[2] || state.found.includes(f[2]))
-    .map(([id, text]) => ({ id, text }));
+  return unlockedFacts(caseView(state), state, person);
 }
 export function newGame({ caseId, previousCaseId } = {}) {
   const c = caseById(caseId || selectCase(previousCaseId));
@@ -92,12 +97,7 @@ export function newGame({ caseId, previousCaseId } = {}) {
     caseRevision: c.revision,
     visualSet: VISUAL_SET,
     dialogueMode: 'precise',
-    room: c.startRoom,
-    found: [],
-    pinned: [],
-    notes: '',
-    chat: [],
-    result: null,
+    ...emptyProgress(c.startRoom),
   };
 }
 export function restore(raw) {
@@ -108,29 +108,14 @@ export function restore(raw) {
   const c = caseById(s.caseId === undefined ? LEGACY_CASE_ID : s.caseId);
   if (s.caseRevision !== undefined && s.caseRevision !== c.revision)
     throw Error('Versión del caso incompatible');
-  const base = newGame({ caseId: c.id });
-  base.dialogueMode = s.dialogueMode === 'creative' ? 'creative' : 'precise';
-  base.room = rooms.some(r => r.id === s.room) ? s.room : c.startRoom;
-  base.found = [...new Set(s.found.filter(id => caseClues(base).some(c => c.id === id)))];
-  base.pinned = Array.isArray(s.pinned) ? s.pinned.filter(id => base.found.includes(id)) : [];
-  base.notes = typeof s.notes === 'string' ? s.notes.slice(0, 10000) : '';
-  base.chat = s.chat
-    .filter(
-      m =>
-        suspects.some(p => p.id === m.person) &&
-        typeof m.question === 'string' &&
-        typeof m.answer === 'string',
-    )
-    .slice(-200);
-  base.result = ['won', 'lost'].includes(s.result) ? s.result : null;
-  return base;
+  return {
+    ...newGame({ caseId: c.id }),
+    dialogueMode: s.dialogueMode === 'creative' ? 'creative' : 'precise',
+    ...restoreProgress(caseView({ caseId: c.id }), s),
+  };
 }
 export function discover(state, id) {
-  if (state.result) throw Error('El caso está cerrado');
-  const c = caseClues(state).find(c => c.id === id && c.room === state.room);
-  if (!c) throw Error('Pista fuera de alcance');
-  if (!state.found.includes(id)) state.found.push(id);
-  return c;
+  return discoverClue(caseView(state), state, id);
 }
 export function inferTopic(question) {
   const q = question
@@ -165,27 +150,41 @@ export const weapons = [
   { id: 'wine', name: 'Veneno en el vino' },
 ];
 export function accuse(state, { person, weapon, room, evidence }) {
-  if (state.result) throw Error('El caso ya está cerrado');
-  if (
-    !suspects.some(p => p.id === person) ||
-    !weapons.some(w => w.id === weapon) ||
-    !rooms.some(r => r.id === room)
-  )
-    throw Error('Completa la acusación');
-  if (
-    !Array.isArray(evidence) ||
-    new Set(evidence).size < 3 ||
-    evidence.some(id => !state.found.includes(id))
-  )
-    throw Error('Selecciona al menos tres pistas descubiertas');
-  const solution = currentCase(state).solution;
-  const valid = person === solution.person && weapon === solution.weapon && room === solution.room;
-  const supported = solution.groups.every(group => group.some(id => evidence.includes(id)));
-  state.result = valid && supported ? 'won' : 'lost';
-  return state.result;
+  return judgeAccusation(caseView(state), state, { person, method: weapon, room, evidence });
 }
 export function resolution(state) {
   return state.result === 'won'
     ? 'Caso resuelto. ' + currentCase(state).ending
     : 'La acusación no se sostiene. Necesitas identificar culpable, método y habitación, y aportar pruebas del móvil, vínculo con la bebida envenenada y oportunidad. Reabre el caso para seguir investigando.';
+}
+// Authored cases adapted to the shared investigation rules (see investigation.mjs).
+const messages = {
+  closed: 'El caso está cerrado',
+  closedAccusation: 'El caso ya está cerrado',
+  outOfReach: 'Pista fuera de alcance',
+  incomplete: 'Completa la acusación',
+  evidence: 'Selecciona al menos tres pistas descubiertas',
+};
+function caseView(state) {
+  const c = currentCase(state);
+  return {
+    people: suspects,
+    rooms,
+    startRoom: c.startRoom,
+    methods: weapons.map(w => w.id),
+    clues: c.clues,
+    facts: Object.fromEntries(
+      Object.entries(c.facts).map(([person, facts]) => [
+        person,
+        facts.map(([id, text, requires]) => ({ id, text, requires })),
+      ]),
+    ),
+    solution: {
+      person: c.solution.person,
+      method: c.solution.weapon,
+      room: c.solution.room,
+      proof: c.solution.groups,
+    },
+    messages,
+  };
 }
