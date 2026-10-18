@@ -18,7 +18,7 @@ const lowerFirst = s => s.charAt(0).toLocaleLowerCase('es') + s.slice(1);
 const list = names => names.slice(0, -1).join(', ') + ' y ' + names.at(-1);
 
 const medievalProfile = {
-  guardian: 'el guardia de turno',
+  guardian: 'el portero',
   record: 'el registro de entradas',
   report: 'Examen del sanador',
   items: [
@@ -217,6 +217,49 @@ const preparedRooms = {
   Vestíbulo:
     'La entrada principal, con un reloj de pie, un perchero con abrigos y la escalera que sube a las habitaciones.',
 };
+// Prepared worlds: player-facing names (sentence case, so they read well inside a sentence),
+// articles and victim roles. The world JSON stays as it is because old saves hash it.
+const preparedNames = {
+  'Sala de Navegación': ['Sala de navegación', 'la'],
+  'Cámara de Especímenes': ['Cámara de especímenes', 'la'],
+  'Sala de Cultivos Hidropónicos': ['Sala de cultivos hidropónicos', 'la'],
+  'Estación de Carga': ['Muelle de carga', 'el'],
+  'Enfermería orbital': ['Enfermería orbital', 'la'],
+  'Módulo de descanso para tripulación': ['Módulo de descanso', 'el'],
+  'Torre del oráculo': ['Torre del oráculo', 'la'],
+  'Aposentos de huéspedes': ['Aposentos de huéspedes', 'los'],
+  'Salón de Ámbar': ['Salón de Ámbar', 'el'],
+  'Torre de vigía': ['Torre de vigía', 'la'],
+  Scriptorium: ['Scriptorium', 'el'],
+  'Archivo de runas': ['Archivo de runas', 'el'],
+  'Jardín encantado': ['Jardín encantado', 'el'],
+  'Forja real': ['Forja real', 'la'],
+  'Salón del castillo': ['Salón del castillo', 'el'],
+  Botica: ['Botica', 'la'],
+  Armería: ['Armería', 'la'],
+  'Cámara de invitados': ['Cámara de invitados', 'la'],
+  Despacho: ['Despacho', 'el'],
+  Biblioteca: ['Biblioteca', 'la'],
+  Comedor: ['Comedor', 'el'],
+  Cocina: ['Cocina', 'la'],
+  Invernadero: ['Invernadero', 'el'],
+  Vestíbulo: ['Vestíbulo', 'el'],
+};
+const preparedVictimRoles = {
+  'orbital-v1': 'director de la estación',
+  'fantasy-v1': 'regente de la corte de Ámbar',
+  'medieval-v1': 'señor de Torre Umbría',
+  'noir-v1': 'dueño de Villa Bellavista',
+};
+// How the crime was committed, for the ending ("… a las 21:30, con la daga").
+const devices = {
+  fall: 'empujándole desde la galería elevada',
+  air: 'alterando a mano el regulador de aire',
+  robot: 'ordenando al brazo industrial que golpeara',
+  hatch: 'cerrando a mano la compuerta industrial',
+  cryo: 'alterando a mano la cápsula criogénica',
+};
+export const crimePhrase = id => devices[id] || (objects[id] ? 'con ' + objects[id].weapon : null);
 const defaultMotives = [
   'Había falsificado sus credenciales profesionales. La víctima iba a denunciarlo al día siguiente.',
   'Había desviado suministros de la estación. La víctima había reunido pruebas y las entregaría al día siguiente.',
@@ -280,9 +323,16 @@ export function generateCaseFile(
   const random = rng('case-v1:' + seed),
     setting = data.setting || 'scifi',
     profile = profiles[setting],
-    rooms = prototypeRooms(data).map(r =>
-      data.custom || !preparedRooms[r.name] ? r : { ...r, description: preparedRooms[r.name] },
-    ),
+    rooms = prototypeRooms(data).map(r => {
+      if (data.custom) return r;
+      const [name, article] = preparedNames[r.name] || [r.name, r.article];
+      return {
+        ...r,
+        name,
+        ...(article ? { article } : {}),
+        description: preparedRooms[r.name] || r.description,
+      };
+    }),
     people = data.world.people,
     // Texts use {victim}, {p1}… and {r1}… so a renamed person or place updates every text.
     victim = '{victim}',
@@ -387,7 +437,7 @@ export function generateCaseFile(
     pick(
       [
         `Según ${profile.guardian}, solo ${list(accessList)} tenían acceso a ${object.access}.`,
-        `Inventario de ${roomName(storeRoom)}: ${object.access} se guardaba bajo llave, y solo ${list(accessList)} tenían esa llave.`,
+        `Inventario de ${roomName(storeRoom)}: solo ${list(accessList)} figuran como autorizados para usar ${object.access}.`,
       ],
       random,
     ),
@@ -587,7 +637,9 @@ export function generateCaseFile(
     ...(data.description ? { description: data.description } : {}),
     ...(data.visualStyle ? { visualStyle: data.visualStyle } : {}),
     ...(data.rules ? { rules: data.rules } : {}),
-    victim: data.victim,
+    victim: data.custom
+      ? data.victim
+      : { ...data.victim, role: preparedVictimRoles[data.revision] || data.victim.role },
     people,
     rooms,
     crime: {

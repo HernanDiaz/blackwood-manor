@@ -12,6 +12,7 @@ import {
   prototypeResolution,
   exportCaseFile,
   worldFromCase,
+  methodLabel,
   CASE_FORMAT,
   clock,
 } from '/src/prototype-engine.mjs';
@@ -171,7 +172,7 @@ function render() {
   bind();
 }
 function setup() {
-  return `<section class="pilot-panel"><img class="pilot-portrait" src="${preview.world.people[0].image || '/lab/assets/person-p1.webp'}" alt="Personaje del mundo elegido"><div><span class="eyebrow">NUEVA INVESTIGACIÓN</span><h2>Elige dónde ocurre el crimen.</h2><p>Cada mundo tiene sus propios personajes y escenarios. En cada investigación cambian el culpable, el arma, la escena, los móviles y las coartadas.</p><label class="dialogue-settings">Mundo<select ${busy ? 'disabled' : ''} id="world-choice" aria-label="Mundo">${[...worlds, { id: 'random', label: 'Al azar' }].map(w => `<option value="${w.id}" ${setupWorld === w.id ? 'selected' : ''}>${esc(w.label)}</option>`).join('')}</select></label><p class="hint">${setupWorld === 'random' ? 'El mundo se elige al crear la investigación.' : 'Cinco sospechosos y seis escenarios propios de este mundo.'}</p><label class="dialogue-settings">Arma (solo para probar)<select ${busy ? 'disabled' : ''} id="method-choice" aria-label="Arma para probar"><option value="">Sorpresa</option>${(setupWorld === 'random' ? [] : prototypeMethods(preview)).map(m => `<option value="${m.id}">${esc(m.name)}</option>`).join('')}</select></label><p class="hint">Elegir el arma revela esa parte de la solución. Con «Sorpresa», cada investigación intenta usar un arma distinta de la anterior.</p>${state ? '<p class="hint">Crear otra investigación sustituye la partida actual. Puedes exportarla antes; tu partida de Blackwood no se toca.</p>' : ''}<div class="pilot-actions"><button id="start-case" ${busy ? 'disabled' : ''}>${busy ? 'Preparando la investigación…' : 'Crear investigación →'}</button>${state ? `<button id="continue-case" ${busy ? 'disabled' : ''}>Continuar la actual</button>` : ''}</div></div></section>`;
+  return `<section class="pilot-panel"><img class="pilot-portrait" src="${preview.world.people[0].image || '/lab/assets/person-p1.webp'}" alt="Personaje del mundo elegido"><div><span class="eyebrow">NUEVA INVESTIGACIÓN</span><h2>Elige dónde ocurre el crimen.</h2><p>Cada mundo tiene sus propios personajes y escenarios. En cada investigación cambian el culpable, el arma, la escena, los móviles y las coartadas.</p><label class="dialogue-settings">Mundo<select ${busy ? 'disabled' : ''} id="world-choice" aria-label="Mundo">${[...worlds, { id: 'random', label: 'Al azar' }].map(w => `<option value="${w.id}" ${setupWorld === w.id ? 'selected' : ''}>${esc(w.label)}</option>`).join('')}</select></label><p class="hint">${setupWorld === 'random' ? 'El mundo se elige al crear la investigación.' : 'Cinco sospechosos y seis escenarios propios de este mundo.'}</p><label class="dialogue-settings">Arma (solo para probar)<select ${busy ? 'disabled' : ''} id="method-choice" aria-label="Arma para probar"><option value="">Sorpresa</option>${(setupWorld === 'random' ? [] : prototypeMethods(preview)).map(m => `<option value="${m.id}">${esc(methodLabel(m.id))}</option>`).join('')}</select></label><p class="hint">Elegir el arma revela esa parte de la solución. Con «Sorpresa», cada investigación intenta usar un arma distinta de la anterior.</p>${state ? '<p class="hint">Crear otra investigación sustituye la partida actual. Puedes exportarla antes; tu partida de Blackwood no se toca.</p>' : ''}<div class="pilot-actions"><button id="start-case" ${busy ? 'disabled' : ''}>${busy ? 'Preparando la investigación…' : 'Crear investigación →'}</button>${state ? `<button id="continue-case" ${busy ? 'disabled' : ''}>Continuar la actual</button>` : ''}</div></div></section>`;
 }
 function openingScreen() {
   const opening = state.opening;
@@ -275,7 +276,7 @@ function content() {
     }</div>`;
   return `<h2>La acusación final.</h2><p>Identifica persona, método y escena. Adjunta una prueba de su móvil, una de su acceso al arma y una que desmienta su coartada. Si fallas podrás reabrir el caso.</p><form id="accuse"><div class="fields">${[
     ['person', 'Culpable', c.people],
-    ['method', 'Método', prototypeMethods(data)],
+    ['method', 'Método', prototypeMethods(data).map(m => ({ id: m.id, name: methodLabel(m.id) }))],
     ['room', 'Lugar', c.rooms],
   ]
     .map(

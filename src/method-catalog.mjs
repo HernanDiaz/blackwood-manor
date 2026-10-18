@@ -346,3 +346,28 @@ export function methodTiming(method, crimeMinute) {
     throw Error('Horario incompatible con el método');
   return { crimeMinute, deathMinute, windowStart: crimeMinute - 10, windowEnd: deathMinute + 1 };
 }
+// Names shown to the player. The catalog names above keep "ficticio" as a design note and are
+// part of old saves, so they are not changed; the interface uses these instead.
+const labels = {
+  knife: 'Arma blanca',
+  blunt: 'Golpe con un objeto pesado',
+  rope: 'Estrangulación',
+  drink: 'Veneno en una bebida',
+  revolver: 'Disparo de revólver',
+  shotgun: 'Disparo de escopeta',
+  medicine: 'Medicamento alterado',
+  sword: 'Espada',
+  crossbow: 'Ballesta',
+  fall: 'Caída provocada',
+  artifact: 'Artefacto encantado',
+  alchemy: 'Preparado alquímico',
+  air: 'Sabotaje del regulador de aire',
+  medical: 'Cápsula médica alterada',
+  power: 'Descarga de un panel de energía',
+  laser: 'Disparo láser',
+  plasma: 'Disparo de plasma',
+  robot: 'Brazo robótico',
+  hatch: 'Compuerta industrial',
+  cryo: 'Cápsula criogénica alterada',
+};
+export const methodLabel = id => labels[id] || methodCatalog.find(m => m.id === id)?.name || id;

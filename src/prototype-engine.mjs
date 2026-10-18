@@ -14,11 +14,13 @@ import {
   hydrateCase,
   worldFromCase,
 } from './case-file.mjs';
-import { generateCaseFile } from './case-generator.mjs';
+import { generateCaseFile, crimePhrase } from './case-generator.mjs';
+import { methodLabel } from './method-catalog.mjs';
+import { placePhrase } from './spanish-prose.mjs';
 import { createLegacyCase, legacyCaseFile } from './legacy-prototype-case.mjs';
 import { clock } from './random.mjs';
 export { prototypeRooms, prototypeMethods } from './prototype-worlds.mjs';
-export { clock, worldFromCase, CASE_FORMAT };
+export { clock, worldFromCase, CASE_FORMAT, methodLabel };
 
 function selection(options) {
   return {
@@ -240,6 +242,6 @@ export function accusePrototype(c, state, { person, method, room, evidence }) {
 export function prototypeResolution(c, state) {
   const title = id => '“' + c.clues.find(x => x.id === id).title + '”';
   return state.result === 'won'
-    ? `${c.culprit.name} causó la muerte de ${c.victim.name} mediante «${c.method.name}» en «${c.scene.name}» a las ${clock(c.timing.crimeMinute)}. ${c.motive} Lo demuestran el móvil (${title(c.proof[0][0])}), el acceso al arma (${title(c.proof[1][0])}) y la coartada desmentida (${title(c.proof[2][0])}).`
+    ? `${c.culprit.name} mató a ${c.victim.name} en ${placePhrase(c.scene)} a las ${clock(c.timing.crimeMinute)}, ${crimePhrase(c.method.id) || 'mediante ' + methodLabel(c.method.id).toLocaleLowerCase('es')}. ${c.motive} Lo demuestran su móvil (${title(c.proof[0][0])}), su acceso al arma (${title(c.proof[1][0])}) y su coartada desmentida (${title(c.proof[2][0])}).`
     : 'La acusación no se sostiene. Necesitas a la persona que reúne móvil, acceso al arma y una coartada desmentida, con una prueba de cada cosa. Puedes reabrir la investigación conservando tus hallazgos.';
 }

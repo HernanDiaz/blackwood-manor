@@ -181,7 +181,12 @@ export async function savedOpening(root, data, c) {
   } catch {}
   if (pending.has(c.id)) return pending.get(c.id);
   const task = (async () => {
-    const opening = await createOpening(data, c);
+    // Written openings read better than a small model's and need no model (as on a phone);
+    // BLACKWOOD_LLM_PROLOGUE=1 asks the local model instead.
+    const opening =
+      process.env.BLACKWOOD_LLM_PROLOGUE === '1'
+        ? await createOpening(data, c)
+        : fallbackOpening(data, c);
     await mkdir(path.dirname(file), { recursive: true });
     await writeFile(file + '.tmp', JSON.stringify(opening, null, 2));
     await rename(file + '.tmp', file);
