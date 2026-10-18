@@ -1,9 +1,106 @@
-import test from'node:test';import assert from'node:assert/strict';import{readFileSync}from'node:fs';import{createOpening,verifyOpening,cleanAtmosphere}from'../src/opening.mjs';import{newPrototype,createPrototypeCase,restorePrototype}from'../src/prototype-engine.mjs';
-const d=JSON.parse(readFileSync('public/prototype/worlds/noir.json')),s=newPrototype(d,{seed:'story'}),c=createPrototypeCase(d,s),prose={arrival:'Cruzas el umbral despacio. El silencio vuelve más perceptible el roce de tus pasos y te invita a detenerte.',tension:'Todavía no sabes por dónde empezar. Respiras hondo y decides escuchar con atención antes de sacar conclusiones.'};
-test('opening generator receives only public scenery, never solution or evidence',async()=>{let count=0;const result=await createOpening(d,c,{request:async(messages)=>{count++;const input=JSON.stringify(messages);assert.ok(!input.includes(c.motive));assert.ok(!input.includes(c.culprit.name));assert.ok(!input.includes(c.method.object));return count===1?{text:prose.arrival}:count===2?{text:prose.tension}:{safe:true};}});assert.equal(count,3);assert.equal(result.source,'local-llm');assert.equal(result.caseId,c.id);});
-test('names, times, weapon claims and English output rejected',()=>{assert.ok(verifyOpening(prose,c));for(const arrival of ['El arma es una daga y todo apunta hacia el heredero.',c.culprit.name+' te recibe a la puerta y te cuenta lo sucedido.','Cruzas el umbral a las 20:30 y observas la estancia.','You arrive in the room and the truth awaits you.'])assert.ok(!verifyOpening({...prose,arrival},c));});
-test('unsafe semantic review or unavailable model yields playable authored atmosphere',async()=>{for(const offline of [false,true]){let count=0;const result=await createOpening(d,c,{request:async()=>{if(offline)throw Error('offline');return ++count===1?{text:prose.arrival}:count===2?{text:prose.tension}:{safe:false};}});assert.equal(result.source,'engine');assert.equal(result.caseId,c.id);assert.ok(result.arrival.length>35);}});
-test('incomplete endings and empty-room claims removed',()=>{assert.equal(cleanAtmosphere('Escuchas tus propios pasos. La habitación está vacía. Una frase sin terminar'),'Escuchas tus propios pasos.');});
-test('intro roundtrip preserves prose and seen flag without changing the case or proof gates',()=>{s.opening={caseId:c.id,...prose,source:'local-llm'};s.openingSeen=true;const restored=restorePrototype(d,JSON.stringify(s));assert.deepEqual(restored.opening,s.opening);assert.equal(restored.openingSeen,true);assert.equal(createPrototypeCase(d,restored).id,c.id);assert.deepEqual(restored.found,[]);assert.equal(restorePrototype(d,{...s,opening:{...s.opening,caseId:'other'}}).opening,undefined);});
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { createOpening, verifyOpening, cleanAtmosphere } from '../src/opening.mjs';
+import { newPrototype, createPrototypeCase, restorePrototype } from '../src/prototype-engine.mjs';
+const d = JSON.parse(readFileSync('public/prototype/worlds/noir.json')),
+  s = newPrototype(d, { seed: 'story' }),
+  c = createPrototypeCase(d, s),
+  prose = {
+    arrival:
+      'Cruzas el umbral despacio. El silencio vuelve más perceptible el roce de tus pasos y te invita a detenerte.',
+    tension:
+      'Todavía no sabes por dónde empezar. Respiras hondo y decides escuchar con atención antes de sacar conclusiones.',
+  };
+test('opening generator receives only public scenery, never solution or evidence', async () => {
+  let count = 0;
+  const result = await createOpening(d, c, {
+    request: async messages => {
+      count++;
+      const input = JSON.stringify(messages);
+      assert.ok(!input.includes(c.motive));
+      assert.ok(!input.includes(c.culprit.name));
+      assert.ok(!input.includes(c.method.object));
+      return count === 1
+        ? { text: prose.arrival }
+        : count === 2
+          ? { text: prose.tension }
+          : { safe: true };
+    },
+  });
+  assert.equal(count, 3);
+  assert.equal(result.source, 'local-llm');
+  assert.equal(result.caseId, c.id);
+});
+test('names, times, weapon claims and English output rejected', () => {
+  assert.ok(verifyOpening(prose, c));
+  for (const arrival of [
+    'El arma es una daga y todo apunta hacia el heredero.',
+    c.culprit.name + ' te recibe a la puerta y te cuenta lo sucedido.',
+    'Cruzas el umbral a las 20:30 y observas la estancia.',
+    'You arrive in the room and the truth awaits you.',
+  ])
+    assert.ok(!verifyOpening({ ...prose, arrival }, c));
+});
+test('unsafe semantic review or unavailable model yields playable authored atmosphere', async () => {
+  for (const offline of [false, true]) {
+    let count = 0;
+    const result = await createOpening(d, c, {
+      request: async () => {
+        if (offline) throw Error('offline');
+        return ++count === 1
+          ? { text: prose.arrival }
+          : count === 2
+            ? { text: prose.tension }
+            : { safe: false };
+      },
+    });
+    assert.equal(result.source, 'engine');
+    assert.equal(result.caseId, c.id);
+    assert.ok(result.arrival.length > 35);
+  }
+});
+test('incomplete endings and empty-room claims removed', () => {
+  assert.equal(
+    cleanAtmosphere('Escuchas tus propios pasos. La habitación está vacía. Una frase sin terminar'),
+    'Escuchas tus propios pasos.',
+  );
+});
+test('intro roundtrip preserves prose and seen flag without changing the case or proof gates', () => {
+  s.opening = { caseId: c.id, ...prose, source: 'local-llm' };
+  s.openingSeen = true;
+  const restored = restorePrototype(d, JSON.stringify(s));
+  assert.deepEqual(restored.opening, s.opening);
+  assert.equal(restored.openingSeen, true);
+  assert.equal(createPrototypeCase(d, restored).id, c.id);
+  assert.deepEqual(restored.found, []);
+  assert.equal(
+    restorePrototype(d, { ...s, opening: { ...s.opening, caseId: 'other' } }).opening,
+    undefined,
+  );
+});
 
-test('a positive model review cannot admit wooden sheets or an unlisted window',async()=>{for(const arrival of ['Cruzas el umbral despacio. Las sábanas de madera se doblan bajo el peso de la noche.','Cruzas el umbral despacio. Una ventana deja entrar el viento de la montaña.']){let count=0;const result=await createOpening(d,{...c,scene:{...c.scene,description:'Estancias para dormir con chimenea y cama de madera.'}},{request:async()=>++count===1?{text:arrival}:count===2?{text:prose.tension}:{safe:true}});assert.equal(result.source,'engine');}});
+test('a positive model review cannot admit wooden sheets or an unlisted window', async () => {
+  for (const arrival of [
+    'Cruzas el umbral despacio. Las sábanas de madera se doblan bajo el peso de la noche.',
+    'Cruzas el umbral despacio. Una ventana deja entrar el viento de la montaña.',
+  ]) {
+    let count = 0;
+    const result = await createOpening(
+      d,
+      {
+        ...c,
+        scene: { ...c.scene, description: 'Estancias para dormir con chimenea y cama de madera.' },
+      },
+      {
+        request: async () =>
+          ++count === 1
+            ? { text: arrival }
+            : count === 2
+              ? { text: prose.tension }
+              : { safe: true },
+      },
+    );
+    assert.equal(result.source, 'engine');
+  }
+});
