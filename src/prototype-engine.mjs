@@ -41,14 +41,14 @@ export function newPrototype(data,options={}){
  const seed=options.seed||Array.from(globalThis.crypto.getRandomValues(new Uint32Array(2)),n=>n.toString(16).padStart(8,'0')).join('');
  const selection={seed,previousMethodId:options.previousMethodId||'',previousPersonId:options.previousPersonId||'',forcedMethodId:options.forcedMethodId||''};
  const c=createPrototypeCase(data,selection);
- return {version:1,worldId:data.custom?'custom':data.setting||'scifi',...(data.custom?{customWorld:data}:{}),revision:data.revision,...selection,caseId:c.id,room:c.scene.id,found:[],pinned:[],notes:'',chat:[],result:null};
+ return {version:1,worldId:data.custom?'custom':data.setting||'scifi',...(data.custom?{customWorld:data}:{}),revision:data.revision,...selection,caseId:c.id,openingSeen:false,room:c.scene.id,found:[],pinned:[],notes:'',chat:[],result:null};
 }
 export function restorePrototype(data,raw){
  const s=typeof raw==='string'?JSON.parse(raw):raw;
  if(!s||s.version!==1||s.revision!==data.revision||!Array.isArray(s.found)||!Array.isArray(s.chat))throw Error('Guardado orbital incompatible');
  const c=createPrototypeCase(data,s);if(c.id!==s.caseId)throw Error('La definición del caso no coincide con el guardado');
  const found=[...new Set(s.found.filter(id=>c.clues.some(x=>x.id===id)))];
- return {...newPrototype(data,s),...(s.imageSet===c.id?{imageSet:c.id}:{}),room:c.rooms.some(r=>r.id===s.room)?s.room:c.scene.id,found,pinned:Array.isArray(s.pinned)?[...new Set(s.pinned.filter(id=>found.includes(id)))]:[],notes:typeof s.notes==='string'?s.notes.slice(0,10000):'',chat:s.chat.filter(m=>c.people.some(p=>p.id===m.person)&&typeof m.question==='string'&&typeof m.answer==='string').slice(-200),result:['won','lost'].includes(s.result)?s.result:null};
+ return {...newPrototype(data,s),openingSeen:s.openingSeen===true,...(s.opening?.caseId===c.id&&['arrival','tension'].every(k=>typeof s.opening[k]==='string'&&s.opening[k].length<=650)?{opening:{caseId:c.id,arrival:s.opening.arrival,tension:s.opening.tension,source:s.opening.source==='local-llm'?'local-llm':'engine'}}:{}),...(s.imageSet===c.id?{imageSet:c.id}:{}),room:c.rooms.some(r=>r.id===s.room)?s.room:c.scene.id,found,pinned:Array.isArray(s.pinned)?[...new Set(s.pinned.filter(id=>found.includes(id)))]:[],notes:typeof s.notes==='string'?s.notes.slice(0,10000):'',chat:s.chat.filter(m=>c.people.some(p=>p.id===m.person)&&typeof m.question==='string'&&typeof m.answer==='string').slice(-200),result:['won','lost'].includes(s.result)?s.result:null};
 }
 function assertCase(c,state){if(c.id!==state.caseId)throw Error('Las pruebas pertenecen a otra investigación');}
 export function inspectPrototype(c,state,id){

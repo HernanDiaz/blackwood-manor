@@ -79,3 +79,5 @@ Validación de ambientación libre actualizada: 68 pruebas superadas y piloto co
 La ambientación libre se crea y verifica ficha a ficha, con borradores reanudables y pistas determinadas por crimen y época. Consulta CREACION-POR-PASOS.md.
 
 Validación de creación por pasos y pistas contextuales: 73 pruebas superadas, más pilotos locales en Marte y un castillo medieval sin magia.
+
+El inicio incluye un prólogo atmosférico asistido por Qwen, persistente y separado de los hechos del crimen. Consulta PROLOGO-NARRATIVO.md. Validación actual: 78 pruebas.
