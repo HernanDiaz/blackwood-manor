@@ -18,3 +18,5 @@ Validación: 68 pruebas automáticas de lógica y guardado, incluidas nuevas pru
 
 
 Prueba completa realizada: mundo La Soledad del Desierto a partir de la petición de Marte, cinco sospechosos, seis habitaciones, 26 archivos con hashes verificados, conversación verificada con Qwen, recarga sin regeneración y resolución correcta del caso. SDXS representó un laboratorio como un paisaje rocoso en esta prueba; se reforzó el encuadre interior para las generaciones siguientes. La fidelidad visual sigue siendo una limitación del modelo.
+
+Actualización: el flujo de tres lotes se ha sustituido por 13 fichas verificadas y reanudables, con reglas de tecnología y pistas específicas por época. Consulta CREACION-POR-PASOS.md.

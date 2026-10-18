@@ -32,10 +32,10 @@ export function verifyGenerated(state,person,topic,text){
  if(topic!=='unknown'&&!availableFacts(state,person).some(f=>f.id===topic))return false;
  return typeof text==='string'&&responseOptions(state,person,topic).includes(text);
 }
-export async function requestLocalJson(messages,schema,maxTokens=80,signal,temperature=0){
+export async function requestLocalJson(messages,schema,maxTokens=80,signal,temperature=0,seed=42){
  const response=await fetch('http://127.0.0.1:1235/v1/chat/completions',{
   method:'POST',signal:signal||AbortSignal.timeout(5000),headers:{'Content-Type':'application/json'},
-  body:JSON.stringify({model:'local',temperature,seed:42,max_tokens:maxTokens+160,messages,response_format:{type:'json_schema',json_schema:{name:'result',strict:true,schema}}})
+  body:JSON.stringify({model:'local',temperature,seed,max_tokens:maxTokens+160,messages,response_format:{type:'json_schema',json_schema:{name:'result',strict:true,schema}}})
  });
  if(!response.ok)throw Error('Modelo local no disponible');
  const data=await response.json();

@@ -75,3 +75,7 @@ Las partidas nuevas generan 26 imágenes con SDXS local al crearse; véase IMAGE
 La opción Libre permite describir una ambientación y crear el mundo con Qwen antes de generar sus imágenes. Consulta AMBIENTACION-LIBRE.md. Validación actual: 67 pruebas.
 
 Validación de ambientación libre actualizada: 68 pruebas superadas y piloto completo en Marte.
+
+La ambientación libre se crea y verifica ficha a ficha, con borradores reanudables y pistas determinadas por crimen y época. Consulta CREACION-POR-PASOS.md.
+
+Validación de creación por pasos y pistas contextuales: 73 pruebas superadas, más pilotos locales en Marte y un castillo medieval sin magia.
