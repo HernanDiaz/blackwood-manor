@@ -2,6 +2,7 @@ import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import net from 'node:net';
+import { existsSync } from 'node:fs';
 const root = path.dirname(fileURLToPath(import.meta.url));
 const models = {
   gemma: 'gemma-4-E2B-it-Q4_K_M.gguf',
@@ -43,6 +44,14 @@ const runtime = spawn(
   ],
   { windowsHide: true, stdio: ['ignore', 'ignore', 'ignore'] },
 );
+// The learned question classifier, when it has been trained (scripts/train-question-classifier.py).
+const classifier = existsSync(path.join(root, 'models/question-classifier/model.safetensors'))
+  ? spawn(
+      path.join(root, '.venv-images/Scripts/python.exe'),
+      ['-I', path.join(root, 'scripts/question-classifier-server.py'), root, '1237'],
+      { windowsHide: true, stdio: ['ignore', 'ignore', 'ignore'] },
+    )
+  : null;
 let app;
 let closing = false;
 function close() {
@@ -50,6 +59,7 @@ function close() {
   closing = true;
   app?.kill();
   runtime.kill();
+  classifier?.kill();
 }
 process.on('SIGINT', close);
 process.on('SIGTERM', close);

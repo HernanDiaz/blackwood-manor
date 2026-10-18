@@ -1,0 +1,3767 @@
+{
+  "threshold": 0.94,
+  "items": [
+    {
+      "question": "Dime dónde yo estaba anoche.",
+      "topic": "alibi",
+      "source": "Dime dónde te encontrabas anoche.",
+      "similarity": 0.9777988150796075
+    },
+    {
+      "question": "¿Dónde estaba tú anoche?",
+      "topic": "alibi",
+      "source": "Dime dónde te encontrabas anoche.",
+      "similarity": 0.9421090314516841
+    },
+    {
+      "question": "¿En qué área del edificio habías sido cuando sucedió?",
+      "topic": "alibi",
+      "source": "¿En qué parte del edificio estabas cuando pasó?",
+      "similarity": 0.9581534517568014
+    },
+    {
+      "question": "¿En qué parte del edificio estuviste cuando pasó?",
+      "topic": "alibi",
+      "source": "¿En qué parte del edificio estabas cuando pasó?",
+      "similarity": 0.956458662758605
+    },
+    {
+      "question": "¿En qué sección del edificio estabas cuando sucedió?",
+      "topic": "alibi",
+      "source": "¿En qué parte del edificio estabas cuando pasó?",
+      "similarity": 0.949807076975432
+    },
+    {
+      "question": "¿De dónde estabas tú cuando lo mataron?",
+      "topic": "alibi",
+      "source": "donde estabas tu cuando lo mataron",
+      "similarity": 0.9804106908603984
+    },
+    {
+      "question": "¿Dónde estaba tú cuando lo mataron?",
+      "topic": "alibi",
+      "source": "donde estabas tu cuando lo mataron",
+      "similarity": 0.9845847331059117
+    },
+    {
+      "question": "Dime qué hiciste esta noche.",
+      "topic": "alibi",
+      "source": "Cuéntame tus movimientos de esta noche.",
+      "similarity": 0.944629645092344
+    },
+    {
+      "question": "¿Pensamos lo que hiciste desde la cena?",
+      "topic": "alibi",
+      "source": "Repasemos lo que hiciste desde la cena.",
+      "similarity": 0.9513030144368181
+    },
+    {
+      "question": "¿Pensémoslo qué hiciste desde la cena?",
+      "topic": "alibi",
+      "source": "Repasemos lo que hiciste desde la cena.",
+      "similarity": 0.9403342034344468
+    },
+    {
+      "question": "¿Revisemos lo que hiciste desde la cena?",
+      "topic": "alibi",
+      "source": "Repasemos lo que hiciste desde la cena.",
+      "similarity": 0.9585212065247104
+    },
+    {
+      "question": "Describe tu noche paso a paso.",
+      "topic": "alibi",
+      "source": "Descríbeme tu noche paso a paso.",
+      "similarity": 0.9759475094765275
+    },
+    {
+      "question": "Paso a paso, cuenta tu noche.",
+      "topic": "alibi",
+      "source": "Descríbeme tu noche paso a paso.",
+      "similarity": 0.9577020718117161
+    },
+    {
+      "question": "Cuéntame tu noche paso a paso.",
+      "topic": "alibi",
+      "source": "Descríbeme tu noche paso a paso.",
+      "similarity": 0.9821983136633166
+    },
+    {
+      "question": "Explícame exactamente qué hiciste en cada hora.",
+      "topic": "alibi",
+      "source": "Explícame qué hiciste hora por hora.",
+      "similarity": 0.9740600172660906
+    },
+    {
+      "question": "Déjame entender qué hiciste por cada hora.",
+      "topic": "alibi",
+      "source": "Explícame qué hiciste hora por hora.",
+      "similarity": 0.9702502300713836
+    },
+    {
+      "question": "Cuéntame el detalle de lo que hiciste en cada hora.",
+      "topic": "alibi",
+      "source": "Explícame qué hiciste hora por hora.",
+      "similarity": 0.9552680517649415
+    },
+    {
+      "question": "¿Por favor, sé de todo lo que pasó anoche?",
+      "topic": "alibi",
+      "source": "Necesito saber todo lo que hiciste anoche.",
+      "similarity": 0.9512033681527946
+    },
+    {
+      "question": "¿En qué lugar pasaste la noche?",
+      "topic": "alibi",
+      "source": "¿Dónde pasaste la noche?",
+      "similarity": 0.9853925615390691
+    },
+    {
+      "question": "¿Cuándo pasaste la noche?",
+      "topic": "alibi",
+      "source": "¿Dónde pasaste la noche?",
+      "similarity": 0.9733561553732901
+    },
+    {
+      "question": "¿Qué noche pasaste?",
+      "topic": "alibi",
+      "source": "¿Dónde pasaste la noche?",
+      "similarity": 0.9729552372160312
+    },
+    {
+      "question": "¿En qué habitación pasaste la velada?",
+      "topic": "alibi",
+      "source": "¿En qué sala pasaste la velada?",
+      "similarity": 0.9591616634718866
+    },
+    {
+      "question": "¿Tiene coartada?",
+      "topic": "alibi",
+      "source": "¿Tienes coartada?",
+      "similarity": 0.9930558826173767
+    },
+    {
+      "question": "¿De qué relación te tenías con la víctima?",
+      "topic": "motive",
+      "source": "¿Qué relación tenías con la víctima?",
+      "similarity": 0.9949966067396498
+    },
+    {
+      "question": "¿Qué vínculo tenías con la víctima?",
+      "topic": "motive",
+      "source": "¿Qué relación tenías con la víctima?",
+      "similarity": 0.9638003184688101
+    },
+    {
+      "question": "¿En qué relación te mantuviste con la víctima?",
+      "topic": "motive",
+      "source": "¿Qué relación tenías con la víctima?",
+      "similarity": 0.9588146849165233
+    },
+    {
+      "question": "¿Cuál fue tu conexión con la víctima?",
+      "topic": "motive",
+      "source": "¿Qué relación tenías con la víctima?",
+      "similarity": 0.9611310980852356
+    },
+    {
+      "question": "¿De qué manera se relacionaba con el difunto?",
+      "topic": "motive",
+      "source": "¿Qué relación le unía al difunto?",
+      "similarity": 0.9635677608584293
+    },
+    {
+      "question": "¿Qué tipo de vínculo tenías con él?",
+      "topic": "motive",
+      "source": "¿Cómo era tu relación con él?",
+      "similarity": 0.9429652018822721
+    },
+    {
+      "question": "¿Cómo era su vínculo contigo?",
+      "topic": "motive",
+      "source": "¿Cómo era tu relación con él?",
+      "similarity": 0.9443241153329158
+    },
+    {
+      "question": "¿Cómo eras tú para el victimario?",
+      "topic": "motive",
+      "source": "¿Qué eras tú para la víctima?",
+      "similarity": 0.9628729770729162
+    },
+    {
+      "question": "¿Cuál eras tú para la víctima?",
+      "topic": "motive",
+      "source": "¿Qué eras tú para la víctima?",
+      "similarity": 0.9979016146838086
+    },
+    {
+      "question": "¿Qué era tú para la víctima?",
+      "topic": "motive",
+      "source": "¿Qué eras tú para la víctima?",
+      "similarity": 0.9953375913831105
+    },
+    {
+      "question": "¿Cómo era tu opinión de la víctima?",
+      "topic": "motive",
+      "source": "¿Qué pensabas de la víctima?",
+      "similarity": 0.957790138392539
+    },
+    {
+      "question": "¿Qué dices que pensaste de la víctima?",
+      "topic": "motive",
+      "source": "¿Qué pensabas de la víctima?",
+      "similarity": 0.9780368103240584
+    },
+    {
+      "question": "¿Qué pensaste de la víctima en particular?",
+      "topic": "motive",
+      "source": "¿Qué pensabas de la víctima?",
+      "similarity": 0.9751113266010986
+    },
+    {
+      "question": "¿Qué te pareció de mí como persona?",
+      "topic": "motive",
+      "source": "¿Qué te parecía como persona?",
+      "similarity": 0.9768292443729883
+    },
+    {
+      "question": "¿Cuál fue tu impresión de mí como persona?",
+      "topic": "motive",
+      "source": "¿Qué te parecía como persona?",
+      "similarity": 0.9496362056733543
+    },
+    {
+      "question": "¿Cómo te sentiste ante mí como persona?",
+      "topic": "motive",
+      "source": "¿Qué te parecía como persona?",
+      "similarity": 0.9444141179088571
+    },
+    {
+      "question": "¿Qué tipo de persona era, según tú?",
+      "topic": "motive",
+      "source": "¿Qué clase de persona era, según tú?",
+      "similarity": 0.9649981942115087
+    },
+    {
+      "question": "¿Cuál era tu clase de persona, por favor?",
+      "topic": "motive",
+      "source": "¿Qué clase de persona era, según tú?",
+      "similarity": 0.9532786338054714
+    },
+    {
+      "question": "¿Qué clase de persona habías sido, ¿por ti mismo?",
+      "topic": "motive",
+      "source": "¿Qué clase de persona era, según tú?",
+      "similarity": 0.9604967955272878
+    },
+    {
+      "question": "¿Qué tipo de persona eras, según tu opinión?",
+      "topic": "motive",
+      "source": "¿Qué clase de persona era, según tú?",
+      "similarity": 0.9496372913390073
+    },
+    {
+      "question": "¿Qué crees que pensaste de ella? Sé sincero.",
+      "topic": "motive",
+      "source": "Dime con sinceridad qué pensabas de ella.",
+      "similarity": 0.9415271438893338
+    },
+    {
+      "question": "¿Eran vuestros amigos?",
+      "topic": "motive",
+      "source": "¿Erais amigos?",
+      "similarity": 0.9437421260051478
+    },
+    {
+      "question": "¿Eran amigos vuestros?",
+      "topic": "motive",
+      "source": "¿Erais amigos?",
+      "similarity": 0.9439846419930137
+    },
+    {
+      "question": "¿Eramos amigos?",
+      "topic": "motive",
+      "source": "¿Erais amigos?",
+      "similarity": 0.9606784086934225
+    },
+    {
+      "question": "¿Estuvíais de confianza?",
+      "topic": "motive",
+      "source": "¿Teníais confianza?",
+      "similarity": 0.9623371997807025
+    },
+    {
+      "question": "¿Eran tu subordinado?",
+      "topic": "motive",
+      "source": "¿Eras su subordinado?",
+      "similarity": 0.9764421902735027
+    },
+    {
+      "question": "¿Eran tus subordinados?",
+      "topic": "motive",
+      "source": "¿Eras su subordinado?",
+      "similarity": 0.9696601947411427
+    },
+    {
+      "question": "¿Eran ellos tus subordinados?",
+      "topic": "motive",
+      "source": "¿Eras su subordinado?",
+      "similarity": 0.9561329201313662
+    },
+    {
+      "question": "¿Se había contratado él?",
+      "topic": "motive",
+      "source": "¿Él te había contratado?",
+      "similarity": 0.9733296022140072
+    },
+    {
+      "question": "¿Él había contratado a ti?",
+      "topic": "motive",
+      "source": "¿Él te había contratado?",
+      "similarity": 0.9942022033633569
+    },
+    {
+      "question": "¿Te había contratado él?",
+      "topic": "motive",
+      "source": "¿Él te había contratado?",
+      "similarity": 0.9915270741686907
+    },
+    {
+      "question": "¿Qué representa esta carta?",
+      "topic": "secret",
+      "source": "¿Qué significa esta carta?",
+      "similarity": 0.9617025566022571
+    },
+    {
+      "question": "¿De qué trata esta carta?",
+      "topic": "secret",
+      "source": "¿Qué significa esta carta?",
+      "similarity": 0.9642316291606224
+    },
+    {
+      "question": "¿Qué es lo que dice esta carta?",
+      "topic": "secret",
+      "source": "¿Qué significa esta carta?",
+      "similarity": 0.975278909376983
+    },
+    {
+      "question": "¿Qué quiere decir esta carta?",
+      "topic": "secret",
+      "source": "¿Qué significa esta carta?",
+      "similarity": 0.9825022670120194
+    },
+    {
+      "question": "¿Qué hay de la testamento nueva?",
+      "topic": "secret",
+      "source": "¿Qué hay del testamento nuevo?",
+      "similarity": 0.9958579170566912
+    },
+    {
+      "question": "¿Qué hay de este nuevo testamento?",
+      "topic": "secret",
+      "source": "¿Qué hay del testamento nuevo?",
+      "similarity": 0.9524049270070691
+    },
+    {
+      "question": "¿Qué opinas sobre el borrador del testamento?",
+      "topic": "secret",
+      "source": "¿Qué opinas del borrador del testamento?",
+      "similarity": 0.9958624379818345
+    },
+    {
+      "question": "¿Crees que el borrador del testamento es adecuado?",
+      "topic": "secret",
+      "source": "¿Qué opinas del borrador del testamento?",
+      "similarity": 0.9669289882813861
+    },
+    {
+      "question": "¿Qué hay de ese quejón que firmaste?",
+      "topic": "secret",
+      "source": "¿Qué hay de esa queja que firmaste?",
+      "similarity": 0.9603472824559431
+    },
+    {
+      "question": "¿De quién te quejaste?",
+      "topic": "secret",
+      "source": "¿Por qué te quejaste de él?",
+      "similarity": 0.9465354096218466
+    },
+    {
+      "question": "¿De qué te quejaste?",
+      "topic": "secret",
+      "source": "¿Por qué te quejaste de él?",
+      "similarity": 0.957950181233906
+    },
+    {
+      "question": "¿Te ha presentado alguna queja contra la víctima?",
+      "topic": "secret",
+      "source": "¿Presentaste una queja contra la víctima?",
+      "similarity": 0.9709138026512016
+    },
+    {
+      "question": "¿Has presentado una queja contra la víctima?",
+      "topic": "secret",
+      "source": "¿Presentaste una queja contra la víctima?",
+      "similarity": 0.9776330702852638
+    },
+    {
+      "question": "¿Has presentado alguna queja contra la víctima?",
+      "topic": "secret",
+      "source": "¿Presentaste una queja contra la víctima?",
+      "similarity": 0.9688321110739808
+    },
+    {
+      "question": "¿Firmaste una protesta contra él? ¿Es cierto?",
+      "topic": "secret",
+      "source": "Firmaste una protesta contra él, ¿verdad?",
+      "similarity": 0.9733111002542651
+    },
+    {
+      "question": "¿Firmaste un registro contra él, verdad?",
+      "topic": "secret",
+      "source": "Firmaste una protesta contra él, ¿verdad?",
+      "similarity": 0.946050110968735
+    },
+    {
+      "question": "¿Firmaste una protesta contra él, no?",
+      "topic": "secret",
+      "source": "Firmaste una protesta contra él, ¿verdad?",
+      "similarity": 0.9798641567959829
+    },
+    {
+      "question": "¿Qué está escrito en esa nota?",
+      "topic": "secret",
+      "source": "¿Qué pone en esa nota?",
+      "similarity": 0.9538250154104897
+    },
+    {
+      "question": "¿Qué te pasó con una nota tuya?",
+      "topic": "secret",
+      "source": "¿Por qué tenía una nota tuya?",
+      "similarity": 0.970623968101732
+    },
+    {
+      "question": "¿Fue usted quien escribió esta nota?",
+      "topic": "secret",
+      "source": "¿Escribiste tú esta nota?",
+      "similarity": 0.9437782633959454
+    },
+    {
+      "question": "¿¿Escribió usted esta nota?",
+      "topic": "secret",
+      "source": "¿Escribiste tú esta nota?",
+      "similarity": 0.9767830626548668
+    },
+    {
+      "question": "¿¿Escribió usted o alguien más esta nota?",
+      "topic": "secret",
+      "source": "¿Escribiste tú esta nota?",
+      "similarity": 0.9499534746304967
+    },
+    {
+      "question": "¿Tenía acceso al arma?",
+      "topic": "link",
+      "source": "¿Tenías acceso al arma?",
+      "similarity": 0.986146442596431
+    },
+    {
+      "question": "¿Podiste alcanzar al arma del crimen?",
+      "topic": "link",
+      "source": "¿Podías llegar al arma del crimen?",
+      "similarity": 0.9732911495176474
+    },
+    {
+      "question": "¿Podías llegar a la mano del arma?",
+      "topic": "link",
+      "source": "¿Podías llegar al arma del crimen?",
+      "similarity": 0.9513599945385902
+    },
+    {
+      "question": "¿El arma estaba a su alcance?",
+      "topic": "link",
+      "source": "¿El arma estaba a tu alcance?",
+      "similarity": 0.9818870785204963
+    },
+    {
+      "question": "¿Recuerdas dónde se ocultaba el veneno?",
+      "topic": "link",
+      "source": "¿Sabías dónde se guardaba el veneno?",
+      "similarity": 0.947662912075919
+    },
+    {
+      "question": "¿Te atreves a decirte dónde se guardaba el veneno?",
+      "topic": "link",
+      "source": "¿Sabías dónde se guardaba el veneno?",
+      "similarity": 0.9747855739653263
+    },
+    {
+      "question": "¿Sabía dónde se guardaba el veneno?",
+      "topic": "link",
+      "source": "¿Sabías dónde se guardaba el veneno?",
+      "similarity": 0.9973050055035791
+    },
+    {
+      "question": "¿Dónde estaba la espada guardada?",
+      "topic": "link",
+      "source": "¿Dónde se guardaba la espada?",
+      "similarity": 0.992289246005853
+    },
+    {
+      "question": "¿Donde se guardó la espada?",
+      "topic": "link",
+      "source": "¿Dónde se guardaba la espada?",
+      "similarity": 0.9813989771032929
+    },
+    {
+      "question": "¿Dónde se ocultaba la espada?",
+      "topic": "link",
+      "source": "¿Dónde se guardaba la espada?",
+      "similarity": 0.9458524671276016
+    },
+    {
+      "question": "¿Te atreves recordar el sitio del frasco?",
+      "topic": "link",
+      "source": "¿Sabías dónde estaba el frasco?",
+      "similarity": 0.9470766821220764
+    },
+    {
+      "question": "¿Conoces la ubicación del frasco?",
+      "topic": "link",
+      "source": "¿Sabías dónde estaba el frasco?",
+      "similarity": 0.9672626346600395
+    },
+    {
+      "question": "¿Sabes dónde se halló el frasco?",
+      "topic": "link",
+      "source": "¿Sabías dónde estaba el frasco?",
+      "similarity": 0.9842852377553797
+    },
+    {
+      "question": "¿Recordaste el lugar del frasco?",
+      "topic": "link",
+      "source": "¿Sabías dónde estaba el frasco?",
+      "similarity": 0.9536925867206327
+    },
+    {
+      "question": "¿Conocías dónde se situaba el lugar de la daga?",
+      "topic": "link",
+      "source": "¿Conocías el sitio de la daga?",
+      "similarity": 0.958101422363784
+    },
+    {
+      "question": "¿Conoces manejar un arma?",
+      "topic": "link",
+      "source": "¿Sabes manejar un arma?",
+      "similarity": 0.9834891676723249
+    },
+    {
+      "question": "¿Sabes manejar armas?",
+      "topic": "link",
+      "source": "¿Sabes manejar un arma?",
+      "similarity": 0.9917029055595235
+    },
+    {
+      "question": "¿Tienes experiencia en manejar armas?",
+      "topic": "link",
+      "source": "¿Sabes manejar un arma?",
+      "similarity": 0.9631601310559615
+    },
+    {
+      "question": "¿Sabe cómo funciona el panel?",
+      "topic": "link",
+      "source": "¿Sabías cómo funcionaba el panel?",
+      "similarity": 0.9819297358363055
+    },
+    {
+      "question": "¿Conoces la manera en que opera el panel?",
+      "topic": "link",
+      "source": "¿Sabías cómo funcionaba el panel?",
+      "similarity": 0.964270379035902
+    },
+    {
+      "question": "¿Sabes qué hace el panel?",
+      "topic": "link",
+      "source": "¿Sabías cómo funcionaba el panel?",
+      "similarity": 0.9618729991206925
+    },
+    {
+      "question": "¿Conoces cómo funciona este panel?",
+      "topic": "link",
+      "source": "¿Sabías cómo funcionaba el panel?",
+      "similarity": 0.9618275337362552
+    },
+    {
+      "question": "¿Podrías hacer ese veneno?",
+      "topic": "link",
+      "source": "¿Sabrías preparar ese veneno?",
+      "similarity": 0.9514382982084653
+    },
+    {
+      "question": "¿Podrías hacerlo ese veneno?",
+      "topic": "link",
+      "source": "¿Sabrías preparar ese veneno?",
+      "similarity": 0.9589479936747346
+    },
+    {
+      "question": "¿Podrías fabricar ese veneno?",
+      "topic": "link",
+      "source": "¿Sabrías preparar ese veneno?",
+      "similarity": 0.9630092460906786
+    },
+    {
+      "question": "¿Podrías crear ese veneno?",
+      "topic": "link",
+      "source": "¿Sabrías preparar ese veneno?",
+      "similarity": 0.9626289744355403
+    },
+    {
+      "question": "¿Alguien podría haber tenido acceso al arma?",
+      "topic": "link",
+      "source": "¿Quién podía haber usado el arma?",
+      "similarity": 0.9415411074348735
+    },
+    {
+      "question": "¿Fue posible que alguien usara el arma?",
+      "topic": "link",
+      "source": "¿Quién podía haber usado el arma?",
+      "similarity": 0.9665778497843607
+    },
+    {
+      "question": "¿Quién podría haber obtenido la escopeta?",
+      "topic": "link",
+      "source": "¿Quién pudo hacerse con la escopeta?",
+      "similarity": 0.9685024046685218
+    },
+    {
+      "question": "¿Quién pudo tener acceso a la escopeta?",
+      "topic": "link",
+      "source": "¿Quién pudo hacerse con la escopeta?",
+      "similarity": 0.9624141271246011
+    },
+    {
+      "question": "¿Quién pudo conseguir la escopeta?",
+      "topic": "link",
+      "source": "¿Quién pudo hacerse con la escopeta?",
+      "similarity": 0.9730335399031613
+    },
+    {
+      "question": "¿Quién pudo haberse con la escopeta?",
+      "topic": "link",
+      "source": "¿Quién pudo hacerse con la escopeta?",
+      "similarity": 0.9925625323737132
+    },
+    {
+      "question": "¿Quién más sabía dónde se hallaba el arma?",
+      "topic": "link",
+      "source": "¿Quién más sabía dónde estaba el arma?",
+      "similarity": 0.9899959266008097
+    },
+    {
+      "question": "¿Alguien más que yo sabía dónde estaba el arma?",
+      "topic": "link",
+      "source": "¿Quién más sabía dónde estaba el arma?",
+      "similarity": 0.9748917615570049
+    },
+    {
+      "question": "¿Quién más sabía en qué lugar estaba la arma?",
+      "topic": "link",
+      "source": "¿Quién más sabía dónde estaba el arma?",
+      "similarity": 0.9924819164833754
+    },
+    {
+      "question": "¿Alguien más sabía dónde se guardaba la arma?",
+      "topic": "link",
+      "source": "¿Quién más sabía dónde estaba el arma?",
+      "similarity": 0.9630600693882865
+    },
+    {
+      "question": "¿Hay testigos de tu estar en ese lugar?",
+      "topic": "timeline",
+      "source": "¿Hay algún testigo de que estuviste allí?",
+      "similarity": 0.9703498344326894
+    },
+    {
+      "question": "¿Quién te vio en la biblioteca?",
+      "topic": "timeline",
+      "source": "¿Alguien te vio en la biblioteca?",
+      "similarity": 0.973688344059284
+    },
+    {
+      "question": "¿Alguien se acercó a ti en la biblioteca?",
+      "topic": "timeline",
+      "source": "¿Alguien te vio en la biblioteca?",
+      "similarity": 0.949012818706912
+    },
+    {
+      "question": "4. Alternative: Ningún testigo te sitúa en tu sala.",
+      "topic": "timeline",
+      "source": "Ningún testigo te sitúa en tu sala.",
+      "similarity": 0.958247856429522
+    },
+    {
+      "question": "Los que fueron al comedor dijeron que no entraste.",
+      "topic": "timeline",
+      "source": "Los que estaban en el comedor dicen que no entraste.",
+      "similarity": 0.9950510620088407
+    },
+    {
+      "question": "Dijeron que no entraste a los que estaban en el comedor.",
+      "topic": "timeline",
+      "source": "Los que estaban en el comedor dicen que no entraste.",
+      "similarity": 0.9774928325675092
+    },
+    {
+      "question": "Se dice que no entraste a los presentes en el comedor.",
+      "topic": "timeline",
+      "source": "Los que estaban en el comedor dicen que no entraste.",
+      "similarity": 0.961068266914203
+    },
+    {
+      "question": "Ellos aseguran que no se ha entrado a nadie más.",
+      "topic": "timeline",
+      "source": "Ellos aseguran que no entró nadie más.",
+      "similarity": 0.9878380520594248
+    },
+    {
+      "question": "Según ellos, no hay nadie que haya entrado.",
+      "topic": "timeline",
+      "source": "Ellos aseguran que no entró nadie más.",
+      "similarity": 0.9582996414494558
+    },
+    {
+      "question": "Afirman que no se ha abierto un espacio para nadie más.",
+      "topic": "timeline",
+      "source": "Ellos aseguran que no entró nadie más.",
+      "similarity": 0.9511116092871077
+    },
+    {
+      "question": "¿Es cierto que tus compañeros no habías estado con ellos?",
+      "topic": "timeline",
+      "source": "Tus compañeros dicen que no estabas con ellos.",
+      "similarity": 0.9458588476652118
+    },
+    {
+      "question": "El registro marca tu salida a las diez.",
+      "topic": "timeline",
+      "source": "El registro anota tu salida a las diez.",
+      "similarity": 0.9939801651374588
+    },
+    {
+      "question": "Las diez marca tu salida según el registro.",
+      "topic": "timeline",
+      "source": "El registro anota tu salida a las diez.",
+      "similarity": 0.9560774839142968
+    },
+    {
+      "question": "Tu salida se anota en las diez.",
+      "topic": "timeline",
+      "source": "El registro anota tu salida a las diez.",
+      "similarity": 0.9678049092193686
+    },
+    {
+      "question": "Se anota tu salida a las diez en el registro.",
+      "topic": "timeline",
+      "source": "El registro anota tu salida a las diez.",
+      "similarity": 0.9827719203192404
+    },
+    {
+      "question": "¿Es constancia de tu entrada y salida?",
+      "topic": "timeline",
+      "source": "Hay constancia de tu entrada y salida.",
+      "similarity": 0.9525109850664827
+    },
+    {
+      "question": "¿Tiene constancia de tu entrada y salida?",
+      "topic": "timeline",
+      "source": "Hay constancia de tu entrada y salida.",
+      "similarity": 0.9578304885282739
+    },
+    {
+      "question": "¿A qué hora entraste, según el libro?",
+      "topic": "timeline",
+      "source": "El libro dice a qué hora entraste.",
+      "similarity": 0.9626659853589824
+    },
+    {
+      "question": "¿Cuándo entraste, como dice el libro?",
+      "topic": "timeline",
+      "source": "El libro dice a qué hora entraste.",
+      "similarity": 0.9403080329494604
+    },
+    {
+      "question": "¿A qué hora entraste, de acuerdo con el libro?",
+      "topic": "timeline",
+      "source": "El libro dice a qué hora entraste.",
+      "similarity": 0.9602719036459254
+    },
+    {
+      "question": "¿El libro dice cuándo entraste?",
+      "topic": "timeline",
+      "source": "El libro dice a qué hora entraste.",
+      "similarity": 0.9410913382186002
+    },
+    {
+      "question": "¿Alguien ha entrado por aquí?",
+      "topic": "seen",
+      "source": "¿Viste a alguien entrar?",
+      "similarity": 0.9458729248109925
+    },
+    {
+      "question": "¿Viste entrar en el despacho alguien?",
+      "topic": "seen",
+      "source": "¿Viste entrar a alguien en el despacho?",
+      "similarity": 0.9962618498020231
+    },
+    {
+      "question": "¿Se ha visto entrar a alguien en el despacho?",
+      "topic": "seen",
+      "source": "¿Viste entrar a alguien en el despacho?",
+      "similarity": 0.9753491348905926
+    },
+    {
+      "question": "¿Quién ha entrado en el despacho?",
+      "topic": "seen",
+      "source": "¿Viste entrar a alguien en el despacho?",
+      "similarity": 0.9493476055449765
+    },
+    {
+      "question": "¿Viste entrar en el despacho?",
+      "topic": "seen",
+      "source": "¿Viste entrar a alguien en el despacho?",
+      "similarity": 0.970976960130115
+    },
+    {
+      "question": "¿Alguien más entró en la sala?",
+      "topic": "seen",
+      "source": "¿Entró alguien más en la sala?",
+      "similarity": 0.9740066439716742
+    },
+    {
+      "question": "¿Está alguien más en la sala?",
+      "topic": "seen",
+      "source": "¿Entró alguien más en la sala?",
+      "similarity": 0.9834692287430377
+    },
+    {
+      "question": "¿Alguien pasó por delante de ti?",
+      "topic": "seen",
+      "source": "¿Pasó alguien por delante de ti?",
+      "similarity": 0.9810365754625083
+    },
+    {
+      "question": "¿Pasó algo por delante de ti?",
+      "topic": "seen",
+      "source": "¿Pasó alguien por delante de ti?",
+      "similarity": 0.97695130393357
+    },
+    {
+      "question": "¿Has visto a alguien?",
+      "topic": "seen",
+      "source": "viste a alguien??",
+      "similarity": 0.9580900480004322
+    },
+    {
+      "question": "¿Alguien has visto?",
+      "topic": "seen",
+      "source": "viste a alguien??",
+      "similarity": 0.9412425424194435
+    },
+    {
+      "question": "¿Te atreves a darte cuenta de algo fuera de lugar?",
+      "topic": "seen",
+      "source": "¿Te diste cuenta de algo fuera de lugar?",
+      "similarity": 0.9661760596645401
+    },
+    {
+      "question": "¿Viste algo extraño?",
+      "topic": "seen",
+      "source": "¿Viste algo raro?",
+      "similarity": 0.965156625615232
+    },
+    {
+      "question": "¿Algo raro te ha pasado?",
+      "topic": "seen",
+      "source": "¿Viste algo raro?",
+      "similarity": 0.954678110328877
+    },
+    {
+      "question": "¿Viste algo inusual?",
+      "topic": "seen",
+      "source": "¿Viste algo raro?",
+      "similarity": 0.9551596156088197
+    },
+    {
+      "question": "¿Algo que te llamó la atención?",
+      "topic": "seen",
+      "source": "¿Hubo algo que te llamara la atención?",
+      "similarity": 0.9613140708736285
+    },
+    {
+      "question": "¿Cuánto tiempo lo viste por última vez?",
+      "topic": "seen",
+      "source": "¿Cuándo la viste por última vez?",
+      "similarity": 0.9502159042444042
+    },
+    {
+      "question": "¿Cuándo te viste por última vez?",
+      "topic": "seen",
+      "source": "¿Cuándo la viste por última vez?",
+      "similarity": 0.9711791267779889
+    },
+    {
+      "question": "¿Hablaste con él antes de su muerte?",
+      "topic": "seen",
+      "source": "¿Hablaste con él antes de que muriera?",
+      "similarity": 0.9895313827086281
+    },
+    {
+      "question": "¿Preguntaste con él antes de que muriera?",
+      "topic": "seen",
+      "source": "¿Hablaste con él antes de que muriera?",
+      "similarity": 0.9675480833659722
+    },
+    {
+      "question": "¿Hablarías con él antes de que muriera?",
+      "topic": "seen",
+      "source": "¿Hablaste con él antes de que muriera?",
+      "similarity": 0.987647965959491
+    },
+    {
+      "question": "¿Hablaste con él antes de fallecer?",
+      "topic": "seen",
+      "source": "¿Hablaste con él antes de que muriera?",
+      "similarity": 0.984497485945838
+    },
+    {
+      "question": "¿Es mi pañuelo que se encontró junto a la puerta?",
+      "topic": "object",
+      "source": "¿Es tuyo el pañuelo que apareció junto a la puerta?",
+      "similarity": 0.9679009997680329
+    },
+    {
+      "question": "¿Es su pañuelo el que se puso junto a la puerta?",
+      "topic": "object",
+      "source": "¿Es tuyo el pañuelo que apareció junto a la puerta?",
+      "similarity": 0.972903279999866
+    },
+    {
+      "question": "¿Es tu pañuelo el que se encontró junto a la puerta?",
+      "topic": "object",
+      "source": "¿Es tuyo el pañuelo que apareció junto a la puerta?",
+      "similarity": 0.9827470219427809
+    },
+    {
+      "question": "¿Es el pañuelo de ti el que apareció junto a la puerta?",
+      "topic": "object",
+      "source": "¿Es tuyo el pañuelo que apareció junto a la puerta?",
+      "similarity": 0.9845566802516479
+    },
+    {
+      "question": "¿Tienes conocimiento de este pañuelo?",
+      "topic": "object",
+      "source": "¿Reconoces este pañuelo?",
+      "similarity": 0.9468819787762609
+    },
+    {
+      "question": "¿Conoces este pañuelo?",
+      "topic": "object",
+      "source": "¿Reconoces este pañuelo?",
+      "similarity": 0.9789412806043177
+    },
+    {
+      "question": "¿Quién es el pañuelo de este?",
+      "topic": "object",
+      "source": "¿De quién es este pañuelo?",
+      "similarity": 0.9677205451702903
+    },
+    {
+      "question": "¿De qué se trata este pañuelo?",
+      "topic": "object",
+      "source": "¿De quién es este pañuelo?",
+      "similarity": 0.977962164732315
+    },
+    {
+      "question": "¿Qué pañuelo es este?",
+      "topic": "object",
+      "source": "¿De quién es este pañuelo?",
+      "similarity": 0.9768187111757844
+    },
+    {
+      "question": "¿Se encontró un broche tuyo cerca de su cuerpo?",
+      "topic": "object",
+      "source": "Apareció un broche tuyo cerca del cuerpo.",
+      "similarity": 0.9485549850473636
+    },
+    {
+      "question": "¿Se halló un broche tuyo cerca de su cuerpo?",
+      "topic": "object",
+      "source": "Apareció un broche tuyo cerca del cuerpo.",
+      "similarity": 0.9401368634695116
+    },
+    {
+      "question": "¿Deseaste dejar allí tu pluma?",
+      "topic": "object",
+      "source": "¿Dejaste allí tu pluma?",
+      "similarity": 0.9847309906335211
+    },
+    {
+      "question": "¿Tú llevas tu pluma ahí?",
+      "topic": "object",
+      "source": "¿Dejaste allí tu pluma?",
+      "similarity": 0.967056355765089
+    },
+    {
+      "question": "¿Te cayó el broche o no?",
+      "topic": "object",
+      "source": "¿Se te cayó el broche?",
+      "similarity": 0.9757801551041552
+    },
+    {
+      "question": "¿Te perdió el broche?",
+      "topic": "object",
+      "source": "¿Se te cayó el broche?",
+      "similarity": 0.9594163399997891
+    },
+    {
+      "question": "¿Te caíó el broche?",
+      "topic": "object",
+      "source": "¿Se te cayó el broche?",
+      "similarity": 0.9935044860735059
+    },
+    {
+      "question": "¿Qué nombre tienes?",
+      "topic": "identity",
+      "source": "¿Cuál es tu nombre?",
+      "similarity": 0.9786264970910447
+    },
+    {
+      "question": "¿De qué nombre eres?",
+      "topic": "identity",
+      "source": "¿Cuál es tu nombre?",
+      "similarity": 0.9581519364241724
+    },
+    {
+      "question": "¿Te piden tu nombre?",
+      "topic": "identity",
+      "source": "¿Me dices tu nombre?",
+      "similarity": 0.9439783437689788
+    },
+    {
+      "question": "¿Qué nombre dices tú?",
+      "topic": "identity",
+      "source": "¿Me dices tu nombre?",
+      "similarity": 0.9487789204318794
+    },
+    {
+      "question": "Tu nombre, por favor.",
+      "topic": "identity",
+      "source": "Su nombre, por favor.",
+      "similarity": 0.9829189277494124
+    },
+    {
+      "question": "¿Por favor, por favor, preséntate?",
+      "topic": "identity",
+      "source": "Preséntate, por favor.",
+      "similarity": 0.9449353291646984
+    },
+    {
+      "question": "Cuéntame algo sobre ti.",
+      "topic": "identity",
+      "source": "Cuéntame un poco sobre ti.",
+      "similarity": 0.9770660660186187
+    },
+    {
+      "question": "Sobre ti, cuéntame algo.",
+      "topic": "identity",
+      "source": "Cuéntame un poco sobre ti.",
+      "similarity": 0.9621803875736715
+    },
+    {
+      "question": "Cuéntame un poco.",
+      "topic": "identity",
+      "source": "Cuéntame un poco sobre ti.",
+      "similarity": 0.963281310233199
+    },
+    {
+      "question": "¿Puedo pasar? Buenas tardes.",
+      "topic": "social",
+      "source": "Buenas tardes, ¿puedo pasar?",
+      "similarity": 0.9627709338076401
+    },
+    {
+      "question": "No te asustes, esto es una mera rutina.",
+      "topic": "social",
+      "source": "No te preocupes, esto es rutina.",
+      "similarity": 0.9630855101982068
+    },
+    {
+      "question": "No te asustes, esto es solo una rutina.",
+      "topic": "social",
+      "source": "No te preocupes, esto es rutina.",
+      "similarity": 0.9648534334265292
+    },
+    {
+      "question": "No te preocupes, esto no es una rutina.",
+      "topic": "social",
+      "source": "No te preocupes, esto es rutina.",
+      "similarity": 0.9756690496344153
+    },
+    {
+      "question": "No te preocupes, esto es una rutina.",
+      "topic": "social",
+      "source": "No te preocupes, esto es rutina.",
+      "similarity": 0.9849336662663293
+    },
+    {
+      "question": "Dale calma, no me acusarás de nada.",
+      "topic": "social",
+      "source": "Relájate, no te acuso de nada.",
+      "similarity": 0.9479453895238704
+    },
+    {
+      "question": "¿Le gustaría sentarse?",
+      "topic": "social",
+      "source": "¿Quieres sentarte?",
+      "similarity": 0.9701419792456796
+    },
+    {
+      "question": "¿Te gustaría sentarte?",
+      "topic": "social",
+      "source": "¿Quieres sentarte?",
+      "similarity": 0.9890883441296372
+    },
+    {
+      "question": "¿A ti te gustaría sentarse?",
+      "topic": "social",
+      "source": "¿Quieres sentarte?",
+      "similarity": 0.9668150853365294
+    },
+    {
+      "question": "¿Deseas sentarte?",
+      "topic": "social",
+      "source": "¿Quieres sentarte?",
+      "similarity": 0.956425482151715
+    },
+    {
+      "question": "¿Te mataste a ti mismo la víctima?",
+      "topic": "unknown",
+      "source": "¿Mataste tú a la víctima?",
+      "similarity": 0.9495874781022264
+    },
+    {
+      "question": "¿¿Mataste tú al sujeto?",
+      "topic": "unknown",
+      "source": "¿Mataste tú a la víctima?",
+      "similarity": 0.9510736960855425
+    },
+    {
+      "question": "¿Mataron tú a la víctima?",
+      "topic": "unknown",
+      "source": "¿Mataste tú a la víctima?",
+      "similarity": 0.9901219865739869
+    },
+    {
+      "question": "¿Lo hiciste tú mismo?",
+      "topic": "unknown",
+      "source": "¿Fuiste tú quien lo hizo?",
+      "similarity": 0.9415660585155763
+    },
+    {
+      "question": "¿Lo mataste?",
+      "topic": "unknown",
+      "source": "¿Lo asesinaste?",
+      "similarity": 0.9844960923962575
+    },
+    {
+      "question": "¿Te atreves a matarlo?",
+      "topic": "unknown",
+      "source": "¿Lo asesinaste?",
+      "similarity": 0.9544304083415178
+    },
+    {
+      "question": "¿A ti te gusta la música?",
+      "topic": "unknown",
+      "source": "¿Te gusta la música?",
+      "similarity": 0.9917187089963002
+    },
+    {
+      "question": "¿Te gustan las canciones?",
+      "topic": "unknown",
+      "source": "¿Te gusta la música?",
+      "similarity": 0.9650964272553386
+    },
+    {
+      "question": "¿Y cuál es tu color favorito?",
+      "topic": "unknown",
+      "source": "¿Cuál es tu color favorito?",
+      "similarity": 0.9890200261152498
+    },
+    {
+      "question": "¿Qué es tu color favorito?",
+      "topic": "unknown",
+      "source": "¿Cuál es tu color favorito?",
+      "similarity": 0.9979982411626112
+    },
+    {
+      "question": "¿Y tu color favorito?",
+      "topic": "unknown",
+      "source": "¿Cuál es tu color favorito?",
+      "similarity": 0.9677723722390789
+    },
+    {
+      "question": "¿Cuál comida prefieres?",
+      "topic": "unknown",
+      "source": "¿Qué comida prefieres?",
+      "similarity": 0.9989765775714073
+    },
+    {
+      "question": "¿Tienes algún mascota?",
+      "topic": "unknown",
+      "source": "¿Tienes mascota?",
+      "similarity": 0.9868284198983858
+    },
+    {
+      "question": "¿Tienes algún animal de compañía?",
+      "topic": "unknown",
+      "source": "¿Tienes mascota?",
+      "similarity": 0.9454706337161108
+    },
+    {
+      "question": "¿Tienes algún mascota que conoces?",
+      "topic": "unknown",
+      "source": "¿Tienes mascota?",
+      "similarity": 0.9495671267442833
+    },
+    {
+      "question": "¿Tienes algún mascota contigo?",
+      "topic": "unknown",
+      "source": "¿Tienes mascota?",
+      "similarity": 0.9723671469336691
+    },
+    {
+      "question": "¿Le gusta a ti la lectura de novelas?",
+      "topic": "unknown",
+      "source": "¿Te gusta leer novelas?",
+      "similarity": 0.9900862955086925
+    },
+    {
+      "question": "¿Te apasiona el género de novelas?",
+      "topic": "unknown",
+      "source": "¿Te gusta leer novelas?",
+      "similarity": 0.9504791664661123
+    },
+    {
+      "question": "¿Te interesa el mundo de las novelas?",
+      "topic": "unknown",
+      "source": "¿Te gusta leer novelas?",
+      "similarity": 0.9580352881410246
+    },
+    {
+      "question": "¿Cuándo era la habitación a las diez?",
+      "topic": "alibi",
+      "source": "¿En qué habitación estabas a las diez?",
+      "similarity": 0.9719543346921337
+    },
+    {
+      "question": "¿Qué habitación estabas a las diez?",
+      "topic": "alibi",
+      "source": "¿En qué habitación estabas a las diez?",
+      "similarity": 0.9956312598099208
+    },
+    {
+      "question": "Indícame donde te quedaste durante la última hora.",
+      "topic": "alibi",
+      "source": "Dime exactamente dónde pasaste la última hora.",
+      "similarity": 0.9584234329621132
+    },
+    {
+      "question": "Cuéntame dónde pasaste esa última hora.",
+      "topic": "alibi",
+      "source": "Dime exactamente dónde pasaste la última hora.",
+      "similarity": 0.9557183785405583
+    },
+    {
+      "question": "¿No te quedaste en el salón la velada?",
+      "topic": "alibi",
+      "source": "¿Te quedaste en el salón toda la velada?",
+      "similarity": 0.9692412972233956
+    },
+    {
+      "question": "¿Te quedaste en el salón toda la noche?",
+      "topic": "alibi",
+      "source": "¿Te quedaste en el salón toda la velada?",
+      "similarity": 0.9465662954348893
+    },
+    {
+      "question": "¿Te quedaste en el salón en toda la velada?",
+      "topic": "alibi",
+      "source": "¿Te quedaste en el salón toda la velada?",
+      "similarity": 0.998413243339747
+    },
+    {
+      "question": "¿Hubo en tu cuarto cuando sucedió?",
+      "topic": "alibi",
+      "source": "¿Estabas en tu cuarto cuando ocurrió?",
+      "similarity": 0.9614039735346337
+    },
+    {
+      "question": "¿Estabas en tu cuarto en ese momento?",
+      "topic": "alibi",
+      "source": "¿Estabas en tu cuarto cuando ocurrió?",
+      "similarity": 0.953787932791692
+    },
+    {
+      "question": "¿Seguí por la cocina hasta la medianoche?",
+      "topic": "alibi",
+      "source": "¿Seguías en la cocina a medianoche?",
+      "similarity": 0.9814526032602461
+    },
+    {
+      "question": "¿Estuviste la noche al lado del edificio?",
+      "topic": "alibi",
+      "source": "¿Pasaste la noche fuera del edificio?",
+      "similarity": 0.9527052893605364
+    },
+    {
+      "question": "¿Pocasaste la noche al exterior del edificio?",
+      "topic": "alibi",
+      "source": "¿Pasaste la noche fuera del edificio?",
+      "similarity": 0.9649859737188359
+    },
+    {
+      "question": "¿Qué le habías estado haciendo entre la cena y el aviso?",
+      "topic": "alibi",
+      "source": "¿Qué estuviste haciendo entre la cena y el aviso?",
+      "similarity": 0.9853480995493864
+    },
+    {
+      "question": "¿Qué le habías estado haciendo después de la cena y antes del aviso?",
+      "topic": "alibi",
+      "source": "¿Qué estuviste haciendo entre la cena y el aviso?",
+      "similarity": 0.9586679003928239
+    },
+    {
+      "question": "¿Qué le has estado haciendo entre la cena y el aviso?",
+      "topic": "alibi",
+      "source": "¿Qué estuviste haciendo entre la cena y el aviso?",
+      "similarity": 0.9838354461967742
+    },
+    {
+      "question": "¿Con quién pasaste la tarde?",
+      "topic": "alibi",
+      "source": "¿Con quién compartiste la tarde?",
+      "similarity": 0.9687680063422611
+    },
+    {
+      "question": "¿Quién compartió contigo esta tarde?",
+      "topic": "alibi",
+      "source": "¿Con quién compartiste la tarde?",
+      "similarity": 0.9630744805792452
+    },
+    {
+      "question": "¿Por qué camino fue antes de acostarte?",
+      "topic": "alibi",
+      "source": "¿Por dónde paseaste antes de acostarte?",
+      "similarity": 0.9480988608152364
+    },
+    {
+      "question": "¿Por dónde fue antes de acostarse?",
+      "topic": "alibi",
+      "source": "¿Por dónde paseaste antes de acostarte?",
+      "similarity": 0.9542081771196392
+    },
+    {
+      "question": "¿Cómo fue el paso antes de acostarse?",
+      "topic": "alibi",
+      "source": "¿Por dónde paseaste antes de acostarte?",
+      "similarity": 0.942134624202177
+    },
+    {
+      "question": "¿En qué hora saliste del comedor?",
+      "topic": "alibi",
+      "source": "¿A qué hora saliste del comedor?",
+      "similarity": 0.9988899790464847
+    },
+    {
+      "question": "¿Cuánto tiempo permaneciste en el almacén?",
+      "topic": "alibi",
+      "source": "¿Cuánto tiempo estuviste en el almacén?",
+      "similarity": 0.9631928610135968
+    },
+    {
+      "question": "¿Cuánto tiempo pasaste en el almacén?",
+      "topic": "alibi",
+      "source": "¿Cuánto tiempo estuviste en el almacén?",
+      "similarity": 0.9795987007165388
+    },
+    {
+      "question": "¿Alguna vez estuviste solo?",
+      "topic": "alibi",
+      "source": "¿Estuviste solo en algún momento?",
+      "similarity": 0.9528884131079082
+    },
+    {
+      "question": "¿Te sentiste solo en algún momento?",
+      "topic": "alibi",
+      "source": "¿Estuviste solo en algún momento?",
+      "similarity": 0.9742505510517205
+    },
+    {
+      "question": "¿Estuviste nunca solo?",
+      "topic": "alibi",
+      "source": "¿Estuviste solo en algún momento?",
+      "similarity": 0.9529669749361752
+    },
+    {
+      "question": "Dime dónde estaba, de minuto en minuto.",
+      "topic": "alibi",
+      "source": "Explícame dónde estabas, minuto a minuto.",
+      "similarity": 0.9774992315970995
+    },
+    {
+      "question": "Cuéntame, por cada minuto, dónde te encontraste.",
+      "topic": "alibi",
+      "source": "Explícame dónde estabas, minuto a minuto.",
+      "similarity": 0.9557398281676645
+    },
+    {
+      "question": "¿Dónde te encuentras minuto a minuto?.",
+      "topic": "alibi",
+      "source": "Explícame dónde estabas, minuto a minuto.",
+      "similarity": 0.9435422128752332
+    },
+    {
+      "question": "¿Hiciste algo en la capilla después de cenar?",
+      "topic": "alibi",
+      "source": "¿Fuiste a la capilla después de cenar?",
+      "similarity": 0.9655323721283493
+    },
+    {
+      "question": "¿Eres a la capilla después de cenar?",
+      "topic": "alibi",
+      "source": "¿Fuiste a la capilla después de cenar?",
+      "similarity": 0.9856531395384635
+    },
+    {
+      "question": "¿Te has ido a la capilla después de cenar?",
+      "topic": "alibi",
+      "source": "¿Fuiste a la capilla después de cenar?",
+      "similarity": 0.9817760934848218
+    },
+    {
+      "question": "¿A qué hora has ido a la capilla después de cenar?",
+      "topic": "alibi",
+      "source": "¿Fuiste a la capilla después de cenar?",
+      "similarity": 0.9684437414814421
+    },
+    {
+      "question": "¿Dormías al llegar?",
+      "topic": "alibi",
+      "source": "¿Dormías cuando pasó?",
+      "similarity": 0.9514084257414656
+    },
+    {
+      "question": "¿Seguí despierto hasta esa hora?",
+      "topic": "alibi",
+      "source": "¿Seguías despierto a esa hora?",
+      "similarity": 0.9823802290998931
+    },
+    {
+      "question": "¿Sigues despierto a ese momento?",
+      "topic": "alibi",
+      "source": "¿Seguías despierto a esa hora?",
+      "similarity": 0.9675232779862785
+    },
+    {
+      "question": "¿Te mantuviste despierto a esa hora?",
+      "topic": "alibi",
+      "source": "¿Seguías despierto a esa hora?",
+      "similarity": 0.9748513660644763
+    },
+    {
+      "question": "¿Te rezaste en tu celda?",
+      "topic": "alibi",
+      "source": "¿Estabas en tu celda rezando?",
+      "similarity": 0.983087293110478
+    },
+    {
+      "question": "¿Estaba en tu celda rezando?",
+      "topic": "alibi",
+      "source": "¿Estabas en tu celda rezando?",
+      "similarity": 0.9905280545077388
+    },
+    {
+      "question": "¿En tu celda rezabas?",
+      "topic": "alibi",
+      "source": "¿Estabas en tu celda rezando?",
+      "similarity": 0.9620302999998358
+    },
+    {
+      "question": "¿Qué ruta sigues después de cenar?",
+      "topic": "alibi",
+      "source": "¿Qué ruta seguiste después de cenar?",
+      "similarity": 0.9875354652553512
+    },
+    {
+      "question": "¿Qué ruta pasaste por después de cenar?",
+      "topic": "alibi",
+      "source": "¿Qué ruta seguiste después de cenar?",
+      "similarity": 0.9896636053291539
+    },
+    {
+      "question": "¿Cuál era el trayecto que tomaste después de cenar?",
+      "topic": "alibi",
+      "source": "¿Qué ruta seguiste después de cenar?",
+      "similarity": 0.9412200818168771
+    },
+    {
+      "question": "¿Qué ruta tomaste después de cenar?",
+      "topic": "alibi",
+      "source": "¿Qué ruta seguiste después de cenar?",
+      "similarity": 0.9809956834752803
+    },
+    {
+      "question": "¿Tu turno terminó antes que el crimen?",
+      "topic": "alibi",
+      "source": "¿Tu turno terminó antes del crimen?",
+      "similarity": 0.9991094443521322
+    },
+    {
+      "question": "¿Tu turno terminó antes de la aparición del criminal?",
+      "topic": "alibi",
+      "source": "¿Tu turno terminó antes del crimen?",
+      "similarity": 0.9742390596010233
+    },
+    {
+      "question": "¿Tu turno terminó antes del hecho?",
+      "topic": "alibi",
+      "source": "¿Tu turno terminó antes del crimen?",
+      "similarity": 0.9713112970687694
+    },
+    {
+      "question": "¿Estuviste en el puente de mando?",
+      "topic": "alibi",
+      "source": "¿Estabas en el puente de mando?",
+      "similarity": 0.9679341676019892
+    },
+    {
+      "question": "¿Había sido tú en el puente de mando?",
+      "topic": "alibi",
+      "source": "¿Estabas en el puente de mando?",
+      "similarity": 0.9548837188550304
+    },
+    {
+      "question": "¿Estabas allí en el puente de mando?",
+      "topic": "alibi",
+      "source": "¿Estabas en el puente de mando?",
+      "similarity": 0.9794334128436307
+    },
+    {
+      "question": "¿Realizaron la ronda de vigilancia esa noche?",
+      "topic": "alibi",
+      "source": "¿Hiciste la ronda de vigilancia esa noche?",
+      "similarity": 0.9776364180371658
+    },
+    {
+      "question": "¿Se hizo la ronda de vigilancia esa noche?",
+      "topic": "alibi",
+      "source": "¿Hiciste la ronda de vigilancia esa noche?",
+      "similarity": 0.9589570581016147
+    },
+    {
+      "question": "¿Vigilaste la ronda de vigilancia ese día?",
+      "topic": "alibi",
+      "source": "¿Hiciste la ronda de vigilancia esa noche?",
+      "similarity": 0.9693700733372783
+    },
+    {
+      "question": "¿Fue la ronda de vigilancia esa noche?",
+      "topic": "alibi",
+      "source": "¿Hiciste la ronda de vigilancia esa noche?",
+      "similarity": 0.9770532472158039
+    },
+    {
+      "question": "¿Volviste a tu cuarto antes de las once?",
+      "topic": "alibi",
+      "source": "¿Volviste a tu habitación antes de las once?",
+      "similarity": 0.9695033724597557
+    },
+    {
+      "question": "¿Te has puesto en tu habitación antes de las once?",
+      "topic": "alibi",
+      "source": "¿Volviste a tu habitación antes de las once?",
+      "similarity": 0.969163950936965
+    },
+    {
+      "question": "¿Has llegado a tu habitación antes de las once?",
+      "topic": "alibi",
+      "source": "¿Volviste a tu habitación antes de las once?",
+      "similarity": 0.9750484687777884
+    },
+    {
+      "question": "¿Estaba en otro piso?",
+      "topic": "alibi",
+      "source": "¿Estabas en otro piso?",
+      "similarity": 0.981608802882396
+    },
+    {
+      "question": "¿En otro piso estuviste?",
+      "topic": "alibi",
+      "source": "¿Estabas en otro piso?",
+      "similarity": 0.9792867067800642
+    },
+    {
+      "question": "¿Dónde estaba en otro piso?",
+      "topic": "alibi",
+      "source": "¿Estabas en otro piso?",
+      "similarity": 0.9418326039183291
+    },
+    {
+      "question": "¿Estuviste en otro piso?",
+      "topic": "alibi",
+      "source": "¿Estabas en otro piso?",
+      "similarity": 0.9858423671119707
+    },
+    {
+      "question": "¿Bajaste a la bodega algún momento?",
+      "topic": "alibi",
+      "source": "¿Bajaste a la bodega en algún momento?",
+      "similarity": 0.9978594772874033
+    },
+    {
+      "question": "¿Dónde vas en la bodega?",
+      "topic": "alibi",
+      "source": "¿Bajaste a la bodega en algún momento?",
+      "similarity": 0.9471089705426171
+    },
+    {
+      "question": "¿Cómo fue el trato que tuviste con el señor?",
+      "topic": "motive",
+      "source": "¿Cómo era tu trato con el señor?",
+      "similarity": 0.9721115006229042
+    },
+    {
+      "question": "¿Qué tal fue su trato con el señor?",
+      "topic": "motive",
+      "source": "¿Cómo era tu trato con el señor?",
+      "similarity": 0.9758493982300113
+    },
+    {
+      "question": "¿Cómo te pasaste con la difunta?",
+      "topic": "motive",
+      "source": "¿Qué tal te llevabas con la difunta?",
+      "similarity": 0.9522354220822172
+    },
+    {
+      "question": "¿Qué tal tu vida con la difunta?",
+      "topic": "motive",
+      "source": "¿Qué tal te llevabas con la difunta?",
+      "similarity": 0.9593523542919009
+    },
+    {
+      "question": "Formal: ¿Admirabas a la víctima?",
+      "topic": "motive",
+      "source": "¿Admirabas a la víctima?",
+      "similarity": 0.9603290416204858
+    },
+    {
+      "question": "¿Te he hecho daño alguna vez?",
+      "topic": "motive",
+      "source": "¿Te había hecho daño alguna vez?",
+      "similarity": 0.9942888148363965
+    },
+    {
+      "question": "¿Alguna vez te he hecho daño?",
+      "topic": "motive",
+      "source": "¿Te había hecho daño alguna vez?",
+      "similarity": 0.9812769944001555
+    },
+    {
+      "question": "¿Me he hecho daño alguna vez?",
+      "topic": "motive",
+      "source": "¿Te había hecho daño alguna vez?",
+      "similarity": 0.9880629986117948
+    },
+    {
+      "question": "¿Fue tu mentor?",
+      "topic": "motive",
+      "source": "¿Era tu mentor?",
+      "similarity": 0.9791507158198185
+    },
+    {
+      "question": "¿Te tenías cariño?",
+      "topic": "motive",
+      "source": "¿Le tenías cariño?",
+      "similarity": 0.9890737748202493
+    },
+    {
+      "question": "¿Qué le unía a él?",
+      "topic": "motive",
+      "source": "¿Qué te unía a él?",
+      "similarity": 0.9763545527261983
+    },
+    {
+      "question": "¿Qué lo unía a él?",
+      "topic": "motive",
+      "source": "¿Qué te unía a él?",
+      "similarity": 0.9839957746153871
+    },
+    {
+      "question": "¿Te ha puesto en una situación de humillación alguna vez?",
+      "topic": "motive",
+      "source": "¿Alguna vez te humilló?",
+      "similarity": 0.9638079962841987
+    },
+    {
+      "question": "¿Alguna vez ha hecho algo que te haya hecho sentir humillado?",
+      "topic": "motive",
+      "source": "¿Alguna vez te humilló?",
+      "similarity": 0.963392691443894
+    },
+    {
+      "question": "¿Te ha humillado alguna persona alguna vez?",
+      "topic": "motive",
+      "source": "¿Alguna vez te humilló?",
+      "similarity": 0.9683077760146045
+    },
+    {
+      "question": "¿Alguna vez te ha causado alguna situación de humillación?",
+      "topic": "motive",
+      "source": "¿Alguna vez te humilló?",
+      "similarity": 0.9632798488797483
+    },
+    {
+      "question": "¿Te sentiste tratado injustamente por ella?",
+      "topic": "motive",
+      "source": "¿Te sentías tratado injustamente por ella?",
+      "similarity": 0.986825040554398
+    },
+    {
+      "question": "¿Habláis a menudo?",
+      "topic": "motive",
+      "source": "¿Discutíais a menudo?",
+      "similarity": 0.957522661371433
+    },
+    {
+      "question": "¿Qué discusión tuviste más reciente con alguien?",
+      "topic": "motive",
+      "source": "¿Cuál fue vuestra última discusión?",
+      "similarity": 0.9525566026397989
+    },
+    {
+      "question": "¿Cuál fue la discusión más reciente que tuviste?",
+      "topic": "motive",
+      "source": "¿Cuál fue vuestra última discusión?",
+      "similarity": 0.9541825141876767
+    },
+    {
+      "question": "¿Cuál fue la última discusión que tuviste?",
+      "topic": "motive",
+      "source": "¿Cuál fue vuestra última discusión?",
+      "similarity": 0.980016747378666
+    },
+    {
+      "question": "¿Cuándo fue la discusión más reciente que tuviste?",
+      "topic": "motive",
+      "source": "¿Cuál fue vuestra última discusión?",
+      "similarity": 0.950424971927837
+    },
+    {
+      "question": "¿Te envidias a él o le haces caso?",
+      "topic": "motive",
+      "source": "¿Le envidiabas tú a él?",
+      "similarity": 0.9495199133255672
+    },
+    {
+      "question": "¿No te envidias a él?",
+      "topic": "motive",
+      "source": "¿Le envidiabas tú a él?",
+      "similarity": 0.9681406549438638
+    },
+    {
+      "question": "¿Te envidio a él?",
+      "topic": "motive",
+      "source": "¿Le envidiabas tú a él?",
+      "similarity": 0.9865373359919252
+    },
+    {
+      "question": "¿Te envidias tú o no le?",
+      "topic": "motive",
+      "source": "¿Le envidiabas tú a él?",
+      "similarity": 0.9436610028948602
+    },
+    {
+      "question": "¿Se trataba de un buen patrón?",
+      "topic": "motive",
+      "source": "¿Era un buen patrón?",
+      "similarity": 0.9686532415365438
+    },
+    {
+      "question": "¿Fue un buen patrón?",
+      "topic": "motive",
+      "source": "¿Era un buen patrón?",
+      "similarity": 0.9829761111102229
+    },
+    {
+      "question": "¿Estaba un buen patrón?",
+      "topic": "motive",
+      "source": "¿Era un buen patrón?",
+      "similarity": 0.9851881738117187
+    },
+    {
+      "question": "¿Te pagas bien?",
+      "topic": "motive",
+      "source": "¿Te pagaba bien?",
+      "similarity": 0.983317608194277
+    },
+    {
+      "question": "¿Creías en ti?",
+      "topic": "motive",
+      "source": "¿Confiaba en ti?",
+      "similarity": 0.9462179424460592
+    },
+    {
+      "question": "No, ¿Tú confiabas en él?",
+      "topic": "motive",
+      "source": "¿Tú confiabas en él?",
+      "similarity": 0.9838800621039944
+    },
+    {
+      "question": "¿Tú creías en él?",
+      "topic": "motive",
+      "source": "¿Tú confiabas en él?",
+      "similarity": 0.9724323259830531
+    },
+    {
+      "question": "¿Conocisteis a jóvenes?",
+      "topic": "motive",
+      "source": "¿Os conocisteis de jóvenes?",
+      "similarity": 0.9857851140437272
+    },
+    {
+      "question": "¿Conocios a jóvenes?",
+      "topic": "motive",
+      "source": "¿Os conocisteis de jóvenes?",
+      "similarity": 0.9542210141600016
+    },
+    {
+      "question": "¿De dónde comenzó tu relación?",
+      "topic": "motive",
+      "source": "¿Cómo empezó vuestra relación?",
+      "similarity": 0.9784693956298636
+    },
+    {
+      "question": "¿Te ayudó ella a conseguir este puesto?",
+      "topic": "motive",
+      "source": "¿Ella te ayudó a conseguir este puesto?",
+      "similarity": 0.9910341271411838
+    },
+    {
+      "question": "¿Por qué no os soportasteis?",
+      "topic": "motive",
+      "source": "¿Por qué no os soportabais?",
+      "similarity": 0.9938327457874894
+    },
+    {
+      "question": "¿Todos dicen que lo odias?",
+      "topic": "motive",
+      "source": "todos dicen que lo odiabas",
+      "similarity": 0.9683008366297919
+    },
+    {
+      "question": "¿Es cierto que todos hablan de que lo odiabas?",
+      "topic": "motive",
+      "source": "todos dicen que lo odiabas",
+      "similarity": 0.9467831322389961
+    },
+    {
+      "question": "¿Alguien dice que lo odias?",
+      "topic": "motive",
+      "source": "todos dicen que lo odiabas",
+      "similarity": 0.9448491214088405
+    },
+    {
+      "question": "¿Te hace feliz que haya muerto?",
+      "topic": "motive",
+      "source": "¿Te alegras de que haya muerto?",
+      "similarity": 0.9538311000517737
+    },
+    {
+      "question": "¿Qué sentiste al conocer tu muerte?",
+      "topic": "motive",
+      "source": "¿Qué sentiste al saber que había muerto?",
+      "similarity": 0.9491642653040361
+    },
+    {
+      "question": "¿Teneis algo pendiente?",
+      "topic": "motive",
+      "source": "¿Teníais algo pendiente?",
+      "similarity": 0.9931872186721072
+    },
+    {
+      "question": "¿Qué tenéis pendiente?",
+      "topic": "motive",
+      "source": "¿Teníais algo pendiente?",
+      "similarity": 0.9660343776089247
+    },
+    {
+      "question": "¿Algo pendiente?",
+      "topic": "motive",
+      "source": "¿Teníais algo pendiente?",
+      "similarity": 0.9505580043734809
+    },
+    {
+      "question": "¿Me había hecho una promesa que no se cumplió?",
+      "topic": "motive",
+      "source": "¿Te había prometido algo que no cumplió?",
+      "similarity": 0.970688201185613
+    },
+    {
+      "question": "¿Habrías hecho algo que yo no había cumplido contigo?",
+      "topic": "motive",
+      "source": "¿Te había prometido algo que no cumplió?",
+      "similarity": 0.9458471863039642
+    },
+    {
+      "question": "¿Contra tu generosidad?",
+      "topic": "motive",
+      "source": "¿Era generoso contigo?",
+      "similarity": 0.9583285272338321
+    },
+    {
+      "question": "¿Tu generosidad?",
+      "topic": "motive",
+      "source": "¿Era generoso contigo?",
+      "similarity": 0.9675562221154902
+    },
+    {
+      "question": "¿Tu generosidad contigo?",
+      "topic": "motive",
+      "source": "¿Era generoso contigo?",
+      "similarity": 0.9802691544174356
+    },
+    {
+      "question": "¿Te lo respetabas?",
+      "topic": "motive",
+      "source": "¿Lo respetabas?",
+      "similarity": 0.993670929440905
+    },
+    {
+      "question": "¿Respetabas tu?",
+      "topic": "motive",
+      "source": "¿Lo respetabas?",
+      "similarity": 0.9513162474645481
+    },
+    {
+      "question": "¿Te respetaba?",
+      "topic": "motive",
+      "source": "¿Lo respetabas?",
+      "similarity": 0.9690592714869193
+    },
+    {
+      "question": "¿Me creía de confianza?",
+      "topic": "motive",
+      "source": "¿Te consideraba de confianza?",
+      "similarity": 0.9664183927057027
+    },
+    {
+      "question": "¿Me considerabas de confianza?",
+      "topic": "motive",
+      "source": "¿Te consideraba de confianza?",
+      "similarity": 0.9800849183687295
+    },
+    {
+      "question": "¿Te considerabas de confianza?",
+      "topic": "motive",
+      "source": "¿Te consideraba de confianza?",
+      "similarity": 0.9872634959104508
+    },
+    {
+      "question": "¿Considerabas de confianza?",
+      "topic": "motive",
+      "source": "¿Te consideraba de confianza?",
+      "similarity": 0.9795711918470161
+    },
+    {
+      "question": "¿De qué trata tu nombre? ¿Por qué está en su libro de cuentas?",
+      "topic": "secret",
+      "source": "¿Por qué tu nombre está en su libro de cuentas?",
+      "similarity": 0.9768730718769008
+    },
+    {
+      "question": "¿Por qué está tu nombre en su libro de cuentas?",
+      "topic": "secret",
+      "source": "¿Por qué tu nombre está en su libro de cuentas?",
+      "similarity": 0.9988133337264492
+    },
+    {
+      "question": "¿A quién le chantajeabas?",
+      "topic": "secret",
+      "source": "¿Le chantajeabas tú?",
+      "similarity": 0.9563908379765799
+    },
+    {
+      "question": "¿Eres quien le chantajeaba?",
+      "topic": "secret",
+      "source": "¿Le chantajeabas tú?",
+      "similarity": 0.952981775904233
+    },
+    {
+      "question": "¿Tú le chantajeabas?",
+      "topic": "secret",
+      "source": "¿Le chantajeabas tú?",
+      "similarity": 0.9785736120402039
+    },
+    {
+      "question": "¿Alguna cosa secreta que tú conocías?",
+      "topic": "secret",
+      "source": "¿Qué secreto tuyo conocía?",
+      "similarity": 0.9508866659807855
+    },
+    {
+      "question": "¿Qué secreto que tú conocías?",
+      "topic": "secret",
+      "source": "¿Qué secreto tuyo conocía?",
+      "similarity": 0.9776282176985354
+    },
+    {
+      "question": "¿Le pediste dinero?",
+      "topic": "secret",
+      "source": "¿Le pediste un préstamo?",
+      "similarity": 0.9625714095383326
+    },
+    {
+      "question": "¿Te pediste un préstamo?",
+      "topic": "secret",
+      "source": "¿Le pediste un préstamo?",
+      "similarity": 0.9903395538695208
+    },
+    {
+      "question": "¿Pediste un préstamo?",
+      "topic": "secret",
+      "source": "¿Le pediste un préstamo?",
+      "similarity": 0.9737654069965359
+    },
+    {
+      "question": "¿Te devolviste el dinero?",
+      "topic": "secret",
+      "source": "¿Le devolviste el dinero?",
+      "similarity": 0.9911521709803074
+    },
+    {
+      "question": "¿Le devolviste los fondos?",
+      "topic": "secret",
+      "source": "¿Le devolviste el dinero?",
+      "similarity": 0.9686005995219023
+    },
+    {
+      "question": "¿Te devolviste las monedas?",
+      "topic": "secret",
+      "source": "¿Le devolviste el dinero?",
+      "similarity": 0.9571872815738343
+    },
+    {
+      "question": "¿Te estás reclamando un crédito?",
+      "topic": "secret",
+      "source": "¿Te reclamaba una deuda?",
+      "similarity": 0.94803080904007
+    },
+    {
+      "question": "¿Me estás demandando por una deuda?",
+      "topic": "secret",
+      "source": "¿Te reclamaba una deuda?",
+      "similarity": 0.9509346181806602
+    },
+    {
+      "question": "¿Te está reclamando por un deudor?",
+      "topic": "secret",
+      "source": "¿Te reclamaba una deuda?",
+      "similarity": 0.9606275380097317
+    },
+    {
+      "question": "¿Sabías que había alterado el testamento?",
+      "topic": "secret",
+      "source": "¿Sabías que había cambiado el testamento?",
+      "similarity": 0.9817316170991627
+    },
+    {
+      "question": "¿Creen que lo castigarán?",
+      "topic": "secret",
+      "source": "¿Querías que lo castigaran?",
+      "similarity": 0.9703635151358935
+    },
+    {
+      "question": "¿Tú quieres que lo castigan?",
+      "topic": "secret",
+      "source": "¿Querías que lo castigaran?",
+      "similarity": 0.9636697100987764
+    },
+    {
+      "question": "¿Te gustaría que lo castigaran?",
+      "topic": "secret",
+      "source": "¿Querías que lo castigaran?",
+      "similarity": 0.9736220801865586
+    },
+    {
+      "question": "¿Querías castigarlo?",
+      "topic": "secret",
+      "source": "¿Querías que lo castigaran?",
+      "similarity": 0.9820202773512208
+    },
+    {
+      "question": "¿Viste que he visto tu nota sobre ti?",
+      "topic": "secret",
+      "source": "He visto su nota sobre ti.",
+      "similarity": 0.9588227060071873
+    },
+    {
+      "question": "¿Viste tu nota sobre ti?",
+      "topic": "secret",
+      "source": "He visto su nota sobre ti.",
+      "similarity": 0.9454177648577178
+    },
+    {
+      "question": "¿He visto tu nota sobre ti?",
+      "topic": "secret",
+      "source": "He visto su nota sobre ti.",
+      "similarity": 0.9675046410940555
+    },
+    {
+      "question": "Sus papeles dicen que lo engañas.",
+      "topic": "secret",
+      "source": "Sus papeles dicen que le engañabas.",
+      "similarity": 0.9914950602085689
+    },
+    {
+      "question": "Sus papeles dicen que le engaña.",
+      "topic": "secret",
+      "source": "Sus papeles dicen que le engañabas.",
+      "similarity": 0.9944202027734075
+    },
+    {
+      "question": "Sus papeles dicen que lo engaña.",
+      "topic": "secret",
+      "source": "Sus papeles dicen que le engañabas.",
+      "similarity": 0.9876418625112569
+    },
+    {
+      "question": "¿Qué pensabas hacer con tu dinero?",
+      "topic": "secret",
+      "source": "¿Qué pensaba hacer con tus cuentas?",
+      "similarity": 0.9402970371091808
+    },
+    {
+      "question": "¿Alguna idea tenía sobre tus cuentas?",
+      "topic": "secret",
+      "source": "¿Qué pensaba hacer con tus cuentas?",
+      "similarity": 0.9547117728273641
+    },
+    {
+      "question": "¿Iba a decirte lo tuyo al oficial?",
+      "topic": "secret",
+      "source": "¿Iba a contar lo tuyo a la autoridad?",
+      "similarity": 0.9505562762089154
+    },
+    {
+      "question": "¿De qué es que oculté la carta?",
+      "topic": "secret",
+      "source": "¿Por qué ocultaste esa carta?",
+      "similarity": 0.9548373422391438
+    },
+    {
+      "question": "¿Cómo fue que ocultaste esa carta?",
+      "topic": "secret",
+      "source": "¿Por qué ocultaste esa carta?",
+      "similarity": 0.9846318373649104
+    },
+    {
+      "question": "¿Te escondiste algún documento?",
+      "topic": "secret",
+      "source": "¿Escondiste algún documento?",
+      "similarity": 0.9940845491494029
+    },
+    {
+      "question": "¿No escondiste ningún documento?",
+      "topic": "secret",
+      "source": "¿Escondiste algún documento?",
+      "similarity": 0.9642611987625049
+    },
+    {
+      "question": "¿No ocultaste ningún documento?",
+      "topic": "secret",
+      "source": "¿Escondiste algún documento?",
+      "similarity": 0.9494322532973966
+    },
+    {
+      "question": "¿Te han descubierto que falsificaste algo?",
+      "topic": "secret",
+      "source": "¿Te habían descubierto falsificando algo?",
+      "similarity": 0.9874812864838111
+    },
+    {
+      "question": "¿Te han descubierto si falsificaste algo?",
+      "topic": "secret",
+      "source": "¿Te habían descubierto falsificando algo?",
+      "similarity": 0.9824520996514932
+    },
+    {
+      "question": "¿Pasaste las provisiones?",
+      "topic": "secret",
+      "source": "¿Desviabas provisiones?",
+      "similarity": 0.9473346443290258
+    },
+    {
+      "question": "¿Me iba a expulsar de la comunidad?",
+      "topic": "secret",
+      "source": "¿Te iba a expulsar de la comunidad?",
+      "similarity": 0.9874773534319986
+    },
+    {
+      "question": "¿Me expulsarías de la comunidad?",
+      "topic": "secret",
+      "source": "¿Te iba a expulsar de la comunidad?",
+      "similarity": 0.9779154716560065
+    },
+    {
+      "question": "¿Te expulsarías de la comunidad?",
+      "topic": "secret",
+      "source": "¿Te iba a expulsar de la comunidad?",
+      "similarity": 0.984226340451902
+    },
+    {
+      "question": "¿Te había hecho daño por contarlo?",
+      "topic": "secret",
+      "source": "¿Te había amenazado con contarlo?",
+      "similarity": 0.9438693245927264
+    },
+    {
+      "question": "¿Te amenazó con que te contara?",
+      "topic": "secret",
+      "source": "¿Te había amenazado con contarlo?",
+      "similarity": 0.9711488149452541
+    },
+    {
+      "question": "¿Te había amenazado por contarlo?",
+      "topic": "secret",
+      "source": "¿Te había amenazado con contarlo?",
+      "similarity": 0.9971595153799256
+    },
+    {
+      "question": "¿Qué cosa guardaba la víctima dentro de ti?",
+      "topic": "secret",
+      "source": "¿Qué guardaba la víctima contra ti?",
+      "similarity": 0.9624154329704583
+    },
+    {
+      "question": "¿Qué guardó la víctima dentro de ti?",
+      "topic": "secret",
+      "source": "¿Qué guardaba la víctima contra ti?",
+      "similarity": 0.9610818187664403
+    },
+    {
+      "question": "¿Alguna persona tenía la llave del armero?",
+      "topic": "link",
+      "source": "¿Quién guardaba la llave del armero?",
+      "similarity": 0.953032932594161
+    },
+    {
+      "question": "¿Quién tenía la llave del armero?",
+      "topic": "link",
+      "source": "¿Quién guardaba la llave del armero?",
+      "similarity": 0.9714611222784769
+    },
+    {
+      "question": "¿Quién poseía la llave del armero?",
+      "topic": "link",
+      "source": "¿Quién guardaba la llave del armero?",
+      "similarity": 0.9672526727879571
+    },
+    {
+      "question": "¿Alguien tenía la llave del armero?",
+      "topic": "link",
+      "source": "¿Quién guardaba la llave del armero?",
+      "similarity": 0.9596464859292276
+    },
+    {
+      "question": "¿Permisos habilitados para acceder al armería?",
+      "topic": "link",
+      "source": "¿Tenías permiso para entrar en la armería?",
+      "similarity": 0.9589278026837785
+    },
+    {
+      "question": "¿Aceptaste entrar a la armería sin autorización?",
+      "topic": "link",
+      "source": "¿Tenías permiso para entrar en la armería?",
+      "similarity": 0.950203070799456
+    },
+    {
+      "question": "¿Tuvo permiso para entrar en la armería?",
+      "topic": "link",
+      "source": "¿Tenías permiso para entrar en la armería?",
+      "similarity": 0.994911328656918
+    },
+    {
+      "question": "¿Alguna vez has usado una escopeta?",
+      "topic": "link",
+      "source": "¿Has disparado alguna vez una escopeta?",
+      "similarity": 0.9470174550928082
+    },
+    {
+      "question": "¿Alguna vez has apuntado una escopeta?",
+      "topic": "link",
+      "source": "¿Has disparado alguna vez una escopeta?",
+      "similarity": 0.942395642292442
+    },
+    {
+      "question": "¿Conoces el veneno que emplearon?",
+      "topic": "link",
+      "source": "¿Conocías el veneno que usaron?",
+      "similarity": 0.9712986721979647
+    },
+    {
+      "question": "¿Sabías que usaron el veneno?",
+      "topic": "link",
+      "source": "¿Conocías el veneno que usaron?",
+      "similarity": 0.967947747943619
+    },
+    {
+      "question": "¿Sabías el veneno que usaron?",
+      "topic": "link",
+      "source": "¿Conocías el veneno que usaron?",
+      "similarity": 0.97017924302046
+    },
+    {
+      "question": "¿Sabías del veneno que usaron?",
+      "topic": "link",
+      "source": "¿Conocías el veneno que usaron?",
+      "similarity": 0.9672387149884291
+    },
+    {
+      "question": "¿Conocías mezclar ese preparado?",
+      "topic": "link",
+      "source": "¿Sabías mezclar ese preparado?",
+      "similarity": 0.9712163628593767
+    },
+    {
+      "question": "¿Sabía mezclar ese preparado?",
+      "topic": "link",
+      "source": "¿Sabías mezclar ese preparado?",
+      "similarity": 0.9941747061979971
+    },
+    {
+      "question": "¿Sabías llevarte la daga encima?",
+      "topic": "link",
+      "source": "¿Llevabas la daga encima?",
+      "similarity": 0.9821043408446964
+    },
+    {
+      "question": "¿Tenías la daga encima?",
+      "topic": "link",
+      "source": "¿Llevabas la daga encima?",
+      "similarity": 0.9817765957191181
+    },
+    {
+      "question": "¿Traías la daga encima?",
+      "topic": "link",
+      "source": "¿Llevabas la daga encima?",
+      "similarity": 0.9793911152205861
+    },
+    {
+      "question": "¿Alguien más poseía una copia de la llave?",
+      "topic": "link",
+      "source": "¿Quién más tenía copia de la llave?",
+      "similarity": 0.9807459708733309
+    },
+    {
+      "question": "¿Quién otro tenía un copia de la llave?",
+      "topic": "link",
+      "source": "¿Quién más tenía copia de la llave?",
+      "similarity": 0.981444647881504
+    },
+    {
+      "question": "¿Alguien más con copia de la llave?",
+      "topic": "link",
+      "source": "¿Quién más tenía copia de la llave?",
+      "similarity": 0.9570320665123114
+    },
+    {
+      "question": "¿Podiste entrar en la botica?",
+      "topic": "link",
+      "source": "¿Podías entrar en la botica?",
+      "similarity": 0.9980102437368172
+    },
+    {
+      "question": "¿Podía entrar en la botica?",
+      "topic": "link",
+      "source": "¿Podías entrar en la botica?",
+      "similarity": 0.9865031359147043
+    },
+    {
+      "question": "¿Podería haber entrado en la botica?",
+      "topic": "link",
+      "source": "¿Podías entrar en la botica?",
+      "similarity": 0.9732906507696756
+    },
+    {
+      "question": "¿Te permitiste entrar en la botica?",
+      "topic": "link",
+      "source": "¿Podías entrar en la botica?",
+      "similarity": 0.9874731495450494
+    },
+    {
+      "question": "¿Días de acceso a la sala del laboratorio?",
+      "topic": "link",
+      "source": "¿Tenías acceso al laboratorio?",
+      "similarity": 0.9416705600646557
+    },
+    {
+      "question": "¿Días de acceso al laboratorio?",
+      "topic": "link",
+      "source": "¿Tenías acceso al laboratorio?",
+      "similarity": 0.964163850653465
+    },
+    {
+      "question": "¿Tuviste acceso a la sala de laboratorio?",
+      "topic": "link",
+      "source": "¿Tenías acceso al laboratorio?",
+      "similarity": 0.9685890838800076
+    },
+    {
+      "question": "¿Conocías el código de la consola?",
+      "topic": "link",
+      "source": "¿Sabías el código de la consola?",
+      "similarity": 0.9664899314305985
+    },
+    {
+      "question": "¿Sabías cómo se escribía la consola?",
+      "topic": "link",
+      "source": "¿Sabías el código de la consola?",
+      "similarity": 0.9417500348027403
+    },
+    {
+      "question": "¿Conoces el código de la consola?",
+      "topic": "link",
+      "source": "¿Sabías el código de la consola?",
+      "similarity": 0.9913234454223593
+    },
+    {
+      "question": "¿Recuerdas el código de la consola?",
+      "topic": "link",
+      "source": "¿Sabías el código de la consola?",
+      "similarity": 0.9622878732486934
+    },
+    {
+      "question": "¿Usted ha tocado el panel de energía?",
+      "topic": "link",
+      "source": "¿Manejaste el panel de energía?",
+      "similarity": 0.9450051189828588
+    },
+    {
+      "question": "¿Llevaste la mano al panel de energía?",
+      "topic": "link",
+      "source": "¿Manejaste el panel de energía?",
+      "similarity": 0.9540476372533135
+    },
+    {
+      "question": "¿Preguntaste si usaste el emisor esa noche?",
+      "topic": "link",
+      "source": "¿Usaste el emisor esa noche?",
+      "similarity": 0.9787613174475828
+    },
+    {
+      "question": "¿Usaste ese emisor durante esa noche?",
+      "topic": "link",
+      "source": "¿Usaste el emisor esa noche?",
+      "similarity": 0.9915459975028525
+    },
+    {
+      "question": "¿Estabas en el arma con tus huellas?",
+      "topic": "link",
+      "source": "¿Tus huellas estaban en el arma?",
+      "similarity": 0.9751844598693222
+    },
+    {
+      "question": "¿Tuviste huellas en el arma?",
+      "topic": "link",
+      "source": "¿Tus huellas estaban en el arma?",
+      "similarity": 0.9826342073793451
+    },
+    {
+      "question": "¿El cuchillo era tuyo o no?",
+      "topic": "link",
+      "source": "el cuchillo era tuyo no?",
+      "similarity": 0.9876831789363839
+    },
+    {
+      "question": "¿Tú tenías o no el cuchillo?",
+      "topic": "link",
+      "source": "el cuchillo era tuyo no?",
+      "similarity": 0.9651825918373849
+    },
+    {
+      "question": "¿Sabías que había un revólver oculto en el armario?",
+      "topic": "link",
+      "source": "¿Sabías que había un revólver en el cajón?",
+      "similarity": 0.951531686843219
+    },
+    {
+      "question": "¿Limpio el arma?",
+      "topic": "link",
+      "source": "¿Limpiaste el arma?",
+      "similarity": 0.9742932477034398
+    },
+    {
+      "question": "¿Limpio mi arma?",
+      "topic": "link",
+      "source": "¿Limpiaste el arma?",
+      "similarity": 0.9620374020728347
+    },
+    {
+      "question": "¿Limpio la arma?",
+      "topic": "link",
+      "source": "¿Limpiaste el arma?",
+      "similarity": 0.974496698963875
+    },
+    {
+      "question": "¿No ocultaste el cordón?",
+      "topic": "link",
+      "source": "¿Escondiste el cordón?",
+      "similarity": 0.9554614135245633
+    },
+    {
+      "question": "¿Dónde escondiste el cordón?",
+      "topic": "link",
+      "source": "¿Escondiste el cordón?",
+      "similarity": 0.9767562747459745
+    },
+    {
+      "question": "¿Te llevaste los papeles del despacho?",
+      "topic": "link",
+      "source": "¿Te llevaste el pisapapeles del despacho?",
+      "similarity": 0.9518125119871509
+    },
+    {
+      "question": "¿Está usted preparado la copa?",
+      "topic": "link",
+      "source": "¿Preparaste tú la copa?",
+      "similarity": 0.9615032857778576
+    },
+    {
+      "question": "¿Quién servía el agua esa noche?",
+      "topic": "link",
+      "source": "¿Quién servía las bebidas esa noche?",
+      "similarity": 0.9473370044750861
+    },
+    {
+      "question": "¿Quien lo servíó a mis bebidas esa noche?",
+      "topic": "link",
+      "source": "¿Quién servía las bebidas esa noche?",
+      "similarity": 0.9745500408948193
+    },
+    {
+      "question": "¿Quién trajo el alcohol en aquella noche?",
+      "topic": "link",
+      "source": "¿Quién servía las bebidas esa noche?",
+      "similarity": 0.9456592165965289
+    },
+    {
+      "question": "¿Puediste llegar a la galería?",
+      "topic": "link",
+      "source": "¿Podías llegar a la galería?",
+      "similarity": 0.9941075323831319
+    },
+    {
+      "question": "¿Podías haber llegado a la galería?",
+      "topic": "link",
+      "source": "¿Podías llegar a la galería?",
+      "similarity": 0.9759968957174124
+    },
+    {
+      "question": "¿Ya levantaste la llave de la galería?",
+      "topic": "link",
+      "source": "¿Tenías la llave de la galería elevada?",
+      "similarity": 0.9426520366636952
+    },
+    {
+      "question": "¿Tienes la llave de la galería subida?",
+      "topic": "link",
+      "source": "¿Tenías la llave de la galería elevada?",
+      "similarity": 0.9513983699609613
+    },
+    {
+      "question": "¿Levantaste la llave de la galería?",
+      "topic": "link",
+      "source": "¿Tenías la llave de la galería elevada?",
+      "similarity": 0.9495671784535787
+    },
+    {
+      "question": "¿Llevaste la llave de la galería?",
+      "topic": "link",
+      "source": "¿Tenías la llave de la galería elevada?",
+      "similarity": 0.9488975451004913
+    },
+    {
+      "question": "¿Me pidieron el arma prestada?",
+      "topic": "link",
+      "source": "¿Alguien te pidió el arma prestada?",
+      "similarity": 0.9821238588640698
+    },
+    {
+      "question": "¿Alguien me pidió el arma?",
+      "topic": "link",
+      "source": "¿Alguien te pidió el arma prestada?",
+      "similarity": 0.9610454245852016
+    },
+    {
+      "question": "¿Alguien pidió el arma?",
+      "topic": "link",
+      "source": "¿Alguien te pidió el arma prestada?",
+      "similarity": 0.9583452816727563
+    },
+    {
+      "question": "¿Viste la arma antes de lo sucedido?",
+      "topic": "link",
+      "source": "¿Viste el arma antes del crimen?",
+      "similarity": 0.9714128684576299
+    },
+    {
+      "question": "¿Viste el arma antes de lo sucedido?",
+      "topic": "link",
+      "source": "¿Viste el arma antes del crimen?",
+      "similarity": 0.9719867656990487
+    },
+    {
+      "question": "¿Alguien te vio en el comedor?",
+      "topic": "timeline",
+      "source": "¿Quién te vio en el comedor?",
+      "similarity": 0.9717868576291153
+    },
+    {
+      "question": "¿En qué lugar te has visto en el comedor?",
+      "topic": "timeline",
+      "source": "¿Quién te vio en el comedor?",
+      "similarity": 0.9635553270680896
+    },
+    {
+      "question": "¿Quién en el comedor te vio?",
+      "topic": "timeline",
+      "source": "¿Quién te vio en el comedor?",
+      "similarity": 0.9929763994193018
+    },
+    {
+      "question": "¿Qué dirá el guardia si yo le pregunto?",
+      "topic": "timeline",
+      "source": "¿Qué dirá el guardia si le pregunto?",
+      "similarity": 0.9929410971080441
+    },
+    {
+      "question": "El registro indica que saliste a las diez.",
+      "topic": "timeline",
+      "source": "El registro dice que saliste a las diez.",
+      "similarity": 0.996978097949387
+    },
+    {
+      "question": "La historia dice que saliste a las diez.",
+      "topic": "timeline",
+      "source": "El registro dice que saliste a las diez.",
+      "similarity": 0.9787360974706364
+    },
+    {
+      "question": "El registro lo que dice es que saliste a las diez.",
+      "topic": "timeline",
+      "source": "El registro dice que saliste a las diez.",
+      "similarity": 0.9905897917683015
+    },
+    {
+      "question": "Según el registro, saliste a las diez.",
+      "topic": "timeline",
+      "source": "El registro dice que saliste a las diez.",
+      "similarity": 0.9831435367659916
+    },
+    {
+      "question": "No veo tu nombre en el libro de entradas.",
+      "topic": "timeline",
+      "source": "Tu nombre no aparece en el libro de entradas.",
+      "similarity": 0.966755211233064
+    },
+    {
+      "question": "Camaras no te muestran",
+      "topic": "timeline",
+      "source": "Las cámaras no te muestran.",
+      "similarity": 0.9509753738089223
+    },
+    {
+      "question": "No se muestran las cámaras",
+      "topic": "timeline",
+      "source": "Las cámaras no te muestran.",
+      "similarity": 0.9627977805242536
+    },
+    {
+      "question": "No te muestran las cámaras.",
+      "topic": "timeline",
+      "source": "Las cámaras no te muestran.",
+      "similarity": 0.9919201160621742
+    },
+    {
+      "question": "El vigilante afirma que no hay nadie en la entrada.",
+      "topic": "timeline",
+      "source": "El vigilante jura que no entró nadie.",
+      "similarity": 0.9566075048397368
+    },
+    {
+      "question": "El guardia dice que no hubo nadie dentro.",
+      "topic": "timeline",
+      "source": "El vigilante jura que no entró nadie.",
+      "similarity": 0.9402042998258935
+    },
+    {
+      "question": "El vigilante asegura que no hubo nadie en el lugar.",
+      "topic": "timeline",
+      "source": "El vigilante jura que no entró nadie.",
+      "similarity": 0.9528542381915946
+    },
+    {
+      "question": "El mayordomo declaró que la puerta se cerró.",
+      "topic": "timeline",
+      "source": "Según el mayordomo, la puerta estaba cerrada.",
+      "similarity": 0.9909767768849734
+    },
+    {
+      "question": "El mayordomo dice que la puerta estaba cerrada.",
+      "topic": "timeline",
+      "source": "Según el mayordomo, la puerta estaba cerrada.",
+      "similarity": 0.9952906117616785
+    },
+    {
+      "question": "El mayordomo indica que la puerta estaba cerrada.",
+      "topic": "timeline",
+      "source": "Según el mayordomo, la puerta estaba cerrada.",
+      "similarity": 0.9932140343781998
+    },
+    {
+      "question": "Nadie ha visto a ti en tu habitación.",
+      "topic": "timeline",
+      "source": "Nadie te vio en tu cuarto.",
+      "similarity": 0.9778516668270231
+    },
+    {
+      "question": "Nadie ha visto a ti en tu cuarto.",
+      "topic": "timeline",
+      "source": "Nadie te vio en tu cuarto.",
+      "similarity": 0.9917160258977574
+    },
+    {
+      "question": "No te han visto en tu cuarto.",
+      "topic": "timeline",
+      "source": "Nadie te vio en tu cuarto.",
+      "similarity": 0.9681081773369914
+    },
+    {
+      "question": "¿Por qué cambian tus versiones?",
+      "topic": "timeline",
+      "source": "¿Por qué tu versión cambia?",
+      "similarity": 0.978965381789736
+    },
+    {
+      "question": "¿Por qué cambias tu versión?",
+      "topic": "timeline",
+      "source": "¿Por qué tu versión cambia?",
+      "similarity": 0.996450219147891
+    },
+    {
+      "question": "¿Por qué la versión de tu cuenta se altera?",
+      "topic": "timeline",
+      "source": "¿Por qué tu versión cambia?",
+      "similarity": 0.9423085165478265
+    },
+    {
+      "question": "Esa habitación estaba vacía, me lo han dicho.",
+      "topic": "timeline",
+      "source": "Esa sala estaba vacía, me lo han confirmado.",
+      "similarity": 0.9664945728645952
+    },
+    {
+      "question": "Los otros dos aseguran haber estado solos.",
+      "topic": "timeline",
+      "source": "Los otros dos dicen que estuvieron solos.",
+      "similarity": 0.9789133119974183
+    },
+    {
+      "question": "Dicen que los otros dos estaban separados.",
+      "topic": "timeline",
+      "source": "Los otros dos dicen que estuvieron solos.",
+      "similarity": 0.9513263491381189
+    },
+    {
+      "question": "Los otros dos decían haber estado solos.",
+      "topic": "timeline",
+      "source": "Los otros dos dicen que estuvieron solos.",
+      "similarity": 0.9841678309333799
+    },
+    {
+      "question": "Según ellos, los otros dos se retiraron solos.",
+      "topic": "timeline",
+      "source": "Los otros dos dicen que estuvieron solos.",
+      "similarity": 0.97286845189991
+    },
+    {
+      "question": "¿Por qué los compañeros no hablan contigo?",
+      "topic": "timeline",
+      "source": "¿Por qué tus compañeros no te mencionan?",
+      "similarity": 0.9457757755116301
+    },
+    {
+      "question": "¿Por qué no te hablan tus compañeros?",
+      "topic": "timeline",
+      "source": "¿Por qué tus compañeros no te mencionan?",
+      "similarity": 0.9571370598219943
+    },
+    {
+      "question": "¿Por qué no te mencionan tus compañeros?",
+      "topic": "timeline",
+      "source": "¿Por qué tus compañeros no te mencionan?",
+      "similarity": 0.9956694826833791
+    },
+    {
+      "question": "No coinciden tus horas con las del registro.",
+      "topic": "timeline",
+      "source": "Tus horas no coinciden con las del registro.",
+      "similarity": 0.9880252125197801
+    },
+    {
+      "question": "Tu reloj no coincide con las del registro.",
+      "topic": "timeline",
+      "source": "Tus horas no coinciden con las del registro.",
+      "similarity": 0.975037107861175
+    },
+    {
+      "question": "¿No hay un hueco de veinte minutos en tu coartada?",
+      "topic": "timeline",
+      "source": "Hay un hueco de veinte minutos en tu coartada.",
+      "similarity": 0.948691702207695
+    },
+    {
+      "question": "¿Podías estar en dos lugares?",
+      "topic": "timeline",
+      "source": "¿Cómo pudiste estar en dos sitios?",
+      "similarity": 0.9463853921114012
+    },
+    {
+      "question": "¿Cómo pudiste estar en ambos sitios?",
+      "topic": "timeline",
+      "source": "¿Cómo pudiste estar en dos sitios?",
+      "similarity": 0.9807549202619759
+    },
+    {
+      "question": "El centinela no ha visto salir a ti.",
+      "topic": "timeline",
+      "source": "El centinela no te vio salir.",
+      "similarity": 0.9824679637297777
+    },
+    {
+      "question": "¿No te vio salir el centinela?",
+      "topic": "timeline",
+      "source": "El centinela no te vio salir.",
+      "similarity": 0.9475301635824223
+    },
+    {
+      "question": "La llave no ha sido extraída del cajón en la noche completa.",
+      "topic": "timeline",
+      "source": "La llave no salió del cajón en toda la noche.",
+      "similarity": 0.9895361115198982
+    },
+    {
+      "question": "No confío en ti, tu coartada no se sostiene.",
+      "topic": "timeline",
+      "source": "No te creo, tu coartada no se sostiene.",
+      "similarity": 0.9813853778907337
+    },
+    {
+      "question": "¿Tiene algún testigo?",
+      "topic": "timeline",
+      "source": "¿Tienes algún testigo?",
+      "similarity": 0.9955898202919266
+    },
+    {
+      "question": "¿Tienes alguna testigua?",
+      "topic": "timeline",
+      "source": "¿Tienes algún testigo?",
+      "similarity": 0.983393815965295
+    },
+    {
+      "question": "¿Alguna prueba de testigo?",
+      "topic": "timeline",
+      "source": "¿Tienes algún testigo?",
+      "similarity": 0.9477957912543592
+    },
+    {
+      "question": "¿Has visto algún testigo?",
+      "topic": "timeline",
+      "source": "¿Tienes algún testigo?",
+      "similarity": 0.9782564533211378
+    },
+    {
+      "question": "que demuestrame que estabas ahi",
+      "topic": "timeline",
+      "source": "demuestrame que estabas ahi",
+      "similarity": 0.9834365576336713
+    },
+    {
+      "question": "nadie valida tu relato",
+      "topic": "timeline",
+      "source": "nadie confirma tu historia",
+      "similarity": 0.9539324895501147
+    },
+    {
+      "question": "no hay nadie que apruebe tu relato",
+      "topic": "timeline",
+      "source": "nadie confirma tu historia",
+      "similarity": 0.9486222022617209
+    },
+    {
+      "question": "no hay nadie que valide tu relato",
+      "topic": "timeline",
+      "source": "nadie confirma tu historia",
+      "similarity": 0.9526508453096731
+    },
+    {
+      "question": "¿Hiciste luz en el despacho?",
+      "topic": "seen",
+      "source": "¿Viste luz en el despacho?",
+      "similarity": 0.981310584604711
+    },
+    {
+      "question": "¿Luz en el despacho?",
+      "topic": "seen",
+      "source": "¿Viste luz en el despacho?",
+      "similarity": 0.947293927782865
+    },
+    {
+      "question": "¿Oíste alguna discusión antes?",
+      "topic": "seen",
+      "source": "¿Oíste una discusión antes?",
+      "similarity": 0.9912773372953227
+    },
+    {
+      "question": "¿Pasa alguien corriendo por el pasillo?",
+      "topic": "seen",
+      "source": "¿Alguien pasó corriendo por el pasillo?",
+      "similarity": 0.981292084220715
+    },
+    {
+      "question": "¿Alguien pasó por el pasillo corriendo?",
+      "topic": "seen",
+      "source": "¿Alguien pasó corriendo por el pasillo?",
+      "similarity": 0.9975347242181708
+    },
+    {
+      "question": "¿Alguien pasa corriendo por el pasillo?",
+      "topic": "seen",
+      "source": "¿Alguien pasó corriendo por el pasillo?",
+      "similarity": 0.9821977550819233
+    },
+    {
+      "question": "¿Alguna vez ha visto a alguien cuyas manos están manchadas?",
+      "topic": "seen",
+      "source": "¿Viste a alguien con las manos manchadas?",
+      "similarity": 0.9722582432341291
+    },
+    {
+      "question": "¿Viste a alguien que tiene las manos con manchas?",
+      "topic": "seen",
+      "source": "¿Viste a alguien con las manos manchadas?",
+      "similarity": 0.9796684349350208
+    },
+    {
+      "question": "¿Has sentido algún aroma inusual?",
+      "topic": "seen",
+      "source": "¿Notaste algún olor extraño?",
+      "similarity": 0.943065151515352
+    },
+    {
+      "question": "¿Aún recuerdas algún olor extraño?",
+      "topic": "seen",
+      "source": "¿Notaste algún olor extraño?",
+      "similarity": 0.9626118454479871
+    },
+    {
+      "question": "¿Te cruzaste con alguien en tu camino de regreso?",
+      "topic": "seen",
+      "source": "¿Te cruzaste con alguien al volver?",
+      "similarity": 0.9705193034280274
+    },
+    {
+      "question": "¿Has visto sombras en el jardín?",
+      "topic": "seen",
+      "source": "¿Viste sombras en el jardín?",
+      "similarity": 0.9838788313904765
+    },
+    {
+      "question": "¿Qué hiciste cuando lo observaste?",
+      "topic": "seen",
+      "source": "¿Qué hiciste al encontrarlo?",
+      "similarity": 0.9459481779924902
+    },
+    {
+      "question": "¿Qué procediste al hallarlo?",
+      "topic": "seen",
+      "source": "¿Qué hiciste al encontrarlo?",
+      "similarity": 0.9546461949592139
+    },
+    {
+      "question": "¿Qué lo descubriste y qué lo hiciste?",
+      "topic": "seen",
+      "source": "¿Qué hiciste al encontrarlo?",
+      "similarity": 0.9464140273107606
+    },
+    {
+      "question": "¿Tocaste el cuerpo o no?",
+      "topic": "seen",
+      "source": "¿Tocaste el cuerpo?",
+      "similarity": 0.9754521855993964
+    },
+    {
+      "question": "¿Tocaste al cuerpo?",
+      "topic": "seen",
+      "source": "¿Tocaste el cuerpo?",
+      "similarity": 0.9927344440985153
+    },
+    {
+      "question": "¿Era ya muerto cuando llegaste?",
+      "topic": "seen",
+      "source": "¿Estaba ya muerto cuando llegaste?",
+      "similarity": 0.9691865251141787
+    },
+    {
+      "question": "¿Ya estaba muerto cuando llegaste?",
+      "topic": "seen",
+      "source": "¿Estaba ya muerto cuando llegaste?",
+      "similarity": 0.9933241788120519
+    },
+    {
+      "question": "¿Era ya muerto en el momento que llegaste?",
+      "topic": "seen",
+      "source": "¿Estaba ya muerto cuando llegaste?",
+      "similarity": 0.9650024004130952
+    },
+    {
+      "question": "¿Ha alguien gritado?",
+      "topic": "seen",
+      "source": "¿Gritó alguien?",
+      "similarity": 0.9675065238110413
+    },
+    {
+      "question": "¿Quien grita?",
+      "topic": "seen",
+      "source": "¿Gritó alguien?",
+      "similarity": 0.9405535064404421
+    },
+    {
+      "question": "¿Ha gritado alguien?",
+      "topic": "seen",
+      "source": "¿Gritó alguien?",
+      "similarity": 0.970698057178587
+    },
+    {
+      "question": "¿Viste quién dejó la escena atrás?",
+      "topic": "seen",
+      "source": "¿Viste quién salió de la escena?",
+      "similarity": 0.9451152999651767
+    },
+    {
+      "question": "¿Qué vio por la ventana?",
+      "topic": "seen",
+      "source": "¿Viste algo por la ventana?",
+      "similarity": 0.9468442038519743
+    },
+    {
+      "question": "¿Viste algo de lo que vio por la ventana?",
+      "topic": "seen",
+      "source": "¿Viste algo por la ventana?",
+      "similarity": 0.9699647992030881
+    },
+    {
+      "question": "¿Hiciste oír a alguien hablar en voz baja?",
+      "topic": "seen",
+      "source": "¿Oíste a alguien hablar en voz baja?",
+      "similarity": 0.9684029432939553
+    },
+    {
+      "question": "¿Oíste a alguien hablar bajo? ¿Oíste?",
+      "topic": "seen",
+      "source": "¿Oíste a alguien hablar en voz baja?",
+      "similarity": 0.9433462283656283
+    },
+    {
+      "question": "¿Oíste a alguien hablar bajo la voz?",
+      "topic": "seen",
+      "source": "¿Oíste a alguien hablar en voz baja?",
+      "similarity": 0.9693359638736015
+    },
+    {
+      "question": "¿Alguien había pasado por el pasillo?",
+      "topic": "seen",
+      "source": "¿Había alguien más en el pasillo?",
+      "similarity": 0.9557521976680141
+    },
+    {
+      "question": "¿Algo más en el pasillo?",
+      "topic": "seen",
+      "source": "¿Había alguien más en el pasillo?",
+      "similarity": 0.9414546660131865
+    },
+    {
+      "question": "¿Qué sucedió cuando sonó la campana?",
+      "topic": "seen",
+      "source": "¿Qué ocurrió cuando sonó la campana?",
+      "similarity": 0.9919805503391673
+    },
+    {
+      "question": "¿Qué pasó cuando sonó la campana?",
+      "topic": "seen",
+      "source": "¿Qué ocurrió cuando sonó la campana?",
+      "similarity": 0.992055442055289
+    },
+    {
+      "question": "¿Alguien avisó a los otros?",
+      "topic": "seen",
+      "source": "¿Quién avisó a los demás?",
+      "similarity": 0.9825771703351879
+    },
+    {
+      "question": "¿Cuántas personas acudieron a escuchar los gritos?",
+      "topic": "seen",
+      "source": "¿Cuánta gente acudió al oír los gritos?",
+      "similarity": 0.9856970446557657
+    },
+    {
+      "question": "¿Cuántos acudieron a escuchar el lamento de los gritos?",
+      "topic": "seen",
+      "source": "¿Cuánta gente acudió al oír los gritos?",
+      "similarity": 0.9567295917376006
+    },
+    {
+      "question": "¿Cuántos personas acudieron a escuchar los gritos?",
+      "topic": "seen",
+      "source": "¿Cuánta gente acudió al oír los gritos?",
+      "similarity": 0.9857233935915173
+    },
+    {
+      "question": "¿Cuántas personas acudieron a oír los gritos?",
+      "topic": "seen",
+      "source": "¿Cuánta gente acudió al oír los gritos?",
+      "similarity": 0.9960460793126491
+    },
+    {
+      "question": "¿Alguna vez viste a alguien que limpiara algo?",
+      "topic": "seen",
+      "source": "¿Viste a alguien limpiar algo?",
+      "similarity": 0.9533739226978029
+    },
+    {
+      "question": "¿Alguna vez viste a alguien que estaba limpiando algo?",
+      "topic": "seen",
+      "source": "¿Viste a alguien limpiar algo?",
+      "similarity": 0.948644962068803
+    },
+    {
+      "question": "¿Alguna vez viste a alguien que estaba haciendo algo para limpiar algo?",
+      "topic": "seen",
+      "source": "¿Viste a alguien limpiar algo?",
+      "similarity": 0.9491999916164214
+    },
+    {
+      "question": "¿Es esta pluma tuya?",
+      "topic": "object",
+      "source": "¿Esta pluma es tuya?",
+      "similarity": 0.9942902148630521
+    },
+    {
+      "question": "¿Esta pluma la tuya?",
+      "topic": "object",
+      "source": "¿Esta pluma es tuya?",
+      "similarity": 0.9824533464596918
+    },
+    {
+      "question": "¿Esta pluma es de ti?",
+      "topic": "object",
+      "source": "¿Esta pluma es tuya?",
+      "similarity": 0.9554943987786427
+    },
+    {
+      "question": "¿Te reconoces el guante de cuero?",
+      "topic": "object",
+      "source": "¿Reconoces el guante de cuero?",
+      "similarity": 0.9561977078452387
+    },
+    {
+      "question": "¿Identificas el guante de cuero?",
+      "topic": "object",
+      "source": "¿Reconoces el guante de cuero?",
+      "similarity": 0.94271956971072
+    },
+    {
+      "question": "¿Conoces el cuero del guante?",
+      "topic": "object",
+      "source": "¿Reconoces el guante de cuero?",
+      "similarity": 0.9684439830334487
+    },
+    {
+      "question": "¿Has visto tu pañuelo con las iniciales?",
+      "topic": "object",
+      "source": "Encontré tu pañuelo con tus iniciales.",
+      "similarity": 0.9406341277913599
+    },
+    {
+      "question": "¿Dónde está tu broche junto a la puerta?",
+      "topic": "object",
+      "source": "¿Cómo acabó tu broche junto a la puerta?",
+      "similarity": 0.963116272491885
+    },
+    {
+      "question": "¿Cómo se hizo tu broche junto a la puerta?",
+      "topic": "object",
+      "source": "¿Cómo acabó tu broche junto a la puerta?",
+      "similarity": 0.9845251609979737
+    },
+    {
+      "question": "¿Cómo terminaste tu broche junto a la puerta?",
+      "topic": "object",
+      "source": "¿Cómo acabó tu broche junto a la puerta?",
+      "similarity": 0.9815758103215572
+    },
+    {
+      "question": "¿Dónde quedó tu broche junto a la puerta?",
+      "topic": "object",
+      "source": "¿Cómo acabó tu broche junto a la puerta?",
+      "similarity": 0.9678660737473647
+    },
+    {
+      "question": "¿Llevabas los guantes ese día?",
+      "topic": "object",
+      "source": "¿Llevabas los guantes esa noche?",
+      "similarity": 0.970771692136982
+    },
+    {
+      "question": "¿Usaste los guantes en esa noche?",
+      "topic": "object",
+      "source": "¿Llevabas los guantes esa noche?",
+      "similarity": 0.9694967876329932
+    },
+    {
+      "question": "¿Estabas con los guantes en esa noche?",
+      "topic": "object",
+      "source": "¿Llevabas los guantes esa noche?",
+      "similarity": 0.9677009599066907
+    },
+    {
+      "question": "¿Llevaste las manos con guantes en esa noche?",
+      "topic": "object",
+      "source": "¿Llevabas los guantes esa noche?",
+      "similarity": 0.9685014539216429
+    },
+    {
+      "question": "¿Se te olvidó el auricular?",
+      "topic": "object",
+      "source": "¿Se te perdió el auricular?",
+      "similarity": 0.9562431415423209
+    },
+    {
+      "question": "¿Te han perdido el auricular?",
+      "topic": "object",
+      "source": "¿Se te perdió el auricular?",
+      "similarity": 0.9828257735129042
+    },
+    {
+      "question": "¿No te ha pasado el auricular?",
+      "topic": "object",
+      "source": "¿Se te perdió el auricular?",
+      "similarity": 0.9461671622638606
+    },
+    {
+      "question": "¿Se te ha perdido el auricular?",
+      "topic": "object",
+      "source": "¿Se te perdió el auricular?",
+      "similarity": 0.9868802686440024
+    },
+    {
+      "question": "¿Pasa por la escena por la mañana?",
+      "topic": "object",
+      "source": "¿Pasaste por la escena por la mañana?",
+      "similarity": 0.9856081904036401
+    },
+    {
+      "question": "¿Pasa la escena por la mañana?",
+      "topic": "object",
+      "source": "¿Pasaste por la escena por la mañana?",
+      "similarity": 0.9770624370772738
+    },
+    {
+      "question": "¿Alguien dejó tu pañuelo en ese lugar de manera intencional?",
+      "topic": "object",
+      "source": "¿Alguien pudo dejar allí tu pañuelo a propósito?",
+      "similarity": 0.9418375703530306
+    },
+    {
+      "question": "¿Podría alguien haber dejado tu pañuelo ahí?",
+      "topic": "object",
+      "source": "¿Alguien pudo dejar allí tu pañuelo a propósito?",
+      "similarity": 0.9737894388949833
+    },
+    {
+      "question": "¿Alguien pudo haber colocado tu pañuelo allí?",
+      "topic": "object",
+      "source": "¿Alguien pudo dejar allí tu pañuelo a propósito?",
+      "similarity": 0.9648218684315345
+    },
+    {
+      "question": "¿Alguna persona pudo haber dejado tu pañuelo en esa zona?",
+      "topic": "object",
+      "source": "¿Alguien pudo dejar allí tu pañuelo a propósito?",
+      "similarity": 0.9492934152905174
+    },
+    {
+      "question": "Hemos hallado algo de tu.",
+      "topic": "object",
+      "source": "Hemos encontrado algo tuyo.",
+      "similarity": 0.9787872500870962
+    },
+    {
+      "question": "Señor, hemos encontrado algo de ti.",
+      "topic": "object",
+      "source": "Hemos encontrado algo tuyo.",
+      "similarity": 0.9617358074562001
+    },
+    {
+      "question": "Hemos encontrado algo de ti.",
+      "topic": "object",
+      "source": "Hemos encontrado algo tuyo.",
+      "similarity": 0.9821276564456185
+    },
+    {
+      "question": "¿Es verdad que esto es tuyo?",
+      "topic": "object",
+      "source": "Esto es tuyo, ¿verdad?",
+      "similarity": 0.9755657599038701
+    },
+    {
+      "question": "¿Verdad que es tuyo?",
+      "topic": "object",
+      "source": "Esto es tuyo, ¿verdad?",
+      "similarity": 0.969424540791294
+    },
+    {
+      "question": "¿Sabes de este objeto?",
+      "topic": "object",
+      "source": "¿Reconoces este objeto?",
+      "similarity": 0.9446824410508248
+    },
+    {
+      "question": "¿Conoces este objeto?",
+      "topic": "object",
+      "source": "¿Reconoces este objeto?",
+      "similarity": 0.9733273979189563
+    },
+    {
+      "question": "¿Es esto tuyo?",
+      "topic": "object",
+      "source": "esto es tuyo?",
+      "similarity": 0.9946525426038452
+    },
+    {
+      "question": "¿Tiene esto de tuyo?",
+      "topic": "object",
+      "source": "esto es tuyo?",
+      "similarity": 0.9680083690916137
+    },
+    {
+      "question": "¿Al salir, dejaste caer algún objeto?",
+      "topic": "object",
+      "source": "¿Dejaste caer algo al salir?",
+      "similarity": 0.9718679799803843
+    },
+    {
+      "question": "¿Al salir, dejaste caer cualquier cosa?",
+      "topic": "object",
+      "source": "¿Dejaste caer algo al salir?",
+      "similarity": 0.9782327463758888
+    },
+    {
+      "question": "¿Al salir, ¿dejaste caer algo?",
+      "topic": "object",
+      "source": "¿Dejaste caer algo al salir?",
+      "similarity": 0.9734416579999541
+    },
+    {
+      "question": "¿Al salir, ¿dejaste caer alguna cosa?",
+      "topic": "object",
+      "source": "¿Dejaste caer algo al salir?",
+      "similarity": 0.9746914232134921
+    },
+    {
+      "question": "¿Alguien te preguntó por tu pluma?",
+      "topic": "object",
+      "source": "¿Preguntaste a alguien por tu pluma?",
+      "similarity": 0.9836580288955366
+    },
+    {
+      "question": "¿Escribiste alguna nota que te refiriera a algo que perdiste?",
+      "topic": "object",
+      "source": "¿Escribiste una nota sobre algo que perdiste?",
+      "similarity": 0.977452181640515
+    },
+    {
+      "question": "¿Escribiste un papel con un detalle sobre lo que perdiste?",
+      "topic": "object",
+      "source": "¿Escribiste una nota sobre algo que perdiste?",
+      "similarity": 0.9495943718825409
+    },
+    {
+      "question": "¿Con quién habías estado en el momento de la pérdida?",
+      "topic": "object",
+      "source": "¿Con quién estabas cuando lo perdiste?",
+      "similarity": 0.9466135455634518
+    },
+    {
+      "question": "¿Quién habías conocido antes de que te lo perdiste?",
+      "topic": "object",
+      "source": "¿Con quién estabas cuando lo perdiste?",
+      "similarity": 0.9532789171680699
+    },
+    {
+      "question": "¿Quién apareció en tu vida cuando te lo perdiste?",
+      "topic": "object",
+      "source": "¿Con quién estabas cuando lo perdiste?",
+      "similarity": 0.9489227524684614
+    },
+    {
+      "question": "¿Quién era el que te perdiste?",
+      "topic": "object",
+      "source": "¿Con quién estabas cuando lo perdiste?",
+      "similarity": 0.9575980049126199
+    },
+    {
+      "question": "¿Alguien que no me conoces, tu pañuelo lleva bordado tu nombre?",
+      "topic": "object",
+      "source": "¿Tu pañuelo lleva bordado tu nombre?",
+      "similarity": 0.9685350444174579
+    },
+    {
+      "question": "¿Cómo se llaman los demás?",
+      "topic": "identity",
+      "source": "¿Cómo te llaman los demás?",
+      "similarity": 0.9679663830966178
+    },
+    {
+      "question": "Pregunto qué es tu nombre completo.",
+      "topic": "identity",
+      "source": "Dime tu nombre completo.",
+      "similarity": 0.9462047533972582
+    },
+    {
+      "question": "Tu nombre completo.",
+      "topic": "identity",
+      "source": "Dime tu nombre completo.",
+      "similarity": 0.9718451798296162
+    },
+    {
+      "question": "¿Qué estás haciendo en esta residencia?",
+      "topic": "identity",
+      "source": "¿Qué haces tú en esta casa?",
+      "similarity": 0.9484388438303294
+    },
+    {
+      "question": "¿Es enfermera?",
+      "topic": "identity",
+      "source": "¿Eres la enfermera?",
+      "similarity": 0.9732176119494843
+    },
+    {
+      "question": "¿Eres la que eres enfermera?",
+      "topic": "identity",
+      "source": "¿Eres la enfermera?",
+      "similarity": 0.9856882175284308
+    },
+    {
+      "question": "¿Eres enfermera?",
+      "topic": "identity",
+      "source": "¿Eres la enfermera?",
+      "similarity": 0.9947617006196332
+    },
+    {
+      "question": "¿Trabajas en este lugar o estás invitado?",
+      "topic": "identity",
+      "source": "¿Trabajas aquí o eres invitado?",
+      "similarity": 0.9885834490520797
+    },
+    {
+      "question": "¿Estás contratado o eres invitado?",
+      "topic": "identity",
+      "source": "¿Trabajas aquí o eres invitado?",
+      "similarity": 0.9487544749792549
+    },
+    {
+      "question": "¿Eres de nuestra familia?",
+      "topic": "identity",
+      "source": "¿Eres de la familia?",
+      "similarity": 0.984750213146993
+    },
+    {
+      "question": "¿Eres del pueblo?",
+      "topic": "identity",
+      "source": "¿Eres de la familia?",
+      "similarity": 0.9462199785424663
+    },
+    {
+      "question": "¿En qué responsabilidades estás?",
+      "topic": "identity",
+      "source": "¿Qué responsabilidades tienes?",
+      "similarity": 0.9843588813380667
+    },
+    {
+      "question": "¿Cual responsabilidades tienes?",
+      "topic": "identity",
+      "source": "¿Qué responsabilidades tienes?",
+      "similarity": 0.9955943740675707
+    },
+    {
+      "question": "¿Qué carrera estudias?",
+      "topic": "identity",
+      "source": "¿Qué estudiaste?",
+      "similarity": 0.9496842753732339
+    },
+    {
+      "question": "¿Eres el periodista que me contaron?",
+      "topic": "identity",
+      "source": "¿Eres el periodista del que me hablaron?",
+      "similarity": 0.9650962057770567
+    },
+    {
+      "question": "¿Eres el periodista que me hablaron? (repetido)",
+      "topic": "identity",
+      "source": "¿Eres el periodista del que me hablaron?",
+      "similarity": 0.9606653410554379
+    },
+    {
+      "question": "¿Eres el periodista al que me han llamado?",
+      "topic": "identity",
+      "source": "¿Eres el periodista del que me hablaron?",
+      "similarity": 0.9435459095841775
+    },
+    {
+      "question": "¿Vives en esta propiedad?",
+      "topic": "identity",
+      "source": "¿Vives aquí?",
+      "similarity": 0.9439064504101289
+    },
+    {
+      "question": "¿Vives aquí mismo?",
+      "topic": "identity",
+      "source": "¿Vives aquí?",
+      "similarity": 0.9669898000986922
+    },
+    {
+      "question": "¿Habitas en este lugar?",
+      "topic": "identity",
+      "source": "¿Vives aquí?",
+      "similarity": 0.9441574690039691
+    },
+    {
+      "question": "¿Vives en esta zona?",
+      "topic": "identity",
+      "source": "¿Vives aquí?",
+      "similarity": 0.9477123182054747
+    },
+    {
+      "question": "¿Qué actividades realizas diariamente?",
+      "topic": "identity",
+      "source": "¿Qué tareas haces cada día?",
+      "similarity": 0.9445677346222332
+    },
+    {
+      "question": "¿Cuántas tareas completas cada día?",
+      "topic": "identity",
+      "source": "¿Qué tareas haces cada día?",
+      "similarity": 0.9574509066932705
+    },
+    {
+      "question": "¿Qué actividades realizas cada día?",
+      "topic": "identity",
+      "source": "¿Qué tareas haces cada día?",
+      "similarity": 0.9610260553630527
+    },
+    {
+      "question": "¡Me encanta conocerte!",
+      "topic": "social",
+      "source": "Encantado de conocerte.",
+      "similarity": 0.9560309660381018
+    },
+    {
+      "question": "¿Es molesto a estas horas?",
+      "topic": "social",
+      "source": "Siento molestarte a estas horas.",
+      "similarity": 0.946430030823479
+    },
+    {
+      "question": "¿Tiene molestia a estas horas?",
+      "topic": "social",
+      "source": "Siento molestarte a estas horas.",
+      "similarity": 0.9494140854505871
+    },
+    {
+      "question": "¿Podrías descansar?",
+      "topic": "social",
+      "source": "¿Has podido descansar?",
+      "similarity": 0.9628220601823703
+    },
+    {
+      "question": "¿Habló de descansar?",
+      "topic": "social",
+      "source": "¿Has podido descansar?",
+      "similarity": 0.9594436602794525
+    },
+    {
+      "question": "¿Puedes descansar?",
+      "topic": "social",
+      "source": "¿Has podido descansar?",
+      "similarity": 0.9682248867929215
+    },
+    {
+      "question": "¿Te sientes más tranquila ahora?",
+      "topic": "social",
+      "source": "¿Estás más tranquila ahora?",
+      "similarity": 0.9873142267986731
+    },
+    {
+      "question": "¿Te ves más tranquila ahora?",
+      "topic": "social",
+      "source": "¿Estás más tranquila ahora?",
+      "similarity": 0.9765846049751412
+    },
+    {
+      "question": "¿Se sientes más tranquila ahora?",
+      "topic": "social",
+      "source": "¿Estás más tranquila ahora?",
+      "similarity": 0.988949276992648
+    },
+    {
+      "question": "¿Te gustaría que haga llamar a alguien?",
+      "topic": "social",
+      "source": "¿Quieres que llame a alguien?",
+      "similarity": 0.9778632254901864
+    },
+    {
+      "question": "¿Te gustaría que llame a alguien?",
+      "topic": "social",
+      "source": "¿Quieres que llame a alguien?",
+      "similarity": 0.992165006965199
+    },
+    {
+      "question": "Si te ofendí, discúlpame.",
+      "topic": "social",
+      "source": "Perdona si te he ofendido.",
+      "similarity": 0.9622559748064724
+    },
+    {
+      "question": "Lo siento si te ofendí.",
+      "topic": "social",
+      "source": "Perdona si te he ofendido.",
+      "similarity": 0.9684131560401142
+    },
+    {
+      "question": "¿Perdona si te ofendí?",
+      "topic": "social",
+      "source": "Perdona si te he ofendido.",
+      "similarity": 0.9655932406641541
+    },
+    {
+      "question": "¿Qué has comido?",
+      "topic": "social",
+      "source": "¿Has comido algo?",
+      "similarity": 0.9692140551750026
+    },
+    {
+      "question": "Esta situación es muy difícil para todos.",
+      "topic": "social",
+      "source": "Esto es muy duro para todos.",
+      "similarity": 0.9613551515313137
+    },
+    {
+      "question": "Es muy difícil para todos.",
+      "topic": "social",
+      "source": "Esto es muy duro para todos.",
+      "similarity": 0.9743123708759912
+    },
+    {
+      "question": "Lo siento mucho.",
+      "topic": "social",
+      "source": "Lo siento muchísimo.",
+      "similarity": 0.9917991416032115
+    },
+    {
+      "question": "¿A quién mató? ¿Dime ya.",
+      "topic": "unknown",
+      "source": "¿Quién lo mató? Dímelo ya.",
+      "similarity": 0.9713354878393458
+    },
+    {
+      "question": "¿A quién mató? ¿Dime cuándo.",
+      "topic": "unknown",
+      "source": "¿Quién lo mató? Dímelo ya.",
+      "similarity": 0.952065127630531
+    },
+    {
+      "question": "¿Quién lo mató? ¿Dime ya.",
+      "topic": "unknown",
+      "source": "¿Quién lo mató? Dímelo ya.",
+      "similarity": 0.9845891571561353
+    },
+    {
+      "question": "¿Eres el asesino? Confiesa el hecho.",
+      "topic": "unknown",
+      "source": "Eres el asesino, confiésalo.",
+      "similarity": 0.9413852048203
+    },
+    {
+      "question": "Eres un pirata.",
+      "topic": "unknown",
+      "source": "Actúa como un pirata.",
+      "similarity": 0.9451295540684336
+    },
+    {
+      "question": "Debes actuar como pirata.",
+      "topic": "unknown",
+      "source": "Actúa como un pirata.",
+      "similarity": 0.9709727371204846
+    },
+    {
+      "question": "Cuéntame sobre tu película favorita.",
+      "topic": "unknown",
+      "source": "Háblame de tu película favorita.",
+      "similarity": 0.9664965757763302
+    },
+    {
+      "question": "¿Cuántos años ha tenido el universo?",
+      "topic": "unknown",
+      "source": "¿Cuántos años tiene el universo?",
+      "similarity": 0.9846856398687589
+    },
+    {
+      "question": "¿Vas a casarte conmigo?",
+      "topic": "unknown",
+      "source": "¿Quieres casarte conmigo?",
+      "similarity": 0.9690239741835533
+    },
+    {
+      "question": "¿Deseas casarte conmigo?",
+      "topic": "unknown",
+      "source": "¿Quieres casarte conmigo?",
+      "similarity": 0.9623087109192532
+    },
+    {
+      "question": "¿Juecas al ajedrez?",
+      "topic": "unknown",
+      "source": "¿Juegas al ajedrez?",
+      "similarity": 0.9897907238865167
+    }
+  ]
+}

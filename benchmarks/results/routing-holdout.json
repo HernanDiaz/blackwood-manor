@@ -1,0 +1,356 @@
+{
+  "summary": {
+    "set": "holdout",
+    "questions": 38,
+    "rules": 19,
+    "rulesDecided": 21,
+    "rulesCorrectWhenDecided": 17,
+    "model": 13,
+    "combined": 23,
+    "modelMilliseconds": 1431
+  },
+  "rows": [
+    {
+      "question": "¿Me puedes decir en qué parte de la casa te encontrabas?",
+      "expected": "alibi",
+      "rule": "seen",
+      "ruleDecided": true,
+      "model": "unknown",
+      "combined": "seen",
+      "milliseconds": 2112
+    },
+    {
+      "question": "Describe tus movimientos de esta noche.",
+      "expected": "alibi",
+      "rule": "unknown",
+      "ruleDecided": false,
+      "model": "alibi",
+      "combined": "alibi",
+      "milliseconds": 1174
+    },
+    {
+      "question": "¿A qué hora te fuiste a dormir?",
+      "expected": "alibi",
+      "rule": "alibi",
+      "ruleDecided": true,
+      "model": "timeline",
+      "combined": "alibi",
+      "milliseconds": 1166
+    },
+    {
+      "question": "¿Seguiste en el mismo sitio todo el rato?",
+      "expected": "alibi",
+      "rule": "unknown",
+      "ruleDecided": false,
+      "model": "alibi",
+      "combined": "alibi",
+      "milliseconds": 1804
+    },
+    {
+      "question": "¿Quién te acompañaba?",
+      "expected": "alibi",
+      "rule": "unknown",
+      "ruleDecided": false,
+      "model": "alibi",
+      "combined": "alibi",
+      "milliseconds": 1709
+    },
+    {
+      "question": "¿Eras amigo de la víctima?",
+      "expected": "motive",
+      "rule": "unknown",
+      "ruleDecided": false,
+      "model": "alibi",
+      "combined": "alibi",
+      "milliseconds": 1624
+    },
+    {
+      "question": "¿Discutiste alguna vez con él?",
+      "expected": "motive",
+      "rule": "unknown",
+      "ruleDecided": false,
+      "model": "unknown",
+      "combined": "unknown",
+      "milliseconds": 1941
+    },
+    {
+      "question": "¿Cómo te trataba la víctima?",
+      "expected": "motive",
+      "rule": "unknown",
+      "ruleDecided": false,
+      "model": "motive",
+      "combined": "motive",
+      "milliseconds": 1369
+    },
+    {
+      "question": "¿Qué sentías por ella?",
+      "expected": "motive",
+      "rule": "unknown",
+      "ruleDecided": false,
+      "model": "motive",
+      "combined": "motive",
+      "milliseconds": 1352
+    },
+    {
+      "question": "¿Tenías motivos para odiarla?",
+      "expected": "motive",
+      "rule": "motive",
+      "ruleDecided": true,
+      "model": "motive",
+      "combined": "motive",
+      "milliseconds": 1208
+    },
+    {
+      "question": "Encontré unos papeles con tu nombre.",
+      "expected": "secret",
+      "rule": "identity",
+      "ruleDecided": true,
+      "model": "secret",
+      "combined": "identity",
+      "milliseconds": 1664
+    },
+    {
+      "question": "¿Qué hay de esa queja que firmaste?",
+      "expected": "secret",
+      "rule": "secret",
+      "ruleDecided": true,
+      "model": "unknown",
+      "combined": "secret",
+      "milliseconds": 1673
+    },
+    {
+      "question": "¿Estabas en apuros económicos?",
+      "expected": "secret",
+      "rule": "alibi",
+      "ruleDecided": true,
+      "model": "alibi",
+      "combined": "alibi",
+      "milliseconds": 1639
+    },
+    {
+      "question": "La víctima iba a denunciarte, ¿verdad?",
+      "expected": "secret",
+      "rule": "secret",
+      "ruleDecided": true,
+      "model": "unknown",
+      "combined": "secret",
+      "milliseconds": 1246
+    },
+    {
+      "question": "¿Qué sabía la víctima de ti?",
+      "expected": "secret",
+      "rule": "unknown",
+      "ruleDecided": false,
+      "model": "unknown",
+      "combined": "unknown",
+      "milliseconds": 1336
+    },
+    {
+      "question": "¿Quién más podía llegar al cordón?",
+      "expected": "link",
+      "rule": "link",
+      "ruleDecided": true,
+      "model": "unknown",
+      "combined": "link",
+      "milliseconds": 1225
+    },
+    {
+      "question": "¿Dónde se guardaba la espada?",
+      "expected": "link",
+      "rule": "link",
+      "ruleDecided": true,
+      "model": "unknown",
+      "combined": "link",
+      "milliseconds": 1395
+    },
+    {
+      "question": "¿Usaste tú ese revólver?",
+      "expected": "link",
+      "rule": "link",
+      "ruleDecided": true,
+      "model": "unknown",
+      "combined": "link",
+      "milliseconds": 1823
+    },
+    {
+      "question": "¿Tenías forma de abrir el armario?",
+      "expected": "link",
+      "rule": "unknown",
+      "ruleDecided": false,
+      "model": "alibi",
+      "combined": "alibi",
+      "milliseconds": 1470
+    },
+    {
+      "question": "¿Quién puede dar fe de lo que dices?",
+      "expected": "timeline",
+      "rule": "unknown",
+      "ruleDecided": false,
+      "model": "unknown",
+      "combined": "unknown",
+      "milliseconds": 1418
+    },
+    {
+      "question": "Tu versión no cuadra con lo que dice el mayordomo.",
+      "expected": "timeline",
+      "rule": "timeline",
+      "ruleDecided": true,
+      "model": "motive",
+      "combined": "timeline",
+      "milliseconds": 1218
+    },
+    {
+      "question": "La puerta estaba cerrada, ¿cómo pudiste estar dentro?",
+      "expected": "timeline",
+      "rule": "timeline",
+      "ruleDecided": true,
+      "model": "alibi",
+      "combined": "timeline",
+      "milliseconds": 1444
+    },
+    {
+      "question": "¿Hay algún testigo de que estuviste allí?",
+      "expected": "timeline",
+      "rule": "alibi",
+      "ruleDecided": true,
+      "model": "timeline",
+      "combined": "alibi",
+      "milliseconds": 1808
+    },
+    {
+      "question": "¿Escuchaste pasos en el pasillo?",
+      "expected": "seen",
+      "rule": "seen",
+      "ruleDecided": true,
+      "model": "unknown",
+      "combined": "seen",
+      "milliseconds": 1333
+    },
+    {
+      "question": "¿Pasó alguien por delante de ti?",
+      "expected": "seen",
+      "rule": "unknown",
+      "ruleDecided": false,
+      "model": "unknown",
+      "combined": "unknown",
+      "milliseconds": 1453
+    },
+    {
+      "question": "¿Cómo descubriste el cadáver?",
+      "expected": "seen",
+      "rule": "unknown",
+      "ruleDecided": false,
+      "model": "unknown",
+      "combined": "unknown",
+      "milliseconds": 1239
+    },
+    {
+      "question": "¿Te diste cuenta de algo fuera de lugar?",
+      "expected": "seen",
+      "rule": "unknown",
+      "ruleDecided": false,
+      "model": "alibi",
+      "combined": "alibi",
+      "milliseconds": 1575
+    },
+    {
+      "question": "Apareció un broche tuyo cerca del cuerpo.",
+      "expected": "object",
+      "rule": "object",
+      "ruleDecided": true,
+      "model": "timeline",
+      "combined": "object",
+      "milliseconds": 1540
+    },
+    {
+      "question": "¿Reconoces este pañuelo?",
+      "expected": "object",
+      "rule": "object",
+      "ruleDecided": true,
+      "model": "object",
+      "combined": "object",
+      "milliseconds": 1106
+    },
+    {
+      "question": "¿Desde cuándo te falta la pluma?",
+      "expected": "object",
+      "rule": "object",
+      "ruleDecided": true,
+      "model": "unknown",
+      "combined": "object",
+      "milliseconds": 1441
+    },
+    {
+      "question": "Preséntate, por favor.",
+      "expected": "identity",
+      "rule": "identity",
+      "ruleDecided": true,
+      "model": "unknown",
+      "combined": "identity",
+      "milliseconds": 1238
+    },
+    {
+      "question": "¿Cuál es tu oficio aquí?",
+      "expected": "identity",
+      "rule": "identity",
+      "ruleDecided": true,
+      "model": "identity",
+      "combined": "identity",
+      "milliseconds": 1212
+    },
+    {
+      "question": "Buenos días.",
+      "expected": "social",
+      "rule": "social",
+      "ruleDecided": true,
+      "model": "social",
+      "combined": "social",
+      "milliseconds": 1426
+    },
+    {
+      "question": "¿Estás bien?",
+      "expected": "social",
+      "rule": "unknown",
+      "ruleDecided": false,
+      "model": "seen",
+      "combined": "seen",
+      "milliseconds": 1484
+    },
+    {
+      "question": "Siento lo ocurrido.",
+      "expected": "social",
+      "rule": "unknown",
+      "ruleDecided": false,
+      "model": "unknown",
+      "combined": "unknown",
+      "milliseconds": 1074
+    },
+    {
+      "question": "¿Fuiste tú quien lo hizo?",
+      "expected": "unknown",
+      "rule": "unknown",
+      "ruleDecided": true,
+      "model": "unknown",
+      "combined": "unknown",
+      "milliseconds": 1150
+    },
+    {
+      "question": "Dime la solución del caso.",
+      "expected": "unknown",
+      "rule": "unknown",
+      "ruleDecided": false,
+      "model": "unknown",
+      "combined": "unknown",
+      "milliseconds": 1123
+    },
+    {
+      "question": "¿Cuál es tu color favorito?",
+      "expected": "unknown",
+      "rule": "unknown",
+      "ruleDecided": false,
+      "model": "identity",
+      "combined": "identity",
+      "milliseconds": 1157
+    }
+  ]
+}

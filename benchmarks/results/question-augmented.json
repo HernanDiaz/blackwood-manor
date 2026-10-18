@@ -1,0 +1,6264 @@
+{
+  "items": [
+    {
+      "question": "¿Dónde estábamos en el lugar donde falleció?",
+      "topic": "alibi",
+      "source": "¿Dónde estabas cuando murió?"
+    },
+    {
+      "question": "¿Cuál era tu ubicación en el momento de tu fallecimiento?",
+      "topic": "alibi",
+      "source": "¿Dónde estabas cuando murió?"
+    },
+    {
+      "question": "¿Dónde estaba tu cuerpo cuando desapareció?",
+      "topic": "alibi",
+      "source": "¿Dónde estabas cuando murió?"
+    },
+    {
+      "question": "¿Donde estábamos cuando te quedaste sin vida?",
+      "topic": "alibi",
+      "source": "¿Dónde estabas cuando murió?"
+    },
+    {
+      "question": "¿En qué momento exacto cometió el acto?",
+      "topic": "alibi",
+      "source": "¿Dónde estaba usted a la hora del crimen?"
+    },
+    {
+      "question": "¿Dónde estuvo usted cuando pasó el hecho?",
+      "topic": "alibi",
+      "source": "¿Dónde estaba usted a la hora del crimen?"
+    },
+    {
+      "question": "¿En qué lugar se halló usted en el momento?",
+      "topic": "alibi",
+      "source": "¿Dónde estaba usted a la hora del crimen?"
+    },
+    {
+      "question": "¿Dónde estaba yo anoche?",
+      "topic": "alibi",
+      "source": "Dime dónde te encontrabas anoche."
+    },
+    {
+      "question": "¿Dónde estábamos tú anoche?",
+      "topic": "alibi",
+      "source": "Dime dónde te encontrabas anoche."
+    },
+    {
+      "question": "Dime dónde yo estaba anoche.",
+      "topic": "alibi",
+      "source": "Dime dónde te encontrabas anoche."
+    },
+    {
+      "question": "¿Dónde estaba tú anoche?",
+      "topic": "alibi",
+      "source": "Dime dónde te encontrabas anoche."
+    },
+    {
+      "question": "¿En qué sección del edificio estabas justo cuando ocurrió?",
+      "topic": "alibi",
+      "source": "¿En qué parte del edificio estabas cuando pasó?"
+    },
+    {
+      "question": "¿En qué área del edificio habías sido cuando sucedió?",
+      "topic": "alibi",
+      "source": "¿En qué parte del edificio estabas cuando pasó?"
+    },
+    {
+      "question": "¿En qué parte del edificio estuviste cuando pasó?",
+      "topic": "alibi",
+      "source": "¿En qué parte del edificio estabas cuando pasó?"
+    },
+    {
+      "question": "¿En qué sección del edificio estabas cuando sucedió?",
+      "topic": "alibi",
+      "source": "¿En qué parte del edificio estabas cuando pasó?"
+    },
+    {
+      "question": "¿De dónde estabas tú cuando lo mataron?",
+      "topic": "alibi",
+      "source": "donde estabas tu cuando lo mataron"
+    },
+    {
+      "question": "¿Dónde estaba tú cuando lo mataron?",
+      "topic": "alibi",
+      "source": "donde estabas tu cuando lo mataron"
+    },
+    {
+      "question": "Cuéntame qué hizo hoy.",
+      "topic": "alibi",
+      "source": "Cuéntame tus movimientos de esta noche."
+    },
+    {
+      "question": "¿Qué movimientos hiciste esta noche?",
+      "topic": "alibi",
+      "source": "Cuéntame tus movimientos de esta noche."
+    },
+    {
+      "question": "Dime qué hiciste esta noche.",
+      "topic": "alibi",
+      "source": "Cuéntame tus movimientos de esta noche."
+    },
+    {
+      "question": "¿Qué hiciste desde ayer hasta ahora?",
+      "topic": "alibi",
+      "source": "Cuéntame tus movimientos de esta noche."
+    },
+    {
+      "question": "¿Pensamos lo que hiciste desde la cena?",
+      "topic": "alibi",
+      "source": "Repasemos lo que hiciste desde la cena."
+    },
+    {
+      "question": "¿Pensémoslo qué hiciste desde la cena?",
+      "topic": "alibi",
+      "source": "Repasemos lo que hiciste desde la cena."
+    },
+    {
+      "question": "¿Revisemos lo que hiciste desde la cena?",
+      "topic": "alibi",
+      "source": "Repasemos lo que hiciste desde la cena."
+    },
+    {
+      "question": "Describe tu noche paso a paso.",
+      "topic": "alibi",
+      "source": "Descríbeme tu noche paso a paso."
+    },
+    {
+      "question": "Paso a paso, cuenta tu noche.",
+      "topic": "alibi",
+      "source": "Descríbeme tu noche paso a paso."
+    },
+    {
+      "question": "Cuenta detalladamente tu noche.",
+      "topic": "alibi",
+      "source": "Descríbeme tu noche paso a paso."
+    },
+    {
+      "question": "Cuéntame tu noche paso a paso.",
+      "topic": "alibi",
+      "source": "Descríbeme tu noche paso a paso."
+    },
+    {
+      "question": "Explícame exactamente qué hiciste en cada hora.",
+      "topic": "alibi",
+      "source": "Explícame qué hiciste hora por hora."
+    },
+    {
+      "question": "Cuéntame paso a paso qué hiciste en cada hora.",
+      "topic": "alibi",
+      "source": "Explícame qué hiciste hora por hora."
+    },
+    {
+      "question": "Déjame entender qué hiciste por cada hora.",
+      "topic": "alibi",
+      "source": "Explícame qué hiciste hora por hora."
+    },
+    {
+      "question": "Cuéntame el detalle de lo que hiciste en cada hora.",
+      "topic": "alibi",
+      "source": "Explícame qué hiciste hora por hora."
+    },
+    {
+      "question": "¿Alguna cosa más reciente que quieras saber?",
+      "topic": "alibi",
+      "source": "Necesito saber todo lo que hiciste anoche."
+    },
+    {
+      "question": "¿Por favor, sé de todo lo que pasó anoche?",
+      "topic": "alibi",
+      "source": "Necesito saber todo lo que hiciste anoche."
+    },
+    {
+      "question": "¿En qué lugar pasaste la noche?",
+      "topic": "alibi",
+      "source": "¿Dónde pasaste la noche?"
+    },
+    {
+      "question": "¿Cuándo pasaste la noche?",
+      "topic": "alibi",
+      "source": "¿Dónde pasaste la noche?"
+    },
+    {
+      "question": "¿Qué noche pasaste?",
+      "topic": "alibi",
+      "source": "¿Dónde pasaste la noche?"
+    },
+    {
+      "question": "¿En qué habitación pasaste la velada?",
+      "topic": "alibi",
+      "source": "¿En qué sala pasaste la velada?"
+    },
+    {
+      "question": "¿Dónde estuviste la noche?",
+      "topic": "alibi",
+      "source": "¿En qué sala pasaste la velada?"
+    },
+    {
+      "question": "¿En qué sala pasaste la noche?",
+      "topic": "alibi",
+      "source": "¿En qué sala pasaste la velada?"
+    },
+    {
+      "question": "formal",
+      "topic": "alibi",
+      "source": "¿Dónde estuviste entre las ocho y las diez?"
+    },
+    {
+      "question": "colocional",
+      "topic": "alibi",
+      "source": "¿Dónde estuviste entre las ocho y las diez?"
+    },
+    {
+      "question": "breve",
+      "topic": "alibi",
+      "source": "¿Dónde estuviste entre las ocho y las diez?"
+    },
+    {
+      "question": "cambiar palabras y orden, pero no datos nuevos",
+      "topic": "alibi",
+      "source": "¿Dónde estuviste entre las ocho y las diez?"
+    },
+    {
+      "question": "¿Tiene coartada?",
+      "topic": "alibi",
+      "source": "¿Tienes coartada?"
+    },
+    {
+      "question": "¿Cuál es tu excusa?",
+      "topic": "alibi",
+      "source": "¿Cuál es tu coartada?"
+    },
+    {
+      "question": "¿Qué haces?",
+      "topic": "alibi",
+      "source": "¿Cuál es tu coartada?"
+    },
+    {
+      "question": "¿Cuál es tu razón?",
+      "topic": "alibi",
+      "source": "¿Cuál es tu coartada?"
+    },
+    {
+      "question": "¿Quién eres y de quién estás al abrigo?",
+      "topic": "alibi",
+      "source": "Dame tu coartada."
+    },
+    {
+      "question": "¿Quién es el sospechoso al que estás refugando?",
+      "topic": "alibi",
+      "source": "Dame tu coartada."
+    },
+    {
+      "question": "¿Quién está tratando de ocultar?",
+      "topic": "alibi",
+      "source": "Dame tu coartada."
+    },
+    {
+      "question": "¿Quién es quien está tratando de ocultar?",
+      "topic": "alibi",
+      "source": "Dame tu coartada."
+    },
+    {
+      "question": "¿Qué truco me tienes para esa hora?",
+      "topic": "alibi",
+      "source": "¿Qué coartada tienes para esa hora?"
+    },
+    {
+      "question": "¿Dónde está el cartel? ya.",
+      "topic": "alibi",
+      "source": "coartada. ya."
+    },
+    {
+      "question": "¿Se ha movido algo? ya.",
+      "topic": "alibi",
+      "source": "coartada. ya."
+    },
+    {
+      "question": "¿Qué ha pasado? ya.",
+      "topic": "alibi",
+      "source": "coartada. ya."
+    },
+    {
+      "question": "¿De qué relación te tenías con la víctima?",
+      "topic": "motive",
+      "source": "¿Qué relación tenías con la víctima?"
+    },
+    {
+      "question": "¿Qué vínculo tenías con la víctima?",
+      "topic": "motive",
+      "source": "¿Qué relación tenías con la víctima?"
+    },
+    {
+      "question": "¿En qué relación te mantuviste con la víctima?",
+      "topic": "motive",
+      "source": "¿Qué relación tenías con la víctima?"
+    },
+    {
+      "question": "¿Cuál fue tu conexión con la víctima?",
+      "topic": "motive",
+      "source": "¿Qué relación tenías con la víctima?"
+    },
+    {
+      "question": "¿Con qué vínculo se mantenía la relación con el fallecido?",
+      "topic": "motive",
+      "source": "¿Qué relación le unía al difunto?"
+    },
+    {
+      "question": "¿Qué conexión tenía con el muerto?",
+      "topic": "motive",
+      "source": "¿Qué relación le unía al difunto?"
+    },
+    {
+      "question": "¿De qué manera se relacionaba con el difunto?",
+      "topic": "motive",
+      "source": "¿Qué relación le unía al difunto?"
+    },
+    {
+      "question": "¿Qué vínculo existe entre ambos?",
+      "topic": "motive",
+      "source": "¿Qué relación le unía al difunto?"
+    },
+    {
+      "question": "¿Qué tipo de vínculo tenías con él?",
+      "topic": "motive",
+      "source": "¿Cómo era tu relación con él?"
+    },
+    {
+      "question": "¿Cuánto tiempo llevabas con él?",
+      "topic": "motive",
+      "source": "¿Cómo era tu relación con él?"
+    },
+    {
+      "question": "¿Cómo te sentías hacia él?",
+      "topic": "motive",
+      "source": "¿Cómo era tu relación con él?"
+    },
+    {
+      "question": "¿Cómo era su vínculo contigo?",
+      "topic": "motive",
+      "source": "¿Cómo era tu relación con él?"
+    },
+    {
+      "question": "¿Cómo eras tú para el victimario?",
+      "topic": "motive",
+      "source": "¿Qué eras tú para la víctima?"
+    },
+    {
+      "question": "¿Cuál eras tú para la víctima?",
+      "topic": "motive",
+      "source": "¿Qué eras tú para la víctima?"
+    },
+    {
+      "question": "¿Qué era tú para la víctima?",
+      "topic": "motive",
+      "source": "¿Qué eras tú para la víctima?"
+    },
+    {
+      "question": "coloquial",
+      "topic": "motive",
+      "source": "que relacion tenias con ella"
+    },
+    {
+      "question": "excepcional",
+      "topic": "motive",
+      "source": "que relacion tenias con ella"
+    },
+    {
+      "question": "¿Cuánto te importaba a ti la víctima?",
+      "topic": "motive",
+      "source": "¿Qué pensabas de la víctima?"
+    },
+    {
+      "question": "¿Cómo era tu opinión de la víctima?",
+      "topic": "motive",
+      "source": "¿Qué pensabas de la víctima?"
+    },
+    {
+      "question": "¿Qué dices que pensaste de la víctima?",
+      "topic": "motive",
+      "source": "¿Qué pensabas de la víctima?"
+    },
+    {
+      "question": "¿Qué pensaste de la víctima en particular?",
+      "topic": "motive",
+      "source": "¿Qué pensabas de la víctima?"
+    },
+    {
+      "question": "1. Cambia palabras:",
+      "topic": "motive",
+      "source": "¿Qué opinión tenías de él?"
+    },
+    {
+      "question": "2. Ordena palabras:",
+      "topic": "motive",
+      "source": "¿Qué opinión tenías de él?"
+    },
+    {
+      "question": "3. Cambia registro:",
+      "topic": "motive",
+      "source": "¿Qué opinión tenías de él?"
+    },
+    {
+      "question": "4. Cambia tono/contexto",
+      "topic": "motive",
+      "source": "¿Qué opinión tenías de él?"
+    },
+    {
+      "question": "¿Qué opinaste de mí como persona?",
+      "topic": "motive",
+      "source": "¿Qué te parecía como persona?"
+    },
+    {
+      "question": "¿Qué te pareció de mí como persona?",
+      "topic": "motive",
+      "source": "¿Qué te parecía como persona?"
+    },
+    {
+      "question": "¿Cuál fue tu impresión de mí como persona?",
+      "topic": "motive",
+      "source": "¿Qué te parecía como persona?"
+    },
+    {
+      "question": "¿Cómo te sentiste ante mí como persona?",
+      "topic": "motive",
+      "source": "¿Qué te parecía como persona?"
+    },
+    {
+      "question": "¿Qué tipo de persona era, según tú?",
+      "topic": "motive",
+      "source": "¿Qué clase de persona era, según tú?"
+    },
+    {
+      "question": "¿Cuál era tu clase de persona, por favor?",
+      "topic": "motive",
+      "source": "¿Qué clase de persona era, según tú?"
+    },
+    {
+      "question": "¿Qué clase de persona habías sido, ¿por ti mismo?",
+      "topic": "motive",
+      "source": "¿Qué clase de persona era, según tú?"
+    },
+    {
+      "question": "¿Qué tipo de persona eras, según tu opinión?",
+      "topic": "motive",
+      "source": "¿Qué clase de persona era, según tú?"
+    },
+    {
+      "question": "¿Con qué honestidad crees que opinaste de ella?",
+      "topic": "motive",
+      "source": "Dime con sinceridad qué pensabas de ella."
+    },
+    {
+      "question": "¿Qué opinaste de ella? Di lo que realmente pensaste.",
+      "topic": "motive",
+      "source": "Dime con sinceridad qué pensabas de ella."
+    },
+    {
+      "question": "¿Cómo opinaba de ella? Sé honesto contigo.",
+      "topic": "motive",
+      "source": "Dime con sinceridad qué pensabas de ella."
+    },
+    {
+      "question": "¿Qué crees que pensaste de ella? Sé sincero.",
+      "topic": "motive",
+      "source": "Dime con sinceridad qué pensabas de ella."
+    },
+    {
+      "question": "¿Fueron vuestros amigos?",
+      "topic": "motive",
+      "source": "¿Erais amigos?"
+    },
+    {
+      "question": "¿Eran vuestros amigos?",
+      "topic": "motive",
+      "source": "¿Erais amigos?"
+    },
+    {
+      "question": "¿Eran amigos vuestros?",
+      "topic": "motive",
+      "source": "¿Erais amigos?"
+    },
+    {
+      "question": "¿Eramos amigos?",
+      "topic": "motive",
+      "source": "¿Erais amigos?"
+    },
+    {
+      "question": "¿Te conocías a ella?",
+      "topic": "motive",
+      "source": "¿Eras amiga de la víctima?"
+    },
+    {
+      "question": "¿Conocías a la víctima?",
+      "topic": "motive",
+      "source": "¿Eras amiga de la víctima?"
+    },
+    {
+      "question": "¿Esa persona era tu amiga?",
+      "topic": "motive",
+      "source": "¿Eras amiga de la víctima?"
+    },
+    {
+      "question": "¿Conociste a su pareja?",
+      "topic": "motive",
+      "source": "¿Eras amiga de la víctima?"
+    },
+    {
+      "question": "¿Considerabas a este alguien de tu confianza?",
+      "topic": "motive",
+      "source": "¿Le considerabas un amigo?"
+    },
+    {
+      "question": "¿Considerabas que me conoces a mí mismo?",
+      "topic": "motive",
+      "source": "¿Le considerabas un amigo?"
+    },
+    {
+      "question": "¿A ti mismo te importaba considerarme un amigo?",
+      "topic": "motive",
+      "source": "¿Le considerabas un amigo?"
+    },
+    {
+      "question": "¿Era yo el que te llamaste amigo?",
+      "topic": "motive",
+      "source": "¿Le considerabas un amigo?"
+    },
+    {
+      "question": "¿Estuvíais de confianza?",
+      "topic": "motive",
+      "source": "¿Teníais confianza?"
+    },
+    {
+      "question": "¿Creíais en mí?",
+      "topic": "motive",
+      "source": "¿Teníais confianza?"
+    },
+    {
+      "question": "¿Te desconfiabas de mí?",
+      "topic": "motive",
+      "source": "¿Le debías lealtad?"
+    },
+    {
+      "question": "¿Me has traicionado?",
+      "topic": "motive",
+      "source": "¿Le debías lealtad?"
+    },
+    {
+      "question": "¿Me perdiste a mí?",
+      "topic": "motive",
+      "source": "¿Le debías lealtad?"
+    },
+    {
+      "question": "¿Has sido un traidor?",
+      "topic": "motive",
+      "source": "¿Le debías lealtad?"
+    },
+    {
+      "question": "¿Fue tu empleador ese hombre?",
+      "topic": "motive",
+      "source": "¿Trabajabas para él?"
+    },
+    {
+      "question": "¿A tu vez trabajaste con él?",
+      "topic": "motive",
+      "source": "¿Trabajabas para él?"
+    },
+    {
+      "question": "¿Hubiste contacto con usted antes?",
+      "topic": "motive",
+      "source": "¿Trabajabas para él?"
+    },
+    {
+      "question": "¿Tuviste relación profesional con él?",
+      "topic": "motive",
+      "source": "¿Trabajabas para él?"
+    },
+    {
+      "question": "¿Eran tu subordinado?",
+      "topic": "motive",
+      "source": "¿Eras su subordinado?"
+    },
+    {
+      "question": "¿Eran tus subordinados?",
+      "topic": "motive",
+      "source": "¿Eras su subordinado?"
+    },
+    {
+      "question": "¿Eran ellos tus subordinados?",
+      "topic": "motive",
+      "source": "¿Eras su subordinado?"
+    },
+    {
+      "question": "¿Se había contratado él?",
+      "topic": "motive",
+      "source": "¿Él te había contratado?"
+    },
+    {
+      "question": "¿Él había contratado a ti?",
+      "topic": "motive",
+      "source": "¿Él te había contratado?"
+    },
+    {
+      "question": "¿Te había contratado él?",
+      "topic": "motive",
+      "source": "¿Él te había contratado?"
+    },
+    {
+      "question": "¿A quién le contrató él?",
+      "topic": "motive",
+      "source": "¿Él te había contratado?"
+    },
+    {
+      "question": "¿Qué opinas de ese papel que encontré?",
+      "topic": "secret",
+      "source": "¿Qué dices de la carta que encontré?"
+    },
+    {
+      "question": "He visto una carta. ¿Podrías explicarla? (Colloquial)",
+      "topic": "secret",
+      "source": "He encontrado una carta. Explícamela."
+    },
+    {
+      "question": "He descubierto un documento. ¿Podrías contarme su contenido? (Formal)",
+      "topic": "secret",
+      "source": "He encontrado una carta. Explícamela."
+    },
+    {
+      "question": "Tengo un papel en mano. ¿Dime qué pasa? (Breve)",
+      "topic": "secret",
+      "source": "He encontrado una carta. Explícamela."
+    },
+    {
+      "question": "He hallado un papel. ¿Podrías contarle a mí? (Directa)",
+      "topic": "secret",
+      "source": "He encontrado una carta. Explícamela."
+    },
+    {
+      "question": "¿Qué representa esta carta?",
+      "topic": "secret",
+      "source": "¿Qué significa esta carta?"
+    },
+    {
+      "question": "¿De qué trata esta carta?",
+      "topic": "secret",
+      "source": "¿Qué significa esta carta?"
+    },
+    {
+      "question": "¿Qué es lo que dice esta carta?",
+      "topic": "secret",
+      "source": "¿Qué significa esta carta?"
+    },
+    {
+      "question": "¿Qué quiere decir esta carta?",
+      "topic": "secret",
+      "source": "¿Qué significa esta carta?"
+    },
+    {
+      "question": "¿Podría detallar el contenido de este mensaje?",
+      "topic": "secret",
+      "source": "Explique esta carta, por favor."
+    },
+    {
+      "question": "¿Por favor, hablemos del contenido de este escrito?",
+      "topic": "secret",
+      "source": "Explique esta carta, por favor."
+    },
+    {
+      "question": "¿Quedemos de este escrito?",
+      "topic": "secret",
+      "source": "Explique esta carta, por favor."
+    },
+    {
+      "question": "¿Podría explicarle el contenido de este texto?",
+      "topic": "secret",
+      "source": "Explique esta carta, por favor."
+    },
+    {
+      "question": "¿Qué documento es este?",
+      "topic": "secret",
+      "source": "q es esta carta"
+    },
+    {
+      "question": "¿De qué trata este papel?",
+      "topic": "secret",
+      "source": "q es esta carta"
+    },
+    {
+      "question": "¿Qué es lo que ves aquí?",
+      "topic": "secret",
+      "source": "q es esta carta"
+    },
+    {
+      "question": "¿Qué es esta cosa?",
+      "topic": "secret",
+      "source": "q es esta carta"
+    },
+    {
+      "question": "Cual es el testamento?",
+      "topic": "secret",
+      "source": "Explícame lo del testamento."
+    },
+    {
+      "question": "¿Qué es lo del testamento?",
+      "topic": "secret",
+      "source": "Explícame lo del testamento."
+    },
+    {
+      "question": "¿Cómo se escribe el testamento?",
+      "topic": "secret",
+      "source": "Explícame lo del testamento."
+    },
+    {
+      "question": "¿Qué pasó con el nuevo testamento?",
+      "topic": "secret",
+      "source": "¿Qué hay del testamento nuevo?"
+    },
+    {
+      "question": "¿Qué hay de la testamento nueva?",
+      "topic": "secret",
+      "source": "¿Qué hay del testamento nuevo?"
+    },
+    {
+      "question": "¿Qué pasó con el testamento reciente?",
+      "topic": "secret",
+      "source": "¿Qué hay del testamento nuevo?"
+    },
+    {
+      "question": "¿Qué hay de este nuevo testamento?",
+      "topic": "secret",
+      "source": "¿Qué hay del testamento nuevo?"
+    },
+    {
+      "question": "¿Cuál es tu opinión acerca de la versión final del testamento?",
+      "topic": "secret",
+      "source": "¿Qué opinas del borrador del testamento?"
+    },
+    {
+      "question": "¿Cómo ves el borrador que está en manos del abogado?",
+      "topic": "secret",
+      "source": "¿Qué opinas del borrador del testamento?"
+    },
+    {
+      "question": "¿Qué opinas sobre el borrador del testamento?",
+      "topic": "secret",
+      "source": "¿Qué opinas del borrador del testamento?"
+    },
+    {
+      "question": "¿Crees que el borrador del testamento es adecuado?",
+      "topic": "secret",
+      "source": "¿Qué opinas del borrador del testamento?"
+    },
+    {
+      "question": "¿Qué hay de ese quejón que firmaste?",
+      "topic": "secret",
+      "source": "¿Qué hay de esa queja que firmaste?"
+    },
+    {
+      "question": "¿Qué hay de ese documento que firmaste?",
+      "topic": "secret",
+      "source": "¿Qué hay de esa queja que firmaste?"
+    },
+    {
+      "question": "¿De quién te quejaste?",
+      "topic": "secret",
+      "source": "¿Por qué te quejaste de él?"
+    },
+    {
+      "question": "¿De qué te quejaste?",
+      "topic": "secret",
+      "source": "¿Por qué te quejaste de él?"
+    },
+    {
+      "question": "¿Te ha presentado alguna queja contra la víctima?",
+      "topic": "secret",
+      "source": "¿Presentaste una queja contra la víctima?"
+    },
+    {
+      "question": "¿Has presentado una queja contra la víctima?",
+      "topic": "secret",
+      "source": "¿Presentaste una queja contra la víctima?"
+    },
+    {
+      "question": "¿Has presentado alguna queja contra la víctima?",
+      "topic": "secret",
+      "source": "¿Presentaste una queja contra la víctima?"
+    },
+    {
+      "question": "¿Firmaste una protesta contra él? ¿Es cierto?",
+      "topic": "secret",
+      "source": "Firmaste una protesta contra él, ¿verdad?"
+    },
+    {
+      "question": "¿Firmaste un registro contra él, verdad?",
+      "topic": "secret",
+      "source": "Firmaste una protesta contra él, ¿verdad?"
+    },
+    {
+      "question": "¿Firmaste una protesta contra él, no?",
+      "topic": "secret",
+      "source": "Firmaste una protesta contra él, ¿verdad?"
+    },
+    {
+      "question": "¿Qué pone usted en ese papeleo?",
+      "topic": "secret",
+      "source": "¿Qué pone en esa nota?"
+    },
+    {
+      "question": "¿Qué está escrito en esa nota?",
+      "topic": "secret",
+      "source": "¿Qué pone en esa nota?"
+    },
+    {
+      "question": "¿Qué escribe en el papel de esa nota?",
+      "topic": "secret",
+      "source": "¿Qué pone en esa nota?"
+    },
+    {
+      "question": "¿Qué contiene ese escrito?",
+      "topic": "secret",
+      "source": "¿Qué pone en esa nota?"
+    },
+    {
+      "question": "¿Podrías decirme qué dice esta nota con tu letra?",
+      "topic": "secret",
+      "source": "Explícame esta nota con tu letra."
+    },
+    {
+      "question": "¿Puedes explicarme lo que dice esta nota con tu letra?",
+      "topic": "secret",
+      "source": "Explícame esta nota con tu letra."
+    },
+    {
+      "question": "¿Me puedes dar una explicación de este escrito con tu letra?",
+      "topic": "secret",
+      "source": "Explícame esta nota con tu letra."
+    },
+    {
+      "question": "¿Por qué le pediste que te pasara una nota de tu mano?",
+      "topic": "secret",
+      "source": "¿Por qué tenía una nota tuya?"
+    },
+    {
+      "question": "¿Te quedaste con un recuadro en tu bolsillo?",
+      "topic": "secret",
+      "source": "¿Por qué tenía una nota tuya?"
+    },
+    {
+      "question": "¿Qué te pasó con una nota tuya?",
+      "topic": "secret",
+      "source": "¿Por qué tenía una nota tuya?"
+    },
+    {
+      "question": "¿De quién fue esa nota?",
+      "topic": "secret",
+      "source": "¿Por qué tenía una nota tuya?"
+    },
+    {
+      "question": "¿Fue usted quien escribió esta nota?",
+      "topic": "secret",
+      "source": "¿Escribiste tú esta nota?"
+    },
+    {
+      "question": "¿¿Escribió usted esta nota?",
+      "topic": "secret",
+      "source": "¿Escribiste tú esta nota?"
+    },
+    {
+      "question": "¿¿Quiénes son los autores de esta nota?",
+      "topic": "secret",
+      "source": "¿Escribiste tú esta nota?"
+    },
+    {
+      "question": "¿¿Escribió usted o alguien más esta nota?",
+      "topic": "secret",
+      "source": "¿Escribiste tú esta nota?"
+    },
+    {
+      "question": "¿Tenía acceso al arma?",
+      "topic": "link",
+      "source": "¿Tenías acceso al arma?"
+    },
+    {
+      "question": "¿A qué accedes?",
+      "topic": "link",
+      "source": "¿Tenías acceso al arma?"
+    },
+    {
+      "question": "¿Eras capaz de usar la pistola?",
+      "topic": "link",
+      "source": "¿Tenías acceso al arma?"
+    },
+    {
+      "question": "¿Sabías de la arma?",
+      "topic": "link",
+      "source": "¿Tenías acceso al arma?"
+    },
+    {
+      "question": "¿Podiste alcanzar al arma del crimen?",
+      "topic": "link",
+      "source": "¿Podías llegar al arma del crimen?"
+    },
+    {
+      "question": "¿Podías llegar a la mano del arma?",
+      "topic": "link",
+      "source": "¿Podías llegar al arma del crimen?"
+    },
+    {
+      "question": "¿El arma estaba a su alcance?",
+      "topic": "link",
+      "source": "¿El arma estaba a tu alcance?"
+    },
+    {
+      "question": "¿El arma estaba en su poder?",
+      "topic": "link",
+      "source": "¿El arma estaba a tu alcance?"
+    },
+    {
+      "question": "¿Se le puso al alcance?",
+      "topic": "link",
+      "source": "¿El arma estaba a tu alcance?"
+    },
+    {
+      "question": "¿El arma estaba a su disposición?",
+      "topic": "link",
+      "source": "¿El arma estaba a tu alcance?"
+    },
+    {
+      "question": "cambiar palabras",
+      "topic": "link",
+      "source": "podias coger el arma o no"
+    },
+    {
+      "question": "cambiar orden",
+      "topic": "link",
+      "source": "podias coger el arma o no"
+    },
+    {
+      "question": "cambiar registro (formal/coloquial/brave) pero conservar exactamente lo que se pregunta",
+      "topic": "link",
+      "source": "podias coger el arma o no"
+    },
+    {
+      "question": "No añadir datos nuevos",
+      "topic": "link",
+      "source": "podias coger el arma o no"
+    },
+    {
+      "question": "¿Recuerdas dónde se ocultaba el veneno?",
+      "topic": "link",
+      "source": "¿Sabías dónde se guardaba el veneno?"
+    },
+    {
+      "question": "¿Te atreves a decirte dónde se guardaba el veneno?",
+      "topic": "link",
+      "source": "¿Sabías dónde se guardaba el veneno?"
+    },
+    {
+      "question": "¿Sabía dónde se guardaba el veneno?",
+      "topic": "link",
+      "source": "¿Sabías dónde se guardaba el veneno?"
+    },
+    {
+      "question": "¿Dónde estaba la espada guardada?",
+      "topic": "link",
+      "source": "¿Dónde se guardaba la espada?"
+    },
+    {
+      "question": "¿Donde se guardó la espada?",
+      "topic": "link",
+      "source": "¿Dónde se guardaba la espada?"
+    },
+    {
+      "question": "¿Dónde se ocultaba la espada?",
+      "topic": "link",
+      "source": "¿Dónde se guardaba la espada?"
+    },
+    {
+      "question": "¿Te atreves recordar el sitio del frasco?",
+      "topic": "link",
+      "source": "¿Sabías dónde estaba el frasco?"
+    },
+    {
+      "question": "¿Conoces la ubicación del frasco?",
+      "topic": "link",
+      "source": "¿Sabías dónde estaba el frasco?"
+    },
+    {
+      "question": "¿Sabes dónde se halló el frasco?",
+      "topic": "link",
+      "source": "¿Sabías dónde estaba el frasco?"
+    },
+    {
+      "question": "¿Recordaste el lugar del frasco?",
+      "topic": "link",
+      "source": "¿Sabías dónde estaba el frasco?"
+    },
+    {
+      "question": "¿Sabías dónde estaba colocada la daga?",
+      "topic": "link",
+      "source": "¿Conocías el sitio de la daga?"
+    },
+    {
+      "question": "¿Conoces el lugar donde la daga estaba guardada?",
+      "topic": "link",
+      "source": "¿Conocías el sitio de la daga?"
+    },
+    {
+      "question": "¿Conocías dónde se situaba el lugar de la daga?",
+      "topic": "link",
+      "source": "¿Conocías el sitio de la daga?"
+    },
+    {
+      "question": "¿Sabías el lugar exacto donde la daga se encontró?",
+      "topic": "link",
+      "source": "¿Conocías el sitio de la daga?"
+    },
+    {
+      "question": "¿Dónde guardaban el arma?",
+      "topic": "link",
+      "source": "¿Dónde guardaban el revólver?"
+    },
+    {
+      "question": "¿Dónde guardaban el fusil?",
+      "topic": "link",
+      "source": "¿Dónde guardaban el revólver?"
+    },
+    {
+      "question": "¿Tienes control de una arma?",
+      "topic": "link",
+      "source": "¿Sabes manejar un arma?"
+    },
+    {
+      "question": "¿Conoces manejar un arma?",
+      "topic": "link",
+      "source": "¿Sabes manejar un arma?"
+    },
+    {
+      "question": "¿Sabes manejar armas?",
+      "topic": "link",
+      "source": "¿Sabes manejar un arma?"
+    },
+    {
+      "question": "¿Tienes experiencia en manejar armas?",
+      "topic": "link",
+      "source": "¿Sabes manejar un arma?"
+    },
+    {
+      "question": "¿Crees que sabes manejar la pistola?",
+      "topic": "link",
+      "source": "¿Sabes disparar?"
+    },
+    {
+      "question": "¿Conoces la técnica de la flecha?",
+      "topic": "link",
+      "source": "¿Sabes disparar?"
+    },
+    {
+      "question": "¿Hace falta saber esto?",
+      "topic": "link",
+      "source": "¿Sabes disparar?"
+    },
+    {
+      "question": "¿Alguna vez has usado una bala?",
+      "topic": "link",
+      "source": "¿Sabes disparar?"
+    },
+    {
+      "question": "¿Sabe cómo funciona el panel?",
+      "topic": "link",
+      "source": "¿Sabías cómo funcionaba el panel?"
+    },
+    {
+      "question": "¿Conoces la manera en que opera el panel?",
+      "topic": "link",
+      "source": "¿Sabías cómo funcionaba el panel?"
+    },
+    {
+      "question": "¿Sabes qué hace el panel?",
+      "topic": "link",
+      "source": "¿Sabías cómo funcionaba el panel?"
+    },
+    {
+      "question": "¿Conoces cómo funciona este panel?",
+      "topic": "link",
+      "source": "¿Sabías cómo funcionaba el panel?"
+    },
+    {
+      "question": "¿Podrías hacer ese veneno?",
+      "topic": "link",
+      "source": "¿Sabrías preparar ese veneno?"
+    },
+    {
+      "question": "¿Podrías hacerlo ese veneno?",
+      "topic": "link",
+      "source": "¿Sabrías preparar ese veneno?"
+    },
+    {
+      "question": "¿Podrías fabricar ese veneno?",
+      "topic": "link",
+      "source": "¿Sabrías preparar ese veneno?"
+    },
+    {
+      "question": "¿Podrías crear ese veneno?",
+      "topic": "link",
+      "source": "¿Sabrías preparar ese veneno?"
+    },
+    {
+      "question": "¿Alguien podría haber tenido acceso al arma?",
+      "topic": "link",
+      "source": "¿Quién podía haber usado el arma?"
+    },
+    {
+      "question": "¿Quién podría haber manipulado este objeto?",
+      "topic": "link",
+      "source": "¿Quién podía haber usado el arma?"
+    },
+    {
+      "question": "¿Fue posible que alguien usara el arma?",
+      "topic": "link",
+      "source": "¿Quién podía haber usado el arma?"
+    },
+    {
+      "question": "¿Quién podría haber sido el responsable?",
+      "topic": "link",
+      "source": "¿Quién podía haber usado el arma?"
+    },
+    {
+      "question": "¿Quién podría haber obtenido la escopeta?",
+      "topic": "link",
+      "source": "¿Quién pudo hacerse con la escopeta?"
+    },
+    {
+      "question": "¿Quién pudo tener acceso a la escopeta?",
+      "topic": "link",
+      "source": "¿Quién pudo hacerse con la escopeta?"
+    },
+    {
+      "question": "¿Quién pudo conseguir la escopeta?",
+      "topic": "link",
+      "source": "¿Quién pudo hacerse con la escopeta?"
+    },
+    {
+      "question": "¿Quién pudo haberse con la escopeta?",
+      "topic": "link",
+      "source": "¿Quién pudo hacerse con la escopeta?"
+    },
+    {
+      "question": "¿Qué persona tuvo el acceso para tomar el veneno?",
+      "topic": "link",
+      "source": "¿Quién tenía ocasión de coger el veneno?"
+    },
+    {
+      "question": "¿Alguien tenía la oportunidad de ingerir el veneno?",
+      "topic": "link",
+      "source": "¿Quién tenía ocasión de coger el veneno?"
+    },
+    {
+      "question": "¿Quién tuvo el momento de beber el veneno?",
+      "topic": "link",
+      "source": "¿Quién tenía ocasión de coger el veneno?"
+    },
+    {
+      "question": "¿Alguien tuvo la oportunidad de tomar la sustancia?",
+      "topic": "link",
+      "source": "¿Quién tenía ocasión de coger el veneno?"
+    },
+    {
+      "question": "¿Quién más sabía dónde se hallaba el arma?",
+      "topic": "link",
+      "source": "¿Quién más sabía dónde estaba el arma?"
+    },
+    {
+      "question": "¿Alguien más que yo sabía dónde estaba el arma?",
+      "topic": "link",
+      "source": "¿Quién más sabía dónde estaba el arma?"
+    },
+    {
+      "question": "¿Quién más sabía en qué lugar estaba la arma?",
+      "topic": "link",
+      "source": "¿Quién más sabía dónde estaba el arma?"
+    },
+    {
+      "question": "¿Alguien más sabía dónde se guardaba la arma?",
+      "topic": "link",
+      "source": "¿Quién más sabía dónde estaba el arma?"
+    },
+    {
+      "question": "Colloquial",
+      "topic": "timeline",
+      "source": "¿Alguien puede confirmar tu coartada?"
+    },
+    {
+      "question": "Brief",
+      "topic": "timeline",
+      "source": "¿Alguien puede confirmar tu coartada?"
+    },
+    {
+      "question": "Rephrased",
+      "topic": "timeline",
+      "source": "¿Alguien puede confirmar tu coartada?"
+    },
+    {
+      "question": "¿Quién puede confirmar lo que dices?",
+      "topic": "timeline",
+      "source": "¿Quién puede dar fe de lo que dices?"
+    },
+    {
+      "question": "¿Quiénes pueden validar tus palabras?",
+      "topic": "timeline",
+      "source": "¿Quién puede dar fe de lo que dices?"
+    },
+    {
+      "question": "¿Quién te cree de tu palabra?",
+      "topic": "timeline",
+      "source": "¿Quién puede dar fe de lo que dices?"
+    },
+    {
+      "question": "¿Quiénes pueden probar tu verdad?",
+      "topic": "timeline",
+      "source": "¿Quién puede dar fe de lo que dices?"
+    },
+    {
+      "question": "¿Alguna vez has estado ahí?",
+      "topic": "timeline",
+      "source": "¿Hay algún testigo de que estuviste allí?"
+    },
+    {
+      "question": "¿Alguien ha visto tu presencia en esa zona?",
+      "topic": "timeline",
+      "source": "¿Hay algún testigo de que estuviste allí?"
+    },
+    {
+      "question": "¿Hay testigos de tu estar en ese lugar?",
+      "topic": "timeline",
+      "source": "¿Hay algún testigo de que estuviste allí?"
+    },
+    {
+      "question": "¿Has estado allí?",
+      "topic": "timeline",
+      "source": "¿Hay algún testigo de que estuviste allí?"
+    },
+    {
+      "question": "¿Quién te vio en la biblioteca?",
+      "topic": "timeline",
+      "source": "¿Alguien te vio en la biblioteca?"
+    },
+    {
+      "question": "¿Alguien se acercó a ti en la biblioteca?",
+      "topic": "timeline",
+      "source": "¿Alguien te vio en la biblioteca?"
+    },
+    {
+      "question": "¿Alguien podrá verificarlo?",
+      "topic": "timeline",
+      "source": "¿Quién puede corroborarlo?"
+    },
+    {
+      "question": "¿Alguien tiene la capacidad de confirmar lo que ocurre?",
+      "topic": "timeline",
+      "source": "¿Quién puede corroborarlo?"
+    },
+    {
+      "question": "¿Quién ha visto qué dice el caso?",
+      "topic": "timeline",
+      "source": "¿Quién puede corroborarlo?"
+    },
+    {
+      "question": "¿Quién puede validar lo que está en juego?",
+      "topic": "timeline",
+      "source": "¿Quién puede corroborarlo?"
+    },
+    {
+      "question": "Nunca te vieron de ese sitio. ¿De qué manera puedes explicarlo?",
+      "topic": "timeline",
+      "source": "Nadie te vio allí. ¿Cómo lo explicas?"
+    },
+    {
+      "question": "No te han observado en ese lugar. ¿Qué razón tienes para eso?",
+      "topic": "timeline",
+      "source": "Nadie te vio allí. ¿Cómo lo explicas?"
+    },
+    {
+      "question": "Nadie ha visto a ti en ese punto. ¿Por qué te lo cuentas ahora?",
+      "topic": "timeline",
+      "source": "Nadie te vio allí. ¿Cómo lo explicas?"
+    },
+    {
+      "question": "No los observaste allí. ¿Cómo justifica tu explicación?",
+      "topic": "timeline",
+      "source": "Nadie te vio allí. ¿Cómo lo explicas?"
+    },
+    {
+      "question": "1. Formal: No hay nadie en tu sala.",
+      "topic": "timeline",
+      "source": "Ningún testigo te sitúa en tu sala."
+    },
+    {
+      "question": "2. Colloquial: No hay nadie en tu sala.",
+      "topic": "timeline",
+      "source": "Ningún testigo te sitúa en tu sala."
+    },
+    {
+      "question": "3. Brief: No hay nadie en tu sala.",
+      "topic": "timeline",
+      "source": "Ningún testigo te sitúa en tu sala."
+    },
+    {
+      "question": "4. Alternative: Ningún testigo te sitúa en tu sala.",
+      "topic": "timeline",
+      "source": "Ningún testigo te sitúa en tu sala."
+    },
+    {
+      "question": "¿Nadie se acordó de haberte visto?",
+      "topic": "timeline",
+      "source": "Nadie recuerda haberte visto."
+    },
+    {
+      "question": "¿Nadie te vio?",
+      "topic": "timeline",
+      "source": "Nadie recuerda haberte visto."
+    },
+    {
+      "question": "¿Alguien se acuerda haberte visto?",
+      "topic": "timeline",
+      "source": "Nadie recuerda haberte visto."
+    },
+    {
+      "question": "¿Dónde estás ahora?",
+      "topic": "timeline",
+      "source": "No hay nadie que te viera esa noche."
+    },
+    {
+      "question": "¿Dónde está el sospechoso?",
+      "topic": "timeline",
+      "source": "No hay nadie que te viera esa noche."
+    },
+    {
+      "question": "¿Quién te vio?",
+      "topic": "timeline",
+      "source": "No hay nadie que te viera esa noche."
+    },
+    {
+      "question": "¿No te vieron?",
+      "topic": "timeline",
+      "source": "No hay nadie que te viera esa noche."
+    },
+    {
+      "question": "Los que fueron al comedor dijeron que no entraste.",
+      "topic": "timeline",
+      "source": "Los que estaban en el comedor dicen que no entraste."
+    },
+    {
+      "question": "Dijeron que no entraste a los que estaban en el comedor.",
+      "topic": "timeline",
+      "source": "Los que estaban en el comedor dicen que no entraste."
+    },
+    {
+      "question": "Se dice que no entraste a los presentes en el comedor.",
+      "topic": "timeline",
+      "source": "Los que estaban en el comedor dicen que no entraste."
+    },
+    {
+      "question": "Ellos aseguran que no se ha entrado a nadie más.",
+      "topic": "timeline",
+      "source": "Ellos aseguran que no entró nadie más."
+    },
+    {
+      "question": "Según ellos, no hay nadie que haya entrado.",
+      "topic": "timeline",
+      "source": "Ellos aseguran que no entró nadie más."
+    },
+    {
+      "question": "Afirman que no se ha abierto un espacio para nadie más.",
+      "topic": "timeline",
+      "source": "Ellos aseguran que no entró nadie más."
+    },
+    {
+      "question": "¿Es cierto que tus compañeros no habías estado con ellos?",
+      "topic": "timeline",
+      "source": "Tus compañeros dicen que no estabas con ellos."
+    },
+    {
+      "question": "¿Te habías mantenido con ellos a tus compañeros?",
+      "topic": "timeline",
+      "source": "Tus compañeros dicen que no estabas con ellos."
+    },
+    {
+      "question": "¿Te has encontrado con ellos tus compañeros?",
+      "topic": "timeline",
+      "source": "Tus compañeros dicen que no estabas con ellos."
+    },
+    {
+      "question": "¿Puedes confirmar que no estabas con ellos tus compañeros?",
+      "topic": "timeline",
+      "source": "Tus compañeros dicen que no estabas con ellos."
+    },
+    {
+      "question": "interrogatorio",
+      "topic": "timeline",
+      "source": "Dos testigos dicen que en esa sala no había nadie más."
+    },
+    {
+      "question": "rephrasing",
+      "topic": "timeline",
+      "source": "Tu entrada consta en el registro."
+    },
+    {
+      "question": "El registro marca tu salida a las diez.",
+      "topic": "timeline",
+      "source": "El registro anota tu salida a las diez."
+    },
+    {
+      "question": "Las diez marca tu salida según el registro.",
+      "topic": "timeline",
+      "source": "El registro anota tu salida a las diez."
+    },
+    {
+      "question": "Tu salida se anota en las diez.",
+      "topic": "timeline",
+      "source": "El registro anota tu salida a las diez."
+    },
+    {
+      "question": "Se anota tu salida a las diez en el registro.",
+      "topic": "timeline",
+      "source": "El registro anota tu salida a las diez."
+    },
+    {
+      "question": "¿Es constancia de tu entrada y salida?",
+      "topic": "timeline",
+      "source": "Hay constancia de tu entrada y salida."
+    },
+    {
+      "question": "¿Tiene constancia de tu entrada y salida?",
+      "topic": "timeline",
+      "source": "Hay constancia de tu entrada y salida."
+    },
+    {
+      "question": "¿A qué hora entraste, según el libro?",
+      "topic": "timeline",
+      "source": "El libro dice a qué hora entraste."
+    },
+    {
+      "question": "¿Cuándo entraste, como dice el libro?",
+      "topic": "timeline",
+      "source": "El libro dice a qué hora entraste."
+    },
+    {
+      "question": "¿A qué hora entraste, de acuerdo con el libro?",
+      "topic": "timeline",
+      "source": "El libro dice a qué hora entraste."
+    },
+    {
+      "question": "¿El libro dice cuándo entraste?",
+      "topic": "timeline",
+      "source": "El libro dice a qué hora entraste."
+    },
+    {
+      "question": "¿Alguien ha entrado por aquí?",
+      "topic": "seen",
+      "source": "¿Viste a alguien entrar?"
+    },
+    {
+      "question": "¿Has visto alguien llegar a tu lado?",
+      "topic": "seen",
+      "source": "¿Viste a alguien entrar?"
+    },
+    {
+      "question": "¿Quién vino dentro de esta habitación?",
+      "topic": "seen",
+      "source": "¿Viste a alguien entrar?"
+    },
+    {
+      "question": "¿Quién entró a la sala?",
+      "topic": "seen",
+      "source": "¿Viste a alguien entrar?"
+    },
+    {
+      "question": "¿Viste entrar en el despacho alguien?",
+      "topic": "seen",
+      "source": "¿Viste entrar a alguien en el despacho?"
+    },
+    {
+      "question": "¿Se ha visto entrar a alguien en el despacho?",
+      "topic": "seen",
+      "source": "¿Viste entrar a alguien en el despacho?"
+    },
+    {
+      "question": "¿Quién ha entrado en el despacho?",
+      "topic": "seen",
+      "source": "¿Viste entrar a alguien en el despacho?"
+    },
+    {
+      "question": "¿Viste entrar en el despacho?",
+      "topic": "seen",
+      "source": "¿Viste entrar a alguien en el despacho?"
+    },
+    {
+      "question": "¿Alguien más entró en la sala?",
+      "topic": "seen",
+      "source": "¿Entró alguien más en la sala?"
+    },
+    {
+      "question": "¿Otra persona ingresó al salón?",
+      "topic": "seen",
+      "source": "¿Entró alguien más en la sala?"
+    },
+    {
+      "question": "¿Algo más entró en el lugar?",
+      "topic": "seen",
+      "source": "¿Entró alguien más en la sala?"
+    },
+    {
+      "question": "¿Está alguien más en la sala?",
+      "topic": "seen",
+      "source": "¿Entró alguien más en la sala?"
+    },
+    {
+      "question": "¿Alguien pasó por delante de ti?",
+      "topic": "seen",
+      "source": "¿Pasó alguien por delante de ti?"
+    },
+    {
+      "question": "¿Pasó algo por delante de ti?",
+      "topic": "seen",
+      "source": "¿Pasó alguien por delante de ti?"
+    },
+    {
+      "question": "¿Alguien pasó por aquí?",
+      "topic": "seen",
+      "source": "¿Pasó alguien por delante de ti?"
+    },
+    {
+      "question": "¿Alguna vez has visto a alguien?",
+      "topic": "seen",
+      "source": "viste a alguien??"
+    },
+    {
+      "question": "¿Has visto a alguien?",
+      "topic": "seen",
+      "source": "viste a alguien??"
+    },
+    {
+      "question": "¿Alguien has visto?",
+      "topic": "seen",
+      "source": "viste a alguien??"
+    },
+    {
+      "question": "¿Observaste algo anómalo?",
+      "topic": "seen",
+      "source": "¿Notaste algo extraño?"
+    },
+    {
+      "question": "¿Observaste algo inusual?",
+      "topic": "seen",
+      "source": "¿Notaste algo extraño?"
+    },
+    {
+      "question": "¿Te atreves a decirme que hay algo raro?",
+      "topic": "seen",
+      "source": "¿Notaste algo extraño?"
+    },
+    {
+      "question": "¿Te atreves a darte cuenta de algo fuera de lugar?",
+      "topic": "seen",
+      "source": "¿Te diste cuenta de algo fuera de lugar?"
+    },
+    {
+      "question": "¿Te diste cuenta de algo que no te cuadra?",
+      "topic": "seen",
+      "source": "¿Te diste cuenta de algo fuera de lugar?"
+    },
+    {
+      "question": "¿Te diste cuenta de algo que no cuadra?",
+      "topic": "seen",
+      "source": "¿Te diste cuenta de algo fuera de lugar?"
+    },
+    {
+      "question": "¿Te diste cuenta de algo que no se ajusta?",
+      "topic": "seen",
+      "source": "¿Te diste cuenta de algo fuera de lugar?"
+    },
+    {
+      "question": "¿Viste algo extraño?",
+      "topic": "seen",
+      "source": "¿Viste algo raro?"
+    },
+    {
+      "question": "¿Algo raro te ha pasado?",
+      "topic": "seen",
+      "source": "¿Viste algo raro?"
+    },
+    {
+      "question": "¿Viste algo inusual?",
+      "topic": "seen",
+      "source": "¿Viste algo raro?"
+    },
+    {
+      "question": "¿Algo extraño te ha dado?",
+      "topic": "seen",
+      "source": "¿Viste algo raro?"
+    },
+    {
+      "question": "¿Algo que te llamó la atención?",
+      "topic": "seen",
+      "source": "¿Hubo algo que te llamara la atención?"
+    },
+    {
+      "question": "¿Había alguna señal que te impactara?",
+      "topic": "seen",
+      "source": "¿Hubo algo que te llamara la atención?"
+    },
+    {
+      "question": "¿Algo que te intranquilizara?",
+      "topic": "seen",
+      "source": "¿Hubo algo que te llamara la atención?"
+    },
+    {
+      "question": "¿Qué te ha llamado la atención?",
+      "topic": "seen",
+      "source": "¿Algo te pareció sospechoso?"
+    },
+    {
+      "question": "¿Algo te pareció extraño?",
+      "topic": "seen",
+      "source": "¿Algo te pareció sospechoso?"
+    },
+    {
+      "question": "¿Hay algo que te haya inquietado?",
+      "topic": "seen",
+      "source": "¿Algo te pareció sospechoso?"
+    },
+    {
+      "question": "revisa la pregunta",
+      "topic": "seen",
+      "source": "¿Viste a la víctima esa noche?"
+    },
+    {
+      "question": "revisa la respuesta",
+      "topic": "seen",
+      "source": "¿Viste a la víctima esa noche?"
+    },
+    {
+      "question": "revisa el texto",
+      "topic": "seen",
+      "source": "¿Viste a la víctima esa noche?"
+    },
+    {
+      "question": "revisa el orden",
+      "topic": "seen",
+      "source": "¿Viste a la víctima esa noche?"
+    },
+    {
+      "question": "¿Cuánto tiempo después te encontraste?",
+      "topic": "seen",
+      "source": "¿Cuándo la viste por última vez?"
+    },
+    {
+      "question": "¿Cuándo lo conociste por última vez?",
+      "topic": "seen",
+      "source": "¿Cuándo la viste por última vez?"
+    },
+    {
+      "question": "¿Cuánto tiempo lo viste por última vez?",
+      "topic": "seen",
+      "source": "¿Cuándo la viste por última vez?"
+    },
+    {
+      "question": "¿Cuándo te viste por última vez?",
+      "topic": "seen",
+      "source": "¿Cuándo la viste por última vez?"
+    },
+    {
+      "question": "¿Hablaste con él antes de su muerte?",
+      "topic": "seen",
+      "source": "¿Hablaste con él antes de que muriera?"
+    },
+    {
+      "question": "¿Preguntaste con él antes de que muriera?",
+      "topic": "seen",
+      "source": "¿Hablaste con él antes de que muriera?"
+    },
+    {
+      "question": "¿Hablarías con él antes de que muriera?",
+      "topic": "seen",
+      "source": "¿Hablaste con él antes de que muriera?"
+    },
+    {
+      "question": "¿Hablaste con él antes de fallecer?",
+      "topic": "seen",
+      "source": "¿Hablaste con él antes de que muriera?"
+    },
+    {
+      "question": "¿Es mi pañuelo que se encontró junto a la puerta?",
+      "topic": "object",
+      "source": "¿Es tuyo el pañuelo que apareció junto a la puerta?"
+    },
+    {
+      "question": "¿Es su pañuelo el que se puso junto a la puerta?",
+      "topic": "object",
+      "source": "¿Es tuyo el pañuelo que apareció junto a la puerta?"
+    },
+    {
+      "question": "¿Es tu pañuelo el que se encontró junto a la puerta?",
+      "topic": "object",
+      "source": "¿Es tuyo el pañuelo que apareció junto a la puerta?"
+    },
+    {
+      "question": "¿Es el pañuelo de ti el que apareció junto a la puerta?",
+      "topic": "object",
+      "source": "¿Es tuyo el pañuelo que apareció junto a la puerta?"
+    },
+    {
+      "question": "¿Tienes conocimiento de este pañuelo?",
+      "topic": "object",
+      "source": "¿Reconoces este pañuelo?"
+    },
+    {
+      "question": "¿Identifica este pañuelo?",
+      "topic": "object",
+      "source": "¿Reconoces este pañuelo?"
+    },
+    {
+      "question": "¿Conoces este pañuelo?",
+      "topic": "object",
+      "source": "¿Reconoces este pañuelo?"
+    },
+    {
+      "question": "¿Lo has visto antes?",
+      "topic": "object",
+      "source": "¿Reconoces este pañuelo?"
+    },
+    {
+      "question": "¿Quién es el pañuelo de este?",
+      "topic": "object",
+      "source": "¿De quién es este pañuelo?"
+    },
+    {
+      "question": "¿De qué se trata este pañuelo?",
+      "topic": "object",
+      "source": "¿De quién es este pañuelo?"
+    },
+    {
+      "question": "¿Qué pañuelo es este?",
+      "topic": "object",
+      "source": "¿De quién es este pañuelo?"
+    },
+    {
+      "question": ". No hay datos nuevos ni ordenados de una manera específica. La instrucción pide reescribir una pregunta específica, no crear datos nuevos. Lo siguiente es la 4",
+      "topic": "object",
+      "source": "el pañuelo es tuyo?"
+    },
+    {
+      "question": "¿Se detectó un broche tuyo en la zona del cuerpo?",
+      "topic": "object",
+      "source": "Apareció un broche tuyo cerca del cuerpo."
+    },
+    {
+      "question": "¿Se encontró un broche tuyo cerca de su cuerpo?",
+      "topic": "object",
+      "source": "Apareció un broche tuyo cerca del cuerpo."
+    },
+    {
+      "question": "¿Se vio un broche tuyo junto al cuerpo?",
+      "topic": "object",
+      "source": "Apareció un broche tuyo cerca del cuerpo."
+    },
+    {
+      "question": "¿Se halló un broche tuyo cerca de su cuerpo?",
+      "topic": "object",
+      "source": "Apareció un broche tuyo cerca del cuerpo."
+    },
+    {
+      "question": "¿Encontraste tu rosario junto a la puerta?",
+      "topic": "object",
+      "source": "Encontramos tu rosario junto a la puerta."
+    },
+    {
+      "question": "¿Hubo tu rosario junto a la puerta?",
+      "topic": "object",
+      "source": "Encontramos tu rosario junto a la puerta."
+    },
+    {
+      "question": "¿Tu rosario está junto a la puerta?",
+      "topic": "object",
+      "source": "Encontramos tu rosario junto a la puerta."
+    },
+    {
+      "question": "¿Tu colgante quedó en el suelo de la escena?",
+      "topic": "object",
+      "source": "Tu colgante estaba en el suelo de la escena."
+    },
+    {
+      "question": "¿Dónde estaba tu colgante en la escena?",
+      "topic": "object",
+      "source": "Tu colgante estaba en el suelo de la escena."
+    },
+    {
+      "question": "¿Tu colgante apareció en el suelo de la escena?",
+      "topic": "object",
+      "source": "Tu colgante estaba en el suelo de la escena."
+    },
+    {
+      "question": "¿Tu colgante estaba en la escena?",
+      "topic": "object",
+      "source": "Tu colgante estaba en el suelo de la escena."
+    },
+    {
+      "question": "¿Dónde está tu pitillera?",
+      "topic": "object",
+      "source": "Hallamos tu pitillera en la biblioteca."
+    },
+    {
+      "question": "¿Qué había en la libreta de ti en la escena?",
+      "topic": "object",
+      "source": "Había una libreta tuya en la escena."
+    },
+    {
+      "question": "¿Hablaba tu libro de una libreta en la escena?",
+      "topic": "object",
+      "source": "Había una libreta tuya en la escena."
+    },
+    {
+      "question": "¿Hubo una libreta en tu mano en la escena?",
+      "topic": "object",
+      "source": "Había una libreta tuya en la escena."
+    },
+    {
+      "question": "¿Deseaste dejar allí tu pluma?",
+      "topic": "object",
+      "source": "¿Dejaste allí tu pluma?"
+    },
+    {
+      "question": "¿Dejaste tu lápiz en este lugar?",
+      "topic": "object",
+      "source": "¿Dejaste allí tu pluma?"
+    },
+    {
+      "question": "¿Tú llevas tu pluma ahí?",
+      "topic": "object",
+      "source": "¿Dejaste allí tu pluma?"
+    },
+    {
+      "question": "¿Dejaste tu marcador en este lugar?",
+      "topic": "object",
+      "source": "¿Dejaste allí tu pluma?"
+    },
+    {
+      "question": "¿Te cayó el broche o no?",
+      "topic": "object",
+      "source": "¿Se te cayó el broche?"
+    },
+    {
+      "question": "¿Te perdió el broche?",
+      "topic": "object",
+      "source": "¿Se te cayó el broche?"
+    },
+    {
+      "question": "¿Te caíó el broche?",
+      "topic": "object",
+      "source": "¿Se te cayó el broche?"
+    },
+    {
+      "question": "idiomática",
+      "topic": "object",
+      "source": "¿Te dejaste el pañuelo en la escena?"
+    },
+    {
+      "question": "¿De qué color eres?",
+      "topic": "identity",
+      "source": "¿Cómo te llamas?"
+    },
+    {
+      "question": "¿Cómo te llamas, detective?",
+      "topic": "identity",
+      "source": "¿Cómo te llamas?"
+    },
+    {
+      "question": "¿Qué nombre tienes?",
+      "topic": "identity",
+      "source": "¿Cuál es tu nombre?"
+    },
+    {
+      "question": "¿De qué nombre eres?",
+      "topic": "identity",
+      "source": "¿Cuál es tu nombre?"
+    },
+    {
+      "question": "¿Te piden tu nombre?",
+      "topic": "identity",
+      "source": "¿Me dices tu nombre?"
+    },
+    {
+      "question": "¿Cuéntame tu nombre?",
+      "topic": "identity",
+      "source": "¿Me dices tu nombre?"
+    },
+    {
+      "question": "¿Qué nombre dices tú?",
+      "topic": "identity",
+      "source": "¿Me dices tu nombre?"
+    },
+    {
+      "question": "Tu nombre, por favor.",
+      "topic": "identity",
+      "source": "Su nombre, por favor."
+    },
+    {
+      "question": "¿A quién conoces mejor?",
+      "topic": "identity",
+      "source": "como te llamas"
+    },
+    {
+      "question": "¿Cómo te pides?",
+      "topic": "identity",
+      "source": "como te llamas"
+    },
+    {
+      "question": "¿Eres el hombre?",
+      "topic": "identity",
+      "source": "como te llamas"
+    },
+    {
+      "question": "¿Me dirás quién eres?",
+      "topic": "identity",
+      "source": "Háblame de ti."
+    },
+    {
+      "question": "¿Podrías decirme tu nombre?",
+      "topic": "identity",
+      "source": "Háblame de ti."
+    },
+    {
+      "question": "¿Por favor, por favor, preséntate?",
+      "topic": "identity",
+      "source": "Preséntate, por favor."
+    },
+    {
+      "question": "Hola, por favor, ¿dónde estás?",
+      "topic": "identity",
+      "source": "Preséntate, por favor."
+    },
+    {
+      "question": "¿Puedes decirte tu nombre, por favor?",
+      "topic": "identity",
+      "source": "Preséntate, por favor."
+    },
+    {
+      "question": "¿Por favor, ¿podrías decirte tu nombre?",
+      "topic": "identity",
+      "source": "Preséntate, por favor."
+    },
+    {
+      "question": "Cuéntame algo sobre ti.",
+      "topic": "identity",
+      "source": "Cuéntame un poco sobre ti."
+    },
+    {
+      "question": "Sobre ti, cuéntame algo.",
+      "topic": "identity",
+      "source": "Cuéntame un poco sobre ti."
+    },
+    {
+      "question": "Cuéntame un poco.",
+      "topic": "identity",
+      "source": "Cuéntame un poco sobre ti."
+    },
+    {
+      "question": "¿Cuéntame quién eres?",
+      "topic": "identity",
+      "source": "Descríbete."
+    },
+    {
+      "question": "Pruébame: ¿Quiénes son?",
+      "topic": "identity",
+      "source": "Descríbete."
+    },
+    {
+      "question": "Describe tu identidad.",
+      "topic": "identity",
+      "source": "Descríbete."
+    },
+    {
+      "question": "¿Dónde está tu casa?",
+      "topic": "identity",
+      "source": "Quiero saber quién eres."
+    },
+    {
+      "question": "¿Quién es tu padre?",
+      "topic": "identity",
+      "source": "Quiero saber quién eres."
+    },
+    {
+      "question": "¿Quién es tu hijo?",
+      "topic": "identity",
+      "source": "Quiero saber quién eres."
+    },
+    {
+      "question": "¿Quién es tu mujer?",
+      "topic": "identity",
+      "source": "Quiero saber quién eres."
+    },
+    {
+      "question": "Canción de amor",
+      "topic": "social",
+      "source": "Buenos días."
+    },
+    {
+      "question": "Sueño de amor",
+      "topic": "social",
+      "source": "Buenos días."
+    },
+    {
+      "question": "Huellas en el camino",
+      "topic": "social",
+      "source": "Buenos días."
+    },
+    {
+      "question": "Dios del amor",
+      "topic": "social",
+      "source": "Buenos días."
+    },
+    {
+      "question": "¿Estás listo?",
+      "topic": "social",
+      "source": "Hola."
+    },
+    {
+      "question": "¿Hablamos?",
+      "topic": "social",
+      "source": "Hola."
+    },
+    {
+      "question": "Hasta luego. ¿Puedo pasar?",
+      "topic": "social",
+      "source": "Buenas tardes, ¿puedo pasar?"
+    },
+    {
+      "question": "¿Puedo pasar? Buenas tardes.",
+      "topic": "social",
+      "source": "Buenas tardes, ¿puedo pasar?"
+    },
+    {
+      "question": "hola ¿cómo estás?",
+      "topic": "social",
+      "source": "hola que tal"
+    },
+    {
+      "question": "estás listo o no?",
+      "topic": "social",
+      "source": "hola que tal"
+    },
+    {
+      "question": "¿qué tal?",
+      "topic": "social",
+      "source": "hola que tal"
+    },
+    {
+      "question": "qué tal todo?",
+      "topic": "social",
+      "source": "hola que tal"
+    },
+    {
+      "question": "¡Estoy tranquilo! Solo deseo hablar contigo.",
+      "topic": "social",
+      "source": "Tranquilo, solo quiero hablar."
+    },
+    {
+      "question": "Solo quiero decir algo. ¿Estás tranquilo?",
+      "topic": "social",
+      "source": "Tranquilo, solo quiero hablar."
+    },
+    {
+      "question": "Tranquilo, necesito tu presencia para conversar.",
+      "topic": "social",
+      "source": "Tranquilo, solo quiero hablar."
+    },
+    {
+      "question": "¿Me dices algo? Estoy tranquilo.",
+      "topic": "social",
+      "source": "Tranquilo, solo quiero hablar."
+    },
+    {
+      "question": "No te asustes, esto es una mera rutina.",
+      "topic": "social",
+      "source": "No te preocupes, esto es rutina."
+    },
+    {
+      "question": "No te asustes, esto es solo una rutina.",
+      "topic": "social",
+      "source": "No te preocupes, esto es rutina."
+    },
+    {
+      "question": "No te preocupes, esto no es una rutina.",
+      "topic": "social",
+      "source": "No te preocupes, esto es rutina."
+    },
+    {
+      "question": "No te preocupes, esto es una rutina.",
+      "topic": "social",
+      "source": "No te preocupes, esto es rutina."
+    },
+    {
+      "question": "¡Mantente tranquilo, no me alegro de tu delito.",
+      "topic": "social",
+      "source": "Relájate, no te acuso de nada."
+    },
+    {
+      "question": "Quítate la mano, no soy para acusarte de nada.",
+      "topic": "social",
+      "source": "Relájate, no te acuso de nada."
+    },
+    {
+      "question": "Dale calma, no me acusarás de nada.",
+      "topic": "social",
+      "source": "Relájate, no te acuso de nada."
+    },
+    {
+      "question": "No me pones en situación, no me acusas de nada.",
+      "topic": "social",
+      "source": "Relájate, no te acuso de nada."
+    },
+    {
+      "question": "{pregunta_original}",
+      "topic": "social",
+      "source": "Tranquila, solo son unas preguntas."
+    },
+    {
+      "question": "¿Le gustaría sentarse?",
+      "topic": "social",
+      "source": "¿Quieres sentarte?"
+    },
+    {
+      "question": "¿Te gustaría sentarte?",
+      "topic": "social",
+      "source": "¿Quieres sentarte?"
+    },
+    {
+      "question": "¿A ti te gustaría sentarse?",
+      "topic": "social",
+      "source": "¿Quieres sentarte?"
+    },
+    {
+      "question": "¿Deseas sentarte?",
+      "topic": "social",
+      "source": "¿Quieres sentarte?"
+    },
+    {
+      "question": "¿Te gustaría seguir hablando más tarde?",
+      "topic": "social",
+      "source": "¿Prefieres que hablemos más tarde?"
+    },
+    {
+      "question": "¿Prefieres que continuemos hablando más tarde?",
+      "topic": "social",
+      "source": "¿Prefieres que hablemos más tarde?"
+    },
+    {
+      "question": "¿Prefieres hablar después?",
+      "topic": "social",
+      "source": "¿Prefieres que hablemos más tarde?"
+    },
+    {
+      "question": "¿Te gustaría continuar hablando?",
+      "topic": "social",
+      "source": "¿Prefieres que hablemos más tarde?"
+    },
+    {
+      "question": "¿Me podrías permitir interrogar un poco?",
+      "topic": "social",
+      "source": "¿Te importa que te haga unas preguntas?"
+    },
+    {
+      "question": "¿No te molesta que te haga interrogar?",
+      "topic": "social",
+      "source": "¿Te importa que te haga unas preguntas?"
+    },
+    {
+      "question": "¿Te molesta que te pida interrogación?",
+      "topic": "social",
+      "source": "¿Te importa que te haga unas preguntas?"
+    },
+    {
+      "question": "¿No te importaría que te haga un interrogatorio?",
+      "topic": "social",
+      "source": "¿Te importa que te haga unas preguntas?"
+    },
+    {
+      "question": "¿Te mataste a ti mismo la víctima?",
+      "topic": "unknown",
+      "source": "¿Mataste tú a la víctima?"
+    },
+    {
+      "question": "¿¿Mataste tú al sujeto?",
+      "topic": "unknown",
+      "source": "¿Mataste tú a la víctima?"
+    },
+    {
+      "question": "¿Mataron tú a la víctima?",
+      "topic": "unknown",
+      "source": "¿Mataste tú a la víctima?"
+    },
+    {
+      "question": "¿Te atreves a decir que lo hiciste?",
+      "topic": "unknown",
+      "source": "¿Fuiste tú quien lo hizo?"
+    },
+    {
+      "question": "¿Lo hiciste tú o no?",
+      "topic": "unknown",
+      "source": "¿Fuiste tú quien lo hizo?"
+    },
+    {
+      "question": "¿Lo hiciste tú mismo?",
+      "topic": "unknown",
+      "source": "¿Fuiste tú quien lo hizo?"
+    },
+    {
+      "question": "¿Qué te ocurre si te pides eso?",
+      "topic": "unknown",
+      "source": "¿Fuiste tú quien lo hizo?"
+    },
+    {
+      "question": "¿Lo mataste?",
+      "topic": "unknown",
+      "source": "¿Lo asesinaste?"
+    },
+    {
+      "question": "¿Eres el asesino?",
+      "topic": "unknown",
+      "source": "¿Lo asesinaste?"
+    },
+    {
+      "question": "¿Te atreves a matarlo?",
+      "topic": "unknown",
+      "source": "¿Lo asesinaste?"
+    },
+    {
+      "question": "¿No lo hiciste?",
+      "topic": "unknown",
+      "source": "¿Lo asesinaste?"
+    },
+    {
+      "question": "¿Eres capaz de admitir que lo mataste?",
+      "topic": "unknown",
+      "source": "Confiesa que lo mataste."
+    },
+    {
+      "question": "¿Debes decir que lo mataste?",
+      "topic": "unknown",
+      "source": "Confiesa que lo mataste."
+    },
+    {
+      "question": "¿Me pides que lo diga que lo mataste?",
+      "topic": "unknown",
+      "source": "Confiesa que lo mataste."
+    },
+    {
+      "question": "¿Dejas claro que lo mataste?",
+      "topic": "unknown",
+      "source": "Confiesa que lo mataste."
+    },
+    {
+      "question": "¿Admites que eres el culpable?",
+      "topic": "unknown",
+      "source": "Admite que eres el culpable."
+    },
+    {
+      "question": "¿Admitas que eres el culpable?",
+      "topic": "unknown",
+      "source": "Admite que eres el culpable."
+    },
+    {
+      "question": "¿A ti te gusta la música?",
+      "topic": "unknown",
+      "source": "¿Te gusta la música?"
+    },
+    {
+      "question": "¿Te gustan las canciones?",
+      "topic": "unknown",
+      "source": "¿Te gusta la música?"
+    },
+    {
+      "question": "¿Prefieres el sonido de la música?",
+      "topic": "unknown",
+      "source": "¿Te gusta la música?"
+    },
+    {
+      "question": "¿Y cuál es tu color favorito?",
+      "topic": "unknown",
+      "source": "¿Cuál es tu color favorito?"
+    },
+    {
+      "question": "¿Qué es tu color favorito?",
+      "topic": "unknown",
+      "source": "¿Cuál es tu color favorito?"
+    },
+    {
+      "question": "¿Y tu color favorito?",
+      "topic": "unknown",
+      "source": "¿Cuál es tu color favorito?"
+    },
+    {
+      "question": "¿Cuál comida prefieres?",
+      "topic": "unknown",
+      "source": "¿Qué comida prefieres?"
+    },
+    {
+      "question": "¿Tienes algún mascota?",
+      "topic": "unknown",
+      "source": "¿Tienes mascota?"
+    },
+    {
+      "question": "¿Tienes algún animal de compañía?",
+      "topic": "unknown",
+      "source": "¿Tienes mascota?"
+    },
+    {
+      "question": "¿Tienes algún mascota que conoces?",
+      "topic": "unknown",
+      "source": "¿Tienes mascota?"
+    },
+    {
+      "question": "¿Tienes algún mascota contigo?",
+      "topic": "unknown",
+      "source": "¿Tienes mascota?"
+    },
+    {
+      "question": "¿Le gusta a ti la lectura de novelas?",
+      "topic": "unknown",
+      "source": "¿Te gusta leer novelas?"
+    },
+    {
+      "question": "¿Te apasiona el género de novelas?",
+      "topic": "unknown",
+      "source": "¿Te gusta leer novelas?"
+    },
+    {
+      "question": "¿Te interesa el mundo de las novelas?",
+      "topic": "unknown",
+      "source": "¿Te gusta leer novelas?"
+    },
+    {
+      "question": "¿Quién puede haber hecho lo que se dijo?",
+      "topic": "unknown",
+      "source": "asdfgh"
+    },
+    {
+      "question": "¿Qué pista nos faltó?",
+      "topic": "unknown",
+      "source": "asdfgh"
+    },
+    {
+      "question": "¿Quién tiene los detalles?",
+      "topic": "unknown",
+      "source": "asdfgh"
+    },
+    {
+      "question": "¿De quién se trata este caso?",
+      "topic": "unknown",
+      "source": "asdfgh"
+    },
+    {
+      "question": "¿Estás seguro de que la clave es el 12?,",
+      "topic": "unknown",
+      "source": "..."
+    },
+    {
+      "question": "¿Puedes confirmarme que el reloj marca las 10?,",
+      "topic": "unknown",
+      "source": "..."
+    },
+    {
+      "question": "¿Has visto la carta de hoy?,",
+      "topic": "unknown",
+      "source": "..."
+    },
+    {
+      "question": "¿Confirmas que la llave está en la mesa?,",
+      "topic": "unknown",
+      "source": "..."
+    },
+    {
+      "question": "¿Qué información tiene la policía?",
+      "topic": "unknown",
+      "source": "?"
+    },
+    {
+      "question": "¿Cuándo se encuentra la evidencia?",
+      "topic": "unknown",
+      "source": "?"
+    },
+    {
+      "question": "¿Quiénes son los responsables?",
+      "topic": "unknown",
+      "source": "?"
+    },
+    {
+      "question": "¿Dónde está la pista?",
+      "topic": "unknown",
+      "source": "?"
+    },
+    {
+      "question": "¿Qué es lo que mmmm?",
+      "topic": "unknown",
+      "source": "mmm"
+    },
+    {
+      "question": "mmm, ¿me pides algo?",
+      "topic": "unknown",
+      "source": "mmm"
+    },
+    {
+      "question": "mmm, ¿qué te preguntas?",
+      "topic": "unknown",
+      "source": "mmm"
+    },
+    {
+      "question": "mmm, ¿qué quieres saber?",
+      "topic": "unknown",
+      "source": "mmm"
+    },
+    {
+      "question": "¿Cuándo era la habitación a las diez?",
+      "topic": "alibi",
+      "source": "¿En qué habitación estabas a las diez?"
+    },
+    {
+      "question": "¿Qué habitación estabas a las diez?",
+      "topic": "alibi",
+      "source": "¿En qué habitación estabas a las diez?"
+    },
+    {
+      "question": "Indícame donde te quedaste durante la última hora.",
+      "topic": "alibi",
+      "source": "Dime exactamente dónde pasaste la última hora."
+    },
+    {
+      "question": "Dónde pasaste el último cuarto de hora exactamente?",
+      "topic": "alibi",
+      "source": "Dime exactamente dónde pasaste la última hora."
+    },
+    {
+      "question": "Sigue en la última hora, dónde pasó tu hora?",
+      "topic": "alibi",
+      "source": "Dime exactamente dónde pasaste la última hora."
+    },
+    {
+      "question": "Cuéntame dónde pasaste esa última hora.",
+      "topic": "alibi",
+      "source": "Dime exactamente dónde pasaste la última hora."
+    },
+    {
+      "question": "¿No te quedaste en el salón la velada?",
+      "topic": "alibi",
+      "source": "¿Te quedaste en el salón toda la velada?"
+    },
+    {
+      "question": "¿Te quedaste en el salón toda la noche?",
+      "topic": "alibi",
+      "source": "¿Te quedaste en el salón toda la velada?"
+    },
+    {
+      "question": "¿Te quedaste en el salón en toda la velada?",
+      "topic": "alibi",
+      "source": "¿Te quedaste en el salón toda la velada?"
+    },
+    {
+      "question": "¿Hubo en tu cuarto cuando sucedió?",
+      "topic": "alibi",
+      "source": "¿Estabas en tu cuarto cuando ocurrió?"
+    },
+    {
+      "question": "¿Estabas en tu cuarto en ese momento?",
+      "topic": "alibi",
+      "source": "¿Estabas en tu cuarto cuando ocurrió?"
+    },
+    {
+      "question": "¿Eran tus habitaciones cuando pasaba?",
+      "topic": "alibi",
+      "source": "¿Estabas en tu cuarto cuando ocurrió?"
+    },
+    {
+      "question": "¿Te hallabas en tu cuarto en el tiempo?",
+      "topic": "alibi",
+      "source": "¿Estabas en tu cuarto cuando ocurrió?"
+    },
+    {
+      "question": "¿Te encontraste en el comedor a las doce de la noche?",
+      "topic": "alibi",
+      "source": "¿Seguías en la cocina a medianoche?"
+    },
+    {
+      "question": "¿Seguí por la cocina hasta la medianoche?",
+      "topic": "alibi",
+      "source": "¿Seguías en la cocina a medianoche?"
+    },
+    {
+      "question": "¿Estabas en el comedor a las doce de la noche?",
+      "topic": "alibi",
+      "source": "¿Seguías en la cocina a medianoche?"
+    },
+    {
+      "question": "¿Tuve presencia en la cocina a las doce de la noche?",
+      "topic": "alibi",
+      "source": "¿Seguías en la cocina a medianoche?"
+    },
+    {
+      "question": "¿Estuviste la noche al lado del edificio?",
+      "topic": "alibi",
+      "source": "¿Pasaste la noche fuera del edificio?"
+    },
+    {
+      "question": "¿Te quedaste la noche fuera de la estructura?",
+      "topic": "alibi",
+      "source": "¿Pasaste la noche fuera del edificio?"
+    },
+    {
+      "question": "¿Pocasaste la noche al exterior del edificio?",
+      "topic": "alibi",
+      "source": "¿Pasaste la noche fuera del edificio?"
+    },
+    {
+      "question": "¿Qué le habías estado haciendo entre la cena y el aviso?",
+      "topic": "alibi",
+      "source": "¿Qué estuviste haciendo entre la cena y el aviso?"
+    },
+    {
+      "question": "¿Qué le habías estado haciendo después de la cena y antes del aviso?",
+      "topic": "alibi",
+      "source": "¿Qué estuviste haciendo entre la cena y el aviso?"
+    },
+    {
+      "question": "¿Qué le has estado haciendo entre la cena y el aviso?",
+      "topic": "alibi",
+      "source": "¿Qué estuviste haciendo entre la cena y el aviso?"
+    },
+    {
+      "question": "¿Con quién pasaste la tarde?",
+      "topic": "alibi",
+      "source": "¿Con quién compartiste la tarde?"
+    },
+    {
+      "question": "¿Quién compartió contigo esta tarde?",
+      "topic": "alibi",
+      "source": "¿Con quién compartiste la tarde?"
+    },
+    {
+      "question": "¿Alguien fue con ti esta tarde?",
+      "topic": "alibi",
+      "source": "¿Con quién compartiste la tarde?"
+    },
+    {
+      "question": "¿Con quién estuviste esta tarde?",
+      "topic": "alibi",
+      "source": "¿Con quién compartiste la tarde?"
+    },
+    {
+      "question": "orden",
+      "topic": "alibi",
+      "source": "¿Alguien estuvo a tu lado toda la noche?"
+    },
+    {
+      "question": "¿Por qué camino fue antes de acostarte?",
+      "topic": "alibi",
+      "source": "¿Por dónde paseaste antes de acostarte?"
+    },
+    {
+      "question": "¿Por qué pasaste antes de dormir?",
+      "topic": "alibi",
+      "source": "¿Por dónde paseaste antes de acostarte?"
+    },
+    {
+      "question": "¿Por dónde fue antes de acostarse?",
+      "topic": "alibi",
+      "source": "¿Por dónde paseaste antes de acostarte?"
+    },
+    {
+      "question": "¿Cómo fue el paso antes de acostarse?",
+      "topic": "alibi",
+      "source": "¿Por dónde paseaste antes de acostarte?"
+    },
+    {
+      "question": "¿En qué hora saliste del comedor?",
+      "topic": "alibi",
+      "source": "¿A qué hora saliste del comedor?"
+    },
+    {
+      "question": "¿A qué hora dejaste salir del comedor?",
+      "topic": "alibi",
+      "source": "¿A qué hora saliste del comedor?"
+    },
+    {
+      "question": "¿Cuándo te vas del comedor?",
+      "topic": "alibi",
+      "source": "¿A qué hora saliste del comedor?"
+    },
+    {
+      "question": "¿Cuánto tiempo permaneciste en el almacén?",
+      "topic": "alibi",
+      "source": "¿Cuánto tiempo estuviste en el almacén?"
+    },
+    {
+      "question": "¿Cuánto tiempo pasaste en el almacén?",
+      "topic": "alibi",
+      "source": "¿Cuánto tiempo estuviste en el almacén?"
+    },
+    {
+      "question": "¿Alguna vez estuviste solo?",
+      "topic": "alibi",
+      "source": "¿Estuviste solo en algún momento?"
+    },
+    {
+      "question": "¿Te sentiste solo en algún momento?",
+      "topic": "alibi",
+      "source": "¿Estuviste solo en algún momento?"
+    },
+    {
+      "question": "¿Estuviste nunca solo?",
+      "topic": "alibi",
+      "source": "¿Estuviste solo en algún momento?"
+    },
+    {
+      "question": "¿Hablaste con alguien en algún momento?",
+      "topic": "alibi",
+      "source": "¿Estuviste solo en algún momento?"
+    },
+    {
+      "question": "Dime dónde estaba, de minuto en minuto.",
+      "topic": "alibi",
+      "source": "Explícame dónde estabas, minuto a minuto."
+    },
+    {
+      "question": "Cuéntame, por cada minuto, dónde te encontraste.",
+      "topic": "alibi",
+      "source": "Explícame dónde estabas, minuto a minuto."
+    },
+    {
+      "question": "¿Dónde te encuentras minuto a minuto?.",
+      "topic": "alibi",
+      "source": "Explícame dónde estabas, minuto a minuto."
+    },
+    {
+      "question": "¿Hiciste algo en la capilla después de cenar?",
+      "topic": "alibi",
+      "source": "¿Fuiste a la capilla después de cenar?"
+    },
+    {
+      "question": "¿Eres a la capilla después de cenar?",
+      "topic": "alibi",
+      "source": "¿Fuiste a la capilla después de cenar?"
+    },
+    {
+      "question": "¿Te has ido a la capilla después de cenar?",
+      "topic": "alibi",
+      "source": "¿Fuiste a la capilla después de cenar?"
+    },
+    {
+      "question": "¿A qué hora has ido a la capilla después de cenar?",
+      "topic": "alibi",
+      "source": "¿Fuiste a la capilla después de cenar?"
+    },
+    {
+      "question": "¿Cuándo dormías cuando sucedió?",
+      "topic": "alibi",
+      "source": "¿Dormías cuando pasó?"
+    },
+    {
+      "question": "¿Dormías al llegar?",
+      "topic": "alibi",
+      "source": "¿Dormías cuando pasó?"
+    },
+    {
+      "question": "¿Dormiste antes de que pasara?",
+      "topic": "alibi",
+      "source": "¿Dormías cuando pasó?"
+    },
+    {
+      "question": "¿Tuve que dormir cuando pasó?",
+      "topic": "alibi",
+      "source": "¿Dormías cuando pasó?"
+    },
+    {
+      "question": "cambia palabras",
+      "topic": "alibi",
+      "source": "¿Te acostaste temprano?"
+    },
+    {
+      "question": "cambia orden",
+      "topic": "alibi",
+      "source": "¿Te acostaste temprano?"
+    },
+    {
+      "question": "cambia registro",
+      "topic": "alibi",
+      "source": "¿Te acostaste temprano?"
+    },
+    {
+      "question": "conserva datos",
+      "topic": "alibi",
+      "source": "¿Te acostaste temprano?"
+    },
+    {
+      "question": "¿Seguí despierto hasta esa hora?",
+      "topic": "alibi",
+      "source": "¿Seguías despierto a esa hora?"
+    },
+    {
+      "question": "¿Días despierto en ese tiempo?",
+      "topic": "alibi",
+      "source": "¿Seguías despierto a esa hora?"
+    },
+    {
+      "question": "¿Sigues despierto a ese momento?",
+      "topic": "alibi",
+      "source": "¿Seguías despierto a esa hora?"
+    },
+    {
+      "question": "¿Te mantuviste despierto a esa hora?",
+      "topic": "alibi",
+      "source": "¿Seguías despierto a esa hora?"
+    },
+    {
+      "question": "Formal with 'tú' /",
+      "topic": "alibi",
+      "source": "¿En qué zona de la estación estabas?"
+    },
+    {
+      "question": "¿Te rezaste en tu celda?",
+      "topic": "alibi",
+      "source": "¿Estabas en tu celda rezando?"
+    },
+    {
+      "question": "¿Estaba en tu celda rezando?",
+      "topic": "alibi",
+      "source": "¿Estabas en tu celda rezando?"
+    },
+    {
+      "question": "¿En tu celda rezabas?",
+      "topic": "alibi",
+      "source": "¿Estabas en tu celda rezando?"
+    },
+    {
+      "question": "¿Podrías decirme exactamente dónde fuiste durante todo el día?",
+      "topic": "alibi",
+      "source": "cuentame donde estuviste toda la noche"
+    },
+    {
+      "question": "¿Me digas en qué lugar estuviste durante todo el día?",
+      "topic": "alibi",
+      "source": "cuentame donde estuviste toda la noche"
+    },
+    {
+      "question": "¿Puedes contarme tu ubicación de la noche?",
+      "topic": "alibi",
+      "source": "cuentame donde estuviste toda la noche"
+    },
+    {
+      "question": "¿Dónde pasaste toda la noche?",
+      "topic": "alibi",
+      "source": "cuentame donde estuviste toda la noche"
+    },
+    {
+      "question": "¿Qué ruta sigues después de cenar?",
+      "topic": "alibi",
+      "source": "¿Qué ruta seguiste después de cenar?"
+    },
+    {
+      "question": "¿Qué ruta pasaste por después de cenar?",
+      "topic": "alibi",
+      "source": "¿Qué ruta seguiste después de cenar?"
+    },
+    {
+      "question": "¿Cuál era el trayecto que tomaste después de cenar?",
+      "topic": "alibi",
+      "source": "¿Qué ruta seguiste después de cenar?"
+    },
+    {
+      "question": "¿Qué ruta tomaste después de cenar?",
+      "topic": "alibi",
+      "source": "¿Qué ruta seguiste después de cenar?"
+    },
+    {
+      "question": "¿Tu turno terminó antes que el crimen?",
+      "topic": "alibi",
+      "source": "¿Tu turno terminó antes del crimen?"
+    },
+    {
+      "question": "¿Tu turno terminó antes de la aparición del criminal?",
+      "topic": "alibi",
+      "source": "¿Tu turno terminó antes del crimen?"
+    },
+    {
+      "question": "¿Tu turno terminó antes del hecho?",
+      "topic": "alibi",
+      "source": "¿Tu turno terminó antes del crimen?"
+    },
+    {
+      "question": "¿Fue tu puente de mando?",
+      "topic": "alibi",
+      "source": "¿Estabas en el puente de mando?"
+    },
+    {
+      "question": "¿Estuviste en el puente de mando?",
+      "topic": "alibi",
+      "source": "¿Estabas en el puente de mando?"
+    },
+    {
+      "question": "¿Había sido tú en el puente de mando?",
+      "topic": "alibi",
+      "source": "¿Estabas en el puente de mando?"
+    },
+    {
+      "question": "¿Estabas allí en el puente de mando?",
+      "topic": "alibi",
+      "source": "¿Estabas en el puente de mando?"
+    },
+    {
+      "question": "¿Realizaron la ronda de vigilancia esa noche?",
+      "topic": "alibi",
+      "source": "¿Hiciste la ronda de vigilancia esa noche?"
+    },
+    {
+      "question": "¿Se hizo la ronda de vigilancia esa noche?",
+      "topic": "alibi",
+      "source": "¿Hiciste la ronda de vigilancia esa noche?"
+    },
+    {
+      "question": "¿Vigilaste la ronda de vigilancia ese día?",
+      "topic": "alibi",
+      "source": "¿Hiciste la ronda de vigilancia esa noche?"
+    },
+    {
+      "question": "¿Fue la ronda de vigilancia esa noche?",
+      "topic": "alibi",
+      "source": "¿Hiciste la ronda de vigilancia esa noche?"
+    },
+    {
+      "question": "¿Volviste a tu cuarto antes de las once?",
+      "topic": "alibi",
+      "source": "¿Volviste a tu habitación antes de las once?"
+    },
+    {
+      "question": "¿Te has puesto en tu habitación antes de las once?",
+      "topic": "alibi",
+      "source": "¿Volviste a tu habitación antes de las once?"
+    },
+    {
+      "question": "¿Has llegado a tu habitación antes de las once?",
+      "topic": "alibi",
+      "source": "¿Volviste a tu habitación antes de las once?"
+    },
+    {
+      "question": "¿A dónde has estado a esa hora?",
+      "topic": "alibi",
+      "source": "Necesito tu paradero exacto a esa hora."
+    },
+    {
+      "question": "¿Dónde estás ahora mismo?",
+      "topic": "alibi",
+      "source": "Necesito tu paradero exacto a esa hora."
+    },
+    {
+      "question": "¿Has estado en algún lugar a esa hora?",
+      "topic": "alibi",
+      "source": "Necesito tu paradero exacto a esa hora."
+    },
+    {
+      "question": "¿Estaba en otro piso?",
+      "topic": "alibi",
+      "source": "¿Estabas en otro piso?"
+    },
+    {
+      "question": "¿En otro piso estuviste?",
+      "topic": "alibi",
+      "source": "¿Estabas en otro piso?"
+    },
+    {
+      "question": "¿Dónde estaba en otro piso?",
+      "topic": "alibi",
+      "source": "¿Estabas en otro piso?"
+    },
+    {
+      "question": "¿Estuviste en otro piso?",
+      "topic": "alibi",
+      "source": "¿Estabas en otro piso?"
+    },
+    {
+      "question": "¿Bajaste a la bodega algún momento?",
+      "topic": "alibi",
+      "source": "¿Bajaste a la bodega en algún momento?"
+    },
+    {
+      "question": "¿Dónde fue el último tiempo que estuviste?",
+      "topic": "alibi",
+      "source": "¿Bajaste a la bodega en algún momento?"
+    },
+    {
+      "question": "¿Estás seguro de que bajaste a la bodega?",
+      "topic": "alibi",
+      "source": "¿Bajaste a la bodega en algún momento?"
+    },
+    {
+      "question": "¿Dónde vas en la bodega?",
+      "topic": "alibi",
+      "source": "¿Bajaste a la bodega en algún momento?"
+    },
+    {
+      "question": "¿Fuiste a salir a respirar aire?",
+      "topic": "alibi",
+      "source": "¿Saliste a tomar el aire?"
+    },
+    {
+      "question": "¿Te fue a pasar el aire?",
+      "topic": "alibi",
+      "source": "¿Saliste a tomar el aire?"
+    },
+    {
+      "question": "¿Te pasaste un respiro por fuera?",
+      "topic": "alibi",
+      "source": "¿Saliste a tomar el aire?"
+    },
+    {
+      "question": "¿Hiciste un viaje a dar aire?",
+      "topic": "alibi",
+      "source": "¿Saliste a tomar el aire?"
+    },
+    {
+      "question": "¿Cómo fue el trato que tuviste con el señor?",
+      "topic": "motive",
+      "source": "¿Cómo era tu trato con el señor?"
+    },
+    {
+      "question": "¿De qué trata con el señor te atreviste?",
+      "topic": "motive",
+      "source": "¿Cómo era tu trato con el señor?"
+    },
+    {
+      "question": "¿Cómo fue la relación que mantuviste con el señor?",
+      "topic": "motive",
+      "source": "¿Cómo era tu trato con el señor?"
+    },
+    {
+      "question": "¿Qué tal fue su trato con el señor?",
+      "topic": "motive",
+      "source": "¿Cómo era tu trato con el señor?"
+    },
+    {
+      "question": "¿Cómo te pasaste con la difunta?",
+      "topic": "motive",
+      "source": "¿Qué tal te llevabas con la difunta?"
+    },
+    {
+      "question": "¿Qué tal te llevaste con el fallecido?",
+      "topic": "motive",
+      "source": "¿Qué tal te llevabas con la difunta?"
+    },
+    {
+      "question": "¿Cómo fue tu relación con el muerto?",
+      "topic": "motive",
+      "source": "¿Qué tal te llevabas con la difunta?"
+    },
+    {
+      "question": "¿Qué tal tu vida con la difunta?",
+      "topic": "motive",
+      "source": "¿Qué tal te llevabas con la difunta?"
+    },
+    {
+      "question": "Formal: ¿Admirabas a la víctima?",
+      "topic": "motive",
+      "source": "¿Admirabas a la víctima?"
+    },
+    {
+      "question": "¿Te he hecho daño alguna vez?",
+      "topic": "motive",
+      "source": "¿Te había hecho daño alguna vez?"
+    },
+    {
+      "question": "¿Alguna vez te he hecho daño?",
+      "topic": "motive",
+      "source": "¿Te había hecho daño alguna vez?"
+    },
+    {
+      "question": "¿Alguna vez te he herido?",
+      "topic": "motive",
+      "source": "¿Te había hecho daño alguna vez?"
+    },
+    {
+      "question": "¿Me he hecho daño alguna vez?",
+      "topic": "motive",
+      "source": "¿Te había hecho daño alguna vez?"
+    },
+    {
+      "question": "¿Te temías?",
+      "topic": "motive",
+      "source": "¿Le tenías miedo?"
+    },
+    {
+      "question": "¿No te asustabas?",
+      "topic": "motive",
+      "source": "¿Le tenías miedo?"
+    },
+    {
+      "question": "¿Alguna vez te dio miedo?",
+      "topic": "motive",
+      "source": "¿Le tenías miedo?"
+    },
+    {
+      "question": "¿No te creía que iba a pasar?",
+      "topic": "motive",
+      "source": "¿Le tenías miedo?"
+    },
+    {
+      "question": "¿Fue tu mentor?",
+      "topic": "motive",
+      "source": "¿Era tu mentor?"
+    },
+    {
+      "question": "¿Fue tu maestro?",
+      "topic": "motive",
+      "source": "¿Era tu mentor?"
+    },
+    {
+      "question": "], ... wait, I need to ensure all constraints are met.} }",
+      "topic": "motive",
+      "source": "¿Era tu mentor?"
+    },
+    {
+      "question": "¿Te tenías cariño?",
+      "topic": "motive",
+      "source": "¿Le tenías cariño?"
+    },
+    {
+      "question": "¿Qué le unía a él?",
+      "topic": "motive",
+      "source": "¿Qué te unía a él?"
+    },
+    {
+      "question": "¿Qué lo unía a él?",
+      "topic": "motive",
+      "source": "¿Qué te unía a él?"
+    },
+    {
+      "question": "¿Te ha puesto en una situación de humillación alguna vez?",
+      "topic": "motive",
+      "source": "¿Alguna vez te humilló?"
+    },
+    {
+      "question": "¿Alguna vez ha hecho algo que te haya hecho sentir humillado?",
+      "topic": "motive",
+      "source": "¿Alguna vez te humilló?"
+    },
+    {
+      "question": "¿Te ha humillado alguna persona alguna vez?",
+      "topic": "motive",
+      "source": "¿Alguna vez te humilló?"
+    },
+    {
+      "question": "¿Alguna vez te ha causado alguna situación de humillación?",
+      "topic": "motive",
+      "source": "¿Alguna vez te humilló?"
+    },
+    {
+      "question": "¿Te sentiste tratado injustamente por ella?",
+      "topic": "motive",
+      "source": "¿Te sentías tratado injustamente por ella?"
+    },
+    {
+      "question": "¿Cómo te sentiste con respecto a ella?",
+      "topic": "motive",
+      "source": "¿Te sentías tratado injustamente por ella?"
+    },
+    {
+      "question": "¿Te sentiste maltratado por ella?",
+      "topic": "motive",
+      "source": "¿Te sentías tratado injustamente por ella?"
+    },
+    {
+      "question": "¿Te sentiste desconsiderado por ella?",
+      "topic": "motive",
+      "source": "¿Te sentías tratado injustamente por ella?"
+    },
+    {
+      "question": "¿Hablamos con frecuencia?",
+      "topic": "motive",
+      "source": "¿Discutíais a menudo?"
+    },
+    {
+      "question": "¿Fue frecuente vuestro debate?",
+      "topic": "motive",
+      "source": "¿Discutíais a menudo?"
+    },
+    {
+      "question": "¿Fue muy frecuente vuestra conversación?",
+      "topic": "motive",
+      "source": "¿Discutíais a menudo?"
+    },
+    {
+      "question": "¿Habláis a menudo?",
+      "topic": "motive",
+      "source": "¿Discutíais a menudo?"
+    },
+    {
+      "question": "¿Qué discusión tuviste más reciente con alguien?",
+      "topic": "motive",
+      "source": "¿Cuál fue vuestra última discusión?"
+    },
+    {
+      "question": "¿Cuál fue la discusión más reciente que tuviste?",
+      "topic": "motive",
+      "source": "¿Cuál fue vuestra última discusión?"
+    },
+    {
+      "question": "¿Cuál fue la última discusión que tuviste?",
+      "topic": "motive",
+      "source": "¿Cuál fue vuestra última discusión?"
+    },
+    {
+      "question": "¿Cuándo fue la discusión más reciente que tuviste?",
+      "topic": "motive",
+      "source": "¿Cuál fue vuestra última discusión?"
+    },
+    {
+      "question": "Direct",
+      "topic": "motive",
+      "source": "¿Teníais una rivalidad?"
+    },
+    {
+      "question": "¿Te envidaba o no?",
+      "topic": "motive",
+      "source": "¿Te envidiaba?"
+    },
+    {
+      "question": "¿Era tu que me envidaba?",
+      "topic": "motive",
+      "source": "¿Te envidiaba?"
+    },
+    {
+      "question": "¿Te gustaba o no?",
+      "topic": "motive",
+      "source": "¿Te envidiaba?"
+    },
+    {
+      "question": "¿Estabas de acuerdo en ello?",
+      "topic": "motive",
+      "source": "¿Te envidiaba?"
+    },
+    {
+      "question": "¿Te envidias a él o le haces caso?",
+      "topic": "motive",
+      "source": "¿Le envidiabas tú a él?"
+    },
+    {
+      "question": "¿No te envidias a él?",
+      "topic": "motive",
+      "source": "¿Le envidiabas tú a él?"
+    },
+    {
+      "question": "¿Te envidio a él?",
+      "topic": "motive",
+      "source": "¿Le envidiabas tú a él?"
+    },
+    {
+      "question": "¿Te envidias tú o no le?",
+      "topic": "motive",
+      "source": "¿Le envidiabas tú a él?"
+    },
+    {
+      "question": "¿Se trataba de un buen patrón?",
+      "topic": "motive",
+      "source": "¿Era un buen patrón?"
+    },
+    {
+      "question": "¿Fue un buen patrón?",
+      "topic": "motive",
+      "source": "¿Era un buen patrón?"
+    },
+    {
+      "question": "¿Estaba un buen patrón?",
+      "topic": "motive",
+      "source": "¿Era un buen patrón?"
+    },
+    {
+      "question": "¿Te pagas bien?",
+      "topic": "motive",
+      "source": "¿Te pagaba bien?"
+    },
+    {
+      "question": "¿En tu confianza confías?",
+      "topic": "motive",
+      "source": "¿Confiaba en ti?"
+    },
+    {
+      "question": "¿Crees en mí?",
+      "topic": "motive",
+      "source": "¿Confiaba en ti?"
+    },
+    {
+      "question": "¿Creías en ti?",
+      "topic": "motive",
+      "source": "¿Confiaba en ti?"
+    },
+    {
+      "question": "¿Puede confirmar su opinión sobre él?",
+      "topic": "motive",
+      "source": "¿Tú confiabas en él?"
+    },
+    {
+      "question": "No, ¿Tú confiabas en él?",
+      "topic": "motive",
+      "source": "¿Tú confiabas en él?"
+    },
+    {
+      "question": "¿Te atreves a dudar de él?",
+      "topic": "motive",
+      "source": "¿Tú confiabas en él?"
+    },
+    {
+      "question": "¿Tú creías en él?",
+      "topic": "motive",
+      "source": "¿Tú confiabas en él?"
+    },
+    {
+      "question": "¿Conocisteis a jóvenes?",
+      "topic": "motive",
+      "source": "¿Os conocisteis de jóvenes?"
+    },
+    {
+      "question": "¿Se conocieron de jóvenes?",
+      "topic": "motive",
+      "source": "¿Os conocisteis de jóvenes?"
+    },
+    {
+      "question": "¿Sabíais de jóvenes?",
+      "topic": "motive",
+      "source": "¿Os conocisteis de jóvenes?"
+    },
+    {
+      "question": "¿Conocios a jóvenes?",
+      "topic": "motive",
+      "source": "¿Os conocisteis de jóvenes?"
+    },
+    {
+      "question": "¿En qué momento se iniciaron tus vínculos?",
+      "topic": "motive",
+      "source": "¿Cómo empezó vuestra relación?"
+    },
+    {
+      "question": "¿En qué fecha se comenzó su conexión?",
+      "topic": "motive",
+      "source": "¿Cómo empezó vuestra relación?"
+    },
+    {
+      "question": "¿De dónde comenzó tu relación?",
+      "topic": "motive",
+      "source": "¿Cómo empezó vuestra relación?"
+    },
+    {
+      "question": "¿Desde cuándo se iniciaron sus vínculos?",
+      "topic": "motive",
+      "source": "¿Cómo empezó vuestra relación?"
+    },
+    {
+      "question": "¿Te ayudó ella a conseguir este puesto?",
+      "topic": "motive",
+      "source": "¿Ella te ayudó a conseguir este puesto?"
+    },
+    {
+      "question": "¿Por qué no os soportasteis?",
+      "topic": "motive",
+      "source": "¿Por qué no os soportabais?"
+    },
+    {
+      "question": "¿Todos dicen que lo odias?",
+      "topic": "motive",
+      "source": "todos dicen que lo odiabas"
+    },
+    {
+      "question": "¿Todo mundo dice que odiabas lo mismo?",
+      "topic": "motive",
+      "source": "todos dicen que lo odiabas"
+    },
+    {
+      "question": "¿Es cierto que todos hablan de que lo odiabas?",
+      "topic": "motive",
+      "source": "todos dicen que lo odiabas"
+    },
+    {
+      "question": "¿Alguien dice que lo odias?",
+      "topic": "motive",
+      "source": "todos dicen que lo odiabas"
+    },
+    {
+      "question": "¿Te hace feliz que haya muerto?",
+      "topic": "motive",
+      "source": "¿Te alegras de que haya muerto?"
+    },
+    {
+      "question": "¿Te sientes más tranquilo por la muerte de alguien?",
+      "topic": "motive",
+      "source": "¿Te alegras de que haya muerto?"
+    },
+    {
+      "question": "¿Te alegra saber que ya no hay nadie?",
+      "topic": "motive",
+      "source": "¿Te alegras de que haya muerto?"
+    },
+    {
+      "question": "¿Te despiertas contento con esta noticia?",
+      "topic": "motive",
+      "source": "¿Te alegras de que haya muerto?"
+    },
+    {
+      "question": "¿Qué reacción sintió al conocer tu muerte?",
+      "topic": "motive",
+      "source": "¿Qué sentiste al saber que había muerto?"
+    },
+    {
+      "question": "¿Qué sentiste al conocer tu muerte?",
+      "topic": "motive",
+      "source": "¿Qué sentiste al saber que había muerto?"
+    },
+    {
+      "question": "¿Teneis algo pendiente?",
+      "topic": "motive",
+      "source": "¿Teníais algo pendiente?"
+    },
+    {
+      "question": "¿Qué tenéis pendiente?",
+      "topic": "motive",
+      "source": "¿Teníais algo pendiente?"
+    },
+    {
+      "question": "¿Algo pendiente?",
+      "topic": "motive",
+      "source": "¿Teníais algo pendiente?"
+    },
+    {
+      "question": "¿Me había hecho una promesa que no se cumplió?",
+      "topic": "motive",
+      "source": "¿Te había prometido algo que no cumplió?"
+    },
+    {
+      "question": "¿Alguna cosa me había prometido antes que no se llevó a cabo?",
+      "topic": "motive",
+      "source": "¿Te había prometido algo que no cumplió?"
+    },
+    {
+      "question": "¿Eres alguien que se me prometió una cosa que nunca ocurrió?",
+      "topic": "motive",
+      "source": "¿Te había prometido algo que no cumplió?"
+    },
+    {
+      "question": "¿Habrías hecho algo que yo no había cumplido contigo?",
+      "topic": "motive",
+      "source": "¿Te había prometido algo que no cumplió?"
+    },
+    {
+      "question": "¿Contra tu generosidad?",
+      "topic": "motive",
+      "source": "¿Era generoso contigo?"
+    },
+    {
+      "question": "¿Tu generosidad?",
+      "topic": "motive",
+      "source": "¿Era generoso contigo?"
+    },
+    {
+      "question": "¿Tu generosidad contigo?",
+      "topic": "motive",
+      "source": "¿Era generoso contigo?"
+    },
+    {
+      "question": "¿Te lo respetabas?",
+      "topic": "motive",
+      "source": "¿Lo respetabas?"
+    },
+    {
+      "question": "¿Respetabas tu?",
+      "topic": "motive",
+      "source": "¿Lo respetabas?"
+    },
+    {
+      "question": "¿Te respetaba?",
+      "topic": "motive",
+      "source": "¿Lo respetabas?"
+    },
+    {
+      "question": "¿Lo amabas?",
+      "topic": "motive",
+      "source": "¿Lo respetabas?"
+    },
+    {
+      "question": "¿Me creía de confianza?",
+      "topic": "motive",
+      "source": "¿Te consideraba de confianza?"
+    },
+    {
+      "question": "¿Me considerabas de confianza?",
+      "topic": "motive",
+      "source": "¿Te consideraba de confianza?"
+    },
+    {
+      "question": "¿Te considerabas de confianza?",
+      "topic": "motive",
+      "source": "¿Te consideraba de confianza?"
+    },
+    {
+      "question": "¿Considerabas de confianza?",
+      "topic": "motive",
+      "source": "¿Te consideraba de confianza?"
+    },
+    {
+      "question": "¿De qué trata tu nombre? ¿Por qué está en su libro de cuentas?",
+      "topic": "secret",
+      "source": "¿Por qué tu nombre está en su libro de cuentas?"
+    },
+    {
+      "question": "¿Por qué está tu nombre en su libro de cuentas?",
+      "topic": "secret",
+      "source": "¿Por qué tu nombre está en su libro de cuentas?"
+    },
+    {
+      "question": "¿Cuál es el contenido de este documento?",
+      "topic": "secret",
+      "source": "¿Qué es esta factura?"
+    },
+    {
+      "question": "¿Qué es este documento?",
+      "topic": "secret",
+      "source": "¿Qué es esta factura?"
+    },
+    {
+      "question": "¿Qué es esto?",
+      "topic": "secret",
+      "source": "¿Qué es esta factura?"
+    },
+    {
+      "question": "¿Qué hace este documento?",
+      "topic": "secret",
+      "source": "¿Qué significa este recibo?"
+    },
+    {
+      "question": "¿Qué significa este papel?",
+      "topic": "secret",
+      "source": "¿Qué significa este recibo?"
+    },
+    {
+      "question": "¿Qué quiere decir esta nota?",
+      "topic": "secret",
+      "source": "¿Qué significa este recibo?"
+    },
+    {
+      "question": "¿Qué es lo que dice este papel?",
+      "topic": "secret",
+      "source": "¿Qué significa este recibo?"
+    },
+    {
+      "question": "¿Se había hecho llamar a alguien para que te dieran el susto?",
+      "topic": "secret",
+      "source": "¿Te había pillado robando?"
+    },
+    {
+      "question": "¿Estabas chantajeando a alguien?",
+      "topic": "secret",
+      "source": "¿Le chantajeabas tú?"
+    },
+    {
+      "question": "¿A quién le chantajeabas?",
+      "topic": "secret",
+      "source": "¿Le chantajeabas tú?"
+    },
+    {
+      "question": "¿Eres quien le chantajeaba?",
+      "topic": "secret",
+      "source": "¿Le chantajeabas tú?"
+    },
+    {
+      "question": "¿Tú le chantajeabas?",
+      "topic": "secret",
+      "source": "¿Le chantajeabas tú?"
+    },
+    {
+      "question": "¿Alguna cosa secreta que tú conocías?",
+      "topic": "secret",
+      "source": "¿Qué secreto tuyo conocía?"
+    },
+    {
+      "question": "¿Qué secreto interior que yo conocí?",
+      "topic": "secret",
+      "source": "¿Qué secreto tuyo conocía?"
+    },
+    {
+      "question": "¿Qué cosa oculta de ti sabías?",
+      "topic": "secret",
+      "source": "¿Qué secreto tuyo conocía?"
+    },
+    {
+      "question": "¿Qué secreto que tú conocías?",
+      "topic": "secret",
+      "source": "¿Qué secreto tuyo conocía?"
+    },
+    {
+      "question": "¿Le pediste dinero?",
+      "topic": "secret",
+      "source": "¿Le pediste un préstamo?"
+    },
+    {
+      "question": "¿Te pediste un préstamo?",
+      "topic": "secret",
+      "source": "¿Le pediste un préstamo?"
+    },
+    {
+      "question": "¿Pediste un préstamo?",
+      "topic": "secret",
+      "source": "¿Le pediste un préstamo?"
+    },
+    {
+      "question": "¿Te devolviste el dinero?",
+      "topic": "secret",
+      "source": "¿Le devolviste el dinero?"
+    },
+    {
+      "question": "¿Le devolviste los fondos?",
+      "topic": "secret",
+      "source": "¿Le devolviste el dinero?"
+    },
+    {
+      "question": "¿Te devolviste las monedas?",
+      "topic": "secret",
+      "source": "¿Le devolviste el dinero?"
+    },
+    {
+      "question": "¿Te estás reclamando un crédito?",
+      "topic": "secret",
+      "source": "¿Te reclamaba una deuda?"
+    },
+    {
+      "question": "¿Me estás demandando por una deuda?",
+      "topic": "secret",
+      "source": "¿Te reclamaba una deuda?"
+    },
+    {
+      "question": "¿Te está cobrando un pago?",
+      "topic": "secret",
+      "source": "¿Te reclamaba una deuda?"
+    },
+    {
+      "question": "¿Te está reclamando por un deudor?",
+      "topic": "secret",
+      "source": "¿Te reclamaba una deuda?"
+    },
+    {
+      "question": "¿Dudas de que no te quedaste con los bienes?",
+      "topic": "secret",
+      "source": "¿Ibas a quedarte sin la herencia?"
+    },
+    {
+      "question": "¿Te has decidido a no recibir nada?",
+      "topic": "secret",
+      "source": "¿Ibas a quedarte sin la herencia?"
+    },
+    {
+      "question": "¿Quedarte sin lo que ganaste?",
+      "topic": "secret",
+      "source": "¿Ibas a quedarte sin la herencia?"
+    },
+    {
+      "question": "¿Sabías que te quedarías sin tu parte?",
+      "topic": "secret",
+      "source": "¿Ibas a quedarte sin la herencia?"
+    },
+    {
+      "question": "¿Sabías que había alterado el testamento?",
+      "topic": "secret",
+      "source": "¿Sabías que había cambiado el testamento?"
+    },
+    {
+      "question": "¿Creen que lo castigarán?",
+      "topic": "secret",
+      "source": "¿Querías que lo castigaran?"
+    },
+    {
+      "question": "¿Tú quieres que lo castigan?",
+      "topic": "secret",
+      "source": "¿Querías que lo castigaran?"
+    },
+    {
+      "question": "¿Te gustaría que lo castigaran?",
+      "topic": "secret",
+      "source": "¿Querías que lo castigaran?"
+    },
+    {
+      "question": "¿Querías castigarlo?",
+      "topic": "secret",
+      "source": "¿Querías que lo castigaran?"
+    },
+    {
+      "question": "¿Viste que he visto tu nota sobre ti?",
+      "topic": "secret",
+      "source": "He visto su nota sobre ti."
+    },
+    {
+      "question": "¿Me has visto la nota que te escribiste?",
+      "topic": "secret",
+      "source": "He visto su nota sobre ti."
+    },
+    {
+      "question": "¿Viste tu nota sobre ti?",
+      "topic": "secret",
+      "source": "He visto su nota sobre ti."
+    },
+    {
+      "question": "¿He visto tu nota sobre ti?",
+      "topic": "secret",
+      "source": "He visto su nota sobre ti."
+    },
+    {
+      "question": "Sus papeles dicen que lo engañas.",
+      "topic": "secret",
+      "source": "Sus papeles dicen que le engañabas."
+    },
+    {
+      "question": "Sus papeles dicen que le engaña.",
+      "topic": "secret",
+      "source": "Sus papeles dicen que le engañabas."
+    },
+    {
+      "question": "Sus papeles dicen que lo engaña.",
+      "topic": "secret",
+      "source": "Sus papeles dicen que le engañabas."
+    },
+    {
+      "question": "¿Qué pensabas hacer con tu dinero?",
+      "topic": "secret",
+      "source": "¿Qué pensaba hacer con tus cuentas?"
+    },
+    {
+      "question": "¿Alguna idea tenía sobre tus cuentas?",
+      "topic": "secret",
+      "source": "¿Qué pensaba hacer con tus cuentas?"
+    },
+    {
+      "question": "¿Qué planeaste con tu dinero?",
+      "topic": "secret",
+      "source": "¿Qué pensaba hacer con tus cuentas?"
+    },
+    {
+      "question": "¿Qué iba a hacer con tu dinero?",
+      "topic": "secret",
+      "source": "¿Qué pensaba hacer con tus cuentas?"
+    },
+    {
+      "question": "¿Estaba pensando en contarte lo tuyo a los oficiales?",
+      "topic": "secret",
+      "source": "¿Iba a contar lo tuyo a la autoridad?"
+    },
+    {
+      "question": "¿Iba a decirte lo tuyo al oficial?",
+      "topic": "secret",
+      "source": "¿Iba a contar lo tuyo a la autoridad?"
+    },
+    {
+      "question": "¿Habías pensado compartir lo tuyo con las autoridades?",
+      "topic": "secret",
+      "source": "¿Iba a contar lo tuyo a la autoridad?"
+    },
+    {
+      "question": "¿De qué razón no me hablaste del asunto?",
+      "topic": "secret",
+      "source": "¿Por qué no me hablaste de la deuda?"
+    },
+    {
+      "question": "¿Por qué no me has hablado sobre el asunto?",
+      "topic": "secret",
+      "source": "¿Por qué no me hablaste de la deuda?"
+    },
+    {
+      "question": "¿De qué razón no me hablaste del problema?",
+      "topic": "secret",
+      "source": "¿Por qué no me hablaste de la deuda?"
+    },
+    {
+      "question": "¿De qué razón no te hablaste del asunto?",
+      "topic": "secret",
+      "source": "¿Por qué no me hablaste de la deuda?"
+    },
+    {
+      "question": "¿De qué es que oculté la carta?",
+      "topic": "secret",
+      "source": "¿Por qué ocultaste esa carta?"
+    },
+    {
+      "question": "¿Cómo fue que ocultaste esa carta?",
+      "topic": "secret",
+      "source": "¿Por qué ocultaste esa carta?"
+    },
+    {
+      "question": "¿Por qué escondiste ese papel?",
+      "topic": "secret",
+      "source": "¿Por qué ocultaste esa carta?"
+    },
+    {
+      "question": "¿Qué te impidió ocultar ese documento?",
+      "topic": "secret",
+      "source": "¿Por qué ocultaste esa carta?"
+    },
+    {
+      "question": "¿Te escondiste algún documento?",
+      "topic": "secret",
+      "source": "¿Escondiste algún documento?"
+    },
+    {
+      "question": "¿No escondiste ningún documento?",
+      "topic": "secret",
+      "source": "¿Escondiste algún documento?"
+    },
+    {
+      "question": "¿No ocultaste ningún documento?",
+      "topic": "secret",
+      "source": "¿Escondiste algún documento?"
+    },
+    {
+      "question": "Conserve datos",
+      "topic": "secret",
+      "source": "explicame este papel"
+    },
+    {
+      "question": "¿Qué indica lo que se encuentra a continuación?",
+      "topic": "secret",
+      "source": "que significa lo que pone aqui"
+    },
+    {
+      "question": "¿Qué significa lo que aparece a continuación?",
+      "topic": "secret",
+      "source": "que significa lo que pone aqui"
+    },
+    {
+      "question": "¿Qué representa el texto que aparece aquí?",
+      "topic": "secret",
+      "source": "que significa lo que pone aqui"
+    },
+    {
+      "question": "pregunta_origen",
+      "topic": "secret",
+      "source": "que significa lo que pone aqui"
+    },
+    {
+      "question": "informal",
+      "topic": "secret",
+      "source": "¿Tenías problemas de dinero?"
+    },
+    {
+      "question": "¿Te han descubierto que falsificaste algo?",
+      "topic": "secret",
+      "source": "¿Te habían descubierto falsificando algo?"
+    },
+    {
+      "question": "¿Te han descubierto si falsificaste algo?",
+      "topic": "secret",
+      "source": "¿Te habían descubierto falsificando algo?"
+    },
+    {
+      "question": "¿Desvió alguna vez las provisiones?",
+      "topic": "secret",
+      "source": "¿Desviabas provisiones?"
+    },
+    {
+      "question": "¿Llevabas provisiones en tu bolsa?",
+      "topic": "secret",
+      "source": "¿Desviabas provisiones?"
+    },
+    {
+      "question": "¿Pasaste las provisiones?",
+      "topic": "secret",
+      "source": "¿Desviabas provisiones?"
+    },
+    {
+      "question": "¿Desviabas los suministros?",
+      "topic": "secret",
+      "source": "¿Desviabas provisiones?"
+    },
+    {
+      "question": "¿Me iba a expulsar de la comunidad?",
+      "topic": "secret",
+      "source": "¿Te iba a expulsar de la comunidad?"
+    },
+    {
+      "question": "¿Me expulsarías de la comunidad?",
+      "topic": "secret",
+      "source": "¿Te iba a expulsar de la comunidad?"
+    },
+    {
+      "question": "¿Te expulsarías de la comunidad?",
+      "topic": "secret",
+      "source": "¿Te iba a expulsar de la comunidad?"
+    },
+    {
+      "question": "¿Te había hecho daño por contarlo?",
+      "topic": "secret",
+      "source": "¿Te había amenazado con contarlo?"
+    },
+    {
+      "question": "¿Te amenazó con que te contara?",
+      "topic": "secret",
+      "source": "¿Te había amenazado con contarlo?"
+    },
+    {
+      "question": "¿Te había amenazado por contarlo?",
+      "topic": "secret",
+      "source": "¿Te había amenazado con contarlo?"
+    },
+    {
+      "question": "¿Qué objetos tenía el sospechoso dentro de ti?",
+      "topic": "secret",
+      "source": "¿Qué guardaba la víctima contra ti?"
+    },
+    {
+      "question": "¿Qué cosa guardaba la víctima dentro de ti?",
+      "topic": "secret",
+      "source": "¿Qué guardaba la víctima contra ti?"
+    },
+    {
+      "question": "¿Qué contén en ti la víctima contra ti?",
+      "topic": "secret",
+      "source": "¿Qué guardaba la víctima contra ti?"
+    },
+    {
+      "question": "¿Qué guardó la víctima dentro de ti?",
+      "topic": "secret",
+      "source": "¿Qué guardaba la víctima contra ti?"
+    },
+    {
+      "question": "¿Alguna persona tenía la llave del armero?",
+      "topic": "link",
+      "source": "¿Quién guardaba la llave del armero?"
+    },
+    {
+      "question": "¿Quién tenía la llave del armero?",
+      "topic": "link",
+      "source": "¿Quién guardaba la llave del armero?"
+    },
+    {
+      "question": "¿Quién poseía la llave del armero?",
+      "topic": "link",
+      "source": "¿Quién guardaba la llave del armero?"
+    },
+    {
+      "question": "¿Alguien tenía la llave del armero?",
+      "topic": "link",
+      "source": "¿Quién guardaba la llave del armero?"
+    },
+    {
+      "question": "¿Permisos habilitados para acceder al armería?",
+      "topic": "link",
+      "source": "¿Tenías permiso para entrar en la armería?"
+    },
+    {
+      "question": "¿Aceptaste entrar a la armería sin autorización?",
+      "topic": "link",
+      "source": "¿Tenías permiso para entrar en la armería?"
+    },
+    {
+      "question": "¿Hubiste autorización para ingresar al lugar?",
+      "topic": "link",
+      "source": "¿Tenías permiso para entrar en la armería?"
+    },
+    {
+      "question": "¿Tuvo permiso para entrar en la armería?",
+      "topic": "link",
+      "source": "¿Tenías permiso para entrar en la armería?"
+    },
+    {
+      "question": "¿Sabías manejar el arma?",
+      "topic": "link",
+      "source": "¿Sabías usar la ballesta?"
+    },
+    {
+      "question": "¿Conoces el manejo del fusil?",
+      "topic": "link",
+      "source": "¿Sabías usar la ballesta?"
+    },
+    {
+      "question": "¿Sabías disparar con el arma?",
+      "topic": "link",
+      "source": "¿Sabías usar la ballesta?"
+    },
+    {
+      "question": "¿Alguna vez has usado una escopeta?",
+      "topic": "link",
+      "source": "¿Has disparado alguna vez una escopeta?"
+    },
+    {
+      "question": "¿Han disparado alguna vez tus armas?",
+      "topic": "link",
+      "source": "¿Has disparado alguna vez una escopeta?"
+    },
+    {
+      "question": "¿Alguna vez has apuntado una escopeta?",
+      "topic": "link",
+      "source": "¿Has disparado alguna vez una escopeta?"
+    },
+    {
+      "question": "¿Conoces el veneno que emplearon?",
+      "topic": "link",
+      "source": "¿Conocías el veneno que usaron?"
+    },
+    {
+      "question": "¿Sabías que usaron el veneno?",
+      "topic": "link",
+      "source": "¿Conocías el veneno que usaron?"
+    },
+    {
+      "question": "¿Sabías el veneno que usaron?",
+      "topic": "link",
+      "source": "¿Conocías el veneno que usaron?"
+    },
+    {
+      "question": "¿Sabías del veneno que usaron?",
+      "topic": "link",
+      "source": "¿Conocías el veneno que usaron?"
+    },
+    {
+      "question": "¿Conocías mezclar ese preparado?",
+      "topic": "link",
+      "source": "¿Sabías mezclar ese preparado?"
+    },
+    {
+      "question": "¿Sabía mezclar ese preparado?",
+      "topic": "link",
+      "source": "¿Sabías mezclar ese preparado?"
+    },
+    {
+      "question": "¿Llevaste la botella?",
+      "topic": "link",
+      "source": "¿Tocaste el frasco?"
+    },
+    {
+      "question": "¿Estabas cerca de la botella?",
+      "topic": "link",
+      "source": "¿Tocaste el frasco?"
+    },
+    {
+      "question": "¿Sabías llevarte la daga encima?",
+      "topic": "link",
+      "source": "¿Llevabas la daga encima?"
+    },
+    {
+      "question": "¿Tenías la daga encima?",
+      "topic": "link",
+      "source": "¿Llevabas la daga encima?"
+    },
+    {
+      "question": "¿Traías la daga encima?",
+      "topic": "link",
+      "source": "¿Llevabas la daga encima?"
+    },
+    {
+      "question": "registro1:",
+      "topic": "link",
+      "source": "¿La espada estaba en su sitio cuando pasaste?"
+    },
+    {
+      "question": "¿Alguien más poseía una copia de la llave?",
+      "topic": "link",
+      "source": "¿Quién más tenía copia de la llave?"
+    },
+    {
+      "question": "¿Quién otro tenía un copia de la llave?",
+      "topic": "link",
+      "source": "¿Quién más tenía copia de la llave?"
+    },
+    {
+      "question": "¿Alguien más con copia de la llave?",
+      "topic": "link",
+      "source": "¿Quién más tenía copia de la llave?"
+    },
+    {
+      "question": "¿Alguna otra persona con una llave?",
+      "topic": "link",
+      "source": "¿Quién más tenía copia de la llave?"
+    },
+    {
+      "question": "¿Podiste entrar en la botica?",
+      "topic": "link",
+      "source": "¿Podías entrar en la botica?"
+    },
+    {
+      "question": "¿Podía entrar en la botica?",
+      "topic": "link",
+      "source": "¿Podías entrar en la botica?"
+    },
+    {
+      "question": "¿Podería haber entrado en la botica?",
+      "topic": "link",
+      "source": "¿Podías entrar en la botica?"
+    },
+    {
+      "question": "¿Te permitiste entrar en la botica?",
+      "topic": "link",
+      "source": "¿Podías entrar en la botica?"
+    },
+    {
+      "question": "¿Días de acceso a la sala del laboratorio?",
+      "topic": "link",
+      "source": "¿Tenías acceso al laboratorio?"
+    },
+    {
+      "question": "¿Días de acceso al laboratorio?",
+      "topic": "link",
+      "source": "¿Tenías acceso al laboratorio?"
+    },
+    {
+      "question": "¿Tuviste acceso a la sala de laboratorio?",
+      "topic": "link",
+      "source": "¿Tenías acceso al laboratorio?"
+    },
+    {
+      "question": "¿Conocías el código de la consola?",
+      "topic": "link",
+      "source": "¿Sabías el código de la consola?"
+    },
+    {
+      "question": "¿Sabías cómo se escribía la consola?",
+      "topic": "link",
+      "source": "¿Sabías el código de la consola?"
+    },
+    {
+      "question": "¿Conoces el código de la consola?",
+      "topic": "link",
+      "source": "¿Sabías el código de la consola?"
+    },
+    {
+      "question": "¿Recuerdas el código de la consola?",
+      "topic": "link",
+      "source": "¿Sabías el código de la consola?"
+    },
+    {
+      "question": "¿Usted ha tocado el panel de energía?",
+      "topic": "link",
+      "source": "¿Manejaste el panel de energía?"
+    },
+    {
+      "question": "¿Llevaste la mano al panel de energía?",
+      "topic": "link",
+      "source": "¿Manejaste el panel de energía?"
+    },
+    {
+      "question": "¿El panel de energía está en tu mano?",
+      "topic": "link",
+      "source": "¿Manejaste el panel de energía?"
+    },
+    {
+      "question": "¿Has utilizado el transmisor aquella noche?",
+      "topic": "link",
+      "source": "¿Usaste el emisor esa noche?"
+    },
+    {
+      "question": "¿Preguntaste si usaste el emisor esa noche?",
+      "topic": "link",
+      "source": "¿Usaste el emisor esa noche?"
+    },
+    {
+      "question": "¿Usaste ese emisor durante esa noche?",
+      "topic": "link",
+      "source": "¿Usaste el emisor esa noche?"
+    },
+    {
+      "question": "¿Estabas en el arma con tus huellas?",
+      "topic": "link",
+      "source": "¿Tus huellas estaban en el arma?"
+    },
+    {
+      "question": "¿Tuviste huellas en el arma?",
+      "topic": "link",
+      "source": "¿Tus huellas estaban en el arma?"
+    },
+    {
+      "question": "¿Dónde está el arma?",
+      "topic": "link",
+      "source": "¿Por qué el arma estaba a tu alcance?"
+    },
+    {
+      "question": "¿Qué hizo para tener el arma?",
+      "topic": "link",
+      "source": "¿Por qué el arma estaba a tu alcance?"
+    },
+    {
+      "question": "¿Por qué tenía el arma cerca de ti?",
+      "topic": "link",
+      "source": "¿Por qué el arma estaba a tu alcance?"
+    },
+    {
+      "question": "¿Qué te llevó a tener el arma?",
+      "topic": "link",
+      "source": "¿Por qué el arma estaba a tu alcance?"
+    },
+    {
+      "question": "¿El cuchillo era tuyo o no?",
+      "topic": "link",
+      "source": "el cuchillo era tuyo no?"
+    },
+    {
+      "question": "¿Te pertenecía el cuchillo?",
+      "topic": "link",
+      "source": "el cuchillo era tuyo no?"
+    },
+    {
+      "question": "¿Tú tenías o no el cuchillo?",
+      "topic": "link",
+      "source": "el cuchillo era tuyo no?"
+    },
+    {
+      "question": "¿Conocías que existía un arma de fuego en el cajón?",
+      "topic": "link",
+      "source": "¿Sabías que había un revólver en el cajón?"
+    },
+    {
+      "question": "¿Sabías que había un revólver oculto en el armario?",
+      "topic": "link",
+      "source": "¿Sabías que había un revólver en el cajón?"
+    },
+    {
+      "question": "¿Conocías que estaba guardado un arma en el cajón?",
+      "topic": "link",
+      "source": "¿Sabías que había un revólver en el cajón?"
+    },
+    {
+      "question": "¿Sabías que había un arma de fuego en el cajón?",
+      "topic": "link",
+      "source": "¿Sabías que había un revólver en el cajón?"
+    },
+    {
+      "question": "¿Limpio el arma?",
+      "topic": "link",
+      "source": "¿Limpiaste el arma?"
+    },
+    {
+      "question": "¿Limpio mi arma?",
+      "topic": "link",
+      "source": "¿Limpiaste el arma?"
+    },
+    {
+      "question": "¿Limpio la arma?",
+      "topic": "link",
+      "source": "¿Limpiaste el arma?"
+    },
+    {
+      "question": "¿No ocultaste el cordón?",
+      "topic": "link",
+      "source": "¿Escondiste el cordón?"
+    },
+    {
+      "question": "¿Dónde escondiste el cordón?",
+      "topic": "link",
+      "source": "¿Escondiste el cordón?"
+    },
+    {
+      "question": "¿Te llevaste los papeles del despacho?",
+      "topic": "link",
+      "source": "¿Te llevaste el pisapapeles del despacho?"
+    },
+    {
+      "question": "¿Recogiste tus papeles en el local?",
+      "topic": "link",
+      "source": "¿Te llevaste el pisapapeles del despacho?"
+    },
+    {
+      "question": "¿No te llevaste el archivo de la oficina?",
+      "topic": "link",
+      "source": "¿Te llevaste el pisapapeles del despacho?"
+    },
+    {
+      "question": "¿Te trajiste la carpeta del despacho?",
+      "topic": "link",
+      "source": "¿Te llevaste el pisapapeles del despacho?"
+    },
+    {
+      "question": "¿Fue usted quien preparó la copa?",
+      "topic": "link",
+      "source": "¿Preparaste tú la copa?"
+    },
+    {
+      "question": "¿Tú lo hiciste tú mismo con la copa?",
+      "topic": "link",
+      "source": "¿Preparaste tú la copa?"
+    },
+    {
+      "question": "¿El que prepara la copa fue usted?",
+      "topic": "link",
+      "source": "¿Preparaste tú la copa?"
+    },
+    {
+      "question": "¿Está usted preparado la copa?",
+      "topic": "link",
+      "source": "¿Preparaste tú la copa?"
+    },
+    {
+      "question": "alternativo",
+      "topic": "link",
+      "source": "¿Sirviste tú la bebida?"
+    },
+    {
+      "question": "¿Quién sirvió el cóctel aquella noche?",
+      "topic": "link",
+      "source": "¿Quién servía las bebidas esa noche?"
+    },
+    {
+      "question": "¿Quién servía el agua esa noche?",
+      "topic": "link",
+      "source": "¿Quién servía las bebidas esa noche?"
+    },
+    {
+      "question": "¿Quien lo servíó a mis bebidas esa noche?",
+      "topic": "link",
+      "source": "¿Quién servía las bebidas esa noche?"
+    },
+    {
+      "question": "¿Quién trajo el alcohol en aquella noche?",
+      "topic": "link",
+      "source": "¿Quién servía las bebidas esa noche?"
+    },
+    {
+      "question": "¿Puediste llegar a la galería?",
+      "topic": "link",
+      "source": "¿Podías llegar a la galería?"
+    },
+    {
+      "question": "¿Podías haber llegado a la galería?",
+      "topic": "link",
+      "source": "¿Podías llegar a la galería?"
+    },
+    {
+      "question": "¿Ya levantaste la llave de la galería?",
+      "topic": "link",
+      "source": "¿Tenías la llave de la galería elevada?"
+    },
+    {
+      "question": "¿Tienes la llave de la galería subida?",
+      "topic": "link",
+      "source": "¿Tenías la llave de la galería elevada?"
+    },
+    {
+      "question": "¿Levantaste la llave de la galería?",
+      "topic": "link",
+      "source": "¿Tenías la llave de la galería elevada?"
+    },
+    {
+      "question": "¿Llevaste la llave de la galería?",
+      "topic": "link",
+      "source": "¿Tenías la llave de la galería elevada?"
+    },
+    {
+      "question": "¿Qué persona tuvo la capacidad de alterar el mecanismo?",
+      "topic": "link",
+      "source": "¿Quién podía manipular el regulador?"
+    },
+    {
+      "question": "¿Quién tuvo la oportunidad de modificar la válvula?",
+      "topic": "link",
+      "source": "¿Quién podía manipular el regulador?"
+    },
+    {
+      "question": "¿A quién se le permitió manipular el controlador?",
+      "topic": "link",
+      "source": "¿Quién podía manipular el regulador?"
+    },
+    {
+      "question": "¿Quién tenía el poder de ajustar la regulación?",
+      "topic": "link",
+      "source": "¿Quién podía manipular el regulador?"
+    },
+    {
+      "question": "¿Me pidieron el arma prestada?",
+      "topic": "link",
+      "source": "¿Alguien te pidió el arma prestada?"
+    },
+    {
+      "question": "¿Alguien me pidió el arma?",
+      "topic": "link",
+      "source": "¿Alguien te pidió el arma prestada?"
+    },
+    {
+      "question": "¿Te preguntaron si me pedían el arma?",
+      "topic": "link",
+      "source": "¿Alguien te pidió el arma prestada?"
+    },
+    {
+      "question": "¿Alguien pidió el arma?",
+      "topic": "link",
+      "source": "¿Alguien te pidió el arma prestada?"
+    },
+    {
+      "question": "¿Viste la arma antes de lo sucedido?",
+      "topic": "link",
+      "source": "¿Viste el arma antes del crimen?"
+    },
+    {
+      "question": "¿Viste el arma antes de lo sucedido?",
+      "topic": "link",
+      "source": "¿Viste el arma antes del crimen?"
+    },
+    {
+      "question": "¿Alguien te vio en el comedor?",
+      "topic": "timeline",
+      "source": "¿Quién te vio en el comedor?"
+    },
+    {
+      "question": "¿En qué lugar te has visto en el comedor?",
+      "topic": "timeline",
+      "source": "¿Quién te vio en el comedor?"
+    },
+    {
+      "question": "¿Quién en el comedor te vio?",
+      "topic": "timeline",
+      "source": "¿Quién te vio en el comedor?"
+    },
+    {
+      "question": "¿Qué dirá el guardia si yo le pregunto?",
+      "topic": "timeline",
+      "source": "¿Qué dirá el guardia si le pregunto?"
+    },
+    {
+      "question": "El registro indica que saliste a las diez.",
+      "topic": "timeline",
+      "source": "El registro dice que saliste a las diez."
+    },
+    {
+      "question": "La historia dice que saliste a las diez.",
+      "topic": "timeline",
+      "source": "El registro dice que saliste a las diez."
+    },
+    {
+      "question": "El registro lo que dice es que saliste a las diez.",
+      "topic": "timeline",
+      "source": "El registro dice que saliste a las diez."
+    },
+    {
+      "question": "Según el registro, saliste a las diez.",
+      "topic": "timeline",
+      "source": "El registro dice que saliste a las diez."
+    },
+    {
+      "question": "¿No se constata tu nombre en el registro de las entradas?",
+      "topic": "timeline",
+      "source": "Tu nombre no aparece en el libro de entradas."
+    },
+    {
+      "question": "¿No apareció tu nombre en los registros de entrada?",
+      "topic": "timeline",
+      "source": "Tu nombre no aparece en el libro de entradas."
+    },
+    {
+      "question": "No veo tu nombre en el libro de entradas.",
+      "topic": "timeline",
+      "source": "Tu nombre no aparece en el libro de entradas."
+    },
+    {
+      "question": "¿No es visible tu nombre en el libro de entrada?",
+      "topic": "timeline",
+      "source": "Tu nombre no aparece en el libro de entradas."
+    },
+    {
+      "question": "Camaras no te muestran",
+      "topic": "timeline",
+      "source": "Las cámaras no te muestran."
+    },
+    {
+      "question": "No se muestran las cámaras",
+      "topic": "timeline",
+      "source": "Las cámaras no te muestran."
+    },
+    {
+      "question": "¿Qué hace con las cámaras?",
+      "topic": "timeline",
+      "source": "Las cámaras no te muestran."
+    },
+    {
+      "question": "No te muestran las cámaras.",
+      "topic": "timeline",
+      "source": "Las cámaras no te muestran."
+    },
+    {
+      "question": "El vigilante afirma que no hay nadie en la entrada.",
+      "topic": "timeline",
+      "source": "El vigilante jura que no entró nadie."
+    },
+    {
+      "question": "El guardia dice que no hubo nadie dentro.",
+      "topic": "timeline",
+      "source": "El vigilante jura que no entró nadie."
+    },
+    {
+      "question": "Según el guardia, nadie ha entrado en el lugar.",
+      "topic": "timeline",
+      "source": "El vigilante jura que no entró nadie."
+    },
+    {
+      "question": "El vigilante asegura que no hubo nadie en el lugar.",
+      "topic": "timeline",
+      "source": "El vigilante jura que no entró nadie."
+    },
+    {
+      "question": "El mayordomo declaró que la puerta se cerró.",
+      "topic": "timeline",
+      "source": "Según el mayordomo, la puerta estaba cerrada."
+    },
+    {
+      "question": "El mayordomo dice que la puerta estaba cerrada.",
+      "topic": "timeline",
+      "source": "Según el mayordomo, la puerta estaba cerrada."
+    },
+    {
+      "question": "El mayordomo indica que la puerta estaba cerrada.",
+      "topic": "timeline",
+      "source": "Según el mayordomo, la puerta estaba cerrada."
+    },
+    {
+      "question": "Nadie ha visto a ti en tu habitación.",
+      "topic": "timeline",
+      "source": "Nadie te vio en tu cuarto."
+    },
+    {
+      "question": "Nadie ha visto a ti en tu cuarto.",
+      "topic": "timeline",
+      "source": "Nadie te vio en tu cuarto."
+    },
+    {
+      "question": "No te han visto en tu cuarto.",
+      "topic": "timeline",
+      "source": "Nadie te vio en tu cuarto."
+    },
+    {
+      "question": "¿Por qué cambian tus versiones?",
+      "topic": "timeline",
+      "source": "¿Por qué tu versión cambia?"
+    },
+    {
+      "question": "¿Por qué cambias tu versión?",
+      "topic": "timeline",
+      "source": "¿Por qué tu versión cambia?"
+    },
+    {
+      "question": "¿Por qué la versión de tu cuenta se altera?",
+      "topic": "timeline",
+      "source": "¿Por qué tu versión cambia?"
+    },
+    {
+      "question": "¿Ya dijiste algo más antes?",
+      "topic": "timeline",
+      "source": "Antes me dijiste otra cosa."
+    },
+    {
+      "question": "¿Qué te dijiste antes que ahora?",
+      "topic": "timeline",
+      "source": "Antes me dijiste otra cosa."
+    },
+    {
+      "question": "¿Te he dicho algo antes, ¿no?",
+      "topic": "timeline",
+      "source": "Antes me dijiste otra cosa."
+    },
+    {
+      "question": "¿Ayer, ¿no?",
+      "topic": "timeline",
+      "source": "Ayer contaste otra hora distinta."
+    },
+    {
+      "question": "# No, this is the original, need to check constraints.",
+      "topic": "timeline",
+      "source": "Ayer contaste otra hora distinta."
+    },
+    {
+      "question": "Esa habitación estaba libre, me lo han dado.",
+      "topic": "timeline",
+      "source": "Esa sala estaba vacía, me lo han confirmado."
+    },
+    {
+      "question": "Llevé el reporte a la sala, me lo han dado.",
+      "topic": "timeline",
+      "source": "Esa sala estaba vacía, me lo han confirmado."
+    },
+    {
+      "question": "Me confirmaron que la sala no tenía nadie.",
+      "topic": "timeline",
+      "source": "Esa sala estaba vacía, me lo han confirmado."
+    },
+    {
+      "question": "Esa habitación estaba vacía, me lo han dicho.",
+      "topic": "timeline",
+      "source": "Esa sala estaba vacía, me lo han confirmado."
+    },
+    {
+      "question": "Los otros dos aseguran haber estado solos.",
+      "topic": "timeline",
+      "source": "Los otros dos dicen que estuvieron solos."
+    },
+    {
+      "question": "Dicen que los otros dos estaban separados.",
+      "topic": "timeline",
+      "source": "Los otros dos dicen que estuvieron solos."
+    },
+    {
+      "question": "Los otros dos decían haber estado solos.",
+      "topic": "timeline",
+      "source": "Los otros dos dicen que estuvieron solos."
+    },
+    {
+      "question": "Según ellos, los otros dos se retiraron solos.",
+      "topic": "timeline",
+      "source": "Los otros dos dicen que estuvieron solos."
+    },
+    {
+      "question": "¿Por qué los compañeros no hablan contigo?",
+      "topic": "timeline",
+      "source": "¿Por qué tus compañeros no te mencionan?"
+    },
+    {
+      "question": "¿Por qué no te hablan tus compañeros?",
+      "topic": "timeline",
+      "source": "¿Por qué tus compañeros no te mencionan?"
+    },
+    {
+      "question": "¿Por qué no te mencionan tus compañeros?",
+      "topic": "timeline",
+      "source": "¿Por qué tus compañeros no te mencionan?"
+    },
+    {
+      "question": "No coinciden tus horas con las del registro.",
+      "topic": "timeline",
+      "source": "Tus horas no coinciden con las del registro."
+    },
+    {
+      "question": "Tu reloj no coincide con las del registro.",
+      "topic": "timeline",
+      "source": "Tus horas no coinciden con las del registro."
+    },
+    {
+      "question": "¿Qué hay en tu coartada de veinte minutos?",
+      "topic": "timeline",
+      "source": "Hay un hueco de veinte minutos en tu coartada."
+    },
+    {
+      "question": "¿No hay un hueco de veinte minutos en tu coartada?",
+      "topic": "timeline",
+      "source": "Hay un hueco de veinte minutos en tu coartada."
+    },
+    {
+      "question": "¿Podías estar en dos lugares?",
+      "topic": "timeline",
+      "source": "¿Cómo pudiste estar en dos sitios?"
+    },
+    {
+      "question": "¿Cómo pudiste estar en ambos sitios?",
+      "topic": "timeline",
+      "source": "¿Cómo pudiste estar en dos sitios?"
+    },
+    {
+      "question": "El centinela no ha visto salir a ti.",
+      "topic": "timeline",
+      "source": "El centinela no te vio salir."
+    },
+    {
+      "question": "¿No viste salir al centinela a ti?",
+      "topic": "timeline",
+      "source": "El centinela no te vio salir."
+    },
+    {
+      "question": "¿No te vio salir el centinela?",
+      "topic": "timeline",
+      "source": "El centinela no te vio salir."
+    },
+    {
+      "question": "¿Alguna vez la llave ha salido del cajón durante el día?",
+      "topic": "timeline",
+      "source": "La llave no salió del cajón en toda la noche."
+    },
+    {
+      "question": "¿La llave ha permanecido en el cajón durante toda la noche?",
+      "topic": "timeline",
+      "source": "La llave no salió del cajón en toda la noche."
+    },
+    {
+      "question": "La llave no ha sido extraída del cajón en la noche completa.",
+      "topic": "timeline",
+      "source": "La llave no salió del cajón en toda la noche."
+    },
+    {
+      "question": "¿Por qué el oficial no marcó a ti?",
+      "topic": "timeline",
+      "source": "El oficial anotó a todos menos a ti."
+    },
+    {
+      "question": "¿Se anotó el oficial a todos menos a ti?",
+      "topic": "timeline",
+      "source": "El oficial anotó a todos menos a ti."
+    },
+    {
+      "question": "¿No fue anotado por el oficial a todos menos a ti?",
+      "topic": "timeline",
+      "source": "El oficial anotó a todos menos a ti."
+    },
+    {
+      "question": "¿Quién no fue anotado por el oficial?",
+      "topic": "timeline",
+      "source": "El oficial anotó a todos menos a ti."
+    },
+    {
+      "question": "No confío en ti, tu coartada no se sostiene.",
+      "topic": "timeline",
+      "source": "No te creo, tu coartada no se sostiene."
+    },
+    {
+      "question": "Tu coartada no se sostiene, no puedo creer en ti.",
+      "topic": "timeline",
+      "source": "No te creo, tu coartada no se sostiene."
+    },
+    {
+      "question": "Tu coartada no tiene sustancia, no te creo.",
+      "topic": "timeline",
+      "source": "No te creo, tu coartada no se sostiene."
+    },
+    {
+      "question": "¿Tienes la hora?",
+      "topic": "timeline",
+      "source": "Me estás mintiendo sobre la hora."
+    },
+    {
+      "question": "¿Me estás mintiendo?",
+      "topic": "timeline",
+      "source": "Me estás mintiendo sobre la hora."
+    },
+    {
+      "question": "¿La hora es verdad?",
+      "topic": "timeline",
+      "source": "Me estás mintiendo sobre la hora."
+    },
+    {
+      "question": "Formal/Official",
+      "topic": "timeline",
+      "source": "Tu testigo dice que te fuiste antes."
+    },
+    {
+      "question": "Colloquial/Informal",
+      "topic": "timeline",
+      "source": "Tu testigo dice que te fuiste antes."
+    },
+    {
+      "question": "Direct/Brief",
+      "topic": "timeline",
+      "source": "Tu testigo dice que te fuiste antes."
+    },
+    {
+      "question": "Rhetorical",
+      "topic": "timeline",
+      "source": "Tu testigo dice que te fuiste antes."
+    },
+    {
+      "question": "¿Alguien puede firmar tu relato?",
+      "topic": "timeline",
+      "source": "¿Quién avalará tu historia?"
+    },
+    {
+      "question": "¿Quién respalda tu versión?",
+      "topic": "timeline",
+      "source": "¿Quién avalará tu historia?"
+    },
+    {
+      "question": "¿Quién podrá validar tu explicación?",
+      "topic": "timeline",
+      "source": "¿Quién avalará tu historia?"
+    },
+    {
+      "question": "¿Alguien puede corroborar tu historia?",
+      "topic": "timeline",
+      "source": "¿Quién avalará tu historia?"
+    },
+    {
+      "question": "@Detective to Suspect",
+      "topic": "timeline",
+      "source": "Alguien te vio en otro lugar."
+    },
+    {
+      "question": "¿La evidencia prueba tu alibi?",
+      "topic": "timeline",
+      "source": "Las pruebas contradicen tu coartada."
+    },
+    {
+      "question": "¿El informe se opone a tu coartada?",
+      "topic": "timeline",
+      "source": "Las pruebas contradicen tu coartada."
+    },
+    {
+      "question": "¿Se contradicen tus pruebas contra tu coartada?",
+      "topic": "timeline",
+      "source": "Las pruebas contradicen tu coartada."
+    },
+    {
+      "question": "¿Tiene algún testigo?",
+      "topic": "timeline",
+      "source": "¿Tienes algún testigo?"
+    },
+    {
+      "question": "¿Tienes alguna testigua?",
+      "topic": "timeline",
+      "source": "¿Tienes algún testigo?"
+    },
+    {
+      "question": "¿Alguna prueba de testigo?",
+      "topic": "timeline",
+      "source": "¿Tienes algún testigo?"
+    },
+    {
+      "question": "¿Has visto algún testigo?",
+      "topic": "timeline",
+      "source": "¿Tienes algún testigo?"
+    },
+    {
+      "question": "que demuestrame que estabas ahi",
+      "topic": "timeline",
+      "source": "demuestrame que estabas ahi"
+    },
+    {
+      "question": "nadie valida tu relato",
+      "topic": "timeline",
+      "source": "nadie confirma tu historia"
+    },
+    {
+      "question": "no hay nadie que apruebe tu relato",
+      "topic": "timeline",
+      "source": "nadie confirma tu historia"
+    },
+    {
+      "question": "no hay nadie que valide tu relato",
+      "topic": "timeline",
+      "source": "nadie confirma tu historia"
+    },
+    {
+      "question": "¿Hiciste luz en el despacho?",
+      "topic": "seen",
+      "source": "¿Viste luz en el despacho?"
+    },
+    {
+      "question": "¿Luz en el despacho?",
+      "topic": "seen",
+      "source": "¿Viste luz en el despacho?"
+    },
+    {
+      "question": "¿Oíste algún rumor antes?",
+      "topic": "seen",
+      "source": "¿Oíste una discusión antes?"
+    },
+    {
+      "question": "¿Oíste alguna discusión antes?",
+      "topic": "seen",
+      "source": "¿Oíste una discusión antes?"
+    },
+    {
+      "question": "¿Oíste algo antes?",
+      "topic": "seen",
+      "source": "¿Oíste una discusión antes?"
+    },
+    {
+      "question": "Order Change",
+      "topic": "seen",
+      "source": "¿Escuchaste la puerta?"
+    },
+    {
+      "question": "¿Pasa alguien corriendo por el pasillo?",
+      "topic": "seen",
+      "source": "¿Alguien pasó corriendo por el pasillo?"
+    },
+    {
+      "question": "¿Alguien pasó por el pasillo corriendo?",
+      "topic": "seen",
+      "source": "¿Alguien pasó corriendo por el pasillo?"
+    },
+    {
+      "question": "¿Alguien pasa corriendo por el pasillo?",
+      "topic": "seen",
+      "source": "¿Alguien pasó corriendo por el pasillo?"
+    },
+    {
+      "question": "¿Alguna vez ha visto a alguien cuyas manos están manchadas?",
+      "topic": "seen",
+      "source": "¿Viste a alguien con las manos manchadas?"
+    },
+    {
+      "question": "¿Viste a alguien que tiene las manos con manchas?",
+      "topic": "seen",
+      "source": "¿Viste a alguien con las manos manchadas?"
+    },
+    {
+      "question": "¿Ha visto a alguien con las manos enmascaradas?",
+      "topic": "seen",
+      "source": "¿Viste a alguien con las manos manchadas?"
+    },
+    {
+      "question": "¿Cuidó algún rastro de olor extraño?",
+      "topic": "seen",
+      "source": "¿Notaste algún olor extraño?"
+    },
+    {
+      "question": "¿Te ha llamado el aire con un olor repulsivo?",
+      "topic": "seen",
+      "source": "¿Notaste algún olor extraño?"
+    },
+    {
+      "question": "¿Has sentido algún aroma inusual?",
+      "topic": "seen",
+      "source": "¿Notaste algún olor extraño?"
+    },
+    {
+      "question": "¿Aún recuerdas algún olor extraño?",
+      "topic": "seen",
+      "source": "¿Notaste algún olor extraño?"
+    },
+    {
+      "question": "¿Te cruzaste con alguien en tu camino de regreso?",
+      "topic": "seen",
+      "source": "¿Te cruzaste con alguien al volver?"
+    },
+    {
+      "question": "¿Viste a alguien al volver?",
+      "topic": "seen",
+      "source": "¿Te cruzaste con alguien al volver?"
+    },
+    {
+      "question": "¿Te pasaste por algún lado al regresar?",
+      "topic": "seen",
+      "source": "¿Te cruzaste con alguien al volver?"
+    },
+    {
+      "question": "¿Te encontraste con alguien al llegar?",
+      "topic": "seen",
+      "source": "¿Te cruzaste con alguien al volver?"
+    },
+    {
+      "question": "¿Has visto sombras en el jardín?",
+      "topic": "seen",
+      "source": "¿Viste sombras en el jardín?"
+    },
+    {
+      "question": "¿Quién fue el primero en llegar a la escena del crimen?",
+      "topic": "seen",
+      "source": "¿Quién llegó primero al cuerpo?"
+    },
+    {
+      "question": "¿Dónde estaba el cuerpo cuando llegaste?",
+      "topic": "seen",
+      "source": "¿Quién llegó primero al cuerpo?"
+    },
+    {
+      "question": "¿Alguna vez viste quién estaba allí antes de ti?",
+      "topic": "seen",
+      "source": "¿Quién llegó primero al cuerpo?"
+    },
+    {
+      "question": "¿Quién estaba presente antes de que tú llegaste?",
+      "topic": "seen",
+      "source": "¿Quién llegó primero al cuerpo?"
+    },
+    {
+      "question": "¿Qué acción realizaste tras descubrirlo?",
+      "topic": "seen",
+      "source": "¿Qué hiciste al encontrarlo?"
+    },
+    {
+      "question": "¿Qué hiciste cuando lo observaste?",
+      "topic": "seen",
+      "source": "¿Qué hiciste al encontrarlo?"
+    },
+    {
+      "question": "¿Qué procediste al hallarlo?",
+      "topic": "seen",
+      "source": "¿Qué hiciste al encontrarlo?"
+    },
+    {
+      "question": "¿Qué lo descubriste y qué lo hiciste?",
+      "topic": "seen",
+      "source": "¿Qué hiciste al encontrarlo?"
+    },
+    {
+      "question": "¿Tocaste el cuerpo o no?",
+      "topic": "seen",
+      "source": "¿Tocaste el cuerpo?"
+    },
+    {
+      "question": "¿Qué sucedió con el cuerpo?",
+      "topic": "seen",
+      "source": "¿Tocaste el cuerpo?"
+    },
+    {
+      "question": "¿Qué tal el cuerpo?",
+      "topic": "seen",
+      "source": "¿Tocaste el cuerpo?"
+    },
+    {
+      "question": "¿Tocaste al cuerpo?",
+      "topic": "seen",
+      "source": "¿Tocaste el cuerpo?"
+    },
+    {
+      "question": "¿Era ya muerto cuando llegaste?",
+      "topic": "seen",
+      "source": "¿Estaba ya muerto cuando llegaste?"
+    },
+    {
+      "question": "¿Ya estaba muerto cuando llegaste?",
+      "topic": "seen",
+      "source": "¿Estaba ya muerto cuando llegaste?"
+    },
+    {
+      "question": "¿Habías muerto antes de llegar?",
+      "topic": "seen",
+      "source": "¿Estaba ya muerto cuando llegaste?"
+    },
+    {
+      "question": "¿Era ya muerto en el momento que llegaste?",
+      "topic": "seen",
+      "source": "¿Estaba ya muerto cuando llegaste?"
+    },
+    {
+      "question": "¿Ha alguien gritado?",
+      "topic": "seen",
+      "source": "¿Gritó alguien?"
+    },
+    {
+      "question": "¿Quien grita?",
+      "topic": "seen",
+      "source": "¿Gritó alguien?"
+    },
+    {
+      "question": "¿Ha gritado alguien?",
+      "topic": "seen",
+      "source": "¿Gritó alguien?"
+    },
+    {
+      "question": "¿Te atreves a decir quién se escapó de la escena?",
+      "topic": "seen",
+      "source": "¿Viste quién salió de la escena?"
+    },
+    {
+      "question": "¿Podrías confirmar si vieron a alguien salir del lugar?",
+      "topic": "seen",
+      "source": "¿Viste quién salió de la escena?"
+    },
+    {
+      "question": "¿Viste quién dejó la escena atrás?",
+      "topic": "seen",
+      "source": "¿Viste quién salió de la escena?"
+    },
+    {
+      "question": "¿Alguien se escapó del lugar sin tu conocimiento?",
+      "topic": "seen",
+      "source": "¿Viste quién salió de la escena?"
+    },
+    {
+      "question": "¿Qué vio por la ventana?",
+      "topic": "seen",
+      "source": "¿Viste algo por la ventana?"
+    },
+    {
+      "question": "¿Viste algo de lo que vio por la ventana?",
+      "topic": "seen",
+      "source": "¿Viste algo por la ventana?"
+    },
+    {
+      "question": "¿Qué pasó en el interior de la ventana?",
+      "topic": "seen",
+      "source": "¿Viste algo por la ventana?"
+    },
+    {
+      "question": "¿Hiciste oír a alguien hablar en voz baja?",
+      "topic": "seen",
+      "source": "¿Oíste a alguien hablar en voz baja?"
+    },
+    {
+      "question": "¿Oíste a alguien hablar bajo? ¿Oíste?",
+      "topic": "seen",
+      "source": "¿Oíste a alguien hablar en voz baja?"
+    },
+    {
+      "question": "¿Oíste alguien hablar de forma silenciosa?",
+      "topic": "seen",
+      "source": "¿Oíste a alguien hablar en voz baja?"
+    },
+    {
+      "question": "¿Oíste a alguien hablar bajo la voz?",
+      "topic": "seen",
+      "source": "¿Oíste a alguien hablar en voz baja?"
+    },
+    {
+      "question": "¿Alguien ha visto quién está oculto?",
+      "topic": "seen",
+      "source": "¿Viste a alguien esconder algo?"
+    },
+    {
+      "question": "¿Ha visto alguien ocular alguna cosa?",
+      "topic": "seen",
+      "source": "¿Viste a alguien esconder algo?"
+    },
+    {
+      "question": "¿Ha visto alguien escondiendo algo?",
+      "topic": "seen",
+      "source": "¿Viste a alguien esconder algo?"
+    },
+    {
+      "question": "¿Ha visto alguien ocular algo?",
+      "topic": "seen",
+      "source": "¿Viste a alguien esconder algo?"
+    },
+    {
+      "question": "¿Alguien había pasado por el pasillo?",
+      "topic": "seen",
+      "source": "¿Había alguien más en el pasillo?"
+    },
+    {
+      "question": "¿Algo más en el pasillo?",
+      "topic": "seen",
+      "source": "¿Había alguien más en el pasillo?"
+    },
+    {
+      "question": "I need to ensure I provide exactly four variations as requested, not just one or a subset.",
+      "topic": "seen",
+      "source": "¿Había alguien más en el pasillo?"
+    },
+    {
+      "question": "¿Pareció que alguien estaba huyendo?",
+      "topic": "seen",
+      "source": "¿Te pareció que alguien huía?"
+    },
+    {
+      "question": "¿Te dijiste que alguien se escapaba?",
+      "topic": "seen",
+      "source": "¿Te pareció que alguien huía?"
+    },
+    {
+      "question": "¿Te atreves a afirmar que alguien estaba huyendo?",
+      "topic": "seen",
+      "source": "¿Te pareció que alguien huía?"
+    },
+    {
+      "question": "¿Pensaste que alguien huyó?",
+      "topic": "seen",
+      "source": "¿Te pareció que alguien huía?"
+    },
+    {
+      "question": "¿Qué sucedió cuando sonó la campana?",
+      "topic": "seen",
+      "source": "¿Qué ocurrió cuando sonó la campana?"
+    },
+    {
+      "question": "¿Qué pasó cuando sonó la campana?",
+      "topic": "seen",
+      "source": "¿Qué ocurrió cuando sonó la campana?"
+    },
+    {
+      "question": "¿Quién nos dijo?",
+      "topic": "seen",
+      "source": "¿Quién avisó a los demás?"
+    },
+    {
+      "question": "¿Quién pasó por allá?",
+      "topic": "seen",
+      "source": "¿Quién avisó a los demás?"
+    },
+    {
+      "question": "¿Alguien dijo a los demás?",
+      "topic": "seen",
+      "source": "¿Quién avisó a los demás?"
+    },
+    {
+      "question": "¿Alguien avisó a los otros?",
+      "topic": "seen",
+      "source": "¿Quién avisó a los demás?"
+    },
+    {
+      "question": "¿Cuántas personas acudieron a escuchar los gritos?",
+      "topic": "seen",
+      "source": "¿Cuánta gente acudió al oír los gritos?"
+    },
+    {
+      "question": "¿Cuántos acudieron a escuchar el lamento de los gritos?",
+      "topic": "seen",
+      "source": "¿Cuánta gente acudió al oír los gritos?"
+    },
+    {
+      "question": "¿Cuántos personas acudieron a escuchar los gritos?",
+      "topic": "seen",
+      "source": "¿Cuánta gente acudió al oír los gritos?"
+    },
+    {
+      "question": "¿Cuántas personas acudieron a oír los gritos?",
+      "topic": "seen",
+      "source": "¿Cuánta gente acudió al oír los gritos?"
+    },
+    {
+      "question": "¿Alguna vez viste a alguien que limpiara algo?",
+      "topic": "seen",
+      "source": "¿Viste a alguien limpiar algo?"
+    },
+    {
+      "question": "¿Alguna vez viste a alguien que estaba limpiando algo?",
+      "topic": "seen",
+      "source": "¿Viste a alguien limpiar algo?"
+    },
+    {
+      "question": "¿Alguna vez viste a alguien que estaba en el acto de limpiar algo?",
+      "topic": "seen",
+      "source": "¿Viste a alguien limpiar algo?"
+    },
+    {
+      "question": "¿Alguna vez viste a alguien que estaba haciendo algo para limpiar algo?",
+      "topic": "seen",
+      "source": "¿Viste a alguien limpiar algo?"
+    },
+    {
+      "question": "¿Es esta pluma tuya?",
+      "topic": "object",
+      "source": "¿Esta pluma es tuya?"
+    },
+    {
+      "question": "¿Esta pluma la tuya?",
+      "topic": "object",
+      "source": "¿Esta pluma es tuya?"
+    },
+    {
+      "question": "¿Esta pluma es de ti?",
+      "topic": "object",
+      "source": "¿Esta pluma es tuya?"
+    },
+    {
+      "question": "¿Te reconoces el guante de cuero?",
+      "topic": "object",
+      "source": "¿Reconoces el guante de cuero?"
+    },
+    {
+      "question": "¿Identificas el guante de cuero?",
+      "topic": "object",
+      "source": "¿Reconoces el guante de cuero?"
+    },
+    {
+      "question": "¿Conoces el cuero del guante?",
+      "topic": "object",
+      "source": "¿Reconoces el guante de cuero?"
+    },
+    {
+      "question": "¿Podrías decirme dónde está tu pañuelo con las iniciales?",
+      "topic": "object",
+      "source": "Encontré tu pañuelo con tus iniciales."
+    },
+    {
+      "question": "¿Alguna vez encontraste un pañuelo que tiene tus iniciales?",
+      "topic": "object",
+      "source": "Encontré tu pañuelo con tus iniciales."
+    },
+    {
+      "question": "¿Has visto tu pañuelo con las iniciales?",
+      "topic": "object",
+      "source": "Encontré tu pañuelo con tus iniciales."
+    },
+    {
+      "question": "¿De dónde es tu pañuelo con las iniciales?",
+      "topic": "object",
+      "source": "Encontré tu pañuelo con tus iniciales."
+    },
+    {
+      "question": "vario",
+      "topic": "object",
+      "source": "¿Por qué tu rosario estaba allí?"
+    },
+    {
+      "question": "¿Dónde está tu broche junto a la puerta?",
+      "topic": "object",
+      "source": "¿Cómo acabó tu broche junto a la puerta?"
+    },
+    {
+      "question": "¿Cómo se hizo tu broche junto a la puerta?",
+      "topic": "object",
+      "source": "¿Cómo acabó tu broche junto a la puerta?"
+    },
+    {
+      "question": "¿Cómo terminaste tu broche junto a la puerta?",
+      "topic": "object",
+      "source": "¿Cómo acabó tu broche junto a la puerta?"
+    },
+    {
+      "question": "¿Dónde quedó tu broche junto a la puerta?",
+      "topic": "object",
+      "source": "¿Cómo acabó tu broche junto a la puerta?"
+    },
+    {
+      "question": "¿Te has perdido tu anillo de colgante?",
+      "topic": "object",
+      "source": "¿Echaste de menos tu colgante?"
+    },
+    {
+      "question": "¿Te has olvidado tu anillo de colgante?",
+      "topic": "object",
+      "source": "¿Echaste de menos tu colgante?"
+    },
+    {
+      "question": "¿Has olvidado tu anillo de colgante?",
+      "topic": "object",
+      "source": "¿Echaste de menos tu colgante?"
+    },
+    {
+      "question": "¿Llevabas los guantes ese día?",
+      "topic": "object",
+      "source": "¿Llevabas los guantes esa noche?"
+    },
+    {
+      "question": "¿Usaste los guantes en esa noche?",
+      "topic": "object",
+      "source": "¿Llevabas los guantes esa noche?"
+    },
+    {
+      "question": "¿Estabas con los guantes en esa noche?",
+      "topic": "object",
+      "source": "¿Llevabas los guantes esa noche?"
+    },
+    {
+      "question": "¿Llevaste las manos con guantes en esa noche?",
+      "topic": "object",
+      "source": "¿Llevabas los guantes esa noche?"
+    },
+    {
+      "question": "¿Se te olvidó el auricular?",
+      "topic": "object",
+      "source": "¿Se te perdió el auricular?"
+    },
+    {
+      "question": "¿Te han perdido el auricular?",
+      "topic": "object",
+      "source": "¿Se te perdió el auricular?"
+    },
+    {
+      "question": "¿No te ha pasado el auricular?",
+      "topic": "object",
+      "source": "¿Se te perdió el auricular?"
+    },
+    {
+      "question": "¿Se te ha perdido el auricular?",
+      "topic": "object",
+      "source": "¿Se te perdió el auricular?"
+    },
+    {
+      "question": "¿Pasa por la escena por la mañana?",
+      "topic": "object",
+      "source": "¿Pasaste por la escena por la mañana?"
+    },
+    {
+      "question": "¿Pasa la escena por la mañana?",
+      "topic": "object",
+      "source": "¿Pasaste por la escena por la mañana?"
+    },
+    {
+      "question": "¿Alguien dejó tu pañuelo en ese lugar de manera intencional?",
+      "topic": "object",
+      "source": "¿Alguien pudo dejar allí tu pañuelo a propósito?"
+    },
+    {
+      "question": "¿Podría alguien haber dejado tu pañuelo ahí?",
+      "topic": "object",
+      "source": "¿Alguien pudo dejar allí tu pañuelo a propósito?"
+    },
+    {
+      "question": "¿Alguien pudo haber colocado tu pañuelo allí?",
+      "topic": "object",
+      "source": "¿Alguien pudo dejar allí tu pañuelo a propósito?"
+    },
+    {
+      "question": "¿Alguna persona pudo haber dejado tu pañuelo en esa zona?",
+      "topic": "object",
+      "source": "¿Alguien pudo dejar allí tu pañuelo a propósito?"
+    },
+    {
+      "question": "Hemos hallado algo de tu.",
+      "topic": "object",
+      "source": "Hemos encontrado algo tuyo."
+    },
+    {
+      "question": "Señor, hemos encontrado algo de ti.",
+      "topic": "object",
+      "source": "Hemos encontrado algo tuyo."
+    },
+    {
+      "question": "¿Tiene algo suyo?",
+      "topic": "object",
+      "source": "Hemos encontrado algo tuyo."
+    },
+    {
+      "question": "Hemos encontrado algo de ti.",
+      "topic": "object",
+      "source": "Hemos encontrado algo tuyo."
+    },
+    {
+      "question": "¿Es verdad que esto es tuyo?",
+      "topic": "object",
+      "source": "Esto es tuyo, ¿verdad?"
+    },
+    {
+      "question": "¿Qué es lo que me preguntas?",
+      "topic": "object",
+      "source": "Esto es tuyo, ¿verdad?"
+    },
+    {
+      "question": "¿Verdad que es tuyo?",
+      "topic": "object",
+      "source": "Esto es tuyo, ¿verdad?"
+    },
+    {
+      "question": "¿Entiendes este objeto?",
+      "topic": "object",
+      "source": "¿Reconoces este objeto?"
+    },
+    {
+      "question": "¿Sabes de este objeto?",
+      "topic": "object",
+      "source": "¿Reconoces este objeto?"
+    },
+    {
+      "question": "¿Conoces este objeto?",
+      "topic": "object",
+      "source": "¿Reconoces este objeto?"
+    },
+    {
+      "question": "¿Es esto tuyo?",
+      "topic": "object",
+      "source": "esto es tuyo?"
+    },
+    {
+      "question": "¿Tiene esto de tuyo?",
+      "topic": "object",
+      "source": "esto es tuyo?"
+    },
+    {
+      "question": "¿De quién es esto?",
+      "topic": "object",
+      "source": "esto es tuyo?"
+    },
+    {
+      "question": "¿Es de ti o de alguien más?",
+      "topic": "object",
+      "source": "esto es tuyo?"
+    },
+    {
+      "question": "¿Cuánto hay algo tuyo con el muerto?",
+      "topic": "object",
+      "source": "¿Por qué hay una cosa tuya junto al cadáver?"
+    },
+    {
+      "question": "¿Qué hay en tu lado?",
+      "topic": "object",
+      "source": "¿Por qué hay una cosa tuya junto al cadáver?"
+    },
+    {
+      "question": "¿Qué está pasando cerca del cuerpo?",
+      "topic": "object",
+      "source": "¿Por qué hay una cosa tuya junto al cadáver?"
+    },
+    {
+      "question": "¿Qué hay cerca del muerto?",
+      "topic": "object",
+      "source": "¿Por qué hay una cosa tuya junto al cadáver?"
+    },
+    {
+      "question": "¿Al salir, dejaste caer algún objeto?",
+      "topic": "object",
+      "source": "¿Dejaste caer algo al salir?"
+    },
+    {
+      "question": "¿Al salir, dejaste caer cualquier cosa?",
+      "topic": "object",
+      "source": "¿Dejaste caer algo al salir?"
+    },
+    {
+      "question": "¿Al salir, ¿dejaste caer algo?",
+      "topic": "object",
+      "source": "¿Dejaste caer algo al salir?"
+    },
+    {
+      "question": "¿Al salir, ¿dejaste caer alguna cosa?",
+      "topic": "object",
+      "source": "¿Dejaste caer algo al salir?"
+    },
+    {
+      "question": "¿Alguien te preguntó por tu pluma?",
+      "topic": "object",
+      "source": "¿Preguntaste a alguien por tu pluma?"
+    },
+    {
+      "question": "¿Escribiste alguna nota que te refiriera a algo que perdiste?",
+      "topic": "object",
+      "source": "¿Escribiste una nota sobre algo que perdiste?"
+    },
+    {
+      "question": "¿Llevaste el registro escrito sobre lo que te sucedió?",
+      "topic": "object",
+      "source": "¿Escribiste una nota sobre algo que perdiste?"
+    },
+    {
+      "question": "¿Escribiste un papel con un detalle sobre lo que perdiste?",
+      "topic": "object",
+      "source": "¿Escribiste una nota sobre algo que perdiste?"
+    },
+    {
+      "question": "¿Escribe algo sobre la pérdida que cometiste?",
+      "topic": "object",
+      "source": "¿Escribiste una nota sobre algo que perdiste?"
+    },
+    {
+      "question": "¿Con quién habías estado en el momento de la pérdida?",
+      "topic": "object",
+      "source": "¿Con quién estabas cuando lo perdiste?"
+    },
+    {
+      "question": "¿Quién habías conocido antes de que te lo perdiste?",
+      "topic": "object",
+      "source": "¿Con quién estabas cuando lo perdiste?"
+    },
+    {
+      "question": "¿Quién apareció en tu vida cuando te lo perdiste?",
+      "topic": "object",
+      "source": "¿Con quién estabas cuando lo perdiste?"
+    },
+    {
+      "question": "¿Quién era el que te perdiste?",
+      "topic": "object",
+      "source": "¿Con quién estabas cuando lo perdiste?"
+    },
+    {
+      "question": "¿Alguien que no me conoces, tu pañuelo lleva bordado tu nombre?",
+      "topic": "object",
+      "source": "¿Tu pañuelo lleva bordado tu nombre?"
+    },
+    {
+      "question": "Pregunta directa",
+      "topic": "object",
+      "source": "¿Cuántos guantes como este hay en la casa?"
+    },
+    {
+      "question": "¿Cómo se llaman los demás?",
+      "topic": "identity",
+      "source": "¿Cómo te llaman los demás?"
+    },
+    {
+      "question": "¿Qué se llama la gente de este lugar?",
+      "topic": "identity",
+      "source": "¿Cómo te llaman los demás?"
+    },
+    {
+      "question": "¿Cómo se llaman los otros?",
+      "topic": "identity",
+      "source": "¿Cómo te llaman los demás?"
+    },
+    {
+      "question": "¿Cómo se llaman las personas de aquí?",
+      "topic": "identity",
+      "source": "¿Cómo te llaman los demás?"
+    },
+    {
+      "question": "Pregunto qué es tu nombre completo.",
+      "topic": "identity",
+      "source": "Dime tu nombre completo."
+    },
+    {
+      "question": "¿Puedes decir mi nombre completo?",
+      "topic": "identity",
+      "source": "Dime tu nombre completo."
+    },
+    {
+      "question": "Tu nombre completo.",
+      "topic": "identity",
+      "source": "Dime tu nombre completo."
+    },
+    {
+      "question": "¿Dime quién eres?",
+      "topic": "identity",
+      "source": "Dime tu nombre completo."
+    },
+    {
+      "question": "¿En qué estás tú en este lugar?",
+      "topic": "identity",
+      "source": "¿Qué haces tú en esta casa?"
+    },
+    {
+      "question": "¿Qué hace usted en este sitio?",
+      "topic": "identity",
+      "source": "¿Qué haces tú en esta casa?"
+    },
+    {
+      "question": "¿Qué estás haciendo en esta residencia?",
+      "topic": "identity",
+      "source": "¿Qué haces tú en esta casa?"
+    },
+    {
+      "question": "¿Es enfermera?",
+      "topic": "identity",
+      "source": "¿Eres la enfermera?"
+    },
+    {
+      "question": "¿Eres la que eres enfermera?",
+      "topic": "identity",
+      "source": "¿Eres la enfermera?"
+    },
+    {
+      "question": "¿Eres enfermera?",
+      "topic": "identity",
+      "source": "¿Eres la enfermera?"
+    },
+    {
+      "question": "¿Trabajas en este lugar o estás invitado?",
+      "topic": "identity",
+      "source": "¿Trabajas aquí o eres invitado?"
+    },
+    {
+      "question": "¿Vives o trabajas en este sitio?",
+      "topic": "identity",
+      "source": "¿Trabajas aquí o eres invitado?"
+    },
+    {
+      "question": "¿Estás contratado o eres invitado?",
+      "topic": "identity",
+      "source": "¿Trabajas aquí o eres invitado?"
+    },
+    {
+      "question": "¿Vives en este lugar o trabajas ahí?",
+      "topic": "identity",
+      "source": "¿Trabajas aquí o eres invitado?"
+    },
+    {
+      "question": "¿Eres de nuestra familia?",
+      "topic": "identity",
+      "source": "¿Eres de la familia?"
+    },
+    {
+      "question": "¿Eres del pueblo?",
+      "topic": "identity",
+      "source": "¿Eres de la familia?"
+    },
+    {
+      "question": "¿En qué responsabilidades estás?",
+      "topic": "identity",
+      "source": "¿Qué responsabilidades tienes?"
+    },
+    {
+      "question": "¿Qué responsabilidades asume?",
+      "topic": "identity",
+      "source": "¿Qué responsabilidades tienes?"
+    },
+    {
+      "question": "¿Cual responsabilidades tienes?",
+      "topic": "identity",
+      "source": "¿Qué responsabilidades tienes?"
+    },
+    {
+      "question": "Direct/Informal",
+      "topic": "identity",
+      "source": "¿Cuál es tu papel en la estación?"
+    },
+    {
+      "question": "¿Desde cuándo has estado trabajando en este puesto?",
+      "topic": "identity",
+      "source": "¿Desde cuándo eres guardia?"
+    },
+    {
+      "question": "¿Cuánto tiempo llevas en esta posición?",
+      "topic": "identity",
+      "source": "¿Desde cuándo eres guardia?"
+    },
+    {
+      "question": "Desde cuándo eres funcionario de la policía?",
+      "topic": "identity",
+      "source": "¿Desde cuándo eres guardia?"
+    },
+    {
+      "question": "¿Tienes experiencia en el servicio público desde hace mucho tiempo?",
+      "topic": "identity",
+      "source": "¿Desde cuándo eres guardia?"
+    },
+    {
+      "question": "¿Qué carrera te llevaste?",
+      "topic": "identity",
+      "source": "¿Qué estudiaste?"
+    },
+    {
+      "question": "¿Qué carrera estudias?",
+      "topic": "identity",
+      "source": "¿Qué estudiaste?"
+    },
+    {
+      "question": "¿En qué área de estudio estás?",
+      "topic": "identity",
+      "source": "¿Qué estudiaste?"
+    },
+    {
+      "question": "¿Qué título tienes?",
+      "topic": "identity",
+      "source": "¿Qué estudiaste?"
+    },
+    {
+      "question": "Variation",
+      "topic": "identity",
+      "source": "¿De dónde eres?"
+    },
+    {
+      "question": "¿Y quién es el sujeto y su profesión?",
+      "topic": "identity",
+      "source": "nombre y oficio"
+    },
+    {
+      "question": "¿A qué se refiere la persona y su trabajo?",
+      "topic": "identity",
+      "source": "nombre y oficio"
+    },
+    {
+      "question": "¿Con qué nombre y por qué se llama?",
+      "topic": "identity",
+      "source": "nombre y oficio"
+    },
+    {
+      "question": "¿Y cómo se llama el individuo y su oficio?",
+      "topic": "identity",
+      "source": "nombre y oficio"
+    },
+    {
+      "question": "¿Qué es tu identidad?",
+      "topic": "identity",
+      "source": "quien eres tu"
+    },
+    {
+      "question": "¿Eres el periodista que me contaron?",
+      "topic": "identity",
+      "source": "¿Eres el periodista del que me hablaron?"
+    },
+    {
+      "question": "¿Me reconoces a ti mismo el periodista?",
+      "topic": "identity",
+      "source": "¿Eres el periodista del que me hablaron?"
+    },
+    {
+      "question": "¿Eres el periodista que me hablaron? (repetido)",
+      "topic": "identity",
+      "source": "¿Eres el periodista del que me hablaron?"
+    },
+    {
+      "question": "¿Eres el periodista al que me han llamado?",
+      "topic": "identity",
+      "source": "¿Eres el periodista del que me hablaron?"
+    },
+    {
+      "question": "registro (formal, coloquial, breve) pero conserva exactamente lo que se pregunta. No añadas datos nuevos.",
+      "topic": "identity",
+      "source": "¿A qué te dedicabas antes de venir?"
+    },
+    {
+      "question": "¿Vives en esta propiedad?",
+      "topic": "identity",
+      "source": "¿Vives aquí?"
+    },
+    {
+      "question": "¿Vives aquí mismo?",
+      "topic": "identity",
+      "source": "¿Vives aquí?"
+    },
+    {
+      "question": "¿Habitas en este lugar?",
+      "topic": "identity",
+      "source": "¿Vives aquí?"
+    },
+    {
+      "question": "¿Vives en esta zona?",
+      "topic": "identity",
+      "source": "¿Vives aquí?"
+    },
+    {
+      "question": "¿Qué actividades realizas diariamente?",
+      "topic": "identity",
+      "source": "¿Qué tareas haces cada día?"
+    },
+    {
+      "question": "¿Cuántas tareas completas cada día?",
+      "topic": "identity",
+      "source": "¿Qué tareas haces cada día?"
+    },
+    {
+      "question": "¿Qué actividades realizas cada día?",
+      "topic": "identity",
+      "source": "¿Qué tareas haces cada día?"
+    },
+    {
+      "question": "¿Cuándo realizas tus actividades?",
+      "topic": "identity",
+      "source": "¿Qué tareas haces cada día?"
+    },
+    {
+      "question": "¿Cómo le han sido las cosas hoy?",
+      "topic": "social",
+      "source": "Buenas."
+    },
+    {
+      "question": "¿Cómo va todo?",
+      "topic": "social",
+      "source": "Buenas."
+    },
+    {
+      "question": "¿Hablaste de nuevo?",
+      "topic": "social",
+      "source": "Hola de nuevo."
+    },
+    {
+      "question": "¿Has vuelto a saludarme?",
+      "topic": "social",
+      "source": "Hola de nuevo."
+    },
+    {
+      "question": "¿Me gustará conocerte?",
+      "topic": "social",
+      "source": "Encantado de conocerte."
+    },
+    {
+      "question": "¿Me gusta que te conozcas?",
+      "topic": "social",
+      "source": "Encantado de conocerte."
+    },
+    {
+      "question": "¡Me encanta conocerte!",
+      "topic": "social",
+      "source": "Encantado de conocerte."
+    },
+    {
+      "question": "¿Me agrada conocerte?",
+      "topic": "social",
+      "source": "Encantado de conocerte."
+    },
+    {
+      "question": "¿Dime si no me molesta a estas horas?",
+      "topic": "social",
+      "source": "Siento molestarte a estas horas."
+    },
+    {
+      "question": "¿Es molesto a estas horas?",
+      "topic": "social",
+      "source": "Siento molestarte a estas horas."
+    },
+    {
+      "question": "¿Tiene molestia a estas horas?",
+      "topic": "social",
+      "source": "Siento molestarte a estas horas."
+    },
+    {
+      "question": "¿Podrías descansar?",
+      "topic": "social",
+      "source": "¿Has podido descansar?"
+    },
+    {
+      "question": "¿Habló de descansar?",
+      "topic": "social",
+      "source": "¿Has podido descansar?"
+    },
+    {
+      "question": "¿Lo has hecho?",
+      "topic": "social",
+      "source": "¿Has podido descansar?"
+    },
+    {
+      "question": "¿Puedes descansar?",
+      "topic": "social",
+      "source": "¿Has podido descansar?"
+    },
+    {
+      "question": "¿Te sientes más tranquila ahora?",
+      "topic": "social",
+      "source": "¿Estás más tranquila ahora?"
+    },
+    {
+      "question": "¿Te ves más tranquila ahora?",
+      "topic": "social",
+      "source": "¿Estás más tranquila ahora?"
+    },
+    {
+      "question": "¿Se sientes más tranquila ahora?",
+      "topic": "social",
+      "source": "¿Estás más tranquila ahora?"
+    },
+    {
+      "question": "Déjame que respires profundamente.",
+      "topic": "social",
+      "source": "Respira hondo."
+    },
+    {
+      "question": "Haz un esfuerzo por respirar.",
+      "topic": "social",
+      "source": "Respira hondo."
+    },
+    {
+      "question": "Toma el aire y respira.",
+      "topic": "social",
+      "source": "Respira hondo."
+    },
+    {
+      "question": "Es cierto que pasa por un periodo de incertidumbre.",
+      "topic": "social",
+      "source": "Sé que es un momento difícil."
+    },
+    {
+      "question": "Tengo que decirte que este periodo de incertidumbre no es fácil.",
+      "topic": "social",
+      "source": "Sé que es un momento difícil."
+    },
+    {
+      "question": "Estoy consciente de que esto es un momento de incertidumbre.",
+      "topic": "social",
+      "source": "Sé que es un momento difícil."
+    },
+    {
+      "question": "Entiendo que hay dificultades en este momento.",
+      "topic": "social",
+      "source": "Sé que es un momento difícil."
+    },
+    {
+      "question": "mix",
+      "topic": "social",
+      "source": "No tengas miedo, estás a salvo."
+    },
+    {
+      "question": "¿Te gustaría que haga llamar a alguien?",
+      "topic": "social",
+      "source": "¿Quieres que llame a alguien?"
+    },
+    {
+      "question": "¿Te gustaría que llame a alguien?",
+      "topic": "social",
+      "source": "¿Quieres que llame a alguien?"
+    },
+    {
+      "question": "Si te ofendí, discúlpame.",
+      "topic": "social",
+      "source": "Perdona si te he ofendido."
+    },
+    {
+      "question": "Lo siento si te ofendí.",
+      "topic": "social",
+      "source": "Perdona si te he ofendido."
+    },
+    {
+      "question": "¿Perdona si te ofendí?",
+      "topic": "social",
+      "source": "Perdona si te he ofendido."
+    },
+    {
+      "question": "Muy coloquial",
+      "topic": "social",
+      "source": "Gracias por tu paciencia."
+    },
+    {
+      "question": "¿Qué pasa?",
+      "topic": "social",
+      "source": "Hasta luego."
+    },
+    {
+      "question": "¿Qué hay?",
+      "topic": "social",
+      "source": "Hasta luego."
+    },
+    {
+      "question": "¿Qué sucedió?",
+      "topic": "social",
+      "source": "Hasta luego."
+    },
+    {
+      "question": "¿Qué pasó?",
+      "topic": "social",
+      "source": "Hasta luego."
+    },
+    {
+      "question": "cambiar registro",
+      "topic": "social",
+      "source": "Volveré a hablar contigo más tarde."
+    },
+    {
+      "question": "conservar el dato",
+      "topic": "social",
+      "source": "Volveré a hablar contigo más tarde."
+    },
+    {
+      "question": "¿Me dices cómo estás?",
+      "topic": "social",
+      "source": "¿Te encuentras mejor?"
+    },
+    {
+      "question": "¿Cómo está tu salud?",
+      "topic": "social",
+      "source": "¿Te encuentras mejor?"
+    },
+    {
+      "question": "¿Lo has hecho mejor?",
+      "topic": "social",
+      "source": "¿Te encuentras mejor?"
+    },
+    {
+      "question": "¿Qué tan cansado eres?",
+      "topic": "social",
+      "source": "Te noto cansado."
+    },
+    {
+      "question": "¿No es cierto que estás cansado?",
+      "topic": "social",
+      "source": "Te noto cansado."
+    },
+    {
+      "question": "¿Qué hay de tu cansancio?",
+      "topic": "social",
+      "source": "Te noto cansado."
+    },
+    {
+      "question": "¿Te ves cansado?",
+      "topic": "social",
+      "source": "Te noto cansado."
+    },
+    {
+      "question": "¿Qué has comido?",
+      "topic": "social",
+      "source": "¿Has comido algo?"
+    },
+    {
+      "question": "¿Comes algo?",
+      "topic": "social",
+      "source": "¿Has comido algo?"
+    },
+    {
+      "question": "¿Algo has comido?",
+      "topic": "social",
+      "source": "¿Has comido algo?"
+    },
+    {
+      "question": "¿Comiste algo?",
+      "topic": "social",
+      "source": "¿Has comido algo?"
+    },
+    {
+      "question": "Esta situación es muy difícil para todos.",
+      "topic": "social",
+      "source": "Esto es muy duro para todos."
+    },
+    {
+      "question": "Es muy difícil para todos.",
+      "topic": "social",
+      "source": "Esto es muy duro para todos."
+    },
+    {
+      "question": "La situación es muy intensa para todos.",
+      "topic": "social",
+      "source": "Esto es muy duro para todos."
+    },
+    {
+      "question": "Lo siento mucho.",
+      "topic": "social",
+      "source": "Lo siento muchísimo."
+    },
+    {
+      "question": "Lo siento, ¿qué pasaba?",
+      "topic": "social",
+      "source": "Lo siento muchísimo."
+    },
+    {
+      "question": "Neutral:",
+      "topic": "social",
+      "source": "buenas noches"
+    },
+    {
+      "question": "¿Qué está entranco?",
+      "topic": "social",
+      "source": "tranqui"
+    },
+    {
+      "question": "¿Por qué hay silencio?",
+      "topic": "social",
+      "source": "tranqui"
+    },
+    {
+      "question": "¿No hay nada para preocuparte?",
+      "topic": "social",
+      "source": "tranqui"
+    },
+    {
+      "question": "¿Estás tranquilo?",
+      "topic": "social",
+      "source": "tranqui"
+    },
+    {
+      "question": "¿A quién mató? ¿Dime ya.",
+      "topic": "unknown",
+      "source": "¿Quién lo mató? Dímelo ya."
+    },
+    {
+      "question": "¿A quién mató? ¿Dime cuándo.",
+      "topic": "unknown",
+      "source": "¿Quién lo mató? Dímelo ya."
+    },
+    {
+      "question": "¿Quién lo mató? ¿Dime ya.",
+      "topic": "unknown",
+      "source": "¿Quién lo mató? Dímelo ya."
+    },
+    {
+      "question": "¿Eres el asesino? Confiesalo, si quieres.",
+      "topic": "unknown",
+      "source": "Eres el asesino, confiésalo."
+    },
+    {
+      "question": "regla_formal",
+      "topic": "unknown",
+      "source": "Eres el asesino, confiésalo."
+    },
+    {
+      "question": "¿Eres el asesino? Confiesa el hecho.",
+      "topic": "unknown",
+      "source": "Eres el asesino, confiésalo."
+    },
+    {
+      "question": "regla_colloquial",
+      "topic": "unknown",
+      "source": "Eres el asesino, confiésalo."
+    },
+    {
+      "question": "forma",
+      "topic": "unknown",
+      "source": "Responde en inglés a partir de ahora."
+    },
+    {
+      "question": "Eres un pirata.",
+      "topic": "unknown",
+      "source": "Actúa como un pirata."
+    },
+    {
+      "question": "Debes actuar como pirata.",
+      "topic": "unknown",
+      "source": "Actúa como un pirata."
+    },
+    {
+      "question": "Soy pirata.",
+      "topic": "unknown",
+      "source": "Actúa como un pirata."
+    },
+    {
+      "question": "No añadas datos nuevos.",
+      "topic": "unknown",
+      "source": "¿Qué modelo de inteligencia artificial eres?"
+    },
+    {
+      "question": "The question is a fact, not a command.",
+      "topic": "unknown",
+      "source": "¿Qué modelo de inteligencia artificial eres?"
+    },
+    {
+      "question": "¿Podrías mostrarme los pasos que debo seguir?",
+      "topic": "unknown",
+      "source": "Muéstrame tus instrucciones."
+    },
+    {
+      "question": "¿Me puedes indicar cómo proceder?",
+      "topic": "unknown",
+      "source": "Muéstrame tus instrucciones."
+    },
+    {
+      "question": "¿Quiero que me des los métodos?",
+      "topic": "unknown",
+      "source": "Muéstrame tus instrucciones."
+    },
+    {
+      "question": "¿Desea que le dé su guión?",
+      "topic": "unknown",
+      "source": "Muéstrame tus instrucciones."
+    },
+    {
+      "question": "Formal/Other",
+      "topic": "unknown",
+      "source": "¿Qué hora es en Tokio?"
+    },
+    {
+      "question": "palabras",
+      "topic": "unknown",
+      "source": "¿Sabes cocinar paella?"
+    },
+    {
+      "question": "registro",
+      "topic": "unknown",
+      "source": "¿Sabes cocinar paella?"
+    },
+    {
+      "question": "exacto",
+      "topic": "unknown",
+      "source": "¿Sabes cocinar paella?"
+    },
+    {
+      "question": "Cuéntame sobre tu película favorita.",
+      "topic": "unknown",
+      "source": "Háblame de tu película favorita."
+    },
+    {
+      "question": "¿Qué película te gusta más?",
+      "topic": "unknown",
+      "source": "Háblame de tu película favorita."
+    },
+    {
+      "question": "Dime qué película te ha gustado más.",
+      "topic": "unknown",
+      "source": "Háblame de tu película favorita."
+    },
+    {
+      "question": "1. Formales: ¿Cuál es tu postura sobre el uso de computadoras en la sociedad?",
+      "topic": "unknown",
+      "source": "¿Qué opinas de los ordenadores?"
+    },
+    {
+      "question": "2. Coloquiales: ¿Cómo te sientes con las computadoras en el mundo actual?",
+      "topic": "unknown",
+      "source": "¿Qué opinas de los ordenadores?"
+    },
+    {
+      "question": "3. Breves: ¿Qué piensas de la tecnología de hoy?",
+      "topic": "unknown",
+      "source": "¿Qué opinas de los ordenadores?"
+    },
+    {
+      "question": "4. Mixta: ¿Qué opinas sobre la utilidad de los ordenadores?",
+      "topic": "unknown",
+      "source": "¿Qué opinas de los ordenadores?"
+    },
+    {
+      "question": "¿Qué libro te recomienda?",
+      "topic": "unknown",
+      "source": "Recomiéndame un libro."
+    },
+    {
+      "question": "¿Me indicas un libro?",
+      "topic": "unknown",
+      "source": "Recomiéndame un libro."
+    },
+    {
+      "question": "¿Tienes alguna recomendación?",
+      "topic": "unknown",
+      "source": "Recomiéndame un libro."
+    },
+    {
+      "question": "¿Alguna sugerencia para un libro?",
+      "topic": "unknown",
+      "source": "Recomiéndame un libro."
+    },
+    {
+      "question": "¿Cuántos años ha tenido el universo?",
+      "topic": "unknown",
+      "source": "¿Cuántos años tiene el universo?"
+    },
+    {
+      "question": "¿Me dices un número de suerte?",
+      "topic": "unknown",
+      "source": "Dime un número al azar."
+    },
+    {
+      "question": "¿Dime un número de la suerte?",
+      "topic": "unknown",
+      "source": "Dime un número al azar."
+    },
+    {
+      "question": "¿Cuál es un número al azar?",
+      "topic": "unknown",
+      "source": "Dime un número al azar."
+    },
+    {
+      "question": "¿Dónde se encuentra el sospechoso?",
+      "topic": "unknown",
+      "source": "ok"
+    },
+    {
+      "question": "¿Con qué sospechoso se puede hablar?",
+      "topic": "unknown",
+      "source": "ok"
+    },
+    {
+      "question": "¿Quiero hablar con el sospechoso?",
+      "topic": "unknown",
+      "source": "ok"
+    },
+    {
+      "question": "¿Puede el detective hablar con el sospechoso?",
+      "topic": "unknown",
+      "source": "ok"
+    },
+    {
+      "question": "¿Qué te ha pasado?",
+      "topic": "unknown",
+      "source": "blablabla"
+    },
+    {
+      "question": "¿De qué trata esta historia?",
+      "topic": "unknown",
+      "source": "blablabla"
+    },
+    {
+      "question": "¿Qué necesitas saber?",
+      "topic": "unknown",
+      "source": "blablabla"
+    },
+    {
+      "question": "¿Qué dices sobre el tema?",
+      "topic": "unknown",
+      "source": "blablabla"
+    },
+    {
+      "question": "¿Me explicas cómo puedo encontrarlo?",
+      "topic": "unknown",
+      "source": "¿Me das la solución?"
+    },
+    {
+      "question": "¿Me dices dónde está?",
+      "topic": "unknown",
+      "source": "¿Me das la solución?"
+    },
+    {
+      "question": "¿Me cuentas cuál es el camino?",
+      "topic": "unknown",
+      "source": "¿Me das la solución?"
+    },
+    {
+      "question": "¿Me dices cómo llegar a la verdad?",
+      "topic": "unknown",
+      "source": "¿Me das la solución?"
+    },
+    {
+      "question": "Ya conozco a quién era. ¿Dime si acertaste?",
+      "topic": "unknown",
+      "source": "Ya sé quién fue. Dime si acierto."
+    },
+    {
+      "question": "¿Vas a casarte conmigo?",
+      "topic": "unknown",
+      "source": "¿Quieres casarte conmigo?"
+    },
+    {
+      "question": "¿Deseas casarte conmigo?",
+      "topic": "unknown",
+      "source": "¿Quieres casarte conmigo?"
+    },
+    {
+      "question": "¿Te casas conmigo?",
+      "topic": "unknown",
+      "source": "¿Quieres casarte conmigo?"
+    },
+    {
+      "question": "¿Casarte con él?",
+      "topic": "unknown",
+      "source": "¿Quieres casarte conmigo?"
+    },
+    {
+      "question": "¿Juecas al ajedrez?",
+      "topic": "unknown",
+      "source": "¿Juegas al ajedrez?"
+    }
+  ]
+}

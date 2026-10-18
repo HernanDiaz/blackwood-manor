@@ -1,0 +1,3195 @@
+{
+  "model": "laya-multilingual encoder (mmBERT-base) + linear head, full fine-tune",
+  "missingKeys": [],
+  "unexpectedKeys": [],
+  "parameters": 306947338,
+  "cpuMillisecondsPerQuestion": 145.8,
+  "runs": [
+    {
+      "seed": 1,
+      "correct": 115,
+      "predictions": [
+        {
+          "topic": "alibi",
+          "confidence": 0.8332852721214294
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.9345656633377075
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.6957355737686157
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.9982824325561523
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.9615083932876587
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.986723005771637
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.7800836563110352
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9629127383232117
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.34776073694229126
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.31728342175483704
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9745162725448608
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.32340991497039795
+        },
+        {
+          "topic": "object",
+          "confidence": 0.8214694857597351
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.5587432980537415
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.44613444805145264
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.5691974759101868
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.4155435264110565
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.7282977104187012
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.9220423102378845
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.4574470818042755
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.7503775954246521
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.9972146153450012
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.7912078499794006
+        },
+        {
+          "topic": "object",
+          "confidence": 0.3076167702674866
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.7388754487037659
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.5089786052703857
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.8958129286766052
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.3536728024482727
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.3553800880908966
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.48648372292518616
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.8385131359100342
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.5500472784042358
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.43706151843070984
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.9428676962852478
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.9994675517082214
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.5287743806838989
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.7506080865859985
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.32895323634147644
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.281354695558548
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9951480031013489
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.3988204300403595
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.5641777515411377
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.37621042132377625
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.5316782593727112
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.66278475522995
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9773452281951904
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9816982746124268
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.5607869029045105
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.787492573261261
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.5940677523612976
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.7328109741210938
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.3749038279056549
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.7183350324630737
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9213184118270874
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.5297916531562805
+        },
+        {
+          "topic": "link",
+          "confidence": 0.8052733540534973
+        },
+        {
+          "topic": "social",
+          "confidence": 0.7974504232406616
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.6010001301765442
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9992305040359497
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.5516587495803833
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9827378392219543
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9251081943511963
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9908932447433472
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.6777542233467102
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.5441920161247253
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.8172257542610168
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.4398905038833618
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.5050880908966064
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.6125743985176086
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.6524361968040466
+        },
+        {
+          "topic": "social",
+          "confidence": 0.3323507606983185
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.5828828811645508
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.3228570818901062
+        },
+        {
+          "topic": "social",
+          "confidence": 0.7230355739593506
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.8985766768455505
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.879970908164978
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.4997251331806183
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.7420027852058411
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.6813046932220459
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.3599850535392761
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.781269371509552
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.5120237469673157
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.3482454717159271
+        },
+        {
+          "topic": "object",
+          "confidence": 0.38606876134872437
+        },
+        {
+          "topic": "link",
+          "confidence": 0.6666442155838013
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.38846537470817566
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.2738339602947235
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.2966427206993103
+        },
+        {
+          "topic": "social",
+          "confidence": 0.6438220739364624
+        },
+        {
+          "topic": "object",
+          "confidence": 0.9609440565109253
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.6779217720031738
+        },
+        {
+          "topic": "object",
+          "confidence": 0.6812983155250549
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.46703052520751953
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.9042115807533264
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.5909128189086914
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.4829353988170624
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.960175096988678
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.7361412644386292
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9991469383239746
+        },
+        {
+          "topic": "object",
+          "confidence": 0.8729289174079895
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.6457698941230774
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.40073931217193604
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.45543134212493896
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.45553961396217346
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.5750575065612793
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.3566112518310547
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.9325490593910217
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.46870917081832886
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.30848199129104614
+        },
+        {
+          "topic": "link",
+          "confidence": 0.8261388540267944
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.6564862728118896
+        },
+        {
+          "topic": "link",
+          "confidence": 0.5277361869812012
+        },
+        {
+          "topic": "link",
+          "confidence": 0.7899394631385803
+        },
+        {
+          "topic": "link",
+          "confidence": 0.9967792630195618
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.4749041497707367
+        },
+        {
+          "topic": "link",
+          "confidence": 0.9945284724235535
+        },
+        {
+          "topic": "link",
+          "confidence": 0.9882060885429382
+        },
+        {
+          "topic": "link",
+          "confidence": 0.9975233674049377
+        },
+        {
+          "topic": "link",
+          "confidence": 0.4457416832447052
+        },
+        {
+          "topic": "object",
+          "confidence": 0.7029171586036682
+        },
+        {
+          "topic": "link",
+          "confidence": 0.61549311876297
+        },
+        {
+          "topic": "link",
+          "confidence": 0.6805874705314636
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.3349572718143463
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.5515283942222595
+        },
+        {
+          "topic": "object",
+          "confidence": 0.812589168548584
+        },
+        {
+          "topic": "link",
+          "confidence": 0.9957692623138428
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.5163115859031677
+        },
+        {
+          "topic": "link",
+          "confidence": 0.8667041063308716
+        },
+        {
+          "topic": "link",
+          "confidence": 0.7607050538063049
+        },
+        {
+          "topic": "link",
+          "confidence": 0.9836945533752441
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.5610541105270386
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.33375468850135803
+        },
+        {
+          "topic": "object",
+          "confidence": 0.7828267812728882
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.30640384554862976
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.7025964856147766
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.9075047373771667
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.8857876062393188
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.46155285835266113
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.4371124804019928
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.4985334575176239
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.9674632549285889
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.5690710544586182
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.5092501044273376
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.3813174068927765
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.8789525628089905
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.4373757541179657
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.4743996560573578
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.5654340386390686
+        },
+        {
+          "topic": "object",
+          "confidence": 0.8340097069740295
+        },
+        {
+          "topic": "object",
+          "confidence": 0.7868131399154663
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.39551469683647156
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.98456209897995
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.4783267676830292
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.22120755910873413
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.9806253910064697
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.6325986981391907
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.403077632188797
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.3575752377510071
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.6299733519554138
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.5720787644386292
+        },
+        {
+          "topic": "object",
+          "confidence": 0.573661744594574
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.3276502192020416
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.8932877779006958
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.8166974782943726
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9970672726631165
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.8133144378662109
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.6321443915367126
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9425211548805237
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.49058637022972107
+        },
+        {
+          "topic": "link",
+          "confidence": 0.33589914441108704
+        },
+        {
+          "topic": "link",
+          "confidence": 0.9891308546066284
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.5268321633338928
+        },
+        {
+          "topic": "link",
+          "confidence": 0.3743404448032379
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.48409196734428406
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9949504137039185
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9429416656494141
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9879274964332581
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9631763100624084
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.7940179705619812
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.5946530699729919
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.6075915694236755
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.4739791452884674
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9973714351654053
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9404265880584717
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9985669255256653
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9963538646697998
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.92311692237854
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.4137733280658722
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9475205540657043
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9434098601341248
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.5130556225776672
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.6725444197654724
+        },
+        {
+          "topic": "social",
+          "confidence": 0.4040050804615021
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.8895630240440369
+        },
+        {
+          "topic": "object",
+          "confidence": 0.43100571632385254
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.9251829385757446
+        },
+        {
+          "topic": "object",
+          "confidence": 0.975994348526001
+        },
+        {
+          "topic": "object",
+          "confidence": 0.5226964950561523
+        },
+        {
+          "topic": "object",
+          "confidence": 0.9705865979194641
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.5244734883308411
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.9771485328674316
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.5796854496002197
+        },
+        {
+          "topic": "object",
+          "confidence": 0.9973562955856323
+        },
+        {
+          "topic": "object",
+          "confidence": 0.35383090376853943
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.45686718821525574
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.6210442781448364
+        },
+        {
+          "topic": "object",
+          "confidence": 0.6701263189315796
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.4984971880912781
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.7463604807853699
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.49395379424095154
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9438977241516113
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.5100258588790894
+        },
+        {
+          "topic": "identity",
+          "confidence": 0.9873074293136597
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.735270082950592
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.7097200155258179
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.756367027759552
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.4516395628452301
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.7977495789527893
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.29024818539619446
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.7070829272270203
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.7826558351516724
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.8925527334213257
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.8451905250549316
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.46838846802711487
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.8891991376876831
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.7628707885742188
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.9338887333869934
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.3258810341358185
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.3783024251461029
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.5391375422477722
+        },
+        {
+          "topic": "social",
+          "confidence": 0.8169690370559692
+        },
+        {
+          "topic": "social",
+          "confidence": 0.9257413744926453
+        },
+        {
+          "topic": "social",
+          "confidence": 0.7646194696426392
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.4516793191432953
+        },
+        {
+          "topic": "social",
+          "confidence": 0.7447720766067505
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.5498934984207153
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.5425729155540466
+        },
+        {
+          "topic": "social",
+          "confidence": 0.6925047636032104
+        },
+        {
+          "topic": "social",
+          "confidence": 0.5227205157279968
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.7258075475692749
+        },
+        {
+          "topic": "social",
+          "confidence": 0.9588400721549988
+        },
+        {
+          "topic": "social",
+          "confidence": 0.2900886833667755
+        },
+        {
+          "topic": "social",
+          "confidence": 0.4486177861690521
+        },
+        {
+          "topic": "social",
+          "confidence": 0.8731909990310669
+        },
+        {
+          "topic": "social",
+          "confidence": 0.7097343802452087
+        },
+        {
+          "topic": "social",
+          "confidence": 0.7960728406906128
+        },
+        {
+          "topic": "social",
+          "confidence": 0.7122818827629089
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.4830448031425476
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.49354153871536255
+        },
+        {
+          "topic": "object",
+          "confidence": 0.7047085165977478
+        },
+        {
+          "topic": "link",
+          "confidence": 0.6150802969932556
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.6065583825111389
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.8053843379020691
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.7735837697982788
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.424763560295105
+        },
+        {
+          "topic": "object",
+          "confidence": 0.4222400188446045
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.7592296600341797
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.9056136608123779
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.8718639016151428
+        },
+        {
+          "topic": "social",
+          "confidence": 0.7056477069854736
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9017226696014404
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.5455320477485657
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9658471941947937
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9096955060958862
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "correct": 122,
+      "predictions": [
+        {
+          "topic": "alibi",
+          "confidence": 0.5076608061790466
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.938271701335907
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.8931534290313721
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.9988893866539001
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.9963207244873047
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9950475692749023
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.5047966837882996
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.7661750316619873
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.553628146648407
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.44588735699653625
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.995140790939331
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.6168379783630371
+        },
+        {
+          "topic": "object",
+          "confidence": 0.6437999606132507
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.886877715587616
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.9750692844390869
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.8741393089294434
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.5384467840194702
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9468684792518616
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.5401403307914734
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.7292053699493408
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.9549500942230225
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.9969426989555359
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.838225781917572
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.2589394152164459
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.8829514384269714
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.7979885935783386
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.8927336931228638
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9632917046546936
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9081102013587952
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.5890793800354004
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.883237361907959
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.5047111511230469
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.5685173869132996
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.7365780472755432
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.9867042303085327
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.884845495223999
+        },
+        {
+          "topic": "object",
+          "confidence": 0.914211094379425
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9903851747512817
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.6241295337677002
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9974325299263
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9711514115333557
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.39698126912117004
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.4395418167114258
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.7484937906265259
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9475193619728088
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.8846153020858765
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9959169030189514
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.8805660605430603
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.753271758556366
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.5307943224906921
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9710817337036133
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9016841053962708
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9870325326919556
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9728248119354248
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9282504916191101
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9869918823242188
+        },
+        {
+          "topic": "social",
+          "confidence": 0.7064222097396851
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9860425591468811
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9996325969696045
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9306216835975647
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9884729981422424
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9955140948295593
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9986087679862976
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9802079796791077
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9228048324584961
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.635047972202301
+        },
+        {
+          "topic": "link",
+          "confidence": 0.812868595123291
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.5037638545036316
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.5048563480377197
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.6180669665336609
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.5627188086509705
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.6716499924659729
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.7394522428512573
+        },
+        {
+          "topic": "social",
+          "confidence": 0.7337230443954468
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9934533834457397
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9923321008682251
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.5767489075660706
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.6516677737236023
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.8663048148155212
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.49970752000808716
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.6996534466743469
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.5647504925727844
+        },
+        {
+          "topic": "social",
+          "confidence": 0.7740760445594788
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.6542022228240967
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.2795316278934479
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.8109738230705261
+        },
+        {
+          "topic": "link",
+          "confidence": 0.32827338576316833
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.8216817378997803
+        },
+        {
+          "topic": "social",
+          "confidence": 0.49439361691474915
+        },
+        {
+          "topic": "object",
+          "confidence": 0.9862474799156189
+        },
+        {
+          "topic": "object",
+          "confidence": 0.475951611995697
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.6397812962532043
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.48285260796546936
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.9855803847312927
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.8966597318649292
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.7355546951293945
+        },
+        {
+          "topic": "link",
+          "confidence": 0.6908047199249268
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.7685959339141846
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9996020197868347
+        },
+        {
+          "topic": "object",
+          "confidence": 0.5674555897712708
+        },
+        {
+          "topic": "object",
+          "confidence": 0.3895758092403412
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.723120391368866
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.5289482474327087
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9441865086555481
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9682517647743225
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.7752261161804199
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.9845475554466248
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9155787229537964
+        },
+        {
+          "topic": "link",
+          "confidence": 0.8030685186386108
+        },
+        {
+          "topic": "object",
+          "confidence": 0.690722644329071
+        },
+        {
+          "topic": "link",
+          "confidence": 0.944837212562561
+        },
+        {
+          "topic": "link",
+          "confidence": 0.8020424246788025
+        },
+        {
+          "topic": "link",
+          "confidence": 0.714489758014679
+        },
+        {
+          "topic": "link",
+          "confidence": 0.9993532299995422
+        },
+        {
+          "topic": "link",
+          "confidence": 0.9480014443397522
+        },
+        {
+          "topic": "link",
+          "confidence": 0.9333454370498657
+        },
+        {
+          "topic": "link",
+          "confidence": 0.9925299286842346
+        },
+        {
+          "topic": "link",
+          "confidence": 0.9985631108283997
+        },
+        {
+          "topic": "link",
+          "confidence": 0.9276933670043945
+        },
+        {
+          "topic": "link",
+          "confidence": 0.8434349298477173
+        },
+        {
+          "topic": "link",
+          "confidence": 0.8947134613990784
+        },
+        {
+          "topic": "link",
+          "confidence": 0.8087332248687744
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.6375130414962769
+        },
+        {
+          "topic": "link",
+          "confidence": 0.87982177734375
+        },
+        {
+          "topic": "object",
+          "confidence": 0.8914424180984497
+        },
+        {
+          "topic": "link",
+          "confidence": 0.9930548071861267
+        },
+        {
+          "topic": "object",
+          "confidence": 0.48472437262535095
+        },
+        {
+          "topic": "link",
+          "confidence": 0.6198762655258179
+        },
+        {
+          "topic": "link",
+          "confidence": 0.9721271991729736
+        },
+        {
+          "topic": "link",
+          "confidence": 0.9798375964164734
+        },
+        {
+          "topic": "link",
+          "confidence": 0.9365671277046204
+        },
+        {
+          "topic": "link",
+          "confidence": 0.554129421710968
+        },
+        {
+          "topic": "object",
+          "confidence": 0.38331112265586853
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.6179871559143066
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.6237348914146423
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.9994282126426697
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.945987343788147
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.4387719929218292
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.8731963038444519
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.9173257946968079
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.9719488620758057
+        },
+        {
+          "topic": "social",
+          "confidence": 0.26905012130737305
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.6278098225593567
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.809218168258667
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.7331569790840149
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.5036472082138062
+        },
+        {
+          "topic": "link",
+          "confidence": 0.6097637414932251
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.9077832698822021
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.9156460762023926
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.975732684135437
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.7754058241844177
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.9940768480300903
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.7746764421463013
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.5998722910881042
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.9802994728088379
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.328925758600235
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.7803434729576111
+        },
+        {
+          "topic": "social",
+          "confidence": 0.6657803654670715
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.9834548234939575
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.8899939656257629
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.5360174775123596
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.9585364460945129
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.5156353116035461
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.5574105381965637
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9956651329994202
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.984966516494751
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.756152868270874
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.90029376745224
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.5065212845802307
+        },
+        {
+          "topic": "link",
+          "confidence": 0.41030004620552063
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.5862811207771301
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.7708573341369629
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.8466904759407043
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.6785600185394287
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9997194409370422
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.6454155445098877
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9954186677932739
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9546158909797668
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.8369495272636414
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.7923965454101562
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.6762670874595642
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.5129230618476868
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9737469553947449
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9908665418624878
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9975956082344055
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9968554973602295
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.41340282559394836
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.6282210350036621
+        },
+        {
+          "topic": "link",
+          "confidence": 0.36698055267333984
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9223620295524597
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.8592180013656616
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.7929450273513794
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.7443920969963074
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.5992181897163391
+        },
+        {
+          "topic": "object",
+          "confidence": 0.6501904726028442
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.7106496095657349
+        },
+        {
+          "topic": "object",
+          "confidence": 0.8124182224273682
+        },
+        {
+          "topic": "object",
+          "confidence": 0.5987653732299805
+        },
+        {
+          "topic": "object",
+          "confidence": 0.9989792704582214
+        },
+        {
+          "topic": "object",
+          "confidence": 0.7888877391815186
+        },
+        {
+          "topic": "object",
+          "confidence": 0.9670287370681763
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.5737582445144653
+        },
+        {
+          "topic": "object",
+          "confidence": 0.9335435628890991
+        },
+        {
+          "topic": "object",
+          "confidence": 0.5276331901550293
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.4711224138736725
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.4446755051612854
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.8105683326721191
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.678851306438446
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.597071647644043
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9404629468917847
+        },
+        {
+          "topic": "link",
+          "confidence": 0.4482572376728058
+        },
+        {
+          "topic": "identity",
+          "confidence": 0.9851943850517273
+        },
+        {
+          "topic": "identity",
+          "confidence": 0.96512371301651
+        },
+        {
+          "topic": "identity",
+          "confidence": 0.9400607943534851
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9936473965644836
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.5864213109016418
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.6301999688148499
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.5441823601722717
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.8189803957939148
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.43639829754829407
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.8709737658500671
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.7963958382606506
+        },
+        {
+          "topic": "identity",
+          "confidence": 0.8127337098121643
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.4619083106517792
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.8601539134979248
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.815078616142273
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.820793092250824
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.5916643738746643
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.6931151747703552
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.3943670094013214
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.7038699388504028
+        },
+        {
+          "topic": "social",
+          "confidence": 0.845406711101532
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.5139750838279724
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.5633652210235596
+        },
+        {
+          "topic": "social",
+          "confidence": 0.7038103342056274
+        },
+        {
+          "topic": "social",
+          "confidence": 0.37023013830184937
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.48516467213630676
+        },
+        {
+          "topic": "social",
+          "confidence": 0.34466204047203064
+        },
+        {
+          "topic": "identity",
+          "confidence": 0.2987701892852783
+        },
+        {
+          "topic": "identity",
+          "confidence": 0.4928402304649353
+        },
+        {
+          "topic": "identity",
+          "confidence": 0.5574175715446472
+        },
+        {
+          "topic": "identity",
+          "confidence": 0.4647652208805084
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.3255261182785034
+        },
+        {
+          "topic": "social",
+          "confidence": 0.6471185684204102
+        },
+        {
+          "topic": "social",
+          "confidence": 0.9926819205284119
+        },
+        {
+          "topic": "social",
+          "confidence": 0.5957929491996765
+        },
+        {
+          "topic": "social",
+          "confidence": 0.690425455570221
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.4449874460697174
+        },
+        {
+          "topic": "social",
+          "confidence": 0.850368857383728
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.9102847576141357
+        },
+        {
+          "topic": "link",
+          "confidence": 0.41384363174438477
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.5683287978172302
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.4793175756931305
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.6403951644897461
+        },
+        {
+          "topic": "social",
+          "confidence": 0.3175564408302307
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.7370274066925049
+        },
+        {
+          "topic": "object",
+          "confidence": 0.4091228246688843
+        },
+        {
+          "topic": "object",
+          "confidence": 0.6700005531311035
+        },
+        {
+          "topic": "social",
+          "confidence": 0.39156055450439453
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.22309881448745728
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9918756484985352
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.48864683508872986
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.6314447522163391
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.7440555691719055
+        }
+      ]
+    },
+    {
+      "seed": 3,
+      "correct": 127,
+      "predictions": [
+        {
+          "topic": "alibi",
+          "confidence": 0.6685693264007568
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.9745045304298401
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.9735482931137085
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.998307466506958
+        },
+        {
+          "topic": "object",
+          "confidence": 0.44415780901908875
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.5243589282035828
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.8899540305137634
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9566502571105957
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.881284236907959
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.447243332862854
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.6872208118438721
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.992294192314148
+        },
+        {
+          "topic": "object",
+          "confidence": 0.8068177700042725
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.6322024464607239
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.7882251143455505
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.845363438129425
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.6070711612701416
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.8114678263664246
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.9763792157173157
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.7907159328460693
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.9657821655273438
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.9934234619140625
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.38265496492385864
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.6164979934692383
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.8233693242073059
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.9743506908416748
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9518831372261047
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.6104402542114258
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.4306616187095642
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.8363966345787048
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.46939438581466675
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.4599621891975403
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.8927730321884155
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.594057023525238
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.9934790134429932
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.49916478991508484
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.6576390266418457
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9879266619682312
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.7141436338424683
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9990993738174438
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.8374736905097961
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.5759304761886597
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.34325507283210754
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.29948490858078003
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.7234601974487305
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.7317776083946228
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9433837532997131
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9416831731796265
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.7504206895828247
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.6744052767753601
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9879128336906433
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.865574836730957
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9425105452537537
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.6388099789619446
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9768514037132263
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.621974527835846
+        },
+        {
+          "topic": "social",
+          "confidence": 0.8151134252548218
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9824708104133606
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9928374886512756
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9347420334815979
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9895609617233276
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9964448809623718
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9847917556762695
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9809842109680176
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.8254093527793884
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.6034693717956543
+        },
+        {
+          "topic": "link",
+          "confidence": 0.9630413055419922
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.6784513592720032
+        },
+        {
+          "topic": "social",
+          "confidence": 0.45028772950172424
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.5047953128814697
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.8002915978431702
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.7313945293426514
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.7756843566894531
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.9644079208374023
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9916472434997559
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.944415807723999
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.7627992033958435
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9563113451004028
+        },
+        {
+          "topic": "link",
+          "confidence": 0.5854818820953369
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.5095227956771851
+        },
+        {
+          "topic": "social",
+          "confidence": 0.4529949724674225
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.6767385601997375
+        },
+        {
+          "topic": "social",
+          "confidence": 0.47939175367355347
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.8602792620658875
+        },
+        {
+          "topic": "link",
+          "confidence": 0.49595907330513
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.6146847605705261
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.33206120133399963
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.46167707443237305
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.393653005361557
+        },
+        {
+          "topic": "object",
+          "confidence": 0.6386997699737549
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.44305872917175293
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.9389405250549316
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.6922146081924438
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.8662413954734802
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.5741852521896362
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.5866126418113708
+        },
+        {
+          "topic": "link",
+          "confidence": 0.740007758140564
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.3496936559677124
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.9361569881439209
+        },
+        {
+          "topic": "object",
+          "confidence": 0.3360646963119507
+        },
+        {
+          "topic": "object",
+          "confidence": 0.6801290512084961
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.4550819396972656
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.6577607989311218
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.8569380044937134
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.8700635433197021
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.22683562338352203
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.8186694383621216
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.5651152729988098
+        },
+        {
+          "topic": "link",
+          "confidence": 0.9879997372627258
+        },
+        {
+          "topic": "link",
+          "confidence": 0.927004337310791
+        },
+        {
+          "topic": "link",
+          "confidence": 0.9130563735961914
+        },
+        {
+          "topic": "link",
+          "confidence": 0.9776449203491211
+        },
+        {
+          "topic": "link",
+          "confidence": 0.9829645752906799
+        },
+        {
+          "topic": "link",
+          "confidence": 0.9995001554489136
+        },
+        {
+          "topic": "link",
+          "confidence": 0.9714455604553223
+        },
+        {
+          "topic": "link",
+          "confidence": 0.9497693777084351
+        },
+        {
+          "topic": "link",
+          "confidence": 0.9067003726959229
+        },
+        {
+          "topic": "link",
+          "confidence": 0.997506320476532
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.5547722578048706
+        },
+        {
+          "topic": "link",
+          "confidence": 0.5372230410575867
+        },
+        {
+          "topic": "link",
+          "confidence": 0.9454317688941956
+        },
+        {
+          "topic": "link",
+          "confidence": 0.6497682332992554
+        },
+        {
+          "topic": "object",
+          "confidence": 0.5257920622825623
+        },
+        {
+          "topic": "identity",
+          "confidence": 0.6509934067726135
+        },
+        {
+          "topic": "object",
+          "confidence": 0.893132746219635
+        },
+        {
+          "topic": "link",
+          "confidence": 0.9960002303123474
+        },
+        {
+          "topic": "object",
+          "confidence": 0.9846444129943848
+        },
+        {
+          "topic": "link",
+          "confidence": 0.9145728945732117
+        },
+        {
+          "topic": "link",
+          "confidence": 0.9940280914306641
+        },
+        {
+          "topic": "link",
+          "confidence": 0.9863666892051697
+        },
+        {
+          "topic": "link",
+          "confidence": 0.8011536002159119
+        },
+        {
+          "topic": "link",
+          "confidence": 0.683807909488678
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.30646759271621704
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.25552642345428467
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9126095175743103
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.9972963929176331
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.9941768646240234
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.9207313060760498
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.8401533961296082
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.8376654386520386
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.9951671361923218
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.49030518531799316
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.6658651232719421
+        },
+        {
+          "topic": "object",
+          "confidence": 0.6578823924064636
+        },
+        {
+          "topic": "social",
+          "confidence": 0.4961938261985779
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.5252382755279541
+        },
+        {
+          "topic": "link",
+          "confidence": 0.3274151384830475
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.6991643309593201
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.8649739027023315
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.9468385577201843
+        },
+        {
+          "topic": "link",
+          "confidence": 0.266163170337677
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.9980995059013367
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.8048418760299683
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.3979872763156891
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.994157075881958
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.5997613072395325
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.44628140330314636
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.7778982520103455
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.9936467409133911
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.898698091506958
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.614797055721283
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.4910643696784973
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.4813691973686218
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.2471124529838562
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9961108565330505
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9891762137413025
+        },
+        {
+          "topic": "link",
+          "confidence": 0.6933470964431763
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9517949819564819
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.8052065968513489
+        },
+        {
+          "topic": "link",
+          "confidence": 0.9637554883956909
+        },
+        {
+          "topic": "link",
+          "confidence": 0.9650225639343262
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.6690685153007507
+        },
+        {
+          "topic": "link",
+          "confidence": 0.7279222011566162
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.3079618215560913
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.997865617275238
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9583474397659302
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9992361068725586
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9822272658348083
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.8015731573104858
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.3902013599872589
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.9338916540145874
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.8800666928291321
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9988874793052673
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9593181610107422
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9991182684898376
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.992572009563446
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.7028763294219971
+        },
+        {
+          "topic": "link",
+          "confidence": 0.2607038617134094
+        },
+        {
+          "topic": "link",
+          "confidence": 0.8286565542221069
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.42537450790405273
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.48659422993659973
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.9359880685806274
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.6225559711456299
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.5785622596740723
+        },
+        {
+          "topic": "object",
+          "confidence": 0.6813805103302002
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.8861454129219055
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.8173301219940186
+        },
+        {
+          "topic": "link",
+          "confidence": 0.5844599008560181
+        },
+        {
+          "topic": "object",
+          "confidence": 0.9661862850189209
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.34371066093444824
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.7683967351913452
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.35105887055397034
+        },
+        {
+          "topic": "object",
+          "confidence": 0.7035201191902161
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.6030587553977966
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.37500324845314026
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.4572286307811737
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.9930117726325989
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.5736249089241028
+        },
+        {
+          "topic": "link",
+          "confidence": 0.47314780950546265
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.7382129430770874
+        },
+        {
+          "topic": "seen",
+          "confidence": 0.7992257475852966
+        },
+        {
+          "topic": "identity",
+          "confidence": 0.7803164720535278
+        },
+        {
+          "topic": "identity",
+          "confidence": 0.847880482673645
+        },
+        {
+          "topic": "identity",
+          "confidence": 0.8674395680427551
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.7423520684242249
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.48946505784988403
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.3229547142982483
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.9158855676651001
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.807549774646759
+        },
+        {
+          "topic": "identity",
+          "confidence": 0.3032536804676056
+        },
+        {
+          "topic": "identity",
+          "confidence": 0.38600075244903564
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.5466242432594299
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.7823793292045593
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.9783633947372437
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.9832977056503296
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.7116798162460327
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.9984215497970581
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.4444073438644409
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.977994978427887
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.4114375710487366
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.8566074967384338
+        },
+        {
+          "topic": "social",
+          "confidence": 0.9372110962867737
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.35441017150878906
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.2679802477359772
+        },
+        {
+          "topic": "social",
+          "confidence": 0.5715262293815613
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.7303140759468079
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.46882548928260803
+        },
+        {
+          "topic": "social",
+          "confidence": 0.7741242051124573
+        },
+        {
+          "topic": "social",
+          "confidence": 0.43941015005111694
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.4994814991950989
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.4629768431186676
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.29133325815200806
+        },
+        {
+          "topic": "timeline",
+          "confidence": 0.4563485383987427
+        },
+        {
+          "topic": "social",
+          "confidence": 0.8791219592094421
+        },
+        {
+          "topic": "social",
+          "confidence": 0.9932695031166077
+        },
+        {
+          "topic": "social",
+          "confidence": 0.794424831867218
+        },
+        {
+          "topic": "social",
+          "confidence": 0.8277180790901184
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.33317679166793823
+        },
+        {
+          "topic": "link",
+          "confidence": 0.2795816957950592
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.47939854860305786
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.6052483320236206
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.584098219871521
+        },
+        {
+          "topic": "alibi",
+          "confidence": 0.5283676981925964
+        },
+        {
+          "topic": "social",
+          "confidence": 0.4018942713737488
+        },
+        {
+          "topic": "link",
+          "confidence": 0.34097611904144287
+        },
+        {
+          "topic": "link",
+          "confidence": 0.7048505544662476
+        },
+        {
+          "topic": "object",
+          "confidence": 0.3726792633533478
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.42115333676338196
+        },
+        {
+          "topic": "social",
+          "confidence": 0.5034932494163513
+        },
+        {
+          "topic": "social",
+          "confidence": 0.5823686122894287
+        },
+        {
+          "topic": "secret",
+          "confidence": 0.4019593894481659
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.45875853300094604
+        },
+        {
+          "topic": "motive",
+          "confidence": 0.4383275806903839
+        },
+        {
+          "topic": "unknown",
+          "confidence": 0.44850122928619385
+        }
+      ]
+    }
+  ]
+}

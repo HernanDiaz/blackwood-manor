@@ -1,0 +1,4250 @@
+{
+  "model": "multilingual-e5-small q8_0, k nearest training examples",
+  "embedMs": 3.871794871794872,
+  "results": {
+    "k1": {
+      "correct": 116,
+      "predictions": [
+        {
+          "topic": "alibi",
+          "similarity": 0.9252214735036312
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8663379531434041
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.892284829153909
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8952658440488944
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9033767522033193
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9263825900543743
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9125170528685019
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9004645986556857
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9071391485074912
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.89373517818827
+        },
+        {
+          "topic": "object",
+          "similarity": 0.9029841293075171
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8964992015143907
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8783123889080485
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.878133063585787
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.862341071538342
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9075417339946038
+        },
+        {
+          "topic": "social",
+          "similarity": 0.8623232982411481
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8669005571602767
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8790710724831827
+        },
+        {
+          "topic": "object",
+          "similarity": 0.8479015201521548
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9206599497035863
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9049962629739444
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.887041227856651
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8690524637471668
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9151217402261942
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8962345506400875
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.8935114043947674
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9128185369124969
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8917386723064714
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8908550121991852
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9096560327805397
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9272033421847994
+        },
+        {
+          "topic": "social",
+          "similarity": 0.9097864300389599
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8638664716870325
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8825507233379438
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8409016116802817
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8670689661248409
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9270707379604168
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9052068307340522
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9345686720468737
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9042156424762496
+        },
+        {
+          "topic": "object",
+          "similarity": 0.9127157521227278
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8910585899819969
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8732939757155205
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9361943784212547
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8888425245727931
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9092178324158904
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9305371722781575
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9183444629391235
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8812970599930235
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.891428157055271
+        },
+        {
+          "topic": "object",
+          "similarity": 0.8670268311980943
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.9240053375737265
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.899174518563008
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8799490922274488
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9097119941956383
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.9103648337350229
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9409372816856075
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9492073141381812
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9107633977935857
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9177081996525058
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9005383645010219
+        },
+        {
+          "topic": "social",
+          "similarity": 0.92130917145137
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9247627394783472
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8971387645096044
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.932542737249303
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8550648157601135
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.9089331036728864
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8751092832596591
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8986485785459584
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.9067944135017305
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.9082669836973821
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8982799328780471
+        },
+        {
+          "topic": "social",
+          "similarity": 0.8973895569818955
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9277638885120063
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9088164275070038
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8907951241125304
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9350816536442396
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8974200163340699
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9070186869332303
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.901181527396375
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8838610181243552
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.9048540266613873
+        },
+        {
+          "topic": "social",
+          "similarity": 0.8797183542287753
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8882101659323576
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8975205783383796
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.9091133059028015
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8846694887793619
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8975065434232565
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.906376661898677
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.9052636516772411
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9105625954842058
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8972563679218011
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.8692442691610807
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9176888431269644
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.9350841626595556
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.925755889884295
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9286742419007854
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9478424107511051
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.889900116663939
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.8842725575527369
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9139053928353166
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8732600975294077
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8997830764814653
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8964132005868112
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8995461678783003
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.9115327879559689
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8978390224298551
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8995103988509124
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8405708137382776
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8921682304095371
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9025157117460741
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8937845278059943
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9050001506010394
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8376617337307418
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8767115689543845
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9130613980154366
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9534220575323417
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8929203616677397
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.9091133925779865
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8822137877962383
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8245530773329981
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8777265603730545
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8839558422968972
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9202828298783594
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9173150498270067
+        },
+        {
+          "topic": "object",
+          "similarity": 0.8249319609905579
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8666071772922874
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9168724599126354
+        },
+        {
+          "topic": "link",
+          "similarity": 0.891245369355263
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8588230532409157
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9289504121883602
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9431216418231271
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9350722654657017
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8646117224455406
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9026373608582532
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9271291893213143
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8960186943393667
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8881577244675424
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9112536894233699
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9149403158168151
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.9048012121268736
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.8942822102697437
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.929040154871835
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.906479250788793
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8901178156363081
+        },
+        {
+          "topic": "object",
+          "similarity": 0.8792786609107056
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.893870808516972
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9053089484151496
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9411505612747777
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.8631275035699056
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8947409665547745
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8702649849043819
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8762451054193293
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9385510983778154
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.865460894246371
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9038512864048535
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8970827693955459
+        },
+        {
+          "topic": "social",
+          "similarity": 0.8761703514046756
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9164454871470405
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9136157635843354
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8972138405423626
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8685924376529264
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8879033165758633
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9399163433696787
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9038758918742387
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9575992652427971
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.91558194335084
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9060248914901169
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8696607710224055
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8728141419319256
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.943118868427707
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8500751365353802
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8960669767321533
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8841470935603323
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8702314121091947
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.908619321841102
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8662430866695922
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8814831867851523
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9071106243801113
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8930060646976379
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8992594747025024
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8932066957107366
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9052855962612627
+        },
+        {
+          "topic": "object",
+          "similarity": 0.911888323520264
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9013265309609415
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8905791220108006
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9306111924132431
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8837152649863435
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9300212896612563
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8895901441125879
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9267845099430583
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9245152220779638
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9030996936660786
+        },
+        {
+          "topic": "object",
+          "similarity": 0.9233392833603629
+        },
+        {
+          "topic": "link",
+          "similarity": 0.857480559260727
+        },
+        {
+          "topic": "object",
+          "similarity": 0.8781873571778508
+        },
+        {
+          "topic": "object",
+          "similarity": 0.8724737483779911
+        },
+        {
+          "topic": "object",
+          "similarity": 0.9163675012607738
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.8439197908359228
+        },
+        {
+          "topic": "object",
+          "similarity": 0.8574470701855939
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8647805076311553
+        },
+        {
+          "topic": "object",
+          "similarity": 0.9133698790108247
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9124565636705918
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8920219353318941
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8790975151027952
+        },
+        {
+          "topic": "object",
+          "similarity": 0.923554793427413
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8713998566634442
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8980283626876534
+        },
+        {
+          "topic": "object",
+          "similarity": 0.9268971272418427
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8757729363944071
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9438073985923978
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9362657283669139
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9390641977623705
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8916494335137561
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8995531844887049
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.8901480607345748
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.906548914404306
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.882727227871221
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9308890659427346
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9284935351558083
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8688576522075027
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8962863621170734
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8587328466474372
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.913103565695823
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8879458941691087
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8579424512990804
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.85314948208319
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8466952447614127
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9174861762799744
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9250170231864302
+        },
+        {
+          "topic": "social",
+          "similarity": 0.9002861162378413
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9009171702164591
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9009417497558153
+        },
+        {
+          "topic": "social",
+          "similarity": 0.9074175471136013
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.922190007015932
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9248876653349468
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8905600056128469
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.8962450814667562
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.8968034487018902
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9027477610778529
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.9011986881176306
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.888817725202334
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9033731061036555
+        },
+        {
+          "topic": "social",
+          "similarity": 0.8890448401199125
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9223261527855661
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9244987728543882
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.9269185157464584
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.9247759113262367
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8874707288538387
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8930928193990398
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.9134667991000189
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8764944513446292
+        },
+        {
+          "topic": "social",
+          "similarity": 0.8704320773084683
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8196824163218511
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8901724788419224
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.837547548225936
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.904772409553386
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9112109340138873
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.8937761349194719
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8883181667238442
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8860251104152707
+        },
+        {
+          "topic": "social",
+          "similarity": 0.8571232240755712
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8829558500046095
+        }
+      ]
+    },
+    "k3": {
+      "correct": 118,
+      "predictions": [
+        {
+          "topic": "alibi",
+          "similarity": 0.9252214735036312
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8663379531434041
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.892284829153909
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8952658440488944
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9033767522033193
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9263825900543743
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9125170528685019
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9004645986556857
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9071391485074912
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.89373517818827
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9029841293075171
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8964992015143907
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8783123889080485
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.878133063585787
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.862341071538342
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9075417339946038
+        },
+        {
+          "topic": "social",
+          "similarity": 0.8623232982411481
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8669005571602767
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8790710724831827
+        },
+        {
+          "topic": "object",
+          "similarity": 0.8479015201521548
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9206599497035863
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9049962629739444
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.887041227856651
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8690524637471668
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9151217402261942
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8962345506400875
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.8935114043947674
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9128185369124969
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8917386723064714
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8908550121991852
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9096560327805397
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9272033421847994
+        },
+        {
+          "topic": "social",
+          "similarity": 0.9097864300389599
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8638664716870325
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8825507233379438
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8409016116802817
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8670689661248409
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9270707379604168
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9052068307340522
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9345686720468737
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9042156424762496
+        },
+        {
+          "topic": "object",
+          "similarity": 0.9127157521227278
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8910585899819969
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8732939757155205
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9361943784212547
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8888425245727931
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9092178324158904
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9305371722781575
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9183444629391235
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8812970599930235
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.891428157055271
+        },
+        {
+          "topic": "object",
+          "similarity": 0.8670268311980943
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.9240053375737265
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.899174518563008
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8799490922274488
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9097119941956383
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.9103648337350229
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9409372816856075
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9492073141381812
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9107633977935857
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9177081996525058
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9005383645010219
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.92130917145137
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9247627394783472
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8971387645096044
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.932542737249303
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8550648157601135
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.9089331036728864
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8751092832596591
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8986485785459584
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.9067944135017305
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.9082669836973821
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8982799328780471
+        },
+        {
+          "topic": "social",
+          "similarity": 0.8973895569818955
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9277638885120063
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9088164275070038
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8907951241125304
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9350816536442396
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8974200163340699
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9070186869332303
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.901181527396375
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8838610181243552
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.9048540266613873
+        },
+        {
+          "topic": "social",
+          "similarity": 0.8797183542287753
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8882101659323576
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8975205783383796
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.9091133059028015
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8846694887793619
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8975065434232565
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.906376661898677
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.9052636516772411
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9105625954842058
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8972563679218011
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.8692442691610807
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9176888431269644
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.9350841626595556
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.925755889884295
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9286742419007854
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9478424107511051
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.889900116663939
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.8842725575527369
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9139053928353166
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8732600975294077
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.8997830764814653
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8964132005868112
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8995461678783003
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.9115327879559689
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8978390224298551
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8995103988509124
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8405708137382776
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8921682304095371
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9025157117460741
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8937845278059943
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9050001506010394
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8376617337307418
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8767115689543845
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9130613980154366
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9534220575323417
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8929203616677397
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.9091133925779865
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8822137877962383
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8245530773329981
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8777265603730545
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8839558422968972
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9202828298783594
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9173150498270067
+        },
+        {
+          "topic": "object",
+          "similarity": 0.8249319609905579
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8666071772922874
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9168724599126354
+        },
+        {
+          "topic": "link",
+          "similarity": 0.891245369355263
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8588230532409157
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9289504121883602
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9431216418231271
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9350722654657017
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8646117224455406
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9026373608582532
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9271291893213143
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8960186943393667
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8881577244675424
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9112536894233699
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9149403158168151
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9048012121268736
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.8942822102697437
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.929040154871835
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.906479250788793
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8901178156363081
+        },
+        {
+          "topic": "object",
+          "similarity": 0.8792786609107056
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.893870808516972
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9053089484151496
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9411505612747777
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.8631275035699056
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8947409665547745
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8702649849043819
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8762451054193293
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9385510983778154
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.865460894246371
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9038512864048535
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8970827693955459
+        },
+        {
+          "topic": "social",
+          "similarity": 0.8761703514046756
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9164454871470405
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9136157635843354
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8972138405423626
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8685924376529264
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8879033165758633
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9399163433696787
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9038758918742387
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9575992652427971
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.91558194335084
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9060248914901169
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8696607710224055
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8728141419319256
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.943118868427707
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8500751365353802
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8960669767321533
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8841470935603323
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8702314121091947
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.908619321841102
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8662430866695922
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8814831867851523
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9071106243801113
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8930060646976379
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8992594747025024
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8932066957107366
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9052855962612627
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.911888323520264
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9013265309609415
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8905791220108006
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9306111924132431
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8837152649863435
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9300212896612563
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8895901441125879
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9267845099430583
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9245152220779638
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9030996936660786
+        },
+        {
+          "topic": "object",
+          "similarity": 0.9233392833603629
+        },
+        {
+          "topic": "link",
+          "similarity": 0.857480559260727
+        },
+        {
+          "topic": "object",
+          "similarity": 0.8781873571778508
+        },
+        {
+          "topic": "object",
+          "similarity": 0.8724737483779911
+        },
+        {
+          "topic": "object",
+          "similarity": 0.9163675012607738
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.8439197908359228
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8574470701855939
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8647805076311553
+        },
+        {
+          "topic": "object",
+          "similarity": 0.9133698790108247
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9124565636705918
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8920219353318941
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8790975151027952
+        },
+        {
+          "topic": "object",
+          "similarity": 0.923554793427413
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8713998566634442
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8980283626876534
+        },
+        {
+          "topic": "object",
+          "similarity": 0.9268971272418427
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8757729363944071
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9438073985923978
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9362657283669139
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9390641977623705
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8916494335137561
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8995531844887049
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8901480607345748
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.906548914404306
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.882727227871221
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9308890659427346
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9284935351558083
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8688576522075027
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8962863621170734
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8587328466474372
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.913103565695823
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8879458941691087
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8579424512990804
+        },
+        {
+          "topic": "social",
+          "similarity": 0.85314948208319
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8466952447614127
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9174861762799744
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9250170231864302
+        },
+        {
+          "topic": "social",
+          "similarity": 0.9002861162378413
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9009171702164591
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9009417497558153
+        },
+        {
+          "topic": "social",
+          "similarity": 0.9074175471136013
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.922190007015932
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9248876653349468
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8905600056128469
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.8962450814667562
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.8968034487018902
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9027477610778529
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.9011986881176306
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.888817725202334
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9033731061036555
+        },
+        {
+          "topic": "social",
+          "similarity": 0.8890448401199125
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.9223261527855661
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9244987728543882
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.9269185157464584
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.9247759113262367
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8874707288538387
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8930928193990398
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.9134667991000189
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8764944513446292
+        },
+        {
+          "topic": "social",
+          "similarity": 0.8704320773084683
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8196824163218511
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8901724788419224
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.837547548225936
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.904772409553386
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9112109340138873
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.8937761349194719
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8883181667238442
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8860251104152707
+        },
+        {
+          "topic": "social",
+          "similarity": 0.8571232240755712
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8829558500046095
+        }
+      ]
+    },
+    "k5": {
+      "correct": 119,
+      "predictions": [
+        {
+          "topic": "alibi",
+          "similarity": 0.9252214735036312
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8663379531434041
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.892284829153909
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8952658440488944
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.9033767522033193
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9263825900543743
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9125170528685019
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9004645986556857
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9071391485074912
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.89373517818827
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9029841293075171
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8964992015143907
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8783123889080485
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.878133063585787
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.862341071538342
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9075417339946038
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8623232982411481
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8669005571602767
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8790710724831827
+        },
+        {
+          "topic": "object",
+          "similarity": 0.8479015201521548
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9206599497035863
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9049962629739444
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.887041227856651
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8690524637471668
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9151217402261942
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8962345506400875
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8935114043947674
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9128185369124969
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8917386723064714
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8908550121991852
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9096560327805397
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9272033421847994
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9097864300389599
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8638664716870325
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8825507233379438
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8409016116802817
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8670689661248409
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9270707379604168
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9052068307340522
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9345686720468737
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9042156424762496
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9127157521227278
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8910585899819969
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8732939757155205
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9361943784212547
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8888425245727931
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9092178324158904
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9305371722781575
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9183444629391235
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8812970599930235
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.891428157055271
+        },
+        {
+          "topic": "object",
+          "similarity": 0.8670268311980943
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9240053375737265
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.899174518563008
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8799490922274488
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9097119941956383
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9103648337350229
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9409372816856075
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9492073141381812
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9107633977935857
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9177081996525058
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9005383645010219
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.92130917145137
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9247627394783472
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8971387645096044
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.932542737249303
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8550648157601135
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.9089331036728864
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8751092832596591
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8986485785459584
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.9067944135017305
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.9082669836973821
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8982799328780471
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8973895569818955
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9277638885120063
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9088164275070038
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8907951241125304
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9350816536442396
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8974200163340699
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9070186869332303
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.901181527396375
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8838610181243552
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.9048540266613873
+        },
+        {
+          "topic": "social",
+          "similarity": 0.8797183542287753
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8882101659323576
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8975205783383796
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.9091133059028015
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8846694887793619
+        },
+        {
+          "topic": "social",
+          "similarity": 0.8975065434232565
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.906376661898677
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.9052636516772411
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9105625954842058
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8972563679218011
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.8692442691610807
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9176888431269644
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9350841626595556
+        },
+        {
+          "topic": "link",
+          "similarity": 0.925755889884295
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9286742419007854
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9478424107511051
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.889900116663939
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.8842725575527369
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9139053928353166
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8732600975294077
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8997830764814653
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8964132005868112
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8995461678783003
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.9115327879559689
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8978390224298551
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8995103988509124
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8405708137382776
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8921682304095371
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9025157117460741
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8937845278059943
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9050001506010394
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8376617337307418
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8767115689543845
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9130613980154366
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9534220575323417
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8929203616677397
+        },
+        {
+          "topic": "object",
+          "similarity": 0.9091133925779865
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8822137877962383
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8245530773329981
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8777265603730545
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8839558422968972
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9202828298783594
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9173150498270067
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8249319609905579
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8666071772922874
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9168724599126354
+        },
+        {
+          "topic": "link",
+          "similarity": 0.891245369355263
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8588230532409157
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9289504121883602
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9431216418231271
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9350722654657017
+        },
+        {
+          "topic": "object",
+          "similarity": 0.8646117224455406
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9026373608582532
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9271291893213143
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8960186943393667
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8881577244675424
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9112536894233699
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9149403158168151
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9048012121268736
+        },
+        {
+          "topic": "social",
+          "similarity": 0.8942822102697437
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.929040154871835
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.906479250788793
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8901178156363081
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8792786609107056
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.893870808516972
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9053089484151496
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9411505612747777
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.8631275035699056
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8947409665547745
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8702649849043819
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8762451054193293
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9385510983778154
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.865460894246371
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9038512864048535
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8970827693955459
+        },
+        {
+          "topic": "social",
+          "similarity": 0.8761703514046756
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9164454871470405
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9136157635843354
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8972138405423626
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8685924376529264
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8879033165758633
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9399163433696787
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9038758918742387
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9575992652427971
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.91558194335084
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9060248914901169
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8696607710224055
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8728141419319256
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.943118868427707
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8500751365353802
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8960669767321533
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8841470935603323
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8702314121091947
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.908619321841102
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8662430866695922
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8814831867851523
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9071106243801113
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8930060646976379
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8992594747025024
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8932066957107366
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9052855962612627
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.911888323520264
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9013265309609415
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8905791220108006
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9306111924132431
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8837152649863435
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9300212896612563
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8895901441125879
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9267845099430583
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9245152220779638
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9030996936660786
+        },
+        {
+          "topic": "object",
+          "similarity": 0.9233392833603629
+        },
+        {
+          "topic": "link",
+          "similarity": 0.857480559260727
+        },
+        {
+          "topic": "object",
+          "similarity": 0.8781873571778508
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8724737483779911
+        },
+        {
+          "topic": "object",
+          "similarity": 0.9163675012607738
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.8439197908359228
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8574470701855939
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.8647805076311553
+        },
+        {
+          "topic": "object",
+          "similarity": 0.9133698790108247
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9124565636705918
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8920219353318941
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8790975151027952
+        },
+        {
+          "topic": "object",
+          "similarity": 0.923554793427413
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8713998566634442
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8980283626876534
+        },
+        {
+          "topic": "object",
+          "similarity": 0.9268971272418427
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8757729363944071
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9438073985923978
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9362657283669139
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9390641977623705
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8916494335137561
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8995531844887049
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8901480607345748
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.906548914404306
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.882727227871221
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9308890659427346
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9284935351558083
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8688576522075027
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8962863621170734
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.8587328466474372
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.913103565695823
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8879458941691087
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8579424512990804
+        },
+        {
+          "topic": "social",
+          "similarity": 0.85314948208319
+        },
+        {
+          "topic": "social",
+          "similarity": 0.8466952447614127
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9174861762799744
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9250170231864302
+        },
+        {
+          "topic": "social",
+          "similarity": 0.9002861162378413
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9009171702164591
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9009417497558153
+        },
+        {
+          "topic": "social",
+          "similarity": 0.9074175471136013
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.922190007015932
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9248876653349468
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8905600056128469
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.8962450814667562
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.8968034487018902
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9027477610778529
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.9011986881176306
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.888817725202334
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9033731061036555
+        },
+        {
+          "topic": "social",
+          "similarity": 0.8890448401199125
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9223261527855661
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9244987728543882
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9269185157464584
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.9247759113262367
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8874707288538387
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8930928193990398
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.9134667991000189
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8764944513446292
+        },
+        {
+          "topic": "social",
+          "similarity": 0.8704320773084683
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8196824163218511
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8901724788419224
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.837547548225936
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.904772409553386
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9112109340138873
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.8937761349194719
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8883181667238442
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8860251104152707
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8571232240755712
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8829558500046095
+        }
+      ]
+    },
+    "k7": {
+      "correct": 112,
+      "predictions": [
+        {
+          "topic": "alibi",
+          "similarity": 0.9252214735036312
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8663379531434041
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.892284829153909
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8952658440488944
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9033767522033193
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9263825900543743
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9125170528685019
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9004645986556857
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9071391485074912
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.89373517818827
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9029841293075171
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8964992015143907
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8783123889080485
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.878133063585787
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.862341071538342
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9075417339946038
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8623232982411481
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8669005571602767
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8790710724831827
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.8479015201521548
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9206599497035863
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9049962629739444
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.887041227856651
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8690524637471668
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9151217402261942
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8962345506400875
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8935114043947674
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9128185369124969
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8917386723064714
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8908550121991852
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9096560327805397
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9272033421847994
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9097864300389599
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8638664716870325
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8825507233379438
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8409016116802817
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8670689661248409
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9270707379604168
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9052068307340522
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9345686720468737
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9042156424762496
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9127157521227278
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8910585899819969
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8732939757155205
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9361943784212547
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8888425245727931
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9092178324158904
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9305371722781575
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9183444629391235
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8812970599930235
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.891428157055271
+        },
+        {
+          "topic": "object",
+          "similarity": 0.8670268311980943
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9240053375737265
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.899174518563008
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8799490922274488
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9097119941956383
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9103648337350229
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9409372816856075
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9492073141381812
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9107633977935857
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9177081996525058
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9005383645010219
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.92130917145137
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9247627394783472
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8971387645096044
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.932542737249303
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8550648157601135
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.9089331036728864
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8751092832596591
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.8986485785459584
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9067944135017305
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.9082669836973821
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8982799328780471
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8973895569818955
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9277638885120063
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9088164275070038
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8907951241125304
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9350816536442396
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8974200163340699
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9070186869332303
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.901181527396375
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8838610181243552
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.9048540266613873
+        },
+        {
+          "topic": "social",
+          "similarity": 0.8797183542287753
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8882101659323576
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8975205783383796
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9091133059028015
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8846694887793619
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8975065434232565
+        },
+        {
+          "topic": "object",
+          "similarity": 0.906376661898677
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.9052636516772411
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9105625954842058
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8972563679218011
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.8692442691610807
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9176888431269644
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9350841626595556
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.925755889884295
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9286742419007854
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9478424107511051
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.889900116663939
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.8842725575527369
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9139053928353166
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8732600975294077
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8997830764814653
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8964132005868112
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8995461678783003
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.9115327879559689
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8978390224298551
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8995103988509124
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8405708137382776
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8921682304095371
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9025157117460741
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8937845278059943
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9050001506010394
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8376617337307418
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8767115689543845
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9130613980154366
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9534220575323417
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8929203616677397
+        },
+        {
+          "topic": "object",
+          "similarity": 0.9091133925779865
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8822137877962383
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8245530773329981
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8777265603730545
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8839558422968972
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9202828298783594
+        },
+        {
+          "topic": "object",
+          "similarity": 0.9173150498270067
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8249319609905579
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8666071772922874
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9168724599126354
+        },
+        {
+          "topic": "link",
+          "similarity": 0.891245369355263
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8588230532409157
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9289504121883602
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9431216418231271
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9350722654657017
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8646117224455406
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9026373608582532
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9271291893213143
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8960186943393667
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8881577244675424
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9112536894233699
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9149403158168151
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9048012121268736
+        },
+        {
+          "topic": "social",
+          "similarity": 0.8942822102697437
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.929040154871835
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.906479250788793
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8901178156363081
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8792786609107056
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.893870808516972
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9053089484151496
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9411505612747777
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.8631275035699056
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8947409665547745
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8702649849043819
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8762451054193293
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9385510983778154
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.865460894246371
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9038512864048535
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8970827693955459
+        },
+        {
+          "topic": "social",
+          "similarity": 0.8761703514046756
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9164454871470405
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9136157635843354
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8972138405423626
+        },
+        {
+          "topic": "social",
+          "similarity": 0.8685924376529264
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8879033165758633
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9399163433696787
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.9038758918742387
+        },
+        {
+          "topic": "link",
+          "similarity": 0.9575992652427971
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.91558194335084
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9060248914901169
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.8696607710224055
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8728141419319256
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.943118868427707
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8500751365353802
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8960669767321533
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8841470935603323
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8702314121091947
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.908619321841102
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8662430866695922
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8814831867851523
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9071106243801113
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8930060646976379
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8992594747025024
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8932066957107366
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9052855962612627
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.911888323520264
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9013265309609415
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8905791220108006
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9306111924132431
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8837152649863435
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9300212896612563
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8895901441125879
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9267845099430583
+        },
+        {
+          "topic": "social",
+          "similarity": 0.9245152220779638
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9030996936660786
+        },
+        {
+          "topic": "object",
+          "similarity": 0.9233392833603629
+        },
+        {
+          "topic": "link",
+          "similarity": 0.857480559260727
+        },
+        {
+          "topic": "object",
+          "similarity": 0.8781873571778508
+        },
+        {
+          "topic": "object",
+          "similarity": 0.8724737483779911
+        },
+        {
+          "topic": "object",
+          "similarity": 0.9163675012607738
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8439197908359228
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8574470701855939
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.8647805076311553
+        },
+        {
+          "topic": "object",
+          "similarity": 0.9133698790108247
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9124565636705918
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8920219353318941
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8790975151027952
+        },
+        {
+          "topic": "object",
+          "similarity": 0.923554793427413
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8713998566634442
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8980283626876534
+        },
+        {
+          "topic": "object",
+          "similarity": 0.9268971272418427
+        },
+        {
+          "topic": "link",
+          "similarity": 0.8757729363944071
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9438073985923978
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9362657283669139
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.9390641977623705
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8916494335137561
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8995531844887049
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8901480607345748
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.906548914404306
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.882727227871221
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9308890659427346
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9284935351558083
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8688576522075027
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8962863621170734
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8587328466474372
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.913103565695823
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8879458941691087
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8579424512990804
+        },
+        {
+          "topic": "social",
+          "similarity": 0.85314948208319
+        },
+        {
+          "topic": "social",
+          "similarity": 0.8466952447614127
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9174861762799744
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9250170231864302
+        },
+        {
+          "topic": "social",
+          "similarity": 0.9002861162378413
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9009171702164591
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9009417497558153
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.9074175471136013
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.922190007015932
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.9248876653349468
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8905600056128469
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.8962450814667562
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.8968034487018902
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9027477610778529
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9011986881176306
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.888817725202334
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9033731061036555
+        },
+        {
+          "topic": "social",
+          "similarity": 0.8890448401199125
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9223261527855661
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9244987728543882
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.9269185157464584
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.9247759113262367
+        },
+        {
+          "topic": "timeline",
+          "similarity": 0.8874707288538387
+        },
+        {
+          "topic": "unknown",
+          "similarity": 0.8930928193990398
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.9134667991000189
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8764944513446292
+        },
+        {
+          "topic": "social",
+          "similarity": 0.8704320773084683
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8196824163218511
+        },
+        {
+          "topic": "alibi",
+          "similarity": 0.8901724788419224
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.837547548225936
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.904772409553386
+        },
+        {
+          "topic": "identity",
+          "similarity": 0.9112109340138873
+        },
+        {
+          "topic": "secret",
+          "similarity": 0.8937761349194719
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8883181667238442
+        },
+        {
+          "topic": "seen",
+          "similarity": 0.8860251104152707
+        },
+        {
+          "topic": "social",
+          "similarity": 0.8571232240755712
+        },
+        {
+          "topic": "motive",
+          "similarity": 0.8829558500046095
+        }
+      ]
+    }
+  }
+}
