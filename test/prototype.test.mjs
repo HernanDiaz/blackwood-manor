@@ -164,7 +164,7 @@ test('orbital interrogator does not leak locked facts and rejects unsupported ge
     const r = await respondPrototype(
       data,
       { state: s, person, question: '¿Dónde estabas?' },
-      { useModel: true },
+      { useModel: true, dialogue: 'free' },
     );
     assert(prototypeOptions(c, s, person, 'alibi').includes(r.answer));
     assert.equal(r.mode, 'prototype-engine');

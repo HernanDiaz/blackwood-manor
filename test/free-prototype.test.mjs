@@ -31,6 +31,7 @@ test('accepts free social prose outside all authored options and uses actor pers
     { state: s, person: 'p1', question: '¿Cómo te sientes?' },
     {
       useModel: true,
+      dialogue: 'free',
       request: async messages => {
         calls++;
         const payload = JSON.parse(messages.at(-1).content);
@@ -59,6 +60,7 @@ test('accepts a factual paraphrase with exact source evidence', async () => {
     { state: s, person: 'p1', question: '¿Dónde estabas?' },
     {
       useModel: true,
+      dialogue: 'free',
       request: async () =>
         ++call === 1
           ? { text }
@@ -87,6 +89,7 @@ test('locked motive never reaches generator or reviewer despite a planted rumor'
     },
     {
       useModel: true,
+      dialogue: 'free',
       request: async messages => {
         count++;
         const serialized = JSON.stringify(messages);
@@ -109,6 +112,7 @@ test('found actor document authorizes that secret but never another persons docu
     { state: s, person, question: '¿Qué ocultas?' },
     {
       useModel: true,
+      dialogue: 'free',
       request: async messages => {
         received ??= JSON.parse(messages.at(-1).content);
         throw Error('test stop');
@@ -128,6 +132,7 @@ test('found actor document authorizes that secret but never another persons docu
     { state: s, person, question: '¿Qué ocultas?' },
     {
       useModel: true,
+      dialogue: 'free',
       request: async messages => {
         received = JSON.parse(messages.at(-1).content);
         throw Error('test stop');
@@ -172,6 +177,7 @@ test('unsupported invention retries once and returns a factual engine answer', a
     { state: s, person: 'p1', question: '¿Dónde estabas?' },
     {
       useModel: true,
+      dialogue: 'free',
       request: async () => {
         calls++;
         return { text: 'Oculté una pistola a las 03:17.' };
@@ -220,6 +226,7 @@ test('cannot answer a factual question with identity alone', async () => {
     { state: s, person: 'p1', question: '¿Dónde estabas?' },
     {
       useModel: true,
+      dialogue: 'free',
       request: async messages =>
         messages[0].content.startsWith('Audit')
           ? { claims: [{ text, kind: 'supported', sources: [{ id: 'identity', quote: text }] }] }
@@ -254,11 +261,19 @@ test('natural evidence questions route correctly without revealing undiscovered 
     ['Hola, ¿qué dices del testimonio de acceso?', 2, 'timeline'],
   ]) {
     s.found = [];
-    let r = await respondPrototype(data, { state: s, person, question }, { useModel: false });
+    let r = await respondPrototype(
+      data,
+      { state: s, person, question },
+      { useModel: false, dialogue: 'free' },
+    );
     assert.equal(r.topic, 'unknown');
     assert.ok(!r.answer.includes('Mi primera coartada era falsa'));
     s.found = [c.proof[category][0]];
-    r = await respondPrototype(data, { state: s, person, question }, { useModel: false });
+    r = await respondPrototype(
+      data,
+      { state: s, person, question },
+      { useModel: false, dialogue: 'free' },
+    );
     assert.equal(r.topic, topic);
     assert.equal(r.answer.includes('No tengo información'), false);
   }
@@ -269,7 +284,7 @@ test('social support uses gender neutral phrasing and identity recognizes occupa
     const r = await respondPrototype(
       data,
       { state: s, person, question: '¿Cómo te sientes ahora?' },
-      { useModel: false },
+      { useModel: false, dialogue: 'free' },
     );
     assert.equal(r.topic, 'social');
     assert.ok(!/estoy inquieta|estoy tranquilo|estoy tenso/.test(r.answer));
@@ -279,7 +294,7 @@ test('social support uses gender neutral phrasing and identity recognizes occupa
       await respondPrototype(
         data,
         { state: s, person: 'p1', question: '¿Cuál es tu trabajo?' },
-        { useModel: false },
+        { useModel: false, dialogue: 'free' },
       )
     ).topic,
     'identity',
@@ -319,6 +334,7 @@ test('a voice echo is removed while a standalone supported answer survives', asy
     { state: s, person: 'p1', question: '¿Dónde estabas?' },
     {
       useModel: true,
+      dialogue: 'free',
       request: async messages =>
         messages[0].content.startsWith('Audit')
           ? {
@@ -360,6 +376,7 @@ test('an accusation with no authorized confession cannot get an implicit yes', a
     { state: s, person: 'p1', question: 'Entonces, ¿admites que mataste a la víctima?' },
     {
       useModel: true,
+      dialogue: 'free',
       request: () => {
         throw Error('must not ask the model for an unauthorized confession');
       },

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "node server.mjs",
-    "test": "node --test test/investigation.test.mjs test/case-file.test.mjs test/engine.test.mjs test/cases.test.mjs test/generic.test.mjs test/methods.test.mjs test/prototype.test.mjs test/worlds.test.mjs test/session-images.test.mjs test/custom-world.test.mjs test/contextual-evidence.test.mjs test/opening.test.mjs test/spanish-prose.test.mjs test/free-prototype.test.mjs test/world-retries.test.mjs test/visual-guide.test.mjs"
+    "test": "node --test test/investigation.test.mjs test/case-file.test.mjs test/statements.test.mjs test/question-classifier.test.mjs test/engine.test.mjs test/cases.test.mjs test/generic.test.mjs test/methods.test.mjs test/prototype.test.mjs test/worlds.test.mjs test/session-images.test.mjs test/custom-world.test.mjs test/contextual-evidence.test.mjs test/opening.test.mjs test/spanish-prose.test.mjs test/free-prototype.test.mjs test/world-retries.test.mjs test/visual-guide.test.mjs"
   },
   "engines": {
     "node": ">=22"

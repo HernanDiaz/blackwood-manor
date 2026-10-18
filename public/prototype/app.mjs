@@ -268,7 +268,7 @@ function content() {
         .filter(m => m.person === person)
         .map(
           m =>
-            `<div class="question">${esc(m.question)}</div><div class="reply">${prose(m.answer)}<small>${m.mode === 'prototype-free' ? 'Qwen local · conversación revisada' : m.mode === 'prototype-llm' ? 'Qwen local · respuesta verificada' : 'Motor del caso · respuesta de apoyo'}</small></div>`,
+            `<div class="question">${esc(m.question)}</div><div class="reply">${prose(m.answer)}${m.mode === 'prototype-choice' ? '' : `<small>${m.mode === 'prototype-free' ? 'Qwen local · conversación revisada' : m.mode === 'prototype-llm' ? 'Qwen local · respuesta verificada' : 'Motor del caso · respuesta de apoyo'}</small>`}</div>`,
         )
         .join('') || '<p class="empty">Empieza por su coartada.</p>'
     }</div><div class="prompts">${prototypeFacts(c, state, person)

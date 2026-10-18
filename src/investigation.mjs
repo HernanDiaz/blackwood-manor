@@ -38,7 +38,7 @@ export function restoreProgress(view, saved) {
 export function unlockedFacts(view, state, person) {
   return (view.facts[person] || [])
     .filter(f => !f.requires || state.found.includes(f.requires))
-    .map(({ id, text }) => ({ id, text }));
+    .map(({ id, text, variants }) => (variants ? { id, text, variants } : { id, text }));
 }
 
 export function discoverClue(view, state, id) {

@@ -116,10 +116,17 @@ export function inspectPrototype(c, state, id) {
   assertCase(c, state);
   return discoverClue(caseView(c), state, id);
 }
+const voiceTopics = ['identity', 'social', 'unknown'];
+// Evidence a person can talk about now; their introduction, reactions and evasions are apart.
 export function prototypeFacts(c, state, person) {
   assertCase(c, state);
   if (state.result || !c.people.some(p => p.id === person)) return [];
-  return unlockedFacts(caseView(c), state, person);
+  return unlockedFacts(caseView(c), state, person).filter(f => !voiceTopics.includes(f.id));
+}
+// Lines that carry no evidence: introducing themselves, reacting, evading a question.
+export function prototypeVoice(c, person, topic) {
+  const line = c.facts[person]?.find(f => f.id === topic);
+  return line ? line.variants || [line.text] : [];
 }
 const messages = {
   closed: 'La investigación está cerrada',
@@ -149,65 +156,81 @@ const delivery = {
   p5: ['Lo diré con claridad. ', 'Sin rodeos. '],
 };
 export function prototypeOptions(c, state, person, topic) {
+  if (voiceTopics.includes(topic)) return prototypeVoice(c, person, topic);
   const fact = prototypeFacts(c, state, person).find(f => f.id === topic);
   if (!fact) return [];
-  return delivery[person].map(lead => lead + fact.text);
+  // Case files carry several wordings; older ones fall back to the voice lead-ins.
+  return fact.variants?.length ? fact.variants : delivery[person].map(lead => lead + fact.text);
 }
+// Rotates the wordings, so asking twice about the same thing does not repeat the answer.
 export function prototypeReply(c, state, person, topic) {
-  const options = prototypeOptions(c, state, person, topic);
-  if (options.length)
-    return options[state.chat.filter(m => m.person === person).length % options.length];
+  const options = prototypeOptions(c, state, person, topic),
+    asked = state.chat.filter(m => m.person === person && m.topic === topic).length;
+  if (options.length) return options[asked % options.length];
+  const evasive = prototypeVoice(c, person, 'unknown');
+  if (evasive.length)
+    return evasive[state.chat.filter(m => m.person === person).length % evasive.length];
   return person === 'p4'
     ? 'No voy a inventar una respuesta. Pregúntame por mi coartada o muéstrame una prueba.'
     : 'No tengo información para afirmar eso. Puedo responder sobre mi coartada o sobre una prueba que haya encontrado.';
 }
 const plain = text => text.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+// Offline question routing: ordered rules, first match wins. Questions it cannot place
+// return null and go to the local model when it is available.
+const topicRules = [
+  [
+    'unknown',
+    /ignora|instruccion|prompt|quien.*(mato|asesin)|revela.*solucion|culpable|\b(mataste|asesinaste|fuiste tu)\b/,
+  ],
+  [
+    'identity',
+    /como te llamas|quien eres|a que te dedicas|cual es tu (trabajo|oficio|nombre)|hablame de ti|presentate|tu nombre/,
+  ],
+  [
+    'object',
+    /panuelo|pitillera|guante|pluma|rosario|broche|bolsa|colgante|auricular|libreta|\bperdi(ste)?\b|es tuy[oa]|junto a la puerta/,
+  ],
+  [
+    'timeline',
+    /registro|mentiste|mentido|contradic|cronolog|guardias?|vigilantes?|centinela|mayordomo|oficial|testimonio|camara|grabacion|nadie te vio|te vieron|cerrad[ao]|confirm|dice otra cosa|no dice lo mismo/,
+  ],
+  [
+    'link',
+    /\barma\b|objeto|inspeccion|vinculo|huella|rastro|acceso|llave|cordon|cuerda|daga|espada|ballesta|escopeta|revolver|pistola|veneno|frasco|copa|vial|amuleto|cuchillo|fibra|fragmento|\btocad|\bcoger/,
+  ],
+  [
+    'secret',
+    /ocult|secreto|documento|denuncia|credencial|desvi|contrato|cobro|deuda|\bdebias\b|dinero|despedi|despido|testamento|carta|\bnota\b|queja|papel/,
+  ],
+  [
+    'seen',
+    /\b(viste|oiste|escuchaste|notaste)\b|alguien (mas|entro|salio)|entro alguien|quien (mas|entro|salio|encontro)|encontr|hallazgo|cuerpo|alarma|algo (raro|extrano)/,
+  ],
+  [
+    'motive',
+    /relacion|motivo|discrep|conocias|conocia|\btrato\b|llevabas|pensabas de|opinas|conflicto|enemist|trabajabas con/,
+  ],
+  [
+    'alibi',
+    /donde|cuando|coartada|con quien|\bhora\b|que hiciste|que hacias|saliste|despues de|\bestabas\b|estuviste|pasaste la noche|contigo|toda la noche/,
+  ],
+  [
+    'social',
+    /^(hola|buenas|buenos dias)|como te sientes|como estas|estas (nervios|tranquil|preocup|asustad)|tienes miedo|^tranquil|no te preocupes|solo quiero hablar/,
+  ],
+];
 export function inferPrototypeTopic(question, c = null) {
   const q = plain(question);
-  if (/ignora|instruccion|prompt|quien.*(mato|asesin)|revela.*solucion/.test(q)) return 'unknown';
-  if (
-    /panuelo|pitillera|guante|pluma|rosario|broche|bolsa|colgante|auricular|libreta|perdiste|es tuy[oa]|junto a la puerta/.test(
-      q,
-    )
-  )
-    return 'object';
-  if (
-    /registro|mentiste|mentido|contradic|cronolog|guardias?|vigilantes?|centinela|mayordomo|oficial|testimonio|camara|grabacion|nadie te vio|te vieron|cerrad[ao] con llave|confirm/.test(
-      q,
-    )
-  )
-    return 'timeline';
   const objectWords = c?.method?.object
     ? plain(c.method.object)
         .split(/\s+/)
         .filter(w => w.length >= 5)
     : [];
-  if (
-    /arma|objeto|inspeccion|vinculo|huella|rastro|acceso|llave|cordon|cuerda|daga|espada|ballesta|escopeta|revolver|pistola|veneno|frasco|copa|vial|amuleto|cuchillo|fibra|fragmento/.test(
-      q,
-    ) ||
-    objectWords.some(w => q.includes(w))
-  )
-    return 'link';
-  if (
-    /viste|oiste|escuchaste|notaste|alguien (mas|entro|salio)|quien (mas|entro|salio)|encontr|hallazgo|cuerpo|alarma/.test(
-      q,
-    )
-  )
-    return 'seen';
-  if (
-    /ocult|secreto|documento|denuncia|credencial|desvi|contrato|cobro|deuda|testamento|carta|nota|queja|papel/.test(
-      q,
-    )
-  )
-    return 'secret';
-  if (
-    /donde|cuando|coartada|con quien|\bhora\b|que hiciste|que hacias|saliste|despues de salir|estabas/.test(
-      q,
-    )
-  )
-    return 'alibi';
-  if (/relacion|trabajo|direccion|motivo|discrep|conocias|trato/.test(q)) return 'motive';
+  for (const [topic, rule] of topicRules) {
+    if (rule.test(q)) return topic;
+    // The weapon of this case counts as a link question even if it is not in the list.
+    if (topic === 'link' && objectWords.some(w => q.includes(w))) return 'link';
+  }
   return null;
 }
 export function accusePrototype(c, state, { person, method, room, evidence }) {

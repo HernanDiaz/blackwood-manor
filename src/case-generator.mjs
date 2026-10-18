@@ -11,6 +11,7 @@ import { methodRoomPairs } from './method-catalog.mjs';
 import { prototypeRooms, prototypeMethods } from './prototype-worlds.mjs';
 import { rng, pick, shuffle, clock } from './random.mjs';
 import { CASE_FORMAT, normalizeCaseFile, analyzeCase } from './case-file.mjs';
+import { statementKinds, phrasings, fillStatement } from './statements.mjs';
 
 const capFirst = s => s.charAt(0).toLocaleUpperCase('es') + s.slice(1);
 const lowerFirst = s => s.charAt(0).toLocaleLowerCase('es') + s.slice(1);
@@ -198,7 +199,8 @@ const preparedRooms = {
     'Una sala amplia con chimenea, mesas largas de madera y tapices que cubren los muros de piedra.',
   Scriptorium: 'Atriles, pergaminos, tinteros y plumas bajo ventanas estrechas que dan al patio.',
   Botica: 'Estantes con frascos de hierbas secas, morteros, una balanza y un banco de trabajo.',
-  Armería: 'Lanzas, espadas y escudos colgados de la pared, con un banco para afilar y un arcón cerrado.',
+  Armería:
+    'Lanzas, espadas y escudos colgados de la pared, con un banco para afilar y un arcón cerrado.',
   'Torre de vigía':
     'Una sala estrecha en lo alto de la torre, con una galería abierta al viento y un brasero para las guardias de noche.',
   'Cámara de invitados':
@@ -256,13 +258,6 @@ const neutralDocuments = [
     title: (v, n) => 'Nota de ' + n,
     text: (v, n) => `Nota de ${n} a ${v}: confirma que ha terminado el trabajo que le pidió.`,
   },
-];
-const relations = [
-  v => `Trataba con ${v} a diario.`,
-  v => `Conocía a ${v} desde hacía años.`,
-  v => `Mi relación con ${v} era de trabajo.`,
-  v => `Veía a ${v} casi todos los días.`,
-  v => `Conocía a ${v} lo suficiente para saber cómo trataba a los demás.`,
 ];
 
 export function chooseCaseMethod(data, random, { previousMethodId = '', forcedMethodId = '' }) {
@@ -501,16 +496,6 @@ export function generateCaseFile(
     pairClue = clues.find(c => c.fact.type === 'presence' && c.fact.people.length === 2).id,
     emptyClue = clues.find(c => c.fact.type === 'presence' && !c.fact.people.length)?.id,
     aloneClue = clues.find(c => c.title === 'Sin testigos').id;
-  const claim = {
-    [culprit]:
-      pattern === 'pair'
-        ? `Estuve en ${roomName(pairRoom)} de ${clock(from)} a ${clock(to)}.`
-        : `Estuve en ${roomName(emptyRoom)} de ${clock(from)} a ${clock(to)}, sin compañía.`,
-    [i1]: `Estuve en ${roomName(aloneRoom)} de ${clock(from)} a ${clock(to)}, sin compañía.`,
-    [i2]: `Estuve en ${roomName(recordRoom)} de ${clock(from)} a ${clock(recordTo)}. Al salir encontré a ${victim}.`,
-    [i3]: `Estuve en ${roomName(pairRoom)} con ${named(i4)} de ${clock(from)} a ${clock(to)}.`,
-    [i4]: `Estuve en ${roomName(pairRoom)} con ${named(i3)} de ${clock(from)} a ${clock(to)}.`,
-  };
   const alibiRoom = {
     [culprit]: claimRoom,
     [i1]: aloneRoom,
@@ -518,77 +503,80 @@ export function generateCaseFile(
     [i3]: pairRoom,
     [i4]: pairRoom,
   };
-  const relationLines = shuffle(relations, random);
+  // What each person can say: the kind of statement, the facts it carries and when it unlocks.
+  const statementsOf = id => {
+    const list = [
+      [
+        {
+          [culprit]: pattern === 'pair' ? 'alibi.claim' : 'alibi.alone',
+          [i1]: 'alibi.alone',
+          [i2]: 'alibi.record',
+          [i3]: 'alibi.pair',
+          [i4]: 'alibi.pair',
+        }[id],
+        {
+          place: roomName(alibiRoom[id]),
+          from: clock(from),
+          to: clock(id === i2 ? recordTo : to),
+          partner: named(id === i3 ? i4 : i3),
+        },
+      ],
+      ['relation', {}],
+      [
+        id === culprit
+          ? 'secret.culprit'
+          : [i1, i2].includes(id)
+            ? 'secret.weak'
+            : 'secret.neutral',
+        {},
+        clueId(documents[id]),
+      ],
+      [[culprit, i2, i3].includes(id) ? 'link.access' : 'link.none', {}, accessClue],
+    ];
+    if (id === culprit)
+      list.push(['timeline.culprit', {}, pattern === 'pair' ? pairClue : emptyClue]);
+    if (id === i1) list.push(['timeline.alone', {}, aloneClue]);
+    if (id === i2) list.push(['timeline.record', {}, recordClue], ['seen.discovery', {}]);
+    if ([i3, i4].includes(id))
+      list.push(
+        ['timeline.pair', {}, pairClue],
+        ['seen.pair', { place: roomName(pairRoom), partner: named(id === i3 ? i4 : i3) }],
+      );
+    else if (id !== i2) list.push(['seen.nothing', {}]);
+    if (id === herringPerson) list.push(['object.own', {}, herringId]);
+    list.push(['identity', {}], ['social', {}], ['unknown', {}]);
+    return list;
+  };
+  const common = {
+    victim,
+    access: object.access,
+    record: profile.record,
+    guardian: profile.guardian,
+    scene: roomName(scene),
+    time: clock(discovery),
+    item: (item.fem ? 'la ' : 'el ') + item.noun,
+    mine: item.fem ? 'mía' : 'mío',
+    it: item.fem ? 'la' : 'lo',
+  };
   const facts = Object.fromEntries(
-    people.map((p, n) => {
-      const id = p.id,
-        own = [
-          { id: 'alibi', text: claim[id] },
-          { id: 'motive', text: relationLines[n](victim) },
-          {
-            id: 'secret',
-            requires: clueId(documents[id]),
-            text:
-              id === culprit
-                ? `Es cierto que ${victim} sabía eso de mí. Saberlo no me convierte en culpable.`
-                : [i1, i2].includes(id)
-                  ? `Sí, ${victim} y yo teníamos ese problema. Eso no significa que le hiciera daño.`
-                  : 'Ese papel no tiene nada de particular.',
-          },
-          {
-            id: 'link',
-            requires: accessClue,
-            text: [culprit, i2, i3].includes(id)
-              ? `Sí, podía llegar a ${object.access}. No era la única persona que podía hacerlo.`
-              : `Yo no tenía acceso a ${object.access}.`,
-          },
-        ];
-      if (id === culprit)
-        own.push({
-          id: 'timeline',
-          requires: pattern === 'pair' ? pairClue : emptyClue,
-          text: `Quizá me confundí de hora. Eso no significa que entrara en ${roomName(scene)}.`,
-        });
-      if (id === i1)
-        own.push({
-          id: 'timeline',
-          requires: aloneClue,
-          text: 'Es verdad que nadie me vio. Estuve sin compañía todo ese tiempo.',
-        });
-      if (id === i2)
-        own.push(
-          {
-            id: 'timeline',
-            requires: recordClue,
-            text: `Mi entrada y mi salida constan en ${profile.record}.`,
-          },
-          {
-            id: 'seen',
-            text: `Encontré a ${victim} en ${roomName(scene)} a las ${clock(discovery)} y di la alarma.`,
-          },
+    people.map(p => [
+      p.id,
+      statementsOf(p.id).map(([kind, values, requires]) => {
+        const filled = { ...common, name: named(p.id), role: p.role, ...values };
+        const variants = phrasings(kind, data.voices?.[p.id], random).map(text =>
+          fillStatement(text, filled),
         );
-      if ([i3, i4].includes(id))
-        own.push(
-          {
-            id: 'timeline',
-            requires: pairClue,
-            text: `${capFirst(profile.guardian)} vigilaba la puerta y puede confirmarlo.`,
-          },
-          {
-            id: 'seen',
-            text: `Estuve en ${roomName(pairRoom)} con ${named(id === i3 ? i4 : i3)}. No entró nadie más.`,
-          },
-        );
-      else if (id !== i2) own.push({ id: 'seen', text: 'No vi nada fuera de lo normal.' });
-      if (id === herringPerson)
-        own.push({
-          id: 'object',
-          requires: herringId,
-          text: `${item.fem ? 'Esa' : 'Ese'} ${item.noun} es ${item.fem ? 'mía' : 'mío'}. ${item.fem ? 'La' : 'Lo'} perdí esta mañana en ${roomName(scene)}.`,
-        });
-      return [id, own.map(f => ({ ...f, text: prose(f.text) }))];
-    }),
+        return {
+          id: statementKinds[kind].topic,
+          kind,
+          ...(requires ? { requires } : {}),
+          text: variants[0],
+          variants,
+        };
+      }),
+    ]),
   );
+  const claimOf = id => facts[id].find(f => f.id === 'alibi').text;
 
   const file = normalizeCaseFile({
     format: CASE_FORMAT,
@@ -617,7 +605,7 @@ export function generateCaseFile(
       room: alibiRoom[p.id].id,
       from,
       to: p.id === i2 ? recordTo : to,
-      claim: prose(claim[p.id]),
+      claim: claimOf(p.id),
     })),
     clues,
     facts,

@@ -6,10 +6,22 @@ import { methodCatalog } from './method-catalog.mjs';
 import { prototypeMethods } from './prototype-worlds.mjs';
 import { hash } from './random.mjs';
 import { placePhrase } from './spanish-prose.mjs';
+import { statementKinds } from './statements.mjs';
 
 export const CASE_FORMAT = 'mundos-expediente';
 export const CASE_REVISION = 'case-v1';
-export const topics = ['alibi', 'motive', 'secret', 'link', 'timeline', 'seen', 'object'];
+export const topics = [
+  'alibi',
+  'motive',
+  'secret',
+  'link',
+  'timeline',
+  'seen',
+  'object',
+  'identity',
+  'social',
+  'unknown',
+];
 const settings = ['scifi', 'noir', 'medieval', 'fantasy'];
 const personIds = ['p1', 'p2', 'p3', 'p4', 'p5'];
 
@@ -190,7 +202,24 @@ export function normalizeCaseFile(raw) {
         person,
         ids(raw.facts?.[person], 'declaraciones').map(f => ({
           id: topics.includes(f?.id) ? f.id : fail('Tema de declaración desconocido'),
+          ...optional(
+            'kind',
+            f.kind === undefined
+              ? undefined
+              : statementKinds[f.kind]?.topic === f.id
+                ? f.kind
+                : fail('Tipo de declaración no válido'),
+          ),
           text: text(f.text, 600, 'una declaración'),
+          // Alternative wordings of the same statement; the interrogation rotates them.
+          ...optional(
+            'variants',
+            f.variants === undefined
+              ? undefined
+              : ids(f.variants, 'variantes')
+                  .slice(0, 8)
+                  .map(v => text(v, 600, 'una variante')),
+          ),
           ...(f.requires === undefined
             ? {}
             : {
@@ -414,7 +443,11 @@ export function hydrateCase(file) {
     facts: Object.fromEntries(
       Object.entries(file.facts).map(([person, facts]) => [
         person,
-        facts.map(f => ({ ...f, text: resolveText(f.text, file) })),
+        facts.map(f => ({
+          ...f,
+          text: resolveText(f.text, file),
+          ...(f.variants ? { variants: f.variants.map(v => resolveText(v, file)) } : {}),
+        })),
       ]),
     ),
     proof: analysis.proof,

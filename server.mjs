@@ -9,6 +9,7 @@ import {
 import { startImages, imageStatus } from './src/session-images.mjs';
 import { worldFile } from './src/prototype-worlds.mjs';
 import { respondPrototype } from './src/prototype-llm.mjs';
+import { classifyWithLaya } from './src/question-classifier.mjs';
 import { localConversation } from './src/conversation.mjs';
 import { localInterrogate } from './src/local-llm.mjs';
 import http from 'node:http';
@@ -188,6 +189,10 @@ const server = http.createServer(async (req, res) => {
         req.url === '/api/prototype/interrogate'
           ? await respondPrototype(await resolvePrototypeWorld(root, payload.state), payload, {
               useModel: process.env.BLACKWOOD_LOCAL_LLM === '1',
+              // BLACKWOOD_FREE_DIALOGUE=1 lets the model write replies instead of choosing them.
+              dialogue: process.env.BLACKWOOD_FREE_DIALOGUE === '1' ? 'free' : 'choose',
+              // BLACKWOOD_CLASSIFIER=0 turns off the learned question classifier.
+              classifier: process.env.BLACKWOOD_CLASSIFIER === '0' ? null : classifyWithLaya,
             })
           : await respond(payload);
       res.end(JSON.stringify(result));
