@@ -1,0 +1,845 @@
+{
+  "format": "mundos-expediente",
+  "version": 1,
+  "world": "blackwood-manor",
+  "title": "El último té",
+  "weapons": [
+    {
+      "method": "knife",
+      "label": "Abrecartas"
+    },
+    {
+      "method": "blunt",
+      "label": "Atizador"
+    },
+    {
+      "method": "rope",
+      "label": "Cordón de cortina"
+    },
+    {
+      "method": "drink",
+      "label": "Acónito en el té"
+    },
+    {
+      "method": "revolver",
+      "label": "Revólver Webley"
+    },
+    {
+      "method": "shotgun",
+      "label": "Escopeta de caza"
+    },
+    {
+      "method": "medicine",
+      "label": "Láudano"
+    },
+    {
+      "method": "fall",
+      "label": "Caída desde la galería"
+    }
+  ],
+  "victim": {
+    "name": "Sir Edmund Blackwood",
+    "role": "dueño de Blackwood Manor",
+    "gender": "m"
+  },
+  "people": [
+    {
+      "id": "p1",
+      "name": "Elena Blackwood",
+      "role": "heredera",
+      "gender": "f",
+      "personality": "Hija única de Sir Edmund, huérfana de madre desde niña y educada por su padre para heredar la casa. Orgullosa, contenida y muy dueña de sí. Trata de usted, con frases completas y firmes, y no busca simpatía ni se disculpa. Cuando la presionan exige precisión, nunca alza la voz ni insulta. Dice «voy a ser muy clara» y «no confunda mis palabras», y corta en seco cualquier insinuación.",
+      "image": "/worlds/blackwood-manor/person-p1.webp"
+    },
+    {
+      "id": "p2",
+      "name": "Víctor Hale",
+      "role": "médico de la familia",
+      "gender": "m",
+      "personality": "Médico rural que atiende a los Blackwood desde hace años y que sirvió en un hospital de campaña durante la guerra. Reservado, analítico y frío en apariencia. Trata de usted y separa con cuidado lo observado de lo conjeturado; corrige la pregunta antes de contestarla. Usa formulaciones breves y precisas, casi clínicas. Dice «seamos precisos», «ciñámonos a los hechos» y «conviene distinguir», y nunca aventura un diagnóstico que no pueda sostener.",
+      "image": "/worlds/blackwood-manor/person-p2.webp"
+    },
+    {
+      "id": "p3",
+      "name": "Clara Reed",
+      "role": "secretaria de Sir Edmund",
+      "gender": "f",
+      "personality": "Lleva la correspondencia, la agenda y los papeles de Sir Edmund; llegó a la casa con una carta de recomendación y sin más fortuna que su sueldo. Observadora, prudente y directa. Trata de usted, prefiere las palabras sencillas y separa siempre lo que sabe de lo que supone. No pide perdón a cada frase. Bajo presión se aferra a los detalles comprobables. Dice «se lo diré sin rodeos» y «eso es lo que puedo decirle».",
+      "image": "/worlds/blackwood-manor/person-p3.webp"
+    },
+    {
+      "id": "p4",
+      "name": "Arthur Finch",
+      "role": "mayordomo",
+      "gender": "m",
+      "personality": "Lleva treinta años al servicio de Sir Edmund y conoce cada costumbre de la casa. Formal, discreto y seco, educado en la vieja escuela. Trata de usted y llama «señor detective» a quien le interroga. Responde por orden, en frases ordenadas y sin emoción visible. Bajo presión mantiene la cortesía sin caer en el servilismo. No especula sobre los señores ni sobre el resto del servicio, y cierra los asuntos con un «eso es todo sobre ese punto».",
+      "image": "/worlds/blackwood-manor/person-p4.webp"
+    },
+    {
+      "id": "p5",
+      "name": "Julián Blackwood",
+      "role": "sobrino",
+      "gender": "m",
+      "personality": "Sobrino de Sir Edmund, vive de una asignación que su tío le recordaba a cada paso y pasa más tiempo en Londres que en la casa. Impaciente, defensivo y orgulloso a su manera. Tutea a todo el mundo, detective incluido. Habla en frases cortas y coloquiales, sin rodeos, y le molesta que le atribuyan más de lo que ha dicho. Bajo presión se vuelve cortante, nunca violento. Dice «vale, escucha», «te lo digo claro» y «no le des más vueltas».",
+      "image": "/worlds/blackwood-manor/person-p5.webp"
+    }
+  ],
+  "rooms": [
+    {
+      "id": "r1",
+      "name": "Despacho",
+      "article": "el",
+      "description": "Paneles de roble oscuro, un escritorio de caoba con tapete de cuero verde y una lámpara de latón que deja el resto de la sala en penumbra. Huele a tabaco de pipa y a tinta, y la lluvia golpea sin descanso las ventanas cerradas.",
+      "tags": ["interior"],
+      "image": "/worlds/blackwood-manor/room-r1.webp"
+    },
+    {
+      "id": "r2",
+      "name": "Biblioteca",
+      "article": "la",
+      "description": "Estanterías de nogal suben hasta una galería con barandilla de madera torneada, a la que se llega por una escalera de caracol de hierro. Huele a cuero viejo y a papel, y el fuego de la chimenea apenas alcanza los lomos más altos.",
+      "tags": ["interior", "elevated"],
+      "image": "/worlds/blackwood-manor/room-r2.webp"
+    },
+    {
+      "id": "r3",
+      "name": "Comedor",
+      "article": "el",
+      "description": "Una mesa larga de caoba bajo una araña de cristal, la cubertería de plata todavía alineada y retratos de antepasados que miran desde las paredes. Queda en el aire un olor a cera de velas, a cordero asado y a oporto.",
+      "tags": ["interior"],
+      "image": "/worlds/blackwood-manor/room-r3.webp"
+    },
+    {
+      "id": "r4",
+      "name": "Cocina",
+      "article": "la",
+      "description": "Fogones de hierro todavía tibios, cacerolas de cobre colgadas en hilera y una mesa de pino fregada hasta blanquear. Huele a té negro, a pan y a carbón, y el agua de la lluvia gorgotea en el desagüe del patio.",
+      "tags": ["interior"],
+      "image": "/worlds/blackwood-manor/room-r4.webp"
+    },
+    {
+      "id": "r5",
+      "name": "Invernadero",
+      "article": "el",
+      "description": "Cristales empañados, macetas de terracota y plantas de hojas carnosas que crecen en un calor húmedo y pegajoso. Entre los helechos asoman flores de un azul violáceo, y la lluvia tamborilea sobre la cúpula de vidrio.",
+      "tags": ["interior"],
+      "image": "/worlds/blackwood-manor/room-r5.webp"
+    },
+    {
+      "id": "r6",
+      "name": "Vestíbulo",
+      "article": "el",
+      "description": "Suelo de mármol ajedrezado, una escalera de roble que sube hacia la oscuridad y un reloj de pie que da los cuartos con un golpe grave. Huele a abrigos mojados y a cera de muebles, y el viento se cuela bajo la puerta principal.",
+      "tags": ["interior"],
+      "image": "/worlds/blackwood-manor/room-r6.webp"
+    }
+  ],
+  "crime": {
+    "culprit": "p2",
+    "method": "drink",
+    "weapon": "la taza de té",
+    "phrase": "envenenándolo con acónito en la taza de té",
+    "scene": "r1",
+    "crimeMinute": 1275,
+    "exitMinute": 1278,
+    "deathMinute": 1285,
+    "discoveryMinute": 1290,
+    "motive": "Había cobrado a {victim} pagos médicos inventados, rubricados con sus iniciales. Él lo descubrió al revisar sus cuentas y anotó que lo denunciaría al día siguiente."
+  },
+  "opening": {
+    "arrival": "El coche de la casa te recoge en la estación bajo un aguacero y te deja en la escalinata de Blackwood Manor. Dentro, el mayordomo te conduce sin una palabra hasta el despacho: el señor de la casa sigue en su sillón, con la taza del té volcada a sus pies.",
+    "tension": "Aquel té se preparó después de la cena y nadie más lo probó. El río ha cubierto el puente y el teléfono no da señal: quien preparó, llevó o envenenó esa taza sigue bajo este techo."
+  },
+  "alibis": [
+    {
+      "person": "p1",
+      "room": "r3",
+      "from": 1260,
+      "to": 1290,
+      "claim": "Estuve en {r3} con {p5} desde las 21:00 hasta el grito."
+    },
+    {
+      "person": "p2",
+      "room": "r6",
+      "from": 1272,
+      "to": 1290,
+      "claim": "Dejé la bandeja en {r1} y salí enseguida. Desde las 21:12 hasta el grito estuve en {r6}, esperando a que amainara."
+    },
+    {
+      "person": "p3",
+      "room": "r4",
+      "from": 1270,
+      "to": 1285,
+      "claim": "Revisé el inventario con {p4} en {r4} de 21:10 a 21:25."
+    },
+    {
+      "person": "p4",
+      "room": "r4",
+      "from": 1270,
+      "to": 1285,
+      "claim": "{p3} estuvo conmigo en {r4} desde las 21:10 hasta el ruido de la taza."
+    },
+    {
+      "person": "p5",
+      "room": "r3",
+      "from": 1260,
+      "to": 1290,
+      "claim": "Estuve con {p1} en {r3} desde que acabó la cena. La fotografía tiene la hora."
+    }
+  ],
+  "clues": [
+    {
+      "id": "c1",
+      "room": "r1",
+      "title": "Taza de té",
+      "text": "Un residuo vegetal oscuro permanece en el té que bebió {victim} a las 21:15.",
+      "image": "/worlds/blackwood-manor/weapon-drink.webp",
+      "fact": {
+        "type": "weapon",
+        "method": "drink",
+        "room": "r1"
+      }
+    },
+    {
+      "id": "c2",
+      "room": "r1",
+      "title": "Informe preliminar",
+      "text": "Sin heridas. Los síntomas concuerdan con intoxicación por acónito. {victim} se desplomó hacia las 21:25, unos diez minutos después de beber.",
+      "image": "/worlds/blackwood-manor/clue-report.webp",
+      "fact": {
+        "type": "cause",
+        "method": "drink",
+        "room": "r1",
+        "minute": 1285
+      }
+    },
+    {
+      "id": "c3",
+      "room": "r1",
+      "title": "Nuevo testamento",
+      "text": "{victim} iba a desheredar a {p1}. Aún no lo había firmado.",
+      "image": "/worlds/blackwood-manor/clue-document.webp",
+      "fact": {
+        "type": "motive",
+        "person": "p1"
+      }
+    },
+    {
+      "id": "c4",
+      "room": "r1",
+      "title": "Agenda de {victim}",
+      "text": "21:10: cita privada con el doctor {p2} para revisar sus cuentas.",
+      "image": "/worlds/blackwood-manor/clue-document.webp",
+      "fact": {
+        "type": "note"
+      }
+    },
+    {
+      "id": "c5",
+      "room": "r2",
+      "title": "Libro de cuentas",
+      "text": "Pagos médicos inventados, rubricados «V. Hale». {victim} anotó al margen: «Denunciar mañana».",
+      "image": "/worlds/blackwood-manor/clue-document.webp",
+      "fact": {
+        "type": "motive",
+        "person": "p2"
+      }
+    },
+    {
+      "id": "c6",
+      "room": "r2",
+      "title": "Tratado de botánica",
+      "text": "El acónito provoca síntomas en unos diez minutos al ingerirse.",
+      "image": "/worlds/blackwood-manor/clue-document.webp",
+      "fact": {
+        "type": "note"
+      }
+    },
+    {
+      "id": "c7",
+      "room": "r2",
+      "title": "Carta de {p3}",
+      "text": "{p3} admite una relación con {victim} y teme perder su puesto.",
+      "image": "/worlds/blackwood-manor/clue-document.webp",
+      "fact": {
+        "type": "motive",
+        "person": "p3"
+      }
+    },
+    {
+      "id": "c8",
+      "room": "r3",
+      "title": "Copas intactas",
+      "text": "Las cinco copas no contienen restos de acónito. La cena no fue el vehículo.",
+      "fact": {
+        "type": "note"
+      }
+    },
+    {
+      "id": "c9",
+      "room": "r3",
+      "title": "Fotografía de sobremesa",
+      "text": "A las 21:12, {p1} y {p5} aparecen juntos en {r3}.",
+      "image": "/worlds/blackwood-manor/clue-testimony.webp",
+      "fact": {
+        "type": "presence",
+        "people": ["p1", "p5"],
+        "room": "r3",
+        "from": 1272,
+        "to": 1273,
+        "exclusive": false
+      }
+    },
+    {
+      "id": "c10",
+      "room": "r3",
+      "title": "Nota del servicio",
+      "text": "{p5} discutió por una deuda a las 20:50; {victim} lo echó de {r1}.",
+      "image": "/worlds/blackwood-manor/clue-document.webp",
+      "fact": {
+        "type": "motive",
+        "person": "p5"
+      }
+    },
+    {
+      "id": "c11",
+      "room": "r4",
+      "title": "Bandeja del té",
+      "text": "{p4} preparó una sola taza a las 21:05. El doctor se ofreció a llevarla.",
+      "image": "/worlds/blackwood-manor/weapon-drink.webp",
+      "fact": {
+        "type": "note"
+      }
+    },
+    {
+      "id": "c12",
+      "room": "r4",
+      "title": "Frasco de botiquín",
+      "text": "Frasco vacío rotulado «V. Hale», escondido en {r4}. Conserva residuos de acónito.",
+      "image": "/worlds/blackwood-manor/weapon-drink.webp",
+      "fact": {
+        "type": "access",
+        "method": "drink",
+        "people": ["p2"]
+      }
+    },
+    {
+      "id": "c13",
+      "room": "r4",
+      "title": "Registro del servicio",
+      "text": "{p4} y {p3} revisaron juntos el inventario de {r4} entre las 21:10 y las 21:25.",
+      "image": "/worlds/blackwood-manor/clue-ledger.webp",
+      "fact": {
+        "type": "presence",
+        "people": ["p3", "p4"],
+        "room": "r4",
+        "from": 1270,
+        "to": 1285,
+        "exclusive": false
+      }
+    },
+    {
+      "id": "c14",
+      "room": "r5",
+      "title": "Acónito cortado",
+      "text": "Falta un tallo, cortado recientemente con una hoja fina.",
+      "fact": {
+        "type": "note"
+      }
+    },
+    {
+      "id": "c15",
+      "room": "r5",
+      "title": "Guante de médico",
+      "text": "Guante con las iniciales VH y savia de acónito en los dedos.",
+      "image": "/worlds/blackwood-manor/item-5.webp",
+      "fact": {
+        "type": "access",
+        "method": "drink",
+        "people": ["p2"]
+      }
+    },
+    {
+      "id": "c16",
+      "room": "r5",
+      "title": "Huellas en la tierra",
+      "text": "La suela estrecha coincide con los zapatos del doctor, no con las botas de {p5}.",
+      "image": "/worlds/blackwood-manor/clue-testimony.webp",
+      "fact": {
+        "type": "note"
+      }
+    },
+    {
+      "id": "c17",
+      "room": "r6",
+      "title": "Reloj verificado",
+      "text": "El reloj funciona bien. {p4} oyó caer la taza a las 21:25.",
+      "image": "/worlds/blackwood-manor/clue-testimony.webp",
+      "fact": {
+        "type": "note"
+      }
+    },
+    {
+      "id": "c18",
+      "room": "r6",
+      "title": "Registro de visitas",
+      "text": "{p2} llegó a las 20:40 con su botiquín. Entró en {r1} a las 21:10 y salió de allí a las 21:18.",
+      "image": "/worlds/blackwood-manor/clue-ledger.webp",
+      "fact": {
+        "type": "presence",
+        "people": ["p2"],
+        "room": "r1",
+        "from": 1270,
+        "to": 1278,
+        "exclusive": false
+      }
+    }
+  ],
+  "facts": {
+    "p1": [
+      {
+        "id": "alibi",
+        "kind": "alibi.pair",
+        "text": "Estuve en {r3} con {p5} desde las 21:00 hasta el grito. Pregúntele; le dirá lo mismo.",
+        "variants": [
+          "Estuve en {r3} con {p5} desde las 21:00 hasta el grito. Pregúntele; le dirá lo mismo.",
+          "Desde que terminó la cena, a las 21:00, hasta que se oyó el grito, estuve en {r3} en compañía de {p5}. Es fácil de comprobar.",
+          "Voy a ser muy clara: de las 21:00 al grito, en {r3}, con {p5}. No me moví de allí."
+        ]
+      },
+      {
+        "id": "motive",
+        "kind": "relation",
+        "text": "Mi padre amenazó con desheredarme. Discutimos, sí. No confunda mis palabras: discutir no es matar.",
+        "variants": [
+          "Mi padre amenazó con desheredarme. Discutimos, sí. No confunda mis palabras: discutir no es matar.",
+          "Voy a ser muy clara: mi padre amenazaba con dejarme sin herencia, y se lo reproché. Es lo que hacemos en esta familia."
+        ]
+      },
+      {
+        "id": "secret",
+        "kind": "secret.weak",
+        "text": "Pensé en robar el testamento, lo reconozco. Pero no llegué a tocarlo.",
+        "variants": [
+          "Pensé en robar el testamento, lo reconozco. Pero no llegué a tocarlo.",
+          "Sí, sabía lo del nuevo testamento, y se me pasó por la cabeza hacerlo desaparecer. No lo hice; seguía sin firmar."
+        ],
+        "requires": "c3"
+      },
+      {
+        "id": "link",
+        "kind": "link.none",
+        "text": "Ese frasco es del botiquín del doctor. Yo no tenía acceso a él; nunca fue asunto mío.",
+        "variants": [
+          "Ese frasco es del botiquín del doctor. Yo no tenía acceso a él; nunca fue asunto mío.",
+          "No podía llegar a ese frasco. Compruébelo, si duda de mi palabra."
+        ],
+        "requires": "c12"
+      },
+      {
+        "id": "timeline",
+        "kind": "timeline.pair",
+        "text": "La fotografía nos sitúa en {r3} a las 21:12. Después no me moví de allí, y {p5} tampoco.",
+        "variants": [
+          "La fotografía nos sitúa en {r3} a las 21:12. Después no me moví de allí, y {p5} tampoco.",
+          "Ahí tiene la fotografía: {p5} y yo, en {r3}, a las 21:12. Es lo que le dije desde el principio."
+        ],
+        "requires": "c9"
+      },
+      {
+        "id": "seen",
+        "kind": "seen.pair",
+        "text": "Estuve en {r3} con {p5}. No entró nadie más.",
+        "variants": [
+          "Estuve en {r3} con {p5}. No entró nadie más.",
+          "Con {p5}, en {r3}. Por esa puerta no pasó nadie hasta que se oyó el grito."
+        ]
+      },
+      {
+        "id": "identity",
+        "kind": "identity",
+        "text": "Soy {p1}, la heredera de esta casa. Puede empezar con sus preguntas.",
+        "variants": [
+          "Soy {p1}, la heredera de esta casa. Puede empezar con sus preguntas.",
+          "Me llamo {p1}. Soy la heredera; supongo que ya se lo habrán dicho."
+        ]
+      },
+      {
+        "id": "social",
+        "kind": "social",
+        "text": "Voy a ser muy clara: quiero que esto termine pronto y bien. Pregunte.",
+        "variants": [
+          "Voy a ser muy clara: quiero que esto termine pronto y bien. Pregunte.",
+          "Ahórrese las condolencias. ¿Qué quiere aclarar exactamente?"
+        ]
+      },
+      {
+        "id": "unknown",
+        "kind": "unknown",
+        "text": "No pondrá en mi boca una respuesta que no tengo.",
+        "variants": [
+          "No pondrá en mi boca una respuesta que no tengo.",
+          "De eso no sé nada. Pregúnteme algo que me corresponda contestar."
+        ]
+      }
+    ],
+    "p2": [
+      {
+        "id": "alibi",
+        "kind": "alibi.claim",
+        "text": "Dejé la bandeja en {r1} y salí enseguida. Desde las 21:12 estuve en {r6}, esperando a que amainara, hasta que oí el grito.",
+        "variants": [
+          "Dejé la bandeja en {r1} y salí enseguida. Desde las 21:12 estuve en {r6}, esperando a que amainara, hasta que oí el grito.",
+          "Seamos precisos: entregué el té y me retiré. De 21:12 en adelante permanecí en {r6}.",
+          "Llevé el té a {r1}, lo dejé y salí. A las 21:12 ya estaba en {r6}; ciñámonos a ese dato."
+        ]
+      },
+      {
+        "id": "motive",
+        "kind": "relation",
+        "text": "Edmund quería hablar de unas cuentas. Era un malentendido.",
+        "variants": [
+          "Edmund quería hablar de unas cuentas. Era un malentendido.",
+          "Atendía a Edmund desde hacía muchos años. Esta noche quería revisar unas cuentas conmigo; un malentendido, nada más."
+        ]
+      },
+      {
+        "id": "secret",
+        "kind": "secret.culprit",
+        "text": "Edmund descubrió mis facturas falsas. Si me denunciaba, lo perdía todo. Conviene distinguir: eso es un motivo, no una prueba.",
+        "variants": [
+          "Edmund descubrió mis facturas falsas. Si me denunciaba, lo perdía todo. Conviene distinguir: eso es un motivo, no una prueba.",
+          "No discutiré lo que está escrito en ese libro. Las facturas eran falsas y Edmund lo sabía. De ahí a un crimen hay un trecho que usted tendrá que demostrar."
+        ],
+        "requires": "c5"
+      },
+      {
+        "id": "link",
+        "kind": "link.access",
+        "text": "Ese frasco era mío. Conocía el efecto del acónito. No puedo negar lo que han encontrado.",
+        "variants": [
+          "Ese frasco era mío. Conocía el efecto del acónito. No puedo negar lo que han encontrado.",
+          "Seamos precisos: el frasco es de mi botiquín y sé lo que hace el acónito. No voy a negar lo que está a la vista."
+        ],
+        "requires": "c12"
+      },
+      {
+        "id": "timeline",
+        "kind": "timeline.culprit",
+        "text": "Conviene corregir un dato: salí de {r1} a las 21:18, como dice el registro, no antes. Edmund seguía vivo cuando me fui.",
+        "variants": [
+          "Conviene corregir un dato: salí de {r1} a las 21:18, como dice el registro, no antes. Edmund seguía vivo cuando me fui.",
+          "El registro es más fiable que mi memoria: estuve en {r1} hasta las 21:18. Cuando salí, Edmund estaba vivo; eso también es un hecho."
+        ],
+        "requires": "c18"
+      },
+      {
+        "id": "seen",
+        "kind": "seen.nothing",
+        "text": "{p4} preparó el té. Yo llevé la bandeja.",
+        "variants": [
+          "{p4} preparó el té. Yo llevé la bandeja.",
+          "El té lo preparó {p4}. Yo me limité a llevar la bandeja; me ofrecí, y él aceptó."
+        ]
+      },
+      {
+        "id": "object",
+        "kind": "object.own",
+        "text": "El guante es mío. Estuve en {r5} antes de la cena.",
+        "variants": [
+          "El guante es mío. Estuve en {r5} antes de la cena.",
+          "Sí, ese guante es mío. Pasé por {r5} antes de la cena; no veo qué tiene de extraño."
+        ],
+        "requires": "c15"
+      },
+      {
+        "id": "identity",
+        "kind": "identity",
+        "text": "Soy el doctor {p2}, médico de la familia.",
+        "variants": [
+          "Soy el doctor {p2}, médico de la familia.",
+          "Me llamo {p2}. Soy el médico de la familia desde hace muchos años. ¿Qué desea precisar?"
+        ]
+      },
+      {
+        "id": "social",
+        "kind": "social",
+        "text": "Seamos precisos y breves. Ha sido una noche larga para todos.",
+        "variants": [
+          "Seamos precisos y breves. Ha sido una noche larga para todos.",
+          "Ciñámonos a los hechos. Adelante, pregunte."
+        ]
+      },
+      {
+        "id": "unknown",
+        "kind": "unknown",
+        "text": "No dispongo de información para afirmarlo.",
+        "variants": [
+          "No dispongo de información para afirmarlo.",
+          "Sobre eso solo podría conjeturar, y no conjeturo."
+        ]
+      }
+    ],
+    "p3": [
+      {
+        "id": "alibi",
+        "kind": "alibi.pair",
+        "text": "Revisé el inventario con {p4} en {r4} de 21:10 a 21:25.",
+        "variants": [
+          "Revisé el inventario con {p4} en {r4} de 21:10 a 21:25.",
+          "Se lo diré sin rodeos: de 21:10 a 21:25 estuve en {r4} con {p4}, contando la vajilla y la despensa.",
+          "De 21:10 a 21:25, {p4} y yo estuvimos en {r4} con el inventario. Lo puede comprobar."
+        ]
+      },
+      {
+        "id": "motive",
+        "kind": "relation",
+        "text": "Dependía de este empleo, pero no quería que Sir Edmund muriera.",
+        "variants": [
+          "Dependía de este empleo, pero no quería que Sir Edmund muriera.",
+          "Trabajaba para Sir Edmund y vivía de mi sueldo. Eso es lo que puedo decirle: su muerte no me da nada, me lo quita."
+        ]
+      },
+      {
+        "id": "secret",
+        "kind": "secret.weak",
+        "text": "Éramos amantes. Oculté la carta para evitar un escándalo.",
+        "variants": [
+          "Éramos amantes. Oculté la carta para evitar un escándalo.",
+          "Se lo diré sin rodeos: Sir Edmund y yo teníamos una relación. Guardé la carta porque no quería perder mi puesto."
+        ],
+        "requires": "c7"
+      },
+      {
+        "id": "link",
+        "kind": "link.none",
+        "text": "Yo no tenía acceso al botiquín del doctor.",
+        "variants": [
+          "Yo no tenía acceso al botiquín del doctor.",
+          "Ese frasco es del doctor. Nunca lo tuve en las manos; puede preguntárselo a quien quiera."
+        ],
+        "requires": "c12"
+      },
+      {
+        "id": "timeline",
+        "kind": "timeline.record",
+        "text": "Mire el registro del servicio: {p4} y yo, de 21:10 a 21:25, con el inventario.",
+        "variants": [
+          "Mire el registro del servicio: {p4} y yo, de 21:10 a 21:25, con el inventario.",
+          "Compruebe el registro del servicio. Es un dato, no una opinión."
+        ],
+        "requires": "c13"
+      },
+      {
+        "id": "seen",
+        "kind": "seen.pair",
+        "text": "Estuve en {r4} con {p4}. No entró nadie más, de eso estoy segura.",
+        "variants": [
+          "Estuve en {r4} con {p4}. No entró nadie más, de eso estoy segura.",
+          "Con {p4}, en {r4}, con el inventario. Por esa puerta no pasó nadie."
+        ]
+      },
+      {
+        "id": "identity",
+        "kind": "identity",
+        "text": "Me llamo {p3}. Soy la secretaria de Sir Edmund.",
+        "variants": [
+          "Me llamo {p3}. Soy la secretaria de Sir Edmund.",
+          "Soy {p3}, secretaria de Sir Edmund. Dígame qué necesita aclarar."
+        ]
+      },
+      {
+        "id": "social",
+        "kind": "social",
+        "text": "Dígame qué necesita saber. Iré al grano.",
+        "variants": [
+          "Dígame qué necesita saber. Iré al grano.",
+          "Pregunte lo que quiera. Le diré lo que sé, y le avisaré cuando solo lo suponga."
+        ]
+      },
+      {
+        "id": "unknown",
+        "kind": "unknown",
+        "text": "Eso no lo sé.",
+        "variants": ["Eso no lo sé.", "No lo sé, y prefiero no suponerlo."]
+      }
+    ],
+    "p4": [
+      {
+        "id": "alibi",
+        "kind": "alibi.pair",
+        "text": "{p3} estuvo conmigo en {r4} hasta el ruido de la taza, señor detective.",
+        "variants": [
+          "{p3} estuvo conmigo en {r4} hasta el ruido de la taza, señor detective.",
+          "Si me permite, responderé por orden: de 21:10 a 21:25 me encontraba en {r4}, revisando el inventario con {p3}.",
+          "Estuve en {r4} con {p3} desde las 21:10 hasta que oí caer la taza, señor detective."
+        ]
+      },
+      {
+        "id": "motive",
+        "kind": "relation",
+        "text": "Serví a Sir Edmund durante treinta años. No tenía nada que ganar.",
+        "variants": [
+          "Serví a Sir Edmund durante treinta años. No tenía nada que ganar.",
+          "Treinta años al servicio de Sir Edmund, señor detective. Su muerte no me trae más que la incertidumbre de mi puesto."
+        ]
+      },
+      {
+        "id": "secret",
+        "kind": "secret.neutral",
+        "text": "El registro del servicio lo llevo yo mismo, señor detective. No oculta nada.",
+        "variants": [
+          "El registro del servicio lo llevo yo mismo, señor detective. No oculta nada.",
+          "Es un papel de la casa. Se anota todo, como corresponde. Eso es todo sobre ese punto."
+        ],
+        "requires": "c13"
+      },
+      {
+        "id": "link",
+        "kind": "link.none",
+        "text": "El botiquín del doctor no estaba a mi cargo, señor detective.",
+        "variants": [
+          "El botiquín del doctor no estaba a mi cargo, señor detective.",
+          "No tenía acceso a ese frasco. Nunca lo he tenido."
+        ],
+        "requires": "c12"
+      },
+      {
+        "id": "timeline",
+        "kind": "timeline.record",
+        "text": "Consta en el registro del servicio, señor detective: {p3} y yo, de 21:10 a 21:25.",
+        "variants": [
+          "Consta en el registro del servicio, señor detective: {p3} y yo, de 21:10 a 21:25.",
+          "Compruebe el registro del servicio. En esta casa se lleva con todo rigor."
+        ],
+        "requires": "c13"
+      },
+      {
+        "id": "seen",
+        "kind": "seen.pair",
+        "text": "Preparé el té a las 21:05. El doctor insistió en llevarlo él mismo.",
+        "variants": [
+          "Preparé el té a las 21:05. El doctor insistió en llevarlo él mismo.",
+          "Preparé una sola taza a las 21:05, señor detective, y el doctor se ofreció a subirla. A las 21:25 oí caer la taza; el reloj del vestíbulo funciona bien."
+        ]
+      },
+      {
+        "id": "identity",
+        "kind": "identity",
+        "text": "{p4}, mayordomo de esta casa, señor detective.",
+        "variants": [
+          "{p4}, mayordomo de esta casa, señor detective.",
+          "Me llamo {p4}. Soy el mayordomo desde hace treinta años."
+        ]
+      },
+      {
+        "id": "social",
+        "kind": "social",
+        "text": "Buenas noches, señor detective. Le escucho.",
+        "variants": [
+          "Buenas noches, señor detective. Le escucho.",
+          "Mantengamos las formas, aunque la noche no ayude. ¿Qué desea saber?"
+        ]
+      },
+      {
+        "id": "unknown",
+        "kind": "unknown",
+        "text": "No podría informarle sobre ese punto, señor detective.",
+        "variants": [
+          "No podría informarle sobre ese punto, señor detective.",
+          "No me corresponde saberlo, y no voy a suponerlo."
+        ]
+      }
+    ],
+    "p5": [
+      {
+        "id": "alibi",
+        "kind": "alibi.pair",
+        "text": "Estuve con {p1} en {r3}. La fotografía tiene la hora.",
+        "variants": [
+          "Estuve con {p1} en {r3}. La fotografía tiene la hora.",
+          "Vale, escucha: desde que acabó la cena, a las 21:00, hasta el grito, estuve en {r3} con {p1}. Pregúntale, anda.",
+          "{p1} y yo estuvimos en {r3} toda la sobremesa. Hay una foto. ¿Contento?"
+        ]
+      },
+      {
+        "id": "motive",
+        "kind": "relation",
+        "text": "Le debía dinero. Discutimos a las 20:50 y después no volví a verlo.",
+        "variants": [
+          "Le debía dinero. Discutimos a las 20:50 y después no volví a verlo.",
+          "Te lo digo claro: le debía dinero a mi tío y me echó de {r1} a las 20:50. No volví a verlo."
+        ]
+      },
+      {
+        "id": "secret",
+        "kind": "secret.weak",
+        "text": "Iba a vender una joya de la familia para pagar mis deudas.",
+        "variants": [
+          "Iba a vender una joya de la familia para pagar mis deudas.",
+          "Vale, sí: pensaba vender una joya de la familia para pagar lo que debo. Todavía no la había vendido. No le des más vueltas."
+        ],
+        "requires": "c10"
+      },
+      {
+        "id": "link",
+        "kind": "link.none",
+        "text": "Yo no tenía acceso al botiquín del doctor. Ni sabía dónde lo guardaba.",
+        "variants": [
+          "Yo no tenía acceso al botiquín del doctor. Ni sabía dónde lo guardaba.",
+          "¿Ese frasco? No. Nunca. Pregunta a quien quieras."
+        ],
+        "requires": "c12"
+      },
+      {
+        "id": "timeline",
+        "kind": "timeline.pair",
+        "text": "Mira la foto: 21:12, {p1} y yo en {r3}. Y de ahí no me moví, te lo digo claro.",
+        "variants": [
+          "Mira la foto: 21:12, {p1} y yo en {r3}. Y de ahí no me moví, te lo digo claro.",
+          "Está en la fotografía. Y después seguimos allí, {p1} y yo, hasta el grito."
+        ],
+        "requires": "c9"
+      },
+      {
+        "id": "seen",
+        "kind": "seen.pair",
+        "text": "Estuve en {r3} con {p1}. No entró nadie más.",
+        "variants": [
+          "Estuve en {r3} con {p1}. No entró nadie más.",
+          "Con {p1}, en {r3}. Por esa puerta no pasó ni un alma."
+        ]
+      },
+      {
+        "id": "identity",
+        "kind": "identity",
+        "text": "Soy {p5}, el sobrino. El otro Blackwood, el que nadie toma en serio.",
+        "variants": [
+          "Soy {p5}, el sobrino. El otro Blackwood, el que nadie toma en serio.",
+          "{p5}. Soy el sobrino, ya sabes. ¿Qué quieres preguntarme?"
+        ]
+      },
+      {
+        "id": "social",
+        "kind": "social",
+        "text": "Vamos, pregunta. Cuanto antes empecemos, antes acabamos.",
+        "variants": [
+          "Vamos, pregunta. Cuanto antes empecemos, antes acabamos.",
+          "Menuda noche. ¿Qué quieres saber?"
+        ]
+      },
+      {
+        "id": "unknown",
+        "kind": "unknown",
+        "text": "Eso no lo sé.",
+        "variants": [
+          "Eso no lo sé.",
+          "Ni idea. Y no me lo voy a inventar para que me dejes en paz."
+        ]
+      }
+    ]
+  },
+  "origin": {
+    "generator": "a-mano"
+  }
+}

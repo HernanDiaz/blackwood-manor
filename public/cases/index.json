@@ -1,0 +1,24 @@
+{
+  "cases": [
+    {
+      "file": "blackwood-1.json",
+      "title": "El último té"
+    },
+    {
+      "file": "blackwood-2.json",
+      "title": "La firma pendiente"
+    },
+    {
+      "file": "blackwood-3.json",
+      "title": "La carta retenida"
+    },
+    {
+      "file": "blackwood-4.json",
+      "title": "Treinta años de silencio"
+    },
+    {
+      "file": "blackwood-5.json",
+      "title": "La deuda vencida"
+    }
+  ]
+}

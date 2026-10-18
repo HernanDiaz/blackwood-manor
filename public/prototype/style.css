@@ -246,3 +246,81 @@ img.missing {
     flex-direction: column;
   }
 }
+
+/* Solved cases. */
+.history {
+  margin: 18px 0;
+  font-size: 13px;
+}
+.history summary {
+  cursor: pointer;
+  color: var(--gold);
+}
+.history ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+}
+.history li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+}
+.history small {
+  display: block;
+  color: var(--muted);
+}
+
+.classics {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  margin: 18px 0;
+}
+.classics label {
+  flex: 1;
+}
+@media (max-width: 760px) {
+  .classics {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* Case editor. */
+.editor section {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  padding: 22px;
+  margin-bottom: 22px;
+}
+.editor-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin: 10px 0;
+}
+.editor-row select {
+  width: auto;
+  flex: 1;
+  margin: 0;
+}
+.editor .fields input {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+}
+.editor textarea {
+  min-height: 380px;
+  font:
+    12px/1.5 ui-monospace,
+    Consolas,
+    monospace;
+}
+.editor-report.bad {
+  border-color: #c98a7a;
+}
+.editor-report li {
+  margin: 6px 0;
+  font-size: 13px;
+}

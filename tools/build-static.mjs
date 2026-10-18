@@ -19,7 +19,14 @@ rmSync(dist, { recursive: true, force: true });
 mkdirSync(dist, { recursive: true });
 
 // The page, its styles and the content.
-for (const f of ['prototype/app.mjs', 'prototype/style.css', 'style.css', 'fonts.css'])
+for (const f of [
+  'prototype/app.mjs',
+  'prototype/editor.mjs',
+  'prototype/editor.html',
+  'prototype/style.css',
+  'style.css',
+  'fonts.css',
+])
   cpSync(from('public', f), to(f), { recursive: true });
 for (const dir of ['worlds', 'cases', 'icons'])
   if (existsSync(from('public', dir))) cpSync(from('public', dir), to(dir), { recursive: true });
@@ -38,6 +45,7 @@ function follow(file) {
   }
 }
 follow(from('public/prototype/app.mjs'));
+follow(from('public/prototype/editor.mjs'));
 modules.add(from('src/question-router-model.json'));
 for (const file of modules) cpSync(file, to(path.relative(root, file)));
 

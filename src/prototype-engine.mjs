@@ -45,6 +45,7 @@ export function newPrototype(world, options = {}) {
     caseId: c.id,
     case: file,
     openingSeen: false,
+    attempts: 0,
     ...emptyProgress(c.scene.id),
     ...emptyGuidance(),
   };
@@ -70,6 +71,7 @@ export function restorePrototype(raw) {
     caseId: c.id,
     case: file,
     openingSeen: s.openingSeen === true,
+    attempts: Number.isInteger(s.attempts) ? Math.max(0, Math.min(s.attempts, 999)) : 0,
     ...progress,
     ...restoreGuidance(c, { ...s, ...progress }),
   };
@@ -242,7 +244,10 @@ export function inferPrototypeTopic(question, c = null) {
 }
 export function accusePrototype(c, state, { person, method, room, evidence }) {
   assertCase(c, state);
-  return judgeAccusation(caseView(c), state, { person, method, room, evidence });
+  const result = judgeAccusation(caseView(c), state, { person, method, room, evidence });
+  // Failed accusations count for the record of the case.
+  if (result === 'lost') state.attempts = (state.attempts || 0) + 1;
+  return result;
 }
 export function prototypeResolution(c, state) {
   const title = id => '“' + c.clues.find(x => x.id === id).title + '”';

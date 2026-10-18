@@ -23,6 +23,15 @@ Con el servidor local (`PILOTO.cmd`), el juego solo le consulta las preguntas qu
 
 Explora las seis salas, recoge las pistas e interroga a los cinco sospechosos con tus propias palabras. Varias personas tienen un móvil y varias pudieron llegar al arma; solo una reúne además una coartada que no se sostiene. Para ganar hay que acusar a esa persona con el arma y la sala correctas, y adjuntar una prueba de cada cosa.
 
+Cada investigación se crea en uno de los cinco mundos y con una dificultad (fácil, media o difícil). También se pueden jugar los cinco casos clásicos de Blackwood, escritos a mano (`public/cases/`). Durante la partida ayudan:
+
+- **El cuaderno de deducción**, en el Tablero.
+- **Las pistas escalonadas**, cada vez más concretas.
+- **Enseñar pruebas a los sospechosos.**
+- **La lectura en voz alta** (Voz: sí), con la voz del sistema.
+
+La pantalla de inicio guarda el historial de casos resueltos. El **editor de casos** (`/prototype/editor.html`) abre el caso de la partida, un caso clásico, un archivo o uno nuevo. Permite cambiar nombres y textos, comprueba que el caso tiene una sola solución y lo descarga o lo juega.
+
 La partida se guarda en el navegador. **Exportar partida** guarda el progreso; **Exportar caso** guarda solo el caso (el «expediente»), que se puede editar e importar.
 
 ## Cómo está hecho
