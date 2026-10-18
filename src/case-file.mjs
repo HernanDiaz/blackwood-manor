@@ -1,0 +1,399 @@
+// Case files ("expedientes"): everything a prototype investigation needs, as plain JSON.
+// Generated, prepared and hand-written cases share this format, so they can be exported,
+// imported and edited. Every clue carries a machine-readable fact; analyzeCase() uses
+// those facts, never the prose, to prove that exactly one person can be the culprit.
+import { methodCatalog } from './method-catalog.mjs';
+import { prototypeMethods } from './prototype-worlds.mjs';
+import { hash } from './random.mjs';
+
+export const CASE_FORMAT = 'mundos-expediente';
+export const CASE_REVISION = 'case-v1';
+export const topics = ['alibi', 'motive', 'secret', 'link', 'timeline', 'seen', 'object'];
+const settings = ['scifi', 'noir', 'medieval', 'fantasy'];
+const personIds = ['p1', 'p2', 'p3', 'p4', 'p5'];
+
+const fail = message => {
+  throw Error(message);
+};
+function text(value, max, field, { optional = false } = {}) {
+  if (optional && (value === undefined || value === null || value === '')) return undefined;
+  if (typeof value !== 'string' || !value.trim()) fail(`Falta el texto de ${field}`);
+  if (value.length > max) fail(`${field} supera ${max} caracteres`);
+  if (/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/.test(value))
+    fail(`${field} contiene caracteres no válidos`);
+  return value.trim();
+}
+function minute(value, field) {
+  if (!Number.isInteger(value) || value < 0 || value > 1439) fail(`Hora no válida en ${field}`);
+  return value;
+}
+function image(value, field) {
+  if (value === undefined || value === '') return undefined;
+  if (
+    typeof value !== 'string' ||
+    value.length > 200 ||
+    value.includes('..') ||
+    !/^\/(prototype|lab|assets)\/[A-Za-z0-9_\-/.]+\.webp$/.test(value)
+  )
+    fail(`Imagen no permitida en ${field}`);
+  return value;
+}
+const optional = (key, value) => (value === undefined ? {} : { [key]: value });
+const ids = (list, field) => {
+  if (!Array.isArray(list)) fail(`${field} debe ser una lista`);
+  return list;
+};
+
+function normalizeFact(raw, file, field) {
+  const person = id => (personIds.includes(id) ? id : fail(`Persona desconocida en ${field}`));
+  const room = id =>
+    file.rooms.some(r => r.id === id) ? id : fail(`Lugar desconocido en ${field}`);
+  const method = id =>
+    methodCatalog.some(m => m.id === id) ? id : fail(`Método desconocido en ${field}`);
+  switch (raw?.type) {
+    case 'cause':
+      return {
+        type: 'cause',
+        method: method(raw.method),
+        room: room(raw.room),
+        minute: minute(raw.minute, field),
+      };
+    case 'discovery':
+      return {
+        type: 'discovery',
+        person: person(raw.person),
+        room: room(raw.room),
+        minute: minute(raw.minute, field),
+      };
+    case 'weapon':
+      return { type: 'weapon', method: method(raw.method), room: room(raw.room) };
+    case 'motive':
+      return { type: 'motive', person: person(raw.person) };
+    case 'access': {
+      const people = [...new Set(ids(raw.people, field).map(person))];
+      if (!people.length) fail(`Nadie tiene acceso en ${field}`);
+      return { type: 'access', method: method(raw.method), people };
+    }
+    case 'presence': {
+      const from = minute(raw.from, field),
+        to = minute(raw.to, field);
+      if (to <= from) fail(`Intervalo vacío en ${field}`);
+      return {
+        type: 'presence',
+        people: [...new Set(ids(raw.people, field).map(person))],
+        room: room(raw.room),
+        from,
+        to,
+        exclusive: raw.exclusive === true,
+      };
+    }
+    case 'herring':
+      return { type: 'herring', person: person(raw.person), room: room(raw.room) };
+    case 'explains':
+      return { type: 'explains', clue: text(raw.clue, 8, field) };
+    case 'note':
+      return { type: 'note' };
+    default:
+      return fail(`Tipo de hecho desconocido en ${field}`);
+  }
+}
+
+// Copies only known fields, so an imported file cannot smuggle anything else.
+export function normalizeCaseFile(raw) {
+  if (!raw || raw.format !== CASE_FORMAT || raw.version !== 1)
+    fail('No es un expediente compatible');
+  if (!settings.includes(raw.setting)) fail('Ambientación desconocida');
+  const people = ids(raw.people, 'personajes').map((p, i) => ({
+    id: personIds[i] === p?.id ? p.id : fail('Los personajes deben ser p1 a p5'),
+    name: text(p.name, 80, 'el nombre de ' + p.id),
+    role: text(p.role, 120, 'el oficio de ' + p.id),
+    ...optional('personality', text(p.personality, 1000, 'la personalidad', { optional: true })),
+    ...optional('image', image(p.image, p.id)),
+    ...optional('imagePrompt', text(p.imagePrompt, 500, 'la imagen', { optional: true })),
+  }));
+  if (people.length !== 5) fail('Un expediente necesita cinco personajes');
+  const rooms = ids(raw.rooms, 'lugares').map(r => ({
+    id: /^r\d{1,2}$/.test(r?.id) ? r.id : fail('Identificador de lugar no válido'),
+    name: text(r.name, 100, 'el nombre de ' + r.id),
+    description: text(r.description, 500, 'la descripción de ' + r.id),
+    ...optional(
+      'tags',
+      r.tags === undefined
+        ? undefined
+        : ids(r.tags, 'etiquetas').map(t => text(t, 30, 'una etiqueta')),
+    ),
+    ...optional('image', image(r.image, r.id)),
+    ...optional('imagePrompt', text(r.imagePrompt, 500, 'la imagen', { optional: true })),
+  }));
+  if (rooms.length < 4 || rooms.length > 8) fail('Un expediente necesita entre 4 y 8 lugares');
+  if (new Set(rooms.map(r => r.id)).size !== rooms.length) fail('Lugares repetidos');
+  const file = { rooms };
+  const crime = raw.crime || fail('Falta el crimen');
+  const normalized = {
+    format: CASE_FORMAT,
+    version: 1,
+    title: text(raw.title, 120, 'el título'),
+    setting: raw.setting,
+    ...optional('label', text(raw.label, 60, 'la etiqueta', { optional: true })),
+    ...optional('description', text(raw.description, 600, 'la descripción', { optional: true })),
+    ...optional('visualStyle', text(raw.visualStyle, 300, 'el estilo', { optional: true })),
+    ...(raw.rules
+      ? {
+          rules: {
+            technology: ['preindustrial', 'industrial', 'futuristic'].includes(raw.rules.technology)
+              ? raw.rules.technology
+              : fail('Tecnología desconocida'),
+            magic: raw.rules.magic === true,
+            firearms: raw.rules.firearms === true,
+            ...optional('resource', text(raw.rules.resource, 60, 'el recurso', { optional: true })),
+          },
+        }
+      : {}),
+    victim: {
+      name: text(raw.victim?.name, 80, 'el nombre de la víctima'),
+      role: text(raw.victim?.role, 120, 'el papel de la víctima'),
+    },
+    people,
+    rooms,
+    crime: {
+      culprit: personIds.includes(crime.culprit) ? crime.culprit : fail('Culpable desconocido'),
+      method: methodCatalog.some(m => m.id === crime.method)
+        ? crime.method
+        : fail('Método desconocido'),
+      scene: rooms.some(r => r.id === crime.scene) ? crime.scene : fail('Escena desconocida'),
+      crimeMinute: minute(crime.crimeMinute, 'el crimen'),
+      exitMinute: minute(crime.exitMinute, 'la salida'),
+      deathMinute: minute(crime.deathMinute, 'la muerte'),
+      discoveryMinute: minute(crime.discoveryMinute, 'el hallazgo'),
+      motive: text(crime.motive, 600, 'el móvil'),
+    },
+    alibis: ids(raw.alibis, 'coartadas').map(a => ({
+      person: personIds.includes(a?.person) ? a.person : fail('Coartada de persona desconocida'),
+      room: rooms.some(r => r.id === a.room) ? a.room : fail('Coartada en un lugar desconocido'),
+      from: minute(a.from, 'una coartada'),
+      to: minute(a.to, 'una coartada'),
+      claim: text(a.claim, 400, 'una coartada'),
+    })),
+    clues: ids(raw.clues, 'pistas').map(c => ({
+      id: /^c\d{1,3}$/.test(c?.id) ? c.id : fail('Identificador de pista no válido'),
+      room: rooms.some(r => r.id === c.room) ? c.room : fail('Pista en un lugar desconocido'),
+      title: text(c.title, 120, 'el título de ' + c.id),
+      text: text(c.text, 700, 'el texto de ' + c.id),
+      ...optional('image', image(c.image, c.id)),
+      ...optional('imagePrompt', text(c.imagePrompt, 500, 'la imagen', { optional: true })),
+      fact: normalizeFact(c.fact, file, 'la pista ' + c.id),
+    })),
+    facts: Object.fromEntries(
+      personIds.map(person => [
+        person,
+        ids(raw.facts?.[person], 'declaraciones').map(f => ({
+          id: topics.includes(f?.id) ? f.id : fail('Tema de declaración desconocido'),
+          text: text(f.text, 600, 'una declaración'),
+          ...(f.requires === undefined
+            ? {}
+            : {
+                requires: /^c\d{1,3}$/.test(f.requires) ? f.requires : fail('Requisito no válido'),
+              }),
+        })),
+      ]),
+    ),
+    ...(raw.origin
+      ? {
+          origin: {
+            generator: text(raw.origin.generator, 40, 'el origen'),
+            ...optional('seed', text(raw.origin.seed, 64, 'la semilla', { optional: true })),
+            ...optional(
+              'legacyId',
+              /^orbital-[0-9a-f]{8}$/.test(raw.origin.legacyId) ? raw.origin.legacyId : undefined,
+            ),
+            ...optional(
+              'revision',
+              text(raw.origin.revision, 40, 'la revisión', { optional: true }),
+            ),
+          },
+        }
+      : {}),
+  };
+  if (normalized.clues.length < 6 || normalized.clues.length > 30)
+    fail('Un expediente necesita entre 6 y 30 pistas');
+  if (new Set(normalized.clues.map(c => c.id)).size !== normalized.clues.length)
+    fail('Pistas repetidas');
+  return { id: caseFileId(normalized), ...normalized };
+}
+export function caseFileId(file) {
+  const { id, ...content } = file;
+  const body = JSON.stringify(content);
+  return 'case-' + hash(body) + hash('#' + body);
+}
+
+const overlaps = (f, from, to) => f.from <= to && f.to >= from;
+// Logical audit of a normalized file. Returns errors instead of throwing so an editor
+// can show every problem at once.
+export function analyzeCase(file) {
+  const errors = [],
+    { crime } = file,
+    clues = file.clues,
+    facts = clues.map(c => ({ ...c.fact, source: c.id })),
+    of = type => facts.filter(f => f.type === type),
+    name = id => file.people.find(p => p.id === id)?.name || id;
+  if (
+    !(crime.crimeMinute < crime.exitMinute) ||
+    !(crime.crimeMinute <= crime.deathMinute) ||
+    !(crime.exitMinute < crime.discoveryMinute) ||
+    !(crime.deathMinute <= crime.discoveryMinute)
+  )
+    errors.push(
+      'La cronología es imposible: el hallazgo debe llegar después del crimen y de la salida del culpable.',
+    );
+  const world = worldFromCase(file);
+  if (!prototypeMethods(world).some(m => m.id === crime.method))
+    errors.push('El método no está disponible en esta ambientación o en este lugar.');
+  for (const cause of of('cause'))
+    if (cause.method !== crime.method || cause.room !== crime.scene)
+      errors.push('La causa de la muerte contradice el crimen.');
+  for (const weapon of of('weapon'))
+    if (weapon.method !== crime.method) errors.push('El arma hallada no es la del crimen.');
+  for (const access of of('access'))
+    if (access.method !== crime.method) errors.push('Una pista de acceso habla de otro método.');
+  const alibis = Object.fromEntries(file.alibis.map(a => [a.person, a]));
+  for (const p of file.people) {
+    const a = alibis[p.id];
+    if (!a) errors.push(`${p.name} no tiene coartada.`);
+    else if (a.from > crime.crimeMinute || a.to < crime.exitMinute)
+      errors.push(`La coartada de ${p.name} no cubre la hora del crimen.`);
+    else if (a.room === crime.scene) errors.push(`La coartada de ${p.name} está en la escena.`);
+    if (!file.facts[p.id].some(f => f.id === 'alibi'))
+      errors.push(`${p.name} no puede declarar su coartada.`);
+    if (new Set(file.facts[p.id].map(f => f.id)).size !== file.facts[p.id].length)
+      errors.push(`${p.name} tiene declaraciones repetidas.`);
+    for (const f of file.facts[p.id])
+      if (f.requires && !clues.some(c => c.id === f.requires))
+        errors.push(`Una declaración de ${p.name} depende de una pista que no existe.`);
+  }
+  // Opportunity: an alibi is confirmed by a presence fact in the claimed room covering the
+  // crime, and refuted by an exclusive presence that omits the person or by a presence
+  // elsewhere during the crime.
+  const confirmedBy = {},
+    refutedBy = {};
+  for (const p of file.people) {
+    const a = alibis[p.id];
+    if (!a) continue;
+    confirmedBy[p.id] = of('presence')
+      .filter(
+        f =>
+          f.people.includes(p.id) &&
+          f.room === a.room &&
+          f.from <= crime.crimeMinute &&
+          f.to >= crime.exitMinute,
+      )
+      .map(f => f.source);
+    refutedBy[p.id] = of('presence')
+      .filter(
+        f =>
+          overlaps(f, crime.crimeMinute, crime.exitMinute) &&
+          ((f.exclusive && f.room === a.room && !f.people.includes(p.id)) ||
+            (f.people.includes(p.id) && f.room !== a.room)),
+      )
+      .map(f => f.source);
+    if (confirmedBy[p.id].length && refutedBy[p.id].length)
+      errors.push(`Las pistas confirman y desmienten a la vez la coartada de ${p.name}.`);
+    if (p.id !== crime.culprit && refutedBy[p.id].length)
+      errors.push(`Una pista desmiente la coartada de ${p.name}, que es inocente.`);
+  }
+  const motive = [...new Set(of('motive').map(f => f.person))],
+    access = [...new Set(of('access').flatMap(f => f.people))],
+    opportunity = file.people.map(p => p.id).filter(id => !confirmedBy[id]?.length),
+    suspects = file.people
+      .map(p => p.id)
+      .filter(id => motive.includes(id) && access.includes(id) && opportunity.includes(id));
+  if (!refutedBy[crime.culprit]?.length)
+    errors.push(`Ninguna pista desmiente la coartada de ${name(crime.culprit)}.`);
+  if (suspects.length !== 1 || suspects[0] !== crime.culprit)
+    errors.push(
+      suspects.length > 1
+        ? 'La solución es ambigua: ' +
+            suspects.map(name).join(', ') +
+            ' cumplen las tres condiciones.'
+        : 'Las pistas no permiten deducir al culpable.',
+    );
+  for (const herring of of('herring'))
+    if (!of('explains').some(f => f.clue === herring.source))
+      errors.push('Hay una pista engañosa sin explicación.');
+  for (const explains of of('explains'))
+    if (!of('herring').some(f => f.source === explains.clue))
+      errors.push('Una explicación se refiere a una pista que no es engañosa.');
+  const proof = [
+    of('motive')
+      .filter(f => f.person === crime.culprit)
+      .map(f => f.source),
+    of('access')
+      .filter(f => f.people.includes(crime.culprit))
+      .map(f => f.source),
+    refutedBy[crime.culprit] || [],
+  ];
+  return {
+    errors: [...new Set(errors)],
+    motive,
+    access,
+    opportunity,
+    suspects,
+    proof,
+    herrings: of('herring').length,
+  };
+}
+
+export function validateCaseFile(raw) {
+  const file = normalizeCaseFile(raw),
+    analysis = analyzeCase(file);
+  if (analysis.errors.length) fail('Expediente incoherente: ' + analysis.errors.join(' '));
+  return file;
+}
+
+// World data (setting, cast, places) as the rest of the prototype expects it.
+export function worldFromCase(file) {
+  return {
+    revision: CASE_REVISION,
+    // Free-text worlds keep their description; prepared worlds use the built-in image themes.
+    custom: Boolean(file.description),
+    setting: file.setting,
+    ...optional('label', file.label),
+    ...optional('description', file.description),
+    ...optional('visualStyle', file.visualStyle),
+    ...optional('rules', file.rules),
+    victim: file.victim,
+    world: { title: file.title, people: file.people, rooms: file.rooms },
+  };
+}
+
+// The playable case: the file plus resolved objects and the proof the accusation needs.
+export function hydrateCase(file) {
+  const { crime } = file,
+    analysis = analyzeCase(file);
+  if (analysis.errors.length) fail('Expediente incoherente: ' + analysis.errors.join(' '));
+  return {
+    id: file.id,
+    revision: CASE_REVISION,
+    ...optional('seed', file.origin?.seed),
+    ...optional('legacyId', file.origin?.legacyId),
+    title: file.title,
+    setting: file.setting,
+    people: file.people,
+    rooms: file.rooms,
+    victim: file.victim,
+    method: methodCatalog.find(m => m.id === crime.method),
+    scene: file.rooms.find(r => r.id === crime.scene),
+    culprit: file.people.find(p => p.id === crime.culprit),
+    motive: crime.motive,
+    timing: {
+      crimeMinute: crime.crimeMinute,
+      exitMinute: crime.exitMinute,
+      deathMinute: crime.deathMinute,
+      discoveryMinute: crime.discoveryMinute,
+    },
+    alibis: file.alibis,
+    clues: file.clues,
+    facts: file.facts,
+    proof: analysis.proof,
+    file,
+  };
+}

@@ -114,7 +114,7 @@ const server = http.createServer(async (req, res) => {
       let raw = '';
       for await (const chunk of req) {
         raw += chunk;
-        if (raw.length > 100000) throw Error('Solicitud demasiado grande');
+        if (raw.length > 400000) throw Error('Solicitud demasiado grande');
       }
       const payload = JSON.parse(raw),
         world = await resolvePrototypeWorld(root, payload.state),
@@ -156,7 +156,7 @@ const server = http.createServer(async (req, res) => {
       let raw = '';
       for await (const chunk of req) {
         raw += chunk;
-        if (raw.length > 100000) throw Error('Solicitud demasiado grande');
+        if (raw.length > 400000) throw Error('Solicitud demasiado grande');
       }
       const result = await startImages(root, JSON.parse(raw).state);
       res.setHeader('Content-Type', 'application/json');
@@ -177,7 +177,7 @@ const server = http.createServer(async (req, res) => {
       let raw = '';
       for await (const chunk of req) {
         raw += chunk;
-        if (raw.length > 100000) {
+        if (raw.length > 400000) {
           res.writeHead(413).end();
           return;
         }

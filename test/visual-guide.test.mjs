@@ -55,13 +55,13 @@ test('shared direction reaches every image while evidence subject stays unchange
   const c = createPrototypeCase(data, newPrototype(data, { seed: 'visual-test' })),
     before = imagePlan(data, c),
     after = guidedImagePlan(data, before, guide);
-  assert.equal(after.length, 26);
+  assert.equal(after.length, before.length);
   for (const j of after) {
     assert.ok(j.prompt.includes(guide.lighting));
     if (j.id.startsWith('person-')) assert.ok(j.prompt.includes(guide.population));
     if (j.id.startsWith('room-')) assert.ok(j.prompt.startsWith(guide.architecture));
   }
-  const proof = c.clues.find(x => x.category === 'link' && x.person === c.culprit.id);
+  const proof = c.clues.find(x => x.fact.type === 'weapon');
   assert.ok(after.find(j => j.id === 'clue-' + proof.id).prompt.includes(c.method.imagePrompt));
   assert.deepEqual(guidedImagePlan(data, before, null), before);
 });

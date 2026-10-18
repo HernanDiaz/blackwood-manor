@@ -31,16 +31,15 @@ test('orbital playable prototype instantiates all fifteen methods with compatibl
   for (const m of prototypeMethods(data)) {
     const { s, c } = full(m.id);
     assert.equal(c.method.id, m.id);
-    assert.equal(s.found.length, 15);
+    assert.equal(s.found.length, c.clues.length);
     assert(
       methodRoomPairs('scifi', c.rooms).some(p => p.methodId === m.id && p.roomId === c.scene.id),
     );
     assert.deepEqual(createPrototypeCase(data, s), c);
     assert(c.timing.deathMinute > c.timing.crimeMinute);
-    assert.equal(
-      c.clues.filter(x => x.person === c.culprit.id && x.effect === 'supports').length,
-      3,
-    );
+    assert(c.timing.discoveryMinute > c.timing.exitMinute);
+    assert.equal(c.proof.length, 3);
+    assert(c.proof.every(group => group.length));
   }
 });
 test('secrets and material/timeline admissions require the current actor proof, not a clue from another actor', () => {
@@ -49,17 +48,17 @@ test('secrets and material/timeline admissions require the current actor proof, 
     actor = c.culprit.id;
   assert.deepEqual(
     prototypeFacts(c, s, actor).map(f => f.id),
-    ['alibi', 'motive'],
+    ['alibi', 'motive', 'seen'],
   );
-  const other = c.clues.find(x => x.person !== actor && x.category === 'motive');
+  const other = c.clues.find(x => x.fact.type === 'motive' && x.fact.person !== actor);
   s.found = [other.id];
   assert(!prototypeFacts(c, s, actor).some(f => f.id === 'secret'));
-  for (const [category, topic] of [
-    ['motive', 'secret'],
-    ['link', 'link'],
-    ['opportunity', 'timeline'],
+  for (const [group, topic] of [
+    [0, 'secret'],
+    [1, 'link'],
+    [2, 'timeline'],
   ]) {
-    s.found = [c.clues.find(x => x.person === actor && x.category === category).id];
+    s.found = [c.proof[group][0]];
     assert(prototypeFacts(c, s, actor).some(f => f.id === topic));
   }
 });
@@ -69,7 +68,9 @@ test('save/import preserves case, weapon, evidence, notes and chat and rejects r
   s.pinned = [s.found[0]];
   s.chat = [{ person: 'p1', question: 'coartada', answer: 'Texto guardado' }];
   assert.deepEqual(restorePrototype(data, JSON.stringify(s)), s);
-  assert.throws(() => restorePrototype(data, { ...s, seed: 'changed' }));
+  const edited = structuredClone(s);
+  edited.case.crime.motive = 'Otro móvil.';
+  assert.throws(() => restorePrototype(data, edited));
   assert.throws(() => restorePrototype(data, { ...s, caseId: 'foreign' }));
   assert.throws(() =>
     inspectPrototype(createPrototypeCase(data, newPrototype(data, { seed: 'different' })), s, 'c1'),
@@ -81,7 +82,7 @@ test('6750 accusation combinations identify one solution for every supported met
   let checked = 0;
   for (const m of prototypeMethods(data)) {
     const { c, s } = full(m.id),
-      proof = c.clues.filter(x => x.person === c.culprit.id).map(x => x.id);
+      proof = c.proof.map(group => group[0]);
     let wins = 0;
     for (const p of c.people)
       for (const weapon of prototypeMethods(data))
@@ -102,9 +103,9 @@ test('6750 accusation combinations identify one solution for every supported met
           checked++;
         }
     assert.equal(wins, 1);
-    for (const category of ['motive', 'link', 'opportunity']) {
+    for (const group of c.proof) {
       const state = structuredClone(s),
-        evidence = s.found.filter(id => !c.clues.some(x => x.id === id && x.category === category));
+        evidence = s.found.filter(id => !group.includes(id));
       assert.equal(
         accusePrototype(c, state, {
           person: c.culprit.id,
@@ -143,15 +144,15 @@ test('orbital interrogator does not leak locked facts and rejects unsupported ge
     { state: s, person, question: '¿Qué ocultas?' },
     { useModel: false },
   );
-  assert(!locked.answer.includes(c.motive));
-  const source = c.clues.find(x => x.person === person && x.category === 'motive');
-  s.found = [source.id];
+  const secret = c.facts[person].find(f => f.id === 'secret').text;
+  assert(!locked.answer.includes(secret));
+  s.found = [c.proof[0][0]];
   const unlocked = await respondPrototype(
     data,
     { state: s, person, question: '¿Qué ocultas?' },
     { useModel: false },
   );
-  assert(unlocked.answer.includes(c.motive));
+  assert(unlocked.answer.includes(secret));
   const original = globalThis.fetch;
   try {
     globalThis.fetch = async () => ({

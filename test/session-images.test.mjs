@@ -10,18 +10,14 @@ for (const w of worlds)
       state = newPrototype(data, { seed: 'images-test' }),
       c = createPrototypeCase(data, state),
       plan = imagePlan(data, c);
-    assert.equal(plan.length, 26);
-    assert.equal(new Set(plan.map(j => j.id)).size, 26);
+    assert.equal(plan.length, 5 + c.rooms.length + c.clues.length);
+    assert.equal(new Set(plan.map(j => j.id)).size, plan.length);
     assert.ok(
       plan.every(j => j.prompt.length > 40 && /^(person-p[1-5]|room-r[1-6]|clue-c\d+)$/.test(j.id)),
     );
     assert.equal(
       plan
-        .find(
-          j =>
-            j.id ===
-            'clue-' + c.clues.find(x => x.person === c.culprit.id && x.category === 'link').id,
-        )
+        .find(j => j.id === 'clue-' + c.clues.find(x => x.fact.type === 'weapon').id)
         .prompt.includes(c.method.imagePrompt),
       true,
     );

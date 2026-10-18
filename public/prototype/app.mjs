@@ -10,6 +10,9 @@ import {
   prototypeFacts,
   accusePrototype,
   prototypeResolution,
+  exportCaseFile,
+  worldFromCase,
+  CASE_FORMAT,
   clock,
 } from '/src/prototype-engine.mjs';
 const key = 'blackwood-orbital-prototype-v1',
@@ -46,7 +49,13 @@ function saveDraft(value) {
   } catch {}
 }
 
+// Imported case files have no menu entry; the menu then offers their setting.
+function worldChoice(id, world) {
+  if (['custom', ...worlds.map(w => w.id)].includes(id)) return id;
+  return worlds.some(w => w.id === world.setting) ? world.setting : 'scifi';
+}
 async function savedWorld(raw) {
+  if (raw.version === 2) return worldFromCase(raw.case);
   if (raw.worldId !== 'custom') return loadWorld(raw.worldId || 'scifi');
   const r = await fetch('/api/prototype/validate-world', {
     method: 'POST',
@@ -74,7 +83,12 @@ try {
     try {
       data = await savedWorld(JSON.parse(saved));
       state = restorePrototype(data, saved);
-      setupWorld = state.worldId;
+      if (JSON.parse(saved).version === 1) {
+        localStorage.setItem(key + '-v1-backup', saved);
+        data = worldFromCase(state.case);
+        save();
+      }
+      setupWorld = worldChoice(state.worldId, data);
       preview = data;
       customDescription = data.description || '';
       c = createPrototypeCase(data, state);
@@ -104,12 +118,21 @@ function save() {
   }
 }
 function exportSave() {
-  const raw = state ? JSON.stringify(state, null, 2) : localStorage.getItem(key);
+  download(
+    state ? JSON.stringify(state, null, 2) : localStorage.getItem(key),
+    'mundos-partida.json',
+  );
+}
+// The case without the player's progress: characters, places, crime, clues and statements.
+function exportCase() {
+  download(JSON.stringify(exportCaseFile(state), null, 2), 'mundos-caso.json');
+}
+function download(raw, name) {
   if (!raw) return;
   const url = URL.createObjectURL(new Blob([raw], { type: 'application/json' })),
     a = document.createElement('a');
   a.href = url;
-  a.download = 'orbita-partida.json';
+  a.download = name;
   a.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
@@ -119,13 +142,13 @@ function card(clue, accusation = false) {
 const roomPhrase = placePhrase;
 const prose = text => esc(naturalProse(text, c?.rooms || [], c?.method.object || ''));
 function imageFor(kind, id, fallback) {
-  return state?.imageSet === c?.id
+  return state?.imageSet && [c?.id, c?.legacyId].includes(state.imageSet)
     ? '/prototype/generated/' + state.imageSet + '/' + kind + '-' + id + '.webp'
     : fallback;
 }
 function render() {
   const shown = tab === 'setup' ? preview : data;
-  app.innerHTML = `<header><a class="brand" href="/">O<span>MUNDOS<br><small>DETECTIVE STORIES</small></span></a><div class="save"><a class="small" href="/lab/index.html">Laboratorio</a><button id="export" class="small">Exportar</button><button id="reset-prototype" class="small" ${busy ? 'disabled' : ''}>Reiniciar prototipo</button><label class="small file">Importar<input id="import" type="file" accept="application/json" ${busy ? 'disabled' : ''}></label></div></header>${tab !== 'opening' ? `<section class="intro"><div><span class="eyebrow">PROTOTIPO JUGABLE · ${tab === 'setup' && setupWorld === 'custom' ? 'AMBIENTACIÓN LIBRE' : esc(shown.label || 'Ciencia ficción')}</span><h1>${tab === 'setup' && setupWorld === 'custom' ? 'Imagina tu mundo.' : esc(shown.world.title)}<br><em>Un misterio diferente.</em></h1><p>Cinco sospechosos. Quince pistas.<br>El método y la verdad cambian en cada investigación.</p><p class="hint">Imágenes creadas por el modelo local al comenzar y conservadas con la partida. El motor construye cada caso; Qwen asiste en los interrogatorios.</p></div><div class="manor illustrated"><img src="${tab !== 'setup' ? imageFor('room', shown.world.rooms[0].id, shown.world.rooms[0].image || '/lab/assets/room-r1.webp') : shown.world.rooms[0].image || '/lab/assets/room-r1.webp'}" alt="${esc(shown.world.title)}"><span>MUNDOS<br>INVESTIGACIÓN EXPERIMENTAL</span></div></section>` : ''}${state && !['setup', 'opening'].includes(tab) ? `<section class="brief"><span class="seal">!</span><p><strong>${esc(c.victim.name)} ha muerto en ${esc(roomPhrase(c.scene))}.</strong> El hallazgo se registra a las ${clock(c.timing.deathMinute)}. Investiga la causa, el móvil y las coartadas.</p><strong>${state.found.length}<small> / 15 PISTAS</small></strong></section>` : ''}${
+  app.innerHTML = `<header><a class="brand" href="/">O<span>MUNDOS<br><small>DETECTIVE STORIES</small></span></a><div class="save"><a class="small" href="/lab/index.html">Laboratorio</a><button id="export" class="small">Exportar partida</button>${state ? '<button id="export-case" class="small">Exportar caso</button>' : ''}<button id="reset-prototype" class="small" ${busy ? 'disabled' : ''}>Reiniciar prototipo</button><label class="small file">Importar<input id="import" type="file" accept="application/json" ${busy ? 'disabled' : ''}></label></div></header>${tab !== 'opening' ? `<section class="intro"><div><span class="eyebrow">PROTOTIPO JUGABLE · ${tab === 'setup' && setupWorld === 'custom' ? 'AMBIENTACIÓN LIBRE' : esc(shown.label || 'Ciencia ficción')}</span><h1>${tab === 'setup' && setupWorld === 'custom' ? 'Imagina tu mundo.' : esc(shown.world.title)}<br><em>Un misterio diferente.</em></h1><p>Cinco sospechosos. Varios con motivos y acceso al arma.<br>Solo una persona reúne móvil, acceso y ocasión.</p><p class="hint">Imágenes creadas por el modelo local al comenzar y conservadas con la partida. El motor construye cada caso; Qwen asiste en los interrogatorios.</p></div><div class="manor illustrated"><img src="${tab !== 'setup' ? imageFor('room', shown.world.rooms[0].id, shown.world.rooms[0].image || '/lab/assets/room-r1.webp') : shown.world.rooms[0].image || '/lab/assets/room-r1.webp'}" alt="${esc(shown.world.title)}"><span>MUNDOS<br>INVESTIGACIÓN EXPERIMENTAL</span></div></section>` : ''}${state && !['setup', 'opening'].includes(tab) ? `<section class="brief"><span class="seal">!</span><p><strong>${esc(c.victim.name)} ha muerto en ${esc(roomPhrase(c.scene))}.</strong> El hallazgo se registra a las ${clock(c.timing.discoveryMinute)}. Investiga la causa, el móvil y las coartadas.</p><strong>${state.found.length}<small> / ${c.clues.length} PISTAS</small></strong></section>` : ''}${
     state && !['setup', 'opening'].includes(tab)
       ? `<nav aria-label="Investigación">${[
           ['explore', 'Explorar'],
@@ -150,7 +173,7 @@ function setup() {
 }
 function openingScreen() {
   const opening = state.opening;
-  return `<section class="opening-panel"><span class="eyebrow">PRÓLOGO · ${esc(data.world.title)}</span><h2>Antes de la primera pregunta.</h2><img class="scene-image" src="${imageFor('room', c.scene.id, c.scene.image || '/lab/assets/room-' + c.scene.id + '.webp')}" alt="${esc(c.scene.name)}"><div class="opening-prose"><p>${esc(opening?.arrival || 'Preparando el comienzo de tu investigación…')}</p><p class="opening-fact">A las ${clock(c.timing.deathMinute)} llega el aviso: han encontrado sin vida a ${esc(c.victim.name)} en ${esc(roomPhrase(c.scene))}. La causa y las circunstancias todavía están por esclarecer.</p>${opening ? `<p>${esc(opening.tension)}</p>` : ''}</div><button id="begin-investigation" ${busy ? 'disabled' : ''}>${busy ? 'Preparando el relato…' : state.result ? 'Volver al desenlace →' : 'Comenzar la investigación →'}</button></section>`;
+  return `<section class="opening-panel"><span class="eyebrow">PRÓLOGO · ${esc(data.world.title)}</span><h2>Antes de la primera pregunta.</h2><img class="scene-image" src="${imageFor('room', c.scene.id, c.scene.image || '/lab/assets/room-' + c.scene.id + '.webp')}" alt="${esc(c.scene.name)}"><div class="opening-prose"><p>${esc(opening?.arrival || 'Preparando el comienzo de tu investigación…')}</p><p class="opening-fact">A las ${clock(c.timing.discoveryMinute)} llega el aviso: han encontrado sin vida a ${esc(c.victim.name)} en ${esc(roomPhrase(c.scene))}. La causa y las circunstancias todavía están por esclarecer.</p>${opening ? `<p>${esc(opening.tension)}</p>` : ''}</div><button id="begin-investigation" ${busy ? 'disabled' : ''}>${busy ? 'Preparando el relato…' : state.result ? 'Volver al desenlace →' : 'Comenzar la investigación →'}</button></section>`;
 }
 async function enterCase({ replay = false } = {}) {
   if (state.opening && openingTextIssue(state.opening, c.scene.description)) delete state.opening;
@@ -210,10 +233,12 @@ function content() {
     const actor = c.people.find(p => p.id === person),
       labels = {
         alibi: 'Tu coartada',
-        motive: c.context ? 'Tu relación con la víctima' : 'Tu relación con la dirección',
+        motive: 'Tu relación con la víctima',
         secret: 'El documento sobre ti',
-        link: 'La inspección de tu prueba',
-        timeline: c.context ? 'La prueba de acceso' : 'El registro de acceso',
+        link: 'Tu acceso al arma',
+        timeline: 'Quién confirma tu coartada',
+        seen: 'Lo que viste',
+        object: 'El objeto junto a la puerta',
       };
     return `<h2>Cinco versiones. Contrasta cada una.</h2><div class="suspects">${c.people.map(p => `<button data-person="${p.id}" class="${p.id === person ? 'selected' : ''}" ${busy ? 'disabled' : ''}><span class="avatar"><img src="${imageFor('person', p.id, p.image || '/lab/assets/person-' + p.id + '.webp')}" alt=""></span><strong>${esc(p.name)}</strong><small>${esc(displayRole(p))}</small></button>`).join('')}</div><section class="conversation"><div class="interview-portrait"><img src="${imageFor('person', actor.id, actor.image || '/lab/assets/person-' + actor.id + '.webp')}" alt="${esc(actor.name)}"><span>${esc(actor.name)}<small>${esc(displayRole(actor))}</small></span></div><h3>${esc(actor.name)}</h3><p class="hint">Pregunta con tus palabras. Cada personaje responde con su propia voz; contrasta sus respuestas con las pruebas que encuentres. Los secretos requieren descubrir su documento.</p><div class="messages" aria-live="polite">${
       state.chat
@@ -233,7 +258,7 @@ function content() {
       )}</div><form id="ask"><input name="question" aria-label="Tu pregunta" maxlength="1000" placeholder="¿Dónde estabas cuando ocurrió?" required ${busy ? 'disabled' : ''}><button ${busy ? 'disabled' : ''}>${busy ? 'Escuchando…' : 'Preguntar →'}</button></form></section>`;
   }
   if (tab === 'board')
-    return `<h2>Tu tablero de investigación.</h2><p class="hint">Busca un móvil, un vínculo con el método y una oportunidad. Las pistas fijadas no se pierden al cambiar de habitación.</p><div class="cards">${
+    return `<h2>Tu tablero de investigación.</h2><p class="hint">Varias personas tienen móvil y varias pudieron llegar al arma. Busca a quien además tiene una coartada que no se sostiene. Las pistas fijadas no se pierden al cambiar de habitación.</p><div class="cards">${
       c.clues
         .filter(x => state.pinned.includes(x.id))
         .map(x => card(x))
@@ -246,7 +271,7 @@ function content() {
         .map(x => card(x))
         .join('') || '<p>Explora los escenarios para recoger pruebas.</p>'
     }</div>`;
-  return `<h2>La acusación final.</h2><p>Identifica persona, método y escena. Adjunta pruebas del móvil, del vínculo material y de la oportunidad. Si fallas podrás reabrir el caso.</p><form id="accuse"><div class="fields">${[
+  return `<h2>La acusación final.</h2><p>Identifica persona, método y escena. Adjunta una prueba de su móvil, una de su acceso al arma y una que desmienta su coartada. Si fallas podrás reabrir el caso.</p><form id="accuse"><div class="fields">${[
     ['person', 'Culpable', c.people],
     ['method', 'Método', prototypeMethods(data)],
     ['room', 'Lugar', c.rooms],
@@ -264,6 +289,7 @@ function content() {
 }
 function bind() {
   document.querySelector('#export').onclick = exportSave;
+  document.querySelector('#export-case')?.addEventListener('click', exportCase);
   document.querySelector('#reset-prototype').onclick = async () => {
     if (busy) return;
     try {
@@ -298,17 +324,24 @@ function bind() {
       const file = e.target.files[0];
       if (!file) return;
       if (file.size > 1000000) throw Error('Archivo demasiado grande');
-      const raw = JSON.parse(await file.text()),
-        incoming = await savedWorld(raw),
-        imported = restorePrototype(incoming, raw);
+      const raw = JSON.parse(await file.text());
+      // A case file starts a fresh investigation; a save continues where it was left.
+      const imported =
+          raw.format === CASE_FORMAT
+            ? newPrototype(worldFromCase(raw), { caseFile: raw, worldId: 'file' })
+            : restorePrototype(await savedWorld(raw), raw),
+        incoming = worldFromCase(imported.case);
       data = incoming;
       preview = data;
-      setupWorld = imported.worldId;
+      setupWorld = worldChoice(imported.worldId, incoming);
       customDescription = data.description || '';
       state = imported;
       c = createPrototypeCase(data, state);
-      tab = 'explore';
-      message = 'Partida importada.';
+      tab = raw.format === CASE_FORMAT ? 'setup' : 'explore';
+      message =
+        raw.format === CASE_FORMAT
+          ? 'Caso importado. Pulsa «Continuar la actual» para empezar.'
+          : 'Partida importada.';
       save();
     } catch (e) {
       message = 'No se pudo importar: ' + e.message;
@@ -497,12 +530,12 @@ function bind() {
   });
   const questions = {
     alibi: '¿Dónde estabas durante el crimen?',
-    motive: c?.context
-      ? '¿Cómo era tu relación con la víctima?'
-      : '¿Cómo era tu relación con la dirección?',
-    secret: '¿Qué ocultas sobre el documento?',
-    link: '¿Qué dices de la inspección y el objeto?',
-    timeline: '¿Qué dices de la prueba de acceso y tu coartada?',
+    motive: '¿Cómo era tu relación con la víctima?',
+    secret: '¿Qué dices del documento que encontré sobre ti?',
+    link: '¿Podías llegar al arma del crimen?',
+    timeline: '¿Quién puede confirmar tu coartada?',
+    seen: '¿Viste u oíste algo fuera de lo normal?',
+    object: '¿Es tuyo el objeto que apareció junto a la puerta?',
   };
   document
     .querySelectorAll('[data-prompt]')

@@ -1,5 +1,5 @@
-import { contextualClue, auditPrototype } from './contextual-evidence.mjs';
-import { methodCatalog, methodRoomPairs, methodTiming, methodEvidence } from './method-catalog.mjs';
+// Generated worlds: each investigation is a case file (see case-file.mjs) stored in the save.
+import { methodCatalog } from './method-catalog.mjs';
 import {
   emptyProgress,
   restoreProgress,
@@ -7,281 +7,87 @@ import {
   discoverClue,
   judgeAccusation,
 } from './investigation.mjs';
-const tags = [
-  ['interior', 'life-support'],
-  ['interior'],
-  ['interior', 'life-support'],
-  ['interior', 'industrial', 'elevated'],
-  ['interior', 'cryogenic'],
-  ['interior'],
-];
-const pinnedMethods = [
-  'knife',
-  'blunt',
-  'rope',
-  'drink',
-  'revolver',
-  'medicine',
-  'air',
-  'medical',
-  'power',
-  'laser',
-  'plasma',
-  'fall',
-  'robot',
-  'hatch',
-  'cryo',
-];
-const hash = text => {
-  let n = 2166136261;
-  for (const c of text) {
-    n ^= c.charCodeAt(0);
-    n = Math.imul(n, 16777619);
-  }
-  return (n >>> 0).toString(16).padStart(8, '0');
-};
-const rng = seed => {
-  let a = parseInt(hash(seed), 16);
-  return () => {
-    a += 0x6d2b79f5;
-    let n = a;
-    n = Math.imul(n ^ (n >>> 15), n | 1);
-    n ^= n + Math.imul(n ^ (n >>> 7), n | 61);
-    return ((n ^ (n >>> 14)) >>> 0) / 4294967296;
-  };
-};
-const pick = (items, random) => items[Math.floor(random() * items.length)];
-export const clock = n =>
-  Math.floor(n / 60)
-    .toString()
-    .padStart(2, '0') +
-  ':' +
-  (n % 60).toString().padStart(2, '0');
-export function prototypeRooms(data) {
-  return data.world.rooms.map((r, i) => ({ ...r, tags: r.tags || tags[i] }));
-}
-export function prototypeMethods(data) {
-  const pairs = methodRoomPairs(data.setting || 'scifi', prototypeRooms(data));
-  return methodCatalog.filter(
-    m =>
-      (!data.setting || data.setting === 'scifi' ? pinnedMethods.includes(m.id) : true) &&
-      (!data.rules ||
-        [
-          'knife',
-          'blunt',
-          'rope',
-          'drink',
-          ...(data.rules.technology === 'preindustrial' ? ['sword', 'crossbow'] : []),
-          ...(data.rules.firearms ? ['revolver'] : []),
-          ...(data.rules.technology !== 'preindustrial' ? ['medicine'] : []),
-        ].includes(m.id)) &&
-      pairs.some(p => p.methodId === m.id),
-  );
-}
-const motives = [
-  'Había falsificado sus credenciales profesionales. La dirección iba a denunciarlo al consejo al día siguiente.',
-  'Había desviado suministros de la estación. La dirección había reunido pruebas y las entregaría al consejo al día siguiente.',
-  'Había ocultado cobros irregulares en contratos. La dirección iba a entregar las cuentas a una auditoría al día siguiente.',
-  'Había vendido información reservada de la estación. La dirección había descubierto la operación y presentaría las pruebas al día siguiente.',
-];
-export function createPrototypeCase(
-  data,
-  { seed, previousMethodId = '', previousPersonId = '', forcedMethodId = '' } = {},
-) {
-  if (
-    !['orbital-v1', 'noir-v1', 'medieval-v1', 'fantasy-v1', 'custom-v1', 'custom-v2'].includes(
-      data.revision,
-    ) ||
-    typeof seed !== 'string' ||
-    !/^[a-zA-Z0-9-]{1,64}$/.test(seed)
-  )
-    throw Error('Semilla o mundo incompatible');
-  const random = rng(seed),
-    people = data.world.people,
-    rooms = prototypeRooms(data);
-  let pool = prototypeMethods(data),
-    previous = pool.find(m => m.id === previousMethodId);
-  if (forcedMethodId) {
-    pool = pool.filter(m => m.id === forcedMethodId);
-    if (!pool.length) throw Error('Método no disponible en esta ambientación');
-  } else if (previous && pool.some(m => m.family !== previous.family))
-    pool = pool.filter(m => m.family !== previous.family);
-  const method = pick(pool, random),
-    pairs = methodRoomPairs(data.setting || 'scifi', rooms).filter(p => p.methodId === method.id),
-    pair = pick(pairs, random),
-    scene = rooms.find(r => r.id === pair.roomId);
-  const culprit = pick(
-      people.filter(p => p.id !== previousPersonId),
-      random,
-    ),
-    safe = rooms.filter(r => r.id !== scene.id),
-    innocent = people.filter(p => p.id !== culprit.id),
-    motive = pick(data.motives || motives, random);
-  const timing = methodTiming(method, 1200 + Math.floor(random() * 30) * 5),
-    from = clock(timing.windowStart),
-    to = clock(timing.windowEnd),
-    at = clock(timing.crimeMinute);
-  const alibis = people.map(person => {
-    const i = innocent.findIndex(p => p.id === person.id),
-      partner = i < 0 ? null : innocent[i % 2 === 0 ? i + 1 : i - 1],
-      room = i < 0 ? safe[2] : safe[Math.floor(i / 2)];
-    return {
-      person: person.id,
-      room: room.id,
-      witness: partner?.id || null,
-      claim:
-        i < 0
-          ? `Estuve a solas en «${room.name}» de ${from} a ${to}. No entré en «${scene.name}» durante ese intervalo.`
-          : `Estuve con ${partner.name} en «${room.name}» de ${from} a ${to}.`,
-    };
-  });
-  const clues = [];
-  for (const [g, category] of ['motive', 'link', 'opportunity'].entries())
-    for (const [i, p] of people.entries()) {
-      const guilty = p.id === culprit.id,
-        alibi = alibis.find(a => a.person === p.id),
-        partner = people.find(x => x.id === alibi.witness),
-        room = rooms.find(r => r.id === alibi.room),
-        id = 'c' + (g * 5 + i + 1);
-      let text, title;
-      if (g === 0) {
-        title = 'Documento de ' + p.name;
-        text = guilty
-          ? `Documento recibido y firmado por ${p.name}: ${motive}`
-          : `Solicitud firmada por ${p.name} para revisar sus turnos de trabajo. Refleja un desacuerdo laboral, no una amenaza ni una prueba del crimen.`;
-      }
-      if (g === 1) {
-        title = 'Inspección de ' + p.name;
-        text = guilty
-          ? methodEvidence(method, p.name, at)
-          : `La inspección no encontró un vínculo material entre ${p.name} y el objeto del crimen. Las pruebas independientes descartan su intervención durante el intervalo investigado.`;
-      }
-      if (g === 2) {
-        title = 'Registro de ' + p.name;
-        text = guilty
-          ? `El registro independiente identifica a ${p.name} entrando en «${scene.name}» a las ${at} y saliendo a las ${clock(timing.crimeMinute + 2)}. Contradice su afirmación de haber permanecido en «${safe[2].name}».`
-          : `El registro continuo confirma que ${p.name} y ${partner.name} permanecieron en «${room.name}» de ${from} a ${to}. Ninguno pudo entrar en «${scene.name}» durante el crimen.`;
-      }
-      const contextual =
-        data.revision === 'custom-v2'
-          ? contextualClue({
-              data,
-              g,
-              p,
-              guilty,
-              motive,
-              method,
-              at,
-              from,
-              to,
-              scene,
-              safe,
-              room,
-              partner,
-              timing,
-              clock,
-            })
-          : null;
-      if (contextual) {
-        text = contextual.text;
-        title = contextual.title;
-      }
-      clues.push({
-        ...(contextual ? { imagePrompt: contextual.imagePrompt } : {}),
-        id,
-        person: p.id,
-        category,
-        effect: g === 0 || guilty ? 'supports' : 'excludes',
-        room: rooms[(g * 5 + i) % rooms.length].id,
-        title,
-        text,
-        image:
-          g === 1 && guilty
-            ? (data.setting &&
-              ['shotgun', 'sword', 'crossbow', 'artifact', 'alchemy'].includes(method.id)
-                ? '/prototype/world-assets-v1/'
-                : '/prototype/assets/') +
-              'method-' +
-              method.id +
-              '.webp'
-            : data.setting
-              ? '/assets/blackwood-complete-v1/clue-letter.webp'
-              : '/lab/assets/clue-' + id + '.webp',
-      });
-    }
-  const signature = hash(
-    JSON.stringify({
-      revision: data.revision,
-      seed,
-      method,
-      scene: scene.id,
-      culprit: culprit.id,
-      timing,
-      motive,
-      alibis,
-      clues,
-      world: data.world,
-    }),
-  );
-  const result = {
-    ...(data.revision === 'custom-v2' ? { context: data.rules } : {}),
-    id: 'orbital-' + signature,
-    revision: data.revision,
-    seed,
-    people,
-    rooms,
-    method,
-    scene,
-    culprit,
-    motive,
-    timing,
-    alibis,
-    clues,
-    victim: data.victim,
-  };
-  if (data.revision === 'custom-v2') auditPrototype(result);
-  return result;
-}
-export function newPrototype(data, options = {}) {
-  const seed =
-    options.seed ||
-    Array.from(globalThis.crypto.getRandomValues(new Uint32Array(2)), n =>
-      n.toString(16).padStart(8, '0'),
-    ).join('');
-  const selection = {
-    seed,
+import {
+  CASE_FORMAT,
+  CASE_REVISION,
+  normalizeCaseFile,
+  hydrateCase,
+  worldFromCase,
+} from './case-file.mjs';
+import { generateCaseFile } from './case-generator.mjs';
+import { createLegacyCase, legacyCaseFile } from './legacy-prototype-case.mjs';
+import { clock } from './random.mjs';
+export { prototypeRooms, prototypeMethods } from './prototype-worlds.mjs';
+export { clock, worldFromCase, CASE_FORMAT };
+
+function selection(options) {
+  return {
+    seed:
+      options.seed ||
+      Array.from(globalThis.crypto.getRandomValues(new Uint32Array(2)), n =>
+        n.toString(16).padStart(8, '0'),
+      ).join(''),
     previousMethodId: options.previousMethodId || '',
     previousPersonId: options.previousPersonId || '',
     forcedMethodId: options.forcedMethodId || '',
   };
-  const c = createPrototypeCase(data, selection);
+}
+// The playable case of a save, or a newly generated one when there is no case file yet.
+export function createPrototypeCase(data, state) {
+  if (state?.case) {
+    const c = hydrateCase(normalizeCaseFile(state.case));
+    if (state.caseId && state.caseId !== c.id)
+      throw Error('La definición del caso no coincide con el guardado');
+    return c;
+  }
+  return hydrateCase(generateCaseFile(data, state));
+}
+function worldId(data) {
+  return data && !data.custom ? data.setting || 'scifi' : 'custom';
+}
+// options.caseFile starts the investigation from an imported or edited case file.
+export function newPrototype(data, options = {}) {
+  const chosen = selection(options),
+    file = options.caseFile ? normalizeCaseFile(options.caseFile) : generateCaseFile(data, chosen),
+    c = hydrateCase(file);
   return {
-    version: 1,
-    worldId: data.custom ? 'custom' : data.setting || 'scifi',
-    ...(data.custom ? { customWorld: data } : {}),
-    revision: data.revision,
-    ...selection,
+    version: 2,
+    worldId: options.worldId || worldId(data),
+    revision: CASE_REVISION,
+    ...chosen,
     caseId: c.id,
+    case: file,
     openingSeen: false,
     ...emptyProgress(c.scene.id),
   };
 }
+// Saves before case files (version 1) rebuild their case with the legacy generator and
+// become version 2; data must be the world they were created with.
 export function restorePrototype(data, raw) {
   const s = typeof raw === 'string' ? JSON.parse(raw) : raw;
-  if (
-    !s ||
-    s.version !== 1 ||
-    s.revision !== data.revision ||
-    !Array.isArray(s.found) ||
-    !Array.isArray(s.chat)
-  )
-    throw Error('Guardado orbital incompatible');
-  const c = createPrototypeCase(data, s);
-  if (c.id !== s.caseId) throw Error('La definición del caso no coincide con el guardado');
+  if (!s || ![1, 2].includes(s.version) || !Array.isArray(s.found) || !Array.isArray(s.chat))
+    throw Error('Guardado incompatible');
+  let file, legacyId;
+  if (s.version === 1) {
+    if (s.revision !== data?.revision) throw Error('Guardado orbital incompatible');
+    const old = createLegacyCase(data, s);
+    if (old.id !== s.caseId) throw Error('La definición del caso no coincide con el guardado');
+    file = normalizeCaseFile(legacyCaseFile(data, old));
+    legacyId = old.id;
+  } else file = normalizeCaseFile(s.case);
+  const c = hydrateCase(file);
+  if (s.version === 2 && s.caseId !== c.id)
+    throw Error('La definición del caso no coincide con el guardado');
+  const knownIds = [c.id, legacyId].filter(Boolean);
   return {
-    ...newPrototype(data, s),
+    version: 2,
+    worldId: typeof s.worldId === 'string' ? s.worldId.slice(0, 20) : worldId(data),
+    revision: CASE_REVISION,
+    ...selection({ ...s, seed: /^[a-zA-Z0-9-]{1,64}$/.test(s.seed) ? s.seed : undefined }),
+    caseId: c.id,
+    case: file,
     openingSeen: s.openingSeen === true,
-    ...(s.opening?.caseId === c.id &&
+    ...(knownIds.includes(s.opening?.caseId) &&
     ['arrival', 'tension'].every(
       k => typeof s.opening[k] === 'string' && s.opening[k].length <= 650,
     )
@@ -294,9 +100,14 @@ export function restorePrototype(data, raw) {
           },
         }
       : {}),
-    ...(s.imageSet === c.id ? { imageSet: c.id } : {}),
+    ...(knownIds.includes(s.imageSet) ? { imageSet: s.imageSet } : {}),
     ...restoreProgress(caseView(c), s),
   };
+}
+// The case file of a save, ready to export without the player's progress.
+export function exportCaseFile(state) {
+  const { id, ...file } = normalizeCaseFile(state.case);
+  return file;
 }
 function assertCase(c, state) {
   if (c.id !== state.caseId) throw Error('Las pruebas pertenecen a otra investigación');
@@ -310,49 +121,6 @@ export function prototypeFacts(c, state, person) {
   if (state.result || !c.people.some(p => p.id === person)) return [];
   return unlockedFacts(caseView(c), state, person);
 }
-// What each person can say: alibi and motive from the start, the rest unlocked by their clues.
-function personFacts(c, person) {
-  const alibi = c.alibis.find(a => a.person === person),
-    guilty = person === c.culprit.id,
-    clueOf = category => c.clues.find(x => x.person === person && x.category === category).id;
-  return [
-    { id: 'alibi', text: alibi.claim },
-    {
-      id: 'motive',
-      text: c.context
-        ? 'Mi relación con la víctima era profesional. Había diferencias sobre el reparto de ' +
-          c.context.resource +
-          '.'
-        : 'Mi relación con la dirección era profesional. Había discrepancias sobre las condiciones de trabajo.',
-    },
-    {
-      id: 'secret',
-      requires: clueOf('motive'),
-      text: guilty
-        ? c.motive
-        : c.context
-          ? 'Pedí revisar el reparto de ' +
-            c.context.resource +
-            '. Mi petición no contiene una amenaza.'
-          : 'Pedí revisar mis turnos. Ese documento no contiene una amenaza.',
-    },
-    {
-      id: 'link',
-      requires: clueOf('link'),
-      text: guilty
-        ? `La inspección me vincula con el objeto «${c.method.object}». No puedo negar ese vínculo material.`
-        : 'La inspección descarta que yo interviniera en el crimen.',
-    },
-    {
-      id: 'timeline',
-      requires: clueOf('opportunity'),
-      text: guilty
-        ? `${c.context ? 'La prueba de acceso sitúa' : 'El registro sitúa'} mi entrada en «${c.scene.name}» a las ${clock(c.timing.crimeMinute)}. Mi primera coartada era falsa.`
-        : alibi.claim +
-          (c.context ? ' La prueba de acceso lo confirma.' : ' El registro continuo lo confirma.'),
-    },
-  ];
-}
 const messages = {
   closed: 'La investigación está cerrada',
   closedAccusation: 'La investigación está cerrada',
@@ -360,7 +128,7 @@ const messages = {
   incomplete: 'Completa persona, método y lugar',
   evidence: 'Adjunta al menos tres pruebas descubiertas',
 };
-// Generated cases adapted to the shared investigation rules (see investigation.mjs).
+// Case files adapted to the shared investigation rules (see investigation.mjs).
 function caseView(c) {
   return {
     people: c.people,
@@ -368,19 +136,8 @@ function caseView(c) {
     startRoom: c.scene.id,
     methods: methodCatalog.map(m => m.id),
     clues: c.clues,
-    facts: Object.fromEntries(c.people.map(p => [p.id, personFacts(c, p.id)])),
-    solution: {
-      person: c.culprit.id,
-      method: c.method.id,
-      room: c.scene.id,
-      proof: ['motive', 'link', 'opportunity'].map(category =>
-        c.clues
-          .filter(
-            x => x.person === c.culprit.id && x.category === category && x.effect === 'supports',
-          )
-          .map(x => x.id),
-      ),
-    },
+    facts: c.facts,
+    solution: { person: c.culprit.id, method: c.method.id, room: c.scene.id, proof: c.proof },
     messages,
   };
 }
@@ -404,34 +161,48 @@ export function prototypeReply(c, state, person, topic) {
     ? 'No voy a inventar una respuesta. Pregúntame por mi coartada o muéstrame una prueba.'
     : 'No tengo información para afirmar eso. Puedo responder sobre mi coartada o sobre una prueba que haya encontrado.';
 }
+const plain = text => text.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 export function inferPrototypeTopic(question, c = null) {
-  const q = question
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '');
+  const q = plain(question);
   if (/ignora|instruccion|prompt|quien.*(mato|asesin)|revela.*solucion/.test(q)) return 'unknown';
   if (
-    /registro|mentiste|mentido|contradic|cronolog|guardias?|vigilantes?|testimonio|camara|grabacion|entrada|salida|te vieron|acceso/.test(
+    /panuelo|pitillera|guante|pluma|rosario|broche|bolsa|colgante|auricular|libreta|perdiste|es tuy[oa]|junto a la puerta/.test(
+      q,
+    )
+  )
+    return 'object';
+  if (
+    /registro|mentiste|mentido|contradic|cronolog|guardias?|vigilantes?|centinela|mayordomo|oficial|testimonio|camara|grabacion|nadie te vio|te vieron|cerrad[ao] con llave|confirm/.test(
       q,
     )
   )
     return 'timeline';
+  const objectWords = c?.method?.object
+    ? plain(c.method.object)
+        .split(/\s+/)
+        .filter(w => w.length >= 5)
+    : [];
   if (
-    /arma|objeto|inspeccion|vinculo|huella|rastro|cordon|cuerda|daga|ballesta|cuchillo|fibra|fragmento/.test(
+    /arma|objeto|inspeccion|vinculo|huella|rastro|acceso|llave|cordon|cuerda|daga|espada|ballesta|escopeta|revolver|pistola|veneno|frasco|copa|vial|amuleto|cuchillo|fibra|fragmento/.test(
       q,
     ) ||
-    (c?.method?.object &&
-      q.includes(
-        c.method.object
-          .toLowerCase()
-          .normalize('NFD')
-          .replace(/[\u0300-\u036f]/g, ''),
-      ))
+    objectWords.some(w => q.includes(w))
   )
     return 'link';
-  if (/ocult|secreto|documento|denuncia|credencial|desvi|contrato|cobro/.test(q)) return 'secret';
+  if (
+    /viste|oiste|escuchaste|notaste|alguien (mas|entro|salio)|quien (mas|entro|salio)|encontr|hallazgo|cuerpo|alarma/.test(
+      q,
+    )
+  )
+    return 'seen';
+  if (
+    /ocult|secreto|documento|denuncia|credencial|desvi|contrato|cobro|deuda|testamento|carta|nota|queja|papel/.test(
+      q,
+    )
+  )
+    return 'secret';
   if (/donde|cuando|coartada|con quien|\bhora\b/.test(q)) return 'alibi';
-  if (/relacion|trabajo|direccion|motivo|discrep/.test(q)) return 'motive';
+  if (/relacion|trabajo|direccion|motivo|discrep|conocias|trato/.test(q)) return 'motive';
   return null;
 }
 export function accusePrototype(c, state, { person, method, room, evidence }) {
@@ -439,7 +210,8 @@ export function accusePrototype(c, state, { person, method, room, evidence }) {
   return judgeAccusation(caseView(c), state, { person, method, room, evidence });
 }
 export function prototypeResolution(c, state) {
+  const title = id => '“' + c.clues.find(x => x.id === id).title + '”';
   return state.result === 'won'
-    ? `${c.culprit.name} causó la muerte de ${c.victim.name} mediante «${c.method.name}» en «${c.scene.name}» a las ${clock(c.timing.crimeMinute)}. ${c.motive} Las pruebas del móvil, el vínculo material y el registro de acceso sostienen la acusación.`
-    : 'La acusación no reúne la persona, método, escena y pruebas necesarios. Puedes reabrir la investigación conservando tus hallazgos.';
+    ? `${c.culprit.name} causó la muerte de ${c.victim.name} mediante «${c.method.name}» en «${c.scene.name}» a las ${clock(c.timing.crimeMinute)}. ${c.motive} Lo demuestran el móvil (${title(c.proof[0][0])}), el acceso al arma (${title(c.proof[1][0])}) y la coartada desmentida (${title(c.proof[2][0])}).`
+    : 'La acusación no se sostiene. Necesitas a la persona que reúne móvil, acceso al arma y una coartada desmentida, con una prueba de cada cosa. Puedes reabrir la investigación conservando tus hallazgos.';
 }

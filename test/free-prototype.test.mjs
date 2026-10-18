@@ -102,7 +102,7 @@ test('locked motive never reaches generator or reviewer despite a planted rumor'
 test('found actor document authorizes that secret but never another persons documents', async () => {
   const { s, c } = base(),
     person = c.culprit.id;
-  s.found = c.clues.filter(x => x.person === person && x.category === 'motive').map(x => x.id);
+  s.found = [c.proof[0][0]];
   let received;
   await respondPrototype(
     data,
@@ -115,9 +115,13 @@ test('found actor document authorizes that secret but never another persons docu
       },
     },
   );
-  assert.equal(received.sources.find(f => f.id === 'secret').text, c.motive);
-  const other = c.people.find(p => p.id !== person).id;
-  s.found = c.clues.filter(x => x.person === other && x.category === 'motive').map(x => x.id);
+  assert.equal(
+    received.sources.find(f => f.id === 'secret').text,
+    c.facts[person].find(f => f.id === 'secret').text,
+  );
+  s.found = c.clues
+    .filter(x => x.fact.type === 'motive' && x.fact.person !== person)
+    .map(x => x.id);
   received = null;
   await respondPrototype(
     data,
@@ -245,15 +249,15 @@ test('natural evidence questions route correctly without revealing undiscovered 
   const { s, c } = base();
   const person = c.culprit.id;
   for (const [question, category, topic] of [
-    ['Los guardias te vieron entrar a las 20:00. ¿Cómo lo explicas?', 'opportunity', 'timeline'],
-    ['¿Viste a alguien usar el cordón?', 'link', 'link'],
-    ['Hola, ¿qué dices del testimonio de acceso?', 'opportunity', 'timeline'],
+    ['Los guardias te vieron entrar a las 20:00. ¿Cómo lo explicas?', 2, 'timeline'],
+    ['¿Viste a alguien usar el cordón?', 1, 'link'],
+    ['Hola, ¿qué dices del testimonio de acceso?', 2, 'timeline'],
   ]) {
     s.found = [];
     let r = await respondPrototype(data, { state: s, person, question }, { useModel: false });
     assert.equal(r.topic, 'unknown');
     assert.ok(!r.answer.includes('Mi primera coartada era falsa'));
-    s.found = c.clues.filter(x => x.person === person && x.category === category).map(x => x.id);
+    s.found = [c.proof[category][0]];
     r = await respondPrototype(data, { state: s, person, question }, { useModel: false });
     assert.equal(r.topic, topic);
     assert.equal(r.answer.includes('No tengo información'), false);

@@ -452,7 +452,10 @@ export async function respondPrototype(
         }
       }
       return {
-        answer: accepted.text,
+        // The model sometimes drops the opening question mark.
+        answer: replyUnits(accepted.text)
+          .map(u => (u.endsWith('?') && !u.startsWith('¿') ? '¿' + u : u))
+          .join(' '),
         topic,
         mode: 'prototype-free',
         verification: 'facts-reviewed-experimental',

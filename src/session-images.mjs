@@ -89,15 +89,15 @@ export function imagePlan(data, c) {
   return [
     ...c.people.map((p, i) => ({
       id: 'person-' + p.id,
-      prompt: `portrait of one ${data.custom ? p.imagePrompt : faces[i] + ', ' + costumes[theme][i]}, ${data.visualStyle || style}, plain dark background`,
+      prompt: `portrait of one ${(data.custom && p.imagePrompt) || faces[i] + ', ' + costumes[theme][i]}, ${data.visualStyle || style}, plain dark background`,
     })),
     ...c.rooms.map((r, i) => ({
       id: 'room-' + r.id,
-      prompt: `${data.custom ? 'interior of an enclosed room, ' + r.imagePrompt : locations[theme][i]}, ${data.visualStyle || style}, no people`,
+      prompt: `${data.custom && r.imagePrompt ? 'interior of an enclosed room, ' + r.imagePrompt : locations[theme][i] || 'interior of an enclosed room'}, ${data.visualStyle || style}, no people`,
     })),
     ...c.clues.map(clue => ({
       id: 'clue-' + clue.id,
-      prompt: `${clue.imagePrompt || (clue.category === 'link' && clue.person === c.culprit.id ? c.method.imagePrompt : { motive: 'a handwritten confidential letter with wax seal', link: 'a small evidence box containing a glove', opportunity: 'an open handwritten ledger on a desk' }[clue.category])}, ${style}, close up, no readable text`,
+      prompt: `${clue.imagePrompt || 'a handwritten document on a desk'}, ${style}, close up, no readable text`,
     })),
   ];
 }
@@ -105,19 +105,20 @@ export async function startImages(root, raw) {
   const data = await resolvePrototypeWorld(root, raw),
     state = restorePrototype(data, raw),
     c = createPrototypeCase(data, state),
-    id = c.id;
+    id = c.id,
+    total = imagePlan(data, c).length;
   if (jobs.has(id) && jobs.get(id).status !== 'failed') return publicStatus(jobs.get(id));
   const folder = path.join(root, 'public/prototype/generated', id);
   try {
     const manifest = JSON.parse(await readFile(path.join(folder, 'manifest.json'), 'utf8'));
-    if (manifest.caseId === id && manifest.assets.length === 26) {
+    if (manifest.caseId === id && manifest.assets.length === total) {
       await Promise.all(manifest.assets.map(a => access(path.join(folder, a.file))));
-      const job = { id, status: 'ready', done: 26, total: 26 };
+      const job = { id, status: 'ready', done: total, total };
       jobs.set(id, job);
       return publicStatus(job);
     }
   } catch {}
-  const job = { id, status: 'queued', done: 0, total: 26 };
+  const job = { id, status: 'queued', done: 0, total };
   jobs.set(id, job);
   queue = queue
     .catch(() => {})
@@ -176,7 +177,7 @@ export async function startImages(root, raw) {
           });
         });
         job.status = 'ready';
-        job.done = 26;
+        job.done = total;
       } catch (e) {
         job.status = 'failed';
         job.error = e.message;
@@ -194,11 +195,12 @@ function publicStatus(job) {
   };
 }
 export async function imageStatus(root, id) {
-  if (!/^orbital-[a-f0-9]{8}$/.test(id)) throw Error('Identidad de partida inválida');
+  if (!/^(orbital-[a-f0-9]{8}|case-[a-f0-9]{16})$/.test(id))
+    throw Error('Identidad de partida inválida');
   if (jobs.has(id)) return publicStatus(jobs.get(id));
   const manifest = JSON.parse(
     await readFile(path.join(root, 'public/prototype/generated', id, 'manifest.json'), 'utf8'),
   );
-  if (manifest.caseId !== id || manifest.assets.length !== 26) throw Error('Imágenes incompletas');
-  return { id, status: 'ready', done: 26, total: 26 };
+  if (manifest.caseId !== id || !manifest.assets.length) throw Error('Imágenes incompletas');
+  return { id, status: 'ready', done: manifest.assets.length, total: manifest.assets.length };
 }

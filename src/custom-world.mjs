@@ -1,4 +1,5 @@
 import { checkRoomMeaning } from './prose-policy.mjs';
+import { normalizeCaseFile, worldFromCase } from './case-file.mjs';
 import { worldAttemptLimit, worldStepLabel, worldIssue } from './world-retry-policy.mjs';
 import { requestLocalJson } from './local-llm.mjs';
 import { createHash } from 'node:crypto';
@@ -105,6 +106,7 @@ export function validateCustomWorld(raw) {
   return d;
 }
 export async function resolvePrototypeWorld(root, state) {
+  if (state?.version === 2) return worldFromCase(normalizeCaseFile(state.case));
   return state?.worldId === 'custom'
     ? validateCustomWorld(state.customWorld)
     : JSON.parse(
