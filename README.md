@@ -95,3 +95,5 @@ Primera tanda de correcciones de texto e interpretación de preguntas: CORRECCIO
 Segunda tanda de diálogo, habitaciones y prólogo: SEGUNDA-TANDA-TEXTOS.md. 109 pruebas automáticas superadas; incluye límites del piloto y comprobaciones con Qwen real.
 
 Las investigaciones del prototipo son expedientes JSON que se pueden exportar, editar e importar, con pistas que obligan a deducir al culpable. Consulta EXPEDIENTES.md.
+
+Los interrogatorios del prototipo clasifican la pregunta con un modelo pequeño (Laya, ajustado) y eligen una frase escrita del personaje. Consulta CLASIFICADOR.md.
