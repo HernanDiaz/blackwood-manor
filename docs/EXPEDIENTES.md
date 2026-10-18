@@ -2,7 +2,7 @@
 
 Cada investigación del prototipo de mundos es un **expediente**: un JSON con todo el caso. La partida guardada lo incluye en `state.case`, y el botón **Exportar caso** lo descarga sin el progreso del jugador. **Importar** acepta tanto un expediente (empieza una investigación nueva) como una partida (continúa donde estaba).
 
-Los mundos preparados, los mundos libres y un caso escrito a mano usan el mismo formato. El código está en `src/case-file.mjs` (formato, validación y comprobación lógica) y `src/case-generator.mjs` (generador).
+Los mundos preparados, los casos de los antiguos mundos libres y un caso escrito a mano usan el mismo formato. El código está en `src/case-file.mjs` (formato, validación y comprobación lógica) y `src/case-generator.mjs` (generador).
 
 ## Campos
 
@@ -10,7 +10,7 @@ Los mundos preparados, los mundos libres y un caso escrito a mano usan el mismo 
 |---|---|
 | `format`, `version` | `"mundos-expediente"`, `1` |
 | `title`, `setting` | Título; ambientación `scifi`, `noir`, `medieval` o `fantasy` (decide los métodos posibles y el estilo de las imágenes) |
-| `description`, `visualStyle`, `rules`, `label` | Opcionales. Con `description` el caso se trata como mundo libre |
+| `description`, `visualStyle`, `rules`, `label` | Opcionales. Con `description` las ilustraciones usan los `imagePrompt` del propio caso |
 | `victim` | `{ name, role }` |
 | `people` | Cinco personajes `p1`…`p5`: `name`, `role`, y opcionalmente `personality`, `image`, `imagePrompt` |
 | `rooms` | De 4 a 8 lugares `r1`…: `name`, `description`, y opcionalmente `tags`, `image`, `imagePrompt` |

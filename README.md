@@ -1,99 +1,47 @@
-# Blackwood Manor — La última noche
+# Blackwood Manor y Mundos
 
-MVP jugable en español con cinco variantes escritas de un misterio: cinco sospechosos, seis habitaciones, dieciocho pistas por caso, interrogatorios, secretos condicionados a pruebas, tablero, notas, inventario, acusación y guardado. Cada posible culpable protagoniza una variante. Véase VARIANTES.md para el alcance sin spoilers.
+Juego de detectives en español que funciona sin conexión en el propio equipo. Tiene dos modos:
+
+- **Blackwood Manor** (`http://127.0.0.1:4173`): cinco casos escritos a mano en una mansión inglesa, uno por cada posible culpable. Ver [docs/VARIANTES.md](docs/VARIANTES.md); la solución está en [docs/CASE-SPOILERS.md](docs/CASE-SPOILERS.md).
+- **Mundos** (`http://127.0.0.1:4173/prototype/index.html`): cuatro mundos preparados (ciencia ficción, fantasía, medieval y años 30) en los que cada investigación genera un caso nuevo: culpable, arma, escena, móviles, coartadas y pistas.
 
 ## Ejecutar
 
-Requiere Node.js 22 o posterior. El proyecto está en E:\2026 blackwood manor. No necesita npm install.
+Requiere Node.js 22 o posterior; no necesita `npm install`.
 
-- PILOTO.cmd: inicia Qwen3.5-2B local y el juego usando los modelos y el motor ya descargados. También: node local-play.mjs qwen.
-- JUGAR.cmd o npm start: juego con respuestas del motor, sin cargar un modelo.
-- Abrir http://127.0.0.1:4173. Ctrl+C cierra el servidor; el lanzador local también cierra el modelo que inició.
-- Para un puerto de aplicación diferente: establecer PORT antes de arrancar. El modelo local usa 1235; la aplicación se limita al equipo local.
+- `PILOTO.cmd` (o `node local-play.mjs qwen`): arranca el juego con los modelos locales (Qwen para los prólogos, el clasificador Laya si está entrenado y SDXS para las ilustraciones de cada caso).
+- `JUGAR.cmd` (o `npm start`): el juego sin modelos. Los interrogatorios usan el clasificador estadístico incluido; los prólogos, textos escritos de antemano.
+- Ctrl+C cierra el servidor y los modelos que arrancó el lanzador. `PORT` cambia el puerto (4173 por defecto).
 
-No abrir index.html directamente: los interrogatorios requieren el servidor. No se usan claves ni servicios externos para el piloto local. La rama opcional de API del servidor no está configurada en este piloto.
+## Cómo se juega en Mundos
 
-## Cómo jugar
+Explora las seis salas, recoge las pistas e interroga a los cinco sospechosos con tus propias palabras. Varias personas tienen un móvil y varias pudieron llegar al arma; solo una reúne además una coartada que no se sostiene. Para ganar hay que acusar a esa persona con el arma y la sala correctas, y adjuntar una prueba de cada cosa.
 
-Inspecciona habitaciones, recoge pruebas, interroga y contrasta las versiones de los sospechosos. Fija pistas en el tablero, escribe notas y acusa indicando persona, método, lugar y al menos tres pruebas pertinentes. Si fallas puedes reabrir la investigación sin perder hallazgos.
+La partida se guarda en el navegador. **Exportar partida** guarda el progreso; **Exportar caso** guarda solo el caso, editable e importable.
 
-Una nueva partida elige una de las cinco variantes, excluyendo la inmediatamente anterior. Conserva el estilo de conversación seleccionado. Recargar, exportar o importar mantiene la variante y su revisión. Los guardados anteriores a las variantes conservan el caso original, no cambian de solución. Si ya estaba abierta una versión anterior de la interfaz, recargar antes de empezar una nueva investigación.
+## Cómo está hecho
 
-El guardado es localStorage del navegador; no hay cuenta ni sincronización. Exportar permite guardar un JSON y recuperarlo con Importar. Para reemplazar una partida mediante Reiniciar o Nueva partida se requiere pulsar la confirmación del propio juego.
+| Parte | Dónde | Documentación |
+|---|---|---|
+| Reglas comunes de investigación | `src/investigation.mjs` | — |
+| Formato de los casos («expedientes») y comprobación de que el culpable se puede deducir | `src/case-file.mjs` | [docs/EXPEDIENTES.md](docs/EXPEDIENTES.md) |
+| Generador de casos de los mundos | `src/case-generator.mjs`, `src/method-catalog.mjs` | [docs/METODOS-GENERADOR.md](docs/METODOS-GENERADOR.md) |
+| Frases de los sospechosos y clasificación de preguntas | `src/statements.mjs`, `src/question-router.mjs` | [docs/CLASIFICADOR.md](docs/CLASIFICADOR.md) |
+| Blackwood Manor | `src/engine.mjs`, `src/cases.mjs` | [docs/VARIANTES.md](docs/VARIANTES.md) |
+| Servidor e interfaz | `server.mjs`, `public/` | — |
 
-## Diálogo e imágenes
+Los interrogatorios no generan texto: clasifican la pregunta en un tema y eligen una frase escrita del personaje. Las horas, lugares y nombres los pone el motor, así que ninguna respuesta puede cambiar un hecho.
 
-El modo preciso selecciona formulaciones revisadas del caso. La conversación libre es experimental: Qwen redacta usando solo recuerdos autorizados y la revisión exige respaldo por frase; si se rechaza, el motor responde con el mismo personaje y sus hechos. No se garantiza la corrección semántica general de la prosa libre. Las respuestas antiguas experimentales no se reutilizan como autoridad factual.
+## Pruebas
 
-Elena es orgullosa; Víctor reservado y analítico; Clara directa y prudente; Arthur formal; Julián impaciente y coloquial. Las voces también se mantienen en las respuestas de apoyo. Los secretos requieren la prueba correspondiente. Un testimonio inicial puede contener una mentira deliberada del caso, que otra prueba permite confrontar: no equivale a una invención autorizada del modelo.
+`npm test` ejecuta las pruebas automáticas. Los scripts de `benchmarks/` miden la clasificación de preguntas y otras comparativas; algunos necesitan los modelos locales.
 
-Las 29 imágenes locales cubren cinco personajes, seis escenarios y dieciocho pistas. Se conservan como conjuntos versionados con hashes; no se generan al arrancar o preguntar. Se reutilizan en las variantes y su significado probatorio depende del texto del caso. Son ilustraciones orientativas, no reconstrucciones forenses.
+## Historial
 
-## Arquitectura
+Los informes de pruebas y las versiones anteriores (incluido el antiguo modo de «mundo libre» generado con Qwen, retirado) están en [docs/historial/](docs/historial/). Las partidas guardadas de mundos libres se siguen pudiendo abrir.
 
-- src/engine.mjs: estado, investigación, guardado y acusación sobre la variante activa.
-- src/cases.mjs y src/legacy-case.mjs: casos, cronologías, declaraciones, secretos, pruebas y desenlaces. validateCase audita la estructura y el grafo de deducción.
-- src/local-llm.mjs: clasificación limitada a temas autorizados y catálogo de formulaciones.
-- src/conversation.mjs, src/dialogue-policy.mjs y src/personalities.mjs: generación experimental, revisión y voces.
-- src/visuals.mjs y public/assets/: manifiestos y recursos visuales persistentes.
-- server.mjs: servidor local y endpoint de interrogatorio. public/: interfaz adaptable a móvil, sin dependencias de frontend.
+## Límites
 
-Datos y motor están separados para añadir más casos y reutilizar la lógica en futuras aplicaciones móviles.
-
-## Validación
-
-npm test ejecuta 37 pruebas con Node Test Runner, sin paquetes externos ni llamadas pagadas. Incluyen guardado, secretos, diálogos simulados, imágenes, personalidades y flujos completos de los cinco casos. Se comprueban 450 combinaciones de persona/método/habitación, con una solución ganadora por caso y pruebas suficientes. También se rechazan acusaciones que omiten una categoría de evidencia.
-
-node benchmarks/test-five-cases.mjs prueba los cinco casos con el Qwen local activo y guarda benchmarks/results/five-cases-dialogue.json. En el sondeo registrado las cinco respuestas correspondieron a su variante mediante el catálogo de apoyo. No demuestra la fiabilidad general del texto libre. Los benchmarks históricos fijan explícitamente el caso original para conservar sus comparaciones.
-
-En el navegador se completó una variante: seis habitaciones, dieciocho pistas, acusación y desenlace. Después se comprobó una nueva variante diferente y su persistencia al recargar, usando un origen separado sin tocar la partida del jugador.
-
-## Antes de producción
-
-Quedan ampliar casos y métodos, probar dificultad con jugadores, mejorar seguimiento conversacional y calidad de la prosa libre, empaquetar y firmar para iOS/Android y probar dispositivos reales, accesibilidad y sincronización. La web actual no es una aplicación móvil instalada ni una PWA sin conexión.
-
-La verdad del caso y el estado son visibles y modificables en el cliente; un juego que necesite impedir trampas debe conservarlos y validar acciones en un backend autoritativo. El servidor local no está preparado para exposición pública: requeriría autenticación, persistencia, límites, seguridad de despliegue y observabilidad.
-
-La comprobación estructural no sustituye la revisión editorial de todas las frases. Hay cinco casos finitos, no generación ilimitada. Las variantes nuevas comparten un marco horario y el acónito como veneno; se diferencian por culpable, contexto, coartadas, escena, pruebas y vehículo de administración.
-
-Documentación histórica y técnica adicional: PRUEBAS-LOCALES.md, QWEN-MEJORAS.md, PILOTO.md, ILUSTRACIONES-Y-DIALOGO.md y REGLAS-DIALOGO.md. VARIANTES.md describe la última ampliación.
-
-## Laboratorio de generación por ambientación
-
-El experimento de ciencia ficción está en http://127.0.0.1:4173/lab/index.html. Es una galería de evaluación, sin alterar las partidas del juego. PRUEBAS-GENERICAS.md recoge tres intentos libres rechazados y un piloto guiado con 5 personajes, 6 escenarios, 15 pistas y 26 imágenes, además de sus fallos y reparaciones. Aún no existe el selector ni el adaptador de este expediente al motor principal. npm test incluye ahora 53 pruebas; los scripts del laboratorio que llaman a Qwen o SDXS son independientes y requieren los modelos locales ya instalados.
-
-El generador piloto dispone de un catálogo de veinte armas y métodos, con compatibilidad por ambientación y escena, reglas temporales y pruebas distintas. Se prueban en `test/methods.test.mjs` y `benchmarks/test-method-selection.mjs`. Véase `METODOS-GENERADOR.md`. Esta ampliación no cambia las soluciones de las cinco variantes de Blackwood ya guardadas.
-
-## Prototipo orbital jugable
-
-Disponible en http://127.0.0.1:4173/prototype/index.html y desde el laboratorio. Integra quince métodos de ciencia ficción, creación de casos por semilla, quince pistas, interrogatorios asistidos por Qwen, tablero, notas, acusación y guardado/exportación independientes de Blackwood. El mundo y sus recursos ya están preparados; no genera un mundo nuevo al abrir cada partida. Véase `PROTOTIPO-ORBITAL.md`. Las 53 pruebas incluyen las quince armas y 6.750 combinaciones de acusación.
-
-El prototipo incluye ahora selector inicial de mundos: ciencia ficción, fantasía, medieval, años 30 y aleatorio. Consulta PROTOTIPO-ORBITAL.md. Validación actual: 58 pruebas.
-
-Las partidas nuevas generan 26 imágenes con SDXS local al crearse; véase IMAGENES-POR-PARTIDA.md. Validación actual: 63 pruebas.
-
-La opción Libre permite describir una ambientación y crear el mundo con Qwen antes de generar sus imágenes. Consulta AMBIENTACION-LIBRE.md. Validación actual: 67 pruebas.
-
-Validación de ambientación libre actualizada: 68 pruebas superadas y piloto completo en Marte.
-
-La ambientación libre se crea y verifica ficha a ficha, con borradores reanudables y pistas determinadas por crimen y época. Consulta CREACION-POR-PASOS.md.
-
-Validación de creación por pasos y pistas contextuales: 73 pruebas superadas, más pilotos locales en Marte y un castillo medieval sin magia.
-
-El inicio incluye un prólogo atmosférico asistido por Qwen, persistente y separado de los hechos del crimen. Consulta PROLOGO-NARRATIVO.md. Validación actual: 78 pruebas.
-
-El prototipo usa ahora redacción libre según personalidad con revisión de hechos y secretos por prueba. Consulta INTERROGATORIOS-LIBRES.md. Validación actual: 90 pruebas.
-
-Validación final de interrogatorios libres: 92 pruebas superadas, incluida regresión de lugares y objetos inventados en respuestas emocionales.
-
-Creación de mundos: 5 intentos por ficha por defecto, configurables a 3, 5 u 8. Se muestran los intentos y el motivo de corrección; se conservan las fichas aceptadas y los contadores para reanudar con semillas nuevas. Validación: 95 pruebas automáticas. Piloto real: colonia de enanos completada en 13 pasos, reparando las fichas rechazadas sin regenerar las aceptadas.
-
-Las imágenes nuevas de mundos libres usan una guía visual compartida y cacheada; detalles y límites del piloto en GUIA-VISUAL.md. Validación actual: 99 pruebas automáticas.
-
-Primera tanda de correcciones de texto e interpretación de preguntas: CORRECCIONES-TEXTOS.md. 103 pruebas automáticas superadas; compatibilidad del guardado auditado comprobada.
-
-Segunda tanda de diálogo, habitaciones y prólogo: SEGUNDA-TANDA-TEXTOS.md. 109 pruebas automáticas superadas; incluye límites del piloto y comprobaciones con Qwen real.
-
-Las investigaciones del prototipo son expedientes JSON que se pueden exportar, editar e importar, con pistas que obligan a deducir al culpable. Consulta EXPEDIENTES.md.
-
-Los interrogatorios del prototipo clasifican la pregunta con un modelo pequeño (Laya, ajustado) y eligen una frase escrita del personaje. Consulta CLASIFICADOR.md.
+- La solución del caso viaja al navegador; no está pensado para impedir trampas.
+- El servidor es para uso local, sin autenticación.
+- La versión móvil está por hacer: la idea es empaquetar el juego con los mundos preparados y el clasificador estadístico (unos 20 MB), sin modelos de lenguaje.
