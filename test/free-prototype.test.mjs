@@ -368,3 +368,37 @@ test('an accusation with no authorized confession cannot get an implicit yes', a
   assert.equal(r.reviewReason, 'accusation-needs-evidence');
   assert.match(r.answer, /acusación necesita pruebas/);
 });
+test('playtest answers: recited instructions and invented denials are rejected', () => {
+  const { c } = base(),
+    actor = c.people[0],
+    sources = [{ id: 'motive', text: c.facts[actor.id].find(f => f.id === 'motive').text }];
+  for (const text of [
+    'Puedes expresar una emoción actual o pedir aclaraciones; nunca crees recuerdos, pruebas, relaciones o una solución.',
+    'No tengo relación con ' + c.victim.name + '.',
+    'No tengo nada que recordar sobre ese nombre.',
+    'No tengo recuerdos de lo que pasó con ' + c.victim.name.split(' ')[0] + '.',
+    'No conozco a esa persona.',
+  ])
+    assert.equal(freeDraftGuard(c, actor, sources, { text }), false, text);
+  for (const text of ['Estoy nerviosa, pero responderé.', '¿Qué quieres saber exactamente?'])
+    assert.equal(freeDraftGuard(c, actor, sources, { text }), true, text);
+});
+test('a reply cannot negate or replace an authorized fact', () => {
+  const { c } = base(),
+    actor = c.people[0],
+    sources = [
+      { id: 'object', text: 'Ese guante de cuero es mío. Lo perdí esta mañana en el taller.' },
+    ];
+  assert.equal(
+    freeDraftGuard(c, actor, sources, {
+      text: 'El guante de cuero es mío y no lo perdí en el taller, sino que lo dejé ahí.',
+    }),
+    false,
+  );
+  for (const text of [
+    'Ese guante es mío; lo perdí esta mañana.',
+    'Estoy tranquilo, pero no puedo decirte nada más.',
+    'No sé qué más añadir.',
+  ])
+    assert.equal(freeDraftGuard(c, actor, sources, { text }), true, text);
+});
