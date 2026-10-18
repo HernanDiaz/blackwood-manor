@@ -93,3 +93,5 @@ Las imágenes nuevas de mundos libres usan una guía visual compartida y cachead
 Primera tanda de correcciones de texto e interpretación de preguntas: CORRECCIONES-TEXTOS.md. 103 pruebas automáticas superadas; compatibilidad del guardado auditado comprobada.
 
 Segunda tanda de diálogo, habitaciones y prólogo: SEGUNDA-TANDA-TEXTOS.md. 109 pruebas automáticas superadas; incluye límites del piloto y comprobaciones con Qwen real.
+
+Las investigaciones del prototipo son expedientes JSON que se pueden exportar, editar e importar, con pistas que obligan a deducir al culpable. Consulta EXPEDIENTES.md.
