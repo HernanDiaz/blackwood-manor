@@ -91,3 +91,5 @@ Creación de mundos: 5 intentos por ficha por defecto, configurables a 3, 5 u 8.
 Las imágenes nuevas de mundos libres usan una guía visual compartida y cacheada; detalles y límites del piloto en GUIA-VISUAL.md. Validación actual: 99 pruebas automáticas.
 
 Primera tanda de correcciones de texto e interpretación de preguntas: CORRECCIONES-TEXTOS.md. 103 pruebas automáticas superadas; compatibilidad del guardado auditado comprobada.
+
+Segunda tanda de diálogo, habitaciones y prólogo: SEGUNDA-TANDA-TEXTOS.md. 109 pruebas automáticas superadas; incluye límites del piloto y comprobaciones con Qwen real.
