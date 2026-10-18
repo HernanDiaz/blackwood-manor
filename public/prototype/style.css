@@ -230,3 +230,19 @@ img.missing {
     align-items: flex-start;
   }
 }
+
+/* Showing a clue during the interrogation. */
+.show-evidence {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.show-evidence select {
+  margin: 0;
+  flex: 1;
+}
+@media (max-width: 760px) {
+  .show-evidence {
+    flex-direction: column;
+  }
+}

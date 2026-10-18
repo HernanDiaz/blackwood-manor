@@ -8,6 +8,7 @@ import {
   createPrototypeCase,
   worldWeapons,
   inspectPrototype,
+  presentEvidence,
   prototypeFacts,
   accusePrototype,
   prototypeResolution,
@@ -217,9 +218,16 @@ function content() {
         f =>
           `<button class="small" data-prompt="${f.id}" ${busy ? 'disabled' : ''}>${labels[f.id]}</button>`,
       )
-      .join(
-        '',
-      )}</div><form id="ask"><input name="question" aria-label="Tu pregunta" maxlength="1000" placeholder="¿Dónde estabas cuando ocurrió?" required ${busy ? 'disabled' : ''}><button ${busy ? 'disabled' : ''}>${busy ? 'Escuchando…' : 'Preguntar →'}</button></form></section>`;
+      .join('')}</div>${
+      state.found.length
+        ? `<form id="show" class="show-evidence"><select name="clue" aria-label="Prueba para enseñar" ${busy ? 'disabled' : ''}><option value="">Enseñar una prueba…</option>${c.clues
+            .filter(x => state.found.includes(x.id))
+            .map(x => `<option value="${x.id}">${esc(x.title)}</option>`)
+            .join(
+              '',
+            )}</select><button class="small" ${busy ? 'disabled' : ''}>Enseñar</button></form>`
+        : ''
+    }<form id="ask"><input name="question" aria-label="Tu pregunta" maxlength="1000" placeholder="¿Dónde estabas cuando ocurrió?" required ${busy ? 'disabled' : ''}><button ${busy ? 'disabled' : ''}>${busy ? 'Escuchando…' : 'Preguntar →'}</button></form></section>`;
   }
   if (tab === 'board')
     return `<h2>Tu tablero de investigación.</h2>${notebook()}<h3>Pistas fijadas</h3><p class="hint">Las pistas fijadas no se pierden al cambiar de habitación.</p><div class="cards">${
@@ -449,6 +457,15 @@ function bind() {
   document
     .querySelectorAll('[data-prompt]')
     .forEach(b => (b.onclick = () => ask(questions[b.dataset.prompt])));
+  document.querySelector('#show')?.addEventListener('submit', e => {
+    e.preventDefault();
+    const clue = new FormData(e.target).get('clue');
+    if (busy || !clue) return;
+    presentEvidence(c, state, person, clue);
+    save();
+    render();
+    document.querySelector('.messages')?.scrollTo(0, 999999);
+  });
   document.querySelector('#ask')?.addEventListener('submit', e => {
     e.preventDefault();
     ask(new FormData(e.target).get('question'));

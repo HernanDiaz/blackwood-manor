@@ -137,6 +137,50 @@ export function prototypeReply(c, state, person, topic) {
     ? 'No voy a inventar una respuesta. Pregúntame por mi coartada o muéstrame una prueba.'
     : 'No tengo información para afirmar eso. Puedo responder sobre mi coartada o sobre una prueba que haya encontrado.';
 }
+// Showing a found clue to someone. If it concerns them, they answer with what it unlocks for
+// them (their document, the register of their alibi, their lost object…), in their own voice.
+// If it concerns someone else, they point at that person; otherwise they evade it.
+const otherPerson = [
+  'Eso tiene que ver con {name}, no conmigo.',
+  'Ahí sale {name}, no yo.',
+  'Eso habrá que preguntárselo a {name}.',
+];
+export function presentEvidence(c, state, person, clueId) {
+  assertCase(c, state);
+  const clue = c.clues.find(x => x.id === clueId);
+  if (state.result || !c.people.some(p => p.id === person))
+    throw Error('Interrogatorio no disponible');
+  if (!clue || !state.found.includes(clueId))
+    throw Error('Solo puedes enseñar pruebas encontradas');
+  const shown = state.chat.filter(m => m.person === person && m.evidence === clueId).length,
+    fact = c.facts[person]?.find(f => f.requires === clueId),
+    entry = (answer, topic) => {
+      const message = {
+        person,
+        question: `Le enseñas «${clue.title}».`,
+        answer,
+        topic,
+        evidence: clueId,
+      };
+      state.chat.push(message);
+      return message;
+    };
+  if (fact) {
+    const options = fact.variants?.length ? fact.variants : [fact.text];
+    return entry(options[shown % options.length], fact.id);
+  }
+  const f = clue.fact,
+    concerned = [f.person, ...(f.people || [])].filter(id => id && id !== person);
+  if (concerned.length) {
+    const name = c.people.find(p => p.id === concerned[0]).name;
+    return entry(otherPerson[shown % otherPerson.length].replace('{name}', name), 'unknown');
+  }
+  const evasive = prototypeVoice(c, person, 'unknown');
+  return entry(
+    evasive.length ? evasive[shown % evasive.length] : 'No sé qué decir de eso.',
+    'unknown',
+  );
+}
 const plain = text => text.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 // Offline question routing: ordered rules, first match wins. Questions it cannot place
 // return null and go to the local model when it is available.
