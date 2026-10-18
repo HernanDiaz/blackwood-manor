@@ -67,19 +67,19 @@ export function prototypeFacts(c,state,person){
  }
  return facts;
 }
-const delivery={p1:['Lo explicaré con calma. ','Escucha este detalle. '],p2:['Vamos por partes. ','Hay un detalle importante. '],p3:['Seamos precisos. ','Conviene distinguir los hechos. '],p4:['Escucha. ','Te lo digo sin rodeos. '],p5:['Voy a ser clara. ','Sin rodeos. ']};
+const delivery={p1:['Lo explicaré con calma. ','Escucha este detalle. '],p2:['Vamos por partes. ','Hay un detalle importante. '],p3:['Seamos precisos. ','Conviene distinguir los hechos. '],p4:['Escucha. ','Te lo digo sin rodeos. '],p5:['Lo diré con claridad. ','Sin rodeos. ']};
 export function prototypeOptions(c,state,person,topic){const fact=prototypeFacts(c,state,person).find(f=>f.id===topic);if(!fact)return [];return delivery[person].map(lead=>lead+fact.text);}
 export function prototypeReply(c,state,person,topic){
  const options=prototypeOptions(c,state,person,topic);if(options.length)return options[state.chat.filter(m=>m.person===person).length%options.length];
  return person==='p4'?'No voy a inventar una respuesta. Pregúntame por mi coartada o muéstrame una prueba.':'No tengo información para afirmar eso. Puedo responder sobre mi coartada o sobre una prueba que haya encontrado.';
 }
-export function inferPrototypeTopic(question){
+export function inferPrototypeTopic(question,c=null){
  const q=question.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
  if(/ignora|instruccion|prompt|quien.*(mato|asesin)|revela.*solucion/.test(q))return 'unknown';
- if(/registro|mentiste|mentido|contradic|cronolog/.test(q))return 'timeline';
- if(/arma|objeto|inspeccion|vinculo|huella|rastro/.test(q))return 'link';
+ if(/registro|mentiste|mentido|contradic|cronolog|guardias?|vigilantes?|testimonio|camara|grabacion|entrada|salida|te vieron|acceso/.test(q))return 'timeline';
+ if(/arma|objeto|inspeccion|vinculo|huella|rastro|cordon|cuerda|daga|ballesta|cuchillo|fibra|fragmento/.test(q)||(c?.method?.object&&q.includes(c.method.object.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,''))))return 'link';
  if(/ocult|secreto|documento|denuncia|credencial|desvi|contrato|cobro/.test(q))return 'secret';
- if(/donde|cuando|coartada|con quien|hora/.test(q))return 'alibi';
+ if(/donde|cuando|coartada|con quien|\bhora\b/.test(q))return 'alibi';
  if(/relacion|trabajo|direccion|motivo|discrep/.test(q))return 'motive';
  return null;
 }

@@ -89,3 +89,5 @@ Validación final de interrogatorios libres: 92 pruebas superadas, incluida regr
 Creación de mundos: 5 intentos por ficha por defecto, configurables a 3, 5 u 8. Se muestran los intentos y el motivo de corrección; se conservan las fichas aceptadas y los contadores para reanudar con semillas nuevas. Validación: 95 pruebas automáticas. Piloto real: colonia de enanos completada en 13 pasos, reparando las fichas rechazadas sin regenerar las aceptadas.
 
 Las imágenes nuevas de mundos libres usan una guía visual compartida y cacheada; detalles y límites del piloto en GUIA-VISUAL.md. Validación actual: 99 pruebas automáticas.
+
+Primera tanda de correcciones de texto e interpretación de preguntas: CORRECCIONES-TEXTOS.md. 103 pruebas automáticas superadas; compatibilidad del guardado auditado comprobada.
