@@ -274,6 +274,22 @@ export function roleGender(role, technology, magic) {
   }
   return null;
 }
+// The form of an occupation that agrees with the gender ("monja" for a man -> "monje").
+export function roleForGender(role, gender) {
+  const pair = [...preindustrialPairs, ...magicalPairs, ...industrialPairs, ...futuristicPairs]
+    .map(p => p.split('/'))
+    .find(forms => forms.includes(role));
+  if (!pair || pair.length === 1) return role;
+  return gender === 'femenino' ? pair[1] : pair[0];
+}
+// Both forms of an occupation, so using one rules out the other.
+export function roleForms(role) {
+  return (
+    [...preindustrialPairs, ...magicalPairs, ...industrialPairs, ...futuristicPairs]
+      .map(p => p.split('/'))
+      .find(forms => forms.includes(role)) || [role]
+  );
+}
 // Character traits in both genders; the generator picks two and agrees them.
 export const traits = [
   'serio/seria',
@@ -353,4 +369,40 @@ const light = {
 };
 export function roomDescription(kind, technology) {
   return roomContents[kind] + ', ' + light[technology] + '.';
+}
+const romanValue = roman =>
+  [...roman.toUpperCase()].reduce((total, letter, i, all) => {
+    const value = { I: 1, V: 5, X: 10, L: 50 }[letter],
+      next = { I: 1, V: 5, X: 10, L: 50 }[all[i + 1]] || 0;
+    return total + (value < next ? -value : value);
+  }, 0);
+// The technology level when the request makes it evident, or null to let the model decide.
+// A small model ignores repeated corrections ("a Mars colony needs futuristic technology"),
+// so evident cases are fixed in the schema instead of being retried.
+export function technologyFromRequest(description) {
+  const text = description.toLocaleLowerCase('es').normalize('NFD').replace(/[̀-ͯ]/g, '');
+  if (
+    /\b(marte|mars|venus|jupiter|saturno|planeta|planetaria|espacial|espacio exterior|nave (espacial|estelar)|orbital|galaxia|asteroide|base lunar|colonia lunar|en la luna|androide|cibernetic|cyberpunk|futur)/.test(
+      text,
+    )
+  )
+    return 'futuristic';
+  const year = Number(text.match(/\b(1[0-9]\d\d|2[0-9]\d\d)\b/)?.[1]);
+  if (year) return year < 1780 ? 'preindustrial' : year < 2050 ? 'industrial' : 'futuristic';
+  const century = text.match(/\bsiglo ([ivxl]+)\b/)?.[1];
+  if (century) {
+    const n = romanValue(century);
+    return n <= 18 ? 'preindustrial' : n <= 21 ? 'industrial' : 'futuristic';
+  }
+  if (
+    /\b(medieval|edad media|feudal|castillo|caballeros|vikingo|romano|antigua grecia)\b/.test(text)
+  )
+    return 'preindustrial';
+  if (
+    /\b(victorian|anos (20|30|40|50|60|70|80|90)|ferrocarril|vapor|electricidad|automovil|telegrafo)\b/.test(
+      text,
+    )
+  )
+    return 'industrial';
+  return null;
 }

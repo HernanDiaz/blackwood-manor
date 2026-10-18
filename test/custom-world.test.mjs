@@ -94,7 +94,7 @@ function responses() {
     })),
     {
       name: data.victim.name,
-      role: 'castellano',
+      role: 'mayordomo',
       gender: 'masculino',
       traits: ['reservado', 'orgulloso'],
       imagePrompt: 'portrait of one adult person',
@@ -280,9 +280,8 @@ test('audited monastery failures are retried: copied placeholders, example resou
   // The description comes from the room kind, so a copied placeholder never reaches the player.
   assert.match(result.world.rooms[0].description, /^Un yunque/);
   assert.equal(sent.length, 15);
-  assert.ok(sent[2].anyOf[1].properties.role.enum.includes('monje'));
-  assert.ok(!sent[2].anyOf[1].properties.role.enum.includes('monja'));
-  assert.ok(!sent[2].anyOf[0].properties.role.enum.includes('piloto'));
+  assert.ok(sent[2].properties.role.enum.includes('monje'));
+  assert.ok(!sent[2].properties.role.enum.includes('piloto'));
   assert.ok(sent.at(-1).properties.kind.enum.includes('Dormitorio'));
 });
 test('second monastery pilot: capital names, repeated jobs, era rooms and rambling rooms retried', async () => {
@@ -291,7 +290,7 @@ test('second monastery pilot: capital names, repeated jobs, era rooms and rambli
   const queue = [
     values[0],
     { ...values[1], name: 'LEONOR' },
-    { ...values[2], role: values[1].role },
+    { ...values[2], role: values[1].role, gender: 'femenino' },
     ...values.slice(2, 7),
     { ...values[7], kind: 'Sala de máquinas', name: 'Sala de máquinas' },
     {
@@ -317,7 +316,6 @@ test('occupation, portrait and traits agree with the character gender', async ()
   const values = responses();
   const queue = [
     values[0],
-    { ...values[1], gender: 'masculino' },
     { ...values[1], imagePrompt: 'portrait of an old man in medieval clothes' },
     { ...values[1], traits: ['serio', 'serio'] },
     ...values.slice(1),
@@ -329,7 +327,7 @@ test('occupation, portrait and traits agree with the character gender', async ()
       return queue.shift();
     },
   });
-  assert.equal(calls, 16);
+  assert.equal(calls, 15);
   assert.equal(result.world.people[0].personality, 'Seria y observadora');
 });
 test('characters do not share a surname or a character trait', async () => {
@@ -350,4 +348,46 @@ test('characters do not share a surname or a character trait', async () => {
   });
   assert.equal(calls, 15);
   assert.equal(result.world.people[1].name, values[2].name);
+});
+test('an evident technology is fixed by the request, not left to the model', async () => {
+  const { technologyFromRequest } = await import('../src/world-vocabulary.mjs');
+  for (const [request, expected] of [
+    ['Una colonia minera en el planeta MArte, aislada por una tormenta de arena', 'futuristic'],
+    ['Una base lunar en 2150', 'futuristic'],
+    ['Un faro en una isla del Atlántico durante un temporal, en 1890', 'industrial'],
+    [
+      'Un monasterio benedictino aislado por la nieve en los Pirineos, en el siglo XII',
+      'preindustrial',
+    ],
+    ['Un castillo medieval sobre un volcán', 'preindustrial'],
+    ['Una mansión en los años 30', 'industrial'],
+    ['La nave de una catedral durante una misa', null],
+    ['Una aldea de pescadores bajo la luz de la luna', null],
+  ])
+    assert.equal(technologyFromRequest(request), expected, request);
+  let schema;
+  await assert.rejects(
+    generateCustomWorld('Una colonia minera en el planeta Marte', {
+      maxAttempts: 1,
+      request: async (messages, s) => {
+        schema = s;
+        throw Error('stop');
+      },
+    }),
+  );
+  assert.deepEqual(schema.properties.technology.enum, ['futuristic']);
+  assert.ok(!schema.properties.resource.enum.includes('grano'));
+});
+test('an occupation in the wrong gender is corrected instead of retried', async () => {
+  const values = responses();
+  const queue = [values[0], { ...values[1], role: 'castellano' }, ...values.slice(2)];
+  let calls = 0;
+  const result = await generateCustomWorld(raw.description, {
+    request: async () => {
+      calls++;
+      return queue.shift();
+    },
+  });
+  assert.equal(calls, 13);
+  assert.equal(result.world.people[0].role, 'castellana');
 });

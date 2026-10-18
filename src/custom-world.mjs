@@ -13,10 +13,12 @@ import {
   allResources,
   roomKinds,
   roomKindsFor,
-  roleGender,
+  roleForGender,
+  roleForms,
   traitChoices,
   personality,
   roomDescription,
+  technologyFromRequest,
   echoedInstruction,
 } from './world-vocabulary.mjs';
 const str = { type: 'string' };
@@ -268,15 +270,25 @@ export async function generateCustomWorld(
 
   const worldTask =
     'Define the title and world rules. technology: preindustrial (before steam engines), industrial (steam, railways, gas or electric light, up to the present), futuristic (space travel, colonies on other planets). magic only if the request permits it; firearms only if appropriate. resource is the valuable supply that people in this setting would fight over. No crime.';
+  // When the request makes the technology evident, the schema only allows that value.
+  const technology = technologyFromRequest(description);
+  const noMagic = /sin magia|sin poderes|realista/i.test(description),
+    noFirearms = /sin armas de fuego|sin pistolas/i.test(description);
   const meta = await step(
     'world',
     worldTask,
     object({
       title: str,
-      technology: { type: 'string', enum: ['preindustrial', 'industrial', 'futuristic'] },
-      magic: { type: 'boolean' },
-      firearms: { type: 'boolean' },
-      resource: { type: 'string', enum: allResources },
+      technology: {
+        type: 'string',
+        enum: technology ? [technology] : ['preindustrial', 'industrial', 'futuristic'],
+      },
+      magic: { type: 'boolean', ...(noMagic ? { enum: [false] } : {}) },
+      firearms: { type: 'boolean', ...(noFirearms ? { enum: [false] } : {}) },
+      resource: {
+        type: 'string',
+        enum: technology ? resources[technology] : allResources,
+      },
     }),
     m => {
       text(m.title, 100);
@@ -285,23 +297,10 @@ export async function generateCustomWorld(
         throw Error(
           'resource must fit the technology. Choose one of: ' + resources[m.technology].join(', '),
         );
-      if (/sin magia|sin poderes|realista/i.test(description) && m.magic)
-        throw Error('The request forbids magic. Set magic=false.');
-      if (/sin armas de fuego|sin pistolas/i.test(description) && m.firearms)
-        throw Error('Firearms are forbidden.');
-      if (/marte|mars/i.test(description) && m.technology !== 'futuristic')
-        throw Error('A Mars colony needs futuristic technology.');
-      // A year in the request settles the technology level.
-      const year = Number(description.match(/\b(1[0-9]\d\d|2[01]\d\d)\b/)?.[1]);
-      const expected = !year
-        ? null
-        : year < 1780
-          ? 'preindustrial'
-          : year < 2050
-            ? 'industrial'
-            : 'futuristic';
-      if (expected && m.technology !== expected)
-        throw Error('The year ' + year + ' requires technology=' + expected + '.');
+      if (noMagic && m.magic) throw Error('The request forbids magic. Set magic=false.');
+      if (noFirearms && m.firearms) throw Error('Firearms are forbidden.');
+      if (technology && m.technology !== technology)
+        throw Error('This setting requires technology=' + technology + '.');
     },
   );
   const setting =
@@ -315,7 +314,6 @@ export async function generateCustomWorld(
   const people = [],
     names = new Set(),
     roles = new Set(),
-    otherGender = { femenino: 'masculino', masculino: 'femenino' },
     usedTraits = new Set(),
     surnames = new Set(),
     // The last word of a name with several words, ignoring initials.
@@ -345,36 +343,27 @@ export async function generateCustomWorld(
         JSON.stringify([...names]) +
         '. Rules: ' +
         JSON.stringify(meta),
-      // The gender is fixed before the occupation, which can then only take that form.
-      {
-        anyOf: ['femenino', 'masculino'].map(gender =>
-          object({
-            name: { type: 'string', pattern: '^[' + initial + initial.toLowerCase() + '].{1,70}$' },
-            gender: { type: 'string', enum: [gender] },
-            role: {
-              type: 'string',
-              enum: roleChoices(meta.technology, meta.magic).filter(
-                r =>
-                  !roles.has(r) &&
-                  roleGender(r, meta.technology, meta.magic) !== otherGender[gender],
-              ),
-            },
-            traits: {
-              type: 'array',
-              items: { type: 'string', enum: traitChoices.filter(t => !usedTraits.has(t)) },
-              minItems: 2,
-              maxItems: 2,
-            },
-            imagePrompt: str,
-          }),
-        ),
-      },
+      // A plain schema: llama.cpp rejects too many outputs of an anyOf per gender. An
+      // occupation in the wrong gender is corrected afterwards instead of retried.
+      object({
+        name: { type: 'string', pattern: '^[' + initial + initial.toLowerCase() + '].{1,70}$' },
+        gender: { type: 'string', enum: ['femenino', 'masculino'] },
+        role: {
+          type: 'string',
+          enum: roleChoices(meta.technology, meta.magic).filter(r => !roles.has(r)),
+        },
+        traits: {
+          type: 'array',
+          items: { type: 'string', enum: traitChoices.filter(t => !usedTraits.has(t)) },
+          minItems: 2,
+          maxItems: 2,
+        },
+        imagePrompt: str,
+      }),
       p => {
         text(p.name, 80);
         original(p.name, personTask);
-        const gender = roleGender(p.role, meta.technology, meta.magic);
-        if (gender !== 'común' && gender !== p.gender)
-          throw Error('The occupation must agree with the gender: use the ' + p.gender + ' form.');
+        if (!['femenino', 'masculino'].includes(p.gender)) throw Error('Choose the gender.');
         if (
           (p.gender === 'femenino' && /\b(man|male|monk|gentleman)\b/i.test(p.imagePrompt)) ||
           (p.gender === 'masculino' && /\b(woman|female|nun|lady)\b/i.test(p.imagePrompt))
@@ -387,7 +376,10 @@ export async function generateCustomWorld(
           p.traits.some(t => !traitChoices.includes(t) || usedTraits.has(t))
         )
           throw Error('Choose two different character traits from the list.');
-        if (!roleChoices(meta.technology, meta.magic).includes(p.role) || roles.has(p.role))
+        if (
+          !roleChoices(meta.technology, meta.magic).includes(p.role) ||
+          roles.has(roleForGender(p.role, p.gender))
+        )
           throw Error('Choose a different occupation from the allowed list.');
         if (p.name.replace(/[^a-zà-ÿ]/gi, '').length < 3)
           throw Error('Use a complete proper name, not an initial.');
@@ -415,7 +407,8 @@ export async function generateCustomWorld(
         .toLocaleLowerCase('es')
         .replace(/(^|[\s-])(\p{L})/gu, (_, gap, letter) => gap + letter.toLocaleUpperCase('es'));
     names.add(norm(p.name));
-    roles.add(p.role);
+    p.role = roleForGender(p.role, p.gender);
+    for (const form of roleForms(p.role)) roles.add(form);
     for (const t of p.traits) usedTraits.add(t);
     if (lastName(p.name)) surnames.add(lastName(p.name));
     const { gender, traits, ...person } = p;
