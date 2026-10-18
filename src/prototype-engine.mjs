@@ -201,7 +201,12 @@ export function inferPrototypeTopic(question, c = null) {
     )
   )
     return 'secret';
-  if (/donde|cuando|coartada|con quien|\bhora\b/.test(q)) return 'alibi';
+  if (
+    /donde|cuando|coartada|con quien|\bhora\b|que hiciste|que hacias|saliste|despues de salir|estabas/.test(
+      q,
+    )
+  )
+    return 'alibi';
   if (/relacion|trabajo|direccion|motivo|discrep|conocias|trato/.test(q)) return 'motive';
   return null;
 }

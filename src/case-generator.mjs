@@ -9,7 +9,6 @@
 // another clue explains it. No clue names the culprit or states a conclusion.
 import { methodRoomPairs } from './method-catalog.mjs';
 import { prototypeRooms, prototypeMethods } from './prototype-worlds.mjs';
-import { naturalProse } from './spanish-prose.mjs';
 import { rng, pick, shuffle, clock } from './random.mjs';
 import { CASE_FORMAT, normalizeCaseFile, analyzeCase } from './case-file.mjs';
 
@@ -179,6 +178,43 @@ const objects = {
     device: true,
   },
 };
+// The prepared worlds share six generic room descriptions assigned by position, so a
+// kitchen was described as a workshop. Their JSON stays untouched because old saves hash
+// it; new cases use these descriptions instead.
+const preparedRooms = {
+  'Salón de Ámbar':
+    'Un gran salón de piedra dorada, con columnas talladas y un trono vacío al fondo. La luz entra tamizada por vidrieras de ámbar.',
+  'Archivo de runas':
+    'Estanterías de tablillas grabadas con runas, mesas de consulta y lámparas que brillan sin llama.',
+  'Jardín encantado':
+    'Un jardín cubierto por una cúpula de cristal, con senderos de musgo, flores que se cierran al acercarse y una fuente de agua clara.',
+  'Forja real':
+    'Yunques, fuelles y armas a medio forjar junto a un horno que nunca se apaga del todo.',
+  'Torre del oráculo':
+    'Una sala circular en lo alto de la torre, con una galería abierta, un atril con pergaminos y una esfera de cristal sobre un pedestal.',
+  'Aposentos de huéspedes':
+    'Habitaciones con camas de dosel, arcones de viaje y tapices bordados con escenas del reino.',
+  'Salón del castillo':
+    'Una sala amplia con chimenea, mesas largas de madera y tapices que cubren los muros de piedra.',
+  Scriptorium: 'Atriles, pergaminos, tinteros y plumas bajo ventanas estrechas que dan al patio.',
+  Botica: 'Estantes con frascos de hierbas secas, morteros, una balanza y un banco de trabajo.',
+  Armería: 'Lanzas, espadas y escudos colgados de la pared, con un banco para afilar y un arcón cerrado.',
+  'Torre de vigía':
+    'Una sala estrecha en lo alto de la torre, con una galería abierta al viento y un brasero para las guardias de noche.',
+  'Cámara de invitados':
+    'Una cama con cortinas, un arcón, una jofaina y una mesa pequeña junto a la ventana.',
+  Despacho:
+    'Un escritorio de caoba con cartas ordenadas, un sillón de cuero y una caja fuerte detrás de un cuadro.',
+  Biblioteca:
+    'Estanterías hasta el techo, una escalera de mano, sillones de lectura y un globo terráqueo.',
+  Comedor:
+    'Una mesa larga puesta para la cena, un aparador con vajilla de porcelana y una lámpara de araña.',
+  Cocina: 'Fogones de hierro, cazuelas colgadas, una mesa de trabajo y una despensa al fondo.',
+  Invernadero:
+    'Plantas exóticas bajo una cubierta de cristal, macetas en estantes y una galería elevada con barandilla.',
+  Vestíbulo:
+    'La entrada principal, con un reloj de pie, un perchero con abrigos y la escalera que sube a las habitaciones.',
+};
 const defaultMotives = [
   'Había falsificado sus credenciales profesionales. La víctima iba a denunciarlo al día siguiente.',
   'Había desviado suministros de la estación. La víctima había reunido pruebas y las entregaría al día siguiente.',
@@ -249,10 +285,13 @@ export function generateCaseFile(
   const random = rng('case-v1:' + seed),
     setting = data.setting || 'scifi',
     profile = profiles[setting],
-    rooms = prototypeRooms(data),
+    rooms = prototypeRooms(data).map(r =>
+      data.custom || !preparedRooms[r.name] ? r : { ...r, description: preparedRooms[r.name] },
+    ),
     people = data.world.people,
-    victim = data.victim.name,
-    named = id => people.find(p => p.id === id).name;
+    // Texts use {victim}, {p1}… and {r1}… so a renamed person or place updates every text.
+    victim = '{victim}',
+    named = id => '{' + id + '}';
   if (people.length !== 5 || rooms.length < 6)
     throw Error('El mundo no tiene el reparto necesario');
 
@@ -295,8 +334,8 @@ export function generateCaseFile(
   const [weakA, weakB] = shuffle(weakMotives, random),
     [neutralA, neutralB] = shuffle(neutralDocuments, random),
     accessList = shuffle([culprit, i2, i3], random).map(named);
-  const prose = text => capFirst(naturalProse(text, rooms, method.object));
-  const roomName = room => `«${room.name}»`;
+  const prose = text => text;
+  const roomName = room => `{${room.id}}`;
 
   const clues = [];
   const add = (room, title, text, fact, imagePrompt, image) =>

@@ -5,6 +5,7 @@
 import { methodCatalog } from './method-catalog.mjs';
 import { prototypeMethods } from './prototype-worlds.mjs';
 import { hash } from './random.mjs';
+import { placePhrase } from './spanish-prose.mjs';
 
 export const CASE_FORMAT = 'mundos-expediente';
 export const CASE_REVISION = 'case-v1';
@@ -122,6 +123,7 @@ export function normalizeCaseFile(raw) {
         ? undefined
         : ids(r.tags, 'etiquetas').map(t => text(t, 30, 'una etiqueta')),
     ),
+    ...optional('article', ['el', 'la', 'los', 'las'].includes(r.article) ? r.article : undefined),
     ...optional('image', image(r.image, r.id)),
     ...optional('imagePrompt', text(r.imagePrompt, 500, 'la imagen', { optional: true })),
   }));
@@ -365,6 +367,19 @@ export function worldFromCase(file) {
   };
 }
 
+// Replaces {victim}, {p1}… with names and {r1}… with the place and its article.
+export function resolveText(text, file) {
+  const value = text
+    .replace(/\{victim\}/g, file.victim.name)
+    .replace(/\{(p\d)\}/g, (token, id) => file.people.find(p => p.id === id)?.name || token)
+    .replace(/\{(r\d{1,2})\}/g, (token, id) => {
+      const room = file.rooms.find(r => r.id === id);
+      return room ? placePhrase(room) : token;
+    })
+    .replace(/\bde el\b/g, 'del')
+    .replace(/\ba el\b/g, 'al');
+  return value.charAt(0).toLocaleUpperCase('es') + value.slice(1);
+}
 // The playable case: the file plus resolved objects and the proof the accusation needs.
 export function hydrateCase(file) {
   const { crime } = file,
@@ -383,16 +398,25 @@ export function hydrateCase(file) {
     method: methodCatalog.find(m => m.id === crime.method),
     scene: file.rooms.find(r => r.id === crime.scene),
     culprit: file.people.find(p => p.id === crime.culprit),
-    motive: crime.motive,
+    motive: resolveText(crime.motive, file),
     timing: {
       crimeMinute: crime.crimeMinute,
       exitMinute: crime.exitMinute,
       deathMinute: crime.deathMinute,
       discoveryMinute: crime.discoveryMinute,
     },
-    alibis: file.alibis,
-    clues: file.clues,
-    facts: file.facts,
+    alibis: file.alibis.map(a => ({ ...a, claim: resolveText(a.claim, file) })),
+    clues: file.clues.map(c => ({
+      ...c,
+      title: resolveText(c.title, file),
+      text: resolveText(c.text, file),
+    })),
+    facts: Object.fromEntries(
+      Object.entries(file.facts).map(([person, facts]) => [
+        person,
+        facts.map(f => ({ ...f, text: resolveText(f.text, file) })),
+      ]),
+    ),
     proof: analysis.proof,
     file,
   };

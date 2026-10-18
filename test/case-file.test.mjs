@@ -102,3 +102,25 @@ test('old saves from a prepared world become case files with the same progress',
   );
   assert.throws(() => restorePrototype(noir, { ...save, caseId: 'orbital-00000000' }));
 });
+
+test('renaming a person or the victim in a case file updates every text', () => {
+  const file = sample(),
+    before = createPrototypeCase(null, { case: file }),
+    oldVictim = file.victim.name,
+    oldName = file.people[2].name;
+  file.victim.name = 'Ramiro Castell';
+  file.people[2].name = 'Olga Brandt';
+  const after = createPrototypeCase(null, { case: file }),
+    texts = [
+      after.motive,
+      ...after.clues.flatMap(x => [x.title, x.text]),
+      ...after.alibis.map(a => a.claim),
+      ...Object.values(after.facts).flatMap(list => list.map(f => f.text)),
+    ].join(' ');
+  assert.ok(!texts.includes(oldVictim));
+  assert.ok(!texts.includes(oldName));
+  assert.ok(texts.includes('Ramiro Castell'));
+  assert.ok(texts.includes('Olga Brandt'));
+  assert.notEqual(after.id, before.id);
+  assert.ok(!/\{(victim|p\d|r\d)\}/.test(texts));
+});

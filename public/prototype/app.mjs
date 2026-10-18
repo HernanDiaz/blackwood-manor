@@ -108,6 +108,29 @@ try {
   app.innerHTML =
     '<h1>No se pudo abrir el prototipo.</h1><p>Comprueba que el servidor sigue activo y recarga la página.</p>';
 }
+// Generates (or reuses) the illustrations of an investigation and records them in its save.
+async function prepareImages(candidate) {
+  let response = await fetch('/api/prototype/images', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ state: { ...candidate, notes: '', chat: [] } }),
+  });
+  let job = await response.json();
+  if (!response.ok) throw Error(job.error);
+  while (job.status !== 'ready') {
+    if (job.status === 'failed') throw Error(job.error);
+    message =
+      job.status === 'queued'
+        ? 'Esperando al generador de imágenes…'
+        : `Generando imágenes de tu partida: ${job.done} / ${job.total}`;
+    render();
+    await new Promise(resolve => setTimeout(resolve, 750));
+    response = await fetch('/api/prototype/images/' + job.id);
+    job = await response.json();
+    if (!response.ok) throw Error(job.error);
+  }
+  candidate.imageSet = candidate.caseId;
+}
 function save() {
   try {
     localStorage.setItem(key, JSON.stringify(state));
@@ -190,7 +213,7 @@ async function enterCase({ replay = false } = {}) {
       const r = await fetch('/api/prototype/opening', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ state }),
+        body: JSON.stringify({ state: { ...state, notes: '', chat: [] } }),
         signal: AbortSignal.timeout(30000),
       });
       const opening = await r.json();
@@ -331,6 +354,15 @@ function bind() {
             ? newPrototype(worldFromCase(raw), { caseFile: raw, worldId: 'file' })
             : restorePrototype(await savedWorld(raw), raw),
         incoming = worldFromCase(imported.case);
+      if (raw.format === CASE_FORMAT) {
+        busy = true;
+        try {
+          await prepareImages(imported);
+        } catch {
+          // The case is playable with the generic illustrations.
+        }
+        busy = false;
+      }
       data = incoming;
       preview = data;
       setupWorld = worldChoice(imported.worldId, incoming);
@@ -414,26 +446,7 @@ function bind() {
             });
       if (setupWorld === 'custom')
         saveDraft({ description: customDescription, maxAttempts, candidate });
-      let response = await fetch('/api/prototype/images', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ state: candidate }),
-      });
-      let job = await response.json();
-      if (!response.ok) throw Error(job.error);
-      while (job.status !== 'ready') {
-        if (job.status === 'failed') throw Error(job.error);
-        message =
-          job.status === 'queued'
-            ? 'Esperando al generador de imágenes…'
-            : `Generando imágenes de tu partida: ${job.done} / ${job.total}`;
-        render();
-        await new Promise(resolve => setTimeout(resolve, 750));
-        response = await fetch('/api/prototype/images/' + job.id);
-        job = await response.json();
-        if (!response.ok) throw Error(job.error);
-      }
-      candidate.imageSet = candidate.caseId;
+      await prepareImages(candidate);
       data = nextData;
       state = candidate;
       c = createPrototypeCase(data, state);
