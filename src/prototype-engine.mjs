@@ -14,7 +14,7 @@ const motives=[
  'Había vendido información reservada de la estación. La dirección había descubierto la operación y presentaría las pruebas al día siguiente.'
 ];
 export function createPrototypeCase(data,{seed,previousMethodId='',previousPersonId='',forcedMethodId=''}={}){
- if(!['orbital-v1','noir-v1','medieval-v1','fantasy-v1'].includes(data.revision)||typeof seed!=='string'||!/^[a-zA-Z0-9-]{1,64}$/.test(seed))throw Error('Semilla o mundo incompatible');
+ if(!['orbital-v1','noir-v1','medieval-v1','fantasy-v1','custom-v1'].includes(data.revision)||typeof seed!=='string'||!/^[a-zA-Z0-9-]{1,64}$/.test(seed))throw Error('Semilla o mundo incompatible');
  const random=rng(seed),people=data.world.people,rooms=prototypeRooms(data);
  let pool=prototypeMethods(data),previous=pool.find(m=>m.id===previousMethodId);
  if(forcedMethodId){pool=pool.filter(m=>m.id===forcedMethodId);if(!pool.length)throw Error('Método no disponible en esta ambientación');}
@@ -39,7 +39,7 @@ export function newPrototype(data,options={}){
  const seed=options.seed||Array.from(globalThis.crypto.getRandomValues(new Uint32Array(2)),n=>n.toString(16).padStart(8,'0')).join('');
  const selection={seed,previousMethodId:options.previousMethodId||'',previousPersonId:options.previousPersonId||'',forcedMethodId:options.forcedMethodId||''};
  const c=createPrototypeCase(data,selection);
- return {version:1,worldId:data.setting||'scifi',revision:data.revision,...selection,caseId:c.id,room:c.scene.id,found:[],pinned:[],notes:'',chat:[],result:null};
+ return {version:1,worldId:data.custom?'custom':data.setting||'scifi',...(data.custom?{customWorld:data}:{}),revision:data.revision,...selection,caseId:c.id,room:c.scene.id,found:[],pinned:[],notes:'',chat:[],result:null};
 }
 export function restorePrototype(data,raw){
  const s=typeof raw==='string'?JSON.parse(raw):raw;

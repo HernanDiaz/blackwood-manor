@@ -71,3 +71,7 @@ Disponible en http://127.0.0.1:4173/prototype/index.html y desde el laboratorio.
 El prototipo incluye ahora selector inicial de mundos: ciencia ficción, fantasía, medieval, años 30 y aleatorio. Consulta PROTOTIPO-ORBITAL.md. Validación actual: 58 pruebas.
 
 Las partidas nuevas generan 26 imágenes con SDXS local al crearse; véase IMAGENES-POR-PARTIDA.md. Validación actual: 63 pruebas.
+
+La opción Libre permite describir una ambientación y crear el mundo con Qwen antes de generar sus imágenes. Consulta AMBIENTACION-LIBRE.md. Validación actual: 67 pruebas.
+
+Validación de ambientación libre actualizada: 68 pruebas superadas y piloto completo en Marte.
