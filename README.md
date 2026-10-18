@@ -46,4 +46,4 @@ Los informes de pruebas y las versiones anteriores (incluido el antiguo modo de 
 - La solución del caso viaja al navegador; no está pensado para impedir trampas.
 - El servidor es para uso local, sin autenticación.
 - La versión móvil está por hacer: la idea es empaquetar el juego con los mundos preparados y el clasificador estadístico (unos 20 MB), sin modelos de lenguaje.
-- Las ilustraciones de los mundos están por generar: cada elemento tiene ya su `imagePrompt` y su ruta en `public/worlds/<id>/`; mientras faltan, la interfaz las oculta.
+- Las ilustraciones de los mundos se generan una vez, fuera del juego, con `node tools/generate-art.mjs` (ver [docs/MUNDOS.md](docs/MUNDOS.md)); el juego solo lleva los WebP.

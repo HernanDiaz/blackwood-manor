@@ -145,3 +145,24 @@ El jugador debe poder distinguir uno fuerte de uno débil.
 - **`tensions`**: cierre antes de empezar a investigar.
 
 Entre ambos el juego intercala el aviso con la víctima, la sala y la hora. Ninguno nombra personas, armas ni detalles del crimen, porque sirven para cualquier caso.
+
+## Ilustraciones
+
+Se generan una sola vez, en el ordenador de desarrollo, y el juego lleva solo los WebP. Para generarlas:
+
+```bash
+node tools/generate-art.mjs [<id> …] [--force] [--jobs 3]
+```
+
+El script usa la herramienta de imágenes de Codex con la cuenta de ChatGPT con la que esté abierto el CLI `codex`. El modelo se elige con `CODEX_IMAGE_MODEL` (por defecto `gpt-6-astra`). El prompt de cada imagen es su `imagePrompt` más `art.style` del mundo.
+
+Los PNG originales quedan en `work/art/<id>/` y los WebP en `public/worlds/<id>/`:
+
+| Tipo | Formato | Ancho |
+|---|---|---|
+| Retratos | Cuadrado | 768 px |
+| Lugares | 3:2 | 1280 px |
+| Armas, objetos y pistas | Cuadrado | 640 px |
+
+Las imágenes que ya existen no se repiten. Para rehacer una, borra su WebP y su PNG, o usa `--force`.
+
