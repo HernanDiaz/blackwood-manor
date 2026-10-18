@@ -1,0 +1,4 @@
+import test from'node:test';import assert from'node:assert/strict';import{naturalProse}from'../src/spanish-prose.mjs';
+const rooms=[{name:'Sala de Control del Desierto'},{name:'Comedor'},{name:'La cámara sellada'}];
+test('objects read naturally, with gender and no object label',()=>{assert.equal(naturalProse('Una prueba identifica a Ana usando el objeto «cordón trenzado».',rooms,'cordón trenzado'),'Una prueba identifica a Ana usando el cordón trenzado.');assert.equal(naturalProse('Me vincula con el objeto «daga».',rooms,'daga'),'Me vincula con la daga.');});
+test('rooms have articles and contractions',()=>{assert.equal(naturalProse('Carlos permaneció en «Sala de Control del Desierto» de 19:55 a 20:07.',rooms),'Carlos permaneció en la sala de Control del Desierto de 19:55 a 20:07.');assert.equal(naturalProse('La entrada de «Comedor» lleva a «La cámara sellada».',rooms),'La entrada del comedor lleva a la cámara sellada.');});
