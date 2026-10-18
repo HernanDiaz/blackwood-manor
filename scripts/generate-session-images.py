@@ -14,5 +14,5 @@ for i,job in enumerate(request['jobs']):
   temp=file.with_suffix('.tmp');image.save(temp,'WEBP',quality=90);temp.replace(file)
  assets.append(dict(id=job['id'],file=file.name,prompt=job['prompt'],seed=seed,sha256=hashlib.sha256(file.read_bytes()).hexdigest()))
  print(json.dumps(dict(done=i+1)),flush=True)
-manifest=dict(caseId=request['caseId'],model='SDXS local',assets=assets)
+manifest=dict(caseId=request['caseId'],model='SDXS local',visualGuide=request.get('visualGuide'),steps=1,guidance=0,assets=assets)
 temp=folder/'manifest.tmp';temp.write_text(json.dumps(manifest,indent=2),encoding='utf8');temp.replace(folder/'manifest.json')
