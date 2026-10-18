@@ -1,21 +1,33 @@
 // Builds, from a world file, a case file whose solution has to be deduced, not read.
 //
-// Structure (the "medium" difficulty):
-//   motive:      the culprit and two innocents have one
-//   access:      the culprit and two innocents could reach the weapon (one overlaps with motive)
-//   opportunity: three innocents have confirmed alibis; one innocent and the culprit do not,
-//                and only the culprit's alibi is contradicted by a clue
-// Only the culprit belongs to all three groups. One misleading clue points at an innocent and
-// another clue explains it. No clue names the culprit or states a conclusion.
+// Five people with fixed parts in the logic (who plays each part is random):
+//   culprit  motive, access, and an alibi that a clue refutes
+//   i1       a motive and no witnesses, but never access to the weapon
+//   i2       alibi confirmed by a register; finds the body
+//   i3, i4   alibis that confirm each other under the eye of the watchman
+// Only the culprit has a motive, access and an unconfirmed alibi. The difficulty decides how
+// many innocents share the motive and the access, and how many misleading clues there are:
+//   easy    motive: culprit, i1           access: culprit, i2           1 misleading clue
+//   medium  motive: culprit, i1, i2       access: culprit, i2, i3       1 misleading clue
+//   hard    motive: culprit, i1, i2, i3   access: culprit, i2, i3, i4   2 misleading clues
+// The culprit's alibi falls in one of four ways: the watchman kept the door of the room they
+// claim, the room was locked, the register of that room lists only someone else, or (easy only)
+// the watchman saw them go into the scene. Every misleading clue has another that explains it.
+// No clue names the culprit or states a conclusion.
 //
 // Every word that belongs to a setting comes from the world (see docs/MUNDOS.md); the
-// sentences below only join them.
+// sentences below only join them, each in several wordings.
 import { findMethod, fitsRoom } from './method-catalog.mjs';
 import { worldWeapons } from './world-file.mjs';
 import { rng, pick, shuffle, clock } from './random.mjs';
 import { CASE_FORMAT, normalizeCaseFile, analyzeCase } from './case-file.mjs';
 import { statementKinds, phrasings, fillStatement } from './statements.mjs';
 
+export const difficulties = [
+  { id: 'easy', label: 'Fácil' },
+  { id: 'medium', label: 'Media' },
+  { id: 'hard', label: 'Difícil' },
+];
 const capFirst = s => s.charAt(0).toLocaleUpperCase('es') + s.slice(1);
 const lowerFirst = s => s.charAt(0).toLocaleLowerCase('es') + s.slice(1);
 const list = names => names.slice(0, -1).join(', ') + ' y ' + names.at(-1);
@@ -33,41 +45,47 @@ export function chooseWeapon(world, random, { previousMethodId = '', forcedMetho
 
 export function generateCaseFile(
   world,
-  { seed, previousMethodId = '', previousPersonId = '', forcedMethodId = '' } = {},
+  {
+    seed,
+    previousMethodId = '',
+    previousPersonId = '',
+    forcedMethodId = '',
+    difficulty = 'medium',
+  } = {},
 ) {
   if (typeof seed !== 'string' || !/^[a-zA-Z0-9-]{1,64}$/.test(seed))
     throw Error('Semilla no válida');
-  const random = rng('case:' + world.id + ':' + seed),
+  if (!difficulties.some(d => d.id === difficulty)) throw Error('Dificultad desconocida');
+  const random = rng('case:' + world.id + ':' + difficulty + ':' + seed),
+    one = options => pick(options, random),
     { staff, rooms, people } = world,
     // Texts use {victim}, {p1}… and {r1}… so a renamed person or place updates every text.
     victim = '{victim}',
     named = id => '{' + id + '}',
     roomName = room => `{${room.id}}`,
-    guardian = capFirst(staff.guardian);
+    guardian = capFirst(staff.guardian),
+    record = capFirst(staff.record);
 
   const weapon = chooseWeapon(world, random, { previousMethodId, forcedMethodId }),
     method = findMethod(weapon.method),
-    scene = pick(
-      rooms.filter(r => fitsRoom(method.id, r)),
-      random,
-    ),
-    culprit = pick(
-      people.filter(p => p.id !== previousPersonId),
-      random,
-    ).id,
+    scene = one(rooms.filter(r => fitsRoom(method.id, r))),
+    culprit = one(people.filter(p => p.id !== previousPersonId)).id,
     [i1, i2, i3, i4] = shuffle(
       people.filter(p => p.id !== culprit).map(p => p.id),
       random,
     ),
-    herringPerson = pick([i3, i4], random),
-    item = pick(world.items, random),
-    itemArticle = item.gender === 'f' ? 'la' : 'el',
-    pattern = pick(['pair', 'empty'], random),
+    motiveHolders = { easy: [i1], medium: [i1, i2], hard: [i1, i2, i3] }[difficulty],
+    accessHolders = { easy: [culprit, i2], medium: [culprit, i2, i3], hard: [culprit, i2, i3, i4] }[
+      difficulty
+    ],
+    herringPeople = difficulty === 'hard' ? [i3, i4] : [one([i3, i4])],
+    items = shuffle(world.items, random).slice(0, herringPeople.length),
+    pattern = one(difficulty === 'easy' ? ['pair', 'empty', 'seen'] : ['pair', 'empty', 'record']),
     [pairRoom, recordRoom, aloneRoom, emptyRoom, storeRoom] = shuffle(
       rooms.filter(r => r.id !== scene.id),
       random,
     ),
-    claimRoom = pattern === 'pair' ? pairRoom : emptyRoom;
+    claimRoom = { pair: pairRoom, empty: emptyRoom, record: recordRoom, seen: emptyRoom }[pattern];
 
   const crime = 1200 + Math.floor(random() * 30) * 5,
     exit = crime + 3,
@@ -76,16 +94,16 @@ export function generateCaseFile(
     from = crime - 20,
     to = discovery,
     recordTo = discovery - 2,
-    morning = 600 + Math.floor(random() * 12) * 15;
-  const motive = pick(world.motives, random),
-    [weakA, weakB] = shuffle(world.documents.weak, random),
-    [neutralA, neutralB] = shuffle(world.documents.neutral, random),
-    accessList = shuffle([culprit, i2, i3], random).map(named),
+    time = clock,
+    article = item => (item.gender === 'f' ? 'la' : 'el');
+  const motive = one(world.motives),
+    weakDocs = shuffle(world.documents.weak, random),
+    neutralDocs = shuffle(world.documents.neutral, random),
     fill = (template, person) =>
       template.replace(/\{victim\}/g, victim).replace(/\{person\}/g, named(person));
 
   const clues = [];
-  const add = (room, title, text, fact, image) =>
+  const add = (room, title, text, fact, image) => {
     clues.push({
       id: 'c' + (clues.length + 1),
       room: room.id,
@@ -94,86 +112,135 @@ export function generateCaseFile(
       ...(image ? { image } : {}),
       fact,
     });
+    return clues.at(-1).id;
+  };
   const art = world.clueArt;
   add(
     scene,
     staff.report,
-    `${weapon.cause} Sitúa la muerte hacia las ${clock(death)}.`,
+    `${weapon.cause} ${one(['Sitúa la muerte hacia las', 'Fija la hora de la muerte hacia las', 'La muerte se produjo hacia las'])} ${time(death)}.`,
     { type: 'cause', method: method.id, room: scene.id, minute: death },
     art.report.image,
   );
   add(
     scene,
-    weapon.device ? 'Manipulación en la escena' : 'Objeto del crimen',
     weapon.device
-      ? `Alguien manipuló a mano ${weapon.weapon} en ${roomName(scene)}. No queda ninguna marca que diga quién.`
-      : `Junto al cuerpo apareció ${weapon.weapon}. No estaba en el lugar donde se guarda habitualmente.`,
+      ? one(['Manipulación en la escena', 'Algo fuera de su sitio'])
+      : one(['Objeto del crimen', 'Junto al cuerpo']),
+    weapon.device
+      ? one([
+          `Alguien manipuló a mano ${weapon.weapon} en ${roomName(scene)}. No queda ninguna marca que diga quién.`,
+          `En ${roomName(scene)} hay señales de que alguien manipuló a mano ${weapon.weapon}. Nada indica quién lo hizo.`,
+        ])
+      : one([
+          `Junto al cuerpo apareció ${weapon.weapon}. No estaba en el lugar donde se guarda habitualmente.`,
+          `${capFirst(weapon.weapon)} estaba en el suelo, cerca del cuerpo, lejos de donde se guarda.`,
+        ]),
     { type: 'weapon', method: method.id, room: scene.id },
     weapon.image,
   );
   add(
     scene,
-    'Aviso del hallazgo',
-    `${named(i2)} encontró a ${victim} en ${roomName(scene)} a las ${clock(discovery)} y dio la alarma.`,
+    one(['Aviso del hallazgo', 'Quién dio la alarma']),
+    one([
+      `${named(i2)} encontró a ${victim} en ${roomName(scene)} a las ${time(discovery)} y dio la alarma.`,
+      `A las ${time(discovery)}, ${named(i2)} entró en ${roomName(scene)}, encontró a ${victim} y dio la alarma.`,
+    ]),
     { type: 'discovery', person: i2, room: scene.id, minute: discovery },
     art.testimony.image,
   );
-  const herringId = 'c' + (clues.length + 1);
-  add(
-    scene,
-    'Objeto junto a la puerta',
-    `Junto a la puerta de ${roomName(scene)} apareció ${item.gender === 'f' ? 'una' : 'un'} ${item.noun} que pertenece a ${named(herringPerson)}.`,
-    { type: 'herring', person: herringPerson, room: scene.id },
-    item.image,
-  );
-  add(
-    storeRoom,
-    'Quién podía llegar al arma',
-    pick(
-      [
-        `Según ${staff.guardian}, solo ${list(accessList)} tenían acceso a ${weapon.access}.`,
-        `Anotación de ${staff.guardian}: solo ${list(accessList)} tenían permiso para usar ${weapon.access}.`,
-      ],
-      random,
+  const herrings = herringPeople.map((person, k) => ({
+    person,
+    item: items[k],
+    clue: add(
+      scene,
+      k ? 'Otro objeto junto a la puerta' : one(['Objeto junto a la puerta', 'Un objeto perdido']),
+      one([
+        `Junto a la puerta de ${roomName(scene)} apareció ${items[k].gender === 'f' ? 'una' : 'un'} ${items[k].noun} que pertenece a ${named(person)}.`,
+        `En el umbral de ${roomName(scene)} había ${items[k].gender === 'f' ? 'una' : 'un'} ${items[k].noun}. Es de ${named(person)}.`,
+      ]),
+      { type: 'herring', person, room: scene.id },
+      items[k].image,
     ),
-    { type: 'access', method: method.id, people: [culprit, i2, i3] },
+  }));
+  const accessNames = shuffle(accessHolders, random).map(named);
+  const accessClue = add(
+    storeRoom,
+    one(['Quién podía llegar al arma', 'Acceso al arma']),
+    one([
+      `Según ${staff.guardian}, solo ${list(accessNames)} tenían acceso a ${weapon.access}.`,
+      `Anotación de ${staff.guardian}: solo ${list(accessNames)} tenían permiso para usar ${weapon.access}.`,
+    ]),
+    { type: 'access', method: method.id, people: accessHolders },
     art.ledger.image,
   );
   add(
     storeRoom,
-    'Última vez en su sitio',
+    one(['Última vez en su sitio', 'Antes del crimen']),
     weapon.device
-      ? `${guardian} revisó ${weapon.weapon} a las ${clock(crime - 40)} y todo estaba en orden.`
-      : `${guardian} recuerda haber visto ${weapon.seen || weapon.weapon} en su sitio a las ${clock(crime - 40)}.`,
+      ? `${guardian} revisó ${weapon.weapon} a las ${time(crime - 40)} y todo estaba en orden.`
+      : one([
+          `${guardian} recuerda haber visto ${weapon.seen || weapon.weapon} en su sitio a las ${time(crime - 40)}.`,
+          `A las ${time(crime - 40)}, ${weapon.seen || weapon.weapon} seguía en su sitio, según ${staff.guardian}.`,
+        ]),
     { type: 'note' },
     art.testimony.image,
   );
-  add(
+  // The register of a room lists everyone who went in, so it also proves who was not there.
+  const recordClue = add(
     recordRoom,
-    'Registro de ' + roomName(recordRoom),
-    `${capFirst(staff.record)} de ${roomName(recordRoom)} anota la entrada de ${named(i2)} a las ${clock(from)} y su salida a las ${clock(recordTo)}.`,
-    { type: 'presence', people: [i2], room: recordRoom.id, from, to: recordTo },
+    one(['Registro de ' + roomName(recordRoom), 'Entradas en ' + roomName(recordRoom)]),
+    one([
+      `${record} de ${roomName(recordRoom)} anota una sola entrada entre las ${time(from)} y las ${time(recordTo)}: la de ${named(i2)}, que entró a las ${time(from)} y salió a las ${time(recordTo)}.`,
+      `Entre las ${time(from)} y las ${time(recordTo)}, ${staff.record} de ${roomName(recordRoom)} solo recoge a ${named(i2)}: entró a las ${time(from)} y salió a las ${time(recordTo)}.`,
+    ]),
+    {
+      type: 'presence',
+      people: [i2],
+      room: recordRoom.id,
+      from,
+      to: recordTo,
+      exclusive: true,
+    },
     art.ledger.image,
   );
-  add(
+  const pairClue = add(
     pairRoom,
-    'Declaración sobre ' + roomName(pairRoom),
-    `${guardian} vigiló la puerta de ${roomName(pairRoom)} de ${clock(from)} a ${clock(to)}: dentro estaban ${named(i3)} y ${named(i4)}, y nadie más entró ni salió.`,
+    one(['Declaración sobre ' + roomName(pairRoom), 'Vigilancia de ' + roomName(pairRoom)]),
+    one([
+      `${guardian} vigiló la puerta de ${roomName(pairRoom)} de ${time(from)} a ${time(to)}: dentro estaban ${named(i3)} y ${named(i4)}, y nadie más entró ni salió.`,
+      `De ${time(from)} a ${time(to)}, ${staff.guardian} no se movió de la puerta de ${roomName(pairRoom)}. Dentro solo estaban ${named(i3)} y ${named(i4)}; nadie más entró ni salió.`,
+    ]),
     { type: 'presence', people: [i3, i4], room: pairRoom.id, from, to, exclusive: true },
     art.testimony.image,
   );
+  let refuteClue = { pair: pairClue, record: recordClue }[pattern];
   if (pattern === 'empty')
-    add(
+    refuteClue = add(
       emptyRoom,
-      'Llave de ' + roomName(emptyRoom),
-      `La puerta de ${roomName(emptyRoom)} estuvo cerrada con llave de ${clock(from)} a ${clock(to)}. ${guardian} guardaba la única llave y nadie le pidió abrir.`,
+      one(['Llave de ' + roomName(emptyRoom), 'Puerta cerrada']),
+      one([
+        `La puerta de ${roomName(emptyRoom)} estuvo cerrada con llave de ${time(from)} a ${time(to)}. ${guardian} guardaba la única llave y nadie le pidió abrir.`,
+        `Nadie pudo entrar en ${roomName(emptyRoom)} de ${time(from)} a ${time(to)}: la puerta estaba cerrada con llave, y ${staff.guardian}, que tenía la única, no se la dio a nadie.`,
+      ]),
       { type: 'presence', people: [], room: emptyRoom.id, from, to, exclusive: true },
       art.testimony.image,
     );
-  add(
+  if (pattern === 'seen')
+    refuteClue = add(
+      scene,
+      one(['Un testigo', 'Lo que vio ' + staff.guardian]),
+      `${guardian} vio a ${named(culprit)} entrar en ${roomName(scene)} hacia las ${time(crime - 3)}.`,
+      { type: 'presence', people: [culprit], room: scene.id, from: crime - 3, to: crime },
+      art.testimony.image,
+    );
+  const aloneClue = add(
     aloneRoom,
-    'Sin testigos',
-    `Nadie recuerda haber visto a ${named(i1)} entre las ${clock(from)} y las ${clock(to)}.`,
+    one(['Sin testigos', 'Nadie le vio']),
+    one([
+      `Nadie recuerda haber visto a ${named(i1)} entre las ${time(from)} y las ${time(to)}.`,
+      `Entre las ${time(from)} y las ${time(to)}, nadie se cruzó con ${named(i1)}.`,
+    ]),
     { type: 'note' },
     art.testimony.image,
   );
@@ -187,60 +254,55 @@ export function generateCaseFile(
     );
   };
   const documents = {};
-  documents[culprit] = clues.length + 1;
-  add(
+  const [motiveTitle, motiveText] = one([
+    [
+      `Papeles de ${victim}`,
+      `Entre los papeles de ${victim} hay notas sobre ${named(culprit)}: ${lowerFirst(motive)}`,
+    ],
+    [
+      `Carta sin enviar de ${victim}`,
+      `Carta sin enviar de ${victim}: escribe que ${named(culprit)} ${lowerFirst(motive)}`,
+    ],
+  ]);
+  documents[culprit] = add(
     documentRoom(),
-    `Papeles de ${victim}`,
-    pick(
-      [
-        `Entre los papeles de ${victim} hay notas sobre ${named(culprit)}: ${lowerFirst(motive)}`,
-        `Carta sin enviar de ${victim}: escribe que ${named(culprit)} ${lowerFirst(motive)}`,
-      ],
-      random,
-    ),
+    motiveTitle,
+    motiveText,
     { type: 'motive', person: culprit },
     art.document.image,
   );
-  for (const [person, weak] of [
-    [i1, weakA],
-    [i2, weakB],
-  ]) {
-    documents[person] = clues.length + 1;
-    add(
+  motiveHolders.forEach((person, k) => {
+    const weak = weakDocs[k % weakDocs.length];
+    documents[person] = add(
       documentRoom(),
       fill(weak.title, person),
       fill(weak.text, person),
       { type: 'motive', person },
       art.document.image,
     );
-  }
-  for (const [person, neutral] of [
-    [i3, neutralA],
-    [i4, neutralB],
-  ]) {
-    documents[person] = clues.length + 1;
+  });
+  people
+    .map(p => p.id)
+    .filter(id => !documents[id])
+    .forEach((person, k) => {
+      const neutral = neutralDocs[k % neutralDocs.length];
+      documents[person] = add(
+        documentRoom(),
+        fill(neutral.title, person),
+        fill(neutral.text, person),
+        { type: 'note' },
+        art.document.image,
+      );
+    });
+  for (const h of herrings)
     add(
       documentRoom(),
-      fill(neutral.title, person),
-      fill(neutral.text, person),
-      { type: 'note' },
+      'Nota de ' + named(h.person),
+      `Nota escrita por ${named(h.person)} a las ${time(600 + Math.floor(random() * 12) * 15)}: pregunta si alguien ha visto ${article(h.item)} ${h.item.noun} que perdió esta mañana en ${roomName(scene)}.`,
+      { type: 'explains', clue: h.clue },
       art.document.image,
     );
-  }
-  add(
-    documentRoom(),
-    'Nota de ' + named(herringPerson),
-    `Nota escrita por ${named(herringPerson)} a las ${clock(morning)}: pregunta si alguien ha visto ${itemArticle} ${item.noun} que perdió esta mañana en ${roomName(scene)}.`,
-    { type: 'explains', clue: herringId },
-    art.document.image,
-  );
 
-  const clueId = n => 'c' + n,
-    accessClue = clues.find(c => c.fact.type === 'access').id,
-    recordClue = clues.find(c => c.fact.type === 'presence' && c.fact.people[0] === i2).id,
-    pairClue = clues.find(c => c.fact.type === 'presence' && c.fact.people.length === 2).id,
-    emptyClue = clues.find(c => c.fact.type === 'presence' && !c.fact.people.length)?.id,
-    aloneClue = clues.find(c => c.title === 'Sin testigos').id;
   const alibiRoom = {
     [culprit]: claimRoom,
     [i1]: aloneRoom,
@@ -253,7 +315,7 @@ export function generateCaseFile(
     const list = [
       [
         {
-          [culprit]: pattern === 'pair' ? 'alibi.claim' : 'alibi.alone',
+          [culprit]: ['pair', 'record'].includes(pattern) ? 'alibi.claim' : 'alibi.alone',
           [i1]: 'alibi.alone',
           [i2]: 'alibi.record',
           [i3]: 'alibi.pair',
@@ -261,8 +323,8 @@ export function generateCaseFile(
         }[id],
         {
           place: roomName(alibiRoom[id]),
-          from: clock(from),
-          to: clock(id === i2 ? recordTo : to),
+          from: time(from),
+          to: time(id === i2 ? recordTo : to),
           partner: named(id === i3 ? i4 : i3),
         },
       ],
@@ -270,16 +332,15 @@ export function generateCaseFile(
       [
         id === culprit
           ? 'secret.culprit'
-          : [i1, i2].includes(id)
+          : motiveHolders.includes(id)
             ? 'secret.weak'
             : 'secret.neutral',
         {},
-        clueId(documents[id]),
+        documents[id],
       ],
-      [[culprit, i2, i3].includes(id) ? 'link.access' : 'link.none', {}, accessClue],
+      [accessHolders.includes(id) ? 'link.access' : 'link.none', {}, accessClue],
     ];
-    if (id === culprit)
-      list.push(['timeline.culprit', {}, pattern === 'pair' ? pairClue : emptyClue]);
+    if (id === culprit) list.push(['timeline.culprit', {}, refuteClue]);
     if (id === i1) list.push(['timeline.alone', {}, aloneClue]);
     if (id === i2) list.push(['timeline.record', {}, recordClue], ['seen.discovery', {}]);
     if ([i3, i4].includes(id))
@@ -288,7 +349,17 @@ export function generateCaseFile(
         ['seen.pair', { place: roomName(pairRoom), partner: named(id === i3 ? i4 : i3) }],
       );
     else if (id !== i2) list.push(['seen.nothing', {}]);
-    if (id === herringPerson) list.push(['object.own', {}, herringId]);
+    const herring = herrings.find(h => h.person === id);
+    if (herring)
+      list.push([
+        'object.own',
+        {
+          item: article(herring.item) + ' ' + herring.item.noun,
+          mine: herring.item.gender === 'f' ? 'mía' : 'mío',
+          it: herring.item.gender === 'f' ? 'la' : 'lo',
+        },
+        herring.clue,
+      ]);
     list.push(['identity', {}], ['social', {}], ['unknown', {}]);
     return list;
   };
@@ -298,10 +369,7 @@ export function generateCaseFile(
     record: staff.record,
     guardian: staff.guardian,
     scene: roomName(scene),
-    time: clock(discovery),
-    item: itemArticle + ' ' + item.noun,
-    mine: item.gender === 'f' ? 'mía' : 'mío',
-    it: item.gender === 'f' ? 'la' : 'lo',
+    time: time(discovery),
   };
   const facts = Object.fromEntries(
     people.map(p => [
@@ -357,8 +425,8 @@ export function generateCaseFile(
       motive,
     },
     opening: {
-      arrival: pick(world.openings.arrivals, random),
-      tension: pick(world.openings.tensions, random),
+      arrival: one(world.openings.arrivals),
+      tension: one(world.openings.tensions),
     },
     alibis: people.map(p => ({
       person: p.id,
@@ -369,7 +437,7 @@ export function generateCaseFile(
     })),
     clues,
     facts,
-    origin: { generator: 'mundos-1', seed },
+    origin: { generator: 'mundos-1', seed, difficulty },
   });
   const analysis = analyzeCase(file);
   if (analysis.errors.length) throw Error('Generador incoherente: ' + analysis.errors.join(' '));

@@ -1,6 +1,7 @@
 import { placePhrase } from '/src/spanish-prose.mjs';
 import { worlds, worldFile, selectWorld } from '/src/prototype-worlds.mjs';
 import { normalizeWorld } from '/src/world-file.mjs';
+import { difficulties } from '/src/case-generator.mjs';
 import {
   newPrototype,
   restorePrototype,
@@ -40,6 +41,12 @@ async function loadWorld(id) {
 }
 const worldLabel = id => worlds.find(w => w.id === id)?.label || 'Caso importado';
 
+// The difficulty is a preference of this browser.
+let difficulty = 'medium';
+try {
+  const saved = localStorage.getItem('mundos-dificultad');
+  if (difficulties.some(d => d.id === saved)) difficulty = saved;
+} catch {}
 let setupWorld = worlds[0].id,
   preview,
   state = null,
@@ -136,7 +143,7 @@ function render() {
 }
 function setup() {
   const portrait = setupWorld === 'random' ? null : preview.people[0];
-  return `<section class="pilot-panel">${portrait ? img(portrait.image, portrait.name, 'pilot-portrait') : ''}<div><span class="eyebrow">NUEVA INVESTIGACIÓN</span><h2>Elige dónde ocurre el crimen.</h2><p>Cada mundo tiene sus propios personajes y escenarios. En cada investigación cambian el culpable, el arma, la escena, los móviles y las coartadas.</p><label class="dialogue-settings">Mundo<select ${busy ? 'disabled' : ''} id="world-choice" aria-label="Mundo">${[...worlds, { id: 'random', label: 'Al azar' }].map(w => `<option value="${w.id}" ${setupWorld === w.id ? 'selected' : ''}>${esc(w.label)}</option>`).join('')}</select></label><p class="hint">${setupWorld === 'random' ? 'El mundo se elige al crear la investigación.' : esc(preview.people.map(p => p.name).join(', ')) + '.'}</p><label class="dialogue-settings">Arma (solo para probar)<select ${busy ? 'disabled' : ''} id="method-choice" aria-label="Arma para probar"><option value="">Sorpresa</option>${(setupWorld === 'random' ? [] : worldWeapons(preview)).map(w => `<option value="${w.method}">${esc(w.label)}</option>`).join('')}</select></label><p class="hint">Elegir el arma revela esa parte de la solución. Con «Sorpresa», cada investigación intenta usar un arma distinta de la anterior.</p>${state ? '<p class="hint">Crear otra investigación sustituye la partida actual. Puedes exportarla antes; tu partida de Blackwood no se toca.</p>' : ''}<div class="pilot-actions"><button id="start-case" ${busy ? 'disabled' : ''}>Crear investigación →</button>${state ? `<button id="continue-case" ${busy ? 'disabled' : ''}>Continuar la actual</button>` : ''}</div></div></section>`;
+  return `<section class="pilot-panel">${portrait ? img(portrait.image, portrait.name, 'pilot-portrait') : ''}<div><span class="eyebrow">NUEVA INVESTIGACIÓN</span><h2>Elige dónde ocurre el crimen.</h2><p>Cada mundo tiene sus propios personajes y escenarios. En cada investigación cambian el culpable, el arma, la escena, los móviles y las coartadas.</p><label class="dialogue-settings">Mundo<select ${busy ? 'disabled' : ''} id="world-choice" aria-label="Mundo">${[...worlds, { id: 'random', label: 'Al azar' }].map(w => `<option value="${w.id}" ${setupWorld === w.id ? 'selected' : ''}>${esc(w.label)}</option>`).join('')}</select></label><p class="hint">${setupWorld === 'random' ? 'El mundo se elige al crear la investigación.' : esc(preview.people.map(p => p.name).join(', ')) + '.'}</p><label class="dialogue-settings">Dificultad<select ${busy ? 'disabled' : ''} id="difficulty-choice" aria-label="Dificultad">${difficulties.map(d => `<option value="${d.id}" ${difficulty === d.id ? 'selected' : ''}>${d.label}</option>`).join('')}</select></label><p class="hint">${{ easy: 'Dos personas con motivo y dos con acceso al arma. Una coartada puede caer por un testigo.', medium: 'Tres personas con motivo y tres con acceso al arma.', hard: 'Cuatro personas con motivo, cuatro con acceso al arma y dos pistas engañosas.' }[difficulty]}</p><label class="dialogue-settings">Arma (solo para probar)<select ${busy ? 'disabled' : ''} id="method-choice" aria-label="Arma para probar"><option value="">Sorpresa</option>${(setupWorld === 'random' ? [] : worldWeapons(preview)).map(w => `<option value="${w.method}">${esc(w.label)}</option>`).join('')}</select></label><p class="hint">Elegir el arma revela esa parte de la solución. Con «Sorpresa», cada investigación intenta usar un arma distinta de la anterior.</p>${state ? '<p class="hint">Crear otra investigación sustituye la partida actual. Puedes exportarla antes; tu partida de Blackwood no se toca.</p>' : ''}<div class="pilot-actions"><button id="start-case" ${busy ? 'disabled' : ''}>Crear investigación →</button>${state ? `<button id="continue-case" ${busy ? 'disabled' : ''}>Continuar la actual</button>` : ''}</div></div></section>`;
 }
 function openingScreen() {
   return `<section class="opening-panel"><span class="eyebrow">PRÓLOGO · ${esc(c.title)}</span><h2>Antes de la primera pregunta.</h2>${img(c.scene.image, c.scene.name, 'scene-image')}<div class="opening-prose"><p>${esc(c.opening.arrival)}</p><p class="opening-fact">A las ${clock(c.timing.discoveryMinute)} llega el aviso: han encontrado sin vida a ${esc(c.victim.name)} en ${esc(placePhrase(c.scene))}. La causa y las circunstancias todavía están por esclarecer.</p><p>${esc(c.opening.tension)}</p></div><button id="begin-investigation">${state.result ? 'Volver al desenlace →' : 'Comenzar la investigación →'}</button></section>`;
@@ -293,6 +300,13 @@ function bind() {
     }
     render();
   };
+  document.querySelector('#difficulty-choice')?.addEventListener('change', e => {
+    difficulty = e.target.value;
+    try {
+      localStorage.setItem('mundos-dificultad', difficulty);
+    } catch {}
+    render();
+  });
   document.querySelector('#world-choice')?.addEventListener('change', e => {
     setupWorld = e.target.value;
     if (setupWorld !== 'random') preview = cache.get(setupWorld);
@@ -307,6 +321,7 @@ function bind() {
         previousMethodId: c?.method.id,
         previousPersonId: c?.culprit.id,
         forcedMethodId,
+        difficulty,
       });
       c = createPrototypeCase(state);
       person = c.people[0].id;

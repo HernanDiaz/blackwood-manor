@@ -29,15 +29,24 @@ const noteEverything = (c, s) => {
       for (const id of s.found) if (noteEntry(c, s, p.id, condition, id).ok) break;
 };
 
-test('a complete notebook points at the culprit and nobody else, in every world', () => {
+test('a complete notebook points at the culprit and nobody else, in every world and difficulty', () => {
   for (const world of allWorlds())
-    for (const seed of ['n1', 'n2', 'n3', 'n4', 'n5', 'n6']) {
-      const s = newPrototype(world, { seed }),
-        c = createPrototypeCase(s);
-      findAll(c, s);
-      noteEverything(c, s);
-      assert.deepEqual(notebookSuspects(c, s), [c.culprit.id], `${world.id} ${seed}`);
-    }
+    for (const difficulty of ['easy', 'medium', 'hard'])
+      for (const seed of ['n1', 'n2', 'n3', 'n4']) {
+        const s = newPrototype(world, { seed, difficulty }),
+          c = createPrototypeCase(s);
+        findAll(c, s);
+        noteEverything(c, s);
+        assert.deepEqual(
+          notebookSuspects(c, s),
+          [c.culprit.id],
+          `${world.id} ${difficulty} ${seed}`,
+        );
+        const size = { easy: 2, medium: 3, hard: 4 }[difficulty];
+        assert.equal(c.analysis.motive.length, size);
+        assert.equal(c.analysis.access.length, size);
+        assert.equal(c.analysis.herrings, difficulty === 'hard' ? 2 : 1);
+      }
 });
 
 test('the notebook keeps only what a found clue proves', () => {

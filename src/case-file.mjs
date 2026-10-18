@@ -194,6 +194,12 @@ export function normalizeCaseFile(raw) {
           origin: {
             generator: text(raw.origin.generator, 40, 'el origen'),
             ...optional('seed', text(raw.origin.seed, 64, 'la semilla', { optional: true })),
+            ...optional(
+              'difficulty',
+              ['easy', 'medium', 'hard'].includes(raw.origin.difficulty)
+                ? raw.origin.difficulty
+                : undefined,
+            ),
           },
         }
       : {}),

@@ -74,13 +74,33 @@ El texto de una pista es para el jugador; el `fact` es lo que entiende el motor.
 
 Para ganar, la acusación necesita persona, arma y lugar correctos, y una pista de cada grupo de prueba: móvil del culpable, acceso del culpable y coartada desmentida.
 
-## Lo que produce el generador (dificultad media)
+## Lo que produce el generador
 
-- **Móvil**: el culpable (uno de los móviles fuertes del mundo) y dos inocentes (documentos de móvil débil).
-- **Acceso al arma**: el culpable y dos inocentes, uno de ellos también con móvil.
-- **Coartadas**: dos inocentes que se confirman entre sí ante quien vigila, uno confirmado por el registro y uno sin testigos. El culpable declara estar en un lugar que una pista demuestra vacío u ocupado solo por otros.
-- **Pista engañosa**: un objeto personal de un inocente junto a la escena, y la nota que la explica.
-- Ninguna pista nombra al culpable ni afirma una conclusión. Cada inocente cumple como mucho dos de las tres condiciones.
+Cada persona tiene un papel fijo en la lógica; quién hace cada papel se decide al azar:
+
+| Papel | Lo que lo define |
+|---|---|
+| Culpable | Motivo fuerte, acceso al arma y una coartada que una pista desmiente |
+| Sin testigos | Un motivo débil y nadie que confirme su coartada, pero nunca acceso al arma |
+| Registro | Su coartada consta en el registro de un lugar; es quien encuentra el cuerpo |
+| Pareja | Dos personas que se confirman entre sí ante quien vigila la puerta |
+
+La dificultad (`origin.difficulty`) decide cuántos inocentes comparten motivo y acceso:
+
+| Dificultad | Con motivo | Con acceso al arma | Pistas engañosas |
+|---|---|---|---|
+| Fácil | 2 | 2 | 1 |
+| Media | 3 | 3 | 1 |
+| Difícil | 4 | 4 | 2 |
+
+La coartada del culpable cae de una de estas formas:
+
+- Quien vigila guardó la puerta del lugar que declara, y dentro estaban otros.
+- El lugar estuvo cerrado con llave.
+- El registro de ese lugar solo anota a otra persona.
+- En la dificultad fácil, quien vigila lo vio entrar en la escena.
+
+Cada tipo de pista tiene varias redacciones. Toda pista engañosa (un objeto personal junto a la escena) tiene una nota que la explica. Ninguna pista nombra al culpable ni afirma una conclusión.
 
 ## Límites conocidos
 

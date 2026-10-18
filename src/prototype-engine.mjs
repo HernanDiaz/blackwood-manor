@@ -35,6 +35,7 @@ export function newPrototype(world, options = {}) {
           previousMethodId: options.previousMethodId || '',
           previousPersonId: options.previousPersonId || '',
           forcedMethodId: options.forcedMethodId || '',
+          difficulty: options.difficulty || 'medium',
         }),
     c = hydrateCase(file);
   return {
