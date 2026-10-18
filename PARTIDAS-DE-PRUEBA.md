@@ -105,3 +105,32 @@ De 25 preguntas, 9 las respondió Qwen con texto libre y 16 el motor con frases 
 ## Límites
 
 Son dos partidas y 25 preguntas: sirven para encontrar problemas, no para medir frecuencias. Las semillas fijas permiten reproducir los casos y los prólogos; el diálogo libre puede variar. No se probó la persistencia al recargar ni el modo Blackwood.
+
+## Estado tras las correcciones (18 de octubre, tarde)
+
+Verificado con tests automáticos (125) y con pilotos reales de Qwen: dos regeneraciones del monasterio, una estación ballenera de 1932 y un faro de 1890, cada uno con mundo nuevo, 27 imágenes y prólogo. Una partida completa del monasterio y otra de Años 30 se ganaron por la interfaz.
+
+| Hallazgo | Estado | Cómo |
+|---|---|---|
+| P01 «Spanish name» | Corregido | El nombre de sala empieza por un tipo elegido de una lista cerrada por época; los campos que repiten frases de las instrucciones se rechazan. |
+| P02 Oficios inventados | Corregido | El oficio se elige de una lista por época, en el género del personaje (el esquema lo impone) y sin repetirse. |
+| P03 «mineral» copiado del ejemplo | Corregido | Recurso elegido de una lista según la tecnología; el prompt ya no da ejemplos. Si la petición incluye un año, fija la tecnología. |
+| P04, P05, P06 Salas incoherentes | Corregido | En mundos libres, la descripción sale de una plantilla del tipo de sala y la época; Qwen solo pone el nombre propio y la imagen. En los mundos preparados (fantasía, medieval, Años 30), los casos nuevos usan descripciones escritas para cada sala; los JSON no se tocan para no invalidar partidas antiguas. |
+| P07 «turnos de trabajo» para todos | Corregido | Rediseño de pistas: deudas, despidos, testamentos o quejas, y documentos neutros. |
+| P08, P09 Cronología | Corregido | El hallazgo es posterior a la salida del culpable; el comprobador lo exige. |
+| P10–P14 Pistas en plantilla y conclusiones | Corregido | Ver EXPEDIENTES.md: móvil, acceso y coartada repartidos entre varios sospechosos, una pista engañosa explicada. |
+| P15 Instrucción recitada | Corregido | Se rechaza cualquier respuesta que copie cuatro palabras seguidas de las instrucciones. |
+| P16, P17 Negar relaciones o recuerdos | Corregido | Las negaciones que no estén en los hechos autorizados se rechazan, salvo fórmulas como «no puedo decir» o «no sé». |
+| P18 Presentación con oficio roto | Corregido por P02 | |
+| P19 Comillas y mayúsculas | Corregido | Textos sin «», nombres de sala en minúscula tras artículo. El culpable sigue cediendo pronto, pero ya no confiesa: «Quizá me confundí de hora». |
+| P20, P21 Preguntas sin tema | Mejorado | Temas nuevos («lo que viste», «el objeto») y más expresiones reconocidas. |
+| P22 «¿» ausente | Corregido | |
+| P24 Prólogo siempre de reserva | Corregido | Semillas distintas por caso e intento, hasta tres intentos, errores 500 de Qwen reintentados y el motivo registrado. Las reservas tienen variantes. |
+| P25 Imágenes anacrónicas | Sin cambios | Los prompts de sala siguen siendo de Qwen. |
+| P27 Etiquetas técnicas | Parcial | «Tu relación con la víctima» en todos los mundos. |
+
+### Lo que sigue fallando
+
+- El texto libre de Qwen sigue siendo flojo cuando se acepta: prólogos recargados («El aire hunde las uñas») y respuestas que el revisor aprueba con detalles dudosos. Los controles quitan los errores graves detectados, no garantizan buena prosa.
+- Rasgos y oficios ya son coherentes, pero la variedad depende de listas finitas; con más mundos se notará la repetición.
+- Un sospechoso con oficio «guardia» convive con «el guardia de turno» de las pistas, que no es sospechoso.
