@@ -85,3 +85,5 @@ El inicio incluye un prólogo atmosférico asistido por Qwen, persistente y sepa
 El prototipo usa ahora redacción libre según personalidad con revisión de hechos y secretos por prueba. Consulta INTERROGATORIOS-LIBRES.md. Validación actual: 90 pruebas.
 
 Validación final de interrogatorios libres: 92 pruebas superadas, incluida regresión de lugares y objetos inventados en respuestas emocionales.
+
+Creación de mundos: 5 intentos por ficha por defecto, configurables a 3, 5 u 8. Se muestran los intentos y el motivo de corrección; se conservan las fichas aceptadas y los contadores para reanudar con semillas nuevas. Validación: 95 pruebas automáticas. Piloto real: colonia de enanos completada en 13 pasos, reparando las fichas rechazadas sin regenerar las aceptadas.
