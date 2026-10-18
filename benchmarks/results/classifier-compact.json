@@ -1,0 +1,61 @@
+{
+  "fullTestCorrect": 223,
+  "variants": [
+    {
+      "mergedLatinKept": 8000,
+      "vocabulary": 8690,
+      "parameters": 117013258,
+      "fp16MB": 234.0,
+      "int8MB": 117.0,
+      "tokenizerMB": 0.5,
+      "testCorrect": 152,
+      "agreementWithFull": 0.6513
+    },
+    {
+      "mergedLatinKept": 16000,
+      "vocabulary": 16690,
+      "parameters": 123157258,
+      "fp16MB": 246.3,
+      "int8MB": 123.2,
+      "tokenizerMB": 1.0,
+      "testCorrect": 175,
+      "agreementWithFull": 0.7709
+    },
+    {
+      "mergedLatinKept": 32000,
+      "vocabulary": 32690,
+      "parameters": 135445258,
+      "fp16MB": 270.9,
+      "int8MB": 135.4,
+      "tokenizerMB": 1.9,
+      "testCorrect": 188,
+      "agreementWithFull": 0.8648
+    },
+    {
+      "mergedLatinKept": 64000,
+      "vocabulary": 64690,
+      "parameters": 160021258,
+      "fp16MB": 320.0,
+      "int8MB": 160.0,
+      "tokenizerMB": 4.0,
+      "testCorrect": 202,
+      "agreementWithFull": 0.9246
+    },
+    {
+      "mergedLatinKept": 184642,
+      "vocabulary": 185332,
+      "parameters": 252674314,
+      "fp16MB": 505.3,
+      "int8MB": 252.7,
+      "tokenizerMB": 12.6,
+      "testCorrect": 223,
+      "agreementWithFull": 1.0
+    }
+  ],
+  "int8": {
+    "variant": "vocabulario 32k latino + int8",
+    "testCorrect": 169,
+    "agreementWithFull": 0.782,
+    "cpuMillisecondsPerQuestion": 164.2
+  }
+}

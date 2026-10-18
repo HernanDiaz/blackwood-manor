@@ -1,0 +1,34 @@
+[
+  {
+    "vocabulary": 16690,
+    "seed": 1,
+    "fp16Correct": 186,
+    "int8Correct": 180,
+    "int8MB": 123.2,
+    "cpuMsInt8": 190.3
+  },
+  {
+    "vocabulary": 16690,
+    "seed": 2,
+    "fp16Correct": 193,
+    "int8Correct": 171,
+    "int8MB": 123.2,
+    "cpuMsInt8": 191.1
+  },
+  {
+    "vocabulary": 32690,
+    "seed": 1,
+    "fp16Correct": 191,
+    "int8Correct": 179,
+    "int8MB": 135.4,
+    "cpuMsInt8": 144.3
+  },
+  {
+    "vocabulary": 32690,
+    "seed": 2,
+    "fp16Correct": 193,
+    "int8Correct": 177,
+    "int8MB": 135.4,
+    "cpuMsInt8": 213.9
+  }
+]

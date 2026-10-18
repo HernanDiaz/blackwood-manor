@@ -16,9 +16,21 @@ En el prototipo de mundos, el personaje ya no redacta sus respuestas. El juego *
 
 ## Cómo se decide el tema
 
-1. **Clasificador aprendido** (`scripts/question-classifier-server.py`, puerto 1237): si su confianza es ≥ 0,6, decide él.
-2. **Reglas sin modelo** (`inferPrototypeTopic`): si el clasificador duda o no está disponible.
-3. **Qwen**, solo si está activo y ni el clasificador ni las reglas han decidido.
+1. **Clasificador neuronal Laya** (`scripts/question-classifier-server.py`, puerto 1237): si su confianza es ≥ 0,6, decide él. Es opcional.
+2. **Clasificador estadístico clásico** (`src/question-router.mjs` con `src/question-router-model.json`): si su confianza es ≥ 0,5. Va dentro del propio juego, ocupa ~770 KB (unos 200 KB comprimido) y responde en 0,1 ms; es el que iría en el móvil.
+3. **Reglas sin modelo** (`inferPrototypeTopic`): si los anteriores dudan.
+4. **Qwen**, solo si está activo y ninguno de los anteriores ha decidido.
+
+## El clasificador clásico
+
+Usa las técnicas de los sistemas conversacionales anteriores a las redes neuronales:
+
+- **Huecos de entidad**, como en los intérpretes de aventuras de texto: armas, objetos personales, salas y horas pasan a ARMA, OBJETO, SALA y HORA, así que «¿tocaste la daga?» y «¿tocaste la ballesta?» son la misma pregunta.
+- **Raíces de palabras**: cada palabra se recorta a sus primeras letras («guardaba», «guardaste» → «guard»).
+- **Rasgos**: palabras, pares de palabras y fragmentos de 3–4 letras, que toleran faltas de ortografía.
+- **Regresión logística** entrenada con las preguntas de ajuste. También se midieron Naive Bayes (79 %, 245 KB) y vecinos por similitud coseno (75 %).
+
+Para reentrenar tras añadir preguntas de ejemplo: `node scripts/train-question-router.mjs`.
 
 `PILOTO.cmd` arranca el clasificador si está entrenado. `BLACKWOOD_CLASSIFIER=0` lo desactiva. Sin él, el juego sigue funcionando con las reglas.
 
@@ -27,7 +39,7 @@ En el prototipo de mundos, el personaje ya no redacta sus respuestas. El juego *
 - **Base:** el codificador multilingüe de Laya (mmBERT-base, 307M parámetros, Apache 2.0), con una capa lineal entrenada con nuestras preguntas. La cabeza y el código originales de Laya no se usan.
 - **Datos:**
   - `test/question-bank.mjs` tiene 420 preguntas escritas a mano y agrupadas por intención. Los grupos, no las preguntas sueltas, van a ajuste (156) o a prueba (264).
-  - `test/question-bank-train*.mjs` añade 667 preguntas solo para ajuste.
+  - `test/question-bank-train*.mjs` añade 962 preguntas solo para ajuste (1.118 en total con las del banco).
   - Ninguna pregunta de prueba se ha usado para entrenar ni para ajustar las reglas.
 - **Entrenar:**
   ```
@@ -48,9 +60,17 @@ En el prototipo de mundos, el personaje ya no redacta sus respuestas. El juego *
 | Laya ajustado | 671 preguntas | 212–222 (80–84 %) | ~150 ms, CPU |
 | Laya ajustado | 823 preguntas | 214–223 (81–84 %) | ~150 ms, CPU |
 | Laya ajustado | 823 + 627 reformulaciones de Qwen | 218–220 (83 %) | ~150 ms, CPU |
-| **Laya y, si duda, reglas** (lo integrado) | 823 preguntas | **216–224 (82–85 %)** | ~150 ms, CPU |
+| Laya y, si duda, reglas | 823 preguntas | 216–224 (82–85 %) | ~150 ms, CPU |
+| Laya recortado a 16k–32k palabras latinas y reajustado | 823 preguntas | 186–193 fp16, 171–180 int8 (65–73 %) | ~150–200 ms, CPU |
+| Similitud coseno con las **respuestas** prefijadas, sin modelo | — | 54–58 (20–22 %) | <1 ms |
+| Similitud coseno con las **preguntas de ejemplo**, sin modelo | 1.118 preguntas | 200 (76 %) | ~7 ms |
+| Naive Bayes clásico | 1.118 preguntas | 209 (79 %) | 0,2 ms |
+| Regresión logística clásica | 1.118 preguntas | 210 (80 %) | 0,1 ms |
+| **Regresión logística y, si duda, reglas** (lo que iría al móvil) | 1.118 preguntas | **217 (82 %)** | 0,1 ms |
 
-Los rangos son tres entrenamientos con semillas distintas. El modelo guardado obtuvo 223/264.
+Los rangos de Laya son entrenamientos con semillas distintas. El modelo Laya guardado obtuvo 223/264.
+
+Recortar el vocabulario de Laya a español e inglés no compensa: con 120–135 MB acierta menos que el clasificador clásico de menos de 1 MB. La similitud sin modelo sigue mejorando con más ejemplos (38 % con 156, 56 % con 306, 70 % con 756, 76 % con 1.118). Scripts: `benchmarks/compact_classifier.py`, `benchmarks/compact_retrain.py`, `benchmarks/lexical-route.mjs` y `benchmarks/classic-route.mjs`.
 
 Conclusiones:
 - Lo que más pesa son los ejemplos escritos con cuidado: pasar de 156 a 671 subió Laya 36 puntos. A partir de ahí se estanca.
