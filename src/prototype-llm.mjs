@@ -1,19 +1,9 @@
 import { lowerRoomNames } from './spanish-prose.mjs';
 import { requestLocalJson } from './local-llm.mjs';
-import { CLASSIFIER_THRESHOLD } from './question-classifier.mjs';
-import { predictLogistic } from './question-router.mjs';
 import routerModel from './question-router-model.json' with { type: 'json' };
-// Below this confidence of the statistical router, the offline rules decide.
-const ROUTER_THRESHOLD = 0.5;
+import { routeQuestion, replyFor, accusationReply } from './interrogation.mjs';
 import { replyUnits, reviewSchema } from './dialogue-policy.mjs';
-import {
-  restorePrototype,
-  createPrototypeCase,
-  prototypeFacts,
-  prototypeReply,
-  prototypeOptions,
-  inferPrototypeTopic,
-} from './prototype-engine.mjs';
+import { restorePrototype, createPrototypeCase, prototypeFacts } from './prototype-engine.mjs';
 const norm = s =>
   s
     .toLocaleLowerCase('es')
@@ -374,75 +364,23 @@ export async function respondPrototype(
     signal = AbortSignal.timeout(24000),
     facts = prototypeFacts(c, state, person),
     ids = facts.map(f => f.id);
-  // Routing: the learned classifier when it is confident, otherwise the offline rules,
-  // and the local model only for what neither can place.
-  let topic = inferPrototypeTopic(question, c),
-    router = topic === null ? 'none' : 'rules';
-  const learned = classifier ? await classifier(question) : null;
-  if (learned && learned.confidence >= CLASSIFIER_THRESHOLD) {
-    topic = learned.topic;
-    router = 'classifier';
-  } else if (questionRouter) {
-    const routed = predictLogistic(questionRouter, question);
-    if (routed.confidence >= ROUTER_THRESHOLD) {
-      topic = routed.topic;
-      router = 'statistical';
-    }
-  }
+  // Routing: the neural classifier when it is confident, otherwise the statistical router and
+  // the offline rules (interrogation.mjs), and the local model only for what none can place.
+  const learned = classifier ? await classifier(question) : null,
+    route = routeQuestion(c, state, person, question, { learned, questionRouter }),
+    history = route.history;
+  let topic = route.topic,
+    router = route.router;
   const fallback = reason => ({
-    answer:
-      topic === 'social'
-        ? {
-            p1: 'Lo ocurrido me inquieta, pero intentaré explicarme con calma. ¿Qué quieres preguntarme?',
-            p2: 'Me cuesta mantener la calma. Vamos, dime qué necesitas aclarar.',
-            p3: 'Me preocupa lo ocurrido. Prefiero responder con precisión.',
-            p4: 'Esto me preocupa. Pregunta y responderé.',
-            p5: 'Esta situación me inquieta. Dígame qué desea aclarar.',
-          }[person]
-        : topic === 'identity'
-          ? 'Me llamo ' + actor.name + '. Mi ocupación es ' + actor.role + '.'
-          : prototypeReply(c, state, person, topic),
+    answer: replyFor(c, state, person, topic || 'unknown'),
     topic: topic || 'unknown',
     mode: 'prototype-engine',
     verification: 'free-fallback',
     reviewReason: reason,
     milliseconds: Math.round(performance.now() - start),
   });
-  // Evidence the person cannot discuss yet is answered like an unknown question.
-  if (topic !== null && ![...ids, 'identity', 'social', 'unknown'].includes(topic))
-    topic = 'unknown';
-  const q = norm(question);
-  if (
-    topic === null &&
-    /^(hola|buenas|buenos dias|buenas tardes|buenas noches)|como (te|se) sient|estas (nervios|preocup|tranquil)|tienes miedo/.test(
-      q,
-    )
-  )
-    topic = 'social';
-  else if (
-    (topic === null || topic === 'motive') &&
-    /como te llamas|quien eres|a que te dedicas|cual es tu trabajo|hablame de ti|como eres/.test(q)
-  )
-    topic = 'identity';
-  if (
-    (topic === null || topic === 'unknown') &&
-    /mataste|asesinaste|fuiste tu|(?:admites|confiesa).*\b(?:crimen|asesinato)\b/.test(q)
-  ) {
-    topic = 'unknown';
-    return {
-      ...fallback('accusation-needs-evidence'),
-      answer:
-        'Una acusación necesita pruebas. Pregunta por mi coartada o por una prueba concreta y contrástalas.',
-    };
-  }
-  const history = state.chat
-    .filter(m => m.person === person)
-    .slice(-3)
-    .map(m => ({ question: m.question.slice(0, 400), topic: m.topic }));
-  if (topic === null && /^(por que|que quieres decir|explicate|cuentame mas|como es eso)/.test(q)) {
-    const last = history.at(-1)?.topic;
-    if ([...ids, 'identity', 'social'].includes(last)) topic = last;
-  }
+  if (route.accusation)
+    return { ...fallback('accusation-needs-evidence'), answer: accusationReply };
   const classify = async () => {
     const chosen = await classifyQuestion(question, { request, history, signal });
     // A topic the person cannot discuss yet is answered like an unknown question.
@@ -459,9 +397,7 @@ export async function respondPrototype(
     }
     topic ??= 'unknown';
     return {
-      answer: prototypeOptions(c, state, person, topic).length
-        ? prototypeReply(c, state, person, topic)
-        : fallback('no-authored-line').answer,
+      answer: replyFor(c, state, person, topic),
       topic,
       router,
       mode: 'prototype-choice',

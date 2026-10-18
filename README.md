@@ -13,6 +13,12 @@ Requiere Node.js 22 o posterior; no necesita `npm install`.
 - `JUGAR.cmd` (o `npm start`): el juego sin modelos. Los interrogatorios usan el clasificador estadístico incluido.
 - Ctrl+C cierra el servidor y los modelos que arrancó el lanzador. `PORT` cambia el puerto (4173 por defecto).
 
+## Versión sin servidor (móvil)
+
+`npm run build` genera `dist/`: Mundos como archivos estáticos que funcionan sin servidor. El interrogatorio se resuelve en el navegador con el clasificador estadístico y las reglas. Un *service worker* guarda todos los archivos, así que tras la primera carga funciona también sin conexión, y el manifiesto permite instalarlo como app. `dist/` es lo que empaquetaría una app móvil (por ejemplo con Capacitor) o cualquier alojamiento estático. `npm run preview` lo sirve en http://127.0.0.1:4174 para probarlo.
+
+Con el servidor local (`PILOTO.cmd`), el juego solo le consulta las preguntas que no sabe clasificar, y solo si tiene un modelo local.
+
 ## Cómo se juega en Mundos
 
 Explora las seis salas, recoge las pistas e interroga a los cinco sospechosos con tus propias palabras. Varias personas tienen un móvil y varias pudieron llegar al arma; solo una reúne además una coartada que no se sostiene. Para ganar hay que acusar a esa persona con el arma y la sala correctas, y adjuntar una prueba de cada cosa.
@@ -45,5 +51,5 @@ Los informes de pruebas y las versiones anteriores (incluido el antiguo modo de 
 
 - La solución del caso viaja al navegador; no está pensado para impedir trampas.
 - El servidor es para uso local, sin autenticación.
-- La versión móvil está por hacer: la idea es empaquetar el juego con los mundos preparados y el clasificador estadístico (unos 20 MB), sin modelos de lenguaje.
+- La app móvil está por empaquetar: `dist/` ya funciona sin servidor ni conexión.
 - Las ilustraciones de los mundos se generan una vez, fuera del juego, con `node tools/generate-art.mjs` (ver [docs/MUNDOS.md](docs/MUNDOS.md)); el juego solo lleva los WebP.

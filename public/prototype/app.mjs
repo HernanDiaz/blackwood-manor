@@ -2,6 +2,7 @@ import { placePhrase } from '/src/spanish-prose.mjs';
 import { worlds, worldFile, selectWorld } from '/src/prototype-worlds.mjs';
 import { normalizeWorld } from '/src/world-file.mjs';
 import { difficulties } from '/src/case-generator.mjs';
+import { answerOffline } from '/src/interrogation.mjs';
 import {
   newPrototype,
   restorePrototype,
@@ -40,6 +41,8 @@ async function loadWorld(id) {
   }
   return cache.get(id);
 }
+let routerModel = null,
+  serverModel = false;
 const worldLabel = id => worlds.find(w => w.id === id)?.label || 'Caso importado';
 
 // The difficulty is a preference of this browser.
@@ -61,6 +64,15 @@ let setupWorld = worlds[0].id,
   noteMessage = '';
 try {
   for (const w of worlds) await loadWorld(w.id);
+  // The statistical router answers questions in the browser; without it the rules still do.
+  try {
+    routerModel = await (await fetch('/src/question-router-model.json')).json();
+  } catch {}
+  // A local server with a model can place the questions nothing else can (see server.mjs).
+  fetch('/api/prototype/status', { signal: AbortSignal.timeout(2000) })
+    .then(r => (r.ok ? r.json() : {}))
+    .then(status => (serverModel = status.model === true))
+    .catch(() => {});
   preview = cache.get(setupWorld);
   const saved = localStorage.getItem(key);
   if (saved) {
@@ -495,30 +507,40 @@ function bind() {
 }
 async function ask(question) {
   if (busy || !question?.trim() || state.result) return;
-  busy = true;
   const current = state.caseId,
     target = person;
   message = '';
-  render();
+  let result;
   try {
-    const response = await fetch('/api/prototype/interrogate', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        signal: AbortSignal.timeout(28000),
-        body: JSON.stringify({
-          state: { ...state, notes: '', chat: state.chat.slice(-4) },
-          person: target,
-          question,
+    result = answerOffline(c, state, target, question, { questionRouter: routerModel });
+  } catch (e) {
+    message = e.message;
+    render();
+    return;
+  }
+  if (result.unplaced && serverModel) {
+    busy = true;
+    render();
+    try {
+      const response = await fetch('/api/prototype/interrogate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          signal: AbortSignal.timeout(28000),
+          body: JSON.stringify({
+            state: { ...state, notes: '', chat: state.chat.slice(-4) },
+            person: target,
+            question,
+          }),
         }),
-      }),
-      result = await response.json();
-    if (!response.ok) throw Error(result.error);
-    if (state.caseId === current && !state.result) {
-      state.chat.push({ person: target, question, ...result });
-      save();
+        remote = await response.json();
+      if (response.ok) result = remote;
+    } catch {
+      // The offline answer stands.
     }
-  } catch {
-    message = 'No se pudo completar el interrogatorio. Comprueba el servidor y vuelve a preguntar.';
+  }
+  if (state.caseId === current && !state.result) {
+    state.chat.push({ person: target, question, ...result });
+    save();
   }
   busy = false;
   render();

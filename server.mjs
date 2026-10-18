@@ -101,6 +101,12 @@ const server = http.createServer(async (req, res) => {
     "default-src 'self'; style-src 'self'; script-src 'self'; connect-src 'self'; img-src 'self' data:; base-uri 'none'; frame-ancestors 'none'",
   );
   try {
+    // The game answers in the browser; it only asks here when a local model can do better.
+    if (req.url === '/api/prototype/status' && req.method === 'GET') {
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify({ model: process.env.BLACKWOOD_LOCAL_LLM === '1' }));
+      return;
+    }
     if (
       ['/api/interrogate', '/api/prototype/interrogate'].includes(req.url) &&
       req.method === 'POST'
