@@ -67,7 +67,7 @@ export async function requestLocalJson(
       },
     }),
   });
-  if (!response.ok) throw Error('Modelo local no disponible');
+  if (!response.ok) throw Error('Modelo local no disponible (HTTP ' + response.status + ')');
   const data = await response.json();
   if (data.choices?.[0]?.finish_reason === 'length') throw Error('Respuesta local incompleta');
   return JSON.parse(data.choices[0].message.content);
