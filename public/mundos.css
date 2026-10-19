@@ -578,34 +578,25 @@ img.missing {
   .brief {
     margin-top: 12px;
   }
-  /* The tabs become a bar fixed at the bottom of the screen. */
-  #app:not(.screen-setup):not(.screen-opening) {
-    padding-bottom: 84px;
-  }
+  /* The tabs stay in place above the content and stick to the top while scrolling, so
+     they are always in view (a bar fixed at the bottom can fall behind browser toolbars). */
   nav {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    position: sticky;
+    top: 0;
     z-index: 10;
-    margin: 0;
+    margin: 12px -20px 18px;
+    padding: 0 8px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 0;
     background: var(--bg);
-    border-top: 1px solid var(--line);
-    border-bottom: 0;
-    padding-bottom: env(safe-area-inset-bottom);
+    border-bottom: 1px solid var(--line);
   }
   nav button {
-    min-height: 56px;
+    min-height: 52px;
     padding: 6px 2px;
     font-size: 12px;
-    border-bottom: 0;
-    border-top: 2px solid transparent;
-  }
-  nav button.active {
-    border-top-color: var(--gold);
+    white-space: nowrap;
   }
   nav .extra {
     display: none;
