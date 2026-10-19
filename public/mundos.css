@@ -695,3 +695,78 @@ img.missing {
     grid-template-columns: 34% 1fr auto;
   }
 }
+
+/* Tablets (and any touch screen): the desktop layout with touch-sized controls. */
+@media (pointer: coarse), (max-width: 1100px) {
+  button,
+  .small,
+  select,
+  input:not([type='checkbox']),
+  .file,
+  header .save > a {
+    min-height: 44px;
+  }
+  .small,
+  header .save > a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+  header {
+    height: auto;
+    min-height: 100px;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 14px 0;
+  }
+  header .save {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  input[type='checkbox'] {
+    width: 22px;
+    height: 22px;
+  }
+  .clue label {
+    min-height: 44px;
+  }
+  nav button {
+    min-height: 48px;
+  }
+}
+
+/* The phone header stays compact. */
+@media (max-width: 760px) {
+  header {
+    min-height: 0;
+    padding: 12px 0;
+  }
+}
+
+/* Tablets also fold the header actions into the menu. */
+@media (pointer: coarse), (max-width: 1100px) {
+  header {
+    min-height: 0;
+  }
+  .menu-toggle {
+    display: block;
+    margin-left: auto;
+  }
+  header .menu-toggle ~ .save {
+    display: none;
+    width: 100%;
+  }
+  header .menu-toggle ~ .save.open {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 8px;
+  }
+  header .menu-toggle ~ .save.open > * {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+}
