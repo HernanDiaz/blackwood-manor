@@ -4,7 +4,6 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { validateCaseFile } from '../src/case-file.mjs';
-import { cases } from '../src/cases.mjs';
 import {
   newPrototype,
   createPrototypeCase,
@@ -16,15 +15,14 @@ import {
 const load = n =>
   JSON.parse(readFileSync(new URL(`../public/cases/blackwood-${n}.json`, import.meta.url)));
 const files = [1, 2, 3, 4, 5].map(load);
-const personOf = { elena: 'p1', victor: 'p2', clara: 'p3', arthur: 'p4', julian: 'p5' };
-const roomOf = {
-  study: 'r1',
-  library: 'r2',
-  dining: 'r3',
-  kitchen: 'r4',
-  greenhouse: 'r5',
-  hall: 'r6',
-};
+// The solutions of the original five variants (the retired classic engine, docs/VARIANTES.md).
+const cases = [
+  { title: 'El último té', culprit: 'p2', scene: 'r1', wine: false },
+  { title: 'La firma pendiente', culprit: 'p1', scene: 'r1', wine: false },
+  { title: 'La carta retenida', culprit: 'p3', scene: 'r2', wine: true },
+  { title: 'Treinta años de silencio', culprit: 'p4', scene: 'r5', wine: false },
+  { title: 'La deuda vencida', culprit: 'p5', scene: 'r3', wine: true },
+];
 const spoilers = readFileSync(new URL('../docs/CASE-SPOILERS.md', import.meta.url), 'utf8');
 
 function play(file) {
@@ -55,11 +53,10 @@ test('each case keeps the title and solution of its original variant', () => {
   files.forEach((file, i) => {
     const original = cases[i];
     assert.equal(file.title, original.title);
-    assert.equal(file.crime.culprit, personOf[original.solution.person]);
-    assert.equal(file.crime.scene, roomOf[original.solution.room]);
+    assert.equal(file.crime.culprit, original.culprit);
+    assert.equal(file.crime.scene, original.scene);
     assert.equal(file.crime.method, 'drink');
-    const wine = original.solution.weapon === 'wine';
-    assert.equal(/vino/.test(file.crime.weapon), wine);
+    assert.equal(/vino/.test(file.crime.weapon), original.wine);
   });
 });
 

@@ -28,7 +28,7 @@ export function image(value, field) {
     typeof value !== 'string' ||
     value.length > 200 ||
     value.includes('..') ||
-    !/^\/(worlds|assets)\/[A-Za-z0-9_\-/.]+\.webp$/.test(value)
+    !/^\/worlds\/[A-Za-z0-9_\-/.]+\.webp$/.test(value)
   )
     fail(`Imagen no permitida en ${field}`);
   return value;

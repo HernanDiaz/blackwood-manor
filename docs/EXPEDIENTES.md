@@ -44,7 +44,7 @@ En los textos (`motive`, `claim`, títulos y textos de pistas, declaraciones) se
 
 Así, renombrar a alguien en `people` cambia todos sus textos. El generador usa siempre marcadores.
 
-Las imágenes solo pueden ser rutas locales `.webp` bajo `/worlds/` o `/assets/`. Los textos no admiten `<` ni `>`. Al importar se descartan los campos desconocidos. El `id` del caso se calcula a partir del contenido, así que cualquier cambio da un caso distinto; una partida cuyo caso se ha modificado se rechaza.
+Las imágenes solo pueden ser rutas locales `.webp` bajo `/worlds/`. Los textos no admiten `<` ni `>`. Al importar se descartan los campos desconocidos. El `id` del caso se calcula a partir del contenido, así que cualquier cambio da un caso distinto; una partida cuyo caso se ha modificado se rechaza.
 
 ## Hechos de las pistas
 

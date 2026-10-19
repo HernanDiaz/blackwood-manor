@@ -20,10 +20,10 @@ mkdirSync(dist, { recursive: true });
 
 // The page, its styles and the content.
 for (const f of [
-  'prototype/app.mjs',
-  'prototype/editor.mjs',
-  'prototype/editor.html',
-  'prototype/style.css',
+  'app.mjs',
+  'editor.mjs',
+  'editor.html',
+  'mundos.css',
   'style.css',
   'fonts.css',
 ])
@@ -44,21 +44,17 @@ function follow(file) {
     if (target.endsWith('.mjs')) follow(target);
   }
 }
-follow(from('public/prototype/app.mjs'));
-follow(from('public/prototype/editor.mjs'));
+follow(from('public/app.mjs'));
+follow(from('public/editor.mjs'));
 modules.add(from('src/question-router-model.json'));
 for (const file of modules) cpSync(file, to(path.relative(root, file)));
 
 // The page links the manifest and starts the service worker.
-const page = readFileSync(from('public/prototype/index.html'), 'utf8').replace(
+const page = readFileSync(from('public/index.html'), 'utf8').replace(
   '</head>',
   '<link rel="manifest" href="/manifest.webmanifest"><meta name="theme-color" content="#101b23"><script type="module" src="/register-sw.mjs"></script></head>',
 );
-writeFileSync(to('prototype/index.html'), page);
-writeFileSync(
-  to('index.html'),
-  '<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=/prototype/index.html"><title>Mundos</title><a href="/prototype/index.html">Mundos</a>',
-);
+writeFileSync(to('index.html'), page);
 writeFileSync(
   to('manifest.webmanifest'),
   JSON.stringify(
@@ -66,7 +62,7 @@ writeFileSync(
       name: 'Mundos · Blackwood Manor',
       short_name: 'Mundos',
       lang: 'es',
-      start_url: '/prototype/index.html',
+      start_url: '/',
       scope: '/',
       display: 'standalone',
       background_color: '#101b23',

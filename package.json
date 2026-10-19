@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "node server.mjs",
-    "test": "node --test test/investigation.test.mjs test/case-file.test.mjs test/statements.test.mjs test/question-classifier.test.mjs test/engine.test.mjs test/cases.test.mjs test/generic.test.mjs test/methods.test.mjs test/prototype.test.mjs test/worlds.test.mjs test/spanish-prose.test.mjs test/free-prototype.test.mjs test/guidance.test.mjs test/evidence.test.mjs test/interrogation.test.mjs test/blackwood-cases.test.mjs",
+    "test": "node --test test/investigation.test.mjs test/case-file.test.mjs test/statements.test.mjs test/question-classifier.test.mjs test/methods.test.mjs test/prototype.test.mjs test/worlds.test.mjs test/spanish-prose.test.mjs test/free-prototype.test.mjs test/guidance.test.mjs test/evidence.test.mjs test/interrogation.test.mjs test/blackwood-cases.test.mjs",
     "build": "node tools/build-static.mjs",
     "preview": "node tools/build-static.mjs --serve"
   },

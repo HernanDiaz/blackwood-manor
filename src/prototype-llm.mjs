@@ -1,9 +1,46 @@
 import { lowerRoomNames } from './spanish-prose.mjs';
-import { requestLocalJson } from './local-llm.mjs';
+import { requestLocalJson } from './local-model.mjs';
 import routerModel from './question-router-model.json' with { type: 'json' };
 import { routeQuestion, replyFor, accusationReply } from './interrogation.mjs';
-import { replyUnits, reviewSchema } from './dialogue-policy.mjs';
 import { restorePrototype, createPrototypeCase, prototypeFacts } from './prototype-engine.mjs';
+export function replyUnits(text) {
+  return (
+    text
+      .match(/[^.!?¿¡]+[.!?]?/gu)
+      ?.map(x => x.trim())
+      .filter(Boolean) || []
+  );
+}
+const reviewSchema = {
+  type: 'object',
+  properties: {
+    claims: {
+      type: 'array',
+      maxItems: 10,
+      items: {
+        type: 'object',
+        properties: {
+          text: { type: 'string' },
+          kind: { type: 'string', enum: ['supported', 'social', 'unsupported'] },
+          sources: {
+            type: 'array',
+            maxItems: 4,
+            items: {
+              type: 'object',
+              properties: { id: { type: 'string' }, quote: { type: 'string' } },
+              required: ['id', 'quote'],
+              additionalProperties: false,
+            },
+          },
+        },
+        required: ['text', 'kind', 'sources'],
+        additionalProperties: false,
+      },
+    },
+  },
+  required: ['claims'],
+  additionalProperties: false,
+};
 const norm = s =>
   s
     .toLocaleLowerCase('es')

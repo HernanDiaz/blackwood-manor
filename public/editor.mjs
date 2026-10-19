@@ -55,7 +55,7 @@ const field = (path, label, value, max = 80) =>
   `<label>${esc(label)}<input data-path="${esc(path)}" value="${esc(value)}" maxlength="${max}"></label>`;
 
 function render() {
-  app.innerHTML = `<header><a class="brand" href="/prototype/index.html">O<span>MUNDOS<br><small>EDITOR DE CASOS</small></span></a><div class="save"><a class="small" href="/prototype/index.html">Volver al juego</a></div></header><main class="editor">${message ? `<div class="notice" role="status">${esc(message)}</div>` : ''}<section class="editor-load"><h2>Elige un caso para editar.</h2><div class="editor-row"><button id="from-save" class="small">El caso de mi partida</button><label class="small file">Abrir un archivo<input id="from-file" type="file" accept="application/json"></label></div><div class="editor-row"><select id="classic">${classics.map(k => `<option value="${esc(k.file)}">${esc(k.title)}</option>`).join('')}</select><button id="from-classic" class="small">Abrir caso clásico</button></div><div class="editor-row"><select id="world">${worlds.map(w => `<option value="${w.id}">${esc(w.label)}</option>`).join('')}</select><select id="difficulty">${difficulties.map(d => `<option value="${d.id}" ${d.id === 'medium' ? 'selected' : ''}>${d.label}</option>`).join('')}</select><button id="generate" class="small">Generar uno nuevo</button></div></section>${file ? editor() : ''}</main>`;
+  app.innerHTML = `<header><a class="brand" href="/">O<span>MUNDOS<br><small>EDITOR DE CASOS</small></span></a><div class="save"><a class="small" href="/">Volver al juego</a></div></header><main class="editor">${message ? `<div class="notice" role="status">${esc(message)}</div>` : ''}<section class="editor-load"><h2>Elige un caso para editar.</h2><div class="editor-row"><button id="from-save" class="small">El caso de mi partida</button><label class="small file">Abrir un archivo<input id="from-file" type="file" accept="application/json"></label></div><div class="editor-row"><select id="classic">${classics.map(k => `<option value="${esc(k.file)}">${esc(k.title)}</option>`).join('')}</select><button id="from-classic" class="small">Abrir caso clásico</button></div><div class="editor-row"><select id="world">${worlds.map(w => `<option value="${w.id}">${esc(w.label)}</option>`).join('')}</select><select id="difficulty">${difficulties.map(d => `<option value="${d.id}" ${d.id === 'medium' ? 'selected' : ''}>${d.label}</option>`).join('')}</select><button id="generate" class="small">Generar uno nuevo</button></div></section>${file ? editor() : ''}</main>`;
   bind();
 }
 function editor() {
@@ -132,7 +132,7 @@ function bind() {
       const previous = localStorage.getItem(saveKey);
       if (previous) localStorage.setItem(saveKey + '-copia-' + Date.now(), previous);
       localStorage.setItem(saveKey, JSON.stringify(state));
-      location.href = '/prototype/index.html';
+      location.href = '/';
     } catch (e) {
       message = 'No se puede jugar: ' + e.message;
       render();

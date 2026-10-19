@@ -13,7 +13,7 @@ import {
   prototypeFacts,
   prototypeOptions,
 } from '../src/prototype-engine.mjs';
-import { replyUnits } from '../src/dialogue-policy.mjs';
+import { replyUnits } from '../src/prototype-llm.mjs';
 const villa = loadWorld('villa-bellavista');
 const base = () => {
   const s = newPrototype(villa, { seed: 'free-tests' });

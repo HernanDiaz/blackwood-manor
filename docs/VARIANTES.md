@@ -1,3 +1,5 @@
+> Los cinco casos se juegan ahora como expedientes en `public/cases/blackwood-1.json`…`blackwood-5.json`, con el motor común. El motor original (`src/cases.mjs`, `src/engine.mjs`) que se describe abajo se retiró; este documento queda como referencia de su diseño.
+
 # Blackwood Manor: cinco variantes jugables
 
 La mansión ahora ofrece cinco reconstrucciones escritas, una por cada posible culpable. El caso original forma parte de las cinco. La selección se realiza al crear la partida, excluye la variante inmediatamente anterior y puede volver a una variante más adelante. No es un generador ilimitado de misterios.
