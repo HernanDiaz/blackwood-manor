@@ -559,14 +559,7 @@ img.missing {
   }
 }
 
-/* Actions that only appear in the phone menu. */
-.phone-only {
-  display: none;
-}
 @media (max-width: 760px) {
-  header .save.open > .phone-only {
-    display: flex;
-  }
   header .save > a.small {
     border: 1px solid var(--line);
     border-radius: 4px;
@@ -597,9 +590,6 @@ img.missing {
     padding: 6px 2px;
     font-size: 12px;
     white-space: nowrap;
-  }
-  nav .extra {
-    display: none;
   }
   /* Exploring: two clues per row. */
   .search-grid {
@@ -969,4 +959,29 @@ img.missing {
     min-height: 44px;
     cursor: pointer;
   }
+}
+
+/* Papers: a header with the kind of paper instead of a repeated picture. */
+.paper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: repeating-linear-gradient(0deg, transparent 0 13px, #ffffff08 13px 14px),
+    linear-gradient(135deg, #1f3138, #152328);
+  color: var(--gold);
+}
+.paper svg {
+  width: 28px;
+  height: 28px;
+  flex: none;
+}
+.paper span {
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
 }

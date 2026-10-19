@@ -13,7 +13,6 @@ import {
   prototypeFacts,
   accusePrototype,
   prototypeResolution,
-  exportCaseFile,
   CASE_FORMAT,
   SAVE_FORMAT,
   clock,
@@ -157,7 +156,7 @@ function save() {
     storageOK = true;
   } catch {
     storageOK = false;
-    message = 'No se pudo guardar. Exporta una copia de tu partida.';
+    message = 'No se pudo guardar en este navegador. Guarda una copia de tu partida desde el menú.';
   }
 }
 function exportSave() {
@@ -165,10 +164,6 @@ function exportSave() {
     state ? JSON.stringify(state, null, 2) : localStorage.getItem(key),
     'mundos-partida.json',
   );
-}
-// The case without the player's progress: characters, places, crime, clues and statements.
-function exportCase() {
-  download(JSON.stringify(exportCaseFile(state), null, 2), 'mundos-expediente.json');
 }
 function download(raw, name) {
   if (!raw) return;
@@ -182,8 +177,34 @@ function download(raw, name) {
 function img(src, alt, cls = '') {
   return src ? `<img ${cls ? `class="${cls}" ` : ''}src="${esc(src)}" alt="${esc(alt)}">` : '';
 }
+// Papers (reports, statements, registers, documents) share a few generic pictures per world,
+// which repeat within a case; they show what kind of paper they are instead. Pictures stay for
+// what is unique to the case: the weapon and the objects.
+const papers = {
+  report: [
+    'Informe',
+    '<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M12 9v6M9 12h6"/>',
+  ],
+  testimony: ['Declaración', '<circle cx="12" cy="8" r="3"/><path d="M6 20c0-3 3-5 6-5s6 2 6 5"/>'],
+  ledger: [
+    'Registro',
+    '<path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/>',
+  ],
+  document: [
+    'Documento',
+    '<rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 7l9 6 9-6"/>',
+  ],
+};
+function clueHead(clue) {
+  const kind = clue.image
+    ? clue.image.match(/\/clue-(report|testimony|ledger|document)\.webp$/)?.[1]
+    : 'document';
+  if (!kind) return img(clue.image, clue.title + ', ilustración', 'clue-art');
+  const [label, paths] = papers[kind];
+  return `<div class="paper paper-${kind}"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${paths}</svg><span>${label}</span></div>`;
+}
 function card(clue, accusation = false, checked = false) {
-  return `<article class="clue">${img(clue.image, clue.title + ', ilustración', 'clue-art')}<span class="eyebrow">${esc(c.rooms.find(r => r.id === clue.room).name)}</span><h3>${esc(clue.title)}</h3><p>${esc(clue.text)}</p>${accusation ? `<label><input type="checkbox" name="evidence" value="${clue.id}" ${checked ? 'checked' : ''}> Adjuntar prueba</label>` : `<button class="small" data-pin="${clue.id}">${state.pinned.includes(clue.id) ? 'Retirar del tablero' : 'Fijar en el tablero'}</button>`}</article>`;
+  return `<article class="clue">${clueHead(clue)}<span class="eyebrow">${esc(c.rooms.find(r => r.id === clue.room).name)}</span><h3>${esc(clue.title)}</h3><p>${esc(clue.text)}</p>${accusation ? `<label><input type="checkbox" name="evidence" value="${clue.id}" ${checked ? 'checked' : ''}> Adjuntar prueba</label>` : `<button class="small" data-pin="${clue.id}">${state.pinned.includes(clue.id) ? 'Retirar del tablero' : 'Fijar en el tablero'}</button>`}</article>`;
 }
 function render() {
   const playing = state && !['setup', 'opening'].includes(tab),
@@ -192,7 +213,7 @@ function render() {
     cover = tab === 'setup' ? preview.rooms[0].image : c.scene.image;
   // The screen is a class of the page, so the phone layout can change per screen.
   app.className = 'screen-' + tab;
-  app.innerHTML = `<header><a class="brand" href="/">O<span>MUNDOS<br><small>DETECTIVE STORIES</small></span></a><button id="menu-toggle" class="small menu-toggle" aria-expanded="${menuOpen}" aria-controls="actions">${menuOpen ? 'Cerrar' : 'Menú'}</button><div class="save ${menuOpen ? 'open' : ''}" id="actions"><button id="export" class="small">Exportar partida</button>${state ? '<button id="export-case" class="small">Exportar caso</button>' : ''}${canSpeak ? `<button id="voice" class="small" aria-pressed="${speaking}">${speaking ? 'Voz: sí' : 'Voz: no'}</button>` : ''}<button id="reset-prototype" class="small" ${busy ? 'disabled' : ''}>Borrar partida</button>${state && !['setup', 'opening'].includes(tab) ? '<button class="small phone-only go-new">Otra investigación</button><button class="small phone-only go-opening">Leer el prólogo</button>' : ''}<a class="small" href="/editor.html">Editor de casos</a><label class="small file">Importar<input id="import" type="file" accept="application/json" ${busy ? 'disabled' : ''}></label></div></header>${tab !== 'opening' ? `<section class="intro"><div><span class="eyebrow">${esc(label)}</span><h1>${esc(title)}</h1><p>${tab === 'setup' ? esc(preview.premise) : 'Cinco sospechosos. Varios con motivos y acceso al arma.<br>Solo una persona reúne móvil, acceso y ocasión.'}</p></div><div class="manor illustrated">${img(cover, title)}<span>MUNDOS<br>INVESTIGACIÓN</span></div></section>` : ''}${playing ? `<section class="brief"><span class="seal">!</span><p><strong>${esc(c.victim.name)} ha muerto en ${esc(placePhrase(c.scene))}.</strong> El hallazgo se registra a las ${clock(c.timing.discoveryMinute)}. Investiga la causa, el móvil y las coartadas.</p><strong>${state.found.length}<small> / ${c.clues.length} PISTAS</small></strong></section>` : ''}${
+  app.innerHTML = `<header><a class="brand" href="/">O<span>MUNDOS<br><small>DETECTIVE STORIES</small></span></a><button id="menu-toggle" class="small menu-toggle" aria-expanded="${menuOpen}" aria-controls="actions">${menuOpen ? 'Cerrar' : 'Menú'}</button><div class="save ${menuOpen ? 'open' : ''}" id="actions">${state && tab !== 'setup' ? `<button class="small go-new" ${busy ? 'disabled' : ''}>Volver al inicio</button>` : ''}${state && !['setup', 'opening'].includes(tab) ? `<button class="small go-opening" ${busy ? 'disabled' : ''}>Releer el prólogo</button>` : ''}${canSpeak ? `<button id="voice" class="small" aria-pressed="${speaking}">Leer en voz alta: ${speaking ? 'sí' : 'no'}</button>` : ''}${state ? '<button id="export" class="small" title="Descarga tu partida para continuarla en otro dispositivo">Guardar una copia</button>' : ''}<label class="small file" title="Una copia de una partida o un caso">Abrir una copia<input id="import" type="file" accept="application/json" ${busy ? 'disabled' : ''}></label><a class="small" href="/editor.html">Editor de casos</a></div></header>${tab !== 'opening' ? `<section class="intro"><div><span class="eyebrow">${esc(label)}</span><h1>${esc(title)}</h1><p>${tab === 'setup' ? esc(preview.premise) : 'Cinco sospechosos. Varios con motivos y acceso al arma.<br>Solo una persona reúne móvil, acceso y ocasión.'}</p></div><div class="manor illustrated">${img(cover, title)}<span>MUNDOS<br>INVESTIGACIÓN</span></div></section>` : ''}${playing ? `<section class="brief"><span class="seal">!</span><p><strong>${esc(c.victim.name)} ha muerto en ${esc(placePhrase(c.scene))}.</strong> El hallazgo se registra a las ${clock(c.timing.discoveryMinute)}. Investiga la causa, el móvil y las coartadas.</p><strong>${state.found.length}<small> / ${c.clues.length} PISTAS</small></strong></section>` : ''}${
     playing && !state.result
       ? `<nav aria-label="Investigación">${[
           ['explore', 'Explorar'],
@@ -205,11 +226,9 @@ function render() {
             ([id, label]) =>
               `<button data-tab="${id}" class="${tab === id ? 'active' : ''}" ${tab === id ? 'aria-current="page"' : ''}>${tabIcons[id]}<span>${label}</span></button>`,
           )
-          .join(
-            '',
-          )}<button class="extra go-new" ${busy ? 'disabled' : ''}>Otra investigación</button><button class="extra go-opening" ${busy ? 'disabled' : ''}>Leer el prólogo</button></nav>`
+          .join('')}</nav>`
       : ''
-  }<main>${message ? `<div class="notice" role="status">${esc(message)}</div>` : ''}${playing && !state.result ? helpBar() : ''}${tab === 'setup' ? setup() : tab === 'opening' ? openingScreen() : state.result ? ending() : content()}</main><footer>MUNDOS · ${storageOK ? 'Partida guardada en este navegador' : 'Sin guardado local: exporta tu partida'}</footer>`;
+  }<main>${message ? `<div class="notice" role="status">${esc(message)}</div>` : ''}${playing && !state.result ? helpBar() : ''}${tab === 'setup' ? setup() : tab === 'opening' ? openingScreen() : state.result ? ending() : content()}</main><footer>MUNDOS · ${storageOK ? 'Partida guardada en este navegador' : 'Sin guardado local: guarda una copia desde el menú'}</footer>`;
   bind();
 }
 // The start screen: the game in progress, a new case in a world, or a classic case.
@@ -227,7 +246,7 @@ function setup() {
     })
     .join(
       '',
-    )}${card('random', 'Al azar', 'Sorpresa', 'El mundo se elige al crear el caso.', null)}</div>${state ? '<p class="hint">Empezar otro caso sustituye la partida en curso. Puedes exportarla antes.</p>' : ''}</section>${
+    )}${card('random', 'Al azar', 'Sorpresa', 'El mundo se elige al crear el caso.', null)}</div>${state ? '<p class="hint">Empezar otro caso sustituye la partida en curso. Si quieres conservarla, guarda una copia desde el menú.</p>' : ''}</section>${
     classics.length
       ? `<section class="classic-cases"><span class="eyebrow">CASOS CLÁSICOS DE BLACKWOOD</span><h2>Cinco casos escritos a mano.</h2><p class="hint">Los casos originales de Blackwood Manor, en 1924. Son siempre iguales y tienen una historia más trabajada.</p><ul>${classics.map(k => `<li><span><strong>${esc(k.title)}</strong>${k.hook ? `<small>${esc(k.hook)}</small>` : ''}</span><button class="small" data-classic="${esc(k.file)}" ${busy ? 'disabled' : ''}>Jugar</button></li>`).join('')}</ul></section>`
       : ''
@@ -374,7 +393,7 @@ function bind() {
     menuOpen = !menuOpen;
     render();
   };
-  document.querySelector('#export').onclick = exportSave;
+  document.querySelector('#export')?.addEventListener('click', exportSave);
   document.querySelector('#voice')?.addEventListener('click', () => {
     speaking = !speaking;
     remember('mundos-voz', speaking);
@@ -392,22 +411,6 @@ function bind() {
         ].join(' '),
       ),
     );
-  document.querySelector('#export-case')?.addEventListener('click', exportCase);
-  document.querySelector('#reset-prototype').onclick = () => {
-    if (busy) return;
-    try {
-      const previous = localStorage.getItem(key);
-      if (previous) localStorage.setItem(key + '-copia-' + Date.now(), previous);
-      localStorage.removeItem(key);
-      state = null;
-      c = null;
-      tab = 'setup';
-      message = 'Partida borrada. Se ha guardado una copia de seguridad en este navegador.';
-    } catch {
-      message = 'No se pudo guardar la copia de seguridad; la partida no se ha borrado.';
-    }
-    render();
-  };
   document.querySelector('#import').onchange = async e => {
     if (busy) return;
     try {

@@ -33,7 +33,7 @@ Cada investigación se crea en uno de los cinco mundos y con una dificultad (fá
 
 La pantalla de inicio guarda el historial de casos resueltos. El **editor de casos** (`/editor.html`) abre el caso de la partida, un caso clásico, un archivo o uno nuevo. Permite cambiar nombres y textos, comprueba que el caso tiene una sola solución y lo descarga o lo juega.
 
-La partida se guarda en el navegador. **Exportar partida** guarda el progreso; **Exportar caso** guarda solo el caso (el «expediente»), que se puede editar e importar.
+La partida se guarda en el navegador. En el menú, **Guardar una copia** descarga la partida para seguirla en otro dispositivo y **Abrir una copia** la carga (también acepta un caso). Para sacar un caso y editarlo está el editor de casos.
 
 ## Cómo está hecho
 
