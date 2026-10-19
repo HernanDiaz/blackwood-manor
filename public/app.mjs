@@ -195,7 +195,11 @@ const papers = {
     '<rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 7l9 6 9-6"/>',
   ],
 };
+// false: every clue shows its picture, generic ones included (the papers repeat within a case).
+// true: papers show their kind over the room where they were found.
+const paperHeaders = false;
 function clueHead(clue) {
+  if (!paperHeaders) return img(clue.image, clue.title + ', ilustración', 'clue-art');
   const kind = clue.image
     ? clue.image.match(/\/clue-(report|testimony|ledger|document)\.webp$/)?.[1]
     : 'document';

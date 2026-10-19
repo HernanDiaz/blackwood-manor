@@ -26,7 +26,7 @@ function plan(world) {
     ...world.rooms.map(r => item('lugar', r, 'landscape (3:2)', 1280)),
     ...world.weapons.map(w => item('arma', w, 'square', 640)),
     ...world.items.map(i => item('objeto', i, 'square', 640)),
-    // The game shows papers (clueArt) as a header with their kind, not as a picture.
+    ...Object.values(world.clueArt).map(c => item('pista', c, 'square', 640)),
   ].map(a => ({ ...a, style: world.art.style }));
 }
 function run(command, list, options, input) {
