@@ -203,7 +203,7 @@ function render() {
         ]
           .map(
             ([id, label]) =>
-              `<button data-tab="${id}" class="${tab === id ? 'active' : ''}">${label}</button>`,
+              `<button data-tab="${id}" class="${tab === id ? 'active' : ''}" ${tab === id ? 'aria-current="page"' : ''}>${tabIcons[id]}<span>${label}</span></button>`,
           )
           .join(
             '',
@@ -250,6 +250,16 @@ function enterCase({ replay = false } = {}) {
   tab = (state.result && !replay) || state.openingSeen ? 'explore' : 'opening';
   render();
 }
+// Icons of the tabs, shown on phones where the tabs are buttons with an icon and a label.
+const icon = paths =>
+  `<svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${paths}</svg>`;
+const tabIcons = {
+  explore: icon('<circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/>'),
+  talk: icon('<path d="M4 5h16v11H10l-5 4v-4H4z"/>'),
+  board: icon('<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/>'),
+  inventory: icon('<rect x="3" y="8" width="18" height="12" rx="2"/><path d="M9 8V5h6v3"/>'),
+  accuse: icon('<path d="M12 4v10"/><circle cx="12" cy="19" r="1"/>'),
+};
 function helpBar() {
   return `<div class="help-bar"><button id="ask-hint" class="small">${hint && !hint.last ? 'Otra pista más concreta' : 'Pedir una pista'}</button>${hint ? `<p role="status">${esc(hint.text)}</p>` : '<p>¿Atascado? Pide una pista: cada vez será más concreta.</p>'}</div>`;
 }
