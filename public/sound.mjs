@@ -12,7 +12,7 @@ function audio() {
   if (!ctx) {
     ctx = new AudioContext();
     master = ctx.createGain();
-    master.gain.value = 0.55;
+    master.gain.value = 0.4;
     master.connect(ctx.destination);
     noiseBuffer = ctx.createBuffer(1, ctx.sampleRate * 2, ctx.sampleRate);
     const data = noiseBuffer.getChannelData(0);
@@ -52,13 +52,17 @@ const chain = (...nodes) => nodes.reduce((a, b) => (a.connect(b), b));
 
 // Each ambience returns the nodes to stop and the timers to clear.
 const ambiences = {
-  // Rain on the windows and a wall clock.
+  // Rain on the windows and a wall clock: a soft, muffled wash that comes and goes, drops
+  // tapping the glass now and then, and the clock far away.
   rain() {
     const out = gain(0),
-      n = noise();
-    chain(n, filter('bandpass', 1400, 0.6), gain(0.16), out);
-    const tick = setInterval(() => click(0.04, 3000), 1000);
-    return { out, sources: [n], timers: [tick] };
+      n = noise(),
+      wash = gain(0.06);
+    chain(n, filter('highpass', 300), filter('lowpass', 1800), wash, out);
+    const l = lfo(wash.gain, 0.06, 0.02);
+    const patter = setInterval(() => drops(out, 4), 250);
+    const tick = setInterval(() => click(0.012, 3000), 1000);
+    return { out, sources: [n, l], timers: [patter, tick] };
   },
   // Ventilation and the hum of the machines.
   stars() {
@@ -80,11 +84,11 @@ const ambiences = {
   snow() {
     const out = gain(0),
       n = noise(),
-      f = filter('bandpass', 600, 1.4),
-      g = gain(0.14);
+      f = filter('bandpass', 500, 1.4),
+      g = gain(0.06);
     chain(n, f, g, out);
-    const l1 = lfo(f.frequency, 0.07, 320),
-      l2 = lfo(g.gain, 0.05, 0.07);
+    const l1 = lfo(f.frequency, 0.07, 250),
+      l2 = lfo(g.gain, 0.05, 0.035);
     return { out, sources: [n, l1, l2], timers: [] };
   },
   // The sea against the cliff, rain and far thunder.
@@ -92,12 +96,13 @@ const ambiences = {
     const out = gain(0),
       sea = noise(),
       rain = noise(),
-      waves = gain(0.14);
-    chain(sea, filter('lowpass', 480), waves, out);
-    chain(rain, filter('bandpass', 1600, 0.6), gain(0.06), out);
-    const l = lfo(waves.gain, 0.09, 0.09);
+      waves = gain(0.07);
+    chain(sea, filter('lowpass', 400), waves, out);
+    chain(rain, filter('highpass', 300), filter('lowpass', 1600), gain(0.04), out);
+    const l = lfo(waves.gain, 0.09, 0.05);
+    const patter = setInterval(() => drops(out, 5), 250);
     const thunder = setInterval(() => Math.random() < 0.3 && rumble(out), 6000);
-    return { out, sources: [sea, rain, l], timers: [thunder] };
+    return { out, sources: [sea, rain, l], timers: [patter, thunder] };
   },
   // A soft chord of the court, slowly breathing.
   dust() {
@@ -120,10 +125,25 @@ function rumble(destination) {
     t = ctx.currentTime;
   chain(n, filter('lowpass', 140), g, destination);
   g.gain.setValueAtTime(0, t);
-  g.gain.linearRampToValueAtTime(0.5, t + 0.4);
+  g.gain.linearRampToValueAtTime(0.3, t + 0.4);
   g.gain.exponentialRampToValueAtTime(0.001, t + 3.5);
   n.start(t);
   n.stop(t + 3.6);
+}
+// A few raindrops on the glass during the next quarter of a second: tiny taps, each with its
+// own pitch and loudness, so the rain never repeats.
+function drops(destination, most) {
+  const t0 = ctx.currentTime;
+  for (let i = Math.floor(Math.random() * (most + 1)); i > 0; i--) {
+    const n = noise(),
+      g = gain(0),
+      t = t0 + Math.random() * 0.25;
+    chain(n, filter('bandpass', 1800 + Math.random() * 3000, 4), g, destination);
+    g.gain.setValueAtTime(0.01 + Math.random() * 0.025, t);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.025 + Math.random() * 0.03);
+    n.start(t, Math.random());
+    n.stop(t + 0.07);
+  }
 }
 function click(level, frequency) {
   const n = noise(),
