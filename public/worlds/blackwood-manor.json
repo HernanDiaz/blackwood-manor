@@ -501,6 +501,10 @@
       "name": "Despacho",
       "article": "el",
       "description": "Paneles de roble oscuro, un escritorio de caoba con tapete de cuero verde y una lámpara de latón que deja el resto de la sala en penumbra. Huele a tabaco de pipa y a tinta, y la lluvia golpea sin descanso las ventanas cerradas.",
+      "ambience": [
+        "Al entrar, notas el frío de la chimenea apagada y el tictac de un reloj de sobremesa que nadie ha mirado en horas. El cuero de las butacas cruje al menor movimiento.",
+        "La lámpara de latón dibuja un círculo verde sobre el tapete y deja el resto en sombra. Las ventanas tiemblan con cada ráfaga, y el olor a tabaco frío se te pega a la ropa."
+      ],
       "tags": ["interior"],
       "image": "/worlds/blackwood-manor/room-r1.webp",
       "imagePrompt": "Interior, wide shot, no people. Oak-panelled study in an English country house, mahogany desk with a green leather top under a brass desk lamp, leather wingback chair, shelves of ledgers, a cold fireplace with fire irons, rain streaming down tall closed windows."
@@ -510,6 +514,10 @@
       "name": "Biblioteca",
       "article": "la",
       "description": "Estanterías de nogal suben hasta una galería con barandilla de madera torneada, a la que se llega por una escalera de caracol de hierro. Huele a cuero viejo y a papel, y el fuego de la chimenea apenas alcanza los lomos más altos.",
+      "ambience": [
+        "Al entrar, el parqué cruje bajo tus zapatos y el sonido sube hasta la galería, donde se pierde entre los libros. Las llamas chasquean, pequeñas y obstinadas.",
+        "Aquí el silencio es espeso y amortigua la lluvia. Hace más frío arriba que abajo, y de vez en cuando la escalera de hierro suelta un chasquido leve, como si se enfriara."
+      ],
       "tags": ["interior", "elevated"],
       "image": "/worlds/blackwood-manor/room-r2.webp",
       "imagePrompt": "Interior, wide shot, no people. Two-storey English country-house library, walnut bookcases rising to an upper gallery with a turned wooden railing, wrought-iron spiral staircase leading up to it, parquet floor far below, low fire in a marble fireplace, reading lamps, heavy velvet curtains with tasselled cords."
@@ -519,6 +527,10 @@
       "name": "Comedor",
       "article": "el",
       "description": "Una mesa larga de caoba bajo una araña de cristal, la cubertería de plata todavía alineada y retratos de antepasados que miran desde las paredes. Queda en el aire un olor a cera de velas, a cordero asado y a oporto.",
+      "ambience": [
+        "Al entrar, los cristales de la araña tintinean con la corriente que sube del vestíbulo. Los retratos parecen seguirte con la mirada, severos y aburridos.",
+        "Las velas se han consumido hasta la mitad y la cera cuelga en lágrimas de los candelabros de plata. La lluvia azota los ventanales con un ruido de grava arrojada."
+      ],
       "tags": ["interior"],
       "image": "/worlds/blackwood-manor/room-r3.webp",
       "imagePrompt": "Interior, wide shot, no people. Formal English country-house dining room after dinner, long mahogany table with silver cutlery and crystal glasses, crystal chandelier, guttering candles, dark ancestral portraits in gilt frames, a sideboard with a port decanter, rain on the tall windows."
@@ -528,6 +540,10 @@
       "name": "Cocina",
       "article": "la",
       "description": "Fogones de hierro todavía tibios, cacerolas de cobre colgadas en hilera y una mesa de pino fregada hasta blanquear. Huele a té negro, a pan y a carbón, y el agua de la lluvia gorgotea en el desagüe del patio.",
+      "ambience": [
+        "Al entrar, te recibe un calor que no hay en el resto de la casa. Un gato atigrado dormita junto a los fogones, y el reloj de la pared avanza con un tic seco y doméstico.",
+        "Las campanillas del cuadro de llamadas, una por cada habitación, cuelgan quietas sobre la puerta. Huele a jabón de sosa y a ropa tendida a secar cerca del fuego."
+      ],
       "tags": ["interior"],
       "image": "/worlds/blackwood-manor/room-r4.webp",
       "imagePrompt": "Interior, wide shot, no people. Large below-stairs kitchen of an English country house, black iron range still glowing faintly, rows of hanging copper pans, scrubbed pine table with a teapot and cups, stone flagged floor, servants' bell board on the wall, rain against a high window."
@@ -537,6 +553,10 @@
       "name": "Invernadero",
       "article": "el",
       "description": "Cristales empañados, macetas de terracota y plantas de hojas carnosas que crecen en un calor húmedo y pegajoso. Entre los helechos asoman flores de un azul violáceo, y la lluvia tamborilea sobre la cúpula de vidrio.",
+      "ambience": [
+        "Al entrar, el aire caliente te humedece la cara de golpe. Huele a tierra húmeda y a savia, y una gota de condensación te resbala por la nuca.",
+        "Bajo la cúpula, el estruendo de la lluvia es tan constante que acaba pareciendo silencio. Las hojas de las palmeras se mecen apenas, aunque no corre el aire."
+      ],
       "tags": ["interior"],
       "image": "/worlds/blackwood-manor/room-r5.webp",
       "imagePrompt": "Interior, wide shot, no people. Victorian glass conservatory attached to an English country house at night, fogged glass panes and an iron-framed dome, terracotta pots, ferns, palms and exotic plants, spikes of violet-blue monkshood flowers, a potting bench with small glass bottles, rain running down the glass, a single lantern."
@@ -546,6 +566,10 @@
       "name": "Vestíbulo",
       "article": "el",
       "description": "Suelo de mármol ajedrezado, una escalera de roble que sube hacia la oscuridad y un reloj de pie que da los cuartos con un golpe grave. Huele a abrigos mojados y a cera de muebles, y el viento se cuela bajo la puerta principal.",
+      "ambience": [
+        "Al entrar, el eco de tus pasos rebota en el mármol y sube por la escalera. Los paraguas del perchero gotean sin prisa sobre una bandeja de latón.",
+        "Desde lo alto de la escalera baja una corriente fría que hace vacilar las lámparas. Las astas de ciervo proyectan en los paneles sombras de ramas desnudas."
+      ],
       "tags": ["interior"],
       "image": "/worlds/blackwood-manor/room-r6.webp",
       "imagePrompt": "Interior, wide shot, no people. Entrance hall of an English country house, black and white chequered marble floor, grand oak staircase rising into darkness, tall longcase clock, coat stand with dripping umbrellas, stag antlers on panelled walls, rain-dark fanlight over the front door."
@@ -757,5 +781,27 @@
       "Junto a la chimenea, varios rostros te observan a la luz de las lámparas sin decir palabra. Todos se conocen desde hace años, y al menos uno de ellos miente.",
       "Pides papel, una pluma y un café bien cargado. El reloj del vestíbulo sigue dando los cuartos: antes de que amaine tendrás que separar las coartadas de las mentiras."
     ]
+  },
+  "night": [
+    "La lluvia arrecia contra los cristales y el viento empieza a silbar en las chimeneas. En el vestíbulo, el reloj de pie sigue dando los cuartos sin prisa.",
+    "En la cocina alguien vuelve a poner agua al fuego; nadie en la casa piensa acostarse. Por los pasillos se oyen pasos que se detienen y vuelven a alejarse.",
+    "Un trueno largo rueda sobre la campiña y las lámparas parpadean un instante. Las doncellas reparten velas por los pasillos, por si se va la luz.",
+    "El río no deja de crecer: desde las ventanas altas se ve brillar el agua donde antes estaba el prado. Ya nadie habla del puente.",
+    "Las velas se han consumido hasta el cabo y la casa huele a humo frío. En el piso de arriba, una puerta se cierra con demasiada suavidad.",
+    "La tormenta llega a lo peor: las contraventanas golpean y el fuego se encoge en las chimeneas. Todos esperan, y nadie se atreve a mirar a los demás."
+  ],
+  "epilogues": [
+    "Cuando terminas de hablar, el silencio es tan hondo que se oye gotear los paraguas del vestíbulo. Nadie mira a {culprit}. El ama de llaves cruza la sala sin hacer ruido y se queda a su lado, firme como un centinela, mientras alguien cierra la puerta de {scene}. {culprit} no opone resistencia; se sienta en un peldaño de la escalera de roble a esperar. Hacia el alba la lluvia amaina, el río se retira despacio del puente y, con la primera luz gris, asoma por la avenida de robles el coche de la policía del condado.",
+    "{culprit} escucha la acusación sin interrumpirte. Al final solo pide un vaso de agua, y es el ama de llaves quien lo trae, sin una palabra, en la bandeja de plata de las grandes ocasiones. A {culprit} le tiemblan las manos al cogerlo. Nadie más se mueve. No queda una vela entera en la casa cuando, poco antes del amanecer, los gallos de las granjas empiezan a cantar y el agua deja de golpear los cristales. A media mañana, el sargento del pueblo cruza el puente con las botas embarradas y se lleva a {culprit} por la avenida de robles.",
+    "Has dejado para el final la pregunta que importaba, y la respuesta de {culprit} es un silencio largo. El ama de llaves, que lleva toda la noche de pie junto a la puerta, es la primera en comprenderlo: suspira y ordena que nadie salga de la casa. Encierran a {culprit} en el cuarto de la plata, el único con cerrojo por fuera, y {victim} queda velado en {scene} bajo una sábana de hilo. Al amanecer la lluvia por fin se detiene. Un sol pálido sale sobre los prados anegados, y desde la ventana ves llegar al inspector del condado, chapoteando entre los charcos."
+  ],
+  "look": {
+    "bg": "#0f1a17",
+    "panel": "#17241f",
+    "line": "#30433b",
+    "accent": "#c9a86a",
+    "text": "#ece6d8",
+    "muted": "#a4ae9f",
+    "effect": "rain"
   }
 }

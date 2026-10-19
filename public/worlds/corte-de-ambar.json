@@ -482,6 +482,10 @@
       "name": "Sala del trono",
       "article": "la",
       "description": "Columnas de piedra dorada sostienen una bóveda donde arden runas de luz tibia. El trono de ámbar atrapa el resplandor de los braseros y el aire huele a incienso de resina.",
+      "ambience": [
+        "Al entrar, el eco de tus pasos sube por las columnas y tarda en volver. Los braseros chisporrotean y, de vez en cuando, una chispa salta sobre las losas doradas.",
+        "Las runas de la bóveda laten despacio, como una respiración dormida. Del salón del banquete llega todavía una música feérica tan tenue que parece un recuerdo."
+      ],
       "tags": [],
       "image": "/worlds/corte-de-ambar/room-r1.webp",
       "imagePrompt": "interior, no people, wide shot, vast throne hall of golden stone columns, vaulted ceiling inscribed with softly glowing runes, carved amber throne on a dais catching the light of bronze braziers, drifting resin incense smoke"
@@ -491,6 +495,10 @@
       "name": "Archivo real",
       "article": "el",
       "description": "Estanterías hasta el techo cargadas de pergaminos lacrados y códices con cierres de bronce. Huele a polvo, a lacre y a tinta de agalla, y las velas crepitan bajo campanas de vidrio.",
+      "ambience": [
+        "Al entrar, el silencio es tan espeso que oyes asentarse un pergamino en su estante. Una corriente fría hace temblar apenas las llamas bajo las campanas de vidrio.",
+        "Huele a vitela vieja y a cera de abeja. En algún rincón alto, la carcoma trabaja la madera de las estanterías con un tictac paciente."
+      ],
       "tags": [],
       "image": "/worlds/corte-de-ambar/room-r2.webp",
       "imagePrompt": "interior, no people, wide shot, royal archive with floor-to-ceiling wooden shelves of sealed scrolls and bronze-clasped codices, rolling ladder, reading desk with inkwells, candles under glass bells, dusty golden light"
@@ -500,6 +508,10 @@
       "name": "Jardín encantado",
       "article": "el",
       "description": "Senderos de musgo serpentean entre rosales que solo se abren de noche y fuentes que cantan en voz baja. Las flores de luna brillan con luz propia y el aire huele a jazmín y a tierra mojada.",
+      "ambience": [
+        "Al entrar, el canto de las fuentes cambia de tono, como si comentara tu llegada. La tierra está húmeda y fresca, y el musgo amortigua cualquier ruido.",
+        "Una polilla blanca vuela de flor de luna en flor de luna, espolvoreando un leve brillo de plata. Por encima de las murallas, el viento trae olor a pino."
+      ],
       "tags": [],
       "image": "/worlds/corte-de-ambar/room-r3.webp",
       "imagePrompt": "exterior night garden enclosed by golden palace walls, no people, wide shot, mossy winding paths, night-blooming roses, luminous pale moonflowers glowing on their own, small singing stone fountains, silver mist"
@@ -509,6 +521,10 @@
       "name": "Laboratorio alquímico",
       "article": "el",
       "description": "Alambiques de cobre burbujean sobre llamas azules entre frascos de sales de todos los colores. Huele a azufre y a hierbas quemadas, y en las paredes hay fórmulas trazadas con tiza.",
+      "ambience": [
+        "Al entrar, el calor te humedece la frente. Un alambique suelta un silbido agudo y vuelve a callar, y en el aire flota un polvo fino que pica en la garganta.",
+        "Los frascos de sales tiñen la penumbra de reflejos verdes y violetas. Bajo el burbujeo constante se oye el zumbido grave de las llamas azules."
+      ],
       "tags": [],
       "image": "/worlds/corte-de-ambar/room-r4.webp",
       "imagePrompt": "interior, no people, wide shot, alchemist laboratory under a stone vault, copper alembics bubbling over blue flames, shelves of glass jars with colourful salts, chalk formulas and diagrams on the walls, hanging dried herbs, faint yellow vapour"
@@ -518,6 +534,10 @@
       "name": "Galería de poniente",
       "article": "la",
       "description": "Un balcón corrido de balaustrada dorada se asoma al patio de armas desde gran altura. El viento entra por los ventanales y agita los estandartes, y muy abajo brillan las losas mojadas del patio.",
+      "ambience": [
+        "Al entrar, el viento te tira de la capa y hace restallar los estandartes como velas de barco. Muy abajo, en el patio, un centinela cambia la lanza de hombro.",
+        "Huele a piedra mojada y a lluvia que baja del monte. Desde aquí, las antorchas del patio parecen brasas diminutas, y el frío se te mete en los dedos."
+      ],
       "tags": ["elevated"],
       "image": "/worlds/corte-de-ambar/room-r5.webp",
       "imagePrompt": "interior, no people, wide shot, long high gallery with a gilded stone balustrade overlooking a courtyard far below, tall open arched windows, wind-blown heraldic banners with an amber sun, wet flagstones glinting in the courtyard at night"
@@ -527,6 +547,10 @@
       "name": "Torre del oráculo",
       "article": "la",
       "description": "Una cámara circular en lo alto de la torre, con un espejo de obsidiana en el centro y cartas celestes pintadas en la cúpula. Por el ventanal abierto entra el frío de la noche y se ve el reino entero.",
+      "ambience": [
+        "Al entrar, el aliento se te vuelve vaho. El espejo de obsidiana no devuelve tu reflejo, solo una negrura quieta que parece más honda que la propia torre.",
+        "Bajo las cartas celestes de la cúpula, el viento silba en el ventanal con una nota larga. Allá abajo, las luces del reino se apagan aldea a aldea."
+      ],
       "tags": ["elevated"],
       "image": "/worlds/corte-de-ambar/room-r6.webp",
       "imagePrompt": "interior, no people, wide shot, circular chamber at the top of a tall tower, black obsidian scrying mirror on a pedestal, dome painted with celestial charts and constellations, large open window showing a moonlit kingdom far below, cold blue night air"
@@ -747,5 +771,27 @@
       "Por los pasillos ya corren rumores, y cada uno señala a alguien distinto. Tienes hasta que la luz del alba toque el trono para separar la verdad del veneno de las lenguas.",
       "Cinco personas esperan en salas distintas, y todas tenían algo que perder. El palacio entero contiene el aliento."
     ]
+  },
+  "night": [
+    "La música feérica calla por fin en el salón del banquete, y el palacio se queda a solas con el crepitar de los braseros y el viento en los ventanales.",
+    "Empieza a caer una lluvia fina que huele a resina. En los portones, las runas del sello arden firmes: nadie saldrá de aquí antes del alba.",
+    "Las velas del banquete se consumen sobre las mesas puestas. Un criado pasa apagándolas una a una y no se atreve a levantar la vista.",
+    "El viento arrecia y hace golpear los postigos de las torres. Por los pasillos, los susurros de la servidumbre se cortan en seco cuando pasas.",
+    "Un trueno rueda sobre el bosque real. Las runas de los muros parpadean un instante, y en todo el palacio parece que nadie respira.",
+    "La tormenta azota las murallas con toda su furia y los braseros del trono casi se apagan. La noche se hace eterna, y alguien entre estos muros cuenta cada instante."
+  ],
+  "epilogues": [
+    "Reúnes a la corte bajo la bóveda del trono mientras las runas empiezan a palidecer. Cuando pronuncias el nombre de {culprit}, nadie dice nada; solo el chambelán da un paso al frente y golpea las losas con la vara de su cargo. {culprit} no opone resistencia y sigue a la guardia por el corredor; el eco de los pasos tarda en apagarse. Al alba, el sello de las puertas se deshace como escarcha, y la primera luz del solsticio toca el trono de ámbar.",
+    "El chambelán escucha tu razonamiento sin interrumpirte, con el libro de rondas apretado contra el pecho. Al terminar, cierra los ojos un instante y ordena a la guardia que busque a {culprit}. Dan con {culprit} junto a un ventanal, mirando la lluvia, y le tiemblan las manos cuando cierran los grilletes. Nadie vuelve a entrar en {scene} esa noche. Con las primeras luces, la tormenta se retira hacia el bosque y las runas de los portones se apagan una a una, como si el palacio soltara por fin el aliento.",
+    "Expones lo que la noche te ha enseñado ante las cinco personas que la magia dejó encerradas. Cuando terminas, todas las miradas se vuelven hacia {culprit} a la vez, como hojas que gira el viento. El chambelán golpea el suelo con su vara y la guardia rodea a {culprit}, que no pide clemencia ni aparta la vista. Fuera, el cielo se aclara sobre las murallas. Cuando la luz del alba alcanza el trono, la corte entera sabe que la muerte de {victim} no quedará sin respuesta."
+  ],
+  "look": {
+    "bg": "#160f1d",
+    "panel": "#21182b",
+    "line": "#3e3050",
+    "accent": "#e8b84a",
+    "text": "#f0e6d6",
+    "muted": "#b4a6c0",
+    "effect": "dust"
   }
 }

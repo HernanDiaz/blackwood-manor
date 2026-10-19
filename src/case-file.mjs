@@ -8,7 +8,7 @@ import { findMethod, fitsRoom } from './method-catalog.mjs';
 import { hash } from './random.mjs';
 import { placePhrase, contract } from './spanish-prose.mjs';
 import { statementKinds } from './statements.mjs';
-import { text, image, optional, list as ids, personIds } from './world-file.mjs';
+import { text, image, optional, list as ids, personIds, normalizeLook } from './world-file.mjs';
 
 export const CASE_FORMAT = 'mundos-expediente';
 export const topics = [
@@ -105,6 +105,12 @@ export function normalizeCaseFile(raw) {
     description: text(r.description, 500, 'la descripción de ' + r.id),
     tags: ids(r.tags ?? [], 'etiquetas', { max: 6 }).map(t => text(t, 30, 'una etiqueta')),
     ...optional('image', image(r.image, r.id)),
+    ...optional(
+      'ambience',
+      r.ambience === undefined
+        ? undefined
+        : ids(r.ambience, 'la atmósfera', { max: 3 }).map(t => text(t, 220, 'la atmósfera')),
+    ),
   }));
   if (new Set(rooms.map(r => r.id)).size !== rooms.length) fail('Lugares repetidos');
   const file = { rooms };
@@ -143,6 +149,15 @@ export function normalizeCaseFile(raw) {
       arrival: text(raw.opening?.arrival, 650, 'el prólogo'),
       tension: text(raw.opening?.tension, 650, 'el cierre del prólogo'),
     },
+    // Atmosphere: the night going on, the arrest, colours and background effect (all optional).
+    ...optional(
+      'night',
+      raw.night === undefined
+        ? undefined
+        : ids(raw.night, 'la noche', { max: 8 }).map(t => text(t, 180, 'la noche')),
+    ),
+    ...optional('epilogue', text(raw.epilogue, 700, 'el epílogo', { optional: true })),
+    ...optional('look', normalizeLook(raw.look)),
     alibis: ids(raw.alibis, 'coartadas').map(a => ({
       person: personIds.includes(a?.person) ? a.person : fail('Coartada de persona desconocida'),
       room: rooms.some(r => r.id === a.room) ? a.room : fail('Coartada en un lugar desconocido'),
@@ -409,6 +424,7 @@ export function hydrateCase(file) {
     ),
     proof: analysis.proof,
     analysis,
+    ...optional('epilogue', file.epilogue && resolveText(file.epilogue, file)),
     file,
   };
 }

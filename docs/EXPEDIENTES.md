@@ -14,21 +14,22 @@ El código está en:
 
 ## Campos
 
-| Campo | Contenido |
-|---|---|
-| `format`, `version` | `"mundos-expediente"`, `1` |
-| `world` | Mundo del que procede (`villa-bellavista`…). Es informativo: el caso se juega sin él |
-| `title` | Título |
-| `victim` | `{ name, role, gender }` |
-| `people` | Cinco personajes `p1`…`p5`: `name`, `role`, `gender` (`f`/`m`) y, opcionalmente, `personality` e `image` |
-| `rooms` | De 4 a 8 lugares `r1`…: `name`, `article`, `description`, `tags` e `image` (opcional) |
-| `weapons` | Armas que ofrece la acusación: `{ method, label }`. Debe incluir la del crimen |
-| `crime` | `culprit`, `method` (mecánica de `method-catalog.mjs`), `weapon` («el atizador de bronce»), `phrase` («con el atizador de bronce»), `scene`, los minutos del día `crimeMinute`, `exitMinute`, `deathMinute` y `discoveryMinute`, y el texto `motive` |
-| `opening` | Prólogo: `arrival` y `tension` |
-| `alibis` | Lo que declara cada persona: `person`, `room`, `from`, `to`, `claim` |
-| `clues` | De 6 a 30 pistas: `id` (`c1`…), `room`, `title`, `text`, `image` (opcional) y un `fact` |
-| `facts` | Lo que puede decir cada persona: `{ id, kind?, text, variants?, requires? }` |
-| `origin` | Opcional: `generator` y `seed` |
+| Campo                                           | Contenido                                                                                                                                                                                                                                            |
+| ----------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `format`, `version`                             | `"mundos-expediente"`, `1`                                                                                                                                                                                                                           |
+| `world`                                         | Mundo del que procede (`villa-bellavista`…). Es informativo: el caso se juega sin él                                                                                                                                                                 |
+| `title`                                         | Título                                                                                                                                                                                                                                               |
+| `victim`                                        | `{ name, role, gender }`                                                                                                                                                                                                                             |
+| `people`                                        | Cinco personajes `p1`…`p5`: `name`, `role`, `gender` (`f`/`m`) y, opcionalmente, `personality` e `image`                                                                                                                                             |
+| `rooms`                                         | De 4 a 8 lugares `r1`…: `name`, `article`, `description`, `tags` e `image` (opcional)                                                                                                                                                                |
+| `weapons`                                       | Armas que ofrece la acusación: `{ method, label }`. Debe incluir la del crimen                                                                                                                                                                       |
+| `crime`                                         | `culprit`, `method` (mecánica de `method-catalog.mjs`), `weapon` («el atizador de bronce»), `phrase` («con el atizador de bronce»), `scene`, los minutos del día `crimeMinute`, `exitMinute`, `deathMinute` y `discoveryMinute`, y el texto `motive` |
+| `opening`                                       | Prólogo: `arrival` y `tension`                                                                                                                                                                                                                       |
+| `alibis`                                        | Lo que declara cada persona: `person`, `room`, `from`, `to`, `claim`                                                                                                                                                                                 |
+| `clues`                                         | De 6 a 30 pistas: `id` (`c1`…), `room`, `title`, `text`, `image` (opcional) y un `fact`                                                                                                                                                              |
+| `facts`                                         | Lo que puede decir cada persona: `{ id, kind?, text, variants?, requires? }`                                                                                                                                                                         |
+| `night`, `epilogue`, `look`, `rooms[].ambience` | Opcionales, la ambientación copiada del mundo: el paso de la noche, la escena de la detención (con `{pN}` y `{rN}`), la paleta y el efecto de fondo, y la atmósfera de cada sala                                                                     |
+| `origin`                                        | Opcional: `generator` y `seed`                                                                                                                                                                                                                       |
 
 En `facts`:
 
@@ -50,17 +51,17 @@ Las imágenes solo pueden ser rutas locales `.webp` bajo `/worlds/`. Los textos 
 
 El texto de una pista es para el jugador; el `fact` es lo que entiende el motor. La comprobación lógica usa solo los hechos.
 
-| `type` | Significado |
-|---|---|
-| `cause` | Causa de la muerte: `method`, `room`, `minute` |
-| `weapon` | Arma hallada: `method`, `room` |
-| `discovery` | Quién encontró el cuerpo: `person`, `room`, `minute` |
-| `motive` | `person` tenía un móvil |
-| `access` | `people` podían llegar al arma del `method` |
-| `presence` | `people` estaban en `room` de `from` a `to`. Con `exclusive: true`, nadie más estuvo allí; con `people: []`, el lugar estaba vacío |
-| `herring` | Pista engañosa contra `person` |
-| `explains` | Explica la pista engañosa `clue` |
-| `note` | Contexto sin valor lógico |
+| `type`      | Significado                                                                                                                        |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `cause`     | Causa de la muerte: `method`, `room`, `minute`                                                                                     |
+| `weapon`    | Arma hallada: `method`, `room`                                                                                                     |
+| `discovery` | Quién encontró el cuerpo: `person`, `room`, `minute`                                                                               |
+| `motive`    | `person` tenía un móvil                                                                                                            |
+| `access`    | `people` podían llegar al arma del `method`                                                                                        |
+| `presence`  | `people` estaban en `room` de `from` a `to`. Con `exclusive: true`, nadie más estuvo allí; con `people: []`, el lugar estaba vacío |
+| `herring`   | Pista engañosa contra `person`                                                                                                     |
+| `explains`  | Explica la pista engañosa `clue`                                                                                                   |
+| `note`      | Contexto sin valor lógico                                                                                                          |
 
 ## Qué comprueba `analyzeCase`
 
@@ -78,20 +79,20 @@ Para ganar, la acusación necesita persona, arma y lugar correctos, y una pista 
 
 Cada persona tiene un papel fijo en la lógica; quién hace cada papel se decide al azar:
 
-| Papel | Lo que lo define |
-|---|---|
-| Culpable | Motivo fuerte, acceso al arma y una coartada que una pista desmiente |
+| Papel        | Lo que lo define                                                            |
+| ------------ | --------------------------------------------------------------------------- |
+| Culpable     | Motivo fuerte, acceso al arma y una coartada que una pista desmiente        |
 | Sin testigos | Un motivo débil y nadie que confirme su coartada, pero nunca acceso al arma |
-| Registro | Su coartada consta en el registro de un lugar; es quien encuentra el cuerpo |
-| Pareja | Dos personas que se confirman entre sí ante quien vigila la puerta |
+| Registro     | Su coartada consta en el registro de un lugar; es quien encuentra el cuerpo |
+| Pareja       | Dos personas que se confirman entre sí ante quien vigila la puerta          |
 
 La dificultad (`origin.difficulty`) decide cuántos inocentes comparten motivo y acceso:
 
 | Dificultad | Con motivo | Con acceso al arma | Pistas engañosas |
-|---|---|---|---|
-| Fácil | 2 | 2 | 1 |
-| Media | 3 | 3 | 1 |
-| Difícil | 4 | 4 | 2 |
+| ---------- | ---------- | ------------------ | ---------------- |
+| Fácil      | 2          | 2                  | 1                |
+| Media      | 3          | 3                  | 1                |
+| Difícil    | 4          | 4                  | 2                |
 
 La coartada del culpable cae de una de estas formas:
 

@@ -1040,3 +1040,159 @@ img.missing {
     min-height: 180px;
   }
 }
+
+/* Each world's palette (applied from its look): surfaces follow the palette instead of
+   the fixed colours of the base style. */
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+.brief,
+.clue,
+.conversation,
+.notebook,
+.new-case,
+.classic-cases,
+.continue,
+.world-card,
+.pilot-panel {
+  background-color: var(--panel);
+}
+.room-detail {
+  background: linear-gradient(130deg, color-mix(in srgb, var(--panel) 88%, #fff 4%), var(--panel));
+}
+.selected {
+  background: color-mix(in srgb, var(--panel) 80%, var(--gold) 20%) !important;
+  border-color: var(--gold) !important;
+}
+.question {
+  background: color-mix(in srgb, var(--panel) 75%, var(--gold) 18%);
+}
+.reply {
+  background: var(--bg);
+}
+input:not([type='checkbox']),
+select,
+textarea {
+  background: var(--bg);
+  color: var(--text);
+  border-color: var(--line);
+}
+header .brand,
+.manor span {
+  color: var(--gold);
+}
+.clue {
+  border-top-color: var(--gold);
+}
+nav button.active {
+  color: var(--bg);
+}
+
+/* The background effect: behind the content, never in the way. */
+.world-effect {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Atmosphere texts. */
+.ambience,
+.night,
+.epilogue {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+}
+.ambience {
+  color: var(--text);
+  border-left: 2px solid var(--gold);
+  padding-left: 14px;
+  opacity: 0.92;
+}
+.brief .night {
+  display: block;
+  margin-top: 6px;
+  color: var(--gold);
+  font-size: 13px;
+}
+.epilogue {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 18px;
+  margin-bottom: 18px;
+}
+
+/* Clues as evidence: a stamp with the number, paper grain, photos pinned like snapshots. */
+.clue {
+  position: relative;
+  background-image: repeating-linear-gradient(0deg, transparent 0 27px, #ffffff06 27px 28px);
+}
+.stamp {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  padding: 3px 8px;
+  border: 2px solid color-mix(in srgb, #c0453a 80%, var(--gold));
+  border-radius: 3px;
+  color: color-mix(in srgb, #e06a5c 80%, var(--gold));
+  font:
+    700 11px system-ui,
+    sans-serif;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transform: rotate(4deg);
+  opacity: 0.85;
+  background: color-mix(in srgb, var(--panel) 70%, transparent);
+}
+.clue .clue-art {
+  background: #f1ece2;
+  padding: 8px 8px 22px;
+  border-radius: 2px;
+  box-shadow: 0 6px 14px #0008;
+  transform: rotate(-1.2deg);
+}
+.cards .clue:nth-child(even) .clue-art {
+  transform: rotate(1.1deg);
+}
+/* A clip holding the snapshot. */
+.clue::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  width: 34px;
+  height: 12px;
+  margin-left: -17px;
+  border-radius: 3px;
+  background: linear-gradient(#b9b9b9, #7d7d7d);
+  box-shadow: 0 1px 2px #0009;
+  opacity: 0;
+}
+.clue:has(.clue-art:not(.missing))::after {
+  opacity: 0.9;
+}
+
+/* The notebook as a ruled notebook. */
+.notebook {
+  background-image: linear-gradient(
+      90deg,
+      transparent 38px,
+      color-mix(in srgb, #c0453a 45%, transparent) 38px 39px,
+      transparent 39px
+    ),
+    repeating-linear-gradient(0deg, transparent 0 31px, #ffffff0a 31px 32px);
+}
+@media (max-width: 760px) {
+  .clue .clue-art {
+    padding: 6px 6px 16px;
+  }
+  .epilogue {
+    font-size: 16px;
+  }
+}

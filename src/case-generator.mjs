@@ -409,6 +409,7 @@ export function generateCaseFile(
       article: r.article,
       description: r.description,
       tags: r.tags,
+      ...(r.ambience ? { ambience: r.ambience } : {}),
       ...(r.image ? { image: r.image } : {}),
     })),
     weapons: worldWeapons(world).map(w => ({ method: w.method, label: w.label })),
@@ -428,6 +429,16 @@ export function generateCaseFile(
       arrival: one(world.openings.arrivals),
       tension: one(world.openings.tensions),
     },
+    ...(world.night ? { night: world.night } : {}),
+    // The arrest names the culprit and the scene of this case.
+    ...(world.epilogues
+      ? {
+          epilogue: one(world.epilogues)
+            .replace(/\{culprit\}/g, named(culprit))
+            .replace(/\{scene\}/g, roomName(scene)),
+        }
+      : {}),
+    ...(world.look ? { look: world.look } : {}),
     alibis: people.map(p => ({
       person: p.id,
       room: alibiRoom[p.id].id,

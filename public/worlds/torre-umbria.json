@@ -489,6 +489,10 @@
       "name": "Gran salón",
       "article": "el",
       "description": "Una chimenea donde cabría un buey caldea a medias la sala, y el humo se pega a los tapices de caza y a las vigas ennegrecidas. Huele a leña de encina, a sebo de velas y a los juncos secos esparcidos por el suelo.",
+      "ambience": [
+        "Al entrar, el calor de la chimenea te da en la cara mientras la espalda sigue helada. Un tronco de encina se parte y escupe chispas sobre las losas.",
+        "Los juncos crujen bajo tus botas. En un rincón, un perro de caza levanta la cabeza, te mira un momento y vuelve a enroscarse junto a las brasas."
+      ],
       "tags": [],
       "image": "/worlds/torre-umbria/room-r1.webp",
       "imagePrompt": "interior, wide shot, no people, the great hall of a 14th-century Castilian castle, huge stone fireplace with a low fire, smoke-blackened timber ceiling beams, faded hunting tapestries on the walls, long trestle table with benches, tallow candles, dried rushes strewn on the stone floor"
@@ -498,6 +502,10 @@
       "name": "Capilla",
       "article": "la",
       "description": "Una nave estrecha de piedra con un retablo de tablas doradas y una lámpara de aceite que nunca se apaga. Hace más frío que en el patio, y el olor a cera y a incienso viejo se queda en la ropa.",
+      "ambience": [
+        "Al entrar, el frío te muerde los dedos. La llama de la lámpara apenas se mueve, y el oro del retablo devuelve un brillo pálido y quieto.",
+        "Tus pasos resuenan en la nave como si alguien caminara detrás de ti. Gotea cera de un cirio, y fuera el viento hace gemir la ventana estrecha."
+      ],
       "tags": [],
       "image": "/worlds/torre-umbria/room-r2.webp",
       "imagePrompt": "interior, wide shot, no people, a narrow stone castle chapel, small gilded Gothic altarpiece of painted wooden panels, a single hanging oil lamp glowing red, beeswax candles on the altar, worn stone floor, cold blue light through a narrow lancet window"
@@ -507,6 +515,10 @@
       "name": "Scriptorium",
       "article": "el",
       "description": "Atriles inclinados junto a ventanas estrechas, tinteros de cuerno, pergaminos tendidos a secar y un arcón con las cartas y los libros de cuentas del señorío. Huele a tinta, a cola y a polvo, y el viento silba por las rendijas de los postigos.",
+      "ambience": [
+        "Al entrar, el postigo golpea su marco con cada racha. Los pergaminos tendidos se mecen en sus cuerdas y crujen como hojas secas.",
+        "Huele a cola de pescado y a sebo frío. Una pluma olvidada en un tintero de cuerno tiembla con la corriente que se cuela por la ventana."
+      ],
       "tags": [],
       "image": "/worlds/torre-umbria/room-r3.webp",
       "imagePrompt": "interior, wide shot, no people, a small medieval castle scriptorium, slanted wooden writing desks by narrow windows with wooden shutters, horn inkwells and quill pens, parchment sheets hung to dry on cords, an iron-bound chest of ledgers and letters, dusty grey winter light"
@@ -516,6 +528,10 @@
       "name": "Botica",
       "article": "la",
       "description": "Estantes de tarros de barro y frascos de vidrio verdoso, manojos de hierbas colgados de las vigas, un mortero de bronce y un hornillo apagado. El aire es espeso: romero, ruda, vinagre y algo amargo que no se sabe nombrar.",
+      "ambience": [
+        "Al entrar, el olor de las hierbas te llena la boca y te pica en los ojos. Un manojo de salvia roza tu frente al pasar bajo las vigas.",
+        "Los frascos de vidrio verdoso recogen la luz de la vela y la tiñen de un color de agua de pozo. En algún estante, un ratón escarba y calla."
+      ],
       "tags": [],
       "image": "/worlds/torre-umbria/room-r4.webp",
       "imagePrompt": "interior, wide shot, no people, a medieval castle apothecary room, wooden shelves of clay jars and greenish glass flasks, bundles of dried herbs hanging from low beams, bronze mortar and pestle on a scarred workbench, small cold brazier, dim candlelight"
@@ -525,6 +541,10 @@
       "name": "Armería",
       "article": "la",
       "description": "Lanzas en sus soportes, cotas de malla colgadas como pieles de caza, ballestas en fila y un banco con piedras de afilar. Huele a hierro frío, a sebo y a cuero curtido.",
+      "ambience": [
+        "Al entrar, el frío del hierro se te mete en los huesos. Las cotas colgadas tintinean apenas cuando el aire de la puerta las alcanza.",
+        "La antorcha arranca destellos a los cascos alineados en la pared. Huele a aceite rancio y a cuero, y la bóveda devuelve cada paso con un eco sordo."
+      ],
       "tags": [],
       "image": "/worlds/torre-umbria/room-r5.webp",
       "imagePrompt": "interior, wide shot, no people, a vaulted stone armoury in a 14th-century castle, spears upright in wooden racks, mail shirts hanging on pegs, a row of crossbows on the wall, shields, a workbench with whetstones, torchlight glinting on iron"
@@ -534,6 +554,10 @@
       "name": "Torre de vigía",
       "article": "la",
       "description": "Una escalera de caracol desemboca en una plataforma almenada barrida por el viento, desde la que se domina todo el valle nevado. Junto al parapeto, una trampilla de madera se abre sobre el matacán, muy por encima del patio de armas.",
+      "ambience": [
+        "Al salir a la plataforma, el viento te arranca el aliento y te llena la cara de nieve fina. Abajo, el valle es una sábana blanca sin una sola luz.",
+        "La antorcha del parapeto chisporrotea y se tumba con cada racha. Desde muy lejos, por encima del silbido del viento, aúllan los lobos de la sierra."
+      ],
       "tags": ["elevated"],
       "image": "/worlds/torre-umbria/room-r6.webp",
       "imagePrompt": "wide shot, no people, the windswept crenellated top of a medieval stone watchtower at dusk, snow on the merlons, a wooden trapdoor set in the floor beside the parapet over a machicolation, a sputtering torch in an iron bracket, a vast snowy valley far below"
@@ -727,5 +751,27 @@
       "El portero echa la tranca del portón con un golpe seco. Entre estos muros, cada mirada es una sospecha y cada silencio, una confesión a medias.",
       "Pides papel, tinta y una vela. Antes del amanecer tendrás que separar las mentiras de las verdades, y en este castillo unas y otras visten igual."
     ]
+  },
+  "night": [
+    "La nieve cae ahora espesa y sin ruido. En el patio de armas, un mozo arrastra un haz de leña y deja un surco que se borra enseguida.",
+    "Las velas del gran salón ya se han consumido hasta la mitad. Nadie se acuesta: la gente de la casa habla en voz baja junto al fuego y calla cuando pasas.",
+    "Se levanta el viento de la sierra. Silba entre las almenas, sacude los postigos y hace temblar las antorchas del adarve.",
+    "Un perro aúlla en las cuadras y otro le responde. El portero recorre el muro con un farol, y su luz se pierde a ratos en la ventisca.",
+    "La ventisca golpea la torre con furia. Las llamas se encogen en los hachones, el fuego de la chimenea se apaga a medias y el frío avanza por los pasillos.",
+    "De pronto el viento calla. En el silencio solo se oye la lámpara de la capilla chisporrotear, y todo el castillo parece contener el aliento."
+  ],
+  "epilogues": [
+    "Pronuncias el nombre de {culprit} en el gran salón, y el silencio cae como una losa. El portero se adelanta con la tranca todavía en la mano y aguarda tu señal. {culprit} no opone resistencia; solo alza la vista hacia la chimenea, como si buscara en las brasas una excusa que ya no existe. Dos hombres de armas cierran filas a su alrededor, y sus pasos se pierden escalera abajo, camino de la mazmorra. Cuando por fin te sientas a escribir, el viento ha cesado y una luz gris asoma sobre la sierra.",
+    "Reúnes a la casa en {scene} y expones, punto por punto, lo que la noche te ha enseñado. Cuando terminas, a {culprit} le tiemblan las manos, y nadie en la sala se atreve a sostenerle la mirada. El portero se acerca despacio, sin empujar, y con un gesto le indica la escalera. La campana de la capilla toca por {victim}, ahora sí, con todas las razones. Fuera ha dejado de nevar, y el valle amanece blanco y en calma.",
+    "Al alba, el portero levanta la tranca del portón por primera vez en semanas: un sol tímido empieza a abrir el puerto de la sierra. Llevan a {culprit} al patio, con las manos atadas y la mirada clavada en la nieve. Lo harás constar todo en tu informe al rey, con tu sello y tu firma. Mientras los demás vuelven a sus oficios, la gente de la casa se santigua al pasar ante {scene}. Por fin, después de una noche tan larga, alguien enciende el fuego de la cocina."
+  ],
+  "look": {
+    "bg": "#121519",
+    "panel": "#1b1f25",
+    "line": "#363c45",
+    "accent": "#d58466",
+    "text": "#e9e4dc",
+    "muted": "#a8a49c",
+    "effect": "snow"
   }
 }

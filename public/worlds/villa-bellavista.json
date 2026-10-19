@@ -483,6 +483,10 @@
       "name": "Despacho",
       "article": "el",
       "description": "Paneles de caoba, un escritorio macizo bajo una lámpara de pantalla verde y un teléfono negro de baquelita. Huele a tabaco de pipa y a papel encerado, y la lluvia repiquetea en los cristales emplomados.",
+      "ambience": [
+        "Al entrar, te recibe el tictac de un reloj de pared que nadie se ha acordado de parar. La lámpara verde deja los rincones en penumbra, y el cuero de los sillones huele a viejo.",
+        "Un relámpago blanquea los cristales emplomados y, por un instante, los lomos de los libros parecen moverse. Luego vuelven la penumbra, el zumbido de la lámpara y la lluvia."
+      ],
       "tags": ["interior"],
       "image": "/worlds/villa-bellavista/room-r1.webp",
       "imagePrompt": "Interior, wide shot, no people. Wood-panelled 1930s study in a seaside villa, massive mahogany desk under a green-shaded banker's lamp, black bakelite telephone, leather armchairs, bookshelves, rain streaking leaded-glass windows, lightning outside."
@@ -492,6 +496,10 @@
       "name": "Salón de música",
       "article": "el",
       "description": "Un gramófono de bocina dorada junto a un piano de cola abierto, alfombras persas y espejos art déco que multiplican la luz de las lámparas. Queda un rastro de perfume francés y humo de cigarrillo, y la chimenea crepita al fondo.",
+      "ambience": [
+        "Los espejos te devuelven tu silueta empapada, repetida hasta perderse. Al cruzar la alfombra cruje la tarima, y las cuerdas del piano abierto responden con un murmullo leve.",
+        "Huele a leña de pino y a polvos de arroz. El calor de la chimenea te enciende la cara mientras, al otro lado de los ventanales, el levante zarandea las palmeras."
+      ],
       "tags": ["interior"],
       "image": "/worlds/villa-bellavista/room-r2.webp",
       "imagePrompt": "Interior, wide shot, no people. Glamorous 1930s art deco music room, gramophone with golden horn beside an open grand piano, Persian rugs, geometric mirrors reflecting lamplight, heavy velvet curtains with silk cords, crackling fireplace with brass fire irons, cocktail glasses on a bar cabinet."
@@ -501,6 +509,10 @@
       "name": "Comedor",
       "article": "el",
       "description": "Una mesa larga de nogal con mantel de hilo, candelabros de plata y copas de cristal tallado. Del aparador llega un olor a cera, a naranjas y a coñac, y las contraventanas crujen con cada golpe de viento.",
+      "ambience": [
+        "La cera de los candelabros gotea despacio sobre la plata, y las llamas se inclinan cada vez que el viento empuja las contraventanas. El mantel aún huele a almidón.",
+        "Al entrar notas el frío del mosaico a través de las suelas mojadas. Desde la cocina llega, lejano, un entrechocar de loza y el murmullo de las criadas."
+      ],
       "tags": ["interior"],
       "image": "/worlds/villa-bellavista/room-r3.webp",
       "imagePrompt": "Interior, wide shot, no people. Formal 1930s Mediterranean villa dining room, long walnut table with white linen, silver candelabra, cut-crystal glasses, sideboard with decanters and a bowl of oranges, wooden shutters rattling in the storm, candlelight."
@@ -510,6 +522,10 @@
       "name": "Garaje",
       "article": "el",
       "description": "Un automóvil negro de capó largo brilla bajo una bombilla desnuda, entre bidones de gasolina y herramientas colgadas en la pared. Huele a aceite y a goma mojada, y el viento hace temblar el portón.",
+      "ambience": [
+        "La bombilla desnuda oscila con cada embestida del viento y hace bailar las sombras sobre el cemento. De una rendija del techo cae agua, gota a gota, en un cubo de zinc.",
+        "El olor a gasolina te sube a la garganta nada más entrar. Bajo el portón se cuela un reguero de lluvia que brilla bajo la bombilla, y fuera los pinos crujen como mástiles."
+      ],
       "tags": ["interior"],
       "image": "/worlds/villa-bellavista/room-r4.webp",
       "imagePrompt": "Interior, wide shot, no people. 1930s villa garage at night, long-bonneted black luxury motorcar gleaming under a single bare bulb, fuel cans, tools hanging on a pegboard, oil stains on the concrete floor, rain blowing under a rattling wooden door."
@@ -519,6 +535,10 @@
       "name": "Terraza del mirador",
       "article": "la",
       "description": "Una terraza de baldosas blancas suspendida sobre el acantilado, cerrada por una barandilla de hierro forjado. Abajo rompen las olas contra las rocas, y el viento trae sal y olor a pino mojado.",
+      "ambience": [
+        "El viento te arranca el aliento nada más salir. Las baldosas brillan empapadas bajo la luz de los ventanales, y la espuma salta tan alto que te moja la cara.",
+        "Abajo, el mar es una masa negra que solo aparece cuando cae un relámpago. Entre trueno y trueno, el rumor de las olas sube por el acantilado como una respiración enorme."
+      ],
       "tags": ["exterior", "elevated"],
       "image": "/worlds/villa-bellavista/room-r5.webp",
       "imagePrompt": "Exterior, wide shot, no people. White-tiled clifftop terrace of a 1930s Mediterranean villa at night in a storm, wrought-iron railing at the edge, waves crashing on dark rocks far below, wind-bent pine trees, lightning over the sea, warm light spilling from French windows."
@@ -528,6 +548,10 @@
       "name": "Bodega",
       "article": "la",
       "description": "Una bodega abovedada, fresca y húmeda, con hileras de barricas y botellas cubiertas de polvo. Huele a vino viejo y a piedra, y el temporal se oye sordo por encima de la bóveda.",
+      "ambience": [
+        "Bajas los últimos peldaños y el frío de la piedra te cala la ropa mojada. Una gota cae de la bóveda a intervalos regulares, con la paciencia de un reloj.",
+        "La lámpara colgada traza un círculo de luz tibia y deja el resto en sombra. Entre las barricas huele a corcho y a moho, y el temporal, arriba, suena como un tren lejano."
+      ],
       "tags": ["interior"],
       "image": "/worlds/villa-bellavista/room-r6.webp",
       "imagePrompt": "Interior, wide shot, no people. Vaulted stone wine cellar beneath a 1930s villa, rows of oak barrels, racks of dusty bottles, a single hanging lamp casting a warm pool of light, damp walls, stone steps leading up into darkness."
@@ -740,5 +764,27 @@
       "En el salón, el gramófono ha seguido girando sin música, con la aguja raspando el final del disco. Los invitados se miran unos a otros por encima de las copas. Uno de ellos miente.",
       "Fuera, la tormenta no da tregua; dentro, las lámparas parpadean cada vez que truena. Tienes hasta que amaine para separar los secretos de la verdad."
     ]
+  },
+  "night": [
+    "La lluvia arrecia contra los cristales y, en algún rincón de la casa, una criada reza el rosario en voz baja.",
+    "El gramófono calla por fin. Solo quedan el viento en las contraventanas y el crujido de la casa, que se queja como un barco viejo.",
+    "La luz eléctrica parpadea y se apaga un instante; el mayordomo reparte velas por los pasillos sin decir palabra.",
+    "Un trueno hace vibrar los espejos. Los invitados ya no fingen conversar: fuman en silencio y se vigilan de reojo.",
+    "Las velas se han consumido hasta la mitad. El mar golpea el acantilado con más furia que nunca, y el teléfono suelta un timbrazo que nadie se atreve a contestar.",
+    "Las ráfagas se espacian, y el silencio que dejan es peor que el ruido. Nadie duerme: todos esperan a que se abra la carretera y suba la Guardia Civil."
+  ],
+  "epilogues": [
+    "Reúnes a todos en {scene} mientras el mayordomo cierra las puertas una a una. Cuando terminas de hablar, nadie mira a {culprit}, pero todos se apartan un paso. {culprit} no opone resistencia; solo pide permiso para sentarse junto a la ventana y contempla la lluvia, que ya cae sin fuerza. Al amanecer, el temporal se retira mar adentro y por la carretera recién abierta asoma el tricornio charolado de la Guardia Civil. Mientras acompañan a {culprit} hasta el coche, el mayordomo apaga, una por una, las lámparas de la casa.",
+    "No hace falta levantar la voz. Expones los hechos uno tras otro, y a {culprit} le empiezan a temblar las manos hasta que acaba por bajar la mirada. El mayordomo, sin esperar orden, se coloca junto a la puerta. Nadie dice nada durante un largo rato; solo se oye la lluvia, cada vez más débil. Con la primera luz, una pareja de la Guardia Civil sube la escalinata con las capas chorreando. El sargento escucha tu relato, asiente y pide a {culprit} que lo acompañe. Detrás, en la villa, alguien vuelve a poner un disco, muy bajo, como para despedir la noche.",
+    "En {scene}, ante todos, repasas la noche paso a paso y terminas con el nombre de {culprit}. Durante un instante solo se oye el viento. Luego {culprit} se sienta muy despacio, como si de pronto le pesara todo el cuerpo, y el mayordomo trae un vaso de agua que nadie bebe. Cuando el levante amaina y el cielo se tiñe de gris perla sobre el acantilado, los faros de la Guardia Civil suben entre los pinos. Sales a la terraza a respirar sal y tierra mojada: {victim} ya no dará más órdenes en esta casa, y Villa Bellavista despierta en silencio."
+  ],
+  "look": {
+    "bg": "#1a1012",
+    "panel": "#26171b",
+    "line": "#472a30",
+    "accent": "#e6c792",
+    "text": "#f2e8dc",
+    "muted": "#baa69d",
+    "effect": "storm"
   }
 }

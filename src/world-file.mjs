@@ -94,6 +94,15 @@ export function normalizeWorld(raw) {
     name: text(r.name, 60, 'el nombre de ' + r.id),
     article: choice(r.article, articles, 'Artículo no válido en ' + r.id),
     description: text(r.description, 500, 'la descripción de ' + r.id),
+    // Atmosphere shown the first time the player enters the room.
+    ...optional(
+      'ambience',
+      r.ambience === undefined
+        ? undefined
+        : list(r.ambience, 'la atmósfera de ' + r.id, { min: 1, max: 3 }).map((t, i) =>
+            template(t, 220, `la atmósfera ${i + 1} de ${r.id}`, []),
+          ),
+    ),
     tags: list(r.tags ?? [], 'las etiquetas de ' + r.id, { max: 6 }).map(t =>
       text(t, 30, 'una etiqueta'),
     ),
@@ -171,6 +180,37 @@ export function normalizeWorld(raw) {
         (t, i) => template(t, 650, 'el cierre del prólogo ' + (i + 1), []),
       ),
     },
+    // How the night goes on while the player investigates; the game puts the time.
+    ...optional(
+      'night',
+      raw.night === undefined
+        ? undefined
+        : list(raw.night, 'la noche', { min: 3, max: 8 }).map((t, i) =>
+            template(t, 180, 'el paso de la noche ' + (i + 1), []),
+          ),
+    ),
+    // The arrest, told after the case is solved.
+    ...optional(
+      'epilogues',
+      raw.epilogues === undefined
+        ? undefined
+        : list(raw.epilogues, 'los epílogos', { min: 1, max: 6 }).map((t, i) =>
+            template(t, 700, 'el epílogo ' + (i + 1), ['culprit', 'victim', 'scene']),
+          ),
+    ),
+    // Colours and the background effect of the world.
+    ...optional('look', normalizeLook(raw.look)),
+  };
+}
+const colour = (value, field) =>
+  /^#[0-9a-f]{6}$/i.test(value) ? value.toLowerCase() : fail('Color no válido en ' + field);
+export const effects = ['rain', 'snow', 'stars', 'dust', 'storm'];
+export const lookColours = ['bg', 'panel', 'line', 'accent', 'text', 'muted'];
+export function normalizeLook(raw) {
+  if (raw === undefined) return undefined;
+  return {
+    ...Object.fromEntries(lookColours.map(k => [k, colour(raw[k], 'el color ' + k)])),
+    effect: effects.includes(raw.effect) ? raw.effect : fail('Efecto de fondo desconocido'),
   };
 }
 export const weaponOf = (world, methodId) => world.weapons.find(w => w.method === methodId);

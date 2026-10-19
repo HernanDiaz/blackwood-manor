@@ -29,7 +29,9 @@ Cada investigación se crea en uno de los cinco mundos y con una dificultad (fá
 - **El cuaderno de deducción**, en el Tablero.
 - **Las pistas escalonadas**, cada vez más concretas.
 - **Enseñar pruebas a los sospechosos.**
-- **La lectura en voz alta** (Voz: sí), con la voz del sistema.
+- **La lectura en voz alta** y **el sonido ambiente** (lluvia, viento, mar, máquinas…), hechos en el navegador sin archivos.
+
+Cada mundo tiene su paleta y un efecto de fondo (lluvia, nieve, estrellas, polvo dorado o temporal), una frase de atmósfera en cada sala, el paso de la noche y un epílogo al resolver el caso. Las pruebas llevan su número de orden y las ilustraciones aparecen como fotografías sujetas con un clip.
 
 La pantalla de inicio guarda el historial de casos resueltos. El **editor de casos** (`/editor.html`) abre el caso de la partida, un caso clásico, un archivo o uno nuevo. Permite cambiar nombres y textos, comprueba que el caso tiene una sola solución y lo descarga o lo juega.
 

@@ -3,6 +3,8 @@ import { worlds, worldFile, selectWorld } from '/src/prototype-worlds.mjs';
 import { normalizeWorld } from '/src/world-file.mjs';
 import { difficulties } from '/src/case-generator.mjs';
 import { answerOffline } from '/src/interrogation.mjs';
+import { setEffect } from '/effects.mjs';
+import { setSound, setAmbience, play } from '/sound.mjs';
 import {
   newPrototype,
   restorePrototype,
@@ -80,6 +82,40 @@ function speak(text, who) {
     u.rate = 0.95 + (n % 2) * 0.1;
   }
   speechSynthesis.speak(u);
+}
+let sounding = remembered('mundos-sonido', false) === true;
+setSound(sounding);
+// Colours, background effect and ambience of the world on screen.
+const lookKeys = {
+  bg: '--bg',
+  panel: '--panel',
+  line: '--line',
+  accent: '--gold',
+  text: '--text',
+  muted: '--muted',
+};
+let shownLook = null;
+function applyLook(look) {
+  if (look === shownLook) return;
+  shownLook = look;
+  const root = document.documentElement.style;
+  for (const [key, variable] of Object.entries(lookKeys))
+    look ? root.setProperty(variable, look[key]) : root.removeProperty(variable);
+  setEffect(look?.effect);
+  setAmbience(look?.effect);
+}
+// A line chosen by the case and the room, so it stays the same on every visit.
+const stable = (list, key) =>
+  list[[...key].reduce((n, ch) => (n * 31 + ch.charCodeAt(0)) >>> 0, 7) % list.length];
+// How far the night has gone: one line per stretch of found clues, with its time.
+function nightNow() {
+  const lines = c.file.night;
+  if (!lines?.length) return '';
+  const step = Math.min(
+    lines.length - 1,
+    Math.floor((state.found.length / c.clues.length) * lines.length),
+  );
+  return clock(c.timing.discoveryMinute + 10 + step * 25) + ' · ' + lines[step];
 }
 function record() {
   const weapon = c.weapons.find(w => w.method === c.method.id);
@@ -210,7 +246,8 @@ function clueHead(clue) {
   return `<div class="paper paper-${kind}">${room?.image ? `<img class="paper-bg" src="${esc(room.image)}" alt="">` : ''}<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${paths}</svg><span>${label}</span></div>`;
 }
 function card(clue, accusation = false, checked = false) {
-  return `<article class="clue">${clueHead(clue)}<span class="eyebrow">${esc(c.rooms.find(r => r.id === clue.room).name)}</span><h3>${esc(clue.title)}</h3><p>${esc(clue.text)}</p>${accusation ? `<label><input type="checkbox" name="evidence" value="${clue.id}" ${checked ? 'checked' : ''}> Adjuntar prueba</label>` : `<button class="small" data-pin="${clue.id}">${state.pinned.includes(clue.id) ? 'Retirar del tablero' : 'Fijar en el tablero'}</button>`}</article>`;
+  const number = state.found.indexOf(clue.id) + 1;
+  return `<article class="clue">${number ? `<span class="stamp">Prueba nº ${number}</span>` : ''}${clueHead(clue)}<span class="eyebrow">${esc(c.rooms.find(r => r.id === clue.room).name)}</span><h3>${esc(clue.title)}</h3><p>${esc(clue.text)}</p>${accusation ? `<label><input type="checkbox" name="evidence" value="${clue.id}" ${checked ? 'checked' : ''}> Adjuntar prueba</label>` : `<button class="small" data-pin="${clue.id}">${state.pinned.includes(clue.id) ? 'Retirar del tablero' : 'Fijar en el tablero'}</button>`}</article>`;
 }
 function render() {
   const playing = state && !['setup', 'opening'].includes(tab),
@@ -219,7 +256,8 @@ function render() {
     cover = tab === 'setup' ? preview.rooms[0].image : c.scene.image;
   // The screen is a class of the page, so the phone layout can change per screen.
   app.className = 'screen-' + tab;
-  app.innerHTML = `<header><a class="brand" href="/">O<span>MUNDOS<br><small>DETECTIVE STORIES</small></span></a><button id="menu-toggle" class="small menu-toggle" aria-expanded="${menuOpen}" aria-controls="actions">${menuOpen ? 'Cerrar' : 'Menú'}</button><div class="save ${menuOpen ? 'open' : ''}" id="actions">${state && tab !== 'setup' ? `<button class="small go-new" ${busy ? 'disabled' : ''}>Volver al inicio</button>` : ''}${state && !['setup', 'opening'].includes(tab) ? `<button class="small go-opening" ${busy ? 'disabled' : ''}>Releer el prólogo</button>` : ''}${canSpeak ? `<button id="voice" class="small" aria-pressed="${speaking}">Leer en voz alta: ${speaking ? 'sí' : 'no'}</button>` : ''}${state ? '<button id="export" class="small" title="Descarga tu partida para continuarla en otro dispositivo">Guardar una copia</button>' : ''}<label class="small file" title="Una copia de una partida o un caso">Abrir una copia<input id="import" type="file" accept="application/json" ${busy ? 'disabled' : ''}></label><a class="small" href="/editor.html">Editor de casos</a></div></header>${tab !== 'opening' ? `<section class="intro"><div><span class="eyebrow">${esc(label)}</span><h1>${esc(title)}</h1><p>${tab === 'setup' ? esc(preview.premise) : 'Cinco sospechosos. Varios con motivos y acceso al arma.<br>Solo una persona reúne móvil, acceso y ocasión.'}</p></div><div class="manor illustrated">${img(cover, title)}<span>MUNDOS<br>INVESTIGACIÓN</span></div></section>` : ''}${playing ? `<section class="brief"><span class="seal">!</span><p><strong>${esc(c.victim.name)} ha muerto en ${esc(placePhrase(c.scene))}.</strong> El hallazgo se registra a las ${clock(c.timing.discoveryMinute)}. Investiga la causa, el móvil y las coartadas.</p><strong>${state.found.length}<small> / ${c.clues.length} PISTAS</small></strong></section>` : ''}${
+  applyLook(tab === 'setup' ? preview.look : c?.file.look);
+  app.innerHTML = `<header><a class="brand" href="/">O<span>MUNDOS<br><small>DETECTIVE STORIES</small></span></a><button id="menu-toggle" class="small menu-toggle" aria-expanded="${menuOpen}" aria-controls="actions">${menuOpen ? 'Cerrar' : 'Menú'}</button><div class="save ${menuOpen ? 'open' : ''}" id="actions">${state && tab !== 'setup' ? `<button class="small go-new" ${busy ? 'disabled' : ''}>Volver al inicio</button>` : ''}${state && !['setup', 'opening'].includes(tab) ? `<button class="small go-opening" ${busy ? 'disabled' : ''}>Releer el prólogo</button>` : ''}${canSpeak ? `<button id="voice" class="small" aria-pressed="${speaking}">Leer en voz alta: ${speaking ? 'sí' : 'no'}</button>` : ''}<button id="sound" class="small" aria-pressed="${sounding}">Sonido: ${sounding ? 'sí' : 'no'}</button>${state ? '<button id="export" class="small" title="Descarga tu partida para continuarla en otro dispositivo">Guardar una copia</button>' : ''}<label class="small file" title="Una copia de una partida o un caso">Abrir una copia<input id="import" type="file" accept="application/json" ${busy ? 'disabled' : ''}></label><a class="small" href="/editor.html">Editor de casos</a></div></header>${tab !== 'opening' ? `<section class="intro"><div><span class="eyebrow">${esc(label)}</span><h1>${esc(title)}</h1><p>${tab === 'setup' ? esc(preview.premise) : 'Cinco sospechosos. Varios con motivos y acceso al arma.<br>Solo una persona reúne móvil, acceso y ocasión.'}</p></div><div class="manor illustrated">${img(cover, title)}<span>MUNDOS<br>INVESTIGACIÓN</span></div></section>` : ''}${playing ? `<section class="brief"><span class="seal">!</span><p><strong>${esc(c.victim.name)} ha muerto en ${esc(placePhrase(c.scene))}.</strong> El hallazgo se registra a las ${clock(c.timing.discoveryMinute)}. Investiga la causa, el móvil y las coartadas.${nightNow() ? `<em class="night">${esc(nightNow())}</em>` : ''}</p><strong>${state.found.length}<small> / ${c.clues.length} PISTAS</small></strong></section>` : ''}${
     playing && !state.result
       ? `<nav aria-label="Investigación">${[
           ['explore', 'Explorar'],
@@ -310,12 +348,12 @@ function notebook() {
   return `<section class="notebook"><h3>Cuaderno de deducción</h3><p class="hint">Anota la prueba que demuestra cada cosa. Solo se guarda si la prueba lo demuestra de verdad. La persona culpable tiene motivo, acceso al arma y una coartada desmentida.</p><div class="notebook-scroll"><table><thead><tr><th>Persona</th>${conditions.map(k => `<th>${labels[k]}</th>`).join('')}</tr></thead><tbody>${c.people.map(p => `<tr class="${suspects.includes(p.id) ? 'suspect' : ''}"><th>${esc(p.name)}<small>${suspects.includes(p.id) ? 'Reúne las tres condiciones' : esc(p.role)}</small>${noteMessage?.person === p.id ? `<p class="note-message" role="status">${esc(noteMessage.text)}</p>` : ''}</th>${conditions.map(k => cell(p, k)).join('')}</tr>`).join('')}</tbody></table></div></section>`;
 }
 function ending() {
-  return `<section class="ending"><span class="eyebrow">${state.result === 'won' ? 'CASO RESUELTO' : 'REVISIÓN NECESARIA'}</span><h2>${state.result === 'won' ? 'La verdad sale a la luz.' : 'Faltan piezas.'}</h2><p>${esc(prototypeResolution(c, state))}</p>${state.help.used ? `<p class="hint">Has pedido ${state.help.used === 1 ? 'una pista' : state.help.used + ' pistas'} de ayuda.</p>` : ''}${state.result === 'lost' ? '<button id="reopen">Reabrir investigación</button>' : ''}<button id="end-new" class="secondary">Otra investigación</button></section>`;
+  return `<section class="ending"><span class="eyebrow">${state.result === 'won' ? 'CASO RESUELTO' : 'REVISIÓN NECESARIA'}</span><h2>${state.result === 'won' ? 'La verdad sale a la luz.' : 'Faltan piezas.'}</h2>${state.result === 'won' && c.epilogue ? `<p class="epilogue">${esc(c.epilogue)}</p>` : ''}<p>${esc(prototypeResolution(c, state))}</p>${state.help.used ? `<p class="hint">Has pedido ${state.help.used === 1 ? 'una pista' : state.help.used + ' pistas'} de ayuda.</p>` : ''}${state.result === 'lost' ? '<button id="reopen">Reabrir investigación</button>' : ''}<button id="end-new" class="secondary">Otra investigación</button></section>`;
 }
 function content() {
   if (tab === 'explore') {
     const room = c.rooms.find(r => r.id === state.room);
-    return `<h2>Registra los escenarios.</h2><div class="exploration"><aside class="rooms">${c.rooms.map(r => `<button data-room="${r.id}" class="${r.id === room.id ? 'selected' : ''}"><strong>${esc(r.name)}</strong><small>${c.clues.filter(x => x.room === r.id && state.found.includes(x.id)).length}/${c.clues.filter(x => x.room === r.id).length}</small></button>`).join('')}</aside><section class="room-detail"><span class="eyebrow">ESCENA / ${esc(room.name)}</span><h2>${esc(room.name)}</h2>${img(room.image, room.name, 'scene-image')}<p>${esc(room.description)}</p><div class="search-grid">${c.clues
+    return `<h2>Registra los escenarios.</h2><div class="exploration"><aside class="rooms">${c.rooms.map(r => `<button data-room="${r.id}" class="${r.id === room.id ? 'selected' : ''}"><strong>${esc(r.name)}</strong><small>${c.clues.filter(x => x.room === r.id && state.found.includes(x.id)).length}/${c.clues.filter(x => x.room === r.id).length}</small></button>`).join('')}</aside><section class="room-detail"><span class="eyebrow">ESCENA / ${esc(room.name)}</span><h2>${esc(room.name)}</h2>${img(room.image, room.name, 'scene-image')}${room.ambience?.length ? `<p class="ambience">${esc(stable(room.ambience, c.id + room.id))}</p>` : ''}<p>${esc(room.description)}</p><div class="search-grid">${c.clues
       .filter(x => x.room === room.id)
       .map(
         x =>
@@ -400,6 +438,12 @@ function bind() {
     render();
   };
   document.querySelector('#export')?.addEventListener('click', exportSave);
+  document.querySelector('#sound').onclick = () => {
+    sounding = !sounding;
+    remember('mundos-sonido', sounding);
+    setSound(sounding);
+    render();
+  };
   document.querySelector('#voice')?.addEventListener('click', () => {
     speaking = !speaking;
     remember('mundos-voz', speaking);
@@ -557,6 +601,7 @@ function bind() {
   document.querySelectorAll('[data-room]').forEach(
     b =>
       (b.onclick = () => {
+        if (state.room !== b.dataset.room) play('steps');
         state.room = b.dataset.room;
         save();
         render();
@@ -566,6 +611,7 @@ function bind() {
     b =>
       (b.onclick = () => {
         inspectPrototype(c, state, b.dataset.search);
+        play('paper');
         save();
         render();
       }),
@@ -591,6 +637,7 @@ function bind() {
   );
   document.querySelector('#ask-hint')?.addEventListener('click', () => {
     hint = nextHint(c, state);
+    play('chime');
     save();
     render();
   });
@@ -661,7 +708,7 @@ function bind() {
           evidence: f.getAll('evidence'),
         }) === 'won'
       )
-        record();
+        record(), play('bell');
       message = '';
       save();
       render();

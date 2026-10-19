@@ -21,6 +21,8 @@ mkdirSync(dist, { recursive: true });
 // The page, its styles and the content.
 for (const f of [
   'app.mjs',
+  'effects.mjs',
+  'sound.mjs',
   'editor.mjs',
   'editor.html',
   'mundos.css',

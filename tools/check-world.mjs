@@ -77,6 +77,19 @@ w.documents.neutral.forEach(d => doc(d, 'neutro'));
 console.log('\nPRÓLOGOS');
 w.openings.arrivals.forEach(t => out('· ' + t));
 w.openings.tensions.forEach(t => out('» ' + t));
+console.log('\nATMÓSFERA DE LAS SALAS (al entrar por primera vez)');
+for (const r of w.rooms) for (const t of r.ambience || ['(falta)']) out(`${r.name}: ${t}`);
+console.log('\nLA NOCHE (el juego añade la hora)');
+const hours = ['21:40', '22:05', '22:30', '22:55', '23:20', '23:45', '00:10', '00:35'];
+(w.night || ['(falta)']).forEach((t, i) => out(`${hours[i]} · ${t}`));
+console.log('\nEPÍLOGOS');
+for (const t of w.epilogues || ['(falta)'])
+  out(
+    t
+      .replace(/\{culprit\}/g, a)
+      .replace(/\{victim\}/g, v)
+      .replace(/\{scene\}/g, place(scene)),
+  );
 const kinds = Object.keys(statementKinds);
 console.log('\nVOCES');
 for (const p of w.people) {

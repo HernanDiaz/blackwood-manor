@@ -10,24 +10,27 @@ node tools/check-world.mjs public/worlds/<id>.json
 
 ## Campos
 
-| Campo               | Contenido                                                                                          |
-| ------------------- | -------------------------------------------------------------------------------------------------- |
-| `format`, `version` | `"mundos-mundo"`, `1`                                                                              |
-| `id`                | Identificador en minúsculas con guiones, igual que el nombre del archivo                           |
-| `label`             | Nombre corto en el menú («Ciencia ficción»)                                                        |
-| `title`             | Título del mundo                                                                                   |
-| `premise`           | Dos o tres frases que presentan el lugar y la noche del crimen, sin revelar nada del caso          |
-| `art.style`         | Estilo de las ilustraciones (en inglés), común a todo el mundo                                     |
-| `victim`            | `name`, `role` (cargo, sin artículo: «director de la estación»), `gender` (`f`/`m`), `description` |
-| `people`            | Cinco personajes `p1`…`p5` (ver abajo)                                                             |
-| `rooms`             | Seis lugares `r1`…`r6` (ver abajo)                                                                 |
-| `staff`             | `guardian`, `record` y `report` (ver abajo)                                                        |
-| `weapons`           | Las armas posibles en este mundo (ver abajo)                                                       |
-| `items`             | Objetos personales que pueden aparecer junto a la escena y despistar                               |
-| `motives`           | Móviles fuertes; uno de ellos es el del culpable                                                   |
-| `documents`         | `weak` (móviles débiles) y `neutral` (documentos sin importancia)                                  |
-| `clueArt`           | Ilustraciones de las pistas genéricas: `report`, `testimony`, `ledger`, `document`                 |
-| `openings`          | `arrivals` (llegada del detective) y `tensions` (cierre del prólogo)                               |
+| Campo               | Contenido                                                                                                                                                                    |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `format`, `version` | `"mundos-mundo"`, `1`                                                                                                                                                        |
+| `id`                | Identificador en minúsculas con guiones, igual que el nombre del archivo                                                                                                     |
+| `label`             | Nombre corto en el menú («Ciencia ficción»)                                                                                                                                  |
+| `title`             | Título del mundo                                                                                                                                                             |
+| `premise`           | Dos o tres frases que presentan el lugar y la noche del crimen, sin revelar nada del caso                                                                                    |
+| `art.style`         | Estilo de las ilustraciones (en inglés), común a todo el mundo                                                                                                               |
+| `victim`            | `name`, `role` (cargo, sin artículo: «director de la estación»), `gender` (`f`/`m`), `description`                                                                           |
+| `people`            | Cinco personajes `p1`…`p5` (ver abajo)                                                                                                                                       |
+| `rooms`             | Seis lugares `r1`…`r6` (ver abajo)                                                                                                                                           |
+| `staff`             | `guardian`, `record` y `report` (ver abajo)                                                                                                                                  |
+| `weapons`           | Las armas posibles en este mundo (ver abajo)                                                                                                                                 |
+| `items`             | Objetos personales que pueden aparecer junto a la escena y despistar                                                                                                         |
+| `motives`           | Móviles fuertes; uno de ellos es el del culpable                                                                                                                             |
+| `documents`         | `weak` (móviles débiles) y `neutral` (documentos sin importancia)                                                                                                            |
+| `clueArt`           | Ilustraciones de las pistas genéricas: `report`, `testimony`, `ledger`, `document`                                                                                           |
+| `openings`          | `arrivals` (llegada del detective) y `tensions` (cierre del prólogo)                                                                                                         |
+| `night`             | Cómo avanza la noche: de 3 a 8 frases en orden, que el juego muestra con su hora a medida que se encuentran pistas                                                           |
+| `epilogues`         | Escenas de la detención tras resolver el caso, con `{culprit}`, `{victim}` y `{scene}`                                                                                       |
+| `look`              | Paleta (`bg`, `panel`, `line`, `accent`, `text`, `muted`, en hexadecimal) y efecto de fondo (`rain`, `snow`, `stars`, `dust`, `storm`), que también elige el sonido ambiente |
 
 Todos los textos van en español. No llevan horas ni cifras (las pone el motor) ni los caracteres `<` `>`.
 
@@ -81,7 +84,7 @@ Con la inicial en mayúscula (`{Guardian}`, `{Item}`, `{It}`) el valor empieza p
 
 ### Lugares
 
-`id`, `name` (en minúscula salvo nombres propios: «Sala de navegación»), `article` (`el`, `la`, `los`, `las`), `description` (lo que se ve al entrar, de una a tres frases), `tags`, `image` e `imagePrompt`.
+`id`, `name` (en minúscula salvo nombres propios: «Sala de navegación»), `article` (`el`, `la`, `los`, `las`), `description` (lo que se ve al entrar, de una a tres frases), `ambience` (una a tres frases de atmósfera, sin pistas ni detalles del crimen; el juego muestra una), `tags`, `image` e `imagePrompt`.
 
 Las etiquetas habilitan armas que necesitan un lugar especial: `elevated` (caída), `life-support` (aire), `industrial` (brazo robótico, compuerta) y `cryogenic` (cápsula criogénica).
 
@@ -158,11 +161,14 @@ El script usa la herramienta de imágenes de Codex con la cuenta de ChatGPT con 
 
 Los PNG originales quedan en `work/art/<id>/` y los WebP en `public/worlds/<id>/`:
 
-| Tipo | Formato | Ancho |
-|---|---|---|
-| Retratos | Cuadrado | 768 px |
-| Lugares | 3:2 | 1280 px |
-| Armas, objetos y pistas | Cuadrado | 640 px |
+| Tipo                    | Formato  | Ancho   |
+| ----------------------- | -------- | ------- |
+| Retratos                | Cuadrado | 768 px  |
+| Lugares                 | 3:2      | 1280 px |
+| Armas, objetos y pistas | Cuadrado | 640 px  |
 
 Las imágenes que ya existen no se repiten. Para rehacer una, borra su WebP y su PNG, o usa `--force`.
 
+## Epílogos
+
+Cualquiera de los cinco puede ser culpable, así que los epílogos no usan palabras con género que se refieran a `{culprit}` («detenido», «él», «ella», «callada»…): se escriben de forma que valgan para todos («{culprit} no opone resistencia», «a {culprit} le tiemblan las manos»). Tampoco nombran el arma, el móvil ni la hora: el juego los muestra justo después.

@@ -63,6 +63,22 @@ test('the worlds are complete: every voice and an illustration for everything', 
   }
 });
 
+test('every world sets its atmosphere and a case carries it', () => {
+  for (const { id } of worlds) {
+    const world = loadWorld(id);
+    assert.ok(world.look && world.night?.length && world.epilogues?.length, id);
+    assert.ok(
+      world.rooms.every(r => r.ambience?.length),
+      id,
+    );
+    const c = createPrototypeCase(newPrototype(world, { seed: 'atmo' }));
+    assert.deepEqual(c.file.look, world.look);
+    assert.ok(c.file.night.length && c.rooms.every(r => r.ambience?.length));
+    assert.ok(c.epilogue.includes(c.culprit.name), id);
+    assert.ok(!/\{(culprit|scene|victim|p\d|r\d)\}/.test(c.epilogue), id);
+  }
+});
+
 test('world files are validated before use', () => {
   const base = raw('torre-umbria');
   assert.throws(() => normalizeWorld({ ...base, format: 'otro' }), /compatible/);
@@ -81,6 +97,12 @@ test('world files are validated before use', () => {
   const unknownMark = structuredClone(base);
   unknownMark.documents.weak[0].text = 'Nota de {victim} para {culprit}.';
   assert.throws(() => normalizeWorld(unknownMark), /marcador desconocido/);
+  const badLook = structuredClone(base);
+  badLook.look.effect = 'fireworks';
+  assert.throws(() => normalizeWorld(badLook), /Efecto de fondo desconocido/);
+  const gendered = structuredClone(base);
+  gendered.epilogues[0] = '{culprit} sale con {detective}.';
+  assert.throws(() => normalizeWorld(gendered), /marcador desconocido/);
 });
 
 test('random world is resolved once; unknown world paths rejected', () => {
