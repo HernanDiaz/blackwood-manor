@@ -375,7 +375,7 @@ function content() {
         seen: 'Lo que viste',
         object: 'El objeto junto a la puerta',
       };
-    return `<h2>Cinco versiones. Contrasta cada una.</h2><div class="suspects">${c.people.map(p => `<button data-person="${p.id}" class="${p.id === person ? 'selected' : ''}" ${busy ? 'disabled' : ''}><span class="avatar">${img(p.image, '')}</span><strong>${esc(p.name)}</strong><small>${esc(p.role)}</small></button>`).join('')}</div><section class="conversation"><div class="interview-portrait">${img(actor.image, actor.name)}<span>${esc(actor.name)}<small>${esc(actor.role)}</small></span></div><h3>${esc(actor.name)}</h3><p class="hint">Pregunta con tus palabras y contrasta las respuestas con las pruebas que encuentres. Los secretos requieren descubrir su documento.</p><div class="messages" aria-live="polite">${
+    return `<h2>Cinco versiones. Contrasta cada una.</h2><div class="suspects">${c.people.map(p => `<button data-person="${p.id}" class="${p.id === person ? 'selected' : ''}" ${busy ? 'disabled' : ''}><span class="avatar">${img(p.image, '')}${esc(p.name.charAt(0))}</span><strong>${esc(p.name)}</strong><small>${esc(p.role)}</small></button>`).join('')}</div><section class="conversation"><div class="interview-portrait">${img(actor.image, actor.name)}<span>${esc(actor.name)}<small>${esc(actor.role)}</small></span></div><h3>${esc(actor.name)}</h3><p class="hint">Pregunta con tus palabras y contrasta las respuestas con las pruebas que encuentres. Los secretos requieren descubrir su documento.</p><div class="messages" aria-live="polite">${
       state.chat
         .filter(m => m.person === person)
         .map(

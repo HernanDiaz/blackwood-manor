@@ -1088,6 +1088,63 @@ header .brand,
 nav button.active {
   color: var(--bg);
 }
+.opening-panel,
+.ending,
+.pilot-panel {
+  background: var(--panel);
+}
+.opening-fact {
+  border-left-color: var(--gold);
+}
+.world-card {
+  background: var(--bg);
+}
+.world-art,
+.world-dice,
+.paper {
+  background: linear-gradient(135deg, color-mix(in srgb, var(--panel) 85%, #fff 5%), var(--bg));
+}
+.paper::after {
+  background: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--bg) 85%, transparent) 0%,
+    color-mix(in srgb, var(--bg) 25%, transparent) 40%,
+    transparent 70%
+  );
+}
+.notebook tr.suspect th,
+.notebook tr.suspect td {
+  background: color-mix(in srgb, var(--gold) 8%, transparent);
+}
+.avatar {
+  border-color: color-mix(in srgb, var(--gold) 55%, var(--line));
+  background: linear-gradient(45deg, var(--line), var(--bg));
+}
+.search-grid button {
+  background: color-mix(in srgb, var(--bg) 55%, transparent);
+}
+button:hover {
+  background: color-mix(in srgb, var(--gold) 6%, transparent);
+}
+#ask button,
+.danger,
+.pilot-actions button:first-child {
+  color: var(--bg);
+}
+.interview-portrait,
+.clue-art {
+  background: var(--bg);
+}
+.clue p {
+  color: color-mix(in srgb, var(--text) 85%, var(--muted));
+}
+body::before {
+  background: radial-gradient(
+    ellipse at top left,
+    color-mix(in srgb, var(--gold) 6%, transparent),
+    transparent 70%
+  );
+}
 
 /* The background effect: behind the content, never in the way. */
 .world-effect {
@@ -1195,4 +1252,39 @@ nav button.active {
   .epilogue {
     font-size: 16px;
   }
+}
+
+/* Until a portrait is drawn, the initial of the name stands in for it. */
+.avatar {
+  position: relative;
+}
+.avatar img {
+  position: absolute;
+  inset: 0;
+}
+.interview-portrait:has(img.missing) {
+  height: 90px;
+}
+.interview-portrait:has(img.missing) span {
+  left: 20px;
+  top: 22px;
+}
+/* Whatever the game scrolls to stays clear of the sticky tabs. */
+@media (pointer: coarse), (max-width: 1100px) {
+  html {
+    scroll-padding-top: 96px;
+  }
+}
+/* The cover of the case follows the palette too (seen while its picture is missing). */
+.manor {
+  border-color: var(--line);
+  background: radial-gradient(
+      ellipse at 60% 30%,
+      color-mix(in srgb, var(--gold) 14%, transparent),
+      transparent 60%
+    ),
+    linear-gradient(color-mix(in srgb, var(--panel) 85%, #fff 6%), var(--bg));
+}
+.manor::after {
+  background: linear-gradient(transparent, var(--bg));
 }
