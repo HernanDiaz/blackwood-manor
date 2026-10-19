@@ -3,7 +3,7 @@
 // test question is dropped. Needs the local model on 127.0.0.1:1235.
 // Usage: node benchmarks/augment-questions.mjs benchmarks/results/question-augmented.json
 import { writeFileSync, existsSync, readFileSync } from 'node:fs';
-import { requestLocalJson } from '../src/local-llm.mjs';
+import { requestLocalJson } from '../src/local-model.mjs';
 import { splitBank } from '../test/question-bank.mjs';
 import { extraTraining } from '../test/question-bank-train.mjs';
 const out = process.argv[2] || 'benchmarks/results/question-augmented.json';
