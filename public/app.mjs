@@ -200,8 +200,10 @@ function clueHead(clue) {
     ? clue.image.match(/\/clue-(report|testimony|ledger|document)\.webp$/)?.[1]
     : 'document';
   if (!kind) return img(clue.image, clue.title + ', ilustración', 'clue-art');
-  const [label, paths] = papers[kind];
-  return `<div class="paper paper-${kind}"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${paths}</svg><span>${label}</span></div>`;
+  const [label, paths] = papers[kind],
+    // The room where it was found, darkened behind the kind of paper, keeps the atmosphere.
+    room = c.rooms.find(r => r.id === clue.room);
+  return `<div class="paper paper-${kind}">${room?.image ? `<img class="paper-bg" src="${esc(room.image)}" alt="">` : ''}<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${paths}</svg><span>${label}</span></div>`;
 }
 function card(clue, accusation = false, checked = false) {
   return `<article class="clue">${clueHead(clue)}<span class="eyebrow">${esc(c.rooms.find(r => r.id === clue.room).name)}</span><h3>${esc(clue.title)}</h3><p>${esc(clue.text)}</p>${accusation ? `<label><input type="checkbox" name="evidence" value="${clue.id}" ${checked ? 'checked' : ''}> Adjuntar prueba</label>` : `<button class="small" data-pin="${clue.id}">${state.pinned.includes(clue.id) ? 'Retirar del tablero' : 'Fijar en el tablero'}</button>`}</article>`;
