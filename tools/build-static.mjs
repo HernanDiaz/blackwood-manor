@@ -79,9 +79,11 @@ writeFileSync(
     2,
   ),
 );
+// Inside the Android or iPhone app (Capacitor) the files are already on the phone: no service
+// worker, so an update of the app never meets an old cache.
 writeFileSync(
   to('register-sw.mjs'),
-  "if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(() => {});\n",
+  "if ('serviceWorker' in navigator && !globalThis.Capacitor) navigator.serviceWorker.register('/sw.js').catch(() => {});\n",
 );
 
 // The service worker keeps every file of this build; a new build replaces the cache.

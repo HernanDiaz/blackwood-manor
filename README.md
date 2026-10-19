@@ -16,7 +16,7 @@ Requiere Node.js 22 o posterior; no necesita `npm install`.
 
 ## Versión sin servidor (móvil)
 
-`npm run build` genera `dist/`: Mundos como archivos estáticos que funcionan sin servidor. El interrogatorio se resuelve en el navegador con el clasificador estadístico y las reglas. Un *service worker* guarda todos los archivos, así que tras la primera carga funciona también sin conexión, y el manifiesto permite instalarlo como app. `dist/` es lo que empaquetaría una app móvil (por ejemplo con Capacitor) o cualquier alojamiento estático. `npm run preview` lo sirve en http://127.0.0.1:4174 para probarlo.
+`npm run build` genera `dist/`: Mundos como archivos estáticos que funcionan sin servidor. El interrogatorio se resuelve en el navegador con el clasificador estadístico y las reglas. Un *service worker* guarda todos los archivos, así que tras la primera carga funciona también sin conexión, y el manifiesto permite instalarlo como app. `dist/` es también lo que empaquetan las apps de Android e iPhone con Capacitor: ver [docs/MOVIL.md](docs/MOVIL.md). `npm run preview` lo sirve en http://127.0.0.1:4174 para probarlo.
 
 Con el servidor local (`PILOTO.cmd`), el juego solo le consulta las preguntas que no sabe clasificar, y solo si tiene un modelo local.
 
@@ -65,5 +65,5 @@ Los informes de pruebas y las versiones anteriores (incluidos el antiguo modo de
 
 - La solución del caso viaja al navegador; no está pensado para impedir trampas.
 - El servidor es para uso local, sin autenticación.
-- La app móvil está por empaquetar: `dist/` ya funciona sin servidor ni conexión.
+- Las apps de Android e iPhone están preparadas con Capacitor (`capacitor.config.json`, [docs/MOVIL.md](docs/MOVIL.md)); falta generarlas en un equipo con Android Studio y Xcode.
 - Las ilustraciones de los mundos se generan una vez, fuera del juego, con `node tools/generate-art.mjs` (ver [docs/MUNDOS.md](docs/MUNDOS.md)); el juego solo lleva los WebP.

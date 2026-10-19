@@ -1,0 +1,13 @@
+{
+  "appId": "es.mundos.blackwoodmanor",
+  "appName": "Blackwood Manor",
+  "webDir": "dist",
+  "backgroundColor": "#101b23",
+  "android": {
+    "backgroundColor": "#101b23"
+  },
+  "ios": {
+    "backgroundColor": "#101b23",
+    "contentInset": "never"
+  }
+}

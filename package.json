@@ -7,9 +7,18 @@
     "start": "node server.mjs",
     "test": "node --test test/investigation.test.mjs test/case-file.test.mjs test/statements.test.mjs test/question-classifier.test.mjs test/methods.test.mjs test/prototype.test.mjs test/worlds.test.mjs test/spanish-prose.test.mjs test/free-prototype.test.mjs test/guidance.test.mjs test/evidence.test.mjs test/interrogation.test.mjs test/blackwood-cases.test.mjs",
     "build": "node tools/build-static.mjs",
-    "preview": "node tools/build-static.mjs --serve"
+    "preview": "node tools/build-static.mjs --serve",
+    "app:sync": "node tools/build-static.mjs && npx cap sync",
+    "app:android": "node tools/build-static.mjs && npx cap sync android && npx cap open android",
+    "app:ios": "node tools/build-static.mjs && npx cap sync ios && npx cap open ios"
   },
   "engines": {
     "node": ">=22"
+  },
+  "devDependencies": {
+    "@capacitor/android": "^7.0.0",
+    "@capacitor/cli": "^7.0.0",
+    "@capacitor/core": "^7.0.0",
+    "@capacitor/ios": "^7.0.0"
   }
 }
