@@ -188,7 +188,7 @@ function render() {
     label = tab === 'setup' ? preview.label : worldLabel(state.world),
     title = tab === 'setup' ? preview.title : c.title,
     cover = tab === 'setup' ? preview.rooms[0].image : c.scene.image;
-  app.innerHTML = `<header><a class="brand" href="/">O<span>MUNDOS<br><small>DETECTIVE STORIES</small></span></a><div class="save"><button id="export" class="small">Exportar partida</button>${state ? '<button id="export-case" class="small">Exportar caso</button>' : ''}${canSpeak ? `<button id="voice" class="small" aria-pressed="${speaking}">${speaking ? 'Voz: sí' : 'Voz: no'}</button>` : ''}<button id="reset-prototype" class="small" ${busy ? 'disabled' : ''}>Borrar partida</button><label class="small file">Importar<input id="import" type="file" accept="application/json" ${busy ? 'disabled' : ''}></label></div></header>${tab !== 'opening' ? `<section class="intro"><div><span class="eyebrow">${esc(label)}</span><h1>${esc(title)}</h1><p>${tab === 'setup' ? esc(preview.premise) : 'Cinco sospechosos. Varios con motivos y acceso al arma.<br>Solo una persona reúne móvil, acceso y ocasión.'}</p></div><div class="manor illustrated">${img(cover, title)}<span>MUNDOS<br>INVESTIGACIÓN</span></div></section>` : ''}${playing ? `<section class="brief"><span class="seal">!</span><p><strong>${esc(c.victim.name)} ha muerto en ${esc(placePhrase(c.scene))}.</strong> El hallazgo se registra a las ${clock(c.timing.discoveryMinute)}. Investiga la causa, el móvil y las coartadas.</p><strong>${state.found.length}<small> / ${c.clues.length} PISTAS</small></strong></section>` : ''}${
+  app.innerHTML = `<header><a class="brand" href="/">O<span>MUNDOS<br><small>DETECTIVE STORIES</small></span></a><div class="save"><button id="export" class="small">Exportar partida</button>${state ? '<button id="export-case" class="small">Exportar caso</button>' : ''}${canSpeak ? `<button id="voice" class="small" aria-pressed="${speaking}">${speaking ? 'Voz: sí' : 'Voz: no'}</button>` : ''}<button id="reset-prototype" class="small" ${busy ? 'disabled' : ''}>Borrar partida</button><a class="small" href="/editor.html">Editor de casos</a><label class="small file">Importar<input id="import" type="file" accept="application/json" ${busy ? 'disabled' : ''}></label></div></header>${tab !== 'opening' ? `<section class="intro"><div><span class="eyebrow">${esc(label)}</span><h1>${esc(title)}</h1><p>${tab === 'setup' ? esc(preview.premise) : 'Cinco sospechosos. Varios con motivos y acceso al arma.<br>Solo una persona reúne móvil, acceso y ocasión.'}</p></div><div class="manor illustrated">${img(cover, title)}<span>MUNDOS<br>INVESTIGACIÓN</span></div></section>` : ''}${playing ? `<section class="brief"><span class="seal">!</span><p><strong>${esc(c.victim.name)} ha muerto en ${esc(placePhrase(c.scene))}.</strong> El hallazgo se registra a las ${clock(c.timing.discoveryMinute)}. Investiga la causa, el móvil y las coartadas.</p><strong>${state.found.length}<small> / ${c.clues.length} PISTAS</small></strong></section>` : ''}${
     playing
       ? `<nav aria-label="Investigación">${[
           ['explore', 'Explorar'],
@@ -208,9 +208,27 @@ function render() {
   }<main>${message ? `<div class="notice" role="status">${esc(message)}</div>` : ''}${playing && !state.result ? helpBar() : ''}${tab === 'setup' ? setup() : tab === 'opening' ? openingScreen() : state.result ? ending() : content()}</main><footer>MUNDOS · ${storageOK ? 'Partida guardada en este navegador' : 'Sin guardado local: exporta tu partida'}</footer>`;
   bind();
 }
+// The start screen: the game in progress, a new case in a world, or a classic case.
 function setup() {
-  const portrait = setupWorld === 'random' ? null : preview.people[0];
-  return `<section class="pilot-panel">${portrait ? img(portrait.image, portrait.name, 'pilot-portrait') : ''}<div><span class="eyebrow">NUEVA INVESTIGACIÓN</span><h2>Elige dónde ocurre el crimen.</h2><p>Cada mundo tiene sus propios personajes y escenarios. En cada investigación cambian el culpable, el arma, la escena, los móviles y las coartadas.</p><label class="dialogue-settings">Mundo<select ${busy ? 'disabled' : ''} id="world-choice" aria-label="Mundo">${[...worlds, { id: 'random', label: 'Al azar' }].map(w => `<option value="${w.id}" ${setupWorld === w.id ? 'selected' : ''}>${esc(w.label)}</option>`).join('')}</select></label><p class="hint">${setupWorld === 'random' ? 'El mundo se elige al crear la investigación.' : esc(preview.people.map(p => p.name).join(', ')) + '.'}</p><label class="dialogue-settings">Dificultad<select ${busy ? 'disabled' : ''} id="difficulty-choice" aria-label="Dificultad">${difficulties.map(d => `<option value="${d.id}" ${difficulty === d.id ? 'selected' : ''}>${d.label}</option>`).join('')}</select></label><p class="hint">${{ easy: 'Dos personas con motivo y dos con acceso al arma. Una coartada puede caer por un testigo.', medium: 'Tres personas con motivo y tres con acceso al arma.', hard: 'Cuatro personas con motivo, cuatro con acceso al arma y dos pistas engañosas.' }[difficulty]}</p><label class="dialogue-settings">Arma (solo para probar)<select ${busy ? 'disabled' : ''} id="method-choice" aria-label="Arma para probar"><option value="">Sorpresa</option>${(setupWorld === 'random' ? [] : worldWeapons(preview)).map(w => `<option value="${w.method}">${esc(w.label)}</option>`).join('')}</select></label><p class="hint">Elegir el arma revela esa parte de la solución. Con «Sorpresa», cada investigación intenta usar un arma distinta de la anterior.</p>${state ? '<p class="hint">Crear otra investigación sustituye la partida actual. Puedes exportarla antes.</p>' : ''}${classics.length ? `<div class="classics"><label class="dialogue-settings">O juega un caso clásico de Blackwood, escrito a mano<select id="classic-choice" aria-label="Caso clásico" ${busy ? 'disabled' : ''}>${classics.map(k => `<option value="${esc(k.file)}">${esc(k.title)}</option>`).join('')}</select></label><button id="start-classic" class="secondary" ${busy ? 'disabled' : ''}>Jugar este caso</button></div>` : ''}${
+  const current = state
+      ? `<section class="continue"><div><span class="eyebrow">PARTIDA EN CURSO · ${esc(worldLabel(state.world))}</span><h2>${esc(c.title)}</h2><p class="hint">${state.result === 'won' ? 'Resuelto' : `${state.found.length} de ${c.clues.length} pistas encontradas`}</p></div><button id="continue-case" ${busy ? 'disabled' : ''}>Continuar →</button></section>`
+      : '',
+    first = text => text.match(/^[^.!?]+[.!?]/)?.[0] || text,
+    card = (id, label, title, line, image) =>
+      `<button class="world-card ${setupWorld === id ? 'selected' : ''}" data-world="${id}" aria-pressed="${setupWorld === id}"><span class="world-art">${image ? img(image, '') : '<span class="world-dice">?</span>'}</span><span><strong>${esc(label)}</strong><em>${esc(title)}</em><small>${esc(line)}</small></span></button>`,
+    chosen = setupWorld === 'random' ? 'un mundo al azar' : worldLabel(setupWorld);
+  return `${current}<section class="new-case"><span class="eyebrow">CASO NUEVO</span><h2>Elige un mundo.</h2><p class="hint">El caso se inventa al crearlo: en cada partida cambian el culpable, el arma, la escena, los móviles y las coartadas. Puedes jugar en el mismo mundo tantas veces como quieras.</p><div class="world-cards">${worlds
+    .map(w => {
+      const world = cache.get(w.id);
+      return card(w.id, w.label, world.title, first(world.premise), world.rooms[0].image);
+    })
+    .join(
+      '',
+    )}${card('random', 'Al azar', 'Sorpresa', 'El mundo se elige al crear el caso.', null)}</div><div class="difficulty" role="radiogroup" aria-label="Dificultad"><span>Dificultad</span>${difficulties.map(d => `<button class="small ${difficulty === d.id ? 'selected' : ''}" role="radio" aria-checked="${difficulty === d.id}" data-difficulty="${d.id}">${d.label}</button>`).join('')}</div><p class="hint">${{ easy: 'Dos personas con motivo y dos con acceso al arma. Una coartada puede caer por un testigo.', medium: 'Tres personas con motivo y tres con acceso al arma.', hard: 'Cuatro personas con motivo, cuatro con acceso al arma y dos pistas engañosas.' }[difficulty]}</p><button id="start-case" ${busy ? 'disabled' : ''}>Crear caso en ${esc(chosen)} →</button>${state ? '<p class="hint">Crear otro caso sustituye la partida en curso. Puedes exportarla antes.</p>' : ''}</section>${
+    classics.length
+      ? `<section class="classic-cases"><span class="eyebrow">CASOS CLÁSICOS DE BLACKWOOD</span><h2>Cinco casos escritos a mano.</h2><p class="hint">Los casos originales de Blackwood Manor, en 1924. Son siempre iguales y tienen una historia más trabajada.</p><ul>${classics.map(k => `<li><span><strong>${esc(k.title)}</strong>${k.hook ? `<small>${esc(k.hook)}</small>` : ''}</span><button class="small" data-classic="${esc(k.file)}" ${busy ? 'disabled' : ''}>Jugar</button></li>`).join('')}</ul></section>`
+      : ''
+  }${
     history.length
       ? `<details class="history"><summary>Casos resueltos: ${history.length}</summary><ul>${history
           .slice(0, 12)
@@ -220,7 +238,7 @@ function setup() {
           )
           .join('')}</ul></details>`
       : ''
-  }<p class="hint"><a href="/editor.html">Editor de casos</a>: cambia nombres y textos de un caso, comprueba que se puede resolver y juégalo.</p><div class="pilot-actions"><button id="start-case" ${busy ? 'disabled' : ''}>Crear investigación →</button>${state ? `<button id="continue-case" ${busy ? 'disabled' : ''}>Continuar la actual</button>` : ''}</div></div></section>`;
+  }`;
 }
 function openingScreen() {
   return `<section class="opening-panel"><span class="eyebrow">PRÓLOGO · ${esc(c.title)}</span><h2>Antes de la primera pregunta.</h2>${img(c.scene.image, c.scene.name, 'scene-image')}<div class="opening-prose"><p>${esc(c.opening.arrival)}</p><p class="opening-fact">A las ${clock(c.timing.discoveryMinute)} llega el aviso: han encontrado sin vida a ${esc(c.victim.name)} en ${esc(placePhrase(c.scene))}. La causa y las circunstancias todavía están por esclarecer.</p><p>${esc(c.opening.tension)}</p></div>${speaking ? '<button id="listen-opening" class="secondary">Escuchar el prólogo</button> ' : ''}<button id="begin-investigation">${state.result ? 'Volver al desenlace →' : 'Comenzar la investigación →'}</button></section>`;
@@ -401,25 +419,29 @@ function bind() {
     }
     render();
   };
-  document.querySelector('#difficulty-choice')?.addEventListener('change', e => {
-    difficulty = e.target.value;
-    remember('mundos-dificultad', difficulty);
-    render();
-  });
-  document.querySelector('#world-choice')?.addEventListener('change', e => {
-    setupWorld = e.target.value;
-    if (setupWorld !== 'random') preview = cache.get(setupWorld);
-    render();
-  });
+  document.querySelectorAll('[data-difficulty]').forEach(
+    b =>
+      (b.onclick = () => {
+        difficulty = b.dataset.difficulty;
+        remember('mundos-dificultad', difficulty);
+        render();
+      }),
+  );
+  document.querySelectorAll('[data-world]').forEach(
+    b =>
+      (b.onclick = () => {
+        setupWorld = b.dataset.world;
+        if (setupWorld !== 'random') preview = cache.get(setupWorld);
+        render();
+      }),
+  );
   document.querySelector('#start-case')?.addEventListener('click', () => {
     if (busy) return;
-    const forcedMethodId = document.querySelector('#method-choice').value;
     try {
       const world = cache.get(selectWorld(setupWorld));
       state = newPrototype(world, {
         previousMethodId: c?.method.id,
         previousPersonId: c?.culprit.id,
-        forcedMethodId,
         difficulty,
       });
       c = createPrototypeCase(state);
@@ -434,28 +456,30 @@ function bind() {
       render();
     }
   });
-  document.querySelector('#start-classic')?.addEventListener('click', async () => {
-    if (busy) return;
-    const file = document.querySelector('#classic-choice').value;
-    if (!classics.some(k => k.file === file)) return;
-    busy = true;
-    try {
-      const caseFile = await (await fetch('/cases/' + file)).json();
-      state = newPrototype(null, { caseFile });
-      c = createPrototypeCase(state);
-      person = c.people[0].id;
-      hint = null;
-      noteMessage = '';
-      message = '';
-      save();
-      busy = false;
-      enterCase();
-    } catch (e) {
-      busy = false;
-      message = 'No se pudo abrir el caso: ' + e.message;
-      render();
-    }
-  });
+  document.querySelectorAll('[data-classic]').forEach(
+    b =>
+      (b.onclick = async () => {
+        const file = b.dataset.classic;
+        if (busy || !classics.some(k => k.file === file)) return;
+        busy = true;
+        try {
+          const caseFile = await (await fetch('/cases/' + file)).json();
+          state = newPrototype(null, { caseFile });
+          c = createPrototypeCase(state);
+          person = c.people[0].id;
+          hint = null;
+          noteMessage = '';
+          message = '';
+          save();
+          busy = false;
+          enterCase();
+        } catch (e) {
+          busy = false;
+          message = 'No se pudo abrir el caso: ' + e.message;
+          render();
+        }
+      }),
+  );
   document.querySelector('#continue-case')?.addEventListener('click', () => {
     if (busy) return;
     message = '';

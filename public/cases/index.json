@@ -2,23 +2,28 @@
   "cases": [
     {
       "file": "blackwood-1.json",
-      "title": "El último té"
+      "title": "El último té",
+      "hook": "Sir Edmund no termina su té de la noche."
     },
     {
       "file": "blackwood-2.json",
-      "title": "La firma pendiente"
+      "title": "La firma pendiente",
+      "hook": "Un documento a la espera de una firma que nunca llegará."
     },
     {
       "file": "blackwood-3.json",
-      "title": "La carta retenida"
+      "title": "La carta retenida",
+      "hook": "Una carta que alguien decidió no entregar."
     },
     {
       "file": "blackwood-4.json",
-      "title": "Treinta años de silencio"
+      "title": "Treinta años de silencio",
+      "hook": "Una casa con demasiados años de secretos."
     },
     {
       "file": "blackwood-5.json",
-      "title": "La deuda vencida"
+      "title": "La deuda vencida",
+      "hook": "Esa noche, en Blackwood Manor, alguien tenía cuentas pendientes."
     }
   ]
 }
