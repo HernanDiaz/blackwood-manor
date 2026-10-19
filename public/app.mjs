@@ -112,7 +112,9 @@ let setupWorld = worlds[0].id,
   busy = false,
   storageOK = true,
   hint = null,
-  noteMessage = '';
+  noteMessage = '',
+  // On a phone the header actions fold into a menu.
+  menuOpen = false;
 try {
   for (const w of worlds) await loadWorld(w.id);
   // The statistical router answers questions in the browser; without it the rules still do.
@@ -188,7 +190,9 @@ function render() {
     label = tab === 'setup' ? preview.label : worldLabel(state.world),
     title = tab === 'setup' ? preview.title : c.title,
     cover = tab === 'setup' ? preview.rooms[0].image : c.scene.image;
-  app.innerHTML = `<header><a class="brand" href="/">O<span>MUNDOS<br><small>DETECTIVE STORIES</small></span></a><div class="save"><button id="export" class="small">Exportar partida</button>${state ? '<button id="export-case" class="small">Exportar caso</button>' : ''}${canSpeak ? `<button id="voice" class="small" aria-pressed="${speaking}">${speaking ? 'Voz: sí' : 'Voz: no'}</button>` : ''}<button id="reset-prototype" class="small" ${busy ? 'disabled' : ''}>Borrar partida</button><a class="small" href="/editor.html">Editor de casos</a><label class="small file">Importar<input id="import" type="file" accept="application/json" ${busy ? 'disabled' : ''}></label></div></header>${tab !== 'opening' ? `<section class="intro"><div><span class="eyebrow">${esc(label)}</span><h1>${esc(title)}</h1><p>${tab === 'setup' ? esc(preview.premise) : 'Cinco sospechosos. Varios con motivos y acceso al arma.<br>Solo una persona reúne móvil, acceso y ocasión.'}</p></div><div class="manor illustrated">${img(cover, title)}<span>MUNDOS<br>INVESTIGACIÓN</span></div></section>` : ''}${playing ? `<section class="brief"><span class="seal">!</span><p><strong>${esc(c.victim.name)} ha muerto en ${esc(placePhrase(c.scene))}.</strong> El hallazgo se registra a las ${clock(c.timing.discoveryMinute)}. Investiga la causa, el móvil y las coartadas.</p><strong>${state.found.length}<small> / ${c.clues.length} PISTAS</small></strong></section>` : ''}${
+  // The screen is a class of the page, so the phone layout can change per screen.
+  app.className = 'screen-' + tab;
+  app.innerHTML = `<header><a class="brand" href="/">O<span>MUNDOS<br><small>DETECTIVE STORIES</small></span></a><button id="menu-toggle" class="small menu-toggle" aria-expanded="${menuOpen}" aria-controls="actions">${menuOpen ? 'Cerrar' : 'Menú'}</button><div class="save ${menuOpen ? 'open' : ''}" id="actions"><button id="export" class="small">Exportar partida</button>${state ? '<button id="export-case" class="small">Exportar caso</button>' : ''}${canSpeak ? `<button id="voice" class="small" aria-pressed="${speaking}">${speaking ? 'Voz: sí' : 'Voz: no'}</button>` : ''}<button id="reset-prototype" class="small" ${busy ? 'disabled' : ''}>Borrar partida</button>${state && !['setup', 'opening'].includes(tab) ? '<button class="small phone-only go-new">Otra investigación</button><button class="small phone-only go-opening">Leer el prólogo</button>' : ''}<a class="small" href="/editor.html">Editor de casos</a><label class="small file">Importar<input id="import" type="file" accept="application/json" ${busy ? 'disabled' : ''}></label></div></header>${tab !== 'opening' ? `<section class="intro"><div><span class="eyebrow">${esc(label)}</span><h1>${esc(title)}</h1><p>${tab === 'setup' ? esc(preview.premise) : 'Cinco sospechosos. Varios con motivos y acceso al arma.<br>Solo una persona reúne móvil, acceso y ocasión.'}</p></div><div class="manor illustrated">${img(cover, title)}<span>MUNDOS<br>INVESTIGACIÓN</span></div></section>` : ''}${playing ? `<section class="brief"><span class="seal">!</span><p><strong>${esc(c.victim.name)} ha muerto en ${esc(placePhrase(c.scene))}.</strong> El hallazgo se registra a las ${clock(c.timing.discoveryMinute)}. Investiga la causa, el móvil y las coartadas.</p><strong>${state.found.length}<small> / ${c.clues.length} PISTAS</small></strong></section>` : ''}${
     playing
       ? `<nav aria-label="Investigación">${[
           ['explore', 'Explorar'],
@@ -203,7 +207,7 @@ function render() {
           )
           .join(
             '',
-          )}<button id="new-case" ${busy ? 'disabled' : ''}>Otra investigación</button><button id="read-opening" ${busy ? 'disabled' : ''}>Leer el prólogo</button></nav>`
+          )}<button class="extra go-new" ${busy ? 'disabled' : ''}>Otra investigación</button><button class="extra go-opening" ${busy ? 'disabled' : ''}>Leer el prólogo</button></nav>`
       : ''
   }<main>${message ? `<div class="notice" role="status">${esc(message)}</div>` : ''}${playing && !state.result ? helpBar() : ''}${tab === 'setup' ? setup() : tab === 'opening' ? openingScreen() : state.result ? ending() : content()}</main><footer>MUNDOS · ${storageOK ? 'Partida guardada en este navegador' : 'Sin guardado local: exporta tu partida'}</footer>`;
   bind();
@@ -264,9 +268,9 @@ function notebook() {
               : entry.verdict === 'refuted'
                 ? 'Desmentida'
                 : 'Confirmada';
-        return `<td class="${entry.verdict === 'confirmed' ? 'clear' : 'proven'}"><strong>${mark}</strong><small>${esc(clue.title)}</small><button class="small" data-unnote="${p.id}:${condition}" aria-label="Borrar anotación">×</button></td>`;
+        return `<td data-label="${labels[condition]}" class="${entry.verdict === 'confirmed' ? 'clear' : 'proven'}"><strong>${mark}</strong><small>${esc(clue.title)}</small><button class="small" data-unnote="${p.id}:${condition}" aria-label="Borrar anotación">×</button></td>`;
       }
-      return `<td><select data-note="${p.id}:${condition}" aria-label="${labels[condition]} de ${esc(p.name)}"><option value="">Anotar prueba…</option>${found.map(x => `<option value="${x.id}">${esc(x.title)}</option>`).join('')}</select></td>`;
+      return `<td data-label="${labels[condition]}"><select data-note="${p.id}:${condition}" aria-label="${labels[condition]} de ${esc(p.name)}"><option value="">Anotar prueba…</option>${found.map(x => `<option value="${x.id}">${esc(x.title)}</option>`).join('')}</select></td>`;
     };
   return `<section class="notebook"><h3>Cuaderno de deducción</h3><p class="hint">Anota la prueba que demuestra cada cosa. Solo se guarda si la prueba lo demuestra de verdad. La persona culpable tiene motivo, acceso al arma y una coartada desmentida.</p>${noteMessage ? `<p class="note-message" role="status">${esc(noteMessage)}</p>` : ''}<div class="notebook-scroll"><table><thead><tr><th>Persona</th>${conditions.map(k => `<th>${labels[k]}</th>`).join('')}</tr></thead><tbody>${c.people.map(p => `<tr class="${suspects.includes(p.id) ? 'suspect' : ''}"><th>${esc(p.name)}<small>${suspects.includes(p.id) ? 'Reúne las tres condiciones' : esc(p.role)}</small></th>${conditions.map(k => cell(p, k)).join('')}</tr>`).join('')}</tbody></table></div></section>`;
 }
@@ -356,6 +360,10 @@ function content() {
     )}</div><button class="danger" ${busy ? 'disabled' : ''}>Presentar acusación</button></form>`;
 }
 function bind() {
+  document.querySelector('#menu-toggle').onclick = () => {
+    menuOpen = !menuOpen;
+    render();
+  };
   document.querySelector('#export').onclick = exportSave;
   document.querySelector('#voice')?.addEventListener('click', () => {
     speaking = !speaking;
@@ -487,25 +495,31 @@ function bind() {
     message = '';
     enterCase();
   });
-  document.querySelector('#read-opening')?.addEventListener('click', () => {
-    if (busy) return;
-    enterCase({ replay: true });
-    tab = 'opening';
-    render();
-  });
+  document.querySelectorAll('.go-opening').forEach(
+    b =>
+      (b.onclick = () => {
+        if (busy) return;
+        menuOpen = false;
+        tab = 'opening';
+        render();
+      }),
+  );
   document.querySelector('#begin-investigation')?.addEventListener('click', () => {
     state.openingSeen = true;
     tab = 'explore';
     save();
     render();
   });
-  for (const id of ['new-case', 'end-new'])
-    document.querySelector('#' + id)?.addEventListener('click', () => {
-      if (busy) return;
-      tab = 'setup';
-      message = '';
-      render();
-    });
+  document.querySelectorAll('.go-new, #end-new').forEach(
+    b =>
+      (b.onclick = () => {
+        if (busy) return;
+        menuOpen = false;
+        tab = 'setup';
+        message = '';
+        render();
+      }),
+  );
   document.querySelector('#reopen')?.addEventListener('click', () => {
     state.result = null;
     tab = 'explore';
@@ -516,6 +530,7 @@ function bind() {
     b =>
       (b.onclick = () => {
         tab = b.dataset.tab;
+        menuOpen = false;
         message = '';
         render();
       }),
