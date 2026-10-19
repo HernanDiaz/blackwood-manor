@@ -1300,3 +1300,16 @@ body {
     top: env(safe-area-inset-top);
   }
 }
+
+/* The mark of the game: a magnifying glass in the colour of the world. */
+.brand-mark {
+  width: 34px;
+  height: 34px;
+  flex: none;
+}
+@media (max-width: 760px) {
+  .brand-mark {
+    width: 28px;
+    height: 28px;
+  }
+}
