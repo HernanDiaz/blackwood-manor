@@ -215,16 +215,15 @@ function setup() {
       : '',
     first = text => text.match(/^[^.!?]+[.!?]/)?.[0] || text,
     card = (id, label, title, line, image) =>
-      `<button class="world-card ${setupWorld === id ? 'selected' : ''}" data-world="${id}" aria-pressed="${setupWorld === id}"><span class="world-art">${image ? img(image, '') : '<span class="world-dice">?</span>'}</span><span><strong>${esc(label)}</strong><em>${esc(title)}</em><small>${esc(line)}</small></span></button>`,
-    chosen = setupWorld === 'random' ? 'un mundo al azar' : worldLabel(setupWorld);
-  return `${current}<section class="new-case"><span class="eyebrow">CASO NUEVO</span><h2>Elige un mundo.</h2><p class="hint">El caso se inventa al crearlo: en cada partida cambian el culpable, el arma, la escena, los móviles y las coartadas. Puedes jugar en el mismo mundo tantas veces como quieras.</p><div class="world-cards">${worlds
+      `<button class="world-card" data-world="${id}" ${busy ? 'disabled' : ''}><span class="world-art">${image ? img(image, '') : '<span class="world-dice">?</span>'}</span><span><strong>${esc(label)}</strong><em>${esc(title)}</em><small>${esc(line)}</small></span></button>`;
+  return `${current}<section class="new-case"><span class="eyebrow">CASO NUEVO</span><h2>Pulsa un mundo para empezar.</h2><p class="hint">El caso se inventa al empezar: en cada partida cambian el culpable, el arma, la escena, los móviles y las coartadas. Puedes jugar en el mismo mundo tantas veces como quieras.</p><div class="difficulty" role="radiogroup" aria-label="Dificultad"><span>Dificultad</span>${difficulties.map(d => `<button class="small ${difficulty === d.id ? 'selected' : ''}" role="radio" aria-checked="${difficulty === d.id}" data-difficulty="${d.id}">${d.label}</button>`).join('')}</div><p class="hint">${{ easy: 'Dos personas con motivo y dos con acceso al arma. Una coartada puede caer por un testigo.', medium: 'Tres personas con motivo y tres con acceso al arma.', hard: 'Cuatro personas con motivo, cuatro con acceso al arma y dos pistas engañosas.' }[difficulty]}</p><div class="world-cards">${worlds
     .map(w => {
       const world = cache.get(w.id);
       return card(w.id, w.label, world.title, first(world.premise), world.rooms[0].image);
     })
     .join(
       '',
-    )}${card('random', 'Al azar', 'Sorpresa', 'El mundo se elige al crear el caso.', null)}</div><div class="difficulty" role="radiogroup" aria-label="Dificultad"><span>Dificultad</span>${difficulties.map(d => `<button class="small ${difficulty === d.id ? 'selected' : ''}" role="radio" aria-checked="${difficulty === d.id}" data-difficulty="${d.id}">${d.label}</button>`).join('')}</div><p class="hint">${{ easy: 'Dos personas con motivo y dos con acceso al arma. Una coartada puede caer por un testigo.', medium: 'Tres personas con motivo y tres con acceso al arma.', hard: 'Cuatro personas con motivo, cuatro con acceso al arma y dos pistas engañosas.' }[difficulty]}</p><button id="start-case" ${busy ? 'disabled' : ''}>Crear caso en ${esc(chosen)} →</button>${state ? '<p class="hint">Crear otro caso sustituye la partida en curso. Puedes exportarla antes.</p>' : ''}</section>${
+    )}${card('random', 'Al azar', 'Sorpresa', 'El mundo se elige al crear el caso.', null)}</div>${state ? '<p class="hint">Empezar otro caso sustituye la partida en curso. Puedes exportarla antes.</p>' : ''}</section>${
     classics.length
       ? `<section class="classic-cases"><span class="eyebrow">CASOS CLÁSICOS DE BLACKWOOD</span><h2>Cinco casos escritos a mano.</h2><p class="hint">Los casos originales de Blackwood Manor, en 1924. Son siempre iguales y tienen una historia más trabajada.</p><ul>${classics.map(k => `<li><span><strong>${esc(k.title)}</strong>${k.hook ? `<small>${esc(k.hook)}</small>` : ''}</span><button class="small" data-classic="${esc(k.file)}" ${busy ? 'disabled' : ''}>Jugar</button></li>`).join('')}</ul></section>`
       : ''
@@ -427,18 +426,21 @@ function bind() {
         render();
       }),
   );
+  // A game half played is only replaced if the player says so.
+  const replaceCurrent = () =>
+    !state || state.result || confirm('Empezar otro caso sustituye la partida en curso. ¿Seguir?');
   document.querySelectorAll('[data-world]').forEach(
     b =>
       (b.onclick = () => {
+        if (busy || !replaceCurrent()) return;
         setupWorld = b.dataset.world;
-        if (setupWorld !== 'random') preview = cache.get(setupWorld);
-        render();
+        startCase();
       }),
   );
-  document.querySelector('#start-case')?.addEventListener('click', () => {
-    if (busy) return;
+  function startCase() {
     try {
       const world = cache.get(selectWorld(setupWorld));
+      preview = world;
       state = newPrototype(world, {
         previousMethodId: c?.method.id,
         previousPersonId: c?.culprit.id,
@@ -455,12 +457,12 @@ function bind() {
       message = 'No se ha creado la investigación: ' + e.message;
       render();
     }
-  });
+  }
   document.querySelectorAll('[data-classic]').forEach(
     b =>
       (b.onclick = async () => {
         const file = b.dataset.classic;
-        if (busy || !classics.some(k => k.file === file)) return;
+        if (busy || !classics.some(k => k.file === file) || !replaceCurrent()) return;
         busy = true;
         try {
           const caseFile = await (await fetch('/cases/' + file)).json();
