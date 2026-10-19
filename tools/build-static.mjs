@@ -61,8 +61,8 @@ writeFileSync(
   to('manifest.webmanifest'),
   JSON.stringify(
     {
-      name: 'Mundos · Blackwood Manor',
-      short_name: 'Mundos',
+      name: 'Blackwood · Casos de detectives',
+      short_name: 'Blackwood',
       lang: 'es',
       start_url: '/',
       scope: '/',

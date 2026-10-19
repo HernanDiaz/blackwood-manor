@@ -74,4 +74,4 @@ const server = http.createServer(async (req, res) => {
   }
 });
 if (process.argv[1] === fileURLToPath(import.meta.url))
-  server.listen(port, '127.0.0.1', () => console.log(`Mundos: http://localhost:${port}`));
+  server.listen(port, '127.0.0.1', () => console.log(`Blackwood: http://localhost:${port}`));

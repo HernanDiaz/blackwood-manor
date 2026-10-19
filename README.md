@@ -1,4 +1,4 @@
-# Mundos · Blackwood Manor
+# Blackwood · Casos de detectives
 
 Juego de detectives en español que funciona sin conexión. Se abre en `http://127.0.0.1:4173`.
 
@@ -16,7 +16,7 @@ Requiere Node.js 22 o posterior; no necesita `npm install`.
 
 ## Versión sin servidor (móvil)
 
-`npm run build` genera `dist/`: Mundos como archivos estáticos que funcionan sin servidor. El interrogatorio se resuelve en el navegador con el clasificador estadístico y las reglas. Un *service worker* guarda todos los archivos, así que tras la primera carga funciona también sin conexión, y el manifiesto permite instalarlo como app. `dist/` es también lo que empaquetan las apps de Android e iPhone con Capacitor: ver [docs/MOVIL.md](docs/MOVIL.md). `npm run preview` lo sirve en http://127.0.0.1:4174 para probarlo.
+`npm run build` genera `dist/`: el juego como archivos estáticos que funcionan sin servidor. El interrogatorio se resuelve en el navegador con el clasificador estadístico y las reglas. Un *service worker* guarda todos los archivos, así que tras la primera carga funciona también sin conexión, y el manifiesto permite instalarlo como app. `dist/` es también lo que empaquetan las apps de Android e iPhone con Capacitor: ver [docs/MOVIL.md](docs/MOVIL.md). `npm run preview` lo sirve en http://127.0.0.1:4174 para probarlo.
 
 Con el servidor local (`PILOTO.cmd`), el juego solo le consulta las preguntas que no sabe clasificar, y solo si tiene un modelo local.
 

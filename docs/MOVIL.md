@@ -40,7 +40,7 @@ En Xcode: elegir el equipo de firma en *Signing & Capabilities*, conectar el iPh
 
 ## Datos de la app
 
-- Identificador: `es.mundos.blackwoodmanor`; nombre: «Blackwood Manor» (`capacitor.config.json`).
+- Identificador: `es.blackwood.detectives`; nombre: «Blackwood» (`capacitor.config.json`).
 - Iconos: `public/icons/icon-512.png` sirve de origen. Con `npx @capacitor/assets generate` se
   crean todos los tamaños para las dos plataformas (pide una carpeta `assets/` con `icon.png`).
 - Dentro de la app no se registra el service worker: los archivos ya están en el teléfono y así

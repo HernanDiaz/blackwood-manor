@@ -1,5 +1,5 @@
 // The five hand-written Blackwood Manor cases as case files (public/cases/blackwood-N.json):
-// valid, faithful to the original solutions and winnable in the Mundos engine.
+// valid, faithful to the original solutions and winnable in the game engine.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -60,7 +60,7 @@ test('each case keeps the title and solution of its original variant', () => {
   });
 });
 
-test('each case can be won in the Mundos engine with its proof', () => {
+test('each case can be won in the game engine with its proof', () => {
   for (const file of files) {
     const { c, s } = play(file);
     assert.deepEqual(c.analysis.suspects, [file.crime.culprit]);

@@ -1,6 +1,6 @@
 {
-  "appId": "es.mundos.blackwoodmanor",
-  "appName": "Blackwood Manor",
+  "appId": "es.blackwood.detectives",
+  "appName": "Blackwood",
   "webDir": "dist",
   "backgroundColor": "#101b23",
   "android": {

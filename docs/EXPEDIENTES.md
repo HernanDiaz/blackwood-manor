@@ -1,6 +1,6 @@
 # Formato de expediente (`mundos-expediente`)
 
-Cada investigación de Mundos es un **expediente**: un JSON con todo el caso. Se genera a partir de un mundo (ver [MUNDOS.md](MUNDOS.md)), pero no lo necesita para jugarse. Lleva el reparto, los lugares, las armas que ofrece la acusación, el crimen, el prólogo, las pistas y lo que puede decir cada persona. Por eso un expediente se puede exportar, editar a mano o con un editor, compartir e importar.
+Cada investigación de Blackwood es un **expediente**: un JSON con todo el caso. Se genera a partir de un mundo (ver [MUNDOS.md](MUNDOS.md)), pero no lo necesita para jugarse. Lleva el reparto, los lugares, las armas que ofrece la acusación, el crimen, el prólogo, las pistas y lo que puede decir cada persona. Por eso un expediente se puede exportar, editar a mano o con un editor, compartir e importar.
 
 - En el editor de casos, **Descargar expediente** lo descarga sin el progreso del jugador.
 - En el menú del juego, **Guardar una copia** descarga una partida (`mundos-partida`): el expediente más el progreso.
