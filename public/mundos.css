@@ -808,3 +808,165 @@ img.missing {
     height: 22px;
   }
 }
+
+/* Phones: no text under 12 px, body text from 13 px. */
+@media (max-width: 760px) {
+  body {
+    font-size: 15px;
+  }
+  .eyebrow,
+  .clue .eyebrow {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+  }
+  .brand > span {
+    font-size: 12px;
+  }
+  .brand small {
+    font-size: 9px;
+  }
+  .brief p {
+    font-size: 13px;
+  }
+  .brief p strong {
+    font-size: 14px;
+  }
+  .brief > strong {
+    font-size: 26px;
+  }
+  .brief small {
+    font-size: 11px;
+  }
+  header .save .small,
+  header .save > a {
+    font-size: 14px;
+  }
+  nav button {
+    font-size: 12px;
+  }
+  .rooms strong,
+  .search-grid strong {
+    font-size: 14px;
+  }
+  .rooms small,
+  .search-grid small,
+  .suspects strong,
+  .notebook small,
+  .history small,
+  .classic-cases li small,
+  .world-card small {
+    font-size: 12px;
+  }
+  .clue p,
+  .room-detail > p,
+  .reply,
+  .question {
+    font-size: 14px;
+  }
+  .clue label {
+    font-size: 14px;
+  }
+  .hint {
+    font-size: 13px !important;
+  }
+  footer {
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+  .history summary {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 760px) {
+  .eyebrow,
+  .clue .eyebrow,
+  .brief small,
+  footer {
+    font-size: 12px;
+  }
+}
+
+/* Phones: the main action of each screen takes the whole width. */
+@media (max-width: 760px) {
+  #begin-investigation,
+  #listen-opening,
+  .ending button,
+  #accuse .danger,
+  #ask button,
+  .show-evidence button,
+  .continue button {
+    width: 100%;
+    margin: 8px 0 0;
+  }
+  .ending {
+    margin: 20px 0;
+  }
+}
+
+/* Phones: clue pictures as a wide band, so the text of the clue comes into view sooner. */
+@media (max-width: 760px) {
+  .clue .clue-art {
+    display: block;
+    width: 100%;
+    height: 180px;
+    max-height: none;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  .clue button {
+    width: 100%;
+  }
+}
+
+/* Phones: choosing evidence needs the text, not the pictures. */
+@media (max-width: 760px) {
+  #accuse .clue .clue-art {
+    display: none;
+  }
+  #accuse .clue {
+    padding: 14px 16px;
+  }
+  .fields label {
+    font-size: 14px;
+  }
+}
+
+.notebook th .note-message {
+  font-weight: normal;
+  font-size: 13px;
+  margin: 8px 0 0;
+  color: var(--text);
+}
+
+.accuse-error {
+  border-left: 2px solid #c98a7a;
+  padding: 8px 12px;
+  margin: 16px 0 0;
+  font-size: 14px;
+}
+
+@media (max-width: 760px) {
+  summary {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    cursor: pointer;
+  }
+  .editor-row > * {
+    flex: 1 1 100%;
+  }
+}
+
+@media (pointer: coarse), (max-width: 1100px) {
+  summary {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    cursor: pointer;
+  }
+}

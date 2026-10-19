@@ -112,7 +112,7 @@ let setupWorld = worlds[0].id,
   busy = false,
   storageOK = true,
   hint = null,
-  noteMessage = '',
+  noteMessage = null,
   // On a phone the header actions fold into a menu.
   menuOpen = false;
 try {
@@ -193,7 +193,7 @@ function render() {
   // The screen is a class of the page, so the phone layout can change per screen.
   app.className = 'screen-' + tab;
   app.innerHTML = `<header><a class="brand" href="/">O<span>MUNDOS<br><small>DETECTIVE STORIES</small></span></a><button id="menu-toggle" class="small menu-toggle" aria-expanded="${menuOpen}" aria-controls="actions">${menuOpen ? 'Cerrar' : 'Menú'}</button><div class="save ${menuOpen ? 'open' : ''}" id="actions"><button id="export" class="small">Exportar partida</button>${state ? '<button id="export-case" class="small">Exportar caso</button>' : ''}${canSpeak ? `<button id="voice" class="small" aria-pressed="${speaking}">${speaking ? 'Voz: sí' : 'Voz: no'}</button>` : ''}<button id="reset-prototype" class="small" ${busy ? 'disabled' : ''}>Borrar partida</button>${state && !['setup', 'opening'].includes(tab) ? '<button class="small phone-only go-new">Otra investigación</button><button class="small phone-only go-opening">Leer el prólogo</button>' : ''}<a class="small" href="/editor.html">Editor de casos</a><label class="small file">Importar<input id="import" type="file" accept="application/json" ${busy ? 'disabled' : ''}></label></div></header>${tab !== 'opening' ? `<section class="intro"><div><span class="eyebrow">${esc(label)}</span><h1>${esc(title)}</h1><p>${tab === 'setup' ? esc(preview.premise) : 'Cinco sospechosos. Varios con motivos y acceso al arma.<br>Solo una persona reúne móvil, acceso y ocasión.'}</p></div><div class="manor illustrated">${img(cover, title)}<span>MUNDOS<br>INVESTIGACIÓN</span></div></section>` : ''}${playing ? `<section class="brief"><span class="seal">!</span><p><strong>${esc(c.victim.name)} ha muerto en ${esc(placePhrase(c.scene))}.</strong> El hallazgo se registra a las ${clock(c.timing.discoveryMinute)}. Investiga la causa, el móvil y las coartadas.</p><strong>${state.found.length}<small> / ${c.clues.length} PISTAS</small></strong></section>` : ''}${
-    playing
+    playing && !state.result
       ? `<nav aria-label="Investigación">${[
           ['explore', 'Explorar'],
           ['talk', 'Interrogar'],
@@ -282,7 +282,7 @@ function notebook() {
       }
       return `<td data-label="${labels[condition]}"><select data-note="${p.id}:${condition}" aria-label="${labels[condition]} de ${esc(p.name)}"><option value="">Anotar prueba…</option>${found.map(x => `<option value="${x.id}">${esc(x.title)}</option>`).join('')}</select></td>`;
     };
-  return `<section class="notebook"><h3>Cuaderno de deducción</h3><p class="hint">Anota la prueba que demuestra cada cosa. Solo se guarda si la prueba lo demuestra de verdad. La persona culpable tiene motivo, acceso al arma y una coartada desmentida.</p>${noteMessage ? `<p class="note-message" role="status">${esc(noteMessage)}</p>` : ''}<div class="notebook-scroll"><table><thead><tr><th>Persona</th>${conditions.map(k => `<th>${labels[k]}</th>`).join('')}</tr></thead><tbody>${c.people.map(p => `<tr class="${suspects.includes(p.id) ? 'suspect' : ''}"><th>${esc(p.name)}<small>${suspects.includes(p.id) ? 'Reúne las tres condiciones' : esc(p.role)}</small></th>${conditions.map(k => cell(p, k)).join('')}</tr>`).join('')}</tbody></table></div></section>`;
+  return `<section class="notebook"><h3>Cuaderno de deducción</h3><p class="hint">Anota la prueba que demuestra cada cosa. Solo se guarda si la prueba lo demuestra de verdad. La persona culpable tiene motivo, acceso al arma y una coartada desmentida.</p><div class="notebook-scroll"><table><thead><tr><th>Persona</th>${conditions.map(k => `<th>${labels[k]}</th>`).join('')}</tr></thead><tbody>${c.people.map(p => `<tr class="${suspects.includes(p.id) ? 'suspect' : ''}"><th>${esc(p.name)}<small>${suspects.includes(p.id) ? 'Reúne las tres condiciones' : esc(p.role)}</small>${noteMessage?.person === p.id ? `<p class="note-message" role="status">${esc(noteMessage.text)}</p>` : ''}</th>${conditions.map(k => cell(p, k)).join('')}</tr>`).join('')}</tbody></table></div></section>`;
 }
 function ending() {
   return `<section class="ending"><span class="eyebrow">${state.result === 'won' ? 'CASO RESUELTO' : 'REVISIÓN NECESARIA'}</span><h2>${state.result === 'won' ? 'La verdad sale a la luz.' : 'Faltan piezas.'}</h2><p>${esc(prototypeResolution(c, state))}</p>${state.help.used ? `<p class="hint">Has pedido ${state.help.used === 1 ? 'una pista' : state.help.used + ' pistas'} de ayuda.</p>` : ''}${state.result === 'lost' ? '<button id="reopen">Reabrir investigación</button>' : ''}<button id="end-new" class="secondary">Otra investigación</button></section>`;
@@ -422,7 +422,7 @@ function bind() {
       c = createPrototypeCase(state);
       person = c.people[0].id;
       hint = null;
-      noteMessage = '';
+      noteMessage = null;
       if (cache.has(state.world)) {
         setupWorld = state.world;
         preview = cache.get(setupWorld);
@@ -467,7 +467,7 @@ function bind() {
       c = createPrototypeCase(state);
       person = c.people[0].id;
       hint = null;
-      noteMessage = '';
+      noteMessage = null;
       message = '';
       save();
       enterCase();
@@ -488,7 +488,7 @@ function bind() {
           c = createPrototypeCase(state);
           person = c.people[0].id;
           hint = null;
-          noteMessage = '';
+          noteMessage = null;
           message = '';
           save();
           busy = false;
@@ -590,7 +590,11 @@ function bind() {
       (select.onchange = () => {
         if (!select.value) return;
         const [who, condition] = select.dataset.note.split(':');
-        noteMessage = noteEntry(c, state, who, condition, select.value).message;
+        // The answer shows in that person's row, where the player is looking.
+        noteMessage = {
+          person: who,
+          text: noteEntry(c, state, who, condition, select.value).message,
+        };
         save();
         render();
       }),
@@ -600,7 +604,7 @@ function bind() {
       (b.onclick = () => {
         const [who, condition] = b.dataset.unnote.split(':');
         clearEntry(state, who, condition);
-        noteMessage = '';
+        noteMessage = null;
         save();
         render();
       }),
@@ -652,12 +656,15 @@ function bind() {
       message = '';
       save();
       render();
-    } catch (e) {
-      message = e.message;
-      const note = document.createElement('p');
-      note.role = 'alert';
-      note.textContent = message;
-      e.target.prepend(note);
+    } catch (error) {
+      // Shown next to the button the player just pressed (on a phone it is far below the form's top).
+      const form = e.target,
+        note = form.querySelector('.accuse-error') || document.createElement('p');
+      note.className = 'accuse-error';
+      note.setAttribute('role', 'alert');
+      note.textContent = error.message + '.';
+      form.querySelector('.danger').before(note);
+      note.scrollIntoView({ block: 'center', behavior: 'smooth' });
     }
   });
 }
