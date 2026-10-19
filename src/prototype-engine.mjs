@@ -105,7 +105,7 @@ const messages = {
   closedAccusation: 'La investigación está cerrada',
   outOfReach: 'Pista fuera de esta habitación',
   incomplete: 'Completa persona, método y lugar',
-  evidence: 'Adjunta al menos tres pruebas descubiertas',
+  evidence: 'Adjunta tres pruebas distintas: una del móvil, una del acceso al arma y una de la coartada',
 };
 // Case files adapted to the shared investigation rules (see investigation.mjs).
 function caseView(c) {

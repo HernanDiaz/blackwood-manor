@@ -22,7 +22,7 @@ Con el servidor local (`PILOTO.cmd`), el juego solo le consulta las preguntas qu
 
 ## Cómo se juega
 
-Explora las seis salas, recoge las pistas e interroga a los cinco sospechosos con tus propias palabras. Varias personas tienen un móvil y varias pudieron llegar al arma; solo una reúne además una coartada que no se sostiene. Para ganar hay que acusar a esa persona con el arma y la sala correctas, y adjuntar una prueba de cada cosa.
+Explora las seis salas, recoge las pistas e interroga a los cinco sospechosos con tus propias palabras. Varias personas tienen un móvil y varias pudieron llegar al arma; solo una reúne además una coartada que no se sostiene. Para ganar hay que acusar a esa persona con el arma correcta y adjuntar tres pruebas: una de su móvil, una de su acceso al arma y una que desmienta su coartada.
 
 Cada investigación se crea en uno de los cinco mundos y con una dificultad (fácil, media o difícil). También se pueden jugar los cinco casos clásicos de Blackwood, escritos a mano (`public/cases/`). Durante la partida ayudan:
 
@@ -65,5 +65,5 @@ Los informes de pruebas y las versiones anteriores (incluidos el antiguo modo de
 
 - La solución del caso viaja al navegador; no está pensado para impedir trampas.
 - El servidor es para uso local, sin autenticación.
-- Las apps de Android e iPhone están preparadas con Capacitor (`capacitor.config.json`, [docs/MOVIL.md](docs/MOVIL.md)); falta generarlas en un equipo con Android Studio y Xcode.
+- Las apps de Android e iPhone están hechas con Capacitor (`android/`, `ios/`, [docs/MOVIL.md](docs/MOVIL.md)). El APK de Android ya se ha generado y probado; la de iPhone está preparada y falta compilarla y firmarla en un Mac con Xcode.
 - Las ilustraciones de los mundos se generan una vez, fuera del juego, con `node tools/generate-art.mjs` (ver [docs/MUNDOS.md](docs/MUNDOS.md)); el juego solo lleva los WebP.

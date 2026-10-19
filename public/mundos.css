@@ -1313,3 +1313,29 @@ body {
     height: 28px;
   }
 }
+
+/* Interrogating: asking and showing a clue are the two actions, and they look alike. */
+.show-evidence button {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--bg);
+  font-weight: 600;
+}
+
+/* Interrogating: faces big enough to tell the suspects apart. */
+.suspects .avatar {
+  width: 76px;
+  height: 76px;
+  font-size: 26px;
+}
+@media (max-width: 760px) {
+  .suspects button,
+  .suspects button:last-child {
+    flex: 0 0 104px;
+  }
+  .suspects .avatar {
+    width: 68px;
+    height: 68px;
+    margin-bottom: 8px;
+  }
+}
