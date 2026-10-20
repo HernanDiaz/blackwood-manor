@@ -91,24 +91,24 @@ let serverModel = false;
 const worldLabel = id => cache.get(worldKey(id))?.label || T.imported;
 // The same game in another language: a generated case is made again from its seed, a classic
 // case is looked up among the classics of that language. Null when there is no such version.
+// Only a case as the game made it: one changed in the editor or imported keeps its own words.
 async function retell(saved, l) {
   const file = saved.case,
-    origin = file.origin || {};
+    from = createPrototypeCase(saved).lang,
+    origin = file.origin || {},
+    same = other => newPrototype(null, { caseFile: other }).caseId === saved.caseId;
   try {
+    await loadLanguage(from);
     if (origin.generator === 'mundos-1' && worlds.some(w => w.id === file.world)) {
-      const world = await loadWorld(file.world, l),
-        { seed, difficulty, previousMethodId, previousPersonId, forcedMethodId } = origin;
-      return retellPrototype(
-        saved,
-        newPrototype(world, { seed, difficulty, previousMethodId, previousPersonId, forcedMethodId })
-          .case,
-      );
+      const { seed, difficulty, previousMethodId, previousPersonId, forcedMethodId } = origin,
+        options = { seed, difficulty, previousMethodId, previousPersonId, forcedMethodId },
+        made = async lang => newPrototype(await loadWorld(file.world, lang), options).case;
+      return same(await made(from)) ? retellPrototype(saved, await made(l)) : null;
     }
-    for (const k of classicLists[l] || []) {
-      const other = await (await fetch('/cases/' + classicFile(k.file, l))).json(),
-        retold = retellPrototype(saved, other);
-      if (retold) return retold;
-    }
+    const caseOf = async (k, lang) =>
+      (await fetch('/cases/' + classicFile(k.file, lang))).json();
+    for (const k of classicLists[from] || [])
+      if (same(await caseOf(k, from))) return retellPrototype(saved, await caseOf(k, l));
   } catch {}
   return null;
 }
@@ -319,7 +319,7 @@ function render() {
   // The screen is a class of the page, so the phone layout can change per screen.
   app.className = 'screen-' + tab;
   applyLook(tab === 'setup' ? preview.look : c?.file.look);
-  app.innerHTML = `<header><a class="brand" href="/" aria-label="${T.home}"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="13" cy="13" r="9" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M20 20l8 8" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/></svg><span>BLACKWOOD<br><small>${T.tagline}</small></span></a><button id="menu-toggle" class="small menu-toggle" aria-expanded="${menuOpen}" aria-controls="actions">${menuOpen ? T.close : T.menu}</button><div class="save ${menuOpen ? 'open' : ''}" id="actions"><button id="lang" class="small" lang="${other.lang}" title="${other.title}" ${busy ? 'disabled' : ''}>${other.label}</button>${state && tab !== 'setup' ? `<button class="small go-new" ${busy ? 'disabled' : ''}>${T.backHome}</button>` : ''}${state && !['setup', 'opening'].includes(tab) ? `<button class="small go-opening" ${busy ? 'disabled' : ''}>${T.rereadPrologue}</button>` : ''}${canSpeak ? `<button id="voice" class="small" aria-pressed="${speaking}">${T.readAloud(speaking)}</button>` : ''}<button id="sound" class="small" aria-pressed="${sounding}">${T.sound(sounding)}</button>${state ? `<button id="export" class="small" title="${T.exportTitle}">${T.exportSave}</button>` : ''}<label class="small file" title="${T.importTitle}">${T.importSave}<input id="import" type="file" accept="application/json" ${busy ? 'disabled' : ''}></label><a class="small" href="/editor.html">${T.editor}</a></div></header>${tab !== 'opening' ? `<section class="intro"><div><span class="eyebrow">${esc(label)}</span><h1>${esc(title)}</h1><p>${tab === 'setup' ? esc(preview.premise) : T.introPlaying}</p></div><div class="manor illustrated">${img(cover, title)}</div></section>` : ''}${playing ? `<section class="brief"><span class="seal">!</span><p><strong>${esc(T.briefDead(c.victim.name, placePhrase(c.scene)))}</strong> ${T.briefFound(clock(c.timing.discoveryMinute))}${nightNow() ? `<em class="night">${esc(nightNow())}</em>` : ''}</p><strong>${state.found.length}<small> / ${c.clues.length} ${T.clues}</small></strong></section>` : ''}${
+  app.innerHTML = `<header><a class="brand" href="/" aria-label="${T.home}"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="13" cy="13" r="9" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M20 20l8 8" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/></svg><span>BLACKWOOD<br><small>${T.tagline}</small></span></a><button id="menu-toggle" class="small menu-toggle" aria-expanded="${menuOpen}" aria-controls="actions">${menuOpen ? T.close : T.menu}</button><div class="save ${menuOpen ? 'open' : ''}" id="actions"><button id="lang" class="small" lang="${other.lang}" title="${other.title}" ${busy ? 'disabled' : ''}>${other.label}</button>${state && tab !== 'setup' ? `<button class="small go-new" ${busy ? 'disabled' : ''}>${T.backHome}</button>` : ''}${state && !['setup', 'opening'].includes(tab) ? `<button class="small go-opening" ${busy ? 'disabled' : ''}>${T.rereadPrologue}</button>` : ''}${canSpeak ? `<button id="voice" class="small" aria-pressed="${speaking}">${T.readAloud(speaking)}</button>` : ''}<button id="sound" class="small" aria-pressed="${sounding}">${T.sound(sounding)}</button>${state ? `<button id="export" class="small" title="${T.exportTitle}">${T.exportSave}</button>` : ''}<label class="small file" title="${T.importTitle}">${T.importSave}<input id="import" type="file" accept="application/json" ${busy ? 'disabled' : ''}></label><a class="small" href="/editor.html">${T.editor}</a></div></header>${tab !== 'opening' ? `<section class="intro"><div><span class="eyebrow">${esc(label)}</span><h1>${esc(title)}</h1><p>${tab === 'setup' ? esc(preview.premise) : T.introPlaying}</p></div><div class="manor illustrated">${img(cover, title)}</div></section>` : ''}${playing ? `<section class="brief"><span class="seal">!</span><p><strong>${esc(uiText[c.lang].briefDead(c.victim.name, placePhrase(c.scene)))}</strong> ${uiText[c.lang].briefFound(clock(c.timing.discoveryMinute))}${nightNow() ? `<em class="night">${esc(nightNow())}</em>` : ''}</p><strong>${state.found.length}<small> / ${c.clues.length} ${T.clues}</small></strong></section>` : ''}${
     playing && !state.result
       ? `<nav aria-label="${T.investigation}">${Object.entries(T.tabs)
           .map(
@@ -363,7 +363,7 @@ function setup() {
   }`;
 }
 function openingScreen() {
-  return `<section class="opening-panel"><span class="eyebrow">${T.prologue} · ${esc(c.title)}</span><h2>${T.beforeFirst}</h2>${img(c.scene.image, c.scene.name, 'scene-image')}<div class="opening-prose"><p>${esc(c.opening.arrival)}</p><p class="opening-fact">${esc(T.openingFact(clock(c.timing.discoveryMinute), c.victim.name, placePhrase(c.scene)))}</p><p>${esc(c.opening.tension)}</p></div>${speaking ? `<button id="listen-opening" class="secondary">${T.listenPrologue}</button> ` : ''}<button id="begin-investigation">${state.result ? T.backToEnding : T.begin}</button></section>`;
+  return `<section class="opening-panel"><span class="eyebrow">${T.prologue} · ${esc(c.title)}</span><h2>${T.beforeFirst}</h2>${img(c.scene.image, c.scene.name, 'scene-image')}<div class="opening-prose"><p>${esc(c.opening.arrival)}</p><p class="opening-fact">${esc(uiText[c.lang].openingFact(clock(c.timing.discoveryMinute), c.victim.name, placePhrase(c.scene)))}</p><p>${esc(c.opening.tension)}</p></div>${speaking ? `<button id="listen-opening" class="secondary">${T.listenPrologue}</button> ` : ''}<button id="begin-investigation">${state.result ? T.backToEnding : T.begin}</button></section>`;
 }
 function enterCase({ replay = false } = {}) {
   tab = (state.result && !replay) || state.openingSeen ? 'explore' : 'opening';
@@ -555,8 +555,10 @@ function bind() {
         setupWorld = state.world;
         preview = cache.get(worldKey(setupWorld));
       }
-      save();
       message = raw.format === CASE_FORMAT ? T.caseImported : T.saveImported;
+      // An official case from the other language comes in the language on screen.
+      await matchLanguage();
+      save();
       enterCase();
       return;
     } catch (e) {
