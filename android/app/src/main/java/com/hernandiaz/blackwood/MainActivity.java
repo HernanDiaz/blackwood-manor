@@ -1,4 +1,4 @@
-package es.blackwood.detectives;
+package com.hernandiaz.blackwood;
 
 import com.getcapacitor.BridgeActivity;
 

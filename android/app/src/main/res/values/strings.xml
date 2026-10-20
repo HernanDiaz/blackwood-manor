@@ -2,6 +2,6 @@
 <resources>
     <string name="app_name">Blackwood</string>
     <string name="title_activity_main">Blackwood</string>
-    <string name="package_name">es.blackwood.detectives</string>
-    <string name="custom_url_scheme">es.blackwood.detectives</string>
+    <string name="package_name">com.hernandiaz.blackwood</string>
+    <string name="custom_url_scheme">com.hernandiaz.blackwood</string>
 </resources>
