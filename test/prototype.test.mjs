@@ -100,8 +100,10 @@ test('5070 accusation combinations identify one solution for every supported met
         }
     assert.equal(wins, 1);
     for (const group of c.proof) {
+      // The slot of this proof group holds a clue that does not prove it.
       const state = structuredClone(s),
-        evidence = s.found.filter(id => !group.includes(id));
+        other = s.found.find(id => !group.includes(id) && !proof.includes(id)),
+        evidence = c.proof.map((g, i) => (g === group ? other : proof[i]));
       assert.equal(
         accusePrototype(c, state, {
           person: c.culprit.id,

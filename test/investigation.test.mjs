@@ -62,6 +62,12 @@ test('an accusation wins only with the right answer and one clue per proof group
   const right = { person: 'a', method: 'knife', room: 'r2' };
   assert.equal(judgeAccusation(view, allFound(), { ...right, evidence: ['m', 'l', 'o'] }), 'won');
   assert.equal(judgeAccusation(view, allFound(), { ...right, evidence: ['m', 'l', 'x'] }), 'lost');
+  // Each clue has to prove its own condition, and no more than three are accepted.
+  assert.equal(judgeAccusation(view, allFound(), { ...right, evidence: ['l', 'm', 'o'] }), 'lost');
+  assert.throws(
+    () => judgeAccusation(view, allFound(), { ...right, evidence: ['m', 'l', 'o', 'x'] }),
+    /evidence/,
+  );
   assert.equal(
     judgeAccusation(view, allFound(), { ...right, room: 'r1', evidence: ['m', 'l', 'o'] }),
     'lost',

@@ -59,14 +59,16 @@ export function judgeAccusation(view, state, { person, method, room, evidence })
     throw Error(view.messages.incomplete);
   if (
     !Array.isArray(evidence) ||
-    new Set(evidence).size < 3 ||
+    evidence.length !== 3 ||
+    new Set(evidence).size !== 3 ||
     evidence.some(id => !state.found.includes(id))
   )
     throw Error(view.messages.evidence);
   const { solution } = view;
   const correct =
     person === solution.person && method === solution.method && room === solution.room;
-  const proven = solution.proof.every(group => group.some(id => evidence.includes(id)));
+  // One clue per proof group, in order: motive, access to the weapon, broken alibi.
+  const proven = solution.proof.every((group, i) => group.includes(evidence[i]));
   state.result = correct && proven ? 'won' : 'lost';
   return state.result;
 }

@@ -245,9 +245,9 @@ function clueHead(clue) {
     room = c.rooms.find(r => r.id === clue.room);
   return `<div class="paper paper-${kind}">${room?.image ? `<img class="paper-bg" src="${esc(room.image)}" alt="">` : ''}<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${paths}</svg><span>${label}</span></div>`;
 }
-function card(clue, accusation = false, checked = false) {
+function card(clue) {
   const number = state.found.indexOf(clue.id) + 1;
-  return `<article class="clue">${number ? `<span class="stamp">Prueba nº ${number}</span>` : ''}${clueHead(clue)}<span class="eyebrow">${esc(c.rooms.find(r => r.id === clue.room).name)}</span><h3>${esc(clue.title)}</h3><p>${esc(clue.text)}</p>${accusation ? `<label><input type="checkbox" name="evidence" value="${clue.id}" ${checked ? 'checked' : ''}> Adjuntar prueba</label>` : `<button class="small" data-pin="${clue.id}">${state.pinned.includes(clue.id) ? 'Retirar del tablero' : 'Fijar en el tablero'}</button>`}</article>`;
+  return `<article class="clue">${number ? `<span class="stamp">Prueba nº ${number}</span>` : ''}${clueHead(clue)}<span class="eyebrow">${esc(c.rooms.find(r => r.id === clue.room).name)}</span><h3>${esc(clue.title)}</h3><p>${esc(clue.text)}</p><button class="small" data-pin="${clue.id}">${state.pinned.includes(clue.id) ? 'Retirar del tablero' : 'Fijar en el tablero'}</button></article>`;
 }
 function render() {
   const playing = state && !['setup', 'opening'].includes(tab),
@@ -395,7 +395,7 @@ function content() {
             .map(x => `<option value="${x.id}">${esc(x.title)}</option>`)
             .join(
               '',
-            )}</select><button class="small" ${busy ? 'disabled' : ''}>Enseñar</button></form>`
+            )}</select><button ${busy ? 'disabled' : ''}>Enseñar →</button></form>`
         : ''
     }<form id="ask"><input name="question" aria-label="Tu pregunta" maxlength="1000" placeholder="¿Dónde estabas cuando ocurrió?" required ${busy ? 'disabled' : ''}><button ${busy ? 'disabled' : ''}>${busy ? 'Escuchando…' : 'Preguntar →'}</button></form></section>`;
   }
@@ -413,25 +413,31 @@ function content() {
         .map(x => card(x))
         .join('') || '<p>Explora los escenarios para recoger pruebas.</p>'
     }</div>`;
-  const proven = notebookSuspects(c, state).flatMap(id =>
-    conditions.map(k => state.notebook[id][k].clue),
-  );
-  return `<h2>La acusación final.</h2><p>Identifica persona, arma y escena. Adjunta una prueba de su móvil, una de su acceso al arma y una que desmienta su coartada. Si fallas podrás reabrir el caso.</p><form id="accuse"><div class="fields">${[
+  // The scene is known from the start, so only the person and the weapon are named. The proof is
+  // one clue per condition; what the notebook already proves for the chosen person comes filled in.
+  const found = c.clues.filter(x => state.found.includes(x.id));
+  return `<h2>La acusación final.</h2><p>Señala a la persona y el arma. Después adjunta tres pruebas: una de su móvil, una de su acceso al arma y una que desmienta su coartada. Si fallas podrás reabrir el caso.</p><form id="accuse"><div class="fields">${[
     ['person', 'Culpable', c.people],
     ['method', 'Arma', c.weapons.map(w => ({ id: w.method, name: w.label }))],
-    ['room', 'Lugar', c.rooms],
   ]
     .map(
       ([id, label, list]) =>
         `<label>${label}<select name="${id}" aria-label="${label}" required><option value="">Seleccionar…</option>${list.map(x => `<option value="${x.id}">${esc(x.name)}</option>`).join('')}</select></label>`,
     )
-    .join('')}</div><h3>Adjunta al menos tres pruebas</h3><div class="cards">${c.clues
-    .filter(x => state.found.includes(x.id))
-    .map(x => card(x, true, proven.includes(x.id)))
+    .join('')}</div><h3>Las tres pruebas</h3><div class="fields proof-fields">${conditions
+    .map(
+      k =>
+        `<label>${proofLabels[k]}<select name="evidence" data-condition="${k}" aria-label="${proofLabels[k]}" required><option value="">Elegir una prueba…</option>${found.map(x => `<option value="${x.id}">Nº ${state.found.indexOf(x.id) + 1} · ${esc(x.title)}</option>`).join('')}</select></label>`,
+    )
     .join(
       '',
     )}</div><button class="danger" ${busy ? 'disabled' : ''}>Presentar acusación</button></form>`;
 }
+const proofLabels = {
+  motive: 'Prueba de su móvil',
+  access: 'Prueba de su acceso al arma',
+  alibi: 'Prueba que desmiente su coartada',
+};
 function bind() {
   document.querySelector('#menu-toggle').onclick = () => {
     menuOpen = !menuOpen;
@@ -695,6 +701,11 @@ function bind() {
     e.preventDefault();
     ask(new FormData(e.target).get('question'));
   });
+  document.querySelector('#accuse [name="person"]')?.addEventListener('change', e => {
+    const notes = state.notebook?.[e.target.value];
+    for (const select of e.target.form.querySelectorAll('[data-condition]'))
+      select.value = notes?.[select.dataset.condition]?.clue || '';
+  });
   document.querySelector('#accuse')?.addEventListener('submit', e => {
     e.preventDefault();
     if (busy) return;
@@ -704,7 +715,7 @@ function bind() {
         accusePrototype(c, state, {
           person: f.get('person'),
           method: f.get('method'),
-          room: f.get('room'),
+          room: c.scene.id,
           evidence: f.getAll('evidence'),
         }) === 'won'
       )

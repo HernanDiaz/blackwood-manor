@@ -31,7 +31,7 @@ for (const { id } of worlds)
             person: c.culprit.id,
             method: weapon.method,
             room: c.scene.id,
-            evidence: s.found,
+            evidence: c.proof.map(group => group[0]),
           }),
           'won',
         );

@@ -9,19 +9,20 @@ se guardan en el almacenamiento de la app.
 
 - Node 22 o posterior.
 - Android: Android Studio (con su JDK y el SDK de Android).
-- iPhone: un Mac con Xcode y CocoaPods o Swift Package Manager, y una cuenta de Apple para firmar.
+- iPhone: un Mac con Xcode 16 o posterior y una cuenta de Apple para firmar. El proyecto usa Swift
+  Package Manager, así que no hace falta CocoaPods.
 
 ## Primera vez
+
+Las carpetas `android/` e `ios/` ya están en el repositorio, con los iconos y la pantalla de carga.
+Basta con:
 
 ```bash
 npm install
 npm run build
-npx cap add android
-npx cap add ios
 ```
 
-`cap add` crea las carpetas `android/` e `ios/` con los proyectos nativos. Conviene subirlas al
-repositorio después de crearlas (cambios de icono, nombre o permisos se hacen ahí).
+Si alguna vez hay que crearlas de nuevo: `npx cap add android` y `npx cap add ios --packagemanager SPM`.
 
 ## Cada vez que cambia el juego
 
@@ -35,14 +36,29 @@ queda en `android/app/build/outputs/apk/debug/app-debug.apk`; para instalarlo en
 permitir «instalar aplicaciones de origen desconocido». Para Google Play se genera un paquete
 firmado (**Build › Generate Signed App Bundle**).
 
-En Xcode: elegir el equipo de firma en *Signing & Capabilities*, conectar el iPhone y pulsar
+Sin abrir Android Studio, el APK de pruebas también sale desde la terminal (en Windows, con el JDK
+que trae Android Studio):
+
+```bash
+npx cap sync android
+cd android && ./gradlew assembleDebug
+```
+
+Antes hay que crear `android/local.properties` con la ruta del SDK, por ejemplo
+`sdk.dir=D:/AndroidSdk` (con barras normales; ese archivo no se sube).
+
+En Xcode: abrir `ios/App/App.xcodeproj` (lo hace `npm run app:ios`), elegir el equipo de firma en *Signing & Capabilities*, conectar el iPhone y pulsar
 *Run*. Para TestFlight o la App Store, *Product › Archive*.
 
 ## Datos de la app
 
 - Identificador: `es.blackwood.detectives`; nombre: «Blackwood» (`capacitor.config.json`).
-- Iconos: `public/icons/icon-512.png` sirve de origen. Con `npx @capacitor/assets generate` se
-  crean todos los tamaños para las dos plataformas (pide una carpeta `assets/` con `icon.png`).
+- Iconos y pantalla de carga: salen de `assets/` (la lupa de `public/icons/icon-512.png` sobre el
+  fondo `#101b23`). En Android el icono es adaptativo: `icon-foreground.png` deja margen para que
+  el sistema no recorte la lupa. Tras cambiar esas imágenes, `npx capacitor-assets generate`
+  rehace todos los tamaños de las dos plataformas.
+- En iPhone la app usa siempre el modo oscuro (`UIUserInterfaceStyle` en `Info.plist`), para que
+  la barra de estado se lea sobre el fondo oscuro del juego.
 - Dentro de la app no se registra el service worker: los archivos ya están en el teléfono y así
   una actualización nunca choca con una caché antigua.
 - La página respeta las zonas seguras (notch, barra de estado, indicador de inicio) con
