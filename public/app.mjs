@@ -3,6 +3,7 @@ import { worlds, worldFile, selectWorld } from '/src/prototype-worlds.mjs';
 import { normalizeWorld } from '/src/world-file.mjs';
 import { difficulties } from '/src/case-generator.mjs';
 import { uiText, deviceLanguage } from '/src/ui-text.mjs';
+import { validationText } from '/src/validation-text.mjs';
 import { answerOffline } from '/src/interrogation.mjs';
 import { setEffect } from '/effects.mjs';
 import { saveFile } from '/save-file.mjs';
@@ -558,7 +559,7 @@ function bind() {
       enterCase();
       return;
     } catch (e) {
-      message = T.importFailed(e.message);
+      message = T.importFailed(validationText(e.message, lang));
     }
     render();
   };
@@ -598,7 +599,7 @@ function bind() {
       save();
       enterCase();
     } catch (e) {
-      message = T.createFailed(e.message);
+      message = T.createFailed(validationText(e.message, lang));
       render();
     }
   }
@@ -621,7 +622,7 @@ function bind() {
           enterCase();
         } catch (e) {
           busy = false;
-          message = T.classicFailed(e.message);
+          message = T.classicFailed(validationText(e.message, lang));
           render();
         }
       }),

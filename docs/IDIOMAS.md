@@ -20,7 +20,8 @@ del navegador, y se puede cambiar en el menú.
   de entrenamiento y de prueba están en `test/question-bank*.mjs` (`.en.mjs` en inglés).
 
 El editor de casos sigue el idioma del juego: sus textos, los casos clásicos que abre y los que
-genera. Los mensajes técnicos de validación de un expediente siguen en español. El modelo local
+genera. Los mensajes de validación de mundos y expedientes se escriben en español en el motor y
+`src/validation-text.mjs` los pasa al inglés al mostrarlos. El modelo local
 del servidor (`PILOTO.cmd`) solo habla español: en inglés el juego responde siempre con las reglas
 y el clasificador del navegador.
 

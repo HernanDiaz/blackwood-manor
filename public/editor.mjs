@@ -8,6 +8,7 @@ import { normalizeCaseFile, analyzeCase, hydrateCase } from '/src/case-file.mjs'
 import { newPrototype, exportCaseFile, restorePrototype } from '/src/prototype-engine.mjs';
 import { uiText, deviceLanguage } from '/src/ui-text.mjs';
 import { saveFile } from '/save-file.mjs';
+import { validationText } from '/src/validation-text.mjs';
 
 const app = document.querySelector('#app'),
   saveKey = 'mundos-partida';
@@ -77,7 +78,7 @@ function editor() {
 function verdict() {
   if (!report) return '';
   if (!report.ok)
-    return `<section class="editor-report bad"><h3>${E.cannotPlay}</h3><ul>${report.errors.map(e => `<li>${esc(e)}</li>`).join('')}</ul></section>`;
+    return `<section class="editor-report bad"><h3>${E.cannotPlay}</h3><ul>${report.errors.map(e => `<li>${esc(validationText(e, lang))}</li>`).join('')}</ul></section>`;
   return `<section class="editor-report"><h3>${E.solvable}</h3><p>${E.summary(esc(report.culprit), esc(report.motive.join(', ')), esc(report.access.join(', ')), esc(report.open.join(', ')))}</p><details><summary>${E.asPlayer}</summary><ul>${report.clues.map(x => `<li><strong>${esc(x.title)}</strong> ${esc(x.text)}</li>`).join('')}</ul></details></section>`;
 }
 function bind() {
@@ -94,7 +95,7 @@ function bind() {
       const raw = JSON.parse(await e.target.files[0].text());
       use(raw.format === 'mundos-partida' ? raw.case : raw, E.fileOpened);
     } catch (err) {
-      message = E.openFailed(err.message);
+      message = E.openFailed(validationText(err.message, lang));
       render();
     }
   };
@@ -146,7 +147,7 @@ function bind() {
       localStorage.setItem(saveKey, JSON.stringify(state));
       location.href = '/';
     } catch (e) {
-      message = E.playFailed(e.message);
+      message = E.playFailed(validationText(e.message, lang));
       render();
     }
   };

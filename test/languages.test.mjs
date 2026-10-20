@@ -19,6 +19,7 @@ import { answerOffline } from '../src/interrogation.mjs';
 import { nextHint, noteEntry } from '../src/guidance.mjs';
 import { predictLogistic } from '../src/question-router.mjs';
 import { uiText, deviceLanguage } from '../src/ui-text.mjs';
+import { validationText } from '../src/validation-text.mjs';
 import { splitBank } from './question-bank.en.mjs';
 import { routingQuestions } from './routing-questions.en.mjs';
 import { loadWorld } from './worlds-fixture.mjs';
@@ -155,4 +156,112 @@ test('the screens have every text in both languages', () => {
   assert.equal(deviceLanguage(['es-ES', 'en']), 'es');
   assert.equal(deviceLanguage(['en-GB', 'es']), 'en');
   assert.equal(deviceLanguage(['fr-FR']), 'en');
+});
+
+test('the checks of worlds and case files are told in English', () => {
+  const spanish = /[áéíóúñ¿¡«»]|\b(el|la|los|las|del|de|en|no|una?|pista|coartada|lugar|nombre)\b/i;
+  const base = json('public/cases/blackwood-1.json'),
+    world = json('public/worlds/blackwood-manor.json'),
+    seen = new Set();
+  const errorsOf = (fn, raw) => {
+    try {
+      const out = fn(raw);
+      return out?.errors || [];
+    } catch (e) {
+      return [e.message];
+    }
+  };
+  const caseMutations = [
+    f => (f.format = 'x'),
+    f => (f.people[0].id = 'q1'),
+    f => (f.people[0].gender = 'x'),
+    f => (f.people[1].name = ''),
+    f => (f.people[1].role = 'x'.repeat(200)),
+    f => (f.rooms[0].id = 'z'),
+    f => (f.rooms[0].article = 'xx'),
+    f => (f.rooms[1].description = 'a<b'),
+    f => (f.rooms[2] = { ...f.rooms[1] }),
+    f => delete f.crime,
+    f => (f.world = 'X'),
+    f => (f.weapons[0].method = 'nope'),
+    f => (f.victim.gender = 'x'),
+    f => (f.crime.culprit = 'p9'),
+    f => (f.crime.method = 'nope'),
+    f => (f.crime.scene = 'r99'),
+    f => (f.crime.crimeMinute = 5000),
+    f => (f.crime.discoveryMinute = f.crime.crimeMinute),
+    f => (f.alibis[0].person = 'p9'),
+    f => (f.alibis[0].room = 'r99'),
+    f => (f.alibis[1].from = f.crime.crimeMinute + 1),
+    f => (f.clues[0].id = 'x'),
+    f => (f.clues[0].room = 'r99'),
+    f => (f.clues[0].fact = { type: 'nope' }),
+    f => (f.clues[0].fact = { type: 'motive', person: 'p9' }),
+    f => (f.clues[1] = { ...f.clues[0] }),
+    f => (f.clues = f.clues.slice(0, 3)),
+    f => {
+      const a = f.clues.find(c => c.fact.type === 'access');
+      a.fact.people = [];
+    },
+    f => {
+      const a = f.clues.find(c => c.fact.type === 'access');
+      a.fact.people = a.fact.people.filter(p => p !== f.crime.culprit);
+    },
+    f => {
+      const p = f.clues.find(c => c.fact.type === 'presence');
+      p.fact.to = p.fact.from;
+    },
+    f => (Object.values(f.facts)[0][0].id = 'nope'),
+    f => (Object.values(f.facts)[0][0].requires = 'zz'),
+    f => (Object.values(f.facts)[0][0].kind = 'nope'),
+    f =>
+      (f.clues = f.clues.filter(
+        c => c.fact.type !== 'motive' || c.fact.person !== f.crime.culprit,
+      )),
+  ];
+  for (const mutate of caseMutations) {
+    const raw = structuredClone(base);
+    mutate(raw);
+    for (const e of [
+      ...errorsOf(validateCaseFile, raw),
+      ...errorsOf(f => newPrototype(null, { caseFile: f }), raw),
+    ])
+      seen.add(e);
+  }
+  const worldMutations = [
+    w => (w.format = 'x'),
+    w => (w.id = 'X'),
+    w => (w.people = w.people.slice(0, 3)),
+    w => (w.rooms[0].name = ''),
+    w => (w.rooms[0].ambience = ['Son las 9']),
+    w => (w.rooms[0].ambience = ['{nope}']),
+    w => (w.weapons[0].method = 'nope'),
+    w => (w.weapons[1] = { ...w.weapons[0] }),
+    w => (w.weapons[0].image = 'http://x'),
+    w => delete w.documents,
+    w => (w.motives = 'x'),
+    w => (w.people[0].voice = []),
+    w => (w.people[0].voice = { nope: ['x'] }),
+    w => (w.people[0].voice = { relation: ['Sin la víctima'] }),
+    w => (w.look.bg = 'red'),
+    w => (w.look.effect = 'fog'),
+    w => (w.items[0].gender = 'x'),
+  ];
+  for (const mutate of worldMutations) {
+    const raw = structuredClone(world);
+    mutate(raw);
+    seen.add(errorsOf(normalizeWorld, raw)[0]);
+  }
+  assert.ok(seen.size >= 35, `only ${seen.size} different messages`);
+  for (const message of seen) {
+    assert.ok(message, 'a mutation produced no error');
+    // The quoted line of a voice is the world's own text, not part of the message.
+    const names = [base.victim, ...base.people].map(p => p.name);
+    const english = names.reduce(
+      (t, n) => t.split(n).join(''),
+      validationText(message, 'en').replace(/“[^”]*”/g, ''),
+    );
+    assert.doesNotMatch(english, spanish, `${message}\n→ ${english}`);
+  }
+  assert.equal(validationText('Pistas repetidas', 'es'), 'Pistas repetidas');
 });
