@@ -52,7 +52,7 @@ En Xcode: abrir `ios/App/App.xcodeproj` (lo hace `npm run app:ios`), elegir el e
 
 ## Datos de la app
 
-- Identificador: `es.blackwood.detectives`; nombre: «Blackwood» (`capacitor.config.json`).
+- Identificador: `com.hernandiaz.blackwood`; nombre: «Blackwood» (`capacitor.config.json`).
 - Iconos y pantalla de carga: salen de `assets/` (la lupa de `public/icons/icon-512.png` sobre el
   fondo `#101b23`). En Android el icono es adaptativo: `icon-foreground.png` deja margen para que
   el sistema no recorte la lupa. Tras cambiar esas imágenes, `npx capacitor-assets generate`
@@ -73,3 +73,16 @@ En Xcode: abrir `ios/App/App.xcodeproj` (lo hace `npm run app:ios`), elegir el e
   copia» usa el selector de archivos del sistema.
 - «Leer en voz alta» usa la voz del sistema: en Android depende de que la vista web exponga
   `speechSynthesis` (si no, la opción no aparece en el menú).
+
+## iPhone sin Mac: GitHub Actions y TestFlight
+
+`.github/workflows/ios.yml` compila la app en un Mac de GitHub, la firma con la clave de API de
+App Store Connect y la sube a TestFlight. Se lanza a mano: GitHub → *Actions* → **iOS
+(TestFlight)** → *Run workflow*. Cada ejecución usa su número como número de compilación.
+
+- App en App Store Connect: «Blackwood: casos de detectives» (id 6824945073, idioma principal
+  es-ES, SKU `blackwood`), bundle `com.hernandiaz.blackwood`.
+- Secretos del repositorio (los mismos que los otros juegos): `APPLE_TEAM_ID`, `ASC_KEY_ID`,
+  `ASC_ISSUER_ID` y `ASC_KEY_P8` (el contenido del `.p8`, con las líneas `BEGIN`/`END`).
+- En Windows, `npx cap sync ios` escribe `ios/App/CapApp-SPM/Package.swift` con barras
+  invertidas; no hay que subir ese cambio (en el Mac de GitHub se vuelve a generar).
