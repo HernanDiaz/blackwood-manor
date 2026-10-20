@@ -66,9 +66,10 @@ En Xcode: abrir `ios/App/App.xcodeproj` (lo hace `npm run app:ios`), elegir el e
 
 ## Limitaciones conocidas
 
-- «Guardar una copia» descarga un archivo con el navegador; dentro de la vista web de Android e
-  iOS esa descarga no hace nada. Si hace falta, se puede cambiar por los plugins
-  `@capacitor/filesystem` y `@capacitor/share`. «Abrir una copia» sí funciona (selector de
-  archivos).
+- «Guardar una copia» y «Descargar expediente» (editor): en la app, la vista web no descarga
+  archivos, así que `public/save-file.mjs` escribe el archivo en la caché de la app
+  (`@capacitor/filesystem`) y abre el menú de compartir del sistema (`@capacitor/share`), desde
+  el que se guarda en Archivos o Drive o se envía. Probado en el emulador de Android. «Abrir una
+  copia» usa el selector de archivos del sistema.
 - «Leer en voz alta» usa la voz del sistema: en Android depende de que la vista web exponga
   `speechSynthesis` (si no, la opción no aparece en el menú).

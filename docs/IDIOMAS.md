@@ -19,8 +19,10 @@ del navegador, y se puede cambiar en el menú.
   `node scripts/train-question-router.mjs en`, `src/question-router-model.en.json`. Las preguntas
   de entrenamiento y de prueba están en `test/question-bank*.mjs` (`.en.mjs` en inglés).
 
-Siguen solo en español el editor de casos (`public/editor.html`) y el modelo local del servidor
-(`PILOTO.cmd`): en inglés el juego responde siempre con las reglas y el clasificador del navegador.
+El editor de casos sigue el idioma del juego: sus textos, los casos clásicos que abre y los que
+genera. Los mensajes técnicos de validación de un expediente siguen en español. El modelo local
+del servidor (`PILOTO.cmd`) solo habla español: en inglés el juego responde siempre con las reglas
+y el clasificador del navegador.
 
 Un mundo y su traducción generan, con la misma semilla, el mismo caso: mismo culpable, mismas
 pistas en las mismas salas. Por eso una partida puede cambiar de idioma a mitad (menú, botón

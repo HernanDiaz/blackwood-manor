@@ -5,6 +5,7 @@ import { difficulties } from '/src/case-generator.mjs';
 import { uiText, deviceLanguage } from '/src/ui-text.mjs';
 import { answerOffline } from '/src/interrogation.mjs';
 import { setEffect } from '/effects.mjs';
+import { saveFile } from '/save-file.mjs';
 import { setSound, setAmbience, play } from '/sound.mjs';
 import {
   newPrototype,
@@ -256,20 +257,15 @@ function save() {
     message = T.saveFailed;
   }
 }
-function exportSave() {
-  download(
-    state ? JSON.stringify(state, null, 2) : localStorage.getItem(key),
-    'mundos-partida.json',
-  );
-}
-function download(raw, name) {
+async function exportSave() {
+  const raw = state ? JSON.stringify(state, null, 2) : localStorage.getItem(key);
   if (!raw) return;
-  const url = URL.createObjectURL(new Blob([raw], { type: 'application/json' })),
-    a = document.createElement('a');
-  a.href = url;
-  a.download = name;
-  a.click();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  try {
+    await saveFile(raw, 'mundos-partida.json', T.exportSave);
+  } catch (e) {
+    message = T.exportFailed(e.message);
+    render();
+  }
 }
 function img(src, alt, cls = '') {
   return src ? `<img ${cls ? `class="${cls}" ` : ''}src="${esc(src)}" alt="${esc(alt)}">` : '';
@@ -319,7 +315,7 @@ function render() {
   // The screen is a class of the page, so the phone layout can change per screen.
   app.className = 'screen-' + tab;
   applyLook(tab === 'setup' ? preview.look : c?.file.look);
-  app.innerHTML = `<header><a class="brand" href="/" aria-label="${T.home}"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="13" cy="13" r="9" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M20 20l8 8" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/></svg><span>BLACKWOOD<br><small>${T.tagline}</small></span></a><button id="menu-toggle" class="small menu-toggle" aria-expanded="${menuOpen}" aria-controls="actions">${menuOpen ? T.close : T.menu}</button><div class="save ${menuOpen ? 'open' : ''}" id="actions"><button id="lang" class="small" lang="${other.lang}" title="${other.title}" ${busy ? 'disabled' : ''}>${other.label}</button>${state && tab !== 'setup' ? `<button class="small go-new" ${busy ? 'disabled' : ''}>${T.backHome}</button>` : ''}${state && !['setup', 'opening'].includes(tab) ? `<button class="small go-opening" ${busy ? 'disabled' : ''}>${T.rereadPrologue}</button>` : ''}${canSpeak ? `<button id="voice" class="small" aria-pressed="${speaking}">${T.readAloud(speaking)}</button>` : ''}<button id="sound" class="small" aria-pressed="${sounding}">${T.sound(sounding)}</button>${state ? `<button id="export" class="small" title="${T.exportTitle}">${T.exportSave}</button>` : ''}<label class="small file" title="${T.importTitle}">${T.importSave}<input id="import" type="file" accept="application/json" ${busy ? 'disabled' : ''}></label><a class="small" href="/editor.html">${T.editor}</a></div></header>${tab !== 'opening' ? `<section class="intro"><div><span class="eyebrow">${esc(label)}</span><h1>${esc(title)}</h1><p>${tab === 'setup' ? esc(preview.premise) : T.introPlaying}</p></div><div class="manor illustrated">${img(cover, title)}</div></section>` : ''}${playing ? `<section class="brief"><span class="seal">!</span><p><strong>${esc(uiText[c.lang].briefDead(c.victim.name, placePhrase(c.scene)))}</strong> ${uiText[c.lang].briefFound(clock(c.timing.discoveryMinute))}${nightNow() ? `<em class="night">${esc(nightNow())}</em>` : ''}</p><strong>${state.found.length}<small> / ${c.clues.length} ${T.clues}</small></strong></section>` : ''}${
+  app.innerHTML = `<header><a class="brand" href="/" aria-label="${T.home}"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="13" cy="13" r="9" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M20 20l8 8" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/></svg><span>BLACKWOOD<br><small>${T.tagline}</small></span></a><button id="menu-toggle" class="small menu-toggle" aria-expanded="${menuOpen}" aria-controls="actions">${menuOpen ? T.close : T.menu}</button><div class="save ${menuOpen ? 'open' : ''}" id="actions"><button id="lang" class="small" lang="${other.lang}" title="${other.title}" ${busy ? 'disabled' : ''}>${other.label}</button>${state && tab !== 'setup' ? `<button class="small go-new" ${busy ? 'disabled' : ''}>${T.backHome}</button>` : ''}${state && !['setup', 'opening'].includes(tab) ? `<button class="small go-opening" ${busy ? 'disabled' : ''}>${T.rereadPrologue}</button>` : ''}${canSpeak ? `<button id="voice" class="small" aria-pressed="${speaking}">${T.readAloud(speaking)}</button>` : ''}<button id="sound" class="small" aria-pressed="${sounding}">${T.sound(sounding)}</button>${state ? `<button id="export" class="small" title="${T.exportTitle}">${T.exportSave}</button>` : ''}<label class="small file" title="${T.importTitle}">${T.importSave}<input id="import" type="file" accept=".json,application/json" ${busy ? 'disabled' : ''}></label><a class="small" href="/editor.html">${T.editorLink}</a></div></header>${tab !== 'opening' ? `<section class="intro"><div><span class="eyebrow">${esc(label)}</span><h1>${esc(title)}</h1><p>${tab === 'setup' ? esc(preview.premise) : T.introPlaying}</p></div><div class="manor illustrated">${img(cover, title)}</div></section>` : ''}${playing ? `<section class="brief"><span class="seal">!</span><p><strong>${esc(uiText[c.lang].briefDead(c.victim.name, placePhrase(c.scene)))}</strong> ${uiText[c.lang].briefFound(clock(c.timing.discoveryMinute))}${nightNow() ? `<em class="night">${esc(nightNow())}</em>` : ''}</p><strong>${state.found.length}<small> / ${c.clues.length} ${T.clues}</small></strong></section>` : ''}${
     playing && !state.result
       ? `<nav aria-label="${T.investigation}">${Object.entries(T.tabs)
           .map(

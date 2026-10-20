@@ -23,6 +23,7 @@ for (const f of [
   'app.mjs',
   'effects.mjs',
   'sound.mjs',
+  'save-file.mjs',
   'editor.mjs',
   'editor.html',
   'mundos.css',
