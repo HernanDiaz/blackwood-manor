@@ -8,7 +8,17 @@ import { statementKinds, phrasingIssue } from './statements.mjs';
 
 export const WORLD_FORMAT = 'mundos-mundo';
 export const personIds = ['p1', 'p2', 'p3', 'p4', 'p5'];
-const articles = ['el', 'la', 'los', 'las'];
+// The languages of the game: Spanish, the original, and English (see docs/IDIOMAS.md).
+export const languages = ['es', 'en'];
+export const articles = ['el', 'la', 'los', 'las', 'the'];
+// Spanish is the default: files written before there were languages have no "lang".
+export const languageOf = file => (languages.includes(file?.lang) ? file.lang : 'es');
+// Only other languages are written down, so a Spanish file keeps its old content and id.
+export const langField = raw => (languageOf(raw) === 'es' ? {} : { lang: languageOf(raw) });
+// A place inside a sentence, when lowering the first letter of its name is not enough
+// ("the Throne Room of Amber").
+export const roomPhrase = (r, field) =>
+  optional('phrase', text(r?.phrase, 80, 'la forma en una frase de ' + field, { optional: true }));
 const genders = ['f', 'm'];
 
 const fail = message => {
@@ -93,6 +103,7 @@ export function normalizeWorld(raw) {
     id: /^r\d$/.test(r?.id) ? r.id : fail('Identificador de lugar no válido'),
     name: text(r.name, 60, 'el nombre de ' + r.id),
     article: choice(r.article, articles, 'Artículo no válido en ' + r.id),
+    ...roomPhrase(r, r.id),
     description: text(r.description, 500, 'la descripción de ' + r.id),
     // Atmosphere shown the first time the player enters the room.
     ...optional(
@@ -134,6 +145,7 @@ export function normalizeWorld(raw) {
   return {
     format: WORLD_FORMAT,
     version: 1,
+    ...langField(raw),
     id,
     label: text(raw.label, 40, 'la etiqueta'),
     title: text(raw.title, 100, 'el título'),

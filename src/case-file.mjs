@@ -8,7 +8,18 @@ import { findMethod, fitsRoom } from './method-catalog.mjs';
 import { hash } from './random.mjs';
 import { placePhrase, contract } from './spanish-prose.mjs';
 import { statementKinds } from './statements.mjs';
-import { text, image, optional, list as ids, personIds, normalizeLook } from './world-file.mjs';
+import {
+  text,
+  image,
+  optional,
+  list as ids,
+  personIds,
+  normalizeLook,
+  articles,
+  langField,
+  languageOf,
+  roomPhrase,
+} from './world-file.mjs';
 
 export const CASE_FORMAT = 'mundos-expediente';
 export const topics = [
@@ -99,9 +110,8 @@ export function normalizeCaseFile(raw) {
   const rooms = ids(raw.rooms, 'lugares', { min: 4, max: 8 }).map(r => ({
     id: /^r\d{1,2}$/.test(r?.id) ? r.id : fail('Identificador de lugar no válido'),
     name: text(r.name, 60, 'el nombre de ' + r.id),
-    article: ['el', 'la', 'los', 'las'].includes(r.article)
-      ? r.article
-      : fail('Artículo no válido en ' + r.id),
+    article: articles.includes(r.article) ? r.article : fail('Artículo no válido en ' + r.id),
+    ...roomPhrase(r, r.id),
     description: text(r.description, 500, 'la descripción de ' + r.id),
     tags: ids(r.tags ?? [], 'etiquetas', { max: 6 }).map(t => text(t, 30, 'una etiqueta')),
     ...optional('image', image(r.image, r.id)),
@@ -118,6 +128,7 @@ export function normalizeCaseFile(raw) {
   const normalized = {
     format: CASE_FORMAT,
     version: 1,
+    ...langField(raw),
     world: /^[a-z0-9-]{2,40}$/.test(raw.world) ? raw.world : fail('Mundo no válido'),
     title: text(raw.title, 120, 'el título'),
     weapons: ids(raw.weapons, 'armas', { min: 1, max: 20 }).map(w => ({
@@ -214,6 +225,13 @@ export function normalizeCaseFile(raw) {
               ['easy', 'medium', 'hard'].includes(raw.origin.difficulty)
                 ? raw.origin.difficulty
                 : undefined,
+            ),
+            // What else the generator was given, so the case can be made again in another
+            // language with the same culprit, weapon and clues.
+            ...Object.fromEntries(
+              ['previousMethodId', 'previousPersonId', 'forcedMethodId']
+                .filter(k => raw.origin[k])
+                .map(k => [k, text(raw.origin[k], 40, 'el origen')]),
             ),
           },
         }
@@ -383,6 +401,7 @@ export function hydrateCase(file) {
   if (analysis.errors.length) fail('Expediente incoherente: ' + analysis.errors.join(' '));
   return {
     id: file.id,
+    lang: languageOf(file),
     world: file.world,
     ...optional('seed', file.origin?.seed),
     title: file.title,

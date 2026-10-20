@@ -1,8 +1,10 @@
 # Blackwood · Casos de detectives
 
-Juego de detectives en español que funciona sin conexión. Se abre en `http://127.0.0.1:4173`.
+Juego de detectives en español y en inglés que funciona sin conexión. Se abre en `http://127.0.0.1:4173`.
 
 Hay cinco mundos: Blackwood Manor en 1924, una estación orbital, la corte de Ámbar, el castillo de Torre Umbría en el siglo XIV y Villa Bellavista en 1934. En cada investigación se genera un caso nuevo: culpable, arma, escena, móviles, coartadas y pistas.
+
+El juego elige el idioma del teléfono o del navegador, y se cambia en el menú, incluso a mitad de una partida: ver [docs/IDIOMAS.md](docs/IDIOMAS.md).
 
 También están los cinco casos clásicos de Blackwood, escritos a mano. Su diseño está en [docs/VARIANTES.md](docs/VARIANTES.md) y la solución del primero en [docs/CASE-SPOILERS.md](docs/CASE-SPOILERS.md).
 

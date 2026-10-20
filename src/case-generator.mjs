@@ -22,6 +22,8 @@ import { worldWeapons } from './world-file.mjs';
 import { rng, pick, shuffle, clock } from './random.mjs';
 import { CASE_FORMAT, normalizeCaseFile, analyzeCase } from './case-file.mjs';
 import { statementKinds, phrasings, fillStatement } from './statements.mjs';
+import { casePhrases } from './case-phrases.mjs';
+import { languageOf } from './world-file.mjs';
 
 export const difficulties = [
   { id: 'easy', label: 'Fácil' },
@@ -29,8 +31,6 @@ export const difficulties = [
   { id: 'hard', label: 'Difícil' },
 ];
 const capFirst = s => s.charAt(0).toLocaleUpperCase('es') + s.slice(1);
-const lowerFirst = s => s.charAt(0).toLocaleLowerCase('es') + s.slice(1);
-const list = names => names.slice(0, -1).join(', ') + ' y ' + names.at(-1);
 
 export function chooseWeapon(world, random, { previousMethodId = '', forcedMethodId = '' }) {
   let pool = worldWeapons(world);
@@ -56,7 +56,10 @@ export function generateCaseFile(
   if (typeof seed !== 'string' || !/^[a-zA-Z0-9-]{1,64}$/.test(seed))
     throw Error('Semilla no válida');
   if (!difficulties.some(d => d.id === difficulty)) throw Error('Dificultad desconocida');
-  const random = rng('case:' + world.id + ':' + difficulty + ':' + seed),
+  // The world's language decides the sentences; the draws are the same in every language.
+  const lang = languageOf(world),
+    P = casePhrases[lang],
+    random = rng('case:' + world.id + ':' + difficulty + ':' + seed),
     one = options => pick(options, random),
     { staff, rooms, people } = world,
     // Texts use {victim}, {p1}… and {r1}… so a renamed person or place updates every text.
@@ -94,8 +97,7 @@ export function generateCaseFile(
     from = crime - 20,
     to = discovery,
     recordTo = discovery - 2,
-    time = clock,
-    article = item => (item.gender === 'f' ? 'la' : 'el');
+    time = clock;
   const motive = one(world.motives),
     weakDocs = shuffle(world.documents.weak, random),
     neutralDocs = shuffle(world.documents.neutral, random),
@@ -118,34 +120,21 @@ export function generateCaseFile(
   add(
     scene,
     staff.report,
-    `${weapon.cause} ${one(['Sitúa la muerte hacia las', 'Fija la hora de la muerte hacia las', 'La muerte se produjo hacia las'])} ${time(death)}.`,
+    one(P.report(weapon.cause, time(death))),
     { type: 'cause', method: method.id, room: scene.id, minute: death },
     art.report.image,
   );
   add(
     scene,
-    weapon.device
-      ? one(['Manipulación en la escena', 'Algo fuera de su sitio'])
-      : one(['Objeto del crimen', 'Junto al cuerpo']),
-    weapon.device
-      ? one([
-          `Alguien manipuló a mano ${weapon.weapon} en ${roomName(scene)}. No queda ninguna marca que diga quién.`,
-          `En ${roomName(scene)} hay señales de que alguien manipuló a mano ${weapon.weapon}. Nada indica quién lo hizo.`,
-        ])
-      : one([
-          `Junto al cuerpo apareció ${weapon.weapon}. No estaba en el lugar donde se guarda habitualmente.`,
-          `${capFirst(weapon.weapon)} estaba en el suelo, cerca del cuerpo, lejos de donde se guarda.`,
-        ]),
+    weapon.device ? one(P.deviceTitle) : one(P.weaponTitle),
+    weapon.device ? one(P.device(weapon.weapon, roomName(scene))) : one(P.weapon(weapon.weapon)),
     { type: 'weapon', method: method.id, room: scene.id },
     weapon.image,
   );
   add(
     scene,
-    one(['Aviso del hallazgo', 'Quién dio la alarma']),
-    one([
-      `${named(i2)} encontró a ${victim} en ${roomName(scene)} a las ${time(discovery)} y dio la alarma.`,
-      `A las ${time(discovery)}, ${named(i2)} entró en ${roomName(scene)}, encontró a ${victim} y dio la alarma.`,
-    ]),
+    one(P.discoveryTitle),
+    one(P.discovery(named(i2), victim, roomName(scene), time(discovery))),
     { type: 'discovery', person: i2, room: scene.id, minute: discovery },
     art.testimony.image,
   );
@@ -154,11 +143,8 @@ export function generateCaseFile(
     item: items[k],
     clue: add(
       scene,
-      k ? 'Otro objeto junto a la puerta' : one(['Objeto junto a la puerta', 'Un objeto perdido']),
-      one([
-        `Junto a la puerta de ${roomName(scene)} apareció ${items[k].gender === 'f' ? 'una' : 'un'} ${items[k].noun} que pertenece a ${named(person)}.`,
-        `En el umbral de ${roomName(scene)} había ${items[k].gender === 'f' ? 'una' : 'un'} ${items[k].noun}. Es de ${named(person)}.`,
-      ]),
+      k ? P.otherHerringTitle : one(P.herringTitle),
+      one(P.herring(items[k], roomName(scene), named(person))),
       { type: 'herring', person, room: scene.id },
       items[k].image,
     ),
@@ -166,34 +152,34 @@ export function generateCaseFile(
   const accessNames = shuffle(accessHolders, random).map(named);
   const accessClue = add(
     storeRoom,
-    one(['Quién podía llegar al arma', 'Acceso al arma']),
-    one([
-      `Según ${staff.guardian}, solo ${list(accessNames)} tenían acceso a ${weapon.access}.`,
-      `Anotación de ${staff.guardian}: solo ${list(accessNames)} tenían permiso para usar ${weapon.access}.`,
-    ]),
+    one(P.accessTitle),
+    one(P.access(staff.guardian, P.list(accessNames), weapon.access)),
     { type: 'access', method: method.id, people: accessHolders },
     art.ledger.image,
   );
   add(
     storeRoom,
-    one(['Última vez en su sitio', 'Antes del crimen']),
+    one(P.lastSeenTitle),
     weapon.device
-      ? `${guardian} revisó ${weapon.weapon} a las ${time(crime - 40)} y todo estaba en orden.`
-      : one([
-          `${guardian} recuerda haber visto ${weapon.seen || weapon.weapon} en su sitio a las ${time(crime - 40)}.`,
-          `A las ${time(crime - 40)}, ${weapon.seen || weapon.weapon} seguía en su sitio, según ${staff.guardian}.`,
-        ]),
+      ? P.checked(guardian, weapon.weapon, time(crime - 40))
+      : one(P.lastSeen(guardian, staff.guardian, weapon.seen || weapon.weapon, time(crime - 40))),
     { type: 'note' },
     art.testimony.image,
   );
   // The register of a room lists everyone who went in, so it also proves who was not there.
   const recordClue = add(
     recordRoom,
-    one(['Registro de ' + roomName(recordRoom), 'Entradas en ' + roomName(recordRoom)]),
-    one([
-      `${record} de ${roomName(recordRoom)} anota una sola entrada entre las ${time(from)} y las ${time(recordTo)}: la de ${named(i2)}, que entró a las ${time(from)} y salió a las ${time(recordTo)}.`,
-      `Entre las ${time(from)} y las ${time(recordTo)}, ${staff.record} de ${roomName(recordRoom)} solo recoge a ${named(i2)}: entró a las ${time(from)} y salió a las ${time(recordTo)}.`,
-    ]),
+    one(P.recordTitle(roomName(recordRoom))),
+    one(
+      P.record({
+        Record: record,
+        record: staff.record,
+        room: roomName(recordRoom),
+        person: named(i2),
+        from: time(from),
+        to: time(recordTo),
+      }),
+    ),
     {
       type: 'presence',
       people: [i2],
@@ -206,11 +192,18 @@ export function generateCaseFile(
   );
   const pairClue = add(
     pairRoom,
-    one(['Declaración sobre ' + roomName(pairRoom), 'Vigilancia de ' + roomName(pairRoom)]),
-    one([
-      `${guardian} vigiló la puerta de ${roomName(pairRoom)} de ${time(from)} a ${time(to)}: dentro estaban ${named(i3)} y ${named(i4)}, y nadie más entró ni salió.`,
-      `De ${time(from)} a ${time(to)}, ${staff.guardian} no se movió de la puerta de ${roomName(pairRoom)}. Dentro solo estaban ${named(i3)} y ${named(i4)}; nadie más entró ni salió.`,
-    ]),
+    one(P.pairTitle(roomName(pairRoom))),
+    one(
+      P.pair({
+        Guardian: guardian,
+        guardian: staff.guardian,
+        room: roomName(pairRoom),
+        a: named(i3),
+        b: named(i4),
+        from: time(from),
+        to: time(to),
+      }),
+    ),
     { type: 'presence', people: [i3, i4], room: pairRoom.id, from, to, exclusive: true },
     art.testimony.image,
   );
@@ -218,29 +211,31 @@ export function generateCaseFile(
   if (pattern === 'empty')
     refuteClue = add(
       emptyRoom,
-      one(['Llave de ' + roomName(emptyRoom), 'Puerta cerrada']),
-      one([
-        `La puerta de ${roomName(emptyRoom)} estuvo cerrada con llave de ${time(from)} a ${time(to)}. ${guardian} guardaba la única llave y nadie le pidió abrir.`,
-        `Nadie pudo entrar en ${roomName(emptyRoom)} de ${time(from)} a ${time(to)}: la puerta estaba cerrada con llave, y ${staff.guardian}, que tenía la única, no se la dio a nadie.`,
-      ]),
+      one(P.lockedTitle(roomName(emptyRoom))),
+      one(
+        P.locked({
+          Guardian: guardian,
+          guardian: staff.guardian,
+          room: roomName(emptyRoom),
+          from: time(from),
+          to: time(to),
+        }),
+      ),
       { type: 'presence', people: [], room: emptyRoom.id, from, to, exclusive: true },
       art.testimony.image,
     );
   if (pattern === 'seen')
     refuteClue = add(
       scene,
-      one(['Un testigo', 'Lo que vio ' + staff.guardian]),
-      `${guardian} vio a ${named(culprit)} entrar en ${roomName(scene)} hacia las ${time(crime - 3)}.`,
+      one(P.witnessTitle(staff.guardian)),
+      P.witness(guardian, named(culprit), roomName(scene), time(crime - 3)),
       { type: 'presence', people: [culprit], room: scene.id, from: crime - 3, to: crime },
       art.testimony.image,
     );
   const aloneClue = add(
     aloneRoom,
-    one(['Sin testigos', 'Nadie le vio']),
-    one([
-      `Nadie recuerda haber visto a ${named(i1)} entre las ${time(from)} y las ${time(to)}.`,
-      `Entre las ${time(from)} y las ${time(to)}, nadie se cruzó con ${named(i1)}.`,
-    ]),
+    one(P.aloneTitle),
+    one(P.alone(named(i1), time(from), time(to))),
     { type: 'note' },
     art.testimony.image,
   );
@@ -254,16 +249,7 @@ export function generateCaseFile(
     );
   };
   const documents = {};
-  const [motiveTitle, motiveText] = one([
-    [
-      `Papeles de ${victim}`,
-      `Entre los papeles de ${victim} hay notas sobre ${named(culprit)}: ${lowerFirst(motive)}`,
-    ],
-    [
-      `Carta sin enviar de ${victim}`,
-      `Carta sin enviar de ${victim}: escribe que ${named(culprit)} ${lowerFirst(motive)}`,
-    ],
-  ]);
+  const [motiveTitle, motiveText] = one(P.motive(victim, named(culprit), motive));
   documents[culprit] = add(
     documentRoom(),
     motiveTitle,
@@ -297,8 +283,8 @@ export function generateCaseFile(
   for (const h of herrings)
     add(
       documentRoom(),
-      'Nota de ' + named(h.person),
-      `Nota escrita por ${named(h.person)} a las ${time(600 + Math.floor(random() * 12) * 15)}: pregunta si alguien ha visto ${article(h.item)} ${h.item.noun} que perdió esta mañana en ${roomName(scene)}.`,
+      P.noteTitle(named(h.person)),
+      P.note(named(h.person), time(600 + Math.floor(random() * 12) * 15), h.item, roomName(scene)),
       { type: 'explains', clue: h.clue },
       art.document.image,
     );
@@ -350,16 +336,7 @@ export function generateCaseFile(
       );
     else if (id !== i2) list.push(['seen.nothing', {}]);
     const herring = herrings.find(h => h.person === id);
-    if (herring)
-      list.push([
-        'object.own',
-        {
-          item: article(herring.item) + ' ' + herring.item.noun,
-          mine: herring.item.gender === 'f' ? 'mía' : 'mío',
-          it: herring.item.gender === 'f' ? 'la' : 'lo',
-        },
-        herring.clue,
-      ]);
+    if (herring) list.push(['object.own', P.own(herring.item), herring.clue]);
     list.push(['identity', {}], ['social', {}], ['unknown', {}]);
     return list;
   };
@@ -376,7 +353,9 @@ export function generateCaseFile(
       p.id,
       statementsOf(p.id).map(([kind, values, requires]) => {
         const filled = { ...common, name: named(p.id), role: p.role, ...values };
-        const variants = phrasings(kind, p.voice, random).map(text => fillStatement(text, filled));
+        const variants = phrasings(kind, p.voice, random, lang).map(text =>
+          fillStatement(text, filled),
+        );
         return {
           id: statementKinds[kind].topic,
           kind,
@@ -392,6 +371,7 @@ export function generateCaseFile(
   const file = normalizeCaseFile({
     format: CASE_FORMAT,
     version: 1,
+    ...(lang === 'es' ? {} : { lang }),
     world: world.id,
     title: world.title,
     victim: { name: world.victim.name, role: world.victim.role, gender: world.victim.gender },
@@ -407,6 +387,7 @@ export function generateCaseFile(
       id: r.id,
       name: r.name,
       article: r.article,
+      ...(r.phrase ? { phrase: r.phrase } : {}),
       description: r.description,
       tags: r.tags,
       ...(r.ambience ? { ambience: r.ambience } : {}),
@@ -448,7 +429,15 @@ export function generateCaseFile(
     })),
     clues,
     facts,
-    origin: { generator: 'mundos-1', seed, difficulty },
+    // With what was given to the generator, the case can be made again in another language.
+    origin: {
+      generator: 'mundos-1',
+      seed,
+      difficulty,
+      ...Object.fromEntries(
+        Object.entries({ previousMethodId, previousPersonId, forcedMethodId }).filter(([, v]) => v),
+      ),
+    },
   });
   const analysis = analyzeCase(file);
   if (analysis.errors.length) throw Error('Generador incoherente: ' + analysis.errors.join(' '));

@@ -1,0 +1,29 @@
+{
+  "cases": [
+    {
+      "file": "blackwood-1.json",
+      "title": "The Final Cup",
+      "hook": "Sir Edmund does not finish his evening tea."
+    },
+    {
+      "file": "blackwood-2.json",
+      "title": "The Pending Signature",
+      "hook": "A document waiting for a signature that will never come."
+    },
+    {
+      "file": "blackwood-3.json",
+      "title": "The Withheld Letter",
+      "hook": "A letter someone decided not to deliver."
+    },
+    {
+      "file": "blackwood-4.json",
+      "title": "Thirty Years of Silence",
+      "hook": "A house with too many years of secrets."
+    },
+    {
+      "file": "blackwood-5.json",
+      "title": "The Debt Falls Due",
+      "hook": "That night, at Blackwood Manor, someone had accounts to settle."
+    }
+  ]
+}

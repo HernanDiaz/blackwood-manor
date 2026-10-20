@@ -1,0 +1,791 @@
+{
+  "format": "mundos-mundo",
+  "version": 1,
+  "lang": "en",
+  "id": "villa-bellavista",
+  "label": "1930s",
+  "title": "The Last Night at Villa Bellavista",
+  "premise": "Autumn, nineteen thirty-four. An easterly gale lashes the Mediterranean coast and cuts off Villa Bellavista, the country retreat of the industrialist Alonso Valdés, in the middle of a weekend party. Between the gramophone, the champagne and a road washed out by the rain, someone will not live to see the dawn.",
+  "art": {
+    "style": "painterly 1930s Mediterranean film-noir illustration, warm tungsten lamplight against storm-blue night, deep shadows, art deco details, muted burgundy, ivory and brass palette"
+  },
+  "victim": {
+    "name": "Alonso Valdés",
+    "role": "textile magnate and owner of the villa",
+    "gender": "m",
+    "description": "Owner of Hilaturas Valdés and half the county, a man of expensive cigars and a dealer's smile who treats people like parts in his mill. Generous in public, ruthless in private, he collects favours, secrets and other people's debts."
+  },
+  "people": [
+    {
+      "id": "p1",
+      "name": "Isabel Valdés",
+      "role": "hostess",
+      "gender": "f",
+      "age": 44,
+      "personality": "Alonso's wife and mistress of the house. Cold, immaculate and very sure of her position; she has learnt to smile without moving anything else in her face. Speaks with stiff formality, in complete, measured sentences, as though dictating a letter. Never raises her voice: courtesy is her way of keeping her distance. Repeats ‘you will appreciate’ and ‘I must ask you’ when something troubles her.",
+      "appearance": "A slender, upright woman of middle age, her chestnut hair set in finger waves with a silver streak at the temple. Grey eyes, garnet lipstick. She wears a long wine-red crêpe gown, a double strand of pearls and satin gloves.",
+      "image": "/worlds/villa-bellavista/person-p1.webp",
+      "imagePrompt": "Portrait, head and shoulders, plain dark background. Elegant woman in her mid-forties, slender and upright, chestnut hair set in 1930s finger waves with a silver streak at the temple, cool grey eyes, garnet lipstick, composed and distant expression. Long wine-red crepe evening gown, double-strand pearl necklace, satin gloves.",
+      "voice": {
+        "alibi.claim": [
+          "I was in {place} from {from} to {to}. You will appreciate that a hostess does not hide in her own house.",
+          "From {from} to {to} I was in {place}. You may write it down exactly so."
+        ],
+        "alibi.alone": [
+          "I was in {place} from {from} to {to}, alone. One sometimes needs a moment without guests.",
+          "From {from} to {to} I remained in {place}. Nobody was with me, and I do not regret it."
+        ],
+        "alibi.record": [
+          "I was in {place} from {from} to {to}. When I came out I found {victim}. I must ask you not to make me describe it.",
+          "From {from} to {to} I was in {place}; on coming out I saw {victim}. That is all there is to it."
+        ],
+        "alibi.pair": [
+          "I was in {place} with {partner} from {from} to {to}. Do ask, if you wish.",
+          "From {from} to {to} I was in {place}, in the company of {partner}."
+        ],
+        "relation": [
+          "I was married to {victim} for many years. You will appreciate that this is not always the same as knowing him.",
+          "{victim} was my husband. Ours was a proper marriage, which is more than many can say."
+        ],
+        "secret.culprit": [
+          "Yes, {victim} knew. I shall not pretend otherwise. But knowing something about a person is no reason to kill him, not even in this house.",
+          "What that paper says is true, and {victim} had discovered it. I must ask you not to confuse a secret with a crime."
+        ],
+        "secret.weak": [
+          "A domestic disagreement with {victim}, nothing more. If marriages ended that way, there would not be a husband left alive in Valencia.",
+          "Yes, {victim} and I differed on that. You will appreciate it is hardly worth such a fuss."
+        ],
+        "secret.neutral": [
+          "That is a household paper, of no interest whatsoever.",
+          "I must ask you not to waste your time on that. It is ordinary correspondence."
+        ],
+        "link.access": [
+          "Naturally I could get at {access}. It is my house. But I was not the only one, far from it.",
+          "I had access to {access}, as has anyone who moves about this house with a little ease."
+        ],
+        "link.none": [
+          "I had no access to {access}. Some things in this house were never my concern.",
+          "I never went near {access}. You will appreciate that I had no reason to."
+        ],
+        "timeline.culprit": [
+          "Perhaps I mistook the hour; with the storm and the guests, the night has become a blur. But I did not enter {scene}.",
+          "I must ask you not to jump to conclusions. I may have erred in a detail, not in substance: I was not in {scene}."
+        ],
+        "timeline.alone": [
+          "It is true, nobody saw me. I was alone, and I shall not invent company.",
+          "I have no witnesses, I admit. A lady seldom needs them in her own house."
+        ],
+        "timeline.record": [
+          "My coming and going are entered in {record}. Consult it yourself.",
+          "Check {record}. My husband insisted it be kept with the utmost rigour."
+        ],
+        "timeline.pair": [
+          "{Guardian} was watching the door. He has been in this house for years and lies for nobody.",
+          "Ask {guardian}: he saw us come and go, and his word is good."
+        ],
+        "seen.discovery": [
+          "I found {victim} in {scene} at {time}. I raised the alarm at once. Do not ask me for more details, I beg you.",
+          "At {time} I went into {scene} and saw {victim}. I screamed for the servants."
+        ],
+        "seen.pair": [
+          "I was in {place} with {partner}. Nobody else came in, of that I am certain.",
+          "In {place}, with {partner}. Nobody came through that door."
+        ],
+        "seen.nothing": [
+          "I saw nothing out of the ordinary. You will appreciate that my mind was on the guests.",
+          "Nothing worth mentioning, I'm afraid."
+        ],
+        "object.own": [
+          "{Item} is {mine}. {It} went missing this morning in {scene}; I meant to have {it} looked for.",
+          "Yes, {item} is {mine}. {It} went missing this morning in {scene}. I must ask you to return {it} to me."
+        ],
+        "identity": [
+          "My name is {name}. I am the {role} of this house, though tonight the part comes hard.",
+          "I am {name}, the {role}. Please, do sit down."
+        ],
+        "social": [
+          "I must ask you to be brief. It has been a very long night for us all.",
+          "Ask whatever you need. I would rather this were over quickly and discreetly."
+        ],
+        "unknown": [
+          "I know nothing of that, and you will appreciate that I shall not invent it.",
+          "I could not say. Ask me something it is my place to know."
+        ]
+      }
+    },
+    {
+      "id": "p2",
+      "name": "Tomás Salvatierra",
+      "role": "journalist",
+      "gender": "m",
+      "age": 36,
+      "personality": "Columnist for a Barcelona daily, invited to write about the mill and the smart set of the coast. Talkative, ironic and rather cynical, he talks fast and garnishes every answer with a line fit for a headline. Polite on the surface, with a mocking edge. Says ‘mark you’ and ‘between ourselves’, and cannot bear being asked the questions instead of asking them.",
+      "appearance": "A man of about thirty-five, thin and restless, with black hair slicked back with brilliantine and a pencil moustache. Dark, darting eyes with the shadows of a man who keeps late hours. He wears a somewhat crumpled charcoal double-breasted suit, a loosened tie and a pencil poking out of his waistcoat pocket.",
+      "image": "/worlds/villa-bellavista/person-p2.webp",
+      "imagePrompt": "Portrait, head and shoulders, plain dark background. Lean, restless man in his mid-thirties, black hair slicked back with brilliantine, thin pencil moustache, dark quick eyes with tired shadows beneath, wry half smile. Slightly rumpled charcoal double-breasted 1930s suit, loosened tie, a pencil sticking out of the waistcoat pocket.",
+      "voice": {
+        "alibi.claim": [
+          "I was in {place} from {from} to {to}. Not a minute more nor less, mark you: occupational hazard.",
+          "From {from} to {to}, in {place}. I'll put my byline to it, if you like."
+        ],
+        "alibi.alone": [
+          "I was in {place} from {from} to {to}, alone. A journalist without an audience: imagine the tragedy.",
+          "From {from} to {to} I was in {place}, nobody else. Between ourselves, I was grateful."
+        ],
+        "alibi.record": [
+          "I was in {place} from {from} to {to}. When I came out I found {victim}. Years writing up crimes, and I'd never seen one close to.",
+          "From {from} to {to}, in {place}; coming out, I found {victim}. That rather put an end to my wit."
+        ],
+        "alibi.pair": [
+          "I was in {place} with {partner} from {from} to {to}. Do ask; a better memory than mine for everything but dates.",
+          "{partner} and I were in {place} from {from} to {to}. Mark you, what a dreary alibi."
+        ],
+        "relation": [
+          "{victim} invited me to write wonders about his mill. Between ourselves, it came cheaper than an advertisement.",
+          "I knew {victim} well enough to know he never gave anything without noting it down somewhere."
+        ],
+        "secret.culprit": [
+          "All right, {victim} knew. Mark you, it's not the first time someone's had something on me. That doesn't make me a murderer.",
+          "What it says there is true; I shan't deny it. But between {victim} knowing and me killing him there's a headline I don't intend to write."
+        ],
+        "secret.weak": [
+          "Yes, {victim} and I had that little falling-out. If people killed over that, there'd be nobody left in my newsroom.",
+          "A minor matter with {victim}, I assure you. Not worth a paragraph on the back page."
+        ],
+        "secret.neutral": [
+          "That's of no interest at all. Believe me, I know a story from a scrap of paper.",
+          "Ordinary paper. Mark you, even I couldn't make anything of it."
+        ],
+        "link.access": [
+          "I could get at {access}, of course. So could anyone in this house with two legs. I wasn't the only one, not by a long chalk.",
+          "I had access to {access}, yes. Between ourselves, everybody here did."
+        ],
+        "link.none": [
+          "I had no access to {access}. I'm a guest; they show me the drawing room and that's that.",
+          "I never went near {access}. Check, if you've time to spare."
+        ],
+        "timeline.culprit": [
+          "Perhaps I got the hour wrong; with all that champagne, my watch turned poet. But I didn't go into {scene}.",
+          "Mark you, I may be out by a while. That doesn't mean I set foot in {scene}."
+        ],
+        "timeline.alone": [
+          "Nobody saw me, true. Bad luck for a man who lives by being read.",
+          "I've no witnesses. Between ourselves, it isn't easy to be alone in this house, but I managed."
+        ],
+        "timeline.record": [
+          "Consult {record}. It says when I came and went, in a better hand than mine.",
+          "My hours are in {record}. For once, someone's taken notes for me."
+        ],
+        "timeline.pair": [
+          "{Guardian} was watching the door. A man who misses nothing, take it from me.",
+          "Ask {guardian}: he saw us come and go, and that sort is never wrong."
+        ],
+        "seen.discovery": [
+          "I found {victim} in {scene} at {time} and raised the alarm. For once, I had the story before anyone else.",
+          "At {time} I went into {scene} and saw {victim}. I yelled like a cub reporter and ran for help."
+        ],
+        "seen.pair": [
+          "I was in {place} with {partner}. Nobody else came in; I'd have noticed, it's my trade.",
+          "With {partner}, in {place}. Not even the cat came through that door."
+        ],
+        "seen.nothing": [
+          "I saw nothing, and mark you, it costs me to admit it.",
+          "Nothing out of the ordinary. A poor night for the column."
+        ],
+        "object.own": [
+          "{Item} is {mine}. {It} went astray this morning in {scene}; I'm hopeless with my things.",
+          "Yes, {item} is {mine}. {It} went missing this morning in {scene} and I couldn't find {it} anywhere."
+        ],
+        "identity": [
+          "I'm {name}, {role}. I write society columns, and the odd crime story.",
+          "My name is {name}. I'm a {role}, though tonight I'd rather be anything else."
+        ],
+        "social": [
+          "Go on, ask. For once I'm on the other side of the notebook.",
+          "What a night, mark you. I'll help however I can."
+        ],
+        "unknown": [
+          "No idea, and it galls me, believe me.",
+          "No idea. And I know a fair bit of gossip, mind you."
+        ]
+      }
+    },
+    {
+      "id": "p3",
+      "name": "Carmen Ríos",
+      "role": "doctor",
+      "gender": "f",
+      "age": 39,
+      "personality": "The family doctor, one of the few women in the province with a medical degree, and used to being underestimated. Serious, methodical and sparing with words: she answers exactly what she is asked and not a word more. Addresses everyone with cool formality and uses precise, almost clinical language. Says ‘strictly speaking’ and ‘objectively’, and distrusts other people's emotions as much as her own.",
+      "appearance": "A woman of nearly forty, with an angular, composed face, dark hair cut in a short bob and round wire-rimmed spectacles. Scarcely any make-up. She wears a navy tailored suit with a straight skirt, a high-collared white blouse and a man's wristwatch.",
+      "image": "/worlds/villa-bellavista/person-p3.webp",
+      "imagePrompt": "Portrait, head and shoulders, plain dark background. Serious woman around forty, angular calm face, dark hair cut in a short 1930s bob, round wire-rimmed glasses, little or no makeup, steady appraising gaze. Navy blue tailored skirt suit, high-collared white blouse, a plain man's wristwatch.",
+      "voice": {
+        "alibi.claim": [
+          "I was in {place} from {from} to {to}.",
+          "From {from} to {to}, in {place}. Strictly speaking, I have nothing to add."
+        ],
+        "alibi.alone": [
+          "I was in {place} from {from} to {to}, alone.",
+          "From {from} to {to} I remained in {place}. Unaccompanied, objectively."
+        ],
+        "alibi.record": [
+          "I was in {place} from {from} to {to}. When I came out I found {victim}. I ascertained there was nothing to be done.",
+          "From {from} to {to}, in {place}; coming out, I found {victim}. The rest is a matter for the pathologist."
+        ],
+        "alibi.pair": [
+          "I was in {place} with {partner} from {from} to {to}.",
+          "From {from} to {to}, in {place}, with {partner}. You may cross-check it."
+        ],
+        "relation": [
+          "I was physician to {victim} and his family. What I know of his health is confidential.",
+          "I treated {victim} as a patient. Strictly speaking, we were never friends."
+        ],
+        "secret.culprit": [
+          "It is true. {victim} knew. Objectively, that gives me a motive; it does not make me guilty.",
+          "I shall not deny what is written, and yes, {victim} had discovered it. Between that and a crime lies a distance you will have to prove."
+        ],
+        "secret.weak": [
+          "A disagreement with {victim}, no more. Nobody kills over such a thing.",
+          "Yes, {victim} and I had that matter outstanding. Strictly speaking, it is irrelevant."
+        ],
+        "secret.neutral": ["That paper is of no importance.", "Objectively, there is nothing there."],
+        "link.access": [
+          "Yes, I could get at {access}. I was not the only one.",
+          "I had access to {access}. As did others in the house, strictly speaking."
+        ],
+        "link.none": ["I had no access to {access}.", "I never had access to {access}. Check it."],
+        "timeline.culprit": [
+          "I may have mistaken the hour. I cannot have entered {scene}, because I did not.",
+          "I do not account for every minute. What I do know is that I did not enter {scene}."
+        ],
+        "timeline.alone": [
+          "Nobody saw me. A fact, and I shall not embellish it.",
+          "I was alone. I have no witnesses to offer you."
+        ],
+        "timeline.record": [
+          "It is entered in {record}. In and out.",
+          "Check {record}. It is more reliable than my word, objectively."
+        ],
+        "timeline.pair": [
+          "{Guardian} was watching the door. He can confirm it.",
+          "Ask {guardian}. He saw us come and go."
+        ],
+        "seen.discovery": [
+          "I found {victim} in {scene} at {time}. I checked the pulse and raised the alarm.",
+          "At {time} I entered {scene} and saw {victim}. I raised the alarm immediately."
+        ],
+        "seen.pair": [
+          "I was in {place} with {partner}. Nobody else came in.",
+          "With {partner}, in {place}. Nobody crossed that threshold."
+        ],
+        "seen.nothing": ["I saw nothing anomalous.", "Nothing notable, strictly speaking."],
+        "object.own": [
+          "{Item} is {mine}. {It} went missing this morning in {scene}.",
+          "Yes, {item} is {mine}. {It} went missing this morning in {scene}, and I had not noticed {it} was gone until now."
+        ],
+        "identity": ["My name is {name}. I am a {role}.", "I am {name}, the family's {role}."],
+        "social": [
+          "Ask. I shall answer precisely.",
+          "I prefer facts to condolences. Go on."
+        ],
+        "unknown": [
+          "I do not know. And I do not speculate.",
+          "I have no data on that. Ask me something specific."
+        ]
+      }
+    },
+    {
+      "id": "p4",
+      "name": "Bruno Ferrer",
+      "role": "chauffeur",
+      "gender": "m",
+      "age": 31,
+      "personality": "Chauffeur and mechanic to the household, raised on the Barcelona docks. Laconic, rough and wary of the gentry; answers in short sentences, sometimes a single word. Keeps a grudging, clipped civility and lets slip the odd ‘look’ or ‘what's it to me’. Hates having his time wasted, but is loyal in his way and doesn't beat about the bush.",
+      "appearance": "A broad-shouldered man of about thirty, with a square, half-shaven jaw and a small scar through one eyebrow. Short brown hair under a peaked cap. He wears a dark grey chauffeur's uniform with brass buttons, open at the collar, and worn leather gloves tucked into his belt.",
+      "image": "/worlds/villa-bellavista/person-p4.webp",
+      "imagePrompt": "Portrait, head and shoulders, plain dark background. Broad-shouldered man around thirty, square jaw with light stubble, small scar through one eyebrow, short brown hair under a peaked chauffeur cap, wary hard stare. Dark grey 1930s chauffeur uniform with brass buttons, collar unbuttoned, worn leather gloves.",
+      "voice": {
+        "alibi.claim": [
+          "In {place}. From {from} to {to}.",
+          "Look, from {from} to {to} I was in {place}. That's it."
+        ],
+        "alibi.alone": [
+          "In {place}, from {from} to {to}. Alone. As usual.",
+          "From {from} to {to}, in {place}. Nobody with me. What's it to me."
+        ],
+        "alibi.record": [
+          "I was in {place} from {from} to {to}. Came out, found {victim}. Like that.",
+          "From {from} to {to}, in {place}. I came out and there was {victim}. That's all."
+        ],
+        "alibi.pair": [
+          "In {place}, with {partner}. From {from} to {to}.",
+          "{partner} and me, in {place}, from {from} to {to}. Go and ask."
+        ],
+        "relation": [
+          "I drove for {victim}. He paid me. Not much, but he paid.",
+          "{victim} was the boss. I drove and kept quiet. That's how it was."
+        ],
+        "secret.culprit": [
+          "Yes. {victim} knew. So what? Doesn't mean I did anything to him.",
+          "Look, what it says there is true. {victim} found out. But I didn't kill him."
+        ],
+        "secret.weak": [
+          "Yes, I had that bother with {victim}. Nobody gets killed over that.",
+          "Stuff with {victim}, like everyone. Nothing much."
+        ],
+        "secret.neutral": ["That's a bit of paper. Says nothing.", "Look, not my business."],
+        "link.access": [
+          "Yes, I could get at {access}. Others could too.",
+          "I had access to {access}. Wasn't the only one. Not by a long way."
+        ],
+        "link.none": [
+          "Couldn't reach {access}. Hadn't even the key.",
+          "Never had access to {access}. Ask anyone you like."
+        ],
+        "timeline.culprit": [
+          "Got the time muddled, maybe. But I never went into {scene}.",
+          "Look, I don't watch the clock. What I know is I didn't go into {scene}."
+        ],
+        "timeline.alone": [
+          "Nobody saw me. So what? I stayed put.",
+          "Alone. No witnesses. That's how it is."
+        ],
+        "timeline.record": [
+          "It's in {record}. In and out, written down.",
+          "Look in {record}. Says so there."
+        ],
+        "timeline.pair": [
+          "{Guardian} was on the door. Let him tell you.",
+          "Ask {guardian}. He saw us go in and out."
+        ],
+        "seen.discovery": [
+          "Found {victim} in {scene} at {time}. Raised the shout straight off.",
+          "At {time} I went into {scene}. Saw {victim} and went to tell someone."
+        ],
+        "seen.pair": [
+          "In {place}, with {partner}. Nobody came in.",
+          "With {partner}, in {place}. Not a blessed soul came through that door."
+        ],
+        "seen.nothing": ["Saw nothing.", "Nothing odd. Rain, that's all."],
+        "object.own": [
+          "{Item} is {mine}. {It} went missing this morning in {scene}.",
+          "Yes, {item} is {mine}. {It} went missing this morning in {scene} and I couldn't find {it}."
+        ],
+        "identity": ["{name}. I'm the {role}.", "Name's {name}. {Role} to the house."],
+        "social": [
+          "Ask quick. I haven't got all night.",
+          "Look, say what you want to know and we're done."
+        ],
+        "unknown": ["No idea.", "Don't know. Don't care, neither."]
+      }
+    },
+    {
+      "id": "p5",
+      "name": "Lucía Vidal",
+      "role": "jazz singer",
+      "gender": "f",
+      "age": 27,
+      "personality": "Singer hired to liven up the party, fresh back from the cabarets of Paris and determined never to go hungry again. Theatrical, flirtatious and sharp as a tack; she is on familiar terms with everyone from the first sentence and calls them ‘darling’. Drops in French words, laughs when she is nervous and turns every answer into a little performance, though underneath she misses nothing.",
+      "appearance": "A young woman with a round face, brown eyes heavily rimmed with kohl, vivid red lips and a beauty spot beside her mouth. A glossy black bob held by a rhinestone band. She wears a backless silver lamé gown and a white feather stole about her shoulders.",
+      "image": "/worlds/villa-bellavista/person-p5.webp",
+      "imagePrompt": "Portrait, head and shoulders, plain dark background. Young woman in her late twenties, round face, brown eyes heavily lined with kohl, vivid red lips, beauty mark near the mouth, glossy short black bob with a rhinestone headband, playful knowing smile. Silver lamé backless 1930s evening dress, white feather stole over the shoulders.",
+      "voice": {
+        "alibi.claim": [
+          "I was in {place} from {from} to {to}, darling. Write it down nicely.",
+          "From {from} to {to}, in {place}. Mon Dieu, what a terribly serious interrogation."
+        ],
+        "alibi.alone": [
+          "I was in {place} from {from} to {to}, alone, darling. Even a singer needs a little quiet.",
+          "From {from} to {to}, in {place}, all by myself. I know, I know: hardly glamorous."
+        ],
+        "alibi.record": [
+          "I was in {place} from {from} to {to}. When I came out I found {victim}. My hands are still shaking, look.",
+          "From {from} to {to}, in {place}; coming out, I found {victim}. Not even in the worst cabaret in Paris have I seen such a thing."
+        ],
+        "alibi.pair": [
+          "I was in {place} with {partner} from {from} to {to}. Ask away, darling, nobody bites.",
+          "{partner} and I were in {place} from {from} to {to}. All perfectly respectable, I promise you."
+        ],
+        "relation": [
+          "{victim} hired me to sing at his party. He paid well and looked too much, if you follow me.",
+          "I knew {victim} from his nights at the Ritz. A man who thought everything had a price, darling."
+        ],
+        "secret.culprit": [
+          "All right, darling, {victim} knew. Everyone has a little secret. That doesn't make me a murderess.",
+          "What it says is true; I shan't make a scene about it. {victim} found out. But I never laid a finger on him."
+        ],
+        "secret.weak": [
+          "Oh, that business with {victim} was nothing. Nobody kills over that, chéri.",
+          "Yes, {victim} and I had our little moments. Artistic trifles."
+        ],
+        "secret.neutral": [
+          "That? A dull little scrap of paper, darling.",
+          "There's nothing interesting about it, I assure you."
+        ],
+        "link.access": [
+          "Of course I could get at {access}. So could half the house, darling. I wasn't the only one.",
+          "I had access to {access}, yes. So did others, don't look at me like that."
+        ],
+        "link.none": [
+          "I never went near {access}, darling. Not my sort of thing.",
+          "I never had access to {access}. Ask anyone you like."
+        ],
+        "timeline.culprit": [
+          "Oh, I may have muddled the hours. What with the champagne and the music... But I didn't go into {scene}.",
+          "I don't wear a watch when I sing, darling. I may have got it wrong, but I never set foot in {scene}."
+        ],
+        "timeline.alone": [
+          "Nobody saw me, it's true. For once, no audience.",
+          "I was alone, darling. I've no witnesses to offer you."
+        ],
+        "timeline.record": [
+          "Look in {record}, darling. It says when I came and went.",
+          "My hours are in {record}. More formal than a contract."
+        ],
+        "timeline.pair": [
+          "{Guardian} was watching the door. Ask him, he saw me come and go.",
+          "Ask {guardian}, darling. He saw us come and go."
+        ],
+        "seen.discovery": [
+          "I found {victim} in {scene} at {time}. I screamed so loud the whole house heard me.",
+          "At {time} I went into {scene} and saw {victim}. I raised the alarm at once, mon Dieu."
+        ],
+        "seen.pair": [
+          "I was in {place} with {partner}. Nobody else came in, darling.",
+          "With {partner}, in {place}. Not a soul came through that door."
+        ],
+        "seen.nothing": [
+          "I saw nothing odd, darling. And I notice everything.",
+          "Nothing out of the ordinary, I promise you."
+        ],
+        "object.own": [
+          "{Item} is {mine}! {It} went missing this morning in {scene}, how marvellous.",
+          "Yes, {item} is {mine}. {It} went missing this morning in {scene} and I couldn't find {it} anywhere."
+        ],
+        "identity": [
+          "I'm {name}, {role}. Perhaps you've heard me on the wireless, darling.",
+          "My name is {name}. I'm a {role}, and tonight I was meant to sing."
+        ],
+        "social": [
+          "Ask whatever you like, darling. Just don't make me cry, or my kohl will run.",
+          "What a night, chéri. Go on, I'm all ears."
+        ],
+        "unknown": [
+          "No idea, darling. I know nothing of it.",
+          "Ooh, that I don't know. And if I did, perhaps I wouldn't tell you."
+        ]
+      }
+    }
+  ],
+  "rooms": [
+    {
+      "id": "r1",
+      "name": "Study",
+      "article": "the",
+      "description": "Mahogany panelling, a massive desk under a green-shaded lamp and a black Bakelite telephone. It smells of pipe tobacco and waxed paper, and the rain patters against the leaded panes.",
+      "ambience": [
+        "As you enter, you are met by the tick of a wall clock nobody has thought to stop. The green lamp leaves the corners in shadow, and the leather armchairs smell of age.",
+        "Lightning blanches the leaded panes and, for an instant, the spines of the books seem to move. Then the gloom returns, with the hum of the lamp and the rain."
+      ],
+      "tags": ["interior"],
+      "image": "/worlds/villa-bellavista/room-r1.webp",
+      "imagePrompt": "Interior, wide shot, no people. Wood-panelled 1930s study in a seaside villa, massive mahogany desk under a green-shaded banker's lamp, black bakelite telephone, leather armchairs, bookshelves, rain streaking leaded-glass windows, lightning outside."
+    },
+    {
+      "id": "r2",
+      "name": "Music room",
+      "article": "the",
+      "description": "A gramophone with a gilded horn beside an open grand piano, Persian rugs and art deco mirrors that multiply the lamplight. A trace of French perfume and cigarette smoke lingers, and the fire crackles at the far end.",
+      "ambience": [
+        "The mirrors throw back your sodden silhouette, repeated into the distance. The floorboards creak as you cross the rug, and the strings of the open piano answer with a faint murmur.",
+        "It smells of pine logs and rice powder. The heat of the fire warms your face while, beyond the tall windows, the easterly shakes the palm trees."
+      ],
+      "tags": ["interior"],
+      "image": "/worlds/villa-bellavista/room-r2.webp",
+      "imagePrompt": "Interior, wide shot, no people. Glamorous 1930s art deco music room, gramophone with golden horn beside an open grand piano, Persian rugs, geometric mirrors reflecting lamplight, heavy velvet curtains with silk cords, crackling fireplace with brass fire irons, cocktail glasses on a bar cabinet."
+    },
+    {
+      "id": "r3",
+      "name": "Dining room",
+      "article": "the",
+      "description": "A long walnut table laid with linen, silver candelabra and cut-crystal glasses. From the sideboard comes a smell of wax, oranges and brandy, and the shutters creak with every gust.",
+      "ambience": [
+        "Wax drips slowly from the candelabra onto the silver, and the flames bow each time the wind pushes at the shutters. The tablecloth still smells of starch.",
+        "As you step in, you feel the cold of the tiles through your wet soles. From the kitchen, far off, comes a clatter of crockery and the murmur of the maids."
+      ],
+      "tags": ["interior"],
+      "image": "/worlds/villa-bellavista/room-r3.webp",
+      "imagePrompt": "Interior, wide shot, no people. Formal 1930s Mediterranean villa dining room, long walnut table with white linen, silver candelabra, cut-crystal glasses, sideboard with decanters and a bowl of oranges, wooden shutters rattling in the storm, candlelight."
+    },
+    {
+      "id": "r4",
+      "name": "Garage",
+      "article": "the",
+      "description": "A long-bonneted black motorcar gleams beneath a bare bulb, among petrol cans and tools hung on the wall. It smells of oil and wet rubber, and the wind rattles the great door.",
+      "ambience": [
+        "The bare bulb sways with each blast of wind, setting the shadows dancing on the concrete. Water drips from a crack in the roof, drop by drop, into a zinc bucket.",
+        "The smell of petrol catches in your throat the moment you enter. A trickle of rain creeps under the door, glinting beneath the bulb, and outside the pines creak like masts."
+      ],
+      "tags": ["interior"],
+      "image": "/worlds/villa-bellavista/room-r4.webp",
+      "imagePrompt": "Interior, wide shot, no people. 1930s villa garage at night, long-bonneted black luxury motorcar gleaming under a single bare bulb, fuel cans, tools hanging on a pegboard, oil stains on the concrete floor, rain blowing under a rattling wooden door."
+    },
+    {
+      "id": "r5",
+      "name": "Belvedere terrace",
+      "article": "the",
+      "description": "A white-tiled terrace hanging over the cliff, enclosed by a wrought-iron railing. Below, the waves break on the rocks, and the wind carries salt and the scent of wet pine.",
+      "ambience": [
+        "The wind snatches your breath the moment you step out. The tiles shine wet in the light from the windows, and the spray leaps so high it stings your face.",
+        "Below, the sea is a black mass that appears only when the lightning strikes. Between thunderclaps, the roar of the waves climbs the cliff like some enormous breath."
+      ],
+      "tags": ["exterior", "elevated"],
+      "image": "/worlds/villa-bellavista/room-r5.webp",
+      "imagePrompt": "Exterior, wide shot, no people. White-tiled clifftop terrace of a 1930s Mediterranean villa at night in a storm, wrought-iron railing at the edge, waves crashing on dark rocks far below, wind-bent pine trees, lightning over the sea, warm light spilling from French windows."
+    },
+    {
+      "id": "r6",
+      "name": "Wine cellar",
+      "article": "the",
+      "description": "A vaulted cellar, cool and damp, with rows of casks and dust-covered bottles. It smells of old wine and stone, and the storm sounds muffled above the vault.",
+      "ambience": [
+        "You go down the last steps and the cold of the stone seeps through your wet clothes. A drop falls from the vault at regular intervals, with the patience of a clock.",
+        "The hanging lamp casts a circle of warm light and leaves the rest in shadow. Among the casks there is a smell of cork and mould, and the storm overhead sounds like a distant train."
+      ],
+      "tags": ["interior"],
+      "image": "/worlds/villa-bellavista/room-r6.webp",
+      "imagePrompt": "Interior, wide shot, no people. Vaulted stone wine cellar beneath a 1930s villa, rows of oak barrels, racks of dusty bottles, a single hanging lamp casting a warm pool of light, damp walls, stone steps leading up into darkness."
+    }
+  ],
+  "staff": {
+    "guardian": "the butler",
+    "record": "the key book",
+    "report": "Police surgeon's report"
+  },
+  "weapons": [
+    {
+      "method": "knife",
+      "label": "Letter opener",
+      "cause": "A narrow, deep wound beneath the breastbone, made with a thin, sharp blade, had reached the heart.",
+      "weapon": "the silver letter opener",
+      "access": "the silver letter opener",
+      "device": false,
+      "phrase": "with the silver letter opener",
+      "image": "/worlds/villa-bellavista/weapon-knife.webp",
+      "imagePrompt": "Close-up of a single object on a neutral background: an ornate silver art deco letter opener with a slender sharp blade and engraved handle."
+    },
+    {
+      "method": "blunt",
+      "label": "Poker",
+      "cause": "A brutal blow to the temple with a heavy, blunt object had fractured the skull.",
+      "weapon": "the bronze poker",
+      "access": "the bronze poker",
+      "device": false,
+      "phrase": "with the bronze poker",
+      "image": "/worlds/villa-bellavista/weapon-blunt.webp",
+      "imagePrompt": "Close-up of a single object on a neutral background: a heavy bronze fireplace poker with a hooked tip and a polished knob handle."
+    },
+    {
+      "method": "rope",
+      "label": "Curtain cord",
+      "cause": "A thin, unbroken groove around the neck and small haemorrhages in the eyes: strangulation with a slender cord.",
+      "weapon": "the silk curtain cord",
+      "access": "the silk curtain cords",
+      "seen": "the silk curtain cord",
+      "device": false,
+      "phrase": "with the silk curtain cord",
+      "image": "/worlds/villa-bellavista/weapon-rope.webp",
+      "imagePrompt": "Close-up of a single object on a neutral background: a thick burgundy silk curtain tieback cord with golden tassels, loosely coiled."
+    },
+    {
+      "method": "drink",
+      "label": "Poisoned brandy",
+      "cause": "A smell of bitter almonds on the lips and flushed skin: poisoning by cyanide dissolved in the drink.",
+      "weapon": "the brandy glass",
+      "access": "the brandy decanter",
+      "device": false,
+      "phrase": "with a poisoned glass of brandy",
+      "image": "/worlds/villa-bellavista/weapon-drink.webp",
+      "imagePrompt": "Close-up of a single object on a neutral background: a crystal brandy snifter half filled with amber cognac, catching warm light.",
+      "seen": "the brandy decanter"
+    },
+    {
+      "method": "revolver",
+      "label": "Revolver",
+      "cause": "A shot to the chest at close range, with powder burns on the shirt front.",
+      "weapon": "the snub-nosed revolver",
+      "access": "the snub-nosed revolver",
+      "device": false,
+      "phrase": "with the snub-nosed revolver",
+      "image": "/worlds/villa-bellavista/weapon-revolver.webp",
+      "imagePrompt": "Close-up of a single object on a neutral background: a 1930s snub-nosed nickel-plated revolver with a dark wooden grip."
+    },
+    {
+      "method": "shotgun",
+      "label": "Shotgun",
+      "cause": "A charge of shot fired at point-blank range had torn open his side.",
+      "weapon": "the shotgun",
+      "access": "the shotgun",
+      "device": false,
+      "phrase": "with the shotgun",
+      "image": "/worlds/villa-bellavista/weapon-shotgun.webp",
+      "imagePrompt": "Close-up of a single object on a neutral background: an engraved side-by-side double-barrelled hunting shotgun with a walnut stock."
+    },
+    {
+      "method": "medicine",
+      "label": "Veronal",
+      "cause": "A massive dose of barbiturate: contracted pupils and breathing that grew ever slower, until it stopped.",
+      "weapon": "the bottle of Veronal",
+      "access": "the bottle of Veronal",
+      "device": false,
+      "phrase": "with a lethal dose of Veronal",
+      "image": "/worlds/villa-bellavista/weapon-medicine.webp",
+      "imagePrompt": "Close-up of a single object on a neutral background: a small 1930s brown glass pharmacy bottle of sleeping powder with a cork stopper and a faded paper label, a few white tablets beside it."
+    },
+    {
+      "method": "fall",
+      "label": "Fall from the terrace",
+      "cause": "Multiple fractures and a fatal blow to the back of the head, consistent with a fall from a great height onto the rocks.",
+      "weapon": "the wrought-iron railing",
+      "access": "the terrace key",
+      "device": true,
+      "phrase": "by pushing him over the railing",
+      "image": "/worlds/villa-bellavista/weapon-fall.webp",
+      "imagePrompt": "Close-up of a single object on a neutral background: a section of ornate wrought-iron balcony railing with one loosened, bent bracket."
+    }
+  ],
+  "items": [
+    {
+      "noun": "silver cigarette case",
+      "gender": "f",
+      "image": "/worlds/villa-bellavista/item-1.webp",
+      "imagePrompt": "Close-up of a single object on a neutral background: an engraved art deco silver cigarette case, slightly open, showing a row of cigarettes."
+    },
+    {
+      "noun": "ivory cigarette holder",
+      "gender": "f",
+      "image": "/worlds/villa-bellavista/item-2.webp",
+      "imagePrompt": "Close-up of a single object on a neutral background: a long slender ivory cigarette holder with a thin gold band."
+    },
+    {
+      "noun": "mother-of-pearl cufflink",
+      "gender": "m",
+      "image": "/worlds/villa-bellavista/item-3.webp",
+      "imagePrompt": "Close-up of a single object on a neutral background: a single mother-of-pearl cufflink set in gold, iridescent sheen."
+    },
+    {
+      "noun": "driving glove",
+      "gender": "m",
+      "image": "/worlds/villa-bellavista/item-4.webp",
+      "imagePrompt": "Close-up of a single object on a neutral background: a single worn brown leather 1930s driving glove with a snap at the wrist."
+    },
+    {
+      "noun": "enamelled powder compact",
+      "gender": "f",
+      "image": "/worlds/villa-bellavista/item-5.webp",
+      "imagePrompt": "Close-up of a single object on a neutral background: a round enamelled art deco powder compact with a geometric pattern, lid half open showing a small mirror."
+    },
+    {
+      "noun": "fountain pen",
+      "gender": "f",
+      "image": "/worlds/villa-bellavista/item-6.webp",
+      "imagePrompt": "Close-up of a single object on a neutral background: a black and gold 1930s fountain pen with the cap removed, nib gleaming."
+    }
+  ],
+  "motives": [
+    "Had forged signatures on Hilaturas Valdés promissory notes worth a fortune. {victim} had found out and meant to lay it before the court the next day.",
+    "Had sold the plans for the new looms to a rival mill in Sabadell. {victim} had the proof and meant to hand it to the Civil Guard the next day.",
+    "Had concealed an earlier marriage, made in Buenos Aires and never dissolved. {victim} had obtained the certificate and meant to make it public the next day.",
+    "Had run down a labourer on the coast road and driven off without stopping to help. {victim} knew the truth and meant to tell the magistrate the next day.",
+    "Had hidden contraband arms in the bales of cotton arriving at the port. {victim} had found out and meant to report it the next day.",
+    "Had blackmailed half of Valencian society with stolen letters. {victim} had found the hiding place and meant to expose the blackmail the next day."
+  ],
+  "documents": {
+    "weak": [
+      {
+        "title": "Reminder of a gambling debt",
+        "text": "A note from {victim}: {person} owes him a modest sum from a game of baccarat at the casino, with a curt reminder that gambling debts are to be paid."
+      },
+      {
+        "title": "Letter of reproach",
+        "text": "{victim} reproaches {person} for drinking too much at the last party of the summer and asks, coldly, for a little more discretion in front of the guests."
+      },
+      {
+        "title": "Draft will",
+        "text": "In a pencilled draft, {victim} cuts the small legacy he meant to leave {person} and notes in the margin: ‘must learn some gratitude’."
+      },
+      {
+        "title": "Invitation withdrawn",
+        "text": "{victim} writes to {person} withdrawing this year's invitation to his box at the Teatro Principal for the opera season."
+      }
+    ],
+    "neutral": [
+      {
+        "title": "Telegram from the mill",
+        "text": "Telegram for {victim}: the shipment of Egyptian cotton will reach port late owing to the storm. Nothing further to report."
+      },
+      {
+        "title": "List of records",
+        "text": "A list of gramophone records {victim} meant to order from Madrid: several tangos, a foxtrot and a zarzuela, one of them underlined."
+      },
+      {
+        "title": "Dinner menu",
+        "text": "Saturday's dinner menu, in {victim}'s hand: arroz a banda, sea bream baked in salt and tocino de cielo. At the foot: order ice from the village."
+      }
+    ]
+  },
+  "clueArt": {
+    "report": {
+      "image": "/worlds/villa-bellavista/clue-report.webp",
+      "imagePrompt": "Close-up of a typed 1930s forensic medical report on yellowed paper with an official stamp and a fountain-pen signature, resting on a wooden desk, illegible handwriting, no readable text."
+    },
+    "testimony": {
+      "image": "/worlds/villa-bellavista/clue-testimony.webp",
+      "imagePrompt": "Close-up of a handwritten witness statement on lined notebook paper with a pencil lying across it, under warm lamplight, illegible handwriting, no readable text."
+    },
+    "ledger": {
+      "image": "/worlds/villa-bellavista/clue-ledger.webp",
+      "imagePrompt": "Close-up of an open leather-bound butler's key ledger with columns of entries and a brass key ring beside it, illegible handwriting, no readable text."
+    },
+    "document": {
+      "image": "/worlds/villa-bellavista/clue-document.webp",
+      "imagePrompt": "Close-up of a folded private letter on monogrammed cream stationery next to its torn envelope with a wax seal, illegible handwriting, no readable text."
+    }
+  },
+  "openings": {
+    "arrivals": [
+      "The taxi crawls along the coast road at walking pace, its wipers fighting the downpour. Round the last bend Villa Bellavista appears, white and ablaze with light on the cliff, while the sea bursts against the rocks. At the gate, a lantern swings in the wind.",
+      "You step off the train at a deserted station that smells of brine and coal. A black motorcar carries you between pines bent by the easterly to the villa, where a gramophone still plays behind the windows. The gravel crunches under your sodden shoes.",
+      "The telephone dragged you from your bed, the line full of crackles and a voice begging discretion. Now you pass through the gates of Villa Bellavista, your coat soaked through and the roar of the storm in your ears. For an instant, lightning sketches the palms and the white façade.",
+      "You cover the last stretch on foot, for the flood has cut the lane a few yards from the house. From the front steps you can hear the piano, the wind and, far below, the sea. Someone opens the door before you can knock."
+    ],
+    "tensions": [
+      "The road is cut and the telephone line all but dead. Nobody will leave this house before dawn, and whoever did it knows that as well as you do.",
+      "In the music room, the gramophone has kept turning without music, the needle scraping at the end of the record. The guests eye one another over their glasses. One of them is lying.",
+      "Outside, the storm gives no quarter; inside, the lamps flicker with every thunderclap. You have until it abates to sort the secrets from the truth."
+    ]
+  },
+  "night": [
+    "The rain beats harder against the panes and, somewhere in the house, a maid is murmuring the rosary.",
+    "The gramophone falls silent at last. There remain only the wind in the shutters and the creaking of the house, groaning like an old ship.",
+    "The electric light flickers and dies for a moment; the butler hands out candles along the corridors without a word.",
+    "A thunderclap rattles the mirrors. The guests no longer feign conversation: they smoke in silence, eyeing one another.",
+    "The candles have burnt halfway down. The sea strikes the cliff with greater fury than ever, and the telephone gives a shrill ring that nobody dares answer.",
+    "The gusts come further apart, and the silence they leave is worse than the noise. Nobody sleeps: everyone is waiting for the road to open and the Civil Guard to come up."
+  ],
+  "epilogues": [
+    "You gather everyone in {scene} while the butler closes the doors one by one. When you have finished, nobody looks at {culprit}, but everyone steps back a pace. {culprit} offers no resistance, asking only to sit by the window, and watches the rain, which falls feebly now. At dawn the storm retreats out to sea, and up the newly opened road come the patent-leather tricorns of the Civil Guard. As {culprit} is led out to the car, the butler puts out the lamps of the house, one by one.",
+    "There is no need to raise your voice. You set out the facts one after another, and {culprit}'s hands begin to tremble, until at last the gaze drops. The butler, unbidden, takes up his place by the door. For a long while nobody speaks; there is only the rain, ever fainter. At first light, a pair of Civil Guards climb the front steps, their capes streaming. The sergeant hears your account, nods, and asks {culprit} to come along. Behind, in the villa, someone puts on a record again, very softly, as if to bid the night farewell.",
+    "In {scene}, before them all, you go over the night step by step and end with the name of {culprit}. For a moment there is only the wind. Then {culprit} sits down very slowly, as though the whole body had suddenly grown heavy, and the butler brings a glass of water that nobody drinks. When the easterly drops and the sky over the cliff turns pearl grey, the headlamps of the Civil Guard climb between the pines. You step out onto the terrace to breathe salt and wet earth: {victim} will give no more orders in this house, and Villa Bellavista wakes in silence."
+  ],
+  "look": {
+    "bg": "#1a1012",
+    "panel": "#26171b",
+    "line": "#472a30",
+    "accent": "#e6c792",
+    "text": "#f2e8dc",
+    "muted": "#baa69d",
+    "effect": "storm"
+  }
+}

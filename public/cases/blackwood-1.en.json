@@ -1,0 +1,888 @@
+{
+  "format": "mundos-expediente",
+  "version": 1,
+  "lang": "en",
+  "world": "blackwood-manor",
+  "title": "The Final Cup",
+  "weapons": [
+    {
+      "method": "knife",
+      "label": "Letter opener"
+    },
+    {
+      "method": "blunt",
+      "label": "Poker"
+    },
+    {
+      "method": "rope",
+      "label": "Curtain cord"
+    },
+    {
+      "method": "drink",
+      "label": "Aconite in the tea"
+    },
+    {
+      "method": "revolver",
+      "label": "Webley revolver"
+    },
+    {
+      "method": "shotgun",
+      "label": "Shotgun"
+    },
+    {
+      "method": "medicine",
+      "label": "Laudanum"
+    },
+    {
+      "method": "fall",
+      "label": "Fall from the gallery"
+    }
+  ],
+  "victim": {
+    "name": "Sir Edmund Blackwood",
+    "role": "owner of Blackwood Manor",
+    "gender": "m"
+  },
+  "people": [
+    {
+      "id": "p1",
+      "name": "Elena Blackwood",
+      "role": "heiress",
+      "gender": "f",
+      "personality": "Sir Edmund's only child, motherless since girlhood and raised by her father to inherit the house. Proud, restrained and entirely self-possessed. Cool and formal, never familiar; speaks in complete, firm sentences, seeks no sympathy and never apologises. Under pressure she demands precision, and never raises her voice or stoops to insult. Says ‘let me be perfectly clear’ and ‘don't twist my words’, and cuts any insinuation dead.",
+      "image": "/worlds/blackwood-manor/person-p1.webp"
+    },
+    {
+      "id": "p2",
+      "name": "Victor Hale",
+      "role": "family doctor",
+      "gender": "m",
+      "personality": "A country doctor who has attended the Blackwoods for years and served in a field hospital during the war. Reserved, analytical and outwardly cold. Formal in address; carefully separates what he observed from what he surmises, and corrects the question before answering it. Brief, exact, almost clinical phrasing. Says ‘let us be precise’, ‘let us keep to the facts’ and ‘one must distinguish’, and never ventures a diagnosis he cannot defend.",
+      "image": "/worlds/blackwood-manor/person-p2.webp"
+    },
+    {
+      "id": "p3",
+      "name": "Clara Reed",
+      "role": "secretary to Sir Edmund",
+      "gender": "f",
+      "personality": "Handles Sir Edmund's correspondence, diary and papers; she came to the house with a letter of reference and no fortune but her wages. Observant, prudent and direct. Polite and formal in address, prefers plain words and always separates what she knows from what she supposes. Doesn't apologise every other sentence. Under pressure she clings to verifiable details. Says ‘I'll put it plainly’ and ‘that's what I can tell you’.",
+      "image": "/worlds/blackwood-manor/person-p3.webp"
+    },
+    {
+      "id": "p4",
+      "name": "Arthur Finch",
+      "role": "butler",
+      "gender": "m",
+      "personality": "Thirty years in Sir Edmund's service; he knows every habit of the house. Formal, discreet and dry, trained in the old school. Never familiar, and addresses whoever questions him as ‘sir’. Answers point by point, in orderly sentences with no visible emotion. Under pressure he keeps his courtesy without sliding into servility. Never speculates about the family or the rest of the staff, and closes a subject with ‘that is all on that point’.",
+      "image": "/worlds/blackwood-manor/person-p4.webp"
+    },
+    {
+      "id": "p5",
+      "name": "Julian Blackwood",
+      "role": "nephew",
+      "gender": "m",
+      "personality": "Sir Edmund's nephew; lives on an allowance his uncle never let him forget, and spends more time in London than at the house. Impatient, defensive and proud in his own way. Casual with everyone, the detective included: no titles, no ceremony. Talks in short, colloquial sentences, straight out, and hates being credited with more than he said. Under pressure he turns curt, never violent. Says ‘look, listen’, ‘I'll tell you straight’ and ‘don't make a meal of it’.",
+      "image": "/worlds/blackwood-manor/person-p5.webp"
+    }
+  ],
+  "rooms": [
+    {
+      "id": "r1",
+      "name": "Study",
+      "article": "the",
+      "description": "Dark oak panelling, a mahogany desk with a green leather top and a brass lamp that leaves the rest of the room in half-light. It smells of pipe tobacco and ink, and the rain beats ceaselessly on the closed windows.",
+      "tags": ["interior"],
+      "image": "/worlds/blackwood-manor/room-r1.webp",
+      "ambience": [
+        "As you enter, you feel the chill of the dead fireplace and hear the tick of a mantel clock nobody has looked at in hours. The leather armchairs creak at the slightest movement.",
+        "The brass lamp casts a green circle on the desk top and leaves the rest in shadow. The windows shudder at every gust, and the smell of stale tobacco clings to your clothes."
+      ]
+    },
+    {
+      "id": "r2",
+      "name": "Library",
+      "article": "the",
+      "description": "Walnut shelves climb to a gallery with a turned wooden railing, reached by a wrought-iron spiral staircase. It smells of old leather and paper, and the fire in the grate barely reaches the highest spines.",
+      "tags": ["interior", "elevated"],
+      "image": "/worlds/blackwood-manor/room-r2.webp",
+      "ambience": [
+        "As you enter, the parquet creaks under your shoes and the sound rises to the gallery, where it is lost among the books. The flames crackle, small and stubborn.",
+        "Here the silence is thick and muffles the rain. It is colder up above than down below, and now and then the iron staircase gives a faint tick, as if cooling."
+      ]
+    },
+    {
+      "id": "r3",
+      "name": "Dining room",
+      "article": "the",
+      "description": "A long mahogany table beneath a crystal chandelier, the silver still laid out in rows, and ancestral portraits gazing down from the walls. The air still holds a smell of candle wax, roast lamb and port.",
+      "tags": ["interior"],
+      "image": "/worlds/blackwood-manor/room-r3.webp",
+      "ambience": [
+        "As you enter, the chandelier's crystals tinkle in the draught rising from the hall. The portraits seem to follow you with their eyes, stern and bored.",
+        "The candles have burned halfway down and the wax hangs in tears from the silver candelabra. The rain lashes the tall windows like flung gravel."
+      ]
+    },
+    {
+      "id": "r4",
+      "name": "Kitchen",
+      "article": "the",
+      "description": "An iron range still warm, copper pans hung in a row and a pine table scrubbed almost white. It smells of strong tea, bread and coal, and rainwater gurgles in the drain out in the yard.",
+      "tags": ["interior"],
+      "image": "/worlds/blackwood-manor/room-r4.webp",
+      "ambience": [
+        "As you enter, you are met by a warmth found nowhere else in the house. A tabby cat dozes by the range, and the wall clock moves on with a dry, domestic tick.",
+        "The bells on the board, one for each room, hang motionless above the door. It smells of soda soap and of washing hung to dry near the fire."
+      ]
+    },
+    {
+      "id": "r5",
+      "name": "Conservatory",
+      "article": "the",
+      "description": "Misted glass, terracotta pots and fleshy-leaved plants thriving in a damp, sticky heat. Violet-blue flowers peep out among the ferns, and the rain drums on the glass dome.",
+      "tags": ["interior"],
+      "image": "/worlds/blackwood-manor/room-r5.webp",
+      "ambience": [
+        "As you enter, the hot air dampens your face all at once. It smells of wet earth and sap, and a drop of condensation slides down the back of your neck.",
+        "Beneath the dome the roar of the rain is so constant that it comes to feel like silence. The palm fronds stir faintly, though there is not a breath of air."
+      ]
+    },
+    {
+      "id": "r6",
+      "name": "Hall",
+      "article": "the",
+      "description": "A chequered marble floor, an oak staircase climbing into darkness and a longcase clock that strikes the quarters with a deep chime. It smells of wet coats and furniture polish, and the wind creeps in under the front door.",
+      "tags": ["interior"],
+      "image": "/worlds/blackwood-manor/room-r6.webp",
+      "ambience": [
+        "As you enter, the echo of your footsteps rings off the marble and climbs the stairs. The umbrellas in the stand drip unhurriedly onto a brass tray.",
+        "A cold draught comes down from the top of the stairs and sets the lamps flickering. The stag antlers cast shadows like bare branches on the panelling."
+      ]
+    }
+  ],
+  "crime": {
+    "culprit": "p2",
+    "method": "drink",
+    "weapon": "the teacup",
+    "phrase": "by poisoning him with aconite in the teacup",
+    "scene": "r1",
+    "crimeMinute": 1275,
+    "exitMinute": 1278,
+    "deathMinute": 1285,
+    "discoveryMinute": 1290,
+    "motive": "Had billed {victim} for invented medical fees, initialled in his own hand. His patient found out while going over his accounts and noted that he would report him the next day."
+  },
+  "opening": {
+    "arrival": "The car from the house meets you at the station in a downpour and sets you down at the front steps of Blackwood Manor. Inside, the butler leads you without a word to the study: the master of the house is still in his armchair, the teacup overturned at his feet.",
+    "tension": "That tea was made after dinner and nobody else tasted it. The river has covered the bridge and the telephone is dead: whoever made, carried or poisoned that cup is still under this roof."
+  },
+  "night": [
+    "The rain beats harder against the panes and the wind begins to whistle in the chimneys. In the hall, the longcase clock goes on striking the quarters, unhurried.",
+    "In the kitchen someone puts the kettle on again; nobody in the house means to go to bed. Footsteps in the corridors stop, then move away again.",
+    "A long roll of thunder rumbles over the countryside and the lamps flicker for an instant. The maids hand out candles along the passages, in case the lights fail.",
+    "The river keeps rising: from the upper windows the water can be seen gleaming where the meadow used to be. Nobody mentions the bridge any more.",
+    "The candles have burned down to stubs and the house smells of cold smoke. Upstairs, a door closes far too softly.",
+    "The storm is at its worst: shutters bang and the fires shrink in the grates. Everyone waits, and nobody dares look at the others."
+  ],
+  "epilogue": "When you finish speaking, the silence is so deep you can hear the umbrellas dripping in the hall. Nobody looks at {p2}. The housekeeper crosses the room without a sound and comes to stand alongside, firm as a sentry, while someone closes the door of {r1}. {p2} offers no resistance and sits down on a step of the oak staircase to wait. Towards dawn the rain eases, the river slowly draws back from the bridge and, with the first grey light, the county police car appears along the oak avenue.",
+  "look": {
+    "bg": "#0f1a17",
+    "panel": "#17241f",
+    "line": "#30433b",
+    "accent": "#c9a86a",
+    "text": "#ece6d8",
+    "muted": "#a4ae9f",
+    "effect": "rain"
+  },
+  "alibis": [
+    {
+      "person": "p1",
+      "room": "r3",
+      "from": 1260,
+      "to": 1290,
+      "claim": "I was in {r3} with {p5} from 21:00 until the scream."
+    },
+    {
+      "person": "p2",
+      "room": "r6",
+      "from": 1272,
+      "to": 1290,
+      "claim": "I left the tray in {r1} and came straight out. From 21:12 until the scream I was in {r6}, waiting for the rain to ease."
+    },
+    {
+      "person": "p3",
+      "room": "r4",
+      "from": 1270,
+      "to": 1285,
+      "claim": "I did the inventory with {p4} in {r4} from 21:10 to 21:25."
+    },
+    {
+      "person": "p4",
+      "room": "r4",
+      "from": 1270,
+      "to": 1285,
+      "claim": "{p3} was with me in {r4} from 21:10 until the sound of the cup."
+    },
+    {
+      "person": "p5",
+      "room": "r3",
+      "from": 1260,
+      "to": 1290,
+      "claim": "I was with {p1} in {r3} from the end of dinner. The photograph has the time on it."
+    }
+  ],
+  "clues": [
+    {
+      "id": "c1",
+      "room": "r1",
+      "title": "Teacup",
+      "text": "A dark vegetable residue remains in the tea {victim} drank at 21:15.",
+      "image": "/worlds/blackwood-manor/weapon-drink.webp",
+      "fact": {
+        "type": "weapon",
+        "method": "drink",
+        "room": "r1"
+      }
+    },
+    {
+      "id": "c2",
+      "room": "r1",
+      "title": "Preliminary report",
+      "text": "No wounds. The symptoms are consistent with aconite poisoning. {victim} collapsed at about 21:25, some ten minutes after drinking.",
+      "image": "/worlds/blackwood-manor/clue-report.webp",
+      "fact": {
+        "type": "cause",
+        "method": "drink",
+        "room": "r1",
+        "minute": 1285
+      }
+    },
+    {
+      "id": "c3",
+      "room": "r1",
+      "title": "New will",
+      "text": "{victim} meant to disinherit {p1}. He had not yet signed it.",
+      "image": "/worlds/blackwood-manor/clue-document.webp",
+      "fact": {
+        "type": "motive",
+        "person": "p1"
+      }
+    },
+    {
+      "id": "c4",
+      "room": "r1",
+      "title": "{victim}'s diary",
+      "text": "21:10: private appointment with Dr {p2} to go over his accounts.",
+      "image": "/worlds/blackwood-manor/clue-document.webp",
+      "fact": {
+        "type": "note"
+      }
+    },
+    {
+      "id": "c5",
+      "room": "r2",
+      "title": "Account book",
+      "text": "Invented medical fees, initialled ‘V. Hale’. In the margin {victim} has written: ‘Report tomorrow’.",
+      "image": "/worlds/blackwood-manor/clue-document.webp",
+      "fact": {
+        "type": "motive",
+        "person": "p2"
+      }
+    },
+    {
+      "id": "c6",
+      "room": "r2",
+      "title": "Botanical treatise",
+      "text": "Once swallowed, aconite brings on symptoms in about ten minutes.",
+      "image": "/worlds/blackwood-manor/clue-document.webp",
+      "fact": {
+        "type": "note"
+      }
+    },
+    {
+      "id": "c7",
+      "room": "r2",
+      "title": "Letter from {p3}",
+      "text": "{p3} admits to an affair with {victim} and fears losing her position.",
+      "image": "/worlds/blackwood-manor/clue-document.webp",
+      "fact": {
+        "type": "motive",
+        "person": "p3"
+      }
+    },
+    {
+      "id": "c8",
+      "room": "r3",
+      "title": "Untouched glasses",
+      "text": "None of the five glasses holds any trace of aconite. The dinner was not the vehicle.",
+      "fact": {
+        "type": "note"
+      }
+    },
+    {
+      "id": "c9",
+      "room": "r3",
+      "title": "After-dinner photograph",
+      "text": "At 21:12, {p1} and {p5} appear together in {r3}.",
+      "image": "/worlds/blackwood-manor/clue-testimony.webp",
+      "fact": {
+        "type": "presence",
+        "people": ["p1", "p5"],
+        "room": "r3",
+        "from": 1272,
+        "to": 1273,
+        "exclusive": false
+      }
+    },
+    {
+      "id": "c10",
+      "room": "r3",
+      "title": "Servants' note",
+      "text": "{p5} quarrelled over a debt at 20:50; {victim} turned him out of {r1}.",
+      "image": "/worlds/blackwood-manor/clue-document.webp",
+      "fact": {
+        "type": "motive",
+        "person": "p5"
+      }
+    },
+    {
+      "id": "c11",
+      "room": "r4",
+      "title": "Tea tray",
+      "text": "{p4} made a single cup at 21:05. The doctor offered to take it in.",
+      "image": "/worlds/blackwood-manor/weapon-drink.webp",
+      "fact": {
+        "type": "note"
+      }
+    },
+    {
+      "id": "c12",
+      "room": "r4",
+      "title": "Medical-bag bottle",
+      "text": "An empty bottle labelled ‘V. Hale’, hidden in {r4}. It still bears traces of aconite.",
+      "image": "/worlds/blackwood-manor/weapon-drink.webp",
+      "fact": {
+        "type": "access",
+        "method": "drink",
+        "people": ["p2"]
+      }
+    },
+    {
+      "id": "c13",
+      "room": "r4",
+      "title": "Servants' register",
+      "text": "{p4} and {p3} went through the inventory of {r4} together between 21:10 and 21:25.",
+      "image": "/worlds/blackwood-manor/clue-ledger.webp",
+      "fact": {
+        "type": "presence",
+        "people": ["p3", "p4"],
+        "room": "r4",
+        "from": 1270,
+        "to": 1285,
+        "exclusive": false
+      }
+    },
+    {
+      "id": "c14",
+      "room": "r5",
+      "title": "Cut aconite",
+      "text": "A stem is missing, recently cut with a fine blade.",
+      "fact": {
+        "type": "note"
+      }
+    },
+    {
+      "id": "c15",
+      "room": "r5",
+      "title": "Doctor's glove",
+      "text": "A glove with the initials VH and aconite sap on the fingers.",
+      "image": "/worlds/blackwood-manor/item-5.webp",
+      "fact": {
+        "type": "access",
+        "method": "drink",
+        "people": ["p2"]
+      }
+    },
+    {
+      "id": "c16",
+      "room": "r5",
+      "title": "Footprints in the soil",
+      "text": "The narrow sole matches the doctor's shoes, not {p5}'s boots.",
+      "image": "/worlds/blackwood-manor/clue-testimony.webp",
+      "fact": {
+        "type": "note"
+      }
+    },
+    {
+      "id": "c17",
+      "room": "r6",
+      "title": "Clock checked",
+      "text": "The clock keeps good time. {p4} heard the cup fall at 21:25.",
+      "image": "/worlds/blackwood-manor/clue-testimony.webp",
+      "fact": {
+        "type": "note"
+      }
+    },
+    {
+      "id": "c18",
+      "room": "r6",
+      "title": "Visitors' book",
+      "text": "{p2} arrived at 20:40 with his medical bag. He entered {r1} at 21:10 and left it at 21:18.",
+      "image": "/worlds/blackwood-manor/clue-ledger.webp",
+      "fact": {
+        "type": "presence",
+        "people": ["p2"],
+        "room": "r1",
+        "from": 1270,
+        "to": 1278,
+        "exclusive": false
+      }
+    }
+  ],
+  "facts": {
+    "p1": [
+      {
+        "id": "alibi",
+        "kind": "alibi.pair",
+        "text": "I was in {r3} with {p5} from 21:00 until the scream. Ask; you will hear the same.",
+        "variants": [
+          "I was in {r3} with {p5} from 21:00 until the scream. Ask; you will hear the same.",
+          "From the end of dinner, at 21:00, until the scream, I was in {r3} in the company of {p5}. It is easily verified.",
+          "Let me be perfectly clear: from 21:00 until the scream, in {r3}, with {p5}. I never stirred."
+        ]
+      },
+      {
+        "id": "motive",
+        "kind": "relation",
+        "text": "My father threatened to disinherit me. We quarrelled, yes. Don't twist my words: quarrelling is not killing.",
+        "variants": [
+          "My father threatened to disinherit me. We quarrelled, yes. Don't twist my words: quarrelling is not killing.",
+          "Let me be perfectly clear: my father threatened to cut me out, and I told him what I thought of it. It is what we do in this family."
+        ]
+      },
+      {
+        "id": "secret",
+        "kind": "secret.weak",
+        "text": "I thought of stealing the will, I admit it. But I never touched it.",
+        "variants": [
+          "I thought of stealing the will, I admit it. But I never touched it.",
+          "Yes, I knew of the new will, and it crossed my mind to make it vanish. I didn't; it was still unsigned."
+        ],
+        "requires": "c3"
+      },
+      {
+        "id": "link",
+        "kind": "link.none",
+        "text": "That bottle is from the doctor's bag. I had no access to it; it was never my affair.",
+        "variants": [
+          "That bottle is from the doctor's bag. I had no access to it; it was never my affair.",
+          "I couldn't get at that bottle. Check, if you doubt my word."
+        ],
+        "requires": "c12"
+      },
+      {
+        "id": "timeline",
+        "kind": "timeline.pair",
+        "text": "The photograph places us in {r3} at 21:12. Afterwards I never stirred from there, nor did {p5}.",
+        "variants": [
+          "The photograph places us in {r3} at 21:12. Afterwards I never stirred from there, nor did {p5}.",
+          "There is the photograph: {p5} and I, in {r3}, at 21:12. Just as I told you from the start."
+        ],
+        "requires": "c9"
+      },
+      {
+        "id": "seen",
+        "kind": "seen.pair",
+        "text": "I was in {r3} with {p5}. Nobody else came in.",
+        "variants": [
+          "I was in {r3} with {p5}. Nobody else came in.",
+          "With {p5}, in {r3}. No one came through that door until the scream."
+        ]
+      },
+      {
+        "id": "identity",
+        "kind": "identity",
+        "text": "I am {p1}, the heiress of this house. You may begin your questions.",
+        "variants": [
+          "I am {p1}, the heiress of this house. You may begin your questions.",
+          "My name is {p1}. I am the heiress; I imagine you've been told already."
+        ]
+      },
+      {
+        "id": "social",
+        "kind": "social",
+        "text": "Let me be perfectly clear: I want this over quickly, and done properly. Ask.",
+        "variants": [
+          "Let me be perfectly clear: I want this over quickly, and done properly. Ask.",
+          "Spare me the condolences. What exactly do you wish to establish?"
+        ]
+      },
+      {
+        "id": "unknown",
+        "kind": "unknown",
+        "text": "You will not put in my mouth an answer I don't have.",
+        "variants": [
+          "You will not put in my mouth an answer I don't have.",
+          "I know nothing of that. Ask me something that is mine to answer."
+        ]
+      }
+    ],
+    "p2": [
+      {
+        "id": "alibi",
+        "kind": "alibi.claim",
+        "text": "I left the tray in {r1} and came straight out. From 21:12 I was in {r6}, waiting for the rain to ease, until I heard the scream.",
+        "variants": [
+          "I left the tray in {r1} and came straight out. From 21:12 I was in {r6}, waiting for the rain to ease, until I heard the scream.",
+          "Let us be precise: I delivered the tea and withdrew. From 21:12 onwards I remained in {r6}.",
+          "I took the tea to {r1}, set it down and left. By 21:12 I was in {r6}; let us keep to that fact."
+        ]
+      },
+      {
+        "id": "motive",
+        "kind": "relation",
+        "text": "Edmund wished to discuss certain accounts. A misunderstanding.",
+        "variants": [
+          "Edmund wished to discuss certain accounts. A misunderstanding.",
+          "I had attended Edmund for many years. Tonight he wished to go over some accounts with me; a misunderstanding, no more."
+        ]
+      },
+      {
+        "id": "secret",
+        "kind": "secret.culprit",
+        "text": "Edmund discovered my false invoices. Had he reported me, I should have lost everything. One must distinguish: that is a motive, not a proof.",
+        "variants": [
+          "Edmund discovered my false invoices. Had he reported me, I should have lost everything. One must distinguish: that is a motive, not a proof.",
+          "I shan't dispute what is written in that book. The invoices were false and Edmund knew it. Between that and a crime lies a distance you will have to prove."
+        ],
+        "requires": "c5"
+      },
+      {
+        "id": "link",
+        "kind": "link.access",
+        "text": "That bottle was mine. I knew the effect of aconite. I cannot deny what has been found.",
+        "variants": [
+          "That bottle was mine. I knew the effect of aconite. I cannot deny what has been found.",
+          "Let us be precise: the bottle is from my bag, and I know what aconite does. I shan't deny what is plain to see."
+        ],
+        "requires": "c12"
+      },
+      {
+        "id": "timeline",
+        "kind": "timeline.culprit",
+        "text": "One detail wants correcting: I left {r1} at 21:18, as the book records, not earlier. Edmund was still alive when I went.",
+        "variants": [
+          "One detail wants correcting: I left {r1} at 21:18, as the book records, not earlier. Edmund was still alive when I went.",
+          "The book is more reliable than my memory: I was in {r1} until 21:18. When I left, Edmund was alive; that, too, is a fact."
+        ],
+        "requires": "c18"
+      },
+      {
+        "id": "seen",
+        "kind": "seen.nothing",
+        "text": "{p4} made the tea. I carried the tray.",
+        "variants": [
+          "{p4} made the tea. I carried the tray.",
+          "The tea was made by {p4}. I merely carried the tray; I offered, and he accepted."
+        ]
+      },
+      {
+        "id": "object",
+        "kind": "object.own",
+        "text": "The glove is mine. I was in {r5} before dinner.",
+        "variants": [
+          "The glove is mine. I was in {r5} before dinner.",
+          "Yes, that glove is mine. I looked into {r5} before dinner; I fail to see anything odd in that."
+        ],
+        "requires": "c15"
+      },
+      {
+        "id": "identity",
+        "kind": "identity",
+        "text": "I am Dr {p2}, the family doctor.",
+        "variants": [
+          "I am Dr {p2}, the family doctor.",
+          "My name is {p2}. I have been the family doctor for many years. What do you wish to clarify?"
+        ]
+      },
+      {
+        "id": "social",
+        "kind": "social",
+        "text": "Let us be precise and brief. It has been a long night for everyone.",
+        "variants": [
+          "Let us be precise and brief. It has been a long night for everyone.",
+          "Let us keep to the facts. Go ahead, ask."
+        ]
+      },
+      {
+        "id": "unknown",
+        "kind": "unknown",
+        "text": "I have no information on which to state it.",
+        "variants": [
+          "I have no information on which to state it.",
+          "On that I could only conjecture, and I do not conjecture."
+        ]
+      }
+    ],
+    "p3": [
+      {
+        "id": "alibi",
+        "kind": "alibi.pair",
+        "text": "I did the inventory with {p4} in {r4} from 21:10 to 21:25.",
+        "variants": [
+          "I did the inventory with {p4} in {r4} from 21:10 to 21:25.",
+          "I'll put it plainly: from 21:10 to 21:25 I was in {r4} with {p4}, counting the china and the larder.",
+          "From 21:10 to 21:25, {p4} and I were in {r4} with the inventory. You can check."
+        ]
+      },
+      {
+        "id": "motive",
+        "kind": "relation",
+        "text": "I depended on this post, but I didn't want Sir Edmund dead.",
+        "variants": [
+          "I depended on this post, but I didn't want Sir Edmund dead.",
+          "I worked for Sir Edmund and lived on my wages. That's what I can tell you: his death gives me nothing; it takes it away."
+        ]
+      },
+      {
+        "id": "secret",
+        "kind": "secret.weak",
+        "text": "We were lovers. I hid the letter to avoid a scandal.",
+        "variants": [
+          "We were lovers. I hid the letter to avoid a scandal.",
+          "I'll put it plainly: Sir Edmund and I were having an affair. I kept the letter back because I didn't want to lose my post."
+        ],
+        "requires": "c7"
+      },
+      {
+        "id": "link",
+        "kind": "link.none",
+        "text": "I had no access to the doctor's bag.",
+        "variants": [
+          "I had no access to the doctor's bag.",
+          "That bottle is the doctor's. I never had it in my hands; ask anyone you like."
+        ],
+        "requires": "c12"
+      },
+      {
+        "id": "timeline",
+        "kind": "timeline.record",
+        "text": "Look at the servants' register: {p4} and I, from 21:10 to 21:25, with the inventory.",
+        "variants": [
+          "Look at the servants' register: {p4} and I, from 21:10 to 21:25, with the inventory.",
+          "Check the servants' register. It's a fact, not an opinion."
+        ],
+        "requires": "c13"
+      },
+      {
+        "id": "seen",
+        "kind": "seen.pair",
+        "text": "I was in {r4} with {p4}. Nobody else came in, I'm sure of that.",
+        "variants": [
+          "I was in {r4} with {p4}. Nobody else came in, I'm sure of that.",
+          "With {p4}, in {r4}, doing the inventory. Nobody came through that door."
+        ]
+      },
+      {
+        "id": "identity",
+        "kind": "identity",
+        "text": "My name is {p3}. I'm Sir Edmund's secretary.",
+        "variants": [
+          "My name is {p3}. I'm Sir Edmund's secretary.",
+          "I'm {p3}, secretary to Sir Edmund. Tell me what you need cleared up."
+        ]
+      },
+      {
+        "id": "social",
+        "kind": "social",
+        "text": "Tell me what you need to know. I'll be brief.",
+        "variants": [
+          "Tell me what you need to know. I'll be brief.",
+          "Ask whatever you like. I'll tell you what I know, and warn you when I'm only supposing."
+        ]
+      },
+      {
+        "id": "unknown",
+        "kind": "unknown",
+        "text": "I don't know.",
+        "variants": ["I don't know.", "I don't know, and I'd rather not guess."]
+      }
+    ],
+    "p4": [
+      {
+        "id": "alibi",
+        "kind": "alibi.pair",
+        "text": "{p3} was with me in {r4} until the sound of the cup, sir.",
+        "variants": [
+          "{p3} was with me in {r4} until the sound of the cup, sir.",
+          "If I may, I shall answer in order: from 21:10 to 21:25 I was in {r4}, going through the inventory with {p3}.",
+          "I was in {r4} with {p3} from 21:10 until I heard the cup fall, sir."
+        ]
+      },
+      {
+        "id": "motive",
+        "kind": "relation",
+        "text": "I served Sir Edmund for thirty years. I had nothing to gain.",
+        "variants": [
+          "I served Sir Edmund for thirty years. I had nothing to gain.",
+          "Thirty years in Sir Edmund's service, sir. His death brings me nothing but uncertainty as to my position."
+        ]
+      },
+      {
+        "id": "secret",
+        "kind": "secret.neutral",
+        "text": "I keep the servants' register myself, sir. It conceals nothing.",
+        "variants": [
+          "I keep the servants' register myself, sir. It conceals nothing.",
+          "It is a household paper. Everything is entered, as is proper. That is all on that point."
+        ],
+        "requires": "c13"
+      },
+      {
+        "id": "link",
+        "kind": "link.none",
+        "text": "The doctor's bag was not in my charge, sir.",
+        "variants": [
+          "The doctor's bag was not in my charge, sir.",
+          "I had no access to that bottle. I never have had."
+        ],
+        "requires": "c12"
+      },
+      {
+        "id": "timeline",
+        "kind": "timeline.record",
+        "text": "It is entered in the servants' register, sir: {p3} and I, from 21:10 to 21:25.",
+        "variants": [
+          "It is entered in the servants' register, sir: {p3} and I, from 21:10 to 21:25.",
+          "Check the servants' register. In this house it is kept most scrupulously."
+        ],
+        "requires": "c13"
+      },
+      {
+        "id": "seen",
+        "kind": "seen.pair",
+        "text": "I made the tea at 21:05. The doctor insisted on taking it in himself.",
+        "variants": [
+          "I made the tea at 21:05. The doctor insisted on taking it in himself.",
+          "I made a single cup at 21:05, sir, and the doctor offered to take it in. At 21:25 I heard the cup fall; the hall clock keeps good time."
+        ]
+      },
+      {
+        "id": "identity",
+        "kind": "identity",
+        "text": "{p4}, butler of this house, sir.",
+        "variants": [
+          "{p4}, butler of this house, sir.",
+          "My name is {p4}. I have been the butler these thirty years."
+        ]
+      },
+      {
+        "id": "social",
+        "kind": "social",
+        "text": "Good evening, sir. I am listening.",
+        "variants": [
+          "Good evening, sir. I am listening.",
+          "Let us keep the forms, though the night is against us. What do you wish to know?"
+        ]
+      },
+      {
+        "id": "unknown",
+        "kind": "unknown",
+        "text": "I could not inform you on that point, sir.",
+        "variants": [
+          "I could not inform you on that point, sir.",
+          "It is not my place to know it, and I shall not presume."
+        ]
+      }
+    ],
+    "p5": [
+      {
+        "id": "alibi",
+        "kind": "alibi.pair",
+        "text": "I was with {p1} in {r3}. The photograph's got the time on it.",
+        "variants": [
+          "I was with {p1} in {r3}. The photograph's got the time on it.",
+          "Look, listen: from the end of dinner, at 21:00, till the scream, I was in {r3} with {p1}. Go on, ask.",
+          "{p1} and I were in {r3} the whole time after dinner. There's a photo. Happy now?"
+        ]
+      },
+      {
+        "id": "motive",
+        "kind": "relation",
+        "text": "I owed him money. We had a row at 20:50 and I never saw him again.",
+        "variants": [
+          "I owed him money. We had a row at 20:50 and I never saw him again.",
+          "I'll tell you straight: I owed my uncle money and he threw me out of {r1} at 20:50. Never saw him again."
+        ]
+      },
+      {
+        "id": "secret",
+        "kind": "secret.weak",
+        "text": "I was going to sell a family jewel to pay my debts.",
+        "variants": [
+          "I was going to sell a family jewel to pay my debts.",
+          "All right, yes: I meant to sell a family jewel to pay what I owe. Hadn't sold it yet. Don't make a meal of it."
+        ],
+        "requires": "c10"
+      },
+      {
+        "id": "link",
+        "kind": "link.none",
+        "text": "I had no access to the doctor's bag. Didn't even know where he kept it.",
+        "variants": [
+          "I had no access to the doctor's bag. Didn't even know where he kept it.",
+          "That bottle? No. Never. Ask anyone you like."
+        ],
+        "requires": "c12"
+      },
+      {
+        "id": "timeline",
+        "kind": "timeline.pair",
+        "text": "Look at the photo: 21:12, {p1} and me in {r3}. Didn't budge after, I'll tell you straight.",
+        "variants": [
+          "Look at the photo: 21:12, {p1} and me in {r3}. Didn't budge after, I'll tell you straight.",
+          "It's in the photograph. And we stayed put after, {p1} and me, till the scream."
+        ],
+        "requires": "c9"
+      },
+      {
+        "id": "seen",
+        "kind": "seen.pair",
+        "text": "I was in {r3} with {p1}. Nobody else came in.",
+        "variants": [
+          "I was in {r3} with {p1}. Nobody else came in.",
+          "With {p1}, in {r3}. Not a soul came through that door."
+        ]
+      },
+      {
+        "id": "identity",
+        "kind": "identity",
+        "text": "I'm {p5}, the nephew. The other Blackwood, the one nobody takes seriously.",
+        "variants": [
+          "I'm {p5}, the nephew. The other Blackwood, the one nobody takes seriously.",
+          "{p5}. I'm the nephew, you know. What do you want to ask me?"
+        ]
+      },
+      {
+        "id": "social",
+        "kind": "social",
+        "text": "Come on, ask. The sooner we start, the sooner we're done.",
+        "variants": [
+          "Come on, ask. The sooner we start, the sooner we're done.",
+          "What a night. What do you want to know?"
+        ]
+      },
+      {
+        "id": "unknown",
+        "kind": "unknown",
+        "text": "I don't know.",
+        "variants": [
+          "I don't know.",
+          "No idea. And I'm not making something up just so you'll leave me alone."
+        ]
+      }
+    ]
+  },
+  "origin": {
+    "generator": "a-mano"
+  }
+}
