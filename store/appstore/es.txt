@@ -1,0 +1,38 @@
+NOMBRE (30)
+Blackwood: casos de detectives
+
+SUBTÍTULO (30)
+Interroga, deduce y acusa
+
+TEXTO PROMOCIONAL (170)
+Cada caso es nuevo: registra las salas, interroga a cinco sospechosos con tus propias palabras y descubre quién lo hizo. Cinco mundos, sin conexión y gratis.
+
+PALABRAS CLAVE (100)
+misterio,asesinato,crimen,detective,pistas,deducción,sospechosos,investigar,enigma,mansión,puzle
+
+DESCRIPCIÓN (4000)
+Alguien ha muerto esta noche y uno de los cinco sospechosos miente. Blackwood es un juego de detectives en el que tú haces las preguntas.
+
+• Cada caso es nuevo: en cada partida cambian el culpable, el arma, la escena, los móviles y las coartadas. Puedes jugar tantas veces como quieras.
+• Interroga con tus palabras: escribe lo que quieras preguntar («¿dónde estabas a las diez?», «¿podías coger el veneno?») y cada sospechoso responde con su propia voz. Enséñales las pruebas y observa cómo reaccionan.
+• Registra las salas: informes del forense, cartas, registros de entradas, objetos fuera de su sitio… Cada pista es una pieza del rompecabezas.
+• Deduce en tu cuaderno: anota qué prueba demuestra el motivo, el acceso al arma y la coartada de cada persona. Solo una reúne las tres cosas.
+• Acusa: señala al culpable y el arma, y presenta una prueba de cada condición.
+• Cinco mundos con su propia atmósfera: una mansión inglesa bajo la lluvia en 1924, una estación espacial, una corte de fantasía, un castillo medieval aislado por la nieve y una villa de los años 30.
+• Cinco casos clásicos escritos a mano, además de los casos generados.
+• Tres dificultades, pistas cada vez más concretas si te atascas, lectura en voz alta y sonido ambiente.
+• En español y en inglés: cambia de idioma cuando quieras, incluso a mitad de un caso.
+
+Funciona sin conexión. Totalmente gratis: sin anuncios, sin compras dentro de la app y sin recoger datos.
+
+URL DE SOPORTE
+https://hernandiaz.github.io/blackwood-web/
+
+URL DE MARKETING
+https://hernandiaz.github.io/blackwood-web/
+
+POLÍTICA DE PRIVACIDAD
+https://hernandiaz.github.io/blackwood-web/privacy.html
+
+COPYRIGHT
+2026 Hernán Díaz Rodríguez

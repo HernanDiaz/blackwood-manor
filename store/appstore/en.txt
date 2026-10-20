@@ -1,0 +1,38 @@
+NAME (30)
+Blackwood: Detective Cases
+
+SUBTITLE (30)
+Question, deduce and accuse
+
+PROMOTIONAL TEXT (170)
+Every case is new: search the rooms, question five suspects in your own words and find out who did it. Five worlds, offline and free.
+
+KEYWORDS (100)
+mystery,murder,crime,detective,clues,deduction,suspects,whodunit,sleuth,noir,manor,puzzle,case,clue
+
+DESCRIPTION (4000)
+Someone has died tonight and one of the five suspects is lying. Blackwood is a detective game where you ask the questions.
+
+• Every case is new: each game changes the culprit, the weapon, the scene, the motives and the alibis. Play as many times as you like.
+• Question them in your own words: type whatever you want to ask ("where were you at ten?", "could you get to the poison?") and each suspect answers in their own voice. Show them the evidence and watch how they react.
+• Search the rooms: coroner's reports, letters, entry registers, objects out of place… Every clue is a piece of the puzzle.
+• Deduce in your notebook: note which evidence proves each person's motive, access to the weapon and alibi. Only one person has all three.
+• Accuse: name the culprit and the weapon, and present one piece of evidence for each condition.
+• Five worlds with their own atmosphere: a rain-soaked English manor in 1924, a space station, a fantasy court, a medieval castle cut off by snow and a 1930s villa.
+• Five hand-written classic cases, as well as the generated ones.
+• Three difficulties, hints that get more specific when you're stuck, reading aloud and ambient sound.
+• In English and Spanish: switch language whenever you like, even in the middle of a case.
+
+Works offline. Completely free: no ads, no in-app purchases and no data collection.
+
+SUPPORT URL
+https://hernandiaz.github.io/blackwood-web/
+
+MARKETING URL
+https://hernandiaz.github.io/blackwood-web/
+
+PRIVACY POLICY
+https://hernandiaz.github.io/blackwood-web/privacy.html
+
+COPYRIGHT
+2026 Hernán Díaz Rodríguez
