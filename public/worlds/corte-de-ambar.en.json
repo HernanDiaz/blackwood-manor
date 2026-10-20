@@ -1,0 +1,798 @@
+{
+  "format": "mundos-mundo",
+  "version": 1,
+  "lang": "en",
+  "id": "corte-de-ambar",
+  "label": "Fantasy",
+  "title": "Shadows over the Amber Court",
+  "premise": "At the Amber Court, a palace of golden stone where runes burn in the walls, the eve of the solstice is being celebrated with embassies from the forest and the fey court. That night the regent does not live to see the dawn, and the doors, sealed by magic, shut in five people he trusted.",
+  "art": {
+    "style": "high-fantasy oil painting in a Pre-Raphaelite storybook manner, warm amber candlelight, gilded golden stone, softly glowing runes, deep forest green and honey-gold palette, rich shadows"
+  },
+  "victim": {
+    "name": "Aurel of Amber",
+    "role": "regent of the Amber Court",
+    "gender": "m",
+    "description": "He had ruled the Amber Court since the old king's death, on behalf of an heir who was still a child. Shrewd, suspicious and generous only to those he found useful, he kept half the court's secrets in his correspondence and knew how to use them."
+  },
+  "people": [
+    {
+      "id": "p1",
+      "name": "Elara Robledal",
+      "role": "warden of the royal forest",
+      "gender": "f",
+      "age": 46,
+      "personality": "Serene, patient and hard to impress. She has spent her life among trees and distrusts the noise of the court. She speaks slowly and formally, in short sentences, with a calm that can pass for coldness. She reaches for images from nature (roots, branches, tracks, wind) to explain herself, and would rather keep silent than speak of anything she has not seen with her own eyes.",
+      "appearance": "A tall, lean woman of about forty-five, with sun-weathered skin and very pale green eyes. Her brown hair, streaked with grey, hangs in a long braid tied with cord. She wears a moss-green wool cloak over a worn leather tunic and bracers of carved bark.",
+      "image": "/worlds/corte-de-ambar/person-p1.webp",
+      "imagePrompt": "portrait, head and shoulders, plain dark background, tall lean woman in her mid forties, sun-weathered skin, very pale green eyes, calm stern expression, long braided brown hair streaked with grey tied with cord, moss-green wool cloak over worn leather tunic, carved bark bracers",
+      "voice": {
+        "alibi.claim": [
+          "I was in {place} from {from} to {to}. The silence there is cleaner than anywhere else in the palace.",
+          "From {from} to {to}, in {place}. Like a root: I did not move."
+        ],
+        "alibi.alone": [
+          "I was in {place} from {from} to {to}, alone. I prefer the company of trees to that of the court.",
+          "From {from} to {to} I was in {place}. No one with me; that is how I usually am."
+        ],
+        "alibi.record": [
+          "I was in {place} from {from} to {to}. When I came out I found {victim}, and the breath froze in my chest.",
+          "From {from} to {to}, in {place}. When I came out, I found {victim}. The forest does not prepare you for some things."
+        ],
+        "alibi.pair": [
+          "I was in {place} with {partner} from {from} to {to}. We were not apart for a moment of it.",
+          "From {from} to {to} I was in {place}, with {partner}. Ask; you will hear the same from both of us."
+        ],
+        "relation": [
+          "I knew {victim} when he was a boy who got lost in the forest. Then he grew up and stopped getting lost.",
+          "{victim} ruled the palace; I keep what grows around it. We dealt with each other like river and bank: with friction."
+        ],
+        "secret.culprit": [
+          "Yes. {victim} knew, and what that paper says is true. But a seed is not a tree.",
+          "I will not deny what is written; {victim} had found it out. Knowing is not the same as killing."
+        ],
+        "secret.weak": [
+          "A quarrel with {victim}, nothing more. The wind bends branches; it does not tear them out.",
+          "Yes, {victim} and I argued over that. No one sheds blood over so little."
+        ],
+        "secret.neutral": [
+          "That is paper and ink, nothing more. There is no trail to follow here.",
+          "You will find nothing in that sheet. It is as common as grass."
+        ],
+        "link.access": [
+          "I could reach {access}, yes. So could others; the doors of this palace are less jealous than they look.",
+          "I had access to {access}. I was not the only one: many hands reach the same things here."
+        ],
+        "link.none": [
+          "I never had access to {access}. My keys open fences and gates, nothing more.",
+          "I could not get at {access}. Ask whoever keeps such things."
+        ],
+        "timeline.culprit": [
+          "Perhaps I mistook the hour; within these walls you cannot see the moon. But I did not enter {scene}.",
+          "The night blurs for me, I admit. What I know is that I never set foot in {scene}."
+        ],
+        "timeline.alone": [
+          "No one saw me, that is true. I was alone, as I nearly always am.",
+          "I have no witnesses. Trees give evidence to no one."
+        ],
+        "timeline.record": [
+          "My passage is entered in {record}. Read it; ink lies less than people do.",
+          "Look in {record}. My coming and going are written there."
+        ],
+        "timeline.pair": [
+          "{Guardian} was watching the door and can tell you.",
+          "Ask {guardian}; we were seen going in and coming out."
+        ],
+        "seen.discovery": [
+          "At {time} I went into {scene} and saw {victim}. I raised the alarm; I still tremble to tell it.",
+          "I found {victim} in {scene} at {time}. I called the guard with all the breath I had."
+        ],
+        "seen.pair": [
+          "I was in {place} with {partner}. No one else came through that door; I would have heard.",
+          "With {partner}, in {place}. No one else crossed the threshold."
+        ],
+        "seen.nothing": [
+          "I saw nothing strange. And I usually see what others miss.",
+          "Nothing moved that should not have moved. Not before my eyes, at least."
+        ],
+        "object.own": [
+          "{Item} is {mine}. {It} went missing this morning in {scene}; I found no trail.",
+          "Yes, {item} is {mine}. {It} went missing this morning in {scene}."
+        ],
+        "identity": [
+          "My name is {name}. I am the {role}; I tend what grows beyond these stones.",
+          "I am {name}, the {role}. The forest has a voice at this court too, and that voice is mine."
+        ],
+        "social": [
+          "Take a deep breath before you ask. The answers are not going anywhere.",
+          "This palace smells of fear tonight. Ask what you need."
+        ],
+        "unknown": [
+          "I do not know. I will not speak of what I have not seen.",
+          "I have no answer to that. I would rather keep silent than invent."
+        ]
+      }
+    },
+    {
+      "id": "p2",
+      "name": "Bram Tinteros",
+      "role": "royal archivist",
+      "gender": "m",
+      "age": 61,
+      "personality": "Learned, nervous and pedantic. He has kept the crown's parchments for decades and turns everything into a file. He speaks formally, in long sentences full of asides, qualifications and clerk's formulas (\"be it noted\", \"strictly speaking\", \"if I may\", \"I so attest\"). He apologises often, is easily scandalised and trusts the written word over anyone's memory, his own included.",
+      "appearance": "A slight, somewhat stooped man of about sixty, with round brass-rimmed spectacles and a badly trimmed grey beard. His fingers are stained with ink. He wears a brown velvet robe with worn cuffs, and at his belt hang a ring of small keys and a quill case.",
+      "image": "/worlds/corte-de-ambar/person-p2.webp",
+      "imagePrompt": "portrait, head and shoulders, plain dark background, small slightly stooped man around sixty, round brass-rimmed spectacles, untidy grey beard, ink-stained fingers raised near his chin, anxious scholarly expression, worn brown velvet scholar's robe with frayed cuffs, ring of small keys and a quill case at his belt",
+      "voice": {
+        "alibi.claim": [
+          "I was in {place} from {from} to {to}, and be it noted that I am not in the habit of leaving my files at such an hour.",
+          "If I may be precise: from {from} to {to} I was in {place}. Not a minute before nor after, to my knowledge."
+        ],
+        "alibi.alone": [
+          "I was in {place} from {from} to {to}, alone, as befits one who works with papers rather than people.",
+          "From {from} to {to}, in {place}. Without any company whatsoever, regrettably for me."
+        ],
+        "alibi.record": [
+          "I was in {place} from {from} to {to}; it is all on record. When I came out I found {victim}, and my pulse has yet to recover.",
+          "From {from} to {to} I remained in {place}. On leaving, alas, I found {victim}. I shall not forget it as long as I live."
+        ],
+        "alibi.pair": [
+          "I was in {place} with {partner} from {from} to {to}; you may collate that with the other testimony.",
+          "From {from} to {to}, in {place}, in the company of {partner}. Two witnesses are worth more than one, say the old laws."
+        ],
+        "relation": [
+          "I served {victim} for years, with the pen and with the discretion the office demands.",
+          "{victim} consulted my archives when it suited him and forgot them when it did not. A ruler, in short."
+        ],
+        "secret.culprit": [
+          "I shall not deny what stands in writing; it would ill become an archivist. {victim} knew, yes. But a fact is not a verdict.",
+          "It is true, and {victim} had discovered it. Between that and my guilt lies an abyss, if I may."
+        ],
+        "secret.weak": [
+          "Ah, that. A minor disagreement with {victim}, duly noted. No one kills over a matter of that calibre.",
+          "Yes, {victim} and I had that little clash. I filed it, as I file everything, and gave it no further thought."
+        ],
+        "secret.neutral": [
+          "That paper is a routine document. I have hundreds like it, and not one has cost anyone a night's sleep.",
+          "Permit me: that is of no interest whatsoever. I speak with full knowledge of the matter."
+        ],
+        "link.access": [
+          "Strictly speaking, yes, I could reach {access}. Be it noted, though, that half the palace could.",
+          "I had access to {access}, I admit it. As did others, according to the record."
+        ],
+        "link.none": [
+          "I never had access to {access}. My jurisdiction ends at the archive door.",
+          "I could not get at {access}. Check the registers: my name does not appear in them."
+        ],
+        "timeline.culprit": [
+          "I may have noted the hour wrongly; even the best copyist errs. But I did not enter {scene}, that I assure you.",
+          "I must have been confused; the night was chaos. The fact remains that I never set foot in {scene}."
+        ],
+        "timeline.alone": [
+          "No one saw me, it is true. My only witnesses are the files, and they do not speak.",
+          "I was alone. I have no one to cite in my favour, and I regret it."
+        ],
+        "timeline.record": [
+          "Consult {record}, I beg you. My entry and exit are recorded with perfect exactitude.",
+          "It is all in {record}. I myself trust a register more than memory."
+        ],
+        "timeline.pair": [
+          "{Guardian} was keeping the door and will attest to what I say.",
+          "Ask {guardian}, whose memory is excellent. We were seen going in and coming out."
+        ],
+        "seen.discovery": [
+          "I entered {scene} at {time} and found {victim}. I raised the alarm at the top of my voice, as I had not done since boyhood.",
+          "At {time}, in {scene}, I saw {victim}. I ran to raise the alarm as fast as my legs allowed."
+        ],
+        "seen.pair": [
+          "I was in {place} with {partner}. No one else came in; I would have noted it, out of habit.",
+          "In {place}, alongside {partner}. No one else came through that door, I so attest."
+        ],
+        "seen.nothing": [
+          "I saw nothing worth noting, and believe me, I note everything.",
+          "Nothing out of the ordinary, I regret to say."
+        ],
+        "object.own": [
+          "{Item} is {mine}, indeed. {It} went astray this morning in {scene}, and I was about to draft a notice.",
+          "Yes, {item} is {mine}. {It} went astray this morning in {scene}; I am hopeless with anything that is not paper."
+        ],
+        "identity": [
+          "My name is {name}. I am the {role}, keeper of every parchment in this court.",
+          "I am {name}, the {role}. Whatever was written in this palace passed through my hands."
+        ],
+        "social": [
+          "Forgive me, I am still trembling. Ask, ask; I shall do my best to be precise.",
+          "What an ill-starred night. I beg a little patience with me."
+        ],
+        "unknown": [
+          "There is no record of that, neither in my archives nor in my memory.",
+          "I could not tell you. And I dislike speaking without sources."
+        ]
+      }
+    },
+    {
+      "id": "p3",
+      "name": "Iria Valdecal",
+      "role": "court alchemist",
+      "gender": "f",
+      "age": 34,
+      "personality": "Analytical, cold and drily ironic. She measures and weighs everything, people included, and cannot abide imprecision or theatrics. She speaks formally, in brief, exact sentences, with laboratory vocabulary (samples, data, reactions, boiling points). She never raises her voice; when something strikes her as absurd, she says so bluntly and without needless courtesy.",
+      "appearance": "A slender woman of about thirty-five, with an angular face and a steady grey gaze. Her black hair is pulled into a tight bun, with one singed lock by the temple. She wears a dark, close-sleeved gown beneath a reagent-stained leather apron, and amber-lensed goggles hang around her neck.",
+      "image": "/worlds/corte-de-ambar/person-p3.webp",
+      "imagePrompt": "portrait, head and shoulders, plain dark background, slender woman in her mid thirties, angular face, steady cool grey eyes, faint sardonic expression, black hair pulled into a tight bun with one singed lock at the temple, dark fitted-sleeve gown under a stained leather apron, amber-lensed goggles hanging around her neck",
+      "voice": {
+        "alibi.claim": [
+          "I was in {place} from {from} to {to}. Write it down plainly.",
+          "From {from} to {to}, in {place}. It is a datum; treat it as one."
+        ],
+        "alibi.alone": [
+          "I was in {place} from {from} to {to}, alone. I work better without anyone breathing over my flasks.",
+          "From {from} to {to}, in {place}. No one with me. I don't consider that a flaw."
+        ],
+        "alibi.record": [
+          "I was in {place} from {from} to {to}. When I came out I found {victim}. One needn't be an alchemist to see nothing could be done.",
+          "From {from} to {to}, in {place}. When I came out I found the body of {victim}."
+        ],
+        "alibi.pair": [
+          "I was in {place} with {partner} from {from} to {to}. Two concordant observations; that counts for something.",
+          "From {from} to {to}, in {place}, with {partner}. Cross-check both accounts, if you like."
+        ],
+        "relation": [
+          "{victim} funded my laboratory and haggled over every gold piece he gave me. Patronage, for want of a better word.",
+          "I knew {victim} well enough to know he trusted nothing he couldn't weigh."
+        ],
+        "secret.culprit": [
+          "What that paper says is accurate, and {victim} knew it. Accuracy is not guilt.",
+          "Yes, {victim} had found out. A fact is one thing and a conclusion another; don't mix them."
+        ],
+        "secret.weak": [
+          "A disagreement with {victim}, nothing more. Insufficient as a motive: it doesn't reach boiling point.",
+          "Yes, {victim} and I had that friction. If that were enough to kill, the court would be empty."
+        ],
+        "secret.neutral": [
+          "Ordinary paper. Nothing in it that reacts.",
+          "That proves nothing. It isn't even interesting."
+        ],
+        "link.access": [
+          "I could reach {access}, yes. So could others; widen your sample.",
+          "I had access to {access}. Not exclusively, which is what matters."
+        ],
+        "link.none": [
+          "I had no access to {access}. Check; I won't be offended.",
+          "I could never get at {access}. Look elsewhere."
+        ],
+        "timeline.culprit": [
+          "I may have erred on the time; I don't carry an hourglass about me. But I did not enter {scene}.",
+          "I admit an imprecision. I do not admit entering {scene}."
+        ],
+        "timeline.alone": [
+          "No one saw me. I was alone, and solitude leaves no witnesses.",
+          "True, I have no one to confirm it. Nor anyone to refute it."
+        ],
+        "timeline.record": [
+          "My entry and exit are logged in {record}. More reliable than my word, or anyone's.",
+          "Consult {record}. The data are there."
+        ],
+        "timeline.pair": [
+          "{Guardian} was watching the door; that testimony is worth more than mine.",
+          "Ask {guardian}: we were seen going in and coming out."
+        ],
+        "seen.discovery": [
+          "I found {victim} in {scene} at {time}. I raised the alarm at once.",
+          "At {time} I went into {scene} and saw {victim}. I alerted the guard without losing an instant."
+        ],
+        "seen.pair": [
+          "I was in {place} with {partner}. No one else came in; I'd have noticed.",
+          "In {place}, with {partner}. No one else came through that door."
+        ],
+        "seen.nothing": [
+          "I saw nothing anomalous.",
+          "Nothing that merited my attention, and my attention is demanding."
+        ],
+        "object.own": [
+          "{Item} is {mine}. {It} went missing this morning in {scene}. A lapse most unlike me.",
+          "Yes, {item} is {mine}. {It} went missing this morning in {scene}."
+        ],
+        "identity": [
+          "My name is {name}. I'm the {role}, and I'd appreciate specific questions.",
+          "I'm {name}, the {role}. I distil and transmute; no miracles."
+        ],
+        "social": [
+          "Ask. I prefer precise questions.",
+          "Let's keep calm; panic clouds any analysis."
+        ],
+        "unknown": ["I have no data on that.", "I won't speculate. Bring me evidence and we'll talk."]
+      }
+    },
+    {
+      "id": "p4",
+      "name": "Darian of Torrealta",
+      "role": "knight of the realm",
+      "gender": "m",
+      "age": 41,
+      "personality": "Laconic, gruff and loyal in his own way. A veteran of the border wars, he despises palace intrigue and wasted words. He talks to everyone bluntly, without titles or courtesies, answers in three or four words and loses patience with long questions. He embellishes nothing, never apologises, and offers his word as a knight as though it were proof enough.",
+      "appearance": "A burly man of about forty, with a square jaw, a nose broken long ago and a pale scar splitting his left eyebrow. His ash-blond hair is cropped very short and he wears a few days' stubble. He wears a mail shirt beneath a blue surcoat with the amber sun embroidered on the chest.",
+      "image": "/worlds/corte-de-ambar/person-p4.webp",
+      "imagePrompt": "portrait, head and shoulders, plain dark background, burly knight around forty, square jaw, old broken nose, pale scar splitting the left eyebrow, ash-blond hair cropped very short, a few days of stubble, hard impatient stare, chainmail under a blue surcoat embroidered with an amber sun on the chest",
+      "voice": {
+        "alibi.claim": [
+          "In {place}. From {from} to {to}.",
+          "From {from} to {to} I was in {place}. That's all."
+        ],
+        "alibi.alone": [
+          "In {place}, from {from} to {to}. Alone.",
+          "I was in {place} from {from} to {to}. Nobody with me. I don't need a nursemaid."
+        ],
+        "alibi.record": [
+          "I was in {place} from {from} to {to}. Came out and found {victim}. I've seen dead men in war; this was worse.",
+          "From {from} to {to}, in {place}. Came out and found {victim}."
+        ],
+        "alibi.pair": [
+          "In {place}, with {partner}, from {from} to {to}.",
+          "{partner} and I were in {place} from {from} to {to}. Go and ask."
+        ],
+        "relation": [
+          "I swore fealty to {victim}. I kept it.",
+          "{victim} buckled on my knight's spurs. You don't forget that, for good or ill."
+        ],
+        "secret.culprit": [
+          "It's true. {victim} knew. Doesn't mean I killed him.",
+          "Yes. {victim} had found out. Knowing isn't killing."
+        ],
+        "secret.weak": [
+          "A row with {victim}. Nothing more.",
+          "Yes, {victim} and I clashed over that. Nobody kills for that."
+        ],
+        "secret.neutral": ["That's nothing.", "Papers. Don't waste your time."],
+        "link.access": [
+          "I could reach {access}. So could others.",
+          "Yes, I had access to {access}. Like plenty of others."
+        ],
+        "link.none": ["I had no access to {access}.", "I couldn't get at {access}. Ask someone else."],
+        "timeline.culprit": [
+          "Got the hour wrong, maybe. I didn't go into {scene}.",
+          "Long night. But I didn't go into {scene}."
+        ],
+        "timeline.alone": [
+          "Nobody saw me. I was alone.",
+          "No witnesses. My word as a knight, nothing more."
+        ],
+        "timeline.record": ["Check {record}. It's there.", "It's in {record}. In and out."],
+        "timeline.pair": [
+          "Ask {guardian}. We were seen.",
+          "{Guardian} was on the door. Ask."
+        ],
+        "seen.discovery": [
+          "At {time} I went into {scene}. Saw {victim}. Raised the alarm.",
+          "Found {victim} in {scene} at {time}. Called the guard."
+        ],
+        "seen.pair": [
+          "In {place}, with {partner}. Nobody else came in.",
+          "I was with {partner} in {place}. Nobody came through that door."
+        ],
+        "seen.nothing": ["Nothing.", "Saw nothing odd."],
+        "object.own": [
+          "{Item} is {mine}. {It} went missing this morning in {scene}.",
+          "Yes. {Item} is {mine}. {It} went missing this morning in {scene}. Never found {it}."
+        ],
+        "identity": ["Name's {name}. I'm a {role}. Ask.", "I'm {name}, {role}."],
+        "social": ["Ask. Quickly.", "Speak plain and I'll answer plain."],
+        "unknown": ["Don't know.", "Know nothing about that. Next."]
+      }
+    },
+    {
+      "id": "p5",
+      "name": "Nim of the Mists",
+      "role": "envoy of the fey court",
+      "gender": "f",
+      "personality": "Charming, playful and elusive. She came with the embassy of the fey folk and regards humans with a faintly cruel curiosity, like someone watching pretty insects. She addresses the detective familiarly as \"mortal\", answers in images and half smiles, and turns questions into games. She never seems hurried or afraid, and it amuses her to be eyed with suspicion.",
+      "appearance": "She looks about twenty, though no one knows her true age. She is petite, with pale skin bearing a faint pearly sheen, pointed ears and eyes wholly violet, without whites. Her silver hair falls to her waist, woven with tiny flowers. She wears a gauze gown that changes colour with the light and a diadem of silver branches.",
+      "image": "/worlds/corte-de-ambar/person-p5.webp",
+      "imagePrompt": "portrait, head and shoulders, plain dark background, petite fey woman who looks about twenty, pale skin with a faint pearly sheen, pointed ears, fully violet eyes with no whites, sly half smile, waist-length silver hair woven with tiny flowers, iridescent gauze gown shifting colours, delicate diadem of silver branches",
+      "voice": {
+        "alibi.claim": [
+          "I was in {place} from {from} to {to}. Are you writing it down, mortal? I like watching you write.",
+          "From {from} to {to}, in {place}. A lovely little while, like so many you humans let slip by."
+        ],
+        "alibi.alone": [
+          "I was in {place} from {from} to {to}, alone. Well, alone among your kind; the moths don't count.",
+          "From {from} to {to}, in {place}, with no one. You mortals tire of me so quickly."
+        ],
+        "alibi.record": [
+          "I was in {place} from {from} to {to}. When I came out I found {victim}, and felt the whole palace hold its breath.",
+          "From {from} to {to}, in {place}. When I came out I found {victim}. Such an ugly stillness you mortals have at the end."
+        ],
+        "alibi.pair": [
+          "I was in {place} with {partner} from {from} to {to}. Go and ask; that face couldn't tell a lie if it tried.",
+          "From {from} to {to}, in {place}, with {partner}. Pleasant company, for a mortal."
+        ],
+        "relation": [
+          "{victim} greeted me with bows and feared me with his eyes. Such courteous dealings.",
+          "I brought {victim} my queen's greetings, and in return received wine and mistrust."
+        ],
+        "secret.culprit": [
+          "Ah, the paper tells the truth, and {victim} knew it. But a secret never stopped a heart, mortal.",
+          "Yes, {victim} had found out. And? Knowing things about someone isn't killing them."
+        ],
+        "secret.weak": [
+          "That? A little thorn between {victim} and me. Nobody uproots a rosebush over one thorn.",
+          "Yes, {victim} displeased me over that. My people don't kill over grudges; we keep them."
+        ],
+        "secret.neutral": [
+          "What a dreary paper. Are you really showing it to me?",
+          "Nothing there, mortal. Not even a shabby spell."
+        ],
+        "link.access": [
+          "Of course I could reach {access}. So could others; in this palace, doors open for a smile.",
+          "Yes, I had access to {access}. So did others; don't look at me like that."
+        ],
+        "link.none": [
+          "I never had access to {access}. Your iron locks repel me, mortal.",
+          "I couldn't get at {access}. Ask those with keys; I only have charms."
+        ],
+        "timeline.culprit": [
+          "Mortal time is so muddled... Perhaps I got the hour wrong. But I didn't go into {scene}.",
+          "Your clocks always deceive me. That doesn't mean I went into {scene}."
+        ],
+        "timeline.alone": [
+          "No one saw me, it's true. I was alone, like a firefly in a jar.",
+          "Not one witness, mortal. Not even an owl."
+        ],
+        "timeline.record": [
+          "Look at {record}, mortal. Your ink will say just what I say.",
+          "It's in {record}. Even your books know me by now."
+        ],
+        "timeline.pair": [
+          "Ask {guardian}. We were seen going in and out; I was watched every moment.",
+          "{Guardian} was watching the door, and mistrusts me, so I was watched very closely."
+        ],
+        "seen.discovery": [
+          "I went into {scene} at {time} and found {victim}. I screamed, and even I was frightened by my voice.",
+          "At {time}, in {scene}, I saw {victim}. I raised the alarm the way you mortals do: shrieking."
+        ],
+        "seen.pair": [
+          "I was in {place} with {partner}. No one else came in, and I can hear even the mice.",
+          "With {partner}, in {place}. No one else came through that door."
+        ],
+        "seen.nothing": [
+          "I saw nothing, mortal. And my eyes see in the dark.",
+          "Nothing out of the ordinary. Ordinary for here, I mean."
+        ],
+        "object.own": [
+          "Oh! {Item} is {mine}. {It} vanished this morning in {scene}; I thought the hobgoblins had stolen {it}.",
+          "Yes, {item} is {mine}. {It} went missing this morning in {scene}."
+        ],
+        "identity": [
+          "My name is {name}. I'm the {role}, and I come from farther than your maps can reach.",
+          "I'm {name}, the {role}. Your realm and mine speak to each other through me."
+        ],
+        "social": [
+          "What tired eyes, mortal. Ask whatever you like.",
+          "I like questions. Answers, not so much."
+        ],
+        "unknown": [
+          "That I don't know. And if I did, perhaps I wouldn't tell you.",
+          "I have no answer to that. Try another question, mortal."
+        ]
+      }
+    }
+  ],
+  "rooms": [
+    {
+      "id": "r1",
+      "name": "Throne room",
+      "article": "the",
+      "description": "Columns of golden stone hold up a vault where runes of warm light burn. The amber throne catches the glow of the braziers, and the air smells of resin incense.",
+      "ambience": [
+        "As you enter, the echo of your footsteps climbs the columns and is slow to return. The braziers crackle, and now and then a spark leaps onto the golden flagstones.",
+        "The runes in the vault pulse slowly, like the breathing of a sleeper. From the banqueting hall drifts fey music still, so faint it seems a memory."
+      ],
+      "tags": [],
+      "image": "/worlds/corte-de-ambar/room-r1.webp",
+      "imagePrompt": "interior, no people, wide shot, vast throne hall of golden stone columns, vaulted ceiling inscribed with softly glowing runes, carved amber throne on a dais catching the light of bronze braziers, drifting resin incense smoke"
+    },
+    {
+      "id": "r2",
+      "name": "Royal archive",
+      "article": "the",
+      "description": "Shelves to the ceiling laden with sealed scrolls and bronze-clasped codices. It smells of dust, sealing wax and oak-gall ink, and candles sputter under glass bells.",
+      "ambience": [
+        "As you enter, the silence is so thick you can hear a scroll settle on its shelf. A cold draught barely stirs the flames beneath the glass bells.",
+        "It smells of old vellum and beeswax. In some high corner, woodworm works at the shelves with a patient ticking."
+      ],
+      "tags": [],
+      "image": "/worlds/corte-de-ambar/room-r2.webp",
+      "imagePrompt": "interior, no people, wide shot, royal archive with floor-to-ceiling wooden shelves of sealed scrolls and bronze-clasped codices, rolling ladder, reading desk with inkwells, candles under glass bells, dusty golden light"
+    },
+    {
+      "id": "r3",
+      "name": "Enchanted garden",
+      "article": "the",
+      "description": "Mossy paths wind between roses that open only at night and fountains that sing softly. Moonflowers glow with their own light, and the air smells of jasmine and damp earth.",
+      "ambience": [
+        "As you enter, the fountains' song changes key, as if remarking on your arrival. The earth is damp and cool, and the moss muffles every sound.",
+        "A white moth flits from moonflower to moonflower, scattering a faint silver shimmer. Above the walls, the wind carries the scent of pine."
+      ],
+      "tags": [],
+      "image": "/worlds/corte-de-ambar/room-r3.webp",
+      "imagePrompt": "exterior night garden enclosed by golden palace walls, no people, wide shot, mossy winding paths, night-blooming roses, luminous pale moonflowers glowing on their own, small singing stone fountains, silver mist"
+    },
+    {
+      "id": "r4",
+      "name": "Alchemical laboratory",
+      "article": "the",
+      "description": "Copper alembics bubble over blue flames among jars of salts in every colour. It smells of sulphur and burnt herbs, and formulas are chalked on the walls.",
+      "ambience": [
+        "As you enter, the heat dampens your brow. An alembic gives a shrill whistle and falls silent again, and a fine dust hangs in the air, catching at your throat.",
+        "The jars of salts tint the gloom with green and violet glints. Beneath the constant bubbling comes the low hum of the blue flames."
+      ],
+      "tags": [],
+      "image": "/worlds/corte-de-ambar/room-r4.webp",
+      "imagePrompt": "interior, no people, wide shot, alchemist laboratory under a stone vault, copper alembics bubbling over blue flames, shelves of glass jars with colourful salts, chalk formulas and diagrams on the walls, hanging dried herbs, faint yellow vapour"
+    },
+    {
+      "id": "r5",
+      "name": "West gallery",
+      "article": "the",
+      "description": "A long balcony with a gilded balustrade looks down on the courtyard from a great height. Wind blows in through the tall windows and stirs the banners, and far below the wet flagstones gleam.",
+      "ambience": [
+        "As you enter, the wind tugs at your cloak and cracks the banners like a ship's sails. Far below in the courtyard, a sentry shifts his spear to the other shoulder.",
+        "It smells of wet stone and of rain coming down off the mountain. From here the courtyard torches look like tiny embers, and the cold creeps into your fingers."
+      ],
+      "tags": ["elevated"],
+      "image": "/worlds/corte-de-ambar/room-r5.webp",
+      "imagePrompt": "interior, no people, wide shot, long high gallery with a gilded stone balustrade overlooking a courtyard far below, tall open arched windows, wind-blown heraldic banners with an amber sun, wet flagstones glinting in the courtyard at night"
+    },
+    {
+      "id": "r6",
+      "name": "Oracle's tower",
+      "article": "the",
+      "description": "A circular chamber at the top of the tower, with an obsidian mirror at its centre and celestial charts painted on the dome. The night's cold pours in through the open window, and the whole kingdom lies in view.",
+      "ambience": [
+        "As you enter, your breath turns to mist. The obsidian mirror gives back no reflection, only a still blackness that seems deeper than the tower itself.",
+        "Beneath the celestial charts of the dome, the wind whistles one long note at the window. Far below, the lights of the kingdom go out village by village."
+      ],
+      "tags": ["elevated"],
+      "image": "/worlds/corte-de-ambar/room-r6.webp",
+      "imagePrompt": "interior, no people, wide shot, circular chamber at the top of a tall tower, black obsidian scrying mirror on a pedestal, dome painted with celestial charts and constellations, large open window showing a moonlit kingdom far below, cold blue night air"
+    }
+  ],
+  "staff": {
+    "guardian": "the chamberlain",
+    "record": "the watch ledger",
+    "report": "Royal physician's report"
+  },
+  "weapons": [
+    {
+      "method": "knife",
+      "label": "Dagger",
+      "cause": "A narrow, curved blade went in beneath the ribs and reached the heart.",
+      "weapon": "the curved dagger",
+      "access": "the banquet's case of daggers",
+      "seen": "the curved dagger",
+      "device": false,
+      "phrase": "with the curved dagger",
+      "image": "/worlds/corte-de-ambar/weapon-knife.webp",
+      "imagePrompt": "single object close-up, neutral background, ornate dagger with a narrow curved blade and an amber-inlaid gold hilt"
+    },
+    {
+      "method": "blunt",
+      "label": "Ceremonial mace",
+      "cause": "A blow from a heavy, flanged object caved in the bone of the temple.",
+      "weapon": "the ceremonial mace",
+      "access": "the herald's ceremonial mace",
+      "device": false,
+      "phrase": "with the ceremonial mace",
+      "image": "/worlds/corte-de-ambar/weapon-blunt.webp",
+      "imagePrompt": "single object close-up, neutral background, heavy gilded ceremonial flanged mace with a carved amber sun at the head"
+    },
+    {
+      "method": "rope",
+      "label": "Silk cord",
+      "cause": "A thin braided cord was pulled tight about the neck until he suffocated; the furrow still bears the pattern of the braid.",
+      "weapon": "the golden silk cord",
+      "access": "the cords of the throne-room tapestries",
+      "device": false,
+      "phrase": "by strangling him with the golden silk cord",
+      "image": "/worlds/corte-de-ambar/weapon-rope.webp",
+      "imagePrompt": "single object close-up, neutral background, coiled braided golden silk tapestry cord with a tasselled end"
+    },
+    {
+      "method": "drink",
+      "label": "Poisoned wine",
+      "cause": "Bluish lips and nails and a bitter breath betray aconite dissolved in wine.",
+      "weapon": "the goblet of spiced wine",
+      "access": "the regent's spiced wine",
+      "seen": "the jug of spiced wine",
+      "device": false,
+      "phrase": "with a goblet of spiced wine laced with aconite",
+      "image": "/worlds/corte-de-ambar/weapon-drink.webp",
+      "imagePrompt": "single object close-up, neutral background, ornate gold goblet set with amber stones, half full of dark red spiced wine"
+    },
+    {
+      "method": "sword",
+      "label": "Longsword",
+      "cause": "A broad-bladed thrust ran him clean through the chest.",
+      "weapon": "the longsword of the guard",
+      "access": "the guard's weapon rack",
+      "seen": "the longsword of the guard",
+      "device": false,
+      "phrase": "with the longsword of the guard",
+      "image": "/worlds/corte-de-ambar/weapon-sword.webp",
+      "imagePrompt": "single object close-up, neutral background, knightly longsword with a broad polished blade, leather-wrapped grip and an amber sun pommel"
+    },
+    {
+      "method": "crossbow",
+      "label": "Crossbow",
+      "cause": "A bolt loosed at close range pierced the chest and lodged between the ribs.",
+      "weapon": "the hunting crossbow",
+      "access": "the royal armourer's crossbows",
+      "seen": "the hunting crossbow",
+      "device": false,
+      "phrase": "with a bolt from the hunting crossbow",
+      "image": "/worlds/corte-de-ambar/weapon-crossbow.webp",
+      "imagePrompt": "single object close-up, neutral background, carved wooden hunting crossbow with brass fittings and a single bolt loaded"
+    },
+    {
+      "method": "fall",
+      "label": "Fall",
+      "cause": "A fall from a great height: skull and hip shattered on the flagstones, with no other wounds.",
+      "weapon": "the window bolt",
+      "access": "the window bolt",
+      "device": true,
+      "phrase": "by pushing him out through the open window",
+      "image": "/worlds/corte-de-ambar/weapon-fall.webp",
+      "imagePrompt": "single object close-up, neutral background, heavy wrought brass window bolt on an arched leaded window frame, slid open"
+    },
+    {
+      "method": "artifact",
+      "label": "Runic amulet",
+      "cause": "A discharge of runic magic left a rune-shaped burn on the chest and stopped the heart.",
+      "weapon": "the rune amulet",
+      "access": "the cabinet of runic relics",
+      "seen": "the rune amulet",
+      "device": false,
+      "phrase": "with a blast from the rune amulet",
+      "image": "/worlds/corte-de-ambar/weapon-artifact.webp",
+      "imagePrompt": "single object close-up, neutral background, round amber amulet on a gold chain, engraved with runes that glow with crackling golden light"
+    },
+    {
+      "method": "alchemy",
+      "label": "Alchemical elixir",
+      "cause": "An alchemical distillate thickened the blood: blackened veins beneath the skin and a smell of burnt almonds in the mouth.",
+      "weapon": "the vial of golden elixir",
+      "access": "the distillate cabinet in the alchemical laboratory",
+      "seen": "the vial of golden elixir",
+      "device": false,
+      "phrase": "with a poisoned alchemical elixir",
+      "image": "/worlds/corte-de-ambar/weapon-alchemy.webp",
+      "imagePrompt": "single object close-up, neutral background, small faceted crystal vial with a wax-sealed stopper, filled with a shimmering golden liquid"
+    }
+  ],
+  "items": [
+    {
+      "noun": "oak-leaf brooch",
+      "gender": "m",
+      "image": "/worlds/corte-de-ambar/item-1.webp",
+      "imagePrompt": "single object close-up, neutral background, bronze brooch shaped like an oak leaf with a tiny acorn"
+    },
+    {
+      "noun": "griffin feather",
+      "gender": "f",
+      "image": "/worlds/corte-de-ambar/item-2.webp",
+      "imagePrompt": "single object close-up, neutral background, long golden-brown griffin feather with a sharpened quill tip"
+    },
+    {
+      "noun": "signet ring",
+      "gender": "m",
+      "image": "/worlds/corte-de-ambar/item-3.webp",
+      "imagePrompt": "single object close-up, neutral background, heavy silver signet ring engraved with a small heraldic sun"
+    },
+    {
+      "noun": "falconry glove",
+      "gender": "m",
+      "image": "/worlds/corte-de-ambar/item-4.webp",
+      "imagePrompt": "single object close-up, neutral background, thick worn leather falconry glove with embroidered cuff"
+    },
+    {
+      "noun": "moonsilk ribbon",
+      "gender": "f",
+      "image": "/worlds/corte-de-ambar/item-5.webp",
+      "imagePrompt": "single object close-up, neutral background, coiled silvery silk ribbon with a soft pearly glow"
+    }
+  ],
+  "motives": [
+    "Had forged the old king's will to seize crown lands. {victim} had discovered the false seal and meant to lay it before the council the next day.",
+    "Had sold the lords of the north the pattern of the runes that guard the walls. {victim} held the letter that proved it and meant to order an arrest the next day.",
+    "Had stolen the sacred amber stones from the treasury and sold them to smugglers. {victim} had ordered the treasury recounted and meant to denounce the theft the next day.",
+    "Had secretly sworn fealty to the Queen of the Forest against the crown. {victim} had learnt of it from a spy and meant to decree banishment the next day.",
+    "Had slowly poisoned the old chancellor to take the chancellor's place at court. {victim} had gathered the servants' testimony and meant to sit in judgement the next day."
+  ],
+  "documents": {
+    "weak": [
+      {
+        "title": "The regent's reprimand",
+        "text": "{victim} rebukes {person} in writing for missing the new-moon audience without notice, and recalls the duties owed to the court."
+      },
+      {
+        "title": "Gaming debt",
+        "text": "A note from {victim}: {person} owes him some gold coins lost at dice during the last banquet. He expects to collect before the harvest."
+      },
+      {
+        "title": "Petition denied",
+        "text": "{victim} rejects the petition of {person} for larger chambers in the north wing of the palace."
+      },
+      {
+        "title": "Allowance cut",
+        "text": "An order signed by {victim}: the allowance of candles, ink and firewood granted by the crown to {person} is reduced for the winter."
+      }
+    ],
+    "neutral": [
+      {
+        "title": "Banquet seating",
+        "text": "Seating plan for the solstice banquet, signed by {victim}. {person} is placed at the long table, among many other guests."
+      },
+      {
+        "title": "Pantry tally",
+        "text": "A tally of casks, wax and spices sent to {victim}. {person} appears only as a witness to the count."
+      },
+      {
+        "title": "Solstice greetings",
+        "text": "{person} wishes {victim} a happy solstice, a mild winter and an abundant harvest."
+      }
+    ]
+  },
+  "clueArt": {
+    "report": {
+      "image": "/worlds/corte-de-ambar/clue-report.webp",
+      "imagePrompt": "single object close-up, neutral background, physician's parchment report with an anatomical sketch and a red wax seal, illegible handwriting, no readable text"
+    },
+    "testimony": {
+      "image": "/worlds/corte-de-ambar/clue-testimony.webp",
+      "imagePrompt": "single object close-up, neutral background, folded parchment sworn statement with a quill and a small amber seal, illegible handwriting, no readable text"
+    },
+    "ledger": {
+      "image": "/worlds/corte-de-ambar/clue-ledger.webp",
+      "imagePrompt": "single object close-up, neutral background, thick leather-bound watch ledger open on a lectern with columns of entries and a ribbon bookmark, illegible handwriting, no readable text"
+    },
+    "document": {
+      "image": "/worlds/corte-de-ambar/clue-document.webp",
+      "imagePrompt": "single object close-up, neutral background, rolled royal letter half open with a broken golden wax seal and a faint glowing rune in the margin, illegible handwriting, no readable text"
+    }
+  },
+  "openings": {
+    "arrivals": [
+      "You cross the drawbridge as the last solstice bell dies away. The walls of golden stone still hold the warmth of the day, and the runes on the great gates kindle as you pass, one by one, as though they knew you.",
+      "A page with a torch awaits you in the courtyard and says not a word. He leads you through corridors where the amber in the walls catches the light like honey, while far off plays a fey music no one has dared to interrupt.",
+      "You arrive on horseback under a fine rain that smells of resin. The sentries lower their spears at the sight of the royal seal on your letter, and the palace gates close behind you with a rumble of stone on stone.",
+      "Your carriage halts at the foot of the palace steps, where the festival garlands still hang. Inside, the tables are still laid and the candles lit, as if the whole court had frozen in the middle of a toast."
+    ],
+    "tensions": [
+      "The runes have sealed the palace gates until dawn: no one comes in and no one goes out. Whoever did it is still here, within these golden walls.",
+      "Rumours are already running through the corridors, and each one points at someone different. You have until the dawn light touches the throne to sift the truth from the poison of wagging tongues.",
+      "Five people wait in separate rooms, and every one of them had something to lose. The whole palace is holding its breath."
+    ]
+  },
+  "night": [
+    "The fey music in the banqueting hall falls silent at last, and the palace is left alone with the crackle of the braziers and the wind at the windows.",
+    "A fine rain begins to fall, smelling of resin. On the great gates, the runes of the seal burn steady: no one will leave before dawn.",
+    "The banquet candles burn down on the laid tables. A servant goes by snuffing them one by one, not daring to raise his eyes.",
+    "The wind rises and sets the tower shutters banging. In the corridors, the servants' whispers break off sharply as you pass.",
+    "Thunder rolls over the royal forest. The runes in the walls flicker for an instant, and it seems no one in the whole palace breathes.",
+    "The storm lashes the walls in full fury, and the throne braziers all but die. The night seems endless, and someone within these walls is counting every moment."
+  ],
+  "epilogues": [
+    "You gather the court beneath the vault of the throne room as the runes begin to pale. When you speak the name of {culprit}, no one says a word; only the chamberlain steps forward and strikes the flagstones with the staff of office. {culprit} offers no resistance and follows the guard down the corridor; the echo of their footsteps is slow to fade. At dawn the seal on the gates melts away like frost, and the first light of the solstice touches the amber throne.",
+    "The chamberlain hears your reasoning without interrupting, the watch ledger clutched to his chest. When you finish, he closes his eyes for a moment and orders the guard to find {culprit}. They come upon {culprit} by a tall window, watching the rain, with trembling hands as the shackles close. No one enters {scene} again that night. With the first light the storm withdraws towards the forest, and the runes on the gates go out one by one, as if the palace were at last letting out its breath.",
+    "You lay out what the night has taught you before the five people the magic shut in. When you finish, every gaze turns to {culprit} at once, like leaves turned by the wind. The chamberlain strikes the floor with his staff and the guard surrounds {culprit}, who neither begs for mercy nor looks away. Outside, the sky pales above the walls. When the dawn light reaches the throne, the whole court knows that the death of {victim} will not go unanswered."
+  ],
+  "look": {
+    "bg": "#160f1d",
+    "panel": "#21182b",
+    "line": "#3e3050",
+    "accent": "#e8b84a",
+    "text": "#f0e6d6",
+    "muted": "#b4a6c0",
+    "effect": "dust"
+  }
+}
