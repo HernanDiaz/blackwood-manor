@@ -9,6 +9,8 @@ import { extraTraining4 } from './question-bank-train-4.mjs';
 import { extraTraining5 } from './question-bank-train-5.mjs';
 import { extraTraining6 } from './question-bank-train-6.mjs';
 import { extraTraining7 } from './question-bank-train-7.mjs';
+import { splitBank as splitEnglishBank } from './question-bank.en.mjs';
+import { extraTraining as englishTraining } from './question-bank-train.en.mjs';
 
 export const plainQuestion = s =>
   s
@@ -19,8 +21,9 @@ export const plainQuestion = s =>
     .replace(/\s+/g, ' ')
     .trim();
 
-export function trainingQuestions() {
-  const { train, test } = splitBank();
+// lang: 'es' (the default) or 'en', the English bank and its training batch.
+export function trainingQuestions(lang = 'es') {
+  const { train, test } = (lang === 'en' ? splitEnglishBank : splitBank)();
   const blocked = new Set(test.map(q => plainQuestion(q.question)));
   const seen = new Set(),
     out = [];
@@ -31,15 +34,17 @@ export function trainingQuestions() {
     out.push({ question, topic, group });
   };
   for (const q of train) add(q.question, q.topic, q.group);
-  for (const extra of [
-    extraTraining,
-    extraTraining2,
-    extraTraining3,
-    extraTraining4,
-    extraTraining5,
-    extraTraining6,
-    extraTraining7,
-  ])
+  for (const extra of lang === 'en'
+    ? [englishTraining]
+    : [
+        extraTraining,
+        extraTraining2,
+        extraTraining3,
+        extraTraining4,
+        extraTraining5,
+        extraTraining6,
+        extraTraining7,
+      ])
     for (const [topic, list] of Object.entries(extra)) for (const q of list) add(q, topic, 'extra');
   return { train: out, test };
 }

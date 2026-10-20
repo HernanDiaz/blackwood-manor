@@ -15,40 +15,97 @@ const nameOf = (c, id) => c.people.find(p => p.id === id)?.name || id;
 const clueOf = (c, id) => c.clues.find(x => x.id === id);
 const where = (c, clue) => placePhrase(c.rooms.find(r => r.id === clue.room));
 
+// What the notebook and the hints say, in each language; the case decides which.
+const words = {
+  es: {
+    invalid: 'Anotación no válida.',
+    onlyFound: 'Solo puedes anotar pruebas que hayas encontrado.',
+    quote: title => '«' + title + '»',
+    motiveYes: (t, n) => `${t} muestra un motivo de ${n}.`,
+    motiveNo: (t, n) => `${t} no muestra ningún motivo de ${n}.`,
+    accessYes: (t, n) => `${t} demuestra que ${n} podía llegar al arma.`,
+    accessNo: (t, n) => `${t} no demuestra que ${n} pudiera llegar al arma.`,
+    refuted: (t, n) => `${t} desmiente la coartada de ${n}.`,
+    confirmed: (t, n) => `${t} confirma la coartada de ${n}.`,
+    neither: (t, n) =>
+      `${t} no confirma ni desmiente la coartada de ${n}. Compárala con lo que dice sobre dónde estaba.`,
+    cause: (scene, victim) =>
+      `Empieza por la escena del crimen, ${scene}: ahí se ve cómo murió ${victim}.`,
+    inspect: (title, where) => `Inspecciona «${title}», en ${where}.`,
+    motive: victim =>
+      `Busca quién tenía motivos: cartas, notas y papeles. Varias personas tenían roces con ${victim}, pero solo alguien tenía algo grave que perder.`,
+    search: where => `Registra ${where}.`,
+    read: (title, where) => `Lee «${title}», en ${where}.`,
+    access: weapon => `Averigua quién podía llegar a ${weapon}: no todo el mundo tenía acceso.`,
+    alibi:
+      'Pregunta a cada persona dónde estaba durante el crimen y busca registros o testigos que lo confirmen o lo desmientan.',
+    compare: (title, where) =>
+      `Lee «${title}», en ${where}, y compárala con la coartada de cada uno.`,
+    notebook:
+      'Ya tienes las pruebas necesarias. Anota en el cuaderno quién tenía motivo, quién podía llegar al arma y qué coartadas se sostienen.',
+    onlyOne:
+      'Solo una persona tiene a la vez motivo, acceso al arma y una coartada desmentida. Las demás fallan en al menos una de las tres.',
+    look: title => `Fíjate en «${title}»: desmiente la coartada de alguien.`,
+    accuse:
+      'Tu cuaderno señala a una sola persona. Ve a Acusar y adjunta una prueba de cada condición.',
+  },
+  en: {
+    invalid: 'That entry is not valid.',
+    onlyFound: 'You can only note evidence you have found.',
+    quote: title => '“' + title + '”',
+    motiveYes: (t, n) => `${t} shows a motive for ${n}.`,
+    motiveNo: (t, n) => `${t} shows no motive for ${n}.`,
+    accessYes: (t, n) => `${t} proves that ${n} could reach the weapon.`,
+    accessNo: (t, n) => `${t} does not prove that ${n} could reach the weapon.`,
+    refuted: (t, n) => `${t} breaks the alibi of ${n}.`,
+    confirmed: (t, n) => `${t} confirms the alibi of ${n}.`,
+    neither: (t, n) =>
+      `${t} neither confirms nor breaks the alibi of ${n}. Compare it with what they say about where they were.`,
+    cause: (scene, victim) =>
+      `Start at the scene of the crime, ${scene}: that is where you can see how ${victim} died.`,
+    inspect: (title, where) => `Inspect “${title}”, in ${where}.`,
+    motive: victim =>
+      `Find out who had a motive: letters, notes and papers. Several people had their quarrels with ${victim}, but only one had something serious to lose.`,
+    search: where => `Search ${where}.`,
+    read: (title, where) => `Read “${title}”, in ${where}.`,
+    access: weapon => `Find out who could reach ${weapon}: not everyone had access.`,
+    alibi:
+      'Ask each person where they were during the crime, and look for registers or witnesses that confirm or break their word.',
+    compare: (title, where) => `Read “${title}”, in ${where}, and compare it with each alibi.`,
+    notebook:
+      'You have the evidence you need. Note in the notebook who had a motive, who could reach the weapon and which alibis hold.',
+    onlyOne:
+      'Only one person has a motive, access to the weapon and a broken alibi all at once. Everyone else fails on at least one of the three.',
+    look: title => `Look closely at “${title}”: it breaks somebody's alibi.`,
+    accuse:
+      'Your notebook points to a single person. Go to Accuse and attach one piece of evidence for each condition.',
+  },
+};
+const say = c => words[c.lang] || words.es;
+
 // Whether a found clue proves a condition for a person, and with what result.
 export function checkEntry(c, state, person, condition, clueId) {
   const clue = clueOf(c, clueId),
-    name = nameOf(c, person);
+    name = nameOf(c, person),
+    w = say(c);
   if (!c.people.some(p => p.id === person) || !conditions.includes(condition))
-    return { ok: false, message: 'Anotación no válida.' };
-  if (!clue || !state.found.includes(clueId))
-    return { ok: false, message: 'Solo puedes anotar pruebas que hayas encontrado.' };
+    return { ok: false, message: w.invalid };
+  if (!clue || !state.found.includes(clueId)) return { ok: false, message: w.onlyFound };
   const fact = clue.fact,
-    title = '«' + clue.title + '»';
+    title = w.quote(clue.title);
   if (condition === 'motive')
     return fact.type === 'motive' && fact.person === person
-      ? { ok: true, message: `${title} muestra un motivo de ${name}.` }
-      : { ok: false, message: `${title} no muestra ningún motivo de ${name}.` };
+      ? { ok: true, message: w.motiveYes(title, name) }
+      : { ok: false, message: w.motiveNo(title, name) };
   if (condition === 'access')
     return fact.type === 'access' && fact.people.includes(person)
-      ? { ok: true, message: `${title} demuestra que ${name} podía llegar al arma.` }
-      : { ok: false, message: `${title} no demuestra que ${name} pudiera llegar al arma.` };
+      ? { ok: true, message: w.accessYes(title, name) }
+      : { ok: false, message: w.accessNo(title, name) };
   if (c.analysis.refutedBy[person]?.includes(clueId))
-    return {
-      ok: true,
-      verdict: 'refuted',
-      message: `${title} desmiente la coartada de ${name}.`,
-    };
+    return { ok: true, verdict: 'refuted', message: w.refuted(title, name) };
   if (c.analysis.confirmedBy[person]?.includes(clueId))
-    return {
-      ok: true,
-      verdict: 'confirmed',
-      message: `${title} confirma la coartada de ${name}.`,
-    };
-  return {
-    ok: false,
-    message: `${title} no confirma ni desmiente la coartada de ${name}. Compárala con lo que dice sobre dónde estaba.`,
-  };
+    return { ok: true, verdict: 'confirmed', message: w.confirmed(title, name) };
+  return { ok: false, message: w.neither(title, name) };
 }
 export function noteEntry(c, state, person, condition, clueId) {
   const result = checkEntry(c, state, person, condition, clueId);
@@ -96,17 +153,15 @@ export const emptyGuidance = () => ({ notebook: {}, help: { stage: '', level: 0,
 
 // The hints of the stage the player is in, from vague to concrete.
 function stageOf(c, state) {
-  const seen = ids => ids.some(id => state.found.includes(id)),
+  const w = say(c),
+    seen = ids => ids.some(id => state.found.includes(id)),
     first = ids => clueOf(c, ids[0]),
     cause = c.clues.filter(x => ['cause', 'weapon'].includes(x.fact.type)).map(x => x.id);
   if (!seen(cause)) {
     const clue = first(cause);
     return {
       stage: 'cause',
-      hints: [
-        `Empieza por la escena del crimen, ${placePhrase(c.scene)}: ahí se ve cómo murió ${c.victim.name}.`,
-        `Inspecciona «${clue.title}», en ${where(c, clue)}.`,
-      ],
+      hints: [w.cause(placePhrase(c.scene), c.victim.name), w.inspect(clue.title, where(c, clue))],
     };
   }
   const [motive, access, alibi] = c.proof;
@@ -115,9 +170,9 @@ function stageOf(c, state) {
     return {
       stage: 'motive',
       hints: [
-        `Busca quién tenía motivos: cartas, notas y papeles. Varias personas tenían roces con ${c.victim.name}, pero solo alguien tenía algo grave que perder.`,
-        `Registra ${where(c, clue)}.`,
-        `Lee «${clue.title}», en ${where(c, clue)}.`,
+        w.motive(c.victim.name),
+        w.search(where(c, clue)),
+        w.read(clue.title, where(c, clue)),
       ],
     };
   }
@@ -126,9 +181,9 @@ function stageOf(c, state) {
     return {
       stage: 'access',
       hints: [
-        `Averigua quién podía llegar a ${c.method.weapon}: no todo el mundo tenía acceso.`,
-        `Registra ${where(c, clue)}.`,
-        `Lee «${clue.title}», en ${where(c, clue)}.`,
+        w.access(c.method.weapon),
+        w.search(where(c, clue)),
+        w.read(clue.title, where(c, clue)),
       ],
     };
   }
@@ -136,29 +191,19 @@ function stageOf(c, state) {
     const clue = first(alibi);
     return {
       stage: 'alibi',
-      hints: [
-        'Pregunta a cada persona dónde estaba durante el crimen y busca registros o testigos que lo confirmen o lo desmientan.',
-        `Registra ${where(c, clue)}.`,
-        `Lee «${clue.title}», en ${where(c, clue)}, y compárala con la coartada de cada uno.`,
-      ],
+      hints: [w.alibi, w.search(where(c, clue)), w.compare(clue.title, where(c, clue))],
     };
   }
   if (notebookSuspects(c, state).length !== 1) {
     const clue = first(alibi);
     return {
       stage: 'notebook',
-      hints: [
-        'Ya tienes las pruebas necesarias. Anota en el cuaderno quién tenía motivo, quién podía llegar al arma y qué coartadas se sostienen.',
-        'Solo una persona tiene a la vez motivo, acceso al arma y una coartada desmentida. Las demás fallan en al menos una de las tres.',
-        `Fíjate en «${clue.title}»: desmiente la coartada de alguien.`,
-      ],
+      hints: [w.notebook, w.onlyOne, w.look(clue.title)],
     };
   }
   return {
     stage: 'accuse',
-    hints: [
-      'Tu cuaderno señala a una sola persona. Ve a Acusar y adjunta una prueba de cada condición.',
-    ],
+    hints: [w.accuse],
   };
 }
 // The next hint: the first of a new stage, or a more concrete one in the same stage.

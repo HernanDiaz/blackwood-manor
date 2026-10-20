@@ -2,8 +2,8 @@
 // deep learning, small enough to ship inside a phone game.
 //  - Entity slots (text adventure parsers): weapons, personal objects, rooms and times become
 //    ARMA, OBJETO, SALA and HORA, so "¿tocaste la daga?" and "¿tocaste la ballesta?" match.
-//  - Light Spanish stemming: words are cut to their first letters, so "guardaba" and
-//    "guardaste" share a feature.
+//  - Light stemming: words are cut to their first letters, so "guardaba" and "guardaste"
+//    share a feature. Spanish by default; English with its own word lists ({ lang: 'en' }).
 //  - A statistical classifier (multinomial Naive Bayes or logistic regression) or nearest
 //    examples by cosine similarity, trained on labelled example questions.
 const weapons =
@@ -12,35 +12,57 @@ const objects =
   'panuelo panuelos guante guantes pluma plumas pitillera rosario broche colgante auricular libreta bolsa anillo reloj boton gafas llavero';
 const rooms =
   'biblioteca despacho comedor cocina invernadero vestibulo salon taller forja almacen despensa bodega granero deposito enfermeria botica dispensario refectorio cantina archivo scriptorium dormitorio celda celdas aposentos camarote habitacion cuarto sala torre armeria capilla jardin puente laboratorio galeria pasillo escalera';
-const slot = (list, name) => new Map(list.split(' ').map(w => [w, name]));
-const slots = new Map([
-  ...slot(weapons, 'ARMA'),
-  ...slot(objects, 'OBJETO'),
-  ...slot(rooms, 'SALA'),
-]);
-const stop = new Set(
-  'el la los las un una unos unas de del al a en y o que te tu tus mi me se lo le les su sus con por para es era fue ha has he este esta eso esa ese aqui alli muy mas pero si no ya'.split(
-    ' ',
+// The same word lists for questions in English.
+const englishWeapons =
+  'weapon weapons dagger daggers knife knives blade sword swords crossbow bolt shotgun shotguns revolver revolvers pistol pistols gun guns rifle poison poisons bottle bottles vial vials flask cup cups goblet goblets glass cord cords rope ropes poker paperweight amulet laser emitter plasma cutter panel regulator console hatch remote capsule potion tether mace candlestick spanner wrench';
+const englishObjects =
+  'handkerchief handkerchiefs glove gloves pen pens cigarette case rosary brooch pendant earpiece notebook purse ring watch button glasses keyring wimple dosimeter card torch scarf';
+const englishRooms =
+  'library study dining kitchen greenhouse conservatory hall lounge drawing workshop forge storeroom pantry cellar barn depot infirmary dispensary refectory canteen archive scriptorium bedroom cell cells quarters cabin room tower armoury armory chapel garden bridge laboratory lab gallery corridor staircase stairs bay dome terrace garage';
+const slot = (list, name) => list.split(' ').map(w => [w, name]);
+const slots = {
+  es: new Map([...slot(weapons, 'ARMA'), ...slot(objects, 'OBJETO'), ...slot(rooms, 'SALA')]),
+  en: new Map([
+    ...slot(englishWeapons, 'ARMA'),
+    ...slot(englishObjects, 'OBJETO'),
+    ...slot(englishRooms, 'SALA'),
+  ]),
+};
+const stop = {
+  es: new Set(
+    'el la los las un una unos unas de del al a en y o que te tu tus mi me se lo le les su sus con por para es era fue ha has he este esta eso esa ese aqui alli muy mas pero si no ya'.split(
+      ' ',
+    ),
   ),
-);
+  en: new Set(
+    'the a an of to in on at and or that this these those it its is was were be been am are i me my you your he him his she her they them their we us our so very but if not just then there here with for by from as'.split(
+      ' ',
+    ),
+  ),
+};
+const hours = {
+  es: /\b\d{1,2}[:.]\d{2}\b|\blas (una|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce)\b/g,
+  en: /\b\d{1,2}([:.]\d{2})?\s*(am|pm|o'?clock)?\b|\b(one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|midnight|noon)( o'?clock)?\b/g,
+};
 
-export function normalizeQuestion(text, { names = [] } = {}) {
+// lang: the language of the question, 'es' (the default) or 'en'.
+export function normalizeQuestion(text, { names = [], lang = 'es' } = {}) {
+  const en = lang === 'en';
   let t = ' ' + String(text).toLowerCase() + ' ';
   for (const name of names) {
     const n = name.toLowerCase().trim();
     if (n.length > 2) t = t.split(n).join(' PERSONA ');
   }
+  // English: "victim's" and "didn't" keep their word, without the apostrophe.
+  if (en) t = t.replace(/['’]s\b/g, '').replace(/n['’]t\b/g, 'nt');
   return t
     .normalize('NFD')
     .replace(/[̀-ͯ]/g, '')
-    .replace(
-      /\b\d{1,2}[:.]\d{2}\b|\blas (una|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce)\b/g,
-      ' HORA ',
-    )
+    .replace(hours[en ? 'en' : 'es'], ' HORA ')
     .replace(/[^a-zñA-Z0-9 ]/g, ' ')
     .split(/\s+/)
     .filter(Boolean)
-    .map(w => slots.get(w) || w)
+    .map(w => slots[en ? 'en' : 'es'].get(w) || w)
     .join(' ');
 }
 const stem = w => (w === w.toUpperCase() ? w : w.length > 5 ? w.slice(0, 5) : w);
@@ -48,8 +70,9 @@ const stem = w => (w === w.toUpperCase() ? w : w.length > 5 ? w.slice(0, 5) : w)
 export function features(text, options = {}) {
   const words = normalizeQuestion(text, options).split(' ');
   const stems = words.map(stem);
-  const out = [];
-  for (const w of stems) if (!stop.has(w)) out.push('w:' + w);
+  const out = [],
+    stops = stop[options.lang === 'en' ? 'en' : 'es'];
+  for (const w of stems) if (!stops.has(w)) out.push('w:' + w);
   for (let i = 0; i + 1 < stems.length; i++) out.push('b:' + stems[i] + '_' + stems[i + 1]);
   const flat = ' ' + words.join(' ') + ' ';
   for (const n of [3, 4])
@@ -99,12 +122,15 @@ export function predictNaiveBayes(model, question, options) {
 }
 
 // Multinomial logistic regression trained with stochastic gradient descent.
-export function trainLogistic(examples, { epochs = 30, rate = 0.5, l2 = 1e-5, seed = 7 } = {}) {
+export function trainLogistic(
+  examples,
+  { epochs = 30, rate = 0.5, l2 = 1e-5, seed = 7, lang = 'es' } = {},
+) {
   const topics = [...new Set(examples.map(e => e.topic))],
     weights = {},
     bias = topics.map(() => 0);
   const data = examples.map(e => ({
-    f: [...new Set(features(e.question))],
+    f: [...new Set(features(e.question, { lang }))],
     y: topics.indexOf(e.topic),
   }));
   let state = seed;
@@ -131,10 +157,10 @@ export function trainLogistic(examples, { epochs = 30, rate = 0.5, l2 = 1e-5, se
       }
     }
   }
-  return { kind: 'logistic', topics, weights, bias };
+  return { kind: 'logistic', ...(lang === 'es' ? {} : { lang }), topics, weights, bias };
 }
-export function predictLogistic(model, question, options) {
-  const f = [...new Set(features(question, options))],
+export function predictLogistic(model, question, options = {}) {
+  const f = [...new Set(features(question, { lang: model.lang, ...options }))],
     scale = 1 / Math.sqrt(f.length || 1);
   const z = model.topics.map(
     (_, k) => model.bias[k] + f.reduce((s, x) => s + (model.weights[x]?.[k] || 0) * scale, 0),

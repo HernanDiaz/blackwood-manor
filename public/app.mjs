@@ -2,6 +2,7 @@ import { placePhrase } from '/src/spanish-prose.mjs';
 import { worlds, worldFile, selectWorld } from '/src/prototype-worlds.mjs';
 import { normalizeWorld } from '/src/world-file.mjs';
 import { difficulties } from '/src/case-generator.mjs';
+import { uiText, deviceLanguage } from '/src/ui-text.mjs';
 import { answerOffline } from '/src/interrogation.mjs';
 import { setEffect } from '/effects.mjs';
 import { setSound, setAmbience, play } from '/sound.mjs';
@@ -15,6 +16,7 @@ import {
   prototypeFacts,
   accusePrototype,
   prototypeResolution,
+  retellPrototype,
   CASE_FORMAT,
   SAVE_FORMAT,
   clock,
@@ -33,21 +35,6 @@ document.addEventListener(
   e => e.target.tagName === 'IMG' && e.target.classList.add('missing'),
   true,
 );
-const cache = new Map();
-async function loadWorld(id) {
-  if (!cache.has(id)) {
-    const r = await fetch('/' + worldFile(id));
-    if (!r.ok) throw Error('No se pudo cargar el mundo');
-    cache.set(id, normalizeWorld(await r.json()));
-  }
-  return cache.get(id);
-}
-let routerModel = null,
-  serverModel = false,
-  // Hand-written cases that come with the game (public/cases/).
-  classics = [];
-const worldLabel = id => worlds.find(w => w.id === id)?.label || 'Caso importado';
-
 // Small things this browser remembers: they may be missing (private mode) and that is fine.
 const remembered = (key, fallback) => {
   try {
@@ -62,6 +49,85 @@ const remember = (key, value) => {
     localStorage.setItem(key, JSON.stringify(value));
   } catch {}
 };
+// The language of the screens: the one chosen in the menu, or the phone's.
+let lang = remembered('mundos-idioma', null);
+if (!uiText[lang]) lang = deviceLanguage(navigator.languages || [navigator.language || '']);
+let T = uiText[lang];
+// Worlds, classic cases and question routers, loaded once per language.
+const cache = new Map(),
+  routers = {},
+  classicLists = {};
+const worldKey = (id, l = lang) => l + ':' + id;
+async function loadWorld(id, l = lang) {
+  if (!cache.has(worldKey(id, l))) {
+    const r = await fetch('/' + worldFile(id, l));
+    if (!r.ok) throw Error(uiText[l].loadWorldFailed);
+    cache.set(worldKey(id, l), normalizeWorld(await r.json()));
+  }
+  return cache.get(worldKey(id, l));
+}
+const classicFile = (file, l) => (l === 'en' ? file.replace(/\.json$/, '.en.json') : file);
+async function loadLanguage(l) {
+  for (const w of worlds) await loadWorld(w.id, l);
+  // The statistical router answers questions in the browser; without it the rules still do.
+  if (!(l in routers))
+    try {
+      routers[l] = await (
+        await fetch(l === 'en' ? '/src/question-router-model.en.json' : '/src/question-router-model.json')
+      ).json();
+    } catch {
+      routers[l] = null;
+    }
+  if (!(l in classicLists))
+    try {
+      classicLists[l] =
+        (await (await fetch(l === 'en' ? '/cases/index.en.json' : '/cases/index.json')).json())
+          .cases || [];
+    } catch {
+      classicLists[l] = [];
+    }
+}
+let serverModel = false;
+const worldLabel = id => cache.get(worldKey(id))?.label || T.imported;
+// The same game in another language: a generated case is made again from its seed, a classic
+// case is looked up among the classics of that language. Null when there is no such version.
+async function retell(saved, l) {
+  const file = saved.case,
+    origin = file.origin || {};
+  try {
+    if (origin.generator === 'mundos-1' && worlds.some(w => w.id === file.world)) {
+      const world = await loadWorld(file.world, l),
+        { seed, difficulty, previousMethodId, previousPersonId, forcedMethodId } = origin;
+      return retellPrototype(
+        saved,
+        newPrototype(world, { seed, difficulty, previousMethodId, previousPersonId, forcedMethodId })
+          .case,
+      );
+    }
+    for (const k of classicLists[l] || []) {
+      const other = await (await fetch('/cases/' + classicFile(k.file, l))).json(),
+        retold = retellPrototype(saved, other);
+      if (retold) return retold;
+    }
+  } catch {}
+  return null;
+}
+// A game in another language than the screens is told in theirs, when that version exists.
+async function matchLanguage() {
+  if (!state || c.lang === lang) return;
+  const retold = await retell(state, lang);
+  if (retold) {
+    state = retold;
+    c = createPrototypeCase(state);
+    hint = null;
+    save();
+  } else message = T.untranslated;
+}
+function showLanguage() {
+  document.documentElement.lang = lang;
+  document.title = T.pageTitle;
+}
+
 let history = remembered('mundos-historial', []),
   speaking = remembered('mundos-voz', false) === true;
 if (!Array.isArray(history)) history = [];
@@ -70,11 +136,13 @@ const canSpeak = 'speechSynthesis' in globalThis;
 function speak(text, who) {
   if (!speaking || !canSpeak) return;
   speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(text),
-    voices = speechSynthesis.getVoices().filter(v => v.lang?.toLowerCase().startsWith('es')),
+  // The voice speaks the language of the case.
+  const tag = uiText[c?.lang || lang].speech,
+    u = new SpeechSynthesisUtterance(text),
+    voices = speechSynthesis.getVoices().filter(v => v.lang?.startsWith(tag.slice(0, 2))),
     actor = c?.people.find(p => p.id === who);
-  u.lang = 'es-ES';
-  u.voice = voices.find(v => v.lang === 'es-ES') || voices[0] || null;
+  u.lang = tag;
+  u.voice = voices.find(v => v.lang === tag) || voices[0] || null;
   if (actor) {
     // A different pitch and pace for each person, so they do not all sound alike.
     const n = Number(actor.id.slice(1));
@@ -124,7 +192,7 @@ function record() {
       date: new Date().toISOString().slice(0, 10),
       world: worldLabel(state.world),
       title: c.title,
-      difficulty: difficulties.find(d => d.id === c.file.origin?.difficulty)?.label || '',
+      difficulty: T.difficulties[c.file.origin?.difficulty] || '',
       culprit: c.culprit.name,
       weapon: weapon?.label || '',
       hints: state.help.used,
@@ -151,40 +219,33 @@ let setupWorld = worlds[0].id,
   // On a phone the header actions fold into a menu.
   menuOpen = false;
 try {
-  for (const w of worlds) await loadWorld(w.id);
-  // The statistical router answers questions in the browser; without it the rules still do.
-  try {
-    routerModel = await (await fetch('/src/question-router-model.json')).json();
-  } catch {}
-  try {
-    classics = (await (await fetch('/cases/index.json')).json()).cases || [];
-  } catch {}
+  showLanguage();
+  await loadLanguage(lang);
   // A local server with a model can place the questions nothing else can (see server.mjs).
   fetch('/api/prototype/status', { signal: AbortSignal.timeout(2000) })
     .then(r => (r.ok ? r.json() : {}))
     .then(status => (serverModel = status.model === true))
     .catch(() => {});
-  preview = cache.get(setupWorld);
+  preview = cache.get(worldKey(setupWorld));
   const saved = localStorage.getItem(key);
   if (saved) {
     try {
       state = restorePrototype(saved);
       c = createPrototypeCase(state);
-      if (cache.has(state.world)) {
+      if (cache.has(worldKey(state.world))) {
         setupWorld = state.world;
-        preview = cache.get(setupWorld);
+        preview = cache.get(worldKey(setupWorld));
       }
+      await matchLanguage();
     } catch {
-      message =
-        'La partida guardada no es compatible con esta versión del juego. Expórtala si quieres conservarla antes de crear otra investigación.';
+      message = T.incompatibleSave;
       state = null;
     }
   }
   render();
 } catch (e) {
   console.error(e);
-  app.innerHTML =
-    '<h1>No se pudo abrir el juego.</h1><p>Comprueba que el servidor sigue activo y recarga la página.</p>';
+  app.innerHTML = T.fatal;
 }
 function save() {
   try {
@@ -192,7 +253,7 @@ function save() {
     storageOK = true;
   } catch {
     storageOK = false;
-    message = 'No se pudo guardar en este navegador. Guarda una copia de tu partida desde el menú.';
+    message = T.saveFailed;
   }
 }
 function exportSave() {
@@ -218,16 +279,16 @@ function img(src, alt, cls = '') {
 // what is unique to the case: the weapon and the objects.
 const papers = {
   report: [
-    'Informe',
+    'report',
     '<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M12 9v6M9 12h6"/>',
   ],
-  testimony: ['Declaración', '<circle cx="12" cy="8" r="3"/><path d="M6 20c0-3 3-5 6-5s6 2 6 5"/>'],
+  testimony: ['testimony', '<circle cx="12" cy="8" r="3"/><path d="M6 20c0-3 3-5 6-5s6 2 6 5"/>'],
   ledger: [
-    'Registro',
+    'ledger',
     '<path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/>',
   ],
   document: [
-    'Documento',
+    'document',
     '<rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 7l9 6 9-6"/>',
   ],
 };
@@ -235,79 +296,74 @@ const papers = {
 // true: papers show their kind over the room where they were found.
 const paperHeaders = false;
 function clueHead(clue) {
-  if (!paperHeaders) return img(clue.image, clue.title + ', ilustración', 'clue-art');
+  if (!paperHeaders) return img(clue.image, T.illustration(clue.title), 'clue-art');
   const kind = clue.image
     ? clue.image.match(/\/clue-(report|testimony|ledger|document)\.webp$/)?.[1]
     : 'document';
-  if (!kind) return img(clue.image, clue.title + ', ilustración', 'clue-art');
+  if (!kind) return img(clue.image, T.illustration(clue.title), 'clue-art');
   const [label, paths] = papers[kind],
     // The room where it was found, darkened behind the kind of paper, keeps the atmosphere.
     room = c.rooms.find(r => r.id === clue.room);
-  return `<div class="paper paper-${kind}">${room?.image ? `<img class="paper-bg" src="${esc(room.image)}" alt="">` : ''}<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${paths}</svg><span>${label}</span></div>`;
+  return `<div class="paper paper-${kind}">${room?.image ? `<img class="paper-bg" src="${esc(room.image)}" alt="">` : ''}<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${paths}</svg><span>${T.papers[label]}</span></div>`;
 }
 function card(clue) {
   const number = state.found.indexOf(clue.id) + 1;
-  return `<article class="clue">${number ? `<span class="stamp">Prueba nº ${number}</span>` : ''}${clueHead(clue)}<span class="eyebrow">${esc(c.rooms.find(r => r.id === clue.room).name)}</span><h3>${esc(clue.title)}</h3><p>${esc(clue.text)}</p><button class="small" data-pin="${clue.id}">${state.pinned.includes(clue.id) ? 'Retirar del tablero' : 'Fijar en el tablero'}</button></article>`;
+  return `<article class="clue">${number ? `<span class="stamp">${T.evidenceNumber(number)}</span>` : ''}${clueHead(clue)}<span class="eyebrow">${esc(c.rooms.find(r => r.id === clue.room).name)}</span><h3>${esc(clue.title)}</h3><p>${esc(clue.text)}</p><button class="small" data-pin="${clue.id}">${state.pinned.includes(clue.id) ? T.unpin : T.pin}</button></article>`;
 }
 function render() {
   const playing = state && !['setup', 'opening'].includes(tab),
     label = tab === 'setup' ? preview.label : worldLabel(state.world),
+    other = T.other,
     title = tab === 'setup' ? preview.title : c.title,
     cover = tab === 'setup' ? preview.rooms[0].image : c.scene.image;
   // The screen is a class of the page, so the phone layout can change per screen.
   app.className = 'screen-' + tab;
   applyLook(tab === 'setup' ? preview.look : c?.file.look);
-  app.innerHTML = `<header><a class="brand" href="/" aria-label="Blackwood, inicio"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="13" cy="13" r="9" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M20 20l8 8" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/></svg><span>BLACKWOOD<br><small>CASOS DE DETECTIVES</small></span></a><button id="menu-toggle" class="small menu-toggle" aria-expanded="${menuOpen}" aria-controls="actions">${menuOpen ? 'Cerrar' : 'Menú'}</button><div class="save ${menuOpen ? 'open' : ''}" id="actions">${state && tab !== 'setup' ? `<button class="small go-new" ${busy ? 'disabled' : ''}>Volver al inicio</button>` : ''}${state && !['setup', 'opening'].includes(tab) ? `<button class="small go-opening" ${busy ? 'disabled' : ''}>Releer el prólogo</button>` : ''}${canSpeak ? `<button id="voice" class="small" aria-pressed="${speaking}">Leer en voz alta: ${speaking ? 'sí' : 'no'}</button>` : ''}<button id="sound" class="small" aria-pressed="${sounding}">Sonido: ${sounding ? 'sí' : 'no'}</button>${state ? '<button id="export" class="small" title="Descarga tu partida para continuarla en otro dispositivo">Guardar una copia</button>' : ''}<label class="small file" title="Una copia de una partida o un caso">Abrir una copia<input id="import" type="file" accept="application/json" ${busy ? 'disabled' : ''}></label><a class="small" href="/editor.html">Editor de casos</a></div></header>${tab !== 'opening' ? `<section class="intro"><div><span class="eyebrow">${esc(label)}</span><h1>${esc(title)}</h1><p>${tab === 'setup' ? esc(preview.premise) : 'Cinco sospechosos. Varios con motivos y acceso al arma.<br>Solo una persona reúne móvil, acceso y ocasión.'}</p></div><div class="manor illustrated">${img(cover, title)}</div></section>` : ''}${playing ? `<section class="brief"><span class="seal">!</span><p><strong>${esc(c.victim.name)} ha muerto en ${esc(placePhrase(c.scene))}.</strong> El hallazgo se registra a las ${clock(c.timing.discoveryMinute)}. Investiga la causa, el móvil y las coartadas.${nightNow() ? `<em class="night">${esc(nightNow())}</em>` : ''}</p><strong>${state.found.length}<small> / ${c.clues.length} PISTAS</small></strong></section>` : ''}${
+  app.innerHTML = `<header><a class="brand" href="/" aria-label="${T.home}"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="13" cy="13" r="9" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M20 20l8 8" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/></svg><span>BLACKWOOD<br><small>${T.tagline}</small></span></a><button id="menu-toggle" class="small menu-toggle" aria-expanded="${menuOpen}" aria-controls="actions">${menuOpen ? T.close : T.menu}</button><div class="save ${menuOpen ? 'open' : ''}" id="actions"><button id="lang" class="small" lang="${other.lang}" title="${other.title}" ${busy ? 'disabled' : ''}>${other.label}</button>${state && tab !== 'setup' ? `<button class="small go-new" ${busy ? 'disabled' : ''}>${T.backHome}</button>` : ''}${state && !['setup', 'opening'].includes(tab) ? `<button class="small go-opening" ${busy ? 'disabled' : ''}>${T.rereadPrologue}</button>` : ''}${canSpeak ? `<button id="voice" class="small" aria-pressed="${speaking}">${T.readAloud(speaking)}</button>` : ''}<button id="sound" class="small" aria-pressed="${sounding}">${T.sound(sounding)}</button>${state ? `<button id="export" class="small" title="${T.exportTitle}">${T.exportSave}</button>` : ''}<label class="small file" title="${T.importTitle}">${T.importSave}<input id="import" type="file" accept="application/json" ${busy ? 'disabled' : ''}></label><a class="small" href="/editor.html">${T.editor}</a></div></header>${tab !== 'opening' ? `<section class="intro"><div><span class="eyebrow">${esc(label)}</span><h1>${esc(title)}</h1><p>${tab === 'setup' ? esc(preview.premise) : T.introPlaying}</p></div><div class="manor illustrated">${img(cover, title)}</div></section>` : ''}${playing ? `<section class="brief"><span class="seal">!</span><p><strong>${esc(T.briefDead(c.victim.name, placePhrase(c.scene)))}</strong> ${T.briefFound(clock(c.timing.discoveryMinute))}${nightNow() ? `<em class="night">${esc(nightNow())}</em>` : ''}</p><strong>${state.found.length}<small> / ${c.clues.length} ${T.clues}</small></strong></section>` : ''}${
     playing && !state.result
-      ? `<nav aria-label="Investigación">${[
-          ['explore', 'Explorar'],
-          ['talk', 'Interrogar'],
-          ['board', 'Tablero'],
-          ['inventory', 'Inventario'],
-          ['accuse', 'Acusar'],
-        ]
+      ? `<nav aria-label="${T.investigation}">${Object.entries(T.tabs)
           .map(
             ([id, label]) =>
               `<button data-tab="${id}" class="${tab === id ? 'active' : ''}" ${tab === id ? 'aria-current="page"' : ''}>${tabIcons[id]}<span>${label}</span></button>`,
           )
           .join('')}</nav>`
       : ''
-  }<main>${message ? `<div class="notice" role="status">${esc(message)}</div>` : ''}${playing && !state.result ? helpBar() : ''}${tab === 'setup' ? setup() : tab === 'opening' ? openingScreen() : state.result ? ending() : content()}</main><footer>BLACKWOOD · ${storageOK ? 'Partida guardada en este navegador' : 'Sin guardado local: guarda una copia desde el menú'}</footer>`;
+  }<main>${message ? `<div class="notice" role="status">${esc(message)}</div>` : ''}${playing && !state.result ? helpBar() : ''}${tab === 'setup' ? setup() : tab === 'opening' ? openingScreen() : state.result ? ending() : content()}</main><footer>BLACKWOOD · ${storageOK ? T.saved : T.notSaved}</footer>`;
   bind();
 }
 // The start screen: the game in progress, a new case in a world, or a classic case.
 function setup() {
   const current = state
-      ? `<section class="continue"><div><span class="eyebrow">PARTIDA EN CURSO · ${esc(worldLabel(state.world))}</span><h2>${esc(c.title)}</h2><p class="hint">${state.result === 'won' ? 'Resuelto' : `${state.found.length} de ${c.clues.length} pistas encontradas`}</p></div><button id="continue-case" ${busy ? 'disabled' : ''}>Continuar →</button></section>`
+      ? `<section class="continue"><div><span class="eyebrow">${T.inProgress} · ${esc(worldLabel(state.world))}</span><h2>${esc(c.title)}</h2><p class="hint">${state.result === 'won' ? T.solved : T.foundOf(state.found.length, c.clues.length)}</p></div><button id="continue-case" ${busy ? 'disabled' : ''}>${T.continue}</button></section>`
       : '',
     first = text => text.match(/^[^.!?]+[.!?]/)?.[0] || text,
     card = (id, label, title, line, image) =>
       `<button class="world-card" data-world="${id}" ${busy ? 'disabled' : ''}><span class="world-art">${image ? img(image, '') : '<span class="world-dice">?</span>'}</span><span><strong>${esc(label)}</strong><em>${esc(title)}</em><small>${esc(line)}</small></span></button>`;
-  return `${current}<section class="new-case"><span class="eyebrow">CASO NUEVO</span><h2>Pulsa un mundo para empezar.</h2><p class="hint">El caso se inventa al empezar: en cada partida cambian el culpable, el arma, la escena, los móviles y las coartadas. Puedes jugar en el mismo mundo tantas veces como quieras.</p><div class="difficulty" role="radiogroup" aria-label="Dificultad"><span>Dificultad</span>${difficulties.map(d => `<button class="small ${difficulty === d.id ? 'selected' : ''}" role="radio" aria-checked="${difficulty === d.id}" data-difficulty="${d.id}">${d.label}</button>`).join('')}</div><p class="hint">${{ easy: 'Dos personas con motivo y dos con acceso al arma. Una coartada puede caer por un testigo.', medium: 'Tres personas con motivo y tres con acceso al arma.', hard: 'Cuatro personas con motivo, cuatro con acceso al arma y dos pistas engañosas.' }[difficulty]}</p><div class="world-cards">${worlds
+  return `${current}<section class="new-case"><span class="eyebrow">${T.newCase}</span><h2>${T.pickWorld}</h2><p class="hint">${T.newCaseHint}</p><div class="difficulty" role="radiogroup" aria-label="${T.difficulty}"><span>${T.difficulty}</span>${difficulties.map(d => `<button class="small ${difficulty === d.id ? 'selected' : ''}" role="radio" aria-checked="${difficulty === d.id}" data-difficulty="${d.id}">${T.difficulties[d.id]}</button>`).join('')}</div><p class="hint">${T.difficultyHints[difficulty]}</p><div class="world-cards">${worlds
     .map(w => {
-      const world = cache.get(w.id);
-      return card(w.id, w.label, world.title, first(world.premise), world.rooms[0].image);
+      const world = cache.get(worldKey(w.id));
+      return card(w.id, world.label, world.title, first(world.premise), world.rooms[0].image);
     })
     .join(
       '',
-    )}${card('random', 'Al azar', 'Sorpresa', 'El mundo se elige al crear el caso.', null)}</div>${state ? '<p class="hint">Empezar otro caso sustituye la partida en curso. Si quieres conservarla, guarda una copia desde el menú.</p>' : ''}</section>${
-    classics.length
-      ? `<section class="classic-cases"><span class="eyebrow">CASOS CLÁSICOS DE BLACKWOOD</span><h2>Cinco casos escritos a mano.</h2><p class="hint">Los casos originales de Blackwood Manor, en 1924. Son siempre iguales y tienen una historia más trabajada.</p><ul>${classics.map(k => `<li><span><strong>${esc(k.title)}</strong>${k.hook ? `<small>${esc(k.hook)}</small>` : ''}</span><button class="small" data-classic="${esc(k.file)}" ${busy ? 'disabled' : ''}>Jugar</button></li>`).join('')}</ul></section>`
+    )}${card('random', T.random, T.surprise, T.randomLine, null)}</div>${state ? `<p class="hint">${T.replaceHint}</p>` : ''}</section>${
+    classics().length
+      ? `<section class="classic-cases"><span class="eyebrow">${T.classicsEyebrow}</span><h2>${T.classicsTitle}</h2><p class="hint">${T.classicsHint}</p><ul>${classics().map(k => `<li><span><strong>${esc(k.title)}</strong>${k.hook ? `<small>${esc(k.hook)}</small>` : ''}</span><button class="small" data-classic="${esc(k.file)}" ${busy ? 'disabled' : ''}>${T.play}</button></li>`).join('')}</ul></section>`
       : ''
   }${
     history.length
-      ? `<details class="history"><summary>Casos resueltos: ${history.length}</summary><ul>${history
+      ? `<details class="history"><summary>${T.solvedCases(history.length)}</summary><ul>${history
           .slice(0, 12)
           .map(
             h =>
-              `<li><strong>${esc(h.title)}</strong> · ${esc(h.world)}${h.difficulty ? ' · ' + esc(h.difficulty) : ''}<small>${esc(h.date)} · ${esc(h.culprit)}, ${esc(h.weapon.toLocaleLowerCase('es'))} · ${h.attempts ? h.attempts + (h.attempts === 1 ? ' acusación fallida' : ' acusaciones fallidas') : 'a la primera'} · ${h.hints ? h.hints + (h.hints === 1 ? ' pista' : ' pistas') : 'sin pistas'}</small></li>`,
+              `<li><strong>${esc(h.title)}</strong> · ${esc(h.world)}${h.difficulty ? ' · ' + esc(h.difficulty) : ''}<small>${esc(h.date)} · ${esc(h.culprit)}, ${esc(h.weapon.toLocaleLowerCase(lang))} · ${T.attempts(h.attempts)} · ${T.hintsUsed(h.hints)}</small></li>`,
           )
           .join('')}</ul></details>`
       : ''
   }`;
 }
 function openingScreen() {
-  return `<section class="opening-panel"><span class="eyebrow">PRÓLOGO · ${esc(c.title)}</span><h2>Antes de la primera pregunta.</h2>${img(c.scene.image, c.scene.name, 'scene-image')}<div class="opening-prose"><p>${esc(c.opening.arrival)}</p><p class="opening-fact">A las ${clock(c.timing.discoveryMinute)} llega el aviso: han encontrado sin vida a ${esc(c.victim.name)} en ${esc(placePhrase(c.scene))}. La causa y las circunstancias todavía están por esclarecer.</p><p>${esc(c.opening.tension)}</p></div>${speaking ? '<button id="listen-opening" class="secondary">Escuchar el prólogo</button> ' : ''}<button id="begin-investigation">${state.result ? 'Volver al desenlace →' : 'Comenzar la investigación →'}</button></section>`;
+  return `<section class="opening-panel"><span class="eyebrow">${T.prologue} · ${esc(c.title)}</span><h2>${T.beforeFirst}</h2>${img(c.scene.image, c.scene.name, 'scene-image')}<div class="opening-prose"><p>${esc(c.opening.arrival)}</p><p class="opening-fact">${esc(T.openingFact(clock(c.timing.discoveryMinute), c.victim.name, placePhrase(c.scene)))}</p><p>${esc(c.opening.tension)}</p></div>${speaking ? `<button id="listen-opening" class="secondary">${T.listenPrologue}</button> ` : ''}<button id="begin-investigation">${state.result ? T.backToEnding : T.begin}</button></section>`;
 }
 function enterCase({ replay = false } = {}) {
   tab = (state.result && !replay) || state.openingSeen ? 'explore' : 'opening';
@@ -324,40 +380,40 @@ const tabIcons = {
   accuse: icon('<path d="M12 4v10"/><circle cx="12" cy="19" r="1"/>'),
 };
 function helpBar() {
-  return `<div class="help-bar"><button id="ask-hint" class="small">${hint && !hint.last ? 'Otra pista más concreta' : 'Pedir una pista'}</button>${hint ? `<p role="status">${esc(hint.text)}</p>` : '<p>¿Atascado? Pide una pista: cada vez será más concreta.</p>'}</div>`;
+  return `<div class="help-bar"><button id="ask-hint" class="small">${hint && !hint.last ? T.moreHint : T.askHint}</button>${hint ? `<p role="status">${esc(hint.text)}</p>` : `<p>${T.stuck}</p>`}</div>`;
 }
 // The notebook: one row per person; each cell holds the clue that proves the condition.
 function notebook() {
   const found = c.clues.filter(x => state.found.includes(x.id)),
     suspects = notebookSuspects(c, state),
-    labels = { motive: 'Motivo', access: 'Acceso al arma', alibi: 'Coartada' },
+    labels = T.conditions,
     cell = (p, condition) => {
       const entry = state.notebook[p.id]?.[condition];
       if (entry) {
         const clue = c.clues.find(x => x.id === entry.clue),
           mark =
             condition !== 'alibi'
-              ? 'Sí'
+              ? T.yes
               : entry.verdict === 'refuted'
-                ? 'Desmentida'
-                : 'Confirmada';
-        return `<td data-label="${labels[condition]}" class="${entry.verdict === 'confirmed' ? 'clear' : 'proven'}"><strong>${mark}</strong><small>${esc(clue.title)}</small><button class="small" data-unnote="${p.id}:${condition}" aria-label="Borrar anotación">×</button></td>`;
+                ? T.refuted
+                : T.confirmed;
+        return `<td data-label="${labels[condition]}" class="${entry.verdict === 'confirmed' ? 'clear' : 'proven'}"><strong>${mark}</strong><small>${esc(clue.title)}</small><button class="small" data-unnote="${p.id}:${condition}" aria-label="${T.deleteNote}">×</button></td>`;
       }
-      return `<td data-label="${labels[condition]}"><select data-note="${p.id}:${condition}" aria-label="${labels[condition]} de ${esc(p.name)}"><option value="">Anotar prueba…</option>${found.map(x => `<option value="${x.id}">${esc(x.title)}</option>`).join('')}</select></td>`;
+      return `<td data-label="${labels[condition]}"><select data-note="${p.id}:${condition}" aria-label="${esc(T.noteOf(labels[condition], p.name))}"><option value="">${T.noteEvidence}</option>${found.map(x => `<option value="${x.id}">${esc(x.title)}</option>`).join('')}</select></td>`;
     };
-  return `<section class="notebook"><h3>Cuaderno de deducción</h3><p class="hint">Anota la prueba que demuestra cada cosa. Solo se guarda si la prueba lo demuestra de verdad. La persona culpable tiene motivo, acceso al arma y una coartada desmentida.</p><div class="notebook-scroll"><table><thead><tr><th>Persona</th>${conditions.map(k => `<th>${labels[k]}</th>`).join('')}</tr></thead><tbody>${c.people.map(p => `<tr class="${suspects.includes(p.id) ? 'suspect' : ''}"><th>${esc(p.name)}<small>${suspects.includes(p.id) ? 'Reúne las tres condiciones' : esc(p.role)}</small>${noteMessage?.person === p.id ? `<p class="note-message" role="status">${esc(noteMessage.text)}</p>` : ''}</th>${conditions.map(k => cell(p, k)).join('')}</tr>`).join('')}</tbody></table></div></section>`;
+  return `<section class="notebook"><h3>${T.notebook}</h3><p class="hint">${T.notebookHint}</p><div class="notebook-scroll"><table><thead><tr><th>${T.person}</th>${conditions.map(k => `<th>${labels[k]}</th>`).join('')}</tr></thead><tbody>${c.people.map(p => `<tr class="${suspects.includes(p.id) ? 'suspect' : ''}"><th>${esc(p.name)}<small>${suspects.includes(p.id) ? T.allThree : esc(p.role)}</small>${noteMessage?.person === p.id ? `<p class="note-message" role="status">${esc(noteMessage.text)}</p>` : ''}</th>${conditions.map(k => cell(p, k)).join('')}</tr>`).join('')}</tbody></table></div></section>`;
 }
 function ending() {
-  return `<section class="ending"><span class="eyebrow">${state.result === 'won' ? 'CASO RESUELTO' : 'REVISIÓN NECESARIA'}</span><h2>${state.result === 'won' ? 'La verdad sale a la luz.' : 'Faltan piezas.'}</h2>${state.result === 'won' && c.epilogue ? `<p class="epilogue">${esc(c.epilogue)}</p>` : ''}<p>${esc(prototypeResolution(c, state))}</p>${state.help.used ? `<p class="hint">Has pedido ${state.help.used === 1 ? 'una pista' : state.help.used + ' pistas'} de ayuda.</p>` : ''}${state.result === 'lost' ? '<button id="reopen">Reabrir investigación</button>' : ''}<button id="end-new" class="secondary">Otra investigación</button></section>`;
+  return `<section class="ending"><span class="eyebrow">${state.result === 'won' ? T.caseSolved : T.needsReview}</span><h2>${state.result === 'won' ? T.truthOut : T.missingPieces}</h2>${state.result === 'won' && c.epilogue ? `<p class="epilogue">${esc(c.epilogue)}</p>` : ''}<p>${esc(prototypeResolution(c, state))}</p>${state.help.used ? `<p class="hint">${T.hintsAsked(state.help.used)}</p>` : ''}${state.result === 'lost' ? `<button id="reopen">${T.reopen}</button>` : ''}<button id="end-new" class="secondary">${T.another}</button></section>`;
 }
 function content() {
   if (tab === 'explore') {
     const room = c.rooms.find(r => r.id === state.room);
-    return `<h2>Registra los escenarios.</h2><div class="exploration"><aside class="rooms">${c.rooms.map(r => `<button data-room="${r.id}" class="${r.id === room.id ? 'selected' : ''}"><strong>${esc(r.name)}</strong><small>${c.clues.filter(x => x.room === r.id && state.found.includes(x.id)).length}/${c.clues.filter(x => x.room === r.id).length}</small></button>`).join('')}</aside><section class="room-detail"><span class="eyebrow">ESCENA / ${esc(room.name)}</span><h2>${esc(room.name)}</h2>${img(room.image, room.name, 'scene-image')}${room.ambience?.length ? `<p class="ambience">${esc(stable(room.ambience, c.id + room.id))}</p>` : ''}<p>${esc(room.description)}</p><div class="search-grid">${c.clues
+    return `<h2>${T.searchScenes}</h2><div class="exploration"><aside class="rooms">${c.rooms.map(r => `<button data-room="${r.id}" class="${r.id === room.id ? 'selected' : ''}"><strong>${esc(r.name)}</strong><small>${c.clues.filter(x => x.room === r.id && state.found.includes(x.id)).length}/${c.clues.filter(x => x.room === r.id).length}</small></button>`).join('')}</aside><section class="room-detail"><span class="eyebrow">${T.scene} / ${esc(room.name)}</span><h2>${esc(room.name)}</h2>${img(room.image, room.name, 'scene-image')}${room.ambience?.length ? `<p class="ambience">${esc(stable(room.ambience, c.id + room.id))}</p>` : ''}<p>${esc(room.description)}</p><div class="search-grid">${c.clues
       .filter(x => x.room === room.id)
       .map(
         x =>
-          `<button data-search="${x.id}" ${state.found.includes(x.id) ? 'disabled' : ''}><strong>${esc(x.title)}</strong><small>${state.found.includes(x.id) ? 'En tu expediente' : 'Inspeccionar'}</small></button>`,
+          `<button data-search="${x.id}" ${state.found.includes(x.id) ? 'disabled' : ''}><strong>${esc(x.title)}</strong><small>${state.found.includes(x.id) ? T.inFile : T.inspect}</small></button>`,
       )
       .join('')}</div></section></div><div class="cards">${c.clues
       .filter(x => x.room === room.id && state.found.includes(x.id))
@@ -366,23 +422,15 @@ function content() {
   }
   if (tab === 'talk') {
     const actor = c.people.find(p => p.id === person),
-      labels = {
-        alibi: 'Tu coartada',
-        motive: 'Tu relación con la víctima',
-        secret: 'El documento sobre ti',
-        link: 'Tu acceso al arma',
-        timeline: 'Quién confirma tu coartada',
-        seen: 'Lo que viste',
-        object: 'El objeto junto a la puerta',
-      };
-    return `<h2>Cinco versiones. Contrasta cada una.</h2><div class="suspects">${c.people.map(p => `<button data-person="${p.id}" class="${p.id === person ? 'selected' : ''}" ${busy ? 'disabled' : ''}><span class="avatar">${img(p.image, '')}${esc(p.name.charAt(0))}</span><strong>${esc(p.name)}</strong><small>${esc(p.role)}</small></button>`).join('')}</div><section class="conversation"><div class="interview-portrait">${img(actor.image, actor.name)}<span>${esc(actor.name)}<small>${esc(actor.role)}</small></span></div><h3>${esc(actor.name)}</h3><p class="hint">Pregunta con tus palabras y contrasta las respuestas con las pruebas que encuentres. Los secretos requieren descubrir su documento.</p><div class="messages" aria-live="polite">${
+      labels = T.prompts;
+    return `<h2>${T.fiveVersions}</h2><div class="suspects">${c.people.map(p => `<button data-person="${p.id}" class="${p.id === person ? 'selected' : ''}" ${busy ? 'disabled' : ''}><span class="avatar">${img(p.image, '')}${esc(p.name.charAt(0))}</span><strong>${esc(p.name)}</strong><small>${esc(p.role)}</small></button>`).join('')}</div><section class="conversation"><div class="interview-portrait">${img(actor.image, actor.name)}<span>${esc(actor.name)}<small>${esc(actor.role)}</small></span></div><h3>${esc(actor.name)}</h3><p class="hint">${T.talkHint}</p><div class="messages" aria-live="polite">${
       state.chat
         .filter(m => m.person === person)
         .map(
           m =>
             `<div class="question">${esc(m.question)}</div><div class="reply">${esc(m.answer)}</div>`,
         )
-        .join('') || '<p class="empty">Empieza por su coartada.</p>'
+        .join('') || `<p class="empty">${T.startWithAlibi}</p>`
     }</div><div class="prompts">${prototypeFacts(c, state, person)
       .map(
         f =>
@@ -390,60 +438,77 @@ function content() {
       )
       .join('')}</div>${
       state.found.length
-        ? `<form id="show" class="show-evidence"><select name="clue" aria-label="Prueba para enseñar" ${busy ? 'disabled' : ''}><option value="">Enseñar una prueba…</option>${c.clues
+        ? `<form id="show" class="show-evidence"><select name="clue" aria-label="${T.evidenceToShow}" ${busy ? 'disabled' : ''}><option value="">${T.showEvidence}</option>${c.clues
             .filter(x => state.found.includes(x.id))
             .map(x => `<option value="${x.id}">${esc(x.title)}</option>`)
             .join(
               '',
-            )}</select><button ${busy ? 'disabled' : ''}>Enseñar →</button></form>`
+            )}</select><button ${busy ? 'disabled' : ''}>${T.show}</button></form>`
         : ''
-    }<form id="ask"><input name="question" aria-label="Tu pregunta" maxlength="1000" placeholder="¿Dónde estabas cuando ocurrió?" required ${busy ? 'disabled' : ''}><button ${busy ? 'disabled' : ''}>${busy ? 'Escuchando…' : 'Preguntar →'}</button></form></section>`;
+    }<form id="ask"><input name="question" aria-label="${T.yourQuestion}" maxlength="1000" placeholder="${uiText[c.lang].questionPlaceholder}" required ${busy ? 'disabled' : ''}><button ${busy ? 'disabled' : ''}>${busy ? T.listening : T.ask}</button></form></section>`;
   }
   if (tab === 'board')
-    return `<h2>Tu tablero de investigación.</h2>${notebook()}<h3>Pistas fijadas</h3><p class="hint">Las pistas fijadas no se pierden al cambiar de habitación.</p><div class="cards">${
+    return `<h2>${T.boardTitle}</h2>${notebook()}<h3>${T.pinned}</h3><p class="hint">${T.pinnedHint}</p><div class="cards">${
       c.clues
         .filter(x => state.pinned.includes(x.id))
         .map(x => card(x))
-        .join('') || '<p>No hay pistas fijadas todavía.</p>'
-    }</div><label class="notes">Notas del detective<textarea id="notes" maxlength="10000">${esc(state.notes)}</textarea></label>`;
+        .join('') || `<p>${T.noPinned}</p>`
+    }</div><label class="notes">${T.notes}<textarea id="notes" maxlength="10000">${esc(state.notes)}</textarea></label>`;
   if (tab === 'inventory')
-    return `<h2>Objetos y documentos.</h2><div class="cards">${
+    return `<h2>${T.inventoryTitle}</h2><div class="cards">${
       c.clues
         .filter(x => state.found.includes(x.id))
         .map(x => card(x))
-        .join('') || '<p>Explora los escenarios para recoger pruebas.</p>'
+        .join('') || `<p>${T.emptyInventory}</p>`
     }</div>`;
   // The scene is known from the start, so only the person and the weapon are named. The proof is
   // one clue per condition; what the notebook already proves for the chosen person comes filled in.
   const found = c.clues.filter(x => state.found.includes(x.id));
-  return `<h2>La acusación final.</h2><p>Señala a la persona y el arma. Después adjunta tres pruebas: una de su móvil, una de su acceso al arma y una que desmienta su coartada. Si fallas podrás reabrir el caso.</p><form id="accuse"><div class="fields">${[
-    ['person', 'Culpable', c.people],
-    ['method', 'Arma', c.weapons.map(w => ({ id: w.method, name: w.label }))],
+  return `<h2>${T.accuseTitle}</h2><p>${T.accuseHint}</p><form id="accuse"><div class="fields">${[
+    ['person', T.culprit, c.people],
+    ['method', T.weapon, c.weapons.map(w => ({ id: w.method, name: w.label }))],
   ]
     .map(
       ([id, label, list]) =>
-        `<label>${label}<select name="${id}" aria-label="${label}" required><option value="">Seleccionar…</option>${list.map(x => `<option value="${x.id}">${esc(x.name)}</option>`).join('')}</select></label>`,
+        `<label>${label}<select name="${id}" aria-label="${label}" required><option value="">${T.select}</option>${list.map(x => `<option value="${x.id}">${esc(x.name)}</option>`).join('')}</select></label>`,
     )
-    .join('')}</div><h3>Las tres pruebas</h3><div class="fields proof-fields">${conditions
+    .join('')}</div><h3>${T.threeProofs}</h3><div class="fields proof-fields">${conditions
     .map(
       k =>
-        `<label>${proofLabels[k]}<select name="evidence" data-condition="${k}" aria-label="${proofLabels[k]}" required><option value="">Elegir una prueba…</option>${found.map(x => `<option value="${x.id}">Nº ${state.found.indexOf(x.id) + 1} · ${esc(x.title)}</option>`).join('')}</select></label>`,
+        `<label>${T.proofLabels[k]}<select name="evidence" data-condition="${k}" aria-label="${T.proofLabels[k]}" required><option value="">${T.chooseEvidence}</option>${found.map(x => `<option value="${x.id}">${T.number(state.found.indexOf(x.id) + 1)} · ${esc(x.title)}</option>`).join('')}</select></label>`,
     )
     .join(
       '',
-    )}</div><button class="danger" ${busy ? 'disabled' : ''}>Presentar acusación</button></form>`;
+    )}</div><button class="danger" ${busy ? 'disabled' : ''}>${T.present}</button></form>`;
 }
-const proofLabels = {
-  motive: 'Prueba de su móvil',
-  access: 'Prueba de su acceso al arma',
-  alibi: 'Prueba que desmiente su coartada',
-};
+// The classic cases of the language on screen.
+function classics() {
+  return classicLists[lang] || [];
+}
 function bind() {
   document.querySelector('#menu-toggle').onclick = () => {
     menuOpen = !menuOpen;
     render();
   };
   document.querySelector('#export')?.addEventListener('click', exportSave);
+  document.querySelector('#lang')?.addEventListener('click', async () => {
+    if (busy) return;
+    busy = true;
+    lang = T.other.lang;
+    T = uiText[lang];
+    remember('mundos-idioma', lang);
+    showLanguage();
+    message = '';
+    try {
+      await loadLanguage(lang);
+      preview = cache.get(worldKey(setupWorld));
+      await matchLanguage();
+    } catch (e) {
+      message = e.message;
+    }
+    busy = false;
+    render();
+  });
   document.querySelector('#sound').onclick = () => {
     sounding = !sounding;
     remember('mundos-sonido', sounding);
@@ -462,7 +527,11 @@ function bind() {
       speak(
         [
           c.opening.arrival,
-          `A las ${clock(c.timing.discoveryMinute)} llega el aviso: han encontrado sin vida a ${c.victim.name} en ${placePhrase(c.scene)}.`,
+          uiText[c.lang].openingSpoken(
+            clock(c.timing.discoveryMinute),
+            c.victim.name,
+            placePhrase(c.scene),
+          ),
           c.opening.tension,
         ].join(' '),
       ),
@@ -472,26 +541,26 @@ function bind() {
     try {
       const file = e.target.files[0];
       if (!file) return;
-      if (file.size > 1000000) throw Error('Archivo demasiado grande');
+      if (file.size > 1000000) throw Error(T.fileTooBig);
       const raw = JSON.parse(await file.text());
       // A case file starts a fresh investigation; a save continues where it was left.
       if (raw.format === CASE_FORMAT) state = newPrototype(null, { caseFile: raw });
       else if (raw.format === SAVE_FORMAT) state = restorePrototype(raw);
-      else throw Error('No es un expediente ni una partida de Blackwood');
+      else throw Error(T.notBlackwood);
       c = createPrototypeCase(state);
       person = c.people[0].id;
       hint = null;
       noteMessage = null;
-      if (cache.has(state.world)) {
+      if (cache.has(worldKey(state.world))) {
         setupWorld = state.world;
-        preview = cache.get(setupWorld);
+        preview = cache.get(worldKey(setupWorld));
       }
       save();
-      message = raw.format === CASE_FORMAT ? 'Caso importado.' : 'Partida importada.';
+      message = raw.format === CASE_FORMAT ? T.caseImported : T.saveImported;
       enterCase();
       return;
     } catch (e) {
-      message = 'No se pudo importar: ' + e.message;
+      message = T.importFailed(e.message);
     }
     render();
   };
@@ -505,7 +574,7 @@ function bind() {
   );
   // A game half played is only replaced if the player says so.
   const replaceCurrent = () =>
-    !state || state.result || confirm('Empezar otro caso sustituye la partida en curso. ¿Seguir?');
+    !state || state.result || confirm(T.replaceConfirm);
   document.querySelectorAll('[data-world]').forEach(
     b =>
       (b.onclick = () => {
@@ -516,7 +585,7 @@ function bind() {
   );
   function startCase() {
     try {
-      const world = cache.get(selectWorld(setupWorld));
+      const world = cache.get(worldKey(selectWorld(setupWorld)));
       preview = world;
       state = newPrototype(world, {
         previousMethodId: c?.method.id,
@@ -531,7 +600,7 @@ function bind() {
       save();
       enterCase();
     } catch (e) {
-      message = 'No se ha creado la investigación: ' + e.message;
+      message = T.createFailed(e.message);
       render();
     }
   }
@@ -539,10 +608,10 @@ function bind() {
     b =>
       (b.onclick = async () => {
         const file = b.dataset.classic;
-        if (busy || !classics.some(k => k.file === file) || !replaceCurrent()) return;
+        if (busy || !classics().some(k => k.file === file) || !replaceCurrent()) return;
         busy = true;
         try {
-          const caseFile = await (await fetch('/cases/' + file)).json();
+          const caseFile = await (await fetch('/cases/' + classicFile(file, lang))).json();
           state = newPrototype(null, { caseFile });
           c = createPrototypeCase(state);
           person = c.people[0].id;
@@ -554,7 +623,7 @@ function bind() {
           enterCase();
         } catch (e) {
           busy = false;
-          message = 'No se pudo abrir el caso: ' + e.message;
+          message = T.classicFailed(e.message);
           render();
         }
       }),
@@ -675,18 +744,10 @@ function bind() {
     state.notes = e.target.value;
     save();
   });
-  const questions = {
-    alibi: '¿Dónde estabas durante el crimen?',
-    motive: '¿Cómo era tu relación con la víctima?',
-    secret: '¿Qué dices del documento que encontré sobre ti?',
-    link: '¿Podías llegar al arma del crimen?',
-    timeline: '¿Quién puede confirmar tu coartada?',
-    seen: '¿Viste u oíste algo fuera de lo normal?',
-    object: '¿Es tuyo el objeto que apareció junto a la puerta?',
-  };
+  // A prompt is asked in the language of the case, which the router of that language reads.
   document
     .querySelectorAll('[data-prompt]')
-    .forEach(b => (b.onclick = () => ask(questions[b.dataset.prompt])));
+    .forEach(b => (b.onclick = () => ask(uiText[c.lang].questions[b.dataset.prompt])));
   document.querySelector('#show')?.addEventListener('submit', e => {
     e.preventDefault();
     const clue = new FormData(e.target).get('clue');
@@ -742,13 +803,14 @@ async function ask(question) {
   message = '';
   let result;
   try {
-    result = answerOffline(c, state, target, question, { questionRouter: routerModel });
+    result = answerOffline(c, state, target, question, { questionRouter: routers[c.lang] });
   } catch (e) {
     message = e.message;
     render();
     return;
   }
-  if (result.unplaced && serverModel) {
+  // The local model of the server speaks Spanish only.
+  if (result.unplaced && serverModel && c.lang === 'es') {
     busy = true;
     render();
     try {

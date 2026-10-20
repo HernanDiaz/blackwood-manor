@@ -49,6 +49,7 @@ function follow(file) {
 follow(from('public/app.mjs'));
 follow(from('public/editor.mjs'));
 modules.add(from('src/question-router-model.json'));
+modules.add(from('src/question-router-model.en.json'));
 for (const file of modules) cpSync(file, to(path.relative(root, file)));
 
 // The page links the manifest and starts the service worker.

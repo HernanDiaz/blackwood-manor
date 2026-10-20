@@ -1,8 +1,9 @@
 const lowerFirst = s => s.charAt(0).toLocaleLowerCase('es') + s.slice(1);
 // A place inside a sentence: "la Sala de navegación" -> "la sala de navegación".
 // Proper nouns keep their capitals ("el salón de Ámbar").
+// A place can give its own form when a proper noun has to keep its capitals.
 export function placePhrase(room) {
-  return room.article + ' ' + lowerFirst(room.name);
+  return room.phrase || room.article + ' ' + lowerFirst(room.name);
 }
 // "de el" -> "del", "a el" -> "al", only between whole words ("Umbría el" stays as it is).
 export const contract = text =>

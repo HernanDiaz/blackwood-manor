@@ -3,7 +3,8 @@
 // larger model offline can change the voice of a character but never the evidence.
 //
 // Placeholders: {victim}, {name}, {role}, {place}, {scene}, {partner}, {from}, {to}, {time},
-// {access}, {record}, {guardian}, {item} (with article), {mine} (mío/mía), {it} (lo/la).
+// {access}, {record}, {guardian}, {item} (with article), {mine} (mío/mía; «mine» in English),
+// {it} (lo/la; «it»).
 // A capitalized placeholder ({Guardian}) inserts the value with a capital letter.
 export const statementKinds = {
   'alibi.claim': {
@@ -188,6 +189,109 @@ export const statementKinds = {
     ],
   },
 };
+// The same statements in English. Each kind has as many wordings as in Spanish, so a case
+// shuffles them the same way in both languages.
+export const englishVariants = {
+  'alibi.claim': [
+    'I was in {place} from {from} to {to}.',
+    'From {from} to {to} I was in {place}.',
+    'I spent that time in {place}, from {from} to {to}.',
+  ],
+  'alibi.alone': [
+    'I was in {place} from {from} to {to}, on my own.',
+    'From {from} to {to} I was in {place}. Nobody was with me.',
+    'I spent that time in {place}, from {from} to {to}, with no one else.',
+  ],
+  'alibi.record': [
+    'I was in {place} from {from} to {to}. When I came out, I found {victim}.',
+    'From {from} to {to} I was in {place}; on my way out I found {victim}.',
+  ],
+  'alibi.pair': [
+    'I was in {place} with {partner} from {from} to {to}.',
+    'From {from} to {to} I was in {place}, with {partner}.',
+    '{partner} and I were in {place} from {from} to {to}.',
+  ],
+  relation: [
+    'I dealt with {victim} every day.',
+    'I had known {victim} for years.',
+    'My dealings with {victim} were strictly business.',
+    'I saw {victim} nearly every day.',
+    'I knew {victim} well enough to know how they treated people.',
+  ],
+  'secret.culprit': [
+    "It's true that {victim} knew that about me. Knowing it doesn't make me guilty.",
+    "Yes, {victim} had found out. That doesn't prove I did anything.",
+    "What that paper says is true. But it's a long way from there to murder, and {victim} knew it.",
+  ],
+  'secret.weak': [
+    "Yes, {victim} and I had that problem. It doesn't mean I hurt anyone.",
+    'That business with {victim} was awkward, I admit. But nobody kills over something like that.',
+    'We had unfinished business, {victim} and I. Like half the people here.',
+  ],
+  'secret.neutral': [
+    "There's nothing unusual about that paper.",
+    "It's an ordinary paper. I don't know what you expect to find in it.",
+    'None of that matters, I assure you.',
+  ],
+  'link.access': [
+    "Yes, I could get to {access}. I wasn't the only one who could.",
+    "I had access to {access}, it's true. So did other people.",
+    "I could have taken {access}, yes. And I wasn't the only one.",
+  ],
+  'link.none': [
+    'I had no access to {access}.',
+    "I couldn't get to {access}. Check it if you like.",
+    'I never had access to {access}.',
+  ],
+  'timeline.culprit': [
+    "Perhaps I got the time wrong. That doesn't mean I went into {scene}.",
+    'I may have mixed up the place or the time. But I did not go into {scene}.',
+    "I don't remember every minute of that night. What I know is that I didn't go into {scene}.",
+  ],
+  'timeline.alone': [
+    "It's true nobody saw me. I was on my own the whole time.",
+    "Nobody can confirm it, I know. But I didn't move from there.",
+    'I was alone; I have no witnesses to offer you.',
+  ],
+  'timeline.record': [
+    'My coming and going are written in {record}.',
+    'Check {record}: the times I went in and came out are there.',
+  ],
+  'timeline.pair': [
+    '{Guardian} was watching the door and can confirm it.',
+    'Ask {guardian}: they saw us go in and come out.',
+  ],
+  'seen.discovery': [
+    'I found {victim} in {scene} at {time} and raised the alarm.',
+    'At {time} I went into {scene} and saw {victim}. I raised the alarm at once.',
+  ],
+  'seen.pair': [
+    'I was in {place} with {partner}. Nobody else came in.',
+    'With {partner}, in {place}. Nobody else came through that door.',
+  ],
+  'seen.nothing': [
+    "I didn't see anything out of the ordinary.",
+    "I didn't notice anything strange, I'm sorry.",
+    "I didn't see anything that caught my attention that night.",
+  ],
+  'object.own': [
+    '{Item} is {mine}. I lost {it} this morning in {scene}.',
+    "Yes, {item} is {mine}. I lost {it} this morning in {scene} and couldn't find {it}.",
+  ],
+  identity: ["My name is {name}. I'm the {role}.", "I'm {name}, the {role}."],
+  social: [
+    'All this unsettles me. Ask whatever you need.',
+    "It isn't easy to talk about this, but go ahead.",
+    'I can hardly believe what has happened. What do you want to know?',
+  ],
+  unknown: [
+    "I don't know anything about that. Ask me something specific.",
+    "I wouldn't know what to tell you about that.",
+    "I've nothing to add to that. If you have evidence, show me.",
+  ],
+};
+export const defaultVariants = (kind, lang = 'es') =>
+  lang === 'en' ? englishVariants[kind] : statementKinds[kind].variants;
 const placeholder = /\{(\w+)\}/g;
 const known = [
   'victim',
@@ -231,9 +335,9 @@ export function fillStatement(text, values) {
 }
 // Phrasings of a kind for one character: their own voice when it has valid ones,
 // otherwise the defaults, in an order that depends on the case.
-export function phrasings(kind, voice, random) {
+export function phrasings(kind, voice, random, lang = 'es') {
   const own = (voice?.[kind] || []).filter(text => !phrasingIssue(kind, text));
-  const list = own.length ? own : statementKinds[kind].variants;
+  const list = own.length ? own : defaultVariants(kind, lang);
   const order = [...list];
   for (let i = order.length - 1; i > 0; i--) {
     const j = Math.floor(random() * (i + 1));
